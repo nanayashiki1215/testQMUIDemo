@@ -12,7 +12,7 @@
 #import "BGQMElectViewController.h"
 #import "BGNomalWebView.h"
 #import "BGUIWebViewController.h"
-#import "BGQMVideoListTableVC.h"
+//#import "BGQMVideoListTableVC.h"
 
 @interface BGQMCategoryListConViewController ()< JXCategoryListCollectionContainerViewDataSource>
 @property (nonatomic, strong) JXCategoryTitleView *categoryView;
@@ -111,9 +111,9 @@
         NSString *videoStr = [NSString changgeNonulWithString:self.allDataArr[index][@"fCode"]];
         if (videoStr.length>0 && [videoStr isEqualToString:@"videoPlay"]) {
             //视频单独拉出来
-            BGQMVideoListTableVC *videoListVC = [[BGQMVideoListTableVC alloc] init];
-            videoListVC.ownNaviController = self.navigationController;
-            return videoListVC;
+//            BGQMVideoListTableVC *videoListVC = [[BGQMVideoListTableVC alloc] init];
+//            videoListVC.ownNaviController = self.navigationController;
+//            return videoListVC;
         }
 //    }
     NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
