@@ -1,0 +1,14 @@
+{
+    "QuartzCore.framework": 2,
+    "CoreLocation.framework": 2,
+    "MessageUI.framework": 1,
+    "CoreTelephony.framework": 2,
+    "Security.framework": 1,
+    "OpenGLES.framework": 1,
+    "SystemConfiguration.framework": 2,
+    "UIKit.framework": 1,
+    "Foundation.framework": 1,
+    "libsqlite3.0.tbd": 1,
+    "CoreData.framework": 1,
+    "libz.dylib": 1
+}

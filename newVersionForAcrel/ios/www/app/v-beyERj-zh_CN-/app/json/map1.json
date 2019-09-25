@@ -1,0 +1,6 @@
+
+[
+{"fSubid":10100001,"fSubname":"安科瑞新大楼变电所","fVoltagestep":10.00,"fLongitude":121.30700000,"fLatitude":31.35000000,"fAddress":"上海嘉定","fInstalledcapacity":500.00,"fApplycapacity":300.00,"fTransformernum":1,"fWaterin":false,"fSmog":false,"fDoor":false},
+{"fSubid":10100002,"fSubname":"江苏安科瑞","fVoltagestep":20.00,"fLongitude":120.21500000,"fLatitude":31.85200000,"fAddress":"深圳","fInstalledcapacity":1000.00,"fApplycapacity":600.00,"fTransformernum":2,"fWaterin":false,"fSmog":false,"fDoor":false},
+{"fSubid":10100003,"fSubname":"安科瑞电气股份有限公司2","fVoltagestep":10.00,"fLongitude":50.62000000,"fLatitude":47.22000000,"fAddress":"上海嘉定","fInstalledcapacity":150.00,"fApplycapacity":150.00,"fTransformernum":16,"fWaterin":false,"fSmog":false,"fDoor":false}
+]

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<div xid="window" class="window cmqaue2" component="$model/UI2/system/components/justep/window/window" design="device:m;" data-bind="component:{name:'$model/UI2/system/components/justep/window/window'}" __cid="cmqaue2" components="$model/UI2/system/components/justep/model/model,$model/UI2/system/components/justep/loadingBar/loadingBar,$model/UI2/system/components/justep/gridSelect/gridSelect,$model/UI2/system/components/justep/data/data,$model/UI2/system/components/justep/window/window,">  
+  <div component="$model/UI2/system/components/justep/model/model" xid="model" style="display:none" data-bind="component:{name:'$model/UI2/system/components/justep/model/model'}" data-events="onLoad:modelLoad" __cid="cmqaue2" class="cmqaue2"></div>  
+  <html lang="zh-CN" __cid="cmqaue2" class="cmqaue2"> 
+    <head __cid="cmqaue2" class="cmqaue2"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+      <meta charset="utf-8" __cid="cmqaue2" class="cmqaue2">  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="cmqaue2" class="cmqaue2">  
+      <meta name="viewport" content="width=device-width, initial-scale=1" __cid="cmqaue2" class="cmqaue2">  
+      <title __cid="cmqaue2" class="cmqaue2">变电所运维云平台</title>  
+      <link href="@justepContextPath@/app/css/bootstrap.min.css" rel="stylesheet" __cid="cmqaue2" class="cmqaue2">  
+      <link href="@justepContextPath@/app/css/main.css" rel="stylesheet" __cid="cmqaue2" class="cmqaue2"> 
+    </head> 
+  </html>  
+  <div class="content-fluid iosapp cmqaue2" style="width:100%;" __cid="cmqaue2"> 
+    <nav class="nav center cmqaue2" __cid="cmqaue2"> 
+      <i class="left cmqaue2" __cid="cmqaue2" data-bind="event:{click:$model._callModelFn.bind($model, {operation:'window.close'})}"></i>  
+      <span __cid="cmqaue2" class="cmqaue2">视频直播</span>  
+      <a href="#" __cid="cmqaue2" class="cmqaue2"></a> 
+    </nav>  
+    <div class="Line-Temp cmqaue2" __cid="cmqaue2"> 
+      <div class="x-gridSelect cmqaue2" component="$model/UI2/system/components/justep/gridSelect/gridSelect" xid="gridSelect2" inputFilterable="true" multiselect="false" clearButton="false" data-config="{&#34;autoOptionWidth&#34;:false,&#34;disabled&#34;:false,&#34;inputChangeable&#34;:false,&#34;inputFilterable&#34;:true,&#34;optionCfg&#34;:{&#34;colModel&#34;:[{&#34;name&#34;:&#34;f_SubName&#34;}],&#34;data&#34;:&#34;subdata&#34;,&#34;label&#34;:&#34;f_SubName&#34;,&#34;rownumbers&#34;:false,&#34;value&#34;:&#34;f_SubID&#34;,&#34;xid&#34;:&#34;option2&#34;},&#34;optionHeight&#34;:300}" data-bind="component:{name:'$model/UI2/system/components/justep/gridSelect/gridSelect'}" data-events="onUpdateValue:gridSelect2UpdateValue" __cid="cmqaue2"> 
+        <div class="x-gridSelect-option cmqaue2" __cid="cmqaue2"></div>
+        <input class="form-control x-gridSelect-input cmqaue2" __cid="cmqaue2">
+        <span class="x-gridSelect-clear icon-close-circled hide cmqaue2" __cid="cmqaue2"></span>
+      </div> 
+    </div>  
+    <span xid="subName" class="subName cmqaue2" __cid="cmqaue2" data-bind="event:{click:$model._callModelFn.bind($model, 'subNameClick')}"></span>  
+    <iframe xid="iframe2" id="iframe2" style="display:block;width:auto;height:auto;border-width:0px 0px 0px 0px;" __cid="cmqaue2" class="cmqaue2"></iframe> 
+  </div> 
+</div>

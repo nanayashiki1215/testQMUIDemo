@@ -1,0 +1,50 @@
+.x-popPicker .x-popPicker-content .x-poppicker-title .x-year,
+.x-popPicker .x-popPicker-content .x-poppicker-title .x-month,
+.x-popPicker .x-popPicker-content .x-poppicker-title .x-day,
+.x-popPicker .x-popPicker-content .x-poppicker-title .x-hour,
+.x-popPicker .x-popPicker-content .x-poppicker-title .x-minute,
+.x-popPicker .x-popPicker-content .x-poppicker-title .x-second{
+    float: left;
+    width: 16.66666%;
+    color: #8f8f94;
+    margin: 0;
+    padding: 8px;
+    text-align: center;
+    border-top: solid 1px #ddd;
+    background-color: #f0f0f0;
+    border-bottom: solid 1px #ccc;
+}
+
+.x-popPicker .x-popPicker-content .x-poppicker-header .x-btn-clear{
+	color: #8f8f94;
+}
+
+.x-popPicker[type=date] .x-popPicker-content .x-year,
+.x-popPicker[type=date] .x-popPicker-content .x-month,
+.x-popPicker[type=date] .x-popPicker-content .x-day,
+.x-popPicker[type=date] .x-popPicker-content .x-hour,
+.x-popPicker[type=date] .x-popPicker-content .x-minute,
+.x-popPicker[type=date] .x-popPicker-content .x-second{
+    width: 33.33333%;
+}
+
+.x-popPicker[type=date] .x-popPicker-content .x-hour,
+.x-popPicker[type=date] .x-popPicker-content .x-minute,
+.x-popPicker[type=date] .x-popPicker-content .x-second{
+    display: none;
+}
+
+.x-popPicker[type=time] .x-popPicker-content .x-year,
+.x-popPicker[type=time] .x-popPicker-content .x-month,
+.x-popPicker[type=time] .x-popPicker-content .x-day,
+.x-popPicker[type=time] .x-popPicker-content .x-hour,
+.x-popPicker[type=time] .x-popPicker-content .x-minute,
+.x-popPicker[type=time] .x-popPicker-content .x-second{
+    width: 33.33333%;
+}
+
+.x-popPicker[type=time] .x-popPicker-content .x-year,
+.x-popPicker[type=time] .x-popPicker-content .x-month,
+.x-popPicker[type=time] .x-popPicker-content .x-day{
+    display: none;
+}

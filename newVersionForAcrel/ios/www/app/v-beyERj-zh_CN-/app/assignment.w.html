@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<div xid="window" class="window ca6FjUf" component="$model/UI2/system/components/justep/window/window" design="device:m;" data-bind="component:{name:'$model/UI2/system/components/justep/window/window'}" __cid="ca6FjUf" components="$model/UI2/system/components/justep/model/model,$model/UI2/system/components/justep/loadingBar/loadingBar,$model/UI2/system/components/justep/button/button,$model/UI2/system/components/bootstrap/table/table,$model/UI2/system/components/justep/scrollView/scrollView,$model/UI2/system/components/justep/list/list,$model/UI2/system/components/justep/panel/child,$model/UI2/system/components/justep/data/data,$model/UI2/system/components/justep/windowDialog/windowDialog,$model/UI2/system/components/justep/window/window,$model/UI2/system/components/justep/panel/panel,">
+  <style>.x-dialog-title-text.ca6FjUf{color: white} .x-dialog.ca6FjUf .x-dialog-title.ca6FjUf{background-color: rgb(61, 179, 255)} .x-dialog-title.ca6FjUf .close.ca6FjUf{display: none}</style>  
+  <div component="$model/UI2/system/components/justep/model/model" xid="model" style="display:none" data-bind="component:{name:'$model/UI2/system/components/justep/model/model'}" data-events="onActive:modelActive;onLoad:modelParamsReceive" __cid="ca6FjUf" class="ca6FjUf"></div>  
+  <html lang="zh-CN" __cid="ca6FjUf" class="ca6FjUf"> 
+    <head __cid="ca6FjUf" class="ca6FjUf"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+      <meta charset="utf-8" __cid="ca6FjUf" class="ca6FjUf">  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="ca6FjUf" class="ca6FjUf">  
+      <meta name="viewport" content="width=device-width, initial-scale=1" __cid="ca6FjUf" class="ca6FjUf">  
+      <title __cid="ca6FjUf" class="ca6FjUf">变电所运维云平台</title>  
+      <link href="@justepContextPath@/app/css/bootstrap.min.css" rel="stylesheet" __cid="ca6FjUf" class="ca6FjUf">  
+      <link href="@justepContextPath@/app/css/main.css" rel="stylesheet" __cid="ca6FjUf" class="ca6FjUf"> 
+    </head> 
+  </html>  
+  <span component="$model/UI2/system/components/justep/windowDialog/windowDialog" xid="assignDialog" style="top:114px;left:76px;" data-bind="component:{name:'$model/UI2/system/components/justep/windowDialog/windowDialog'}" data-events="onClose:assignDialogClose" data-config="{&#34;forceRefreshOnOpen&#34;:true,&#34;height&#34;:&#34;80%&#34;,&#34;showTitle&#34;:true,&#34;src&#34;:&#34;$model/UI2/app/distribute.w&#34;,&#34;status&#34;:&#34;normal&#34;,&#34;title&#34;:&#34;分配任务&#34;,&#34;width&#34;:&#34;90%&#34;}" __cid="ca6FjUf" class="ca6FjUf">
+    <div class="x-dialog-overlay ca6FjUf" __cid="ca6FjUf"></div>
+    <div class="x-dialog ca6FjUf" style="display:none;" showTitle="true" __cid="ca6FjUf">
+      <div class="x-dialog-title ca6FjUf" __cid="ca6FjUf">
+        <button class="close ca6FjUf" __cid="ca6FjUf">
+          <span __cid="ca6FjUf" class="ca6FjUf">×</span>
+        </button>
+        <div class="x-dialog-title-text ca6FjUf" __cid="ca6FjUf">分配任务</div>
+      </div>
+      <div class="x-dialog-body ca6FjUf" __cid="ca6FjUf"></div>
+    </div>
+  </span>
+  <div component="$model/UI2/system/components/justep/panel/panel" class="x-panel x-full pcAvAZri-iosstatusbar ca6FjUf" xid="panel1" data-bind="component:{name:'$model/UI2/system/components/justep/panel/panel'}" __cid="ca6FjUf"> 
+    <div class="x-panel-top ca6FjUf" xid="top1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="ca6FjUf"> 
+      <nav class="nav center ca6FjUf" __cid="ca6FjUf"> 
+        <i class="left ca6FjUf" __cid="ca6FjUf" data-bind="event:{click:$model._callModelFn.bind($model, {operation:'window.close'})}"></i>  
+        <span __cid="ca6FjUf" class="ca6FjUf">分配列表</span>  
+        <a href="#" __cid="ca6FjUf" class="ca6FjUf"></a>  
+        <div class="menu-list ca6FjUf" __cid="ca6FjUf"> 
+          <ul __cid="ca6FjUf" class="ca6FjUf"> 
+            <li __cid="ca6FjUf" class="ca6FjUf"> 
+              <a href="#" __cid="ca6FjUf" class="ca6FjUf">地图导航</a> 
+            </li>  
+            <li __cid="ca6FjUf" class="ca6FjUf"> 
+              <a href="#" __cid="ca6FjUf" class="ca6FjUf">变配电站概况</a> 
+            </li>  
+            <li class="inspect ca6FjUf" __cid="ca6FjUf"> 
+              <h2 __cid="ca6FjUf" class="ca6FjUf"> 
+                <a href="#" __cid="ca6FjUf" class="ca6FjUf">巡检管理</a>  
+                <i class="foldIcon ca6FjUf" __cid="ca6FjUf"></i> 
+              </h2>  
+              <ul class="menu-child ca6FjUf" __cid="ca6FjUf"> 
+                <li __cid="ca6FjUf" class="ca6FjUf"> 
+                  <a href="#" __cid="ca6FjUf" class="ca6FjUf">巡检任务</a> 
+                </li>  
+                <li __cid="ca6FjUf" class="ca6FjUf"> 
+                  <a href="#" __cid="ca6FjUf" class="ca6FjUf">任务执行</a> 
+                </li>  
+                <li __cid="ca6FjUf" class="ca6FjUf"> 
+                  <a href="#" __cid="ca6FjUf" class="ca6FjUf">查询任务</a> 
+                </li> 
+              </ul> 
+            </li>  
+            <li __cid="ca6FjUf" class="ca6FjUf"> 
+              <a href="#" __cid="ca6FjUf" class="ca6FjUf">事件</a> 
+            </li> 
+          </ul> 
+        </div> 
+      </nav> 
+    </div>  
+    <div class="x-panel-content  x-scroll-view ca6FjUf" xid="content1" _xid="C794C3A07AD00001AF7E1615AB4017B1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="ca6FjUf">
+      <div class="x-scroll ca6FjUf" component="$model/UI2/system/components/justep/scrollView/scrollView" xid="scrollView1" data-bind="component:{name:'$model/UI2/system/components/justep/scrollView/scrollView'}" data-events="onPullDown:assignDialogClose" data-config="{&#34;autoPullUp&#34;:true}" __cid="ca6FjUf"> 
+        <div class="x-content-center x-pull-down container ca6FjUf" xid="div1" __cid="ca6FjUf"> 
+          <i class="x-pull-down-img glyphicon x-icon-pull-down ca6FjUf" xid="i1" __cid="ca6FjUf"></i>  
+          <span class="x-pull-down-label ca6FjUf" xid="span1" __cid="ca6FjUf">下拉刷新...</span>
+        </div>  
+        <div class="x-scroll-content ca6FjUf" xid="div2" __cid="ca6FjUf">
+          <div component="$model/UI2/system/components/justep/list/list" class="x-list ca6FjUf" xid="list4" data-bind="component:{name:'$model/UI2/system/components/justep/list/list'}" data-config="{&#34;data&#34;:&#34;assigndata&#34;,&#34;disableInfiniteLoad&#34;:false,&#34;limit&#34;:10}" __cid="ca6FjUf"> 
+            <table class="table table-bordered table-hover table-striped ca6FjUf" component="$model/UI2/system/components/bootstrap/table/table" xid="table2" data-bind="component:{name:'$model/UI2/system/components/bootstrap/table/table'}" __cid="ca6FjUf"> 
+              <thead xid="thead4" __cid="ca6FjUf" class="ca6FjUf"> 
+                <tr xid="tr6" __cid="ca6FjUf" class="ca6FjUf"> 
+                  <th xid="col11" style="width:166px;height:40px;text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="ca6FjUf" class="ca6FjUf">变配电站</th>  
+                  <th xid="col14" style="width:200px;text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="ca6FjUf" class="ca6FjUf">计划完成日期</th>  
+                  <th xid="col12" style="width:165px;text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="ca6FjUf" class="ca6FjUf">地点</th>  
+                  <th xid="col13" style="width:165px;text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="ca6FjUf" class="ca6FjUf">分配</th> 
+                </tr> 
+              </thead>  
+              <tbody class="x-list-template hide ca6FjUf" xid="listTemplate3" __cid="ca6FjUf" data-bind="foreach:{data:$model.foreach_list4($element),afterRender:$model.foreach_afterRender_list4.bind($model,$element)}"> 
+                <tr xid="tr7" __cid="ca6FjUf" class="ca6FjUf"> 
+                  <td xid="td7" __cid="ca6FjUf" class="ca6FjUf" data-bind="text:ref(&#34;subname&#34;)"></td>  
+                  <td xid="td10" __cid="ca6FjUf" class="ca6FjUf" data-bind="text:ref(&#34;deadline&#34;)"></td>  
+                  <td xid="td8" __cid="ca6FjUf" class="ca6FjUf" data-bind="text:ref(&#34;address&#34;)"></td>  
+                  <td xid="td9" style="text-align:center;" __cid="ca6FjUf" class="ca6FjUf"> 
+                    <a component="$model/UI2/system/components/justep/button/button" class="btn btn-success ca6FjUf" xid="button3" data-bind="component:{name:'$model/UI2/system/components/justep/button/button'}" data-events="onClick:button3Click" data-config="{&#34;label&#34;:&#34;分配&#34;}" __cid="ca6FjUf"> 
+                      <i xid="i3" __cid="ca6FjUf" class="ca6FjUf"></i>  
+                      <span xid="span8" __cid="ca6FjUf" class="ca6FjUf">分配</span> 
+                    </a> 
+                  </td> 
+                </tr> 
+              </tbody> 
+            </table> 
+          </div> 
+        </div>  
+        <div class="x-content-center x-pull-up ca6FjUf" xid="div3" __cid="ca6FjUf"></div>
+      </div>
+    </div>  
+    <style __cid="ca6FjUf" class="ca6FjUf">.x-panel.pcAvAZri-iosstatusbar >.x-panel-top {height: 43px;}.x-panel.pcAvAZri-iosstatusbar >.x-panel-content { top: 43px;bottom: nullpx;}.x-panel.pcAvAZri-iosstatusbar >.x-panel-bottom {height: nullpx;}.iosstatusbar .x-panel.pcAvAZri-iosstatusbar >.x-panel-top,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcAvAZri-iosstatusbar >.x-panel-top {height: 63px;}.iosstatusbar .x-panel.pcAvAZri-iosstatusbar >.x-panel-content,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcAvAZri-iosstatusbar >.x-panel-content { top: 63px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcAvAZri-iosstatusbar >.x-panel-top {height: 43px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcAvAZri-iosstatusbar >.x-panel-content {top: 43px;}</style>
+  </div> 
+</div>

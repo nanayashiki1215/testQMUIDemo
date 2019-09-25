@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+<head>
+    <style type="text/css">
+        div.pinch-zoom,
+        div.pinch-zoom img{
+            width: 100%;
+            -webkit-user-drag: none;
+        }
+
+    </style>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="initial-scale=0.1, maximum-scale=10, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- pinchzoom requires: jquery -->
+    <script type="text/javascript" src="../dependencies/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../src/pinchzoom.js"></script>
+    <script type="text/javascript" src="DistributDiagram.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('div.pinch-zoom').each(function () {
+                new RTP.PinchZoom($(this), {});
+            });
+        })
+    </script>
+</head>
+<body>
+
+    <div class="page">
+        <div class="pinch-zoom"></div>
+    </div>
+
+</body>
+</html>

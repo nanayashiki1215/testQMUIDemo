@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<div xid="window" class="window cAZny6f" component="$model/UI2/system/components/justep/window/window" design="device:m;" data-bind="component:{name:'$model/UI2/system/components/justep/window/window'}" __cid="cAZny6f" components="$model/UI2/system/components/justep/model/model,$model/UI2/system/components/justep/loadingBar/loadingBar,$model/UI2/system/components/bootstrap/table/table,$model/UI2/system/components/justep/scrollView/scrollView,$model/UI2/system/components/justep/list/list,$model/UI2/system/components/justep/panel/child,$model/UI2/system/components/justep/data/data,$model/UI2/system/components/justep/window/window,$model/UI2/system/components/justep/panel/panel,">  
+  <div component="$model/UI2/system/components/justep/model/model" xid="model" style="display:none" data-bind="component:{name:'$model/UI2/system/components/justep/model/model'}" data-events="onLoad:modelLoad" __cid="cAZny6f" class="cAZny6f"></div>  
+  <html lang="zh-CN" __cid="cAZny6f" class="cAZny6f"> 
+    <head __cid="cAZny6f" class="cAZny6f"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+      <meta charset="utf-8" __cid="cAZny6f" class="cAZny6f">  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="cAZny6f" class="cAZny6f">  
+      <meta name="viewport" content="width=device-width, initial-scale=1" __cid="cAZny6f" class="cAZny6f">  
+      <title __cid="cAZny6f" class="cAZny6f">变电所运维云平台</title>  
+      <link href="@justepContextPath@/app/css/bootstrap.min.css" rel="stylesheet" __cid="cAZny6f" class="cAZny6f">  
+      <link href="@justepContextPath@/app/css/main.css" rel="stylesheet" __cid="cAZny6f" class="cAZny6f"> 
+    </head> 
+  </html>  
+  <div component="$model/UI2/system/components/justep/panel/panel" class="x-panel x-full pceUVvA3-iosstatusbar cAZny6f" xid="panel1" data-bind="component:{name:'$model/UI2/system/components/justep/panel/panel'}" __cid="cAZny6f"> 
+    <div class="x-panel-top cAZny6f" xid="top1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="cAZny6f">
+      <nav class="nav center cAZny6f" __cid="cAZny6f"> 
+        <span __cid="cAZny6f" class="cAZny6f">报警事件</span>  
+        <a href="#" __cid="cAZny6f" class="cAZny6f"></a>  
+        <div class="menu-list cAZny6f" __cid="cAZny6f"> 
+          <ul __cid="cAZny6f" class="cAZny6f"> 
+            <li __cid="cAZny6f" class="cAZny6f"> 
+              <a href="#" __cid="cAZny6f" class="cAZny6f">地图导航</a> 
+            </li>  
+            <li __cid="cAZny6f" class="cAZny6f"> 
+              <a href="#" __cid="cAZny6f" class="cAZny6f">变电所概况</a> 
+            </li>  
+            <li class="inspect cAZny6f" __cid="cAZny6f"> 
+              <h2 __cid="cAZny6f" class="cAZny6f"> 
+                <a href="#" __cid="cAZny6f" class="cAZny6f">巡检管理</a>  
+                <i class="foldIcon cAZny6f" __cid="cAZny6f"></i> 
+              </h2>  
+              <ul class="menu-child cAZny6f" __cid="cAZny6f"> 
+                <li __cid="cAZny6f" class="cAZny6f"> 
+                  <a href="#" __cid="cAZny6f" class="cAZny6f">巡检任务</a> 
+                </li>  
+                <li __cid="cAZny6f" class="cAZny6f"> 
+                  <a href="#" __cid="cAZny6f" class="cAZny6f">任务执行</a> 
+                </li>  
+                <li __cid="cAZny6f" class="cAZny6f"> 
+                  <a href="#" __cid="cAZny6f" class="cAZny6f">查询任务</a> 
+                </li> 
+              </ul> 
+            </li>  
+            <li __cid="cAZny6f" class="cAZny6f"> 
+              <a href="#" __cid="cAZny6f" class="cAZny6f">事件</a> 
+            </li> 
+          </ul> 
+        </div> 
+      </nav> 
+    </div>  
+    <div class="x-panel-content  x-scroll-view cAZny6f" xid="content1" _xid="C79983D2C3900001C22AB43F87701E7D" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="cAZny6f">
+      <div class="x-scroll cAZny6f" component="$model/UI2/system/components/justep/scrollView/scrollView" xid="scrollView1" data-bind="component:{name:'$model/UI2/system/components/justep/scrollView/scrollView'}" __cid="cAZny6f"> 
+        <div class="x-content-center x-pull-down container cAZny6f" xid="div1" __cid="cAZny6f"> 
+          <i class="x-pull-down-img glyphicon x-icon-pull-down cAZny6f" xid="i1" __cid="cAZny6f"></i>  
+          <span class="x-pull-down-label cAZny6f" xid="span1" __cid="cAZny6f">下拉刷新...</span>
+        </div>  
+        <div class="x-scroll-content cAZny6f" xid="div2" __cid="cAZny6f">
+          <div component="$model/UI2/system/components/justep/list/list" class="x-list cAZny6f" xid="list4" data-bind="component:{name:'$model/UI2/system/components/justep/list/list'}" data-config="{&#34;data&#34;:&#34;noreadeventdata&#34;,&#34;limit&#34;:6}" __cid="cAZny6f"> 
+            <table class="table table-bordered table-hover table-striped cAZny6f" component="$model/UI2/system/components/bootstrap/table/table" xid="table2" data-bind="component:{name:'$model/UI2/system/components/bootstrap/table/table'}" __cid="cAZny6f"> 
+              <thead xid="thead4" __cid="cAZny6f" class="cAZny6f"> 
+                <tr xid="tr6" __cid="cAZny6f" class="cAZny6f"> 
+                  <th xid="col1" style="text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="cAZny6f" class="cAZny6f">变配电站</th>
+                  <th xid="col11" style="text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="cAZny6f" class="cAZny6f">时间</th>  
+                  <th xid="col14" style="text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="cAZny6f" class="cAZny6f">类型</th>  
+                  <th xid="col12" style="text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="cAZny6f" class="cAZny6f">回路名称</th>  
+                  <th xid="col13" style="text-align:center;background-color:#3DB3FF;color:#FFFFFF;" __cid="cAZny6f" class="cAZny6f">描述</th> 
+                </tr> 
+              </thead>  
+              <tbody class="x-list-template hide cAZny6f" xid="listTemplate3" __cid="cAZny6f" data-bind="foreach:{data:$model.foreach_list4($element),afterRender:$model.foreach_afterRender_list4.bind($model,$element)}"> 
+                <tr xid="tr7" __cid="cAZny6f" class="cAZny6f"> 
+                  <td xid="td1" __cid="cAZny6f" class="cAZny6f" data-bind="text:ref(&#34;subname&#34;)"></td>
+                  <td xid="td7" __cid="cAZny6f" class="cAZny6f" data-bind="text:ref(&#34;starttime&#34;)"></td>  
+                  <td xid="td10" __cid="cAZny6f" class="cAZny6f" data-bind="text:ref(&#34;alarmtype&#34;)"></td>  
+                  <td xid="td8" __cid="cAZny6f" class="cAZny6f" data-bind="text:ref(&#34;metername&#34;)"></td>  
+                  <td xid="td9" style="text-align:center;" __cid="cAZny6f" class="cAZny6f" data-bind="text:ref(&#34;alarmdesc&#34;)"></td> 
+                </tr> 
+              </tbody> 
+            </table> 
+          </div>
+        </div>  
+        <div class="x-content-center x-pull-up cAZny6f" xid="div3" __cid="cAZny6f"></div> 
+      </div>
+    </div>  
+    <div class="x-panel-bottom cAZny6f" xid="bottom1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="cAZny6f">
+      <nav class="nav-bottom cAZny6f" __cid="cAZny6f"> 
+        <ul __cid="cAZny6f" class="cAZny6f"> 
+          <li __cid="cAZny6f" class="cAZny6f" data-bind="event:{click:$model._callModelFn.bind($model, 'li1Click')}"> 
+            <span class="home2 cAZny6f" __cid="cAZny6f"></span>  
+            <p __cid="cAZny6f" class="cAZny6f">主页</p> 
+          </li>  
+          <li __cid="cAZny6f" class="cAZny6f"> 
+            <span class="alarm2 cAZny6f" __cid="cAZny6f"></span>
+            <p __cid="cAZny6f" class="cAZny6f">报警信息</p> 
+          </li>  
+          <li __cid="cAZny6f" class="cAZny6f" data-bind="event:{click:$model._callModelFn.bind($model, 'li2Click')}"> 
+            <span class="contact cAZny6f" __cid="cAZny6f"></span>  
+            <p __cid="cAZny6f" class="cAZny6f">关于</p> 
+          </li> 
+        </ul> 
+      </nav> 
+    </div>
+    <style __cid="cAZny6f" class="cAZny6f">.x-panel.pceUVvA3-iosstatusbar >.x-panel-top {height: 48px;}.x-panel.pceUVvA3-iosstatusbar >.x-panel-content { top: 48px;bottom: nullpx;}.x-panel.pceUVvA3-iosstatusbar >.x-panel-bottom {height: nullpx;}.iosstatusbar .x-panel.pceUVvA3-iosstatusbar >.x-panel-top,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pceUVvA3-iosstatusbar >.x-panel-top {height: 68px;}.iosstatusbar .x-panel.pceUVvA3-iosstatusbar >.x-panel-content,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pceUVvA3-iosstatusbar >.x-panel-content { top: 68px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pceUVvA3-iosstatusbar >.x-panel-top {height: 48px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pceUVvA3-iosstatusbar >.x-panel-content {top: 48px;}</style>
+  </div>
+</div>

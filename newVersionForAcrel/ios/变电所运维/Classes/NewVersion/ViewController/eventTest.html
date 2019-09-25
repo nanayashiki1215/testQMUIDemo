@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <base target="_self">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache,must-ridate">
+    <meta http-equiv="expires" content="0">
+    <title>
+        安科瑞变电所
+    </title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style type="text/css">
+    </style>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+</head>
+
+<body>
+    <p style="display:none;">
+        1.参考网站：http://www.runoob.com/bootstrap/bootstrap-tab-plugin.html 2..fade增加淡入淡出效果；添加
+        .fade 到每个 .tab-pane 后面; 3.第一个标签页必须添加 .in 类，以便淡入显示初始内容;
+    </p>
+    <!-- tab标签 -->
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">
+
+                <font color="#02A8A6">电量统计</font>
+            </a>
+        </li>
+        <li>
+            <a href="#fenshidianliang" data-toggle="tab">
+                <font color="#02A8A6">分时电量</font>
+            </a>
+        </li>
+        <li class="dropdown">
+            <!-- <a href="#hehe" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"> -->
+            <a href="#jichao" data-toggle="tab">
+                <font color="#02A8A6">集抄</font>
+                <!-- <b class="caret">
+                </b> -->
+            </a>
+            <!-- <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                <li>
+                    <a href="#jmeter" tabindex="-1" data-toggle="tab">
+                        EF
+                    </a>
+                </li>
+                <li>
+                    <a href="#ejb" tabindex="-1" data-toggle="tab">
+                        Docker
+                    </a>
+                </li>
+            </ul> -->
+        </li>
+    </ul>
+    <!-- 每个tab页对应的内容 -->
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <p>
+                监测点：主进线柜
+            </p>
+            <hr align="center" style="border:1px dashed #C8C8C8" width: 100% />
+            <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+            <button type="button" class="btn btn-primary" style="background:#02A8A6">日报</button>
+            <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+            <button type="button" class="btn btn-primary" style="background:#02A8A6">月报</button>
+            <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+            <button type="button" class="btn btn-primary" style="background:#02A8A6">年报</button>
+            <hr align="center" style="border:1px dashed #C8C8C8" width: 100% />
+            日期：2019-06
+            <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+            <button type="button" class="btn btn-default" style="border:none;">
+                <img src="
+                http://img1001.pocoimg.cn/image/poco/works/87/2018/0906/14/15362156223287880_56337008_H1920.png"
+                    height="22" />上一日
+            </button>
+            <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+            <button type="button" class="btn btn-default" style="border:none;">下一日<img src="
+                http://img1001.pocoimg.cn/image/poco/works/87/2018/0906/14/15362156223287880_56337008_H1920.png"
+                    height="22" /></button>
+            <hr align="center" style="border:1px dashed #C8C8C8" width: 100% />
+
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="main" style="height:400px"></div>
+            <script type="text/javascript">
+                // 路径配置
+                require.config({
+                    paths: {
+                        echarts: 'http://echarts.baidu.com/build/dist'
+                    }
+                });
+                // 使用
+                require(
+                    [
+                        'echarts',
+                        'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                    ],
+                    function (ec) {
+                        // 基于准备好的dom，初始化echarts图表
+                        var myChart = ec.init(document.getElementById('main'));
+
+                        var option = {
+                            tooltip: {
+                                show: true
+                            },
+                            legend: {
+                                data: ['主进线柜', '地源热泵']
+                            },
+                            xAxis: [{
+                                type: 'category',
+                                data: ["0时", "2时", "4时", "6时", "8时", "10时"]
+                            }],
+                            yAxis: [{
+                                type: 'value'
+                            }],
+                            series: [{
+                                "name": "单位",
+                                "type": "bar",
+                                "data": [5, 20, 40, 10, 10, 20]
+                            }]
+                        };
+
+                        // 为echarts对象加载数据 
+                        myChart.setOption(option);
+                    }
+                );
+            </script>
+        </div>
+        <div class="tab-pane fade" id="fenshidianliang">
+            <p>
+                日期：2019-06
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option1">按电量
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2"> 按电费
+                    </label>
+                </div>
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="main2" style="height:400px"></div>
+                <script type="text/javascript">
+                    // 路径配置
+                    require.config({
+                        paths: {
+                            echarts: 'http://echarts.baidu.com/build/dist'
+                        }
+                    });
+                    // 使用
+                    require(
+                        [
+                            'echarts',
+                            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                        ],
+                        function (ec) {
+                            // 基于准备好的dom，初始化echarts图表
+                            var myChart = ec.init(document.getElementById('main2'));
+
+                            var option = {
+                                tooltip: {
+                                    show: true
+                                },
+                                legend: {
+                                    data: ['主进线柜', '地源热泵']
+                                },
+                                xAxis: [{
+                                    type: 'category',
+                                    data: ["0时", "2时", "4时", "6时", "8时", "10时"]
+                                }],
+                                yAxis: [{
+                                    type: 'value'
+                                }],
+                                series: [{
+                                    "name": "单位",
+                                    "type": "bar",
+                                    "data": [5, 20, 40, 10, 10, 20]
+                                }]
+                            };
+
+                            // 为echarts对象加载数据 
+                            myChart.setOption(option);
+                        }
+                    );
+                </script>
+            </p>
+        </div>
+        <div class="tab-pane fade" id="jichao">
+            <p>
+                <p>
+                    监测点：主进线柜
+                </p>
+                <hr align="center" style="border:1px dashed #C8C8C8" width: 100% />
+                日期：2019-06-03 00：00 至 2019-06-08 12：30
+                <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+                <hr align="center" style="border:1px dashed #C8C8C8" width: 100% />
+                <button type="button" class="btn btn-primary btn-lg btn-block" style="background:#02A8A6">查询</button>
+            </p>
+        </div>
+        <div class="tab-pane fade" id="ejb">
+            <p>
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js">
+    </script>
+    <script type="text/javascript">
+    </script>
+    <script>
+        function setupWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                return callback(WebViewJavascriptBridge);
+            }
+            if (window.WVJBCallbacks) {
+                return window.WVJBCallbacks.push(callback);
+            }
+            window.WVJBCallbacks = [callback];
+            var WVJBIframe = document.createElement('iframe');
+            WVJBIframe.style.display = 'none';
+            WVJBIframe.src = 'https://__bridge_loaded__';
+            document.documentElement.appendChild(WVJBIframe);
+            setTimeout(function () {
+                document.documentElement.removeChild(WVJBIframe)
+            }, 0)
+        }
+
+        setupWebViewJavascriptBridge(function (bridge) {
+            var uniqueId = 1
+
+            function log(message, data) {
+                var log = document.getElementById('log')
+                var el = document.createElement('div')
+                el.className = 'logLine'
+                el.innerHTML = uniqueId++ + '. ' + message + ':<br />' + JSON.stringify(data)
+                if (log.children.length) {
+                    log.insertBefore(el, log.children[0])
+                } else {
+                    log.appendChild(el)
+                }
+            }
+
+            bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
+                log('ObjC called testJavascriptHandler with', data)
+                var responseData = {
+                    'Javascript Says': 'Right back atcha!'
+                }
+                log('JS responding with', responseData)
+                responseCallback(responseData)
+            })
+
+            document.body.appendChild(document.createElement('br'))
+
+            var callbackButton = document.getElementById('buttons').appendChild(document.createElement(
+                'button'))
+            callbackButton.innerHTML = 'Fire testObjcCallback'
+            callbackButton.onclick = function (e) {
+                e.preventDefault()
+                log('JS calling handler "testObjcCallback"')
+                bridge.callHandler('testObjcCallback', {
+                    'foo': 'bar'
+                }, function (response) {
+                    log('JS got response', response)
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

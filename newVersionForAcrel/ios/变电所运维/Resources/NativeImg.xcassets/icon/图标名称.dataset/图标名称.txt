@@ -1,0 +1,35 @@
+
+安科瑞变电所    select
+
+地址    map
+
+电话    phone
+
+
+    供电电压等级             变压器台数           总装机容量
+
+    VoltageLevel             Transformer          InstalledCapacity
+
+
+
+    总负荷率                 测控装置             网关
+   
+    LoadFactor               Measurement          Gateway
+
+
+
+事件       Event
+
+电力       Electric
+
+电量       electricQuantity
+
+电能质量   PowerQuality
+
+电气安全   ElectricalSafety
+
+环境       EnvironmentMoni
+
+变配电设备 Device
+
+报表       Report

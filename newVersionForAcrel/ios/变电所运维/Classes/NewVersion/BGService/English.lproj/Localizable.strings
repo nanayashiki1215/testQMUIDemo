@@ -1,0 +1,86 @@
+/* 
+  Localizable.string.strings
+  变电所运维
+
+  Created by Acrel on 2019/5/16.
+  
+*/
+
+"LoginText" = "Power Operation Maintenance";
+"serverAddressText"="Domain Name/Server Address";
+"usernameText"="username";
+"passwordText"="password";
+
+"Home"="Home";
+"Alarm"="Alarm";
+"About"="User";
+"Inspect"="Inspect";
+"Electric"="Electric";
+
+//登录
+"Domain name cannot be empty"="Domain name cannot be empty";
+"User name cannot be empty"="User name cannot be empty";
+"Password cannot be empty"="Password cannot be empty";
+"Domain name filling out is not standard"="Domain name filling out is not standard";
+
+//BGCheckAppVersionMgr
+"Tip"="Tips";
+"Newversion"="New version detected, whether to update";
+"ToUpdate"="To Update";
+"Nexttime"="Next time";
+
+//homeSelect
+"Videodata" = "Videodata";
+"selectsubstation" = "selectSubstation";
+
+//video
+"play"="play";
+"stop"="stop";
+"playBack" = "playBack";
+"verify_code_wrong" = "verify_code_wrong";
+"device_offline" = "device_offline";
+"device_not_exist" = "device_not_exist";
+"camera_not_exist" = "camera_not_exist";
+"connect_out_time" = "connect_out_time";
+"connect_device_limit" = "connect_device_limit";
+"not_find_file" = "not_find_file";
+"param_error" = "param_error";
+"play_url_format_wrong" = "play_url_format_wrong";
+"play_fail" = "play_fail";
+"not_found_record_files"="not_found_record_files";
+//"param_error" = "";
+
+//首页
+"monitorSystem"="Monitor";
+"deviceManage"="Device";
+
+//个人中心
+"PersonalInfo"="PersonalInfo";
+"Feedback"="FeedBack";
+"ClearCache"="ClearCache";
+"VersionInfo"="VersionInfo";
+"ShareApp"="ShareApp";
+"nickname"="NickName";
+"tel"="Tel";
+"address"="E-mail";
+"submit"="submit";
+"ProblemDescription"="ProblemDescription:";
+"problemssuggestions"="Write down your problems and suggestions.";
+"ShareWechatFriends"="ShareWechatFriends";
+"ShareWechatFriendCircle"="ShareWechatFriendCircle";
+"Copylinks"="CopyLinks";
+"nownoClearCache"="Currently there is no cache and no cleaning is required.";
+"Cancel"="Cancel";
+"Sure"="Sure";
+"Thecachesizeis"="The cache size is ";
+"Wasitcleanedup"="Was it cleaned up";
+"Upload the Avatar"="Upload the Avatar";
+"VersionUpdate"="Version Update";
+"Successfulsubmission"="Successful submission. Thank you for your feedback.";
+"Save"="Save";
+"ChangeLanguage"="ChangeLanguage";
+"Delete"="Delete";
+//language
+"Chinese-simple"="Chinese-simple";
+//网络模块
+"request failure"="request failure";

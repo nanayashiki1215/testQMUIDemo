@@ -1,0 +1,52 @@
+//
+//  QDCommonTableViewController.m
+//  qmuidemo
+//
+//  Created by QMUI Team on 15/4/13.
+//  Copyright (c) 2015年 QMUI Team. All rights reserved.
+//
+
+#import "QDCommonTableViewController.h"
+
+@implementation QDCommonTableViewController
+
+- (void)didInitialize {
+    [super didInitialize];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleThemeChangedNotification:) name:QDThemeChangedNotification object:nil];
+}
+
+- (void)initTableView {
+    [super initTableView];
+    if (IsUITest) {
+        self.tableView.accessibilityLabel = [NSString stringWithFormat:@"viewController-%@", self.title];
+    }
+}
+
+- (void)setTitle:(NSString *)title {
+    [super setTitle:title];
+    if (IsUITest && self.isViewLoaded) {
+        self.tableView.accessibilityLabel = [NSString stringWithFormat:@"viewController-%@", self.title];
+    }
+}
+
+- (void)handleThemeChangedNotification:(NSNotification *)notification {
+    NSObject<QDThemeProtocol> *themeBeforeChanged = notification.userInfo[QDThemeBeforeChangedName];
+    themeBeforeChanged = [themeBeforeChanged isKindOfClass:[NSNull class]] ? nil : themeBeforeChanged;
+    
+    NSObject<QDThemeProtocol> *themeAfterChanged = notification.userInfo[QDThemeAfterChangedName];
+    themeAfterChanged = [themeAfterChanged isKindOfClass:[NSNull class]] ? nil : themeAfterChanged;
+    
+    [self themeBeforeChanged:themeBeforeChanged afterChanged:themeAfterChanged];
+}
+
+- (BOOL)shouldCustomizeNavigationBarTransitionIfHideable {
+    return YES;
+}
+
+#pragma mark - <QDChangingThemeDelegate>
+
+- (void)themeBeforeChanged:(NSObject<QDThemeProtocol> *)themeBeforeChanged afterChanged:(NSObject<QDThemeProtocol> *)themeAfterChanged {
+    [self.tableView reloadData];
+}
+
+@end

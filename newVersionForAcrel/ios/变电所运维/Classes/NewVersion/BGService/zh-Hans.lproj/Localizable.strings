@@ -1,0 +1,85 @@
+/* 
+  Localizable.string.strings
+  变电所运维
+
+  Created by Acrel on 2019/5/16.
+  
+*/
+
+"LoginText" = "电力运维云平台";
+"serverAddressText"="域名/服务器地址+端号";
+"usernameText"="用户名";
+"passwordText"="密码";
+
+//tabbar
+"Home"="主页";
+"Alarm"="报警";
+"Electric"="电力";
+"Inspect"="巡检";
+"About"="用户";
+
+//BGCheckAppVersionMgr
+"Tip"="提示";
+"Newversion"="检测到新版本，是否去更新?";
+"ToUpdate"="去更新";
+"Nexttime"="下次再说";
+
+//登录
+"Domain name cannot be empty"="域名不能为空";
+"User name cannot be empty"="用户名不能为空";
+"Password cannot be empty"="密码不能为空";
+"Domain name filling out is not standard"="域名填写不规范";
+
+//home
+"Videodata" = "视频直播";
+"selectsubstation" = "筛选变电所";
+
+//video
+"play"="播放";
+"stop"="停止";
+"playBack" = "回放";
+"verify_code_wrong" = "验证代码错误";
+"device_offline" = "设备脱机";
+"device_not_exist" = "设备不存在";
+"camera_not_exist" = "照相机不存在";
+"connect_out_time" = "连接超时";
+"connect_device_limit" = "连接设备达到最大限制";
+"not_find_file" = "找不到文件";
+"param_error" = "参数错误";
+"play_url_format_wrong" = "播放URL格式错误";
+"play_fail" = "播放失败";
+"not_found_record_files"="找不到回放文件";
+
+"monitorSystem"="监控系统";
+"deviceManage"="设备管理";
+
+//个人中心
+"PersonalInfo"="个人信息";
+"Feedback"="意见反馈";
+"ClearCache"="清除缓存";
+"VersionInfo"="版本信息";
+"ShareApp"="分享APP";
+"nickname"="姓名";
+"tel"="电话";
+"address"="邮箱";
+"submit"="提交";
+"ProblemDescription"="问题描述:";
+"problemssuggestions"="写下您遇到的问题与建议，我们将不断改进。";
+"ShareWechatFriends"="分享给微信好友";
+"ShareWechatFriendCircle"="分享到朋友圈";
+"Copylinks"="复制链接";
+"Cancel"="取消";
+"nownoClearCache"="当前无缓存，无需清理。";
+"Sure"="确定";
+"Save"="保存";
+"ChangeLanguage"="切换语言";
+"Delete"="删除";
+"Thecachesizeis"="缓存大小为";
+"Wasitcleanedup"="是否清理";
+"Upload the Avatar"="上传图片";
+"VersionUpdate"="版本更新";
+"Successfulsubmission"="提交成功,感谢您的反馈";
+//language
+"Chinese-simple"="简体中文";
+//网络模块
+"request failure"="请求失败";

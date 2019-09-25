@@ -1,0 +1,74 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+    <meta name="renderer" content="webkit">
+    <title>测试页面</title>
+    <link src="app/css/main.css"/ rel="stylesheet">
+    <style>
+        body{margin:0;text-align: center;}
+        video{max-width: 1200px;width: 100%;}
+        #player .videoContain{border:1px solid #eee;margin-bottom:5px;padding:1px;}
+    </style>
+</head>
+<script>
+</script>
+<body>
+<script src="js/ezuikit.js"></script>
+<script src="js/jquery.min.js"></script>
+<div id="player"></div>
+</body>
+<script>
+ $(document).ready(function(){
+ 
+ 	$("#player").html("")
+ 	var subid = localStorage.getItem("subid");
+ 	var ipAdress = localStorage.getItem("ipAdress");
+	var url = "http://"+ipAdress+"/SubstationOperation/rest/app/getSubInfo";
+ 	$.ajax({
+			type : "get",
+			async : false,
+			data : "Subid=" + subid,
+			url : url,
+			cache : false,
+			dataType : "jsonp",
+			jsonp : "Callback",
+			jsonpCallback : "successCallback",
+			success : function(receiveData) {
+				var visionData=receiveData.SubstationStatus.SubstationStatus.SubstationInfo.fVisionlive;
+				show(visionData);
+			}
+		});
+		
+		function show(visionData){
+			$("#player").html('');
+			if(visionData!=""){
+				var arr = [];
+				arr = visionData.split(';');
+				
+				if(arr.length>0){
+					for(var i=0;i<arr.length;i++){
+						var idName = 'myPlayer'+i;
+						var visionUrl = arr[i];
+						var url="http://hls.open.ys7.com/openlive/"+visionUrl+".m3u8" 
+						
+						var string = "<div class='videoContain'><video id='myPlayer' controls='controls' playsInline='playsInline' webkit-playsinline autoplay='true'><source type='application/x-mpegURL'/></video></div>";
+						
+						$("#player").append(string);
+						
+						$("#myPlayer").attr("id",idName);
+					
+						$("#"+idName).children().attr("src",url);
+					
+						new EZUIPlayer(idName);
+					}
+				}else{
+					$("#player").append("暂无视频信息");
+				}
+			}else{
+					$("#player").append("暂无视频信息");
+			}
+		}
+});
+</script>
+</html>

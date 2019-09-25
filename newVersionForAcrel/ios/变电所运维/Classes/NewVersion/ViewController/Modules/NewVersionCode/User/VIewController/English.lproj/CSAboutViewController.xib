@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSAboutViewController">
+            <connections>
+                <outlet property="currentVersonLB" destination="VLb-FV-gPl" id="WFI-WN-Nfx"/>
+                <outlet property="iconIV" destination="tfZ-Me-inf" id="AMQ-VY-Wjt"/>
+                <outlet property="logoToTop" destination="wSM-Up-0Cy" id="bgs-IW-AjH"/>
+                <outlet property="nameLB" destination="oZw-KE-dVz" id="gIJ-2H-N0N"/>
+                <outlet property="versonUpdateBTN" destination="pXQ-Ev-30b" id="7mv-Sf-zfU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMq-Vk-daJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-vision" translatesAutoresizingMaskIntoConstraints="NO" id="tfZ-Me-inf">
+                            <rect key="frame" x="147.5" y="180" width="80" height="76"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="4kh-ZG-CiF"/>
+                                <constraint firstAttribute="height" constant="76" id="diR-mf-o5Y"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <include reference="4kh-ZG-CiF"/>
+                                    <include reference="diR-mf-o5Y"/>
+                                </mask>
+                            </variation>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="变电所运维" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="68" translatesAutoresizingMaskIntoConstraints="NO" id="oZw-KE-dVz">
+                            <rect key="frame" x="139" y="269" width="97" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="jdP-JW-Ken"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <include reference="jdP-JW-Ken"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="30" translatesAutoresizingMaskIntoConstraints="NO" id="VLb-FV-gPl">
+                            <rect key="frame" x="171.5" y="306" width="32.5" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="5eG-rH-ClV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <include reference="5eG-rH-ClV"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        变电所运维平台配套APP，为用户提供数据及运维服务，时时显示当前用电状态，当前变电所运行情况。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="306" translatesAutoresizingMaskIntoConstraints="NO" id="iFH-Id-yRy">
+                            <rect key="frame" x="20" y="352" width="335" height="57.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-Ev-30b">
+                            <rect key="frame" x="40" y="509.5" width="295" height="45"/>
+                            <color key="backgroundColor" red="0.31372549019607843" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="N31-i8-woV"/>
+                            </constraints>
+                            <state key="normal" title="Version Update">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="versonUpdateAction:" destination="-1" eventType="touchUpInside" id="dKb-RJ-dcM"/>
+                            </connections>
+                        </button>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版权所有：上海安科瑞电气股份有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-vv-KyG">
+                            <rect key="frame" x="0.0" y="645" width="375" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="Eqo-3G-3bv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="VLb-FV-gPl" firstAttribute="top" secondItem="oZw-KE-dVz" secondAttribute="bottom" constant="12" id="7Xh-wP-3Y1"/>
+                        <constraint firstItem="iFH-Id-yRy" firstAttribute="top" secondItem="VLb-FV-gPl" secondAttribute="bottom" constant="25" id="9a9-mz-Hab"/>
+                        <constraint firstAttribute="bottom" secondItem="ajO-vv-KyG" secondAttribute="bottom" constant="1" id="R0f-OK-kQd"/>
+                        <constraint firstItem="VLb-FV-gPl" firstAttribute="centerX" secondItem="tfZ-Me-inf" secondAttribute="centerX" id="SJC-gR-Pwd"/>
+                        <constraint firstItem="oZw-KE-dVz" firstAttribute="centerX" secondItem="tfZ-Me-inf" secondAttribute="centerX" id="YRh-3Q-aui"/>
+                        <constraint firstAttribute="trailing" secondItem="ajO-vv-KyG" secondAttribute="trailing" id="YsE-hJ-iyF"/>
+                        <constraint firstItem="iFH-Id-yRy" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" constant="20" id="aAj-7H-JQT"/>
+                        <constraint firstItem="oZw-KE-dVz" firstAttribute="top" secondItem="tfZ-Me-inf" secondAttribute="bottom" constant="13" id="aI3-Nk-FfI"/>
+                        <constraint firstItem="pXQ-Ev-30b" firstAttribute="centerX" secondItem="GMq-Vk-daJ" secondAttribute="centerX" id="eG4-Cm-8jH"/>
+                        <constraint firstAttribute="trailing" secondItem="iFH-Id-yRy" secondAttribute="trailing" constant="20" id="riR-uJ-RR8"/>
+                        <constraint firstItem="pXQ-Ev-30b" firstAttribute="top" secondItem="iFH-Id-yRy" secondAttribute="bottom" constant="100" id="scs-FT-3fU"/>
+                        <constraint firstAttribute="trailing" secondItem="pXQ-Ev-30b" secondAttribute="trailing" constant="40" id="sd2-XR-AfI"/>
+                        <constraint firstItem="tfZ-Me-inf" firstAttribute="top" secondItem="GMq-Vk-daJ" secondAttribute="top" constant="180" id="wSM-Up-0Cy"/>
+                        <constraint firstItem="ajO-vv-KyG" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" id="xGh-Iz-hCi"/>
+                        <constraint firstItem="tfZ-Me-inf" firstAttribute="centerX" secondItem="GMq-Vk-daJ" secondAttribute="centerX" id="z9o-OD-xvS"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <include reference="tfZ-Me-inf"/>
+                            <include reference="oZw-KE-dVz"/>
+                            <include reference="VLb-FV-gPl"/>
+                            <include reference="iFH-Id-yRy"/>
+                        </mask>
+                        <mask key="constraints">
+                            <include reference="wSM-Up-0Cy"/>
+                            <include reference="z9o-OD-xvS"/>
+                            <include reference="YRh-3Q-aui"/>
+                            <include reference="aI3-Nk-FfI"/>
+                            <include reference="7Xh-wP-3Y1"/>
+                            <include reference="SJC-gR-Pwd"/>
+                            <include reference="9a9-mz-Hab"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="GMq-Vk-daJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7Qu-bH-lan"/>
+                <constraint firstItem="GMq-Vk-daJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9Au-8R-6VP"/>
+                <constraint firstAttribute="trailing" secondItem="GMq-Vk-daJ" secondAttribute="trailing" id="UuB-EC-xcm"/>
+                <constraint firstAttribute="bottom" secondItem="GMq-Vk-daJ" secondAttribute="bottom" id="bWl-jV-PQn"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <include reference="GMq-Vk-daJ"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="7Qu-bH-lan"/>
+                    <include reference="9Au-8R-6VP"/>
+                    <include reference="UuB-EC-xcm"/>
+                    <include reference="bWl-jV-PQn"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="249.5" y="147.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="app-vision" width="341.66665649414062" height="341.66665649414062"/>
+    </resources>
+</document>

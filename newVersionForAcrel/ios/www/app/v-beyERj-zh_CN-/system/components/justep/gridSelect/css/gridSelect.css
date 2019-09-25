@@ -1,0 +1,136 @@
+/** flex b------------------------- **/
+/** flex e------------------------- **/
+.x-gridSelect {
+  border: 0;
+  position: relative;
+}
+.x-gridSelect .x-gridSelect-input {
+  background: #ffffff url(../../common/css/img/chevron.png) no-repeat 100%;
+  cursor: default;
+}
+.x-gridSelect .x-gridSelect-input[disabled],
+fieldset[disabled] .x-gridSelect .x-gridSelect-input {
+  background-color: #eeeeee;
+  cursor: not-allowed;
+}
+.x-gridSelect .x-gridSelect-clear {
+  position: absolute;
+  color: #bb0000;
+  right: 20px;
+  top: 0;
+  padding: 11px 2px;
+  cursor: pointer;
+}
+.x-gridSelect[disabled] .x-gridSelect-clear {
+  display: none;
+}
+.x-gridSelect-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 3000;
+  display: none;
+}
+.x-gridSelect-option {
+  position: absolute;
+  z-index: 3001;
+  top: 38px;
+  display: none;
+}
+.x-gridSelect-sm .x-gridSelect-input {
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+select.x-gridSelect-sm .x-gridSelect-input {
+  height: 30px;
+  line-height: 30px;
+}
+textarea.x-gridSelect-sm .x-gridSelect-input,
+select[multiple].x-gridSelect-sm .x-gridSelect-input {
+  height: auto;
+}
+.x-gridSelect-sm .x-gridSelect-option {
+  top: 30px;
+}
+.x-gridSelect-lg .x-gridSelect-input {
+  height: 54px;
+  padding: 14px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+select.x-gridSelect-lg .x-gridSelect-input {
+  height: 54px;
+  line-height: 54px;
+}
+textarea.x-gridSelect-lg .x-gridSelect-input,
+select[multiple].x-gridSelect-lg .x-gridSelect-input {
+  height: auto;
+}
+.x-gridSelect-lg .x-gridSelect-option {
+  top: 54px;
+}
+@media (min-width: 768px) {
+  .form-inline .x-gridSelect {
+    display: inline-block;
+    width: 154px;
+    vertical-align: middle;
+  }
+  .form-inline .x-gridSelect .x-gridSelect-input {
+    width: 100%;
+  }
+}
+.x-cell-control.x-control > .x-gridSelect .x-gridSelect-input,
+.x-cell-control.x-gridSelect .x-gridSelect-input {
+  border: 0px!important;
+  padding-top: 0px!important;
+  padding-bottom: 0px!important;
+  margin: 0px!important;
+  width: 100%!important;
+  height: 100%!important;
+  border-radius: 0!important;
+  background-color: transparent!important;
+  font: inherit!important;
+  font-size: inherit!important;
+  color: inherit!important;
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  background-color: transparent;
+}
+.x-cell-control.x-control > .x-gridSelect .x-gridSelect-input:focus,
+.x-cell-control.x-gridSelect .x-gridSelect-input:focus {
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+}
+.x-cell-control.x-control > .x-gridSelect .x-gridSelect-input[disabled],
+.x-cell-control.x-gridSelect .x-gridSelect-input[disabled],
+.x-cell-control.x-control > .x-gridSelect .x-gridSelect-input[readonly],
+.x-cell-control.x-gridSelect .x-gridSelect-input[readonly],
+fieldset[disabled] .x-cell-control.x-control > .x-gridSelect .x-gridSelect-input,
+fieldset[disabled] .x-cell-control.x-gridSelect .x-gridSelect-input {
+  cursor: not-allowed !important;
+  background-color: #eeeeee !important;
+  opacity: 1;
+}
+.x-cell-control.x-control > .x-gridSelect .x-gridSelect-input[readonly],
+.x-cell-control.x-gridSelect .x-gridSelect-input[readonly] {
+  background: transparent url(../../common/css/img/chevron.png) no-repeat 100% !important;
+  cursor: default !important;
+}
+.x-gridSelect-option .x-grid .x-grid-hdiv {
+  border-bottom: 0 none !important;
+}
+.x-gridSelect-option .x-grid .x-grid-hdiv .x-grid-hbox {
+  display: none;
+}
+.x-gridSelect-option .x-grid .x-grid-htable th,
+.x-gridSelect-option .x-grid tr.x-row-ltr td,
+.x-gridSelect-option .x-grid tr.jqgrow td {
+  border: 0 none;
+}

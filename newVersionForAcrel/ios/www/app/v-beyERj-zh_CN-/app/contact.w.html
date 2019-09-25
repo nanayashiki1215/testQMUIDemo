@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<div xid="window" class="window container-fluid ciEjMru" component="$model/UI2/system/components/justep/window/window" design="device:m;" data-bind="component:{name:'$model/UI2/system/components/justep/window/window'}" __cid="ciEjMru" components="$model/UI2/system/components/justep/model/model,$model/UI2/system/components/justep/loadingBar/loadingBar,$model/UI2/system/components/justep/input/input,$model/UI2/system/components/justep/panel/child,$model/UI2/system/components/justep/window/window,$model/UI2/system/components/justep/panel/panel,">  
+  <html lang="zh-CN" __cid="ciEjMru" class="ciEjMru"> 
+    <meta charset="utf-8" __cid="ciEjMru" class="ciEjMru">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="ciEjMru" class="ciEjMru">  
+    <meta name="viewport" content="width=device-width, initial-scale=1" __cid="ciEjMru" class="ciEjMru">  
+    <title __cid="ciEjMru" class="ciEjMru">变电所运维云平台</title>  
+    <link href="@justepContextPath@/app/css/bootstrap.min.css" rel="stylesheet" __cid="ciEjMru" class="ciEjMru">  
+    <link href="@justepContextPath@/app/css/main.css" rel="stylesheet" __cid="ciEjMru" class="ciEjMru"> 
+  </html>  
+  <div component="$model/UI2/system/components/justep/model/model" xid="model" style="display:none" data-bind="component:{name:'$model/UI2/system/components/justep/model/model'}" __cid="ciEjMru" class="ciEjMru"></div>  
+  <div xid="div1" __cid="ciEjMru" class="ciEjMru" data-bind="event:{click:$model._callModelFn.bind($model, 'div1Click')}"></div>  
+  <div component="$model/UI2/system/components/justep/panel/panel" class="x-panel x-full pcjyIV32-iosstatusbar ciEjMru" xid="panel2" data-bind="component:{name:'$model/UI2/system/components/justep/panel/panel'}" __cid="ciEjMru"> 
+    <div class="x-panel-top ciEjMru" xid="top1" style="text-align:center;" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="ciEjMru"> 
+      <nav class="nav ciEjMru" __cid="ciEjMru"> 
+        <span style="text-align:center" __cid="ciEjMru" class="ciEjMru">关于App</span>  
+        <a href="#" __cid="ciEjMru" class="ciEjMru"></a>  
+        <div class="menu-list ciEjMru" __cid="ciEjMru"> 
+          <ul __cid="ciEjMru" class="ciEjMru"> 
+            <li id="logout" __cid="ciEjMru" class="ciEjMru"> 
+              <a href="#" __cid="ciEjMru" class="ciEjMru" data-bind="event:{click:$model._callModelFn.bind($model, 'logoutClick')}">退出登录</a> 
+            </li> 
+          </ul> 
+        </div> 
+      </nav> 
+    </div>  
+    <div style="background-color:#C0C0C0;height:100%;width:100%" __cid="ciEjMru" class="ciEjMru"> 
+      <img src="@justepContextPath@/app/image/app-vis.png" alt="" xid="image2" align="middle" style="height:80%;width:100%" __cid="ciEjMru" class="ciEjMru">  
+      <span component="$model/UI2/system/components/justep/input/input" class="form-control ciEjMru" xid="input1" style="text-align:center;background-color:#FFFFFF;height:55px;font-size:large;font-weight:600;" data-bind="component:{name:'$model/UI2/system/components/justep/input/input'}" data-config="{&#34;dataType&#34;:&#34;Integer&#34;}" __cid="ciEjMru">版本号：v2.2.2</span>
+    </div>  
+    <div class="x-panel-bottom ciEjMru" xid="bottom1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" data-config="{&#34;height&#34;:67}" __cid="ciEjMru"> 
+      <nav class="nav-bottom ciEjMru" __cid="ciEjMru"> 
+        <ul __cid="ciEjMru" class="ciEjMru"> 
+          <li __cid="ciEjMru" class="ciEjMru"> 
+            <span class="home2 ciEjMru" __cid="ciEjMru" data-bind="event:{click:$model._callModelFn.bind($model, 'span11Click')}"></span>  
+            <p __cid="ciEjMru" class="ciEjMru">主页</p> 
+          </li>  
+          <li __cid="ciEjMru" class="ciEjMru" data-bind="event:{click:$model._callModelFn.bind($model, 'li1Click')}"> 
+            <span class="alarm ciEjMru" __cid="ciEjMru"> 
+              <p id="eventnum" xid="eventnum" style="border-radius:40%;color:#FFFFFF;background-color:#FF0000;position:absolute;left:55%;" __cid="ciEjMru" class="ciEjMru"></p> 
+            </span>  
+            <p __cid="ciEjMru" class="ciEjMru">报警信息</p> 
+          </li>  
+          <li __cid="ciEjMru" class="ciEjMru"> 
+            <span class="contact1 ciEjMru" __cid="ciEjMru"></span>  
+            <p __cid="ciEjMru" class="ciEjMru">关于</p> 
+          </li> 
+        </ul> 
+      </nav> 
+    </div>  
+    <style __cid="ciEjMru" class="ciEjMru">.x-panel.pcjyIV32-iosstatusbar >.x-panel-top {height: 43px;}.x-panel.pcjyIV32-iosstatusbar >.x-panel-content { top: 43px;bottom: 67px;}.x-panel.pcjyIV32-iosstatusbar >.x-panel-bottom {height: 67px;}.iosstatusbar .x-panel.pcjyIV32-iosstatusbar >.x-panel-top,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcjyIV32-iosstatusbar >.x-panel-top {height: 63px;}.iosstatusbar .x-panel.pcjyIV32-iosstatusbar >.x-panel-content,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcjyIV32-iosstatusbar >.x-panel-content { top: 63px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcjyIV32-iosstatusbar >.x-panel-top {height: 43px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcjyIV32-iosstatusbar >.x-panel-content {top: 43px;}</style>
+  </div> 
+</div>

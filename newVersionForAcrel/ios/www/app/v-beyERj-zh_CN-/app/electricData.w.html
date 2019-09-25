@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<div xid="window" class="window container-fluid cjQBNbm" component="$model/UI2/system/components/justep/window/window" design="device:m;" data-bind="component:{name:'$model/UI2/system/components/justep/window/window'}" __cid="cjQBNbm" components="$model/UI2/system/components/justep/model/model,$model/UI2/system/components/justep/loadingBar/loadingBar,$model/UI2/system/components/justep/button/button,$model/UI2/system/components/justep/input/input,$model/UI2/system/components/justep/panel/child,$model/UI2/system/components/justep/labelEdit/labelEdit,$model/UI2/system/components/justep/wing/child,$model/UI2/system/components/justep/panel/panel,$model/UI2/system/components/justep/select/select,$model/UI2/system/components/justep/output/output,$model/UI2/system/components/justep/data/data,$model/UI2/system/components/justep/window/window,$model/UI2/system/components/justep/wing/wing,">  
+  <div component="$model/UI2/system/components/justep/model/model" xid="model" style="display:none" data-bind="component:{name:'$model/UI2/system/components/justep/model/model'}" data-events="onLoad:modelLoad" __cid="cjQBNbm" class="cjQBNbm"></div>  
+  <html lang="zh-CN" __cid="cjQBNbm" class="cjQBNbm"> 
+    <head __cid="cjQBNbm" class="cjQBNbm"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+      <meta charset="utf-8" __cid="cjQBNbm" class="cjQBNbm">  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="cjQBNbm" class="cjQBNbm">  
+      <meta name="viewport" content="width=device-width, initial-scale=1" __cid="cjQBNbm" class="cjQBNbm">  
+      <title __cid="cjQBNbm" class="cjQBNbm">变电所运维云平台</title>  
+      <link href="@justepContextPath@/app/css/bootstrap.min.css" rel="stylesheet" __cid="cjQBNbm" class="cjQBNbm">  
+      <link href="@justepContextPath@/app/css/bootstrap-table.css" rel="stylesheet" __cid="cjQBNbm" class="cjQBNbm">  
+      <link href="@justepContextPath@/app/css/main.css" rel="stylesheet" __cid="cjQBNbm" class="cjQBNbm"> 
+    </head> 
+  </html>  
+  <div component="$model/UI2/system/components/justep/wing/wing" class="x-wing cjQBNbm" xid="wing1" data-bind="component:{name:'$model/UI2/system/components/justep/wing/wing'}" __cid="cjQBNbm"> 
+    <div class="x-wing-left cjQBNbm" xid="left1" style="background-color:#EDEEEE;border-right-style:solid;border-right-width:1px;border-color:#898989" component="$model/UI2/system/components/justep/wing/child" data-bind="component:{name:'$model/UI2/system/components/justep/wing/child'}" __cid="cjQBNbm"> 
+      <div xid="div10" class="pull-left cjQBNbm" style="position:absolute;" __cid="cjQBNbm"> 
+        <div xid="div4" __cid="cjQBNbm" class="cjQBNbm"> 
+          <img src="@justepContextPath@/app/image/select.jpg" alt="" xid="image1" dir="rtl" style="width:100%;" __cid="cjQBNbm" class="cjQBNbm"> 
+        </div>  
+        <div component="$model/UI2/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 cjQBNbm" xid="labelEdit7" style="margin-top:5%;width:90%;margin-left:5%;" data-bind="component:{name:'$model/UI2/system/components/justep/labelEdit/labelEdit'}" __cid="cjQBNbm"> 
+          <label class="x-label cjQBNbm" xid="label6" __cid="cjQBNbm">变配电站</label>  
+          <select component="$model/UI2/system/components/justep/select/select" class="form-control x-edit cjQBNbm" xid="subid" data-bind="component:{name:'$model/UI2/system/components/justep/select/select'},options:subdata.datas,optionsValue:'f_SubID',optionsText:'f_SubName',optionsAfterRender2:$model.__justep__.selectOptionsAfterRender.bind($model,$element),optionsBeforeRender:$model.__justep__.selectOptionsBeforeRender.bind($model,$element)" data-events="onChange:subidChange" __cid="cjQBNbm"></select> 
+        </div>  
+        <div component="$model/UI2/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 cjQBNbm" xid="labelEdit3" style="width:90%;margin-left:5%;" data-bind="component:{name:'$model/UI2/system/components/justep/labelEdit/labelEdit'}" __cid="cjQBNbm"> 
+          <label class="x-label cjQBNbm" xid="label2" __cid="cjQBNbm">回路名称</label>  
+          <select id="fCircuitid" class="form-control x-edit cjQBNbm" __cid="cjQBNbm"></select> 
+        </div>  
+        <div component="$model/UI2/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 cjQBNbm" xid="labelEdit1" style="width:90%;margin-left:5%;" data-bind="component:{name:'$model/UI2/system/components/justep/labelEdit/labelEdit'}" __cid="cjQBNbm"> 
+          <label class="x-label cjQBNbm" xid="label1" __cid="cjQBNbm">参数类别</label>  
+          <select component="$model/UI2/system/components/justep/select/select" class="form-control x-edit cjQBNbm" xid="select1" id="selectType" data-bind="component:{name:'$model/UI2/system/components/justep/select/select'}" __cid="cjQBNbm"> 
+            <option value="I" __cid="cjQBNbm" class="cjQBNbm">电流</option>  
+            <option value="U" __cid="cjQBNbm" class="cjQBNbm">相电压</option>  
+            <option value="UL" __cid="cjQBNbm" class="cjQBNbm">线电压</option>  
+            <option value="fFr" __cid="cjQBNbm" class="cjQBNbm">频率</option>  
+            <option value="EPI" __cid="cjQBNbm" class="cjQBNbm">有功电能</option>  
+            <option value="P" __cid="cjQBNbm" class="cjQBNbm">有功功率</option>  
+            <option value="Q" __cid="cjQBNbm" class="cjQBNbm">无功功率</option>  
+            <option value="S" __cid="cjQBNbm" class="cjQBNbm">视在功率</option> 
+          </select> 
+        </div>  
+        <div component="$model/UI2/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 pull-left cjQBNbm" xid="labelEdit6" style="left:10%;width:90%;margin-left:5%;" data-bind="component:{name:'$model/UI2/system/components/justep/labelEdit/labelEdit'}" __cid="cjQBNbm"> 
+          <label class="x-label cjQBNbm" xid="label8" __cid="cjQBNbm">日期</label>  
+          <input component="$model/UI2/system/components/justep/input/input" class="form-control x-edit cjQBNbm" xid="startdate" data-bind="component:{name:'$model/UI2/system/components/justep/input/input'}" data-config="{&#34;dataType&#34;:&#34;Date&#34;}" __cid="cjQBNbm"> 
+        </div>  
+        <div xid="div11" style="width:90%;margin-left:5%;margin-top:5%;" __cid="cjQBNbm" class="cjQBNbm"> 
+          <a component="$model/UI2/system/components/justep/button/button" class="btn btn-info cjQBNbm" xid="button2" style="height:100%;width:100%;border-width:thin thin thin thin;background-color:#FF6C1F;" data-bind="component:{name:'$model/UI2/system/components/justep/button/button'}" data-events="onClick:button2Click" data-config="{&#34;label&#34;:&#34;查询&#34;}" __cid="cjQBNbm"> 
+            <i xid="i6" __cid="cjQBNbm" class="cjQBNbm"></i>  
+            <span xid="span4" __cid="cjQBNbm" class="cjQBNbm">查询</span> 
+          </a> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="x-wing-content cjQBNbm" xid="content2" component="$model/UI2/system/components/justep/wing/child" data-bind="component:{name:'$model/UI2/system/components/justep/wing/child'}" __cid="cjQBNbm"> 
+      <div component="$model/UI2/system/components/justep/panel/panel" class="x-panel x-full pcRrYvuu-iosstatusbar cjQBNbm" xid="panel1" data-bind="component:{name:'$model/UI2/system/components/justep/panel/panel'}" __cid="cjQBNbm"> 
+        <div class="x-panel-top cjQBNbm" xid="top1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="cjQBNbm"> 
+          <nav class="nav center cjQBNbm" xid="default3" __cid="cjQBNbm"> 
+            <i class="left cjQBNbm" xid="i4" __cid="cjQBNbm" data-bind="event:{click:$model._callModelFn.bind($model, {operation:'window.close'})}"></i>  
+            <span xid="span3" __cid="cjQBNbm" class="cjQBNbm">电力参数</span>  
+            <a href="#" xid="a1" __cid="cjQBNbm" class="cjQBNbm"></a>  
+            <div class="menu-list cjQBNbm" xid="div9" __cid="cjQBNbm"> 
+              <ul xid="ul1" __cid="cjQBNbm" class="cjQBNbm"> 
+                <li xid="li1" __cid="cjQBNbm" class="cjQBNbm"> 
+                  <a href="#" xid="a2" __cid="cjQBNbm" class="cjQBNbm">地图导航</a> 
+                </li>  
+                <li xid="li2" __cid="cjQBNbm" class="cjQBNbm"> 
+                  <a href="#" xid="a3" __cid="cjQBNbm" class="cjQBNbm">变配电站概况</a> 
+                </li>  
+                <li class="inspect cjQBNbm" xid="li3" __cid="cjQBNbm"> 
+                  <h2 xid="h21" __cid="cjQBNbm" class="cjQBNbm"> 
+                    <a href="#" xid="a4" __cid="cjQBNbm" class="cjQBNbm">巡检管理</a>  
+                    <i class="foldIcon cjQBNbm" xid="i5" __cid="cjQBNbm"></i> 
+                  </h2>  
+                  <ul class="menu-child cjQBNbm" xid="ul2" __cid="cjQBNbm"> 
+                    <li xid="li4" __cid="cjQBNbm" class="cjQBNbm"> 
+                      <a href="#" xid="a5" __cid="cjQBNbm" class="cjQBNbm">巡检任务</a> 
+                    </li>  
+                    <li xid="li5" __cid="cjQBNbm" class="cjQBNbm"> 
+                      <a href="#" xid="a6" __cid="cjQBNbm" class="cjQBNbm">任务执行</a> 
+                    </li>  
+                    <li xid="li6" __cid="cjQBNbm" class="cjQBNbm"> 
+                      <a href="#" xid="a7" __cid="cjQBNbm" class="cjQBNbm">查询任务</a> 
+                    </li> 
+                  </ul> 
+                </li>  
+                <li xid="li7" __cid="cjQBNbm" class="cjQBNbm"> 
+                  <a href="#" xid="a8" __cid="cjQBNbm" class="cjQBNbm">事件</a> 
+                </li> 
+              </ul> 
+            </div> 
+          </nav> 
+        </div>  
+        <div class="x-panel-content  x-scroll-view cjQBNbm" xid="content1" _xid="C799CEF4D7E00001D8FC14A019972300" style="bottom: 0px; top: 43px;" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'},event:{click:$model._callModelFn.bind($model, 'content1Click')}" __cid="cjQBNbm"> 
+          <div class="x-scroll-content cjQBNbm" xid="div3" __cid="cjQBNbm"> 
+            <div xid="div1" __cid="cjQBNbm" class="cjQBNbm"> 
+              <a component="$model/UI2/system/components/justep/button/button" class="btn btn-info cjQBNbm" xid="button1" style="margin:7px 0px 0px 0px;" data-bind="component:{name:'$model/UI2/system/components/justep/button/button'}" data-events="onClick:button1Click" data-config="{&#34;label&#34;:&#34;筛选&#34;}" __cid="cjQBNbm"> 
+                <i xid="i2" __cid="cjQBNbm" class="cjQBNbm"></i>  
+                <span xid="span2" __cid="cjQBNbm" class="cjQBNbm">筛选</span> 
+              </a>  
+              <div component="$model/UI2/system/components/justep/output/output" class="x-output pull-right x-edit cjQBNbm" xid="subname" style="font-size:16px;font-weight:600;margin-top:5px;margin-right:10px;" data-bind="component:{name:'$model/UI2/system/components/justep/output/output'}" __cid="cjQBNbm"></div>  
+              <div class="Datarow cjQBNbm" __cid="cjQBNbm"> 
+                <div component="$model/UI2/system/components/justep/output/output" class="pull-right cjQBNbm" xid="time" id="time" style="margin-right:8px;" data-bind="component:{name:'$model/UI2/system/components/justep/output/output'}" __cid="cjQBNbm"></div>  
+                <div id="HLname" class="pull-right cjQBNbm" style="margin-right:10px;" __cid="cjQBNbm"></div> 
+              </div> 
+            </div>  
+            <div id="tableData" __cid="cjQBNbm" class="cjQBNbm"></div> 
+          </div> 
+        </div>  
+        <style __cid="cjQBNbm" class="cjQBNbm">.x-panel.pcRrYvuu-iosstatusbar >.x-panel-top {height: 43px;}.x-panel.pcRrYvuu-iosstatusbar >.x-panel-content { top: 43px;bottom: nullpx;}.x-panel.pcRrYvuu-iosstatusbar >.x-panel-bottom {height: nullpx;}.iosstatusbar .x-panel.pcRrYvuu-iosstatusbar >.x-panel-top,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcRrYvuu-iosstatusbar >.x-panel-top {height: 63px;}.iosstatusbar .x-panel.pcRrYvuu-iosstatusbar >.x-panel-content,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcRrYvuu-iosstatusbar >.x-panel-content { top: 63px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcRrYvuu-iosstatusbar >.x-panel-top {height: 43px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcRrYvuu-iosstatusbar >.x-panel-content {top: 43px;}</style>
+      </div> 
+    </div> 
+  </div> 
+</div>

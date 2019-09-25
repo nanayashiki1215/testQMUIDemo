@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<div xid="window" class="window cEFVVNf" component="$model/UI2/system/components/justep/window/window" design="device:m;" data-bind="component:{name:'$model/UI2/system/components/justep/window/window'}" __cid="cEFVVNf" components="$model/UI2/system/components/justep/model/model,$model/UI2/system/components/justep/loadingBar/loadingBar,$model/UI2/system/components/justep/list/list,$model/UI2/system/components/justep/gridSelect/gridSelect,$model/UI2/system/components/justep/data/data,$model/UI2/system/components/justep/windowDialog/windowDialog,$model/UI2/system/components/justep/window/window,">
+  <style>null</style>  
+  <div component="$model/UI2/system/components/justep/model/model" xid="model" style="display:none" data-bind="component:{name:'$model/UI2/system/components/justep/model/model'}" data-events="onLoad:modelLoad" __cid="cEFVVNf" class="cEFVVNf"></div>  
+  <html lang="zh-CN" __cid="cEFVVNf" class="cEFVVNf"> 
+    <head __cid="cEFVVNf" class="cEFVVNf"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+      <meta charset="utf-8" __cid="cEFVVNf" class="cEFVVNf">  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="cEFVVNf" class="cEFVVNf">  
+      <meta name="viewport" content="width=device-width, initial-scale=1" __cid="cEFVVNf" class="cEFVVNf">  
+      <title __cid="cEFVVNf" class="cEFVVNf">变电所运维云平台</title>  
+      <link href="@justepContextPath@/app/css/bootstrap.min.css" rel="stylesheet" __cid="cEFVVNf" class="cEFVVNf">  
+      <link href="@justepContextPath@/app/css/main.css" rel="stylesheet" __cid="cEFVVNf" class="cEFVVNf"> 
+    </head> 
+  </html>  
+  <div class="content-fluid cEFVVNf" __cid="cEFVVNf"> 
+    <nav class="nav center cEFVVNf" __cid="cEFVVNf"> 
+      <i class="left cEFVVNf" __cid="cEFVVNf" data-bind="event:{click:$model._callModelFn.bind($model, {operation:'window.close'})}"></i>  
+      <span __cid="cEFVVNf" class="cEFVVNf">线缆温度</span>  
+      <a href="#" __cid="cEFVVNf" class="cEFVVNf"></a> 
+    </nav>  
+    <div __cid="cEFVVNf" class="cEFVVNf"> 
+      <div class="Line-Temp cEFVVNf" __cid="cEFVVNf"> 
+        <div class="x-gridSelect cEFVVNf" component="$model/UI2/system/components/justep/gridSelect/gridSelect" xid="gridSelect2" inputFilterable="true" multiselect="false" clearButton="false" data-config="{&#34;autoOptionWidth&#34;:false,&#34;disabled&#34;:false,&#34;inputChangeable&#34;:false,&#34;inputFilterable&#34;:true,&#34;optionCfg&#34;:{&#34;colModel&#34;:[{&#34;name&#34;:&#34;f_SubName&#34;}],&#34;data&#34;:&#34;subdata&#34;,&#34;label&#34;:&#34;f_SubName&#34;,&#34;rownumbers&#34;:false,&#34;value&#34;:&#34;f_SubID&#34;,&#34;xid&#34;:&#34;option2&#34;},&#34;optionHeight&#34;:300}" data-bind="component:{name:'$model/UI2/system/components/justep/gridSelect/gridSelect'}" data-events="onUpdateValue:gridSelect2UpdateValue" __cid="cEFVVNf"> 
+          <div class="x-gridSelect-option cEFVVNf" __cid="cEFVVNf"></div>
+          <input class="form-control x-gridSelect-input cEFVVNf" __cid="cEFVVNf">
+          <span class="x-gridSelect-clear icon-close-circled hide cEFVVNf" __cid="cEFVVNf"></span>
+        </div>
+      </div> 
+    </div>  
+    <span xid="subName" class="subName cEFVVNf" __cid="cEFVVNf"></span>
+    <div component="$model/UI2/system/components/justep/list/list" class="x-list cEFVVNf" xid="list1" id="list1" data-bind="component:{name:'$model/UI2/system/components/justep/list/list'}" data-config="{&#34;data&#34;:&#34;tempdata&#34;}" __cid="cEFVVNf"> 
+      <ul class="x-list-template hide cEFVVNf" xid="listTemplateUl1" __cid="cEFVVNf" data-bind="foreach:{data:$model.foreach_list1($element),afterRender:$model.foreach_afterRender_list1.bind($model,$element)}"> 
+        <li xid="li1" class="temDiv2 cEFVVNf" __cid="cEFVVNf"> 
+          <div class="tempDiv temperature cEFVVNf" __cid="cEFVVNf"> 
+            <h4 __cid="cEFVVNf" class="cEFVVNf" data-bind="text:ref(&#34;f_MeterName&#34;)"></h4>  
+            <div class="tempPic cEFVVNf" __cid="cEFVVNf"> 
+              <img src="@justepContextPath@/app/image/temp.png" __cid="cEFVVNf" class="cEFVVNf"> 
+            </div>  
+            <div class="tempNum cEFVVNf" __cid="cEFVVNf"> 
+              <p __cid="cEFVVNf" class="cEFVVNf">A:
+                <span __cid="cEFVVNf" class="cEFVVNf" data-bind="text:ref(&#34;a&#34;)"></span>℃
+              </p>  
+              <p __cid="cEFVVNf" class="cEFVVNf">B:
+                <span __cid="cEFVVNf" class="cEFVVNf" data-bind="text:ref(&#34;b&#34;)"></span>℃
+              </p>  
+              <p __cid="cEFVVNf" class="cEFVVNf">C:
+                <span __cid="cEFVVNf" class="cEFVVNf" data-bind="text:ref(&#34;c&#34;)"></span>℃
+              </p> 
+            </div>  
+            <button class="search cEFVVNf" type="button" __cid="cEFVVNf" data-bind="event:{click:$model._callModelFn.bind($model, 'tempBtnClick')}">查 询</button> 
+          </div> 
+        </li> 
+      </ul> 
+    </div> 
+  </div>  
+  <span component="$model/UI2/system/components/justep/windowDialog/windowDialog" xid="windowDialog2" data-bind="component:{name:'$model/UI2/system/components/justep/windowDialog/windowDialog'}" data-config="{&#34;height&#34;:&#34;80%&#34;,&#34;showTitle&#34;:true,&#34;src&#34;:&#34;$model/UI2/app/safeDetails.w&#34;,&#34;status&#34;:&#34;normal&#34;,&#34;title&#34;:&#34;历史数据&#34;,&#34;width&#34;:&#34;100%&#34;}" __cid="cEFVVNf" class="cEFVVNf">
+    <div class="x-dialog-overlay cEFVVNf" __cid="cEFVVNf"></div>
+    <div class="x-dialog cEFVVNf" style="display:none;" showTitle="true" __cid="cEFVVNf">
+      <div class="x-dialog-title cEFVVNf" __cid="cEFVVNf">
+        <button class="close cEFVVNf" __cid="cEFVVNf">
+          <span __cid="cEFVVNf" class="cEFVVNf">×</span>
+        </button>
+        <div class="x-dialog-title-text cEFVVNf" __cid="cEFVVNf">历史数据</div>
+      </div>
+      <div class="x-dialog-body cEFVVNf" __cid="cEFVVNf"></div>
+    </div>
+  </span> 
+</div>
