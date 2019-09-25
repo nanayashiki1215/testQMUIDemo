@@ -8,6 +8,7 @@
 
 #import "QMUIConfigurationTemplateGrass.h"
 #import <QMUIKit/QMUIKit.h>
+#import "QMUIConfigurationTemplate.h"
 
 @implementation QMUIConfigurationTemplateGrass
 
