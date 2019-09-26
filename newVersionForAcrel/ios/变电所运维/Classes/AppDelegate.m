@@ -128,9 +128,9 @@ BMKMapManager* _mapManager;
     [QDCommonUI renderGlobalAppearances];
     
     // 预加载 QQ 表情，避免第一次使用时卡顿
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [QDUIHelper qmuiEmotions];
-    });
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        [QDUIHelper qmuiEmotions];
+//    });
     
     //配置bugly上传
     [Bugly startWithAppId:BGBuglyApi];
