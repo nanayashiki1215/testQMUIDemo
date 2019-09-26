@@ -77,7 +77,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = DefLocalizedString(@"Home");
+//    self.title = DefLocalizedString(@"Home");
     _homeScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     _homeScrollView.contentSize = CGSizeMake(ScreenWidth, GridHeight * PerColumGridCount + 100);
     _homeScrollView.showsVerticalScrollIndicator = NO;
