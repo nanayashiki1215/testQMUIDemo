@@ -62,20 +62,19 @@
 		B60C80B122A8AE4E0016D936 /* WSDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B60C80AD22A8AE4E0016D936 /* WSDatePickerView.m */; };
 		B60C80B222A8AE4E0016D936 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B60C80AE22A8AE4E0016D936 /* NSDate+Extension.m */; };
 		B60C80B322A8AE4E0016D936 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B60C80AF22A8AE4E0016D936 /* UIView+Extension.m */; };
+		B614C3C1233AF00B0072459F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B614C3C0233AF00B0072459F /* Photos.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B614C3C5233AF0AF0072459F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B614C3C4233AF0AF0072459F /* libxml2.tbd */; };
 		B614C3CF233AFC8C0072459F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B614C3CE233AFC8C0072459F /* MediaPlayer.framework */; };
 		B614C3D0233AFC950072459F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E964ADADF144AE8C84462B /* Security.framework */; };
 		B614C3D1233AFC9D0072459F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F46F29FBC2C4358860FA57E /* SystemConfiguration.framework */; };
-		B615818D233B4C71002FA33F /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B615818A233B4C51002FA33F /* QMUIKit.framework */; };
-		B615818E233B4E42002FA33F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B614C3C0233AF00B0072459F /* Photos.framework */; };
-		B6158190233B502D002FA33F /* QMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B615818F233B502D002FA33F /* QMUIResources.bundle */; };
-		B6158191233B509D002FA33F /* QMUIResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = B615818F233B502D002FA33F /* QMUIResources.bundle */; };
+		B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B614C3D4233B00240072459F /* QMUIResources.bundle */; };
 		B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */; };
 		B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */; };
 		B637965A22F1732D007AC38F /* JGUserFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */; };
 		B637965B22F1732D007AC38F /* JGPredicateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965622F1732C007AC38F /* JGPredicateMethod.m */; };
 		B637965C22F1732D007AC38F /* JGPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965722F1732C007AC38F /* JGPlaceholderTextView.m */; };
 		B637965D22F1732D007AC38F /* JGPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965822F1732C007AC38F /* JGPhotoCollectionViewCell.m */; };
+		B6380A9322CB2085002500E0 /* Dis-test in Resources */ = {isa = PBXBuildFile; fileRef = B6380A9222CB2084002500E0 /* Dis-test */; };
 		B63B00D222B0967E004E070F /* BGQMHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B00D122B0967E004E070F /* BGQMHomeHeadView.m */; };
 		B63B00D722B099C2004E070F /* BGQMNewHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B00D622B099C2004E070F /* BGQMNewHomeTableViewController.m */; };
 		B63B00DA22B0C2CA004E070F /* BGQMHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B00D922B0C2CA004E070F /* BGQMHomeTableViewCell.m */; };
@@ -141,6 +140,8 @@
 		B657DDDD22927C760009BCB0 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B657DDBE22927C760009BCB0 /* UIButton+WebCache.m */; };
 		B657DDDE22927C760009BCB0 /* SDWebImageWebPCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B657DDBF22927C760009BCB0 /* SDWebImageWebPCoder.m */; };
 		B657DE142292859F0009BCB0 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B657DE10229284410009BCB0 /* GLKit.framework */; };
+		B65E7A02233C3E440037D3ED /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; };
+		B65E7A03233C3E440037D3ED /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B66BA6F622F274470027EE05 /* BGQMFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F522F274470027EE05 /* BGQMFeedBackViewController.m */; };
 		B66BA6FB22F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F922F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m */; };
 		B66BA6FE22F274A90027EE05 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6FC22F274A90027EE05 /* BRPlaceholderTextView.m */; };
@@ -258,6 +259,8 @@
 		B6A8E24A22A4E59100E36D8F /* BGHeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A8E24822A4E59100E36D8F /* BGHeadTableViewCell.xib */; };
 		B6A8E24D22A4FDD900E36D8F /* BGQMToolHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A8E24C22A4FDD900E36D8F /* BGQMToolHelper.m */; };
 		B6A8E25122A50A7400E36D8F /* UITabBar+BGbadge.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A8E25022A50A7400E36D8F /* UITabBar+BGbadge.m */; };
+		B6A92DFE22B9D03300D16AE9 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = B6A92DFD22B9D03300D16AE9 /* assets */; };
+		B6A92E0022BA222500D16AE9 /* scroll in Resources */ = {isa = PBXBuildFile; fileRef = B6A92DFF22BA222500D16AE9 /* scroll */; };
 		B6A92E0222BA2D0A00D16AE9 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A92E0122BA2D0900D16AE9 /* Bugly.framework */; };
 		B6AACF2A22AE383D00632304 /* BGQMSelectSubstationTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AACF2922AE383D00632304 /* BGQMSelectSubstationTVC.m */; };
 		B6AACF2F22AE408700632304 /* NSString+PinYin.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AACF2D22AE408700632304 /* NSString+PinYin.m */; };
@@ -385,6 +388,7 @@
 		B6DBAF9C22B1E17C000C9922 /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAF9822B1E17C000C9922 /* JZLocationConverter.m */; };
 		B6DBAFA222B22969000C9922 /* SectionIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAF9F22B22967000C9922 /* SectionIndicatorView.m */; };
 		B6DBAFA322B22969000C9922 /* IndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAFA122B22968000C9922 /* IndexView.m */; };
+		B6DFF1A422FCF9AD002D269C /* aDevices in Resources */ = {isa = PBXBuildFile; fileRef = B6DFF1A122FCF9AB002D269C /* aDevices */; };
 		B6E15580228CED3A00CB4A5F /* BGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1557E228CED3A00CB4A5F /* BGLoginViewController.m */; };
 		B6E15585228CED9600CB4A5F /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E15584228CED9600CB4A5F /* CustomNavigationController.m */; };
 		B6E155B4228CEDF900CB4A5F /* UIView+ChangeCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E15587228CEDF900CB4A5F /* UIView+ChangeCorner.m */; };
@@ -478,6 +482,21 @@
 		B6E2189122A4AB61003C2969 /* BGQMAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2189022A4AB61003C2969 /* BGQMAlarmViewController.m */; };
 		B6E2189422A4AB93003C2969 /* BGQMUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2189322A4AB93003C2969 /* BGQMUserViewController.m */; };
 		B6E2189A22A4ACA7003C2969 /* BGQMElectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2189922A4ACA7003C2969 /* BGQMElectViewController.m */; };
+		B6EB9BB422C99F8100136A6C /* libEZUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EB9B9522C99F8100136A6C /* libEZUIKit.a */; };
+		B6EB9BB522C99F8100136A6C /* libEZOpenSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EB9BB322C99F8100136A6C /* libEZOpenSDK.a */; };
+		B6EB9BCC22C99FDB00136A6C /* EZUIKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BB722C99FDB00136A6C /* EZUIKitViewController.m */; };
+		B6EB9BCD22C99FDB00136A6C /* EZUISelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BB822C99FDB00136A6C /* EZUISelectViewController.m */; };
+		B6EB9BCE22C99FDB00136A6C /* BGVideoStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BB922C99FDB00136A6C /* BGVideoStartViewController.m */; };
+		B6EB9BCF22C99FDB00136A6C /* EZUIKitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6EB9BBA22C99FDB00136A6C /* EZUIKitViewController.xib */; };
+		B6EB9BD022C99FDB00136A6C /* EZUIKitPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BBB22C99FDB00136A6C /* EZUIKitPlaybackViewController.m */; };
+		B6EB9BD122C99FDB00136A6C /* EZUIKitPlaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6EB9BBC22C99FDB00136A6C /* EZUIKitPlaybackViewController.xib */; };
+		B6EB9BD222C99FDB00136A6C /* EZUIPlayBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BBE22C99FDB00136A6C /* EZUIPlayBaseViewController.m */; };
+		B6EB9BD322C99FDB00136A6C /* EZQRView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BC322C99FDB00136A6C /* EZQRView.m */; };
+		B6EB9BD422C99FDB00136A6C /* EZPlaybackProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BC622C99FDB00136A6C /* EZPlaybackProgressBar.m */; };
+		B6EB9BD522C99FDB00136A6C /* BGQMVideoListTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BC722C99FDB00136A6C /* BGQMVideoListTableVC.m */; };
+		B6EB9BD622C99FDB00136A6C /* BGVideoStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6EB9BC922C99FDB00136A6C /* BGVideoStartViewController.xib */; };
+		B6EB9BD722C99FDB00136A6C /* EZUISelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6EB9BCA22C99FDB00136A6C /* EZUISelectViewController.xib */; };
+		B6EB9BDA22C99FF500136A6C /* BGQMVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BD822C99FF400136A6C /* BGQMVideoTableViewCell.m */; };
 		B6ED2041229B7D4B0044EFC9 /* BGCheckAppVersionMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ED2040229B7D4B0044EFC9 /* BGCheckAppVersionMgr.m */; };
 		B6ED2045229BACE30044EFC9 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ED2044229BACE30044EFC9 /* ColorManager.m */; };
 		B6F4C03F22B72D15005A7695 /* BGQMEventDynamicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4C03E22B72D15005A7695 /* BGQMEventDynamicTableViewCell.m */; };
@@ -529,16 +548,16 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = CordovaLib;
 		};
-		B6158189233B4C51002FA33F /* PBXContainerItemProxy */ = {
+		B64D3B38233B62C20016DF9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B6158184233B4C51002FA33F /* qmui.xcodeproj */;
+			containerPortal = B64D3B33233B62C20016DF9F /* qmui.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = FE0AFAD11D82B9D8000D21D9;
 			remoteInfo = QMUIKit;
 		};
-		B615818B233B4C51002FA33F /* PBXContainerItemProxy */ = {
+		B64D3B3A233B62C20016DF9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B6158184233B4C51002FA33F /* qmui.xcodeproj */;
+			containerPortal = B64D3B33233B62C20016DF9F /* qmui.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CD4EA571228C401E00A55066;
 			remoteInfo = QMUIKitTests;
@@ -546,12 +565,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B614C3CD233AFC630072459F /* Embed Frameworks */ = {
+		B65E7A04233C3E450037D3ED /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B65E7A03233C3E440037D3ED /* QMUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,8 +762,7 @@
 		B614C3C0233AF00B0072459F /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		B614C3C4233AF0AF0072459F /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		B614C3CE233AFC8C0072459F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		B6158184233B4C51002FA33F /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "../../../../../../../../Downloads/QMUI_iOS-master/qmui.xcodeproj"; sourceTree = "<group>"; };
-		B615818F233B502D002FA33F /* QMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUIResources.bundle; sourceTree = "<group>"; };
+		B614C3D4233B00240072459F /* QMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUIResources.bundle; sourceTree = "<group>"; };
 		B624D8CE2317CAEA00A16F5A /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		B637964722F1251D007AC38F /* BGQMUserHeadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserHeadTableViewCell.h; sourceTree = "<group>"; };
@@ -756,6 +775,7 @@
 		B637965722F1732C007AC38F /* JGPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPlaceholderTextView.m; sourceTree = "<group>"; };
 		B637965822F1732C007AC38F /* JGPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		B637965922F1732C007AC38F /* JGPredicateMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPredicateMethod.h; sourceTree = "<group>"; };
+		B6380A9222CB2084002500E0 /* Dis-test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Dis-test"; sourceTree = "<group>"; };
 		B63B00D022B0967E004E070F /* BGQMHomeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMHomeHeadView.h; sourceTree = "<group>"; };
 		B63B00D122B0967E004E070F /* BGQMHomeHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMHomeHeadView.m; sourceTree = "<group>"; };
 		B63B00D522B099C2004E070F /* BGQMNewHomeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMNewHomeTableViewController.h; sourceTree = "<group>"; };
@@ -774,6 +794,7 @@
 		B645F30422AF3C2B00D5420A /* NSArray+PinYinSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PinYinSearcher.h"; sourceTree = "<group>"; };
 		B645F30522AF3C2B00D5420A /* NSString+PinYinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYinConverter.h"; sourceTree = "<group>"; };
 		B645F30622AF3C2B00D5420A /* SWPinYinHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPinYinHeader.h; sourceTree = "<group>"; };
+		B64D3B33233B62C20016DF9F /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "QMUI_iOS-3.2.1/qmui.xcodeproj"; sourceTree = "<group>"; };
 		B6548A9222B32765005CCD21 /* BGQMEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMEventViewController.h; sourceTree = "<group>"; };
 		B6548A9322B32765005CCD21 /* BGQMEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMEventViewController.m; sourceTree = "<group>"; };
 		B6548A9522B33087005CCD21 /* BGQMEventTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMEventTableViewCell.h; sourceTree = "<group>"; };
@@ -1106,6 +1127,8 @@
 		B6A8E24C22A4FDD900E36D8F /* BGQMToolHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMToolHelper.m; sourceTree = "<group>"; };
 		B6A8E24F22A50A7400E36D8F /* UITabBar+BGbadge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+BGbadge.h"; sourceTree = "<group>"; };
 		B6A8E25022A50A7400E36D8F /* UITabBar+BGbadge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+BGbadge.m"; sourceTree = "<group>"; };
+		B6A92DFD22B9D03300D16AE9 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		B6A92DFF22BA222500D16AE9 /* scroll */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scroll; sourceTree = "<group>"; };
 		B6A92E0122BA2D0900D16AE9 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		B6AACF2822AE383D00632304 /* BGQMSelectSubstationTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMSelectSubstationTVC.h; sourceTree = "<group>"; };
 		B6AACF2922AE383D00632304 /* BGQMSelectSubstationTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSelectSubstationTVC.m; sourceTree = "<group>"; };
@@ -1357,6 +1380,7 @@
 		B6DBAF9F22B22967000C9922 /* SectionIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionIndicatorView.m; sourceTree = "<group>"; };
 		B6DBAFA022B22968000C9922 /* SectionIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionIndicatorView.h; sourceTree = "<group>"; };
 		B6DBAFA122B22968000C9922 /* IndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexView.m; sourceTree = "<group>"; };
+		B6DFF1A122FCF9AB002D269C /* aDevices */ = {isa = PBXFileReference; lastKnownFileType = folder; path = aDevices; sourceTree = "<group>"; };
 		B6E1557D228CED3A00CB4A5F /* BGLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGLoginViewController.h; sourceTree = "<group>"; };
 		B6E1557E228CED3A00CB4A5F /* BGLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGLoginViewController.m; sourceTree = "<group>"; };
 		B6E15583228CED9600CB4A5F /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
@@ -1551,6 +1575,56 @@
 		B6E2189322A4AB93003C2969 /* BGQMUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BGQMUserViewController.m; path = ../../BGQMUserViewController.m; sourceTree = "<group>"; };
 		B6E2189822A4ACA7003C2969 /* BGQMElectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BGQMElectViewController.h; path = ../../BGQMElectViewController.h; sourceTree = "<group>"; };
 		B6E2189922A4ACA7003C2969 /* BGQMElectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BGQMElectViewController.m; path = ../../BGQMElectViewController.m; sourceTree = "<group>"; };
+		B6EB9B9222C99F8100136A6C /* EZUIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIError.h; sourceTree = "<group>"; };
+		B6EB9B9322C99F8100136A6C /* EZUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIKit.h; sourceTree = "<group>"; };
+		B6EB9B9422C99F8100136A6C /* EZUIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIPlayer.h; sourceTree = "<group>"; };
+		B6EB9B9522C99F8100136A6C /* libEZUIKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEZUIKit.a; sourceTree = "<group>"; };
+		B6EB9B9B22C99F8100136A6C /* EZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZConstants.h; sourceTree = "<group>"; };
+		B6EB9B9C22C99F8100136A6C /* EZHCNetDeviceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHCNetDeviceSDK.h; sourceTree = "<group>"; };
+		B6EB9B9D22C99F8100136A6C /* EZOpenSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZOpenSDK.h; sourceTree = "<group>"; };
+		B6EB9B9E22C99F8100136A6C /* EZPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlayer.h; sourceTree = "<group>"; };
+		B6EB9B9F22C99F8100136A6C /* EZGlobalSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZGlobalSDK.h; sourceTree = "<group>"; };
+		B6EB9BA122C99F8100136A6C /* EZDeviceVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceVersion.h; sourceTree = "<group>"; };
+		B6EB9BA222C99F8100136A6C /* EZUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUserInfo.h; sourceTree = "<group>"; };
+		B6EB9BA322C99F8100136A6C /* EZDeviceUpgradeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceUpgradeStatus.h; sourceTree = "<group>"; };
+		B6EB9BA422C99F8100136A6C /* EZAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAccessToken.h; sourceTree = "<group>"; };
+		B6EB9BA522C99F8100136A6C /* EZDeviceRecordFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceRecordFile.h; sourceTree = "<group>"; };
+		B6EB9BA622C99F8100136A6C /* EZLeaveMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLeaveMessage.h; sourceTree = "<group>"; };
+		B6EB9BA722C99F8100136A6C /* EZHiddnsDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHiddnsDeviceInfo.h; sourceTree = "<group>"; };
+		B6EB9BA822C99F8100136A6C /* EZDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceInfo.h; sourceTree = "<group>"; };
+		B6EB9BA922C99F8100136A6C /* EZDetectorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDetectorInfo.h; sourceTree = "<group>"; };
+		B6EB9BAA22C99F8100136A6C /* EZHCNetDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHCNetDeviceInfo.h; sourceTree = "<group>"; };
+		B6EB9BAB22C99F8100136A6C /* EZCameraInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCameraInfo.h; sourceTree = "<group>"; };
+		B6EB9BAC22C99F8100136A6C /* EZCloudRecordFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCloudRecordFile.h; sourceTree = "<group>"; };
+		B6EB9BAD22C99F8100136A6C /* EZAreaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAreaInfo.h; sourceTree = "<group>"; };
+		B6EB9BAE22C99F8100136A6C /* EZProbeDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZProbeDeviceInfo.h; sourceTree = "<group>"; };
+		B6EB9BAF22C99F8100136A6C /* EZVideoQualityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZVideoQualityInfo.h; sourceTree = "<group>"; };
+		B6EB9BB022C99F8100136A6C /* EZAlarmInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAlarmInfo.h; sourceTree = "<group>"; };
+		B6EB9BB122C99F8100136A6C /* EZSADPDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZSADPDeviceInfo.h; sourceTree = "<group>"; };
+		B6EB9BB222C99F8100136A6C /* EZStorageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZStorageInfo.h; sourceTree = "<group>"; };
+		B6EB9BB322C99F8100136A6C /* libEZOpenSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEZOpenSDK.a; sourceTree = "<group>"; };
+		B6EB9BB722C99FDB00136A6C /* EZUIKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUIKitViewController.m; sourceTree = "<group>"; };
+		B6EB9BB822C99FDB00136A6C /* EZUISelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUISelectViewController.m; sourceTree = "<group>"; };
+		B6EB9BB922C99FDB00136A6C /* BGVideoStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGVideoStartViewController.m; sourceTree = "<group>"; };
+		B6EB9BBA22C99FDB00136A6C /* EZUIKitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EZUIKitViewController.xib; sourceTree = "<group>"; };
+		B6EB9BBB22C99FDB00136A6C /* EZUIKitPlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUIKitPlaybackViewController.m; sourceTree = "<group>"; };
+		B6EB9BBC22C99FDB00136A6C /* EZUIKitPlaybackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EZUIKitPlaybackViewController.xib; sourceTree = "<group>"; };
+		B6EB9BBD22C99FDB00136A6C /* BGQMVideoListTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGQMVideoListTableVC.h; sourceTree = "<group>"; };
+		B6EB9BBE22C99FDB00136A6C /* EZUIPlayBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUIPlayBaseViewController.m; sourceTree = "<group>"; };
+		B6EB9BBF22C99FDB00136A6C /* EZUIKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIKitViewController.h; sourceTree = "<group>"; };
+		B6EB9BC022C99FDB00136A6C /* BGVideoStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGVideoStartViewController.h; sourceTree = "<group>"; };
+		B6EB9BC122C99FDB00136A6C /* EZUISelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUISelectViewController.h; sourceTree = "<group>"; };
+		B6EB9BC322C99FDB00136A6C /* EZQRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZQRView.m; sourceTree = "<group>"; };
+		B6EB9BC422C99FDB00136A6C /* EZPlaybackProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlaybackProgressBar.h; sourceTree = "<group>"; };
+		B6EB9BC522C99FDB00136A6C /* EZQRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZQRView.h; sourceTree = "<group>"; };
+		B6EB9BC622C99FDB00136A6C /* EZPlaybackProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZPlaybackProgressBar.m; sourceTree = "<group>"; };
+		B6EB9BC722C99FDB00136A6C /* BGQMVideoListTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGQMVideoListTableVC.m; sourceTree = "<group>"; };
+		B6EB9BC822C99FDB00136A6C /* EZUIKitPlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIKitPlaybackViewController.h; sourceTree = "<group>"; };
+		B6EB9BC922C99FDB00136A6C /* BGVideoStartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGVideoStartViewController.xib; sourceTree = "<group>"; };
+		B6EB9BCA22C99FDB00136A6C /* EZUISelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EZUISelectViewController.xib; sourceTree = "<group>"; };
+		B6EB9BCB22C99FDB00136A6C /* EZUIPlayBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIPlayBaseViewController.h; sourceTree = "<group>"; };
+		B6EB9BD822C99FF400136A6C /* BGQMVideoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGQMVideoTableViewCell.m; sourceTree = "<group>"; };
+		B6EB9BD922C99FF500136A6C /* BGQMVideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGQMVideoTableViewCell.h; sourceTree = "<group>"; };
 		B6ED203F229B7D4B0044EFC9 /* BGCheckAppVersionMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGCheckAppVersionMgr.h; sourceTree = "<group>"; };
 		B6ED2040229B7D4B0044EFC9 /* BGCheckAppVersionMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGCheckAppVersionMgr.m; sourceTree = "<group>"; };
 		B6ED2043229BACE30044EFC9 /* ColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
@@ -1605,12 +1679,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B615818E233B4E42002FA33F /* Photos.framework in Frameworks */,
-				B615818D233B4C71002FA33F /* QMUIKit.framework in Frameworks */,
 				B614C3C5233AF0AF0072459F /* libxml2.tbd in Frameworks */,
+				B614C3C1233AF00B0072459F /* Photos.framework in Frameworks */,
 				B60C808522A8A7780016D936 /* OpenAL.framework in Frameworks */,
 				B60C808322A8A76B0016D936 /* CoreMedia.framework in Frameworks */,
 				B657DE142292859F0009BCB0 /* GLKit.framework in Frameworks */,
+				B65E7A02233C3E440037D3ED /* QMUIKit.framework in Frameworks */,
 				B60C808122A8A7520016D936 /* AudioToolbox.framework in Frameworks */,
 				B614C3D1233AFC9D0072459F /* SystemConfiguration.framework in Frameworks */,
 				B60C807F22A8A74A0016D936 /* VideoToolbox.framework in Frameworks */,
@@ -1632,6 +1706,7 @@
 				1CC31DF44C0942DA83A14BC2 /* BaiduMapAPI_Base.framework in Frameworks */,
 				B614C3D0233AFC950072459F /* Security.framework in Frameworks */,
 				79292CBC00114D88B20575BF /* BaiduMapAPI_Cloud.framework in Frameworks */,
+				B6EB9BB422C99F8100136A6C /* libEZUIKit.a in Frameworks */,
 				B60C805022A8A3F10016D936 /* libcrypto.a in Frameworks */,
 				22C24D1119CA4317BCCDE07A /* BaiduMapAPI_Map.framework in Frameworks */,
 				AAD09F4E030B4829AE0E9DE2 /* BaiduMapAPI_Search.framework in Frameworks */,
@@ -1640,12 +1715,12 @@
 				BE257C798B5344F5ACB68D16 /* MessageUI.framework in Frameworks */,
 				53512C05AF1D442DBA8AF74F /* CoreTelephony.framework in Frameworks */,
 				3FF0F795A00B4D3FB69F358B /* Security.framework in Frameworks */,
-				B6158191233B509D002FA33F /* QMUIResources.bundle in Frameworks */,
 				A74793AC903946A1BB94C37D /* OpenGLES.framework in Frameworks */,
 				CFCBB0BA43AB404DB6DBF1B6 /* SystemConfiguration.framework in Frameworks */,
 				5C68959B6E6D476E9D7BF866 /* UIKit.framework in Frameworks */,
 				0A2108A0B0DD4421883C2CC8 /* Foundation.framework in Frameworks */,
 				2E95AED19A84454D979E5FBF /* libsqlite3.0.tbd in Frameworks */,
+				B6EB9BB522C99F8100136A6C /* libEZOpenSDK.a in Frameworks */,
 				72A3A93A1D824587B174FAF0 /* CoreData.framework in Frameworks */,
 				1BA65013D26F48C7859BD8E8 /* libz.dylib in Frameworks */,
 			);
@@ -1683,7 +1758,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				B615818F233B502D002FA33F /* QMUIResources.bundle */,
+				B614C3D4233B00240072459F /* QMUIResources.bundle */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				EB87FDF31871DA8E0020F90C /* www */,
 				EB87FDF11871DA420020F90C /* Staging */,
@@ -1965,15 +2040,6 @@
 			path = WSDatePickerView;
 			sourceTree = "<group>";
 		};
-		B6158185233B4C51002FA33F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B615818A233B4C51002FA33F /* QMUIKit.framework */,
-				B615818C233B4C51002FA33F /* QMUIKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B637964F22F1732C007AC38F /* UserFeedBackVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -2027,6 +2093,15 @@
 				B645F30622AF3C2B00D5420A /* SWPinYinHeader.h */,
 			);
 			path = SWPinYinSearcher;
+			sourceTree = "<group>";
+		};
+		B64D3B34233B62C20016DF9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B64D3B39233B62C20016DF9F /* QMUIKit.framework */,
+				B64D3B3B233B62C20016DF9F /* QMUIKitTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B6548A8C22B32605005CCD21 /* HomeSeconderyViewController */ = {
@@ -3038,9 +3113,11 @@
 		B6E15604228CF0E600CB4A5F /* BGLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				B6158184233B4C51002FA33F /* qmui.xcodeproj */,
+				B64D3B33233B62C20016DF9F /* qmui.xcodeproj */,
 				B6C6177722F968DC008DD6E7 /* WechtSDK1.8.2 */,
 				B66BA70222F275270027EE05 /* SDPhotoBrowser */,
+				B6EB9B9822C99F8100136A6C /* EZOpenSDK */,
+				B6EB9B9022C99F8100136A6C /* EZUIKit */,
 				B6A92E0122BA2D0900D16AE9 /* Bugly.framework */,
 				B6733F2F22B8D6F7005B1DDE /* WebViewJavascriptBridge */,
 				B68D2C0E22A5FB3A001C00EC /* PNChart */,
@@ -3078,9 +3155,13 @@
 				B64376462293D25100A92D74 /* BGUIWebViewController.xib */,
 				B6E15622228D2C9800CB4A5F /* BGWebViewController.h */,
 				B6E15623228D2C9800CB4A5F /* BGWebViewController.m */,
+				B6380A9222CB2084002500E0 /* Dis-test */,
+				B6A92DFF22BA222500D16AE9 /* scroll */,
 				B67D69A9229BC6D6007152DF /* BGNomalWebView.h */,
 				B67D69AA229BC6D6007152DF /* BGNomalWebView.m */,
+				B6A92DFD22B9D03300D16AE9 /* assets */,
 				B6733F4222B8E20E005B1DDE /* eventTest.html */,
+				B6DFF1A122FCF9AB002D269C /* aDevices */,
 				B6733F3E22B8D77A005B1DDE /* ExampleApp.html */,
 			);
 			path = ViewController;
@@ -3428,6 +3509,7 @@
 		B6E2188822A4A94B003C2969 /* VIewController */ = {
 			isa = PBXGroup;
 			children = (
+				B6EB9BB622C99FDB00136A6C /* EZUVideoVC */,
 				B6E2188B22A4AA2A003C2969 /* BGQMHomeViewController.h */,
 				B6E2188C22A4AA2A003C2969 /* BGQMHomeViewController.m */,
 				B63B00D522B099C2004E070F /* BGQMNewHomeTableViewController.h */,
@@ -3471,6 +3553,117 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B6EB9B9022C99F8100136A6C /* EZUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9B9122C99F8100136A6C /* include */,
+				B6EB9B9522C99F8100136A6C /* libEZUIKit.a */,
+			);
+			path = EZUIKit;
+			sourceTree = "<group>";
+		};
+		B6EB9B9122C99F8100136A6C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9B9222C99F8100136A6C /* EZUIError.h */,
+				B6EB9B9322C99F8100136A6C /* EZUIKit.h */,
+				B6EB9B9422C99F8100136A6C /* EZUIPlayer.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		B6EB9B9822C99F8100136A6C /* EZOpenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9B9922C99F8100136A6C /* include */,
+				B6EB9BB322C99F8100136A6C /* libEZOpenSDK.a */,
+			);
+			path = EZOpenSDK;
+			sourceTree = "<group>";
+		};
+		B6EB9B9922C99F8100136A6C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9B9A22C99F8100136A6C /* EZOpenSDK */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		B6EB9B9A22C99F8100136A6C /* EZOpenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9B9B22C99F8100136A6C /* EZConstants.h */,
+				B6EB9B9C22C99F8100136A6C /* EZHCNetDeviceSDK.h */,
+				B6EB9B9D22C99F8100136A6C /* EZOpenSDK.h */,
+				B6EB9B9E22C99F8100136A6C /* EZPlayer.h */,
+				B6EB9B9F22C99F8100136A6C /* EZGlobalSDK.h */,
+				B6EB9BA022C99F8100136A6C /* modules */,
+			);
+			path = EZOpenSDK;
+			sourceTree = "<group>";
+		};
+		B6EB9BA022C99F8100136A6C /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9BA122C99F8100136A6C /* EZDeviceVersion.h */,
+				B6EB9BA222C99F8100136A6C /* EZUserInfo.h */,
+				B6EB9BA322C99F8100136A6C /* EZDeviceUpgradeStatus.h */,
+				B6EB9BA422C99F8100136A6C /* EZAccessToken.h */,
+				B6EB9BA522C99F8100136A6C /* EZDeviceRecordFile.h */,
+				B6EB9BA622C99F8100136A6C /* EZLeaveMessage.h */,
+				B6EB9BA722C99F8100136A6C /* EZHiddnsDeviceInfo.h */,
+				B6EB9BA822C99F8100136A6C /* EZDeviceInfo.h */,
+				B6EB9BA922C99F8100136A6C /* EZDetectorInfo.h */,
+				B6EB9BAA22C99F8100136A6C /* EZHCNetDeviceInfo.h */,
+				B6EB9BAB22C99F8100136A6C /* EZCameraInfo.h */,
+				B6EB9BAC22C99F8100136A6C /* EZCloudRecordFile.h */,
+				B6EB9BAD22C99F8100136A6C /* EZAreaInfo.h */,
+				B6EB9BAE22C99F8100136A6C /* EZProbeDeviceInfo.h */,
+				B6EB9BAF22C99F8100136A6C /* EZVideoQualityInfo.h */,
+				B6EB9BB022C99F8100136A6C /* EZAlarmInfo.h */,
+				B6EB9BB122C99F8100136A6C /* EZSADPDeviceInfo.h */,
+				B6EB9BB222C99F8100136A6C /* EZStorageInfo.h */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		B6EB9BB622C99FDB00136A6C /* EZUVideoVC */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9BC222C99FDB00136A6C /* CustomView */,
+				B6EB9BC822C99FDB00136A6C /* EZUIKitPlaybackViewController.h */,
+				B6EB9BBB22C99FDB00136A6C /* EZUIKitPlaybackViewController.m */,
+				B6EB9BBC22C99FDB00136A6C /* EZUIKitPlaybackViewController.xib */,
+				B6EB9BBF22C99FDB00136A6C /* EZUIKitViewController.h */,
+				B6EB9BB722C99FDB00136A6C /* EZUIKitViewController.m */,
+				B6EB9BBA22C99FDB00136A6C /* EZUIKitViewController.xib */,
+				B6EB9BBD22C99FDB00136A6C /* BGQMVideoListTableVC.h */,
+				B6EB9BC722C99FDB00136A6C /* BGQMVideoListTableVC.m */,
+				B6EB9BC022C99FDB00136A6C /* BGVideoStartViewController.h */,
+				B6EB9BB922C99FDB00136A6C /* BGVideoStartViewController.m */,
+				B6EB9BC922C99FDB00136A6C /* BGVideoStartViewController.xib */,
+				B6EB9BC122C99FDB00136A6C /* EZUISelectViewController.h */,
+				B6EB9BB822C99FDB00136A6C /* EZUISelectViewController.m */,
+				B6EB9BCA22C99FDB00136A6C /* EZUISelectViewController.xib */,
+				B6EB9BCB22C99FDB00136A6C /* EZUIPlayBaseViewController.h */,
+				B6EB9BBE22C99FDB00136A6C /* EZUIPlayBaseViewController.m */,
+			);
+			path = EZUVideoVC;
+			sourceTree = "<group>";
+		};
+		B6EB9BC222C99FDB00136A6C /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB9BD922C99FF500136A6C /* BGQMVideoTableViewCell.h */,
+				B6EB9BD822C99FF400136A6C /* BGQMVideoTableViewCell.m */,
+				B6EB9BC522C99FDB00136A6C /* EZQRView.h */,
+				B6EB9BC322C99FDB00136A6C /* EZQRView.m */,
+				B6EB9BC422C99FDB00136A6C /* EZPlaybackProgressBar.h */,
+				B6EB9BC622C99FDB00136A6C /* EZPlaybackProgressBar.m */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
 			isa = PBXGroup;
 			children = (
@@ -3493,7 +3686,7 @@
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				B64D020A22C4A29200FF9717 /* ShellScript */,
-				B614C3CD233AFC630072459F /* Embed Frameworks */,
+				B65E7A04233C3E450037D3ED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3537,8 +3730,8 @@
 					ProjectRef = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
 				},
 				{
-					ProductGroup = B6158185233B4C51002FA33F /* Products */;
-					ProjectRef = B6158184233B4C51002FA33F /* qmui.xcodeproj */;
+					ProductGroup = B64D3B34233B62C20016DF9F /* Products */;
+					ProjectRef = B64D3B33233B62C20016DF9F /* qmui.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -3563,18 +3756,18 @@
 			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B615818A233B4C51002FA33F /* QMUIKit.framework */ = {
+		B64D3B39233B62C20016DF9F /* QMUIKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = QMUIKit.framework;
-			remoteRef = B6158189233B4C51002FA33F /* PBXContainerItemProxy */;
+			remoteRef = B64D3B38233B62C20016DF9F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B615818C233B4C51002FA33F /* QMUIKitTests.xctest */ = {
+		B64D3B3B233B62C20016DF9F /* QMUIKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = QMUIKitTests.xctest;
-			remoteRef = B615818B233B4C51002FA33F /* PBXContainerItemProxy */;
+			remoteRef = B64D3B3A233B62C20016DF9F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -3587,12 +3780,18 @@
 				B645F30822AF3C2B00D5420A /* hanzi2pinyin_v2.txt in Resources */,
 				B6A8E24522A4E51400E36D8F /* BGRedSpotCell.xib in Resources */,
 				B657DD4D22927AB10009BCB0 /* BGHeadPortraitViewController.xib in Resources */,
+				B6EB9BD122C99FDB00136A6C /* EZUIKitPlaybackViewController.xib in Resources */,
+				B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				B68D2D2722A656F1001C00EC /* pageControlDot@3x.png in Resources */,
+				B6EB9BD622C99FDB00136A6C /* BGVideoStartViewController.xib in Resources */,
+				B6A92E0022BA222500D16AE9 /* scroll in Resources */,
 				B6A8E24A22A4E59100E36D8F /* BGHeadTableViewCell.xib in Resources */,
 				B6E15688228D419800CB4A5F /* MJRefresh.bundle in Resources */,
 				B6E15619228D009500CB4A5F /* Localizable.strings in Resources */,
+				B6EB9BD722C99FDB00136A6C /* EZUISelectViewController.xib in Resources */,
 				B68D2D2522A656F1001C00EC /* pageControlCurrentDot@3x.png in Resources */,
+				B6A92DFE22B9D03300D16AE9 /* assets in Resources */,
 				B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */,
 				B68D2D3722A65E2A001C00EC /* app_item_bg.png in Resources */,
 				B64376482293D25100A92D74 /* BGUIWebViewController.xib in Resources */,
@@ -3609,20 +3808,22 @@
 				B6FB483A22FABD86006F94CF /* BGQMUserHeadTableViewCell.xib in Resources */,
 				B68D2D2322A656F1001C00EC /* pageControlCurrentDot@2x.png in Resources */,
 				B6024AD922FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib in Resources */,
+				B6380A9322CB2085002500E0 /* Dis-test in Resources */,
 				B6C6178322F968DC008DD6E7 /* read_me.txt in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
 				B6B1B62D229536A700F1B5D2 /* BGLoginViewController.xib in Resources */,
 				B68D2D2422A656F1001C00EC /* 005.jpg in Resources */,
 				B6E15613228CFFD300CB4A5F /* InfoPlist.strings in Resources */,
 				B60C80B022A8AE4E0016D936 /* WSDatePickerView.xib in Resources */,
-				B6158190233B502D002FA33F /* QMUIResources.bundle in Resources */,
 				B657DD7622927AEC0009BCB0 /* TZImagePickerController.bundle in Resources */,
 				9573ACCF56AB4E45B41257CF /* close.png in Resources */,
 				B69F7E2622FBB9E5005B0B03 /* CSAboutViewController.xib in Resources */,
+				B6DFF1A422FCF9AD002D269C /* aDevices in Resources */,
 				B68D2D3522A65E2A001C00EC /* app_item_plus.png in Resources */,
 				B96B5C86285D46748C1C9991 /* mapapi.bundle in Resources */,
 				B6548A9922B33087005CCD21 /* BGQMEventTableViewCell.xib in Resources */,
 				B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */,
+				B6EB9BCF22C99FDB00136A6C /* EZUIKitViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3679,6 +3880,7 @@
 				B6C1540C22E7F4D0004B8614 /* CSAboutViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				B6EB9BD022C99FDB00136A6C /* EZUIKitPlaybackViewController.m in Sources */,
 				B6C768DE22A0B8DC00DA675D /* QDFontPointSizeAndLineHeightViewController.m in Sources */,
 				B6E15694228D419800CB4A5F /* MJRefreshGifHeader.m in Sources */,
 				1449480E1EE10CB70026AA73 /* JustepURLProtocol.m in Sources */,
@@ -3784,6 +3986,7 @@
 				B6E15580228CED3A00CB4A5F /* BGLoginViewController.m in Sources */,
 				01A9F690A5B84F17927D7C2B /* baiduMapViewController.mm in Sources */,
 				B6548A9422B32765005CCD21 /* BGQMEventViewController.m in Sources */,
+				B6EB9BD522C99FDB00136A6C /* BGQMVideoListTableVC.m in Sources */,
 				B6E15698228D419800CB4A5F /* MJRefreshAutoFooter.m in Sources */,
 				B645F30922AF3C2B00D5420A /* NSArray+PinYinSearcher.m in Sources */,
 				B6E155C6228CEDF900CB4A5F /* NSString+BGTimeString.m in Sources */,
@@ -3822,6 +4025,7 @@
 				B796B9BA26564FFBBDAD881C /* CDVViewController+SplashScreen.m in Sources */,
 				B6C7690422A0B8DC00DA675D /* QDCellHeightCacheViewController.m in Sources */,
 				B6E15585228CED9600CB4A5F /* CustomNavigationController.m in Sources */,
+				B6EB9BD322C99FDB00136A6C /* EZQRView.m in Sources */,
 				B6C768D922A0B8DC00DA675D /* QDCAShapeLoadingViewController.m in Sources */,
 				B6C768F122A0B8DC00DA675D /* QDSingleImagePickerPreviewViewController.m in Sources */,
 				B6E155C2228CEDF900CB4A5F /* NSDate+BGExtension.m in Sources */,
@@ -3834,6 +4038,7 @@
 				B66BA6F622F274470027EE05 /* BGQMFeedBackViewController.m in Sources */,
 				B657DDC322927C760009BCB0 /* SDWebImageManager.m in Sources */,
 				B657DDD322927C760009BCB0 /* SDWebImageTransition.m in Sources */,
+				B6EB9BD222C99FDB00136A6C /* EZUIPlayBaseViewController.m in Sources */,
 				B6C768DF22A0B8DC00DA675D /* QDAboutViewController.m in Sources */,
 				B68D2D1822A653E6001C00EC /* MSAnimatedDotView.m in Sources */,
 				B66BA71222F27EE80027EE05 /* BGShowUrlModel.m in Sources */,
@@ -3889,6 +4094,7 @@
 				B68D2CDF22A646C1001C00EC /* JXCategoryTitleVerticalZoomCell.m in Sources */,
 				B6C768E022A0B8DC00DA675D /* QDAAViewController.m in Sources */,
 				B6C768A722A0B8DC00DA675D /* QDCommonGroupListViewController.m in Sources */,
+				B6EB9BD422C99FDB00136A6C /* EZPlaybackProgressBar.m in Sources */,
 				B68D2CF922A646C1001C00EC /* JXCategoryNumberCell.m in Sources */,
 				B6E155C8228CEDF900CB4A5F /* ECAuthorizationTools.m in Sources */,
 				B6E15603228CF09C00CB4A5F /* NSString+BGChangeNoNull.m in Sources */,
@@ -3906,6 +4112,7 @@
 				B6C768E122A0B8DC00DA675D /* QDPopupContainerViewController.m in Sources */,
 				B657DD7322927AEC0009BCB0 /* NSBundle+TZImagePicker.m in Sources */,
 				B6C768AF22A0B8DC00DA675D /* QDTableViewCellAccessoryTypeViewController.m in Sources */,
+				B6EB9BCE22C99FDB00136A6C /* BGVideoStartViewController.m in Sources */,
 				B6E15601228CF09C00CB4A5F /* NSArray+BGExtension.m in Sources */,
 				B6C768C622A0B8DC00DA675D /* QDTextViewController.m in Sources */,
 				B6E15625228D2C9800CB4A5F /* BGWebViewController.m in Sources */,
@@ -4010,6 +4217,7 @@
 				B68D2C7B22A63D87001C00EC /* GHDropMenuTitleItem.m in Sources */,
 				B6C768AD22A0B8DC00DA675D /* QDCommonTableViewController.m in Sources */,
 				B68D2C3D22A5FB3A001C00EC /* PNLineChartDataItem.m in Sources */,
+				B6EB9BDA22C99FF500136A6C /* BGQMVideoTableViewCell.m in Sources */,
 				B657DDCB22927C760009BCB0 /* SDWebImageCoderHelper.m in Sources */,
 				B657DD7E22927AEC0009BCB0 /* TZImageRequestOperation.m in Sources */,
 				B68D2C3922A5FB3A001C00EC /* PNBarChart.m in Sources */,
@@ -4048,6 +4256,7 @@
 				B6C768B722A0B8DC00DA675D /* QDLabelViewController.m in Sources */,
 				B6C768B922A0B8DC00DA675D /* QDButtonViewController.m in Sources */,
 				B657DDD622927C760009BCB0 /* NSImage+WebCache.m in Sources */,
+				B6EB9BCD22C99FDB00136A6C /* EZUISelectViewController.m in Sources */,
 				B6E1568D228D419800CB4A5F /* MJRefreshBackStateFooter.m in Sources */,
 				B6C768CB22A0B8DC00DA675D /* QDUIViewDebugViewController.m in Sources */,
 				B6C768D322A0B8DC00DA675D /* QDUIKitViewController.m in Sources */,
@@ -4066,6 +4275,7 @@
 				B68D2CF222A646C1001C00EC /* JXCategoryTitleCellModel.m in Sources */,
 				B6E155F3228CF09C00CB4A5F /* UILabel+BGExtension.m in Sources */,
 				B6E155BF228CEDF900CB4A5F /* UIView+BGChangeCorner.m in Sources */,
+				B6EB9BCC22C99FDB00136A6C /* EZUIKitViewController.m in Sources */,
 				B6C768A122A0B8DC00DA675D /* QMUIConfigurationTemplateGrass.m in Sources */,
 				B6C768B622A0B8DC00DA675D /* QDLinkButtonViewController.m in Sources */,
 				B68D2CF722A646C1001C00EC /* JXCategoryImageCellModel.m in Sources */,

@@ -150,8 +150,7 @@ BMKMapManager* _mapManager;
 //        BGQMloginViewController *loginVC = [[BGQMloginViewController alloc] init];
         //设置状态栏颜色
 //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        BGLoginViewController *loginVC = [[BGLoginViewController alloc] init];
-//        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
 //           UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
         self.window.rootViewController = loginVC;
         [self.window makeKeyAndVisible];

@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+body{background-color: white}
+ul{list-style-type: none}
+a {text-decoration: none;color: #18B4FE;}
+
+.header{
+    padding: 5% 0 0 5%;
+}
+/*说明*/
+.mescroll .notice{
+    font-size: 14px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    color:#555;
+}
+/*列表*/
+.mescroll{
+    position: fixed;
+    top: 44px;
+    bottom: 0;
+    height: auto;
+}
+/*展示上拉加载的数据列表*/
+.news-list li{
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+}
+.news-list .new-content{
+    font-size: 14px;
+    margin-top: 6px;
+    margin-left: 10px;
+    color: #666;
+}
+.sideClick{
+    display: block;
+    float: right;
+    position: relative;
+    right: 1rem;
+    top: -1rem;
+	cursor: pointer;
+}
+.sideClick.open{
+    display: none;
+}
+.selectcontain.open{
+    left: 12%;
+    transition: all 500ms cubic-bezier(0,.995,.99,1);
+}
+.btn{
+    height: 5%;
+}
+.selectcontain{
+	width:80%;
+	background:#fff;
+	height:100%;
+	position: absolute;
+    left:100%;
+    padding:2rem 4% 0 4%;
+    transition: all 500ms cubic-bezier(0,.995,.99,1);
+}
+.selectcontain button{
+    width:48%;
+	float:left;
+	margin-bottom:0.5rem;
+	background:#fff;
+	border:1px solid #888888;
+	border-radius: 5px;
+}
+.selectcontain button:first-child{
+	margin-right:0.5rem;
+}
+.selectcontain button:nth-child(3){
+	margin-right:0.5rem;
+}
+.selectcontain .select{
+	background:#02AC94;
+	border:1px solid #02AC94;
+	color:#fff;
+}
+.selectcontain p{
+	clear:both;
+	line-height: 3rem;
+}
+.selectcontain hr{
+	clear:both;
+	margin-left:-1rem;
+	margin-right:-1rem;
+	border:0.03rem dashed #C8C9CA;
+}
+.selectcontain span{
+	width:30%;
+	display: block;
+	float:left;
+	text-align: right;
+}
+.selectcontain input,.selectcontain select{
+	width:65%;
+	height:2rem;
+	border-radius: 0.3rem;
+	border:0.04rem solid #888888;
+}
+.selectcontain .search,.selectcontain .cancel{
+	position: relative;
+	bottom:0;
+	line-height:3rem;
+	width:40%;
+	border-radius: 0;
+    border:none;
+    margin: 5%;
+}
+.selectcontain .cancel{
+	left:0;
+	background:#EDEDEC;
+}
+.selectcontain .search{
+	right:0;
+	background:#02AC94;
+	color:#fff;
+}
+.sRow{margin-bottom:1rem;}
