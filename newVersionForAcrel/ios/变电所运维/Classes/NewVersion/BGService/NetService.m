@@ -427,16 +427,20 @@
     
     QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
         //清空NSUserDefaults
+        //清空NSUserDefaults 退出登录
         NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
         NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-        for(NSString *key in [dictionary allKeys]){
+        for(NSString *key in [dictionary allKeys]){
             if ([key isEqualToString:@"orderListUrl"]) {
                 continue;
             }else if ([key isEqualToString:kaccount]) {
                 continue;
             }else if ([key isEqualToString:kpassword]) {
                 continue;
-            }else{
+            }else if ([key isEqualToString:@"isSavePwd"]){
+                continue;
+            }
+            else{
                 [defatluts removeObjectForKey:key];
                 [defatluts synchronize];
             }
@@ -485,7 +489,7 @@
              @"142":@"数据库api版本数据出现错误",
              @"143":@"不支持此设备",
              @"144":@"请检查用户名和用户密码，登录失败",
-             @"":@"登录失败",
+             @"0":@"登录失败",
              @"1":@"获取用户错误，请重新登录",
              @"145":@"反馈提交失败，请重新提交",
              @"146":@"更新用户信息失败",
@@ -494,7 +498,15 @@
              @"305":@"变电所已存在",
              @"306":@"该变电所的编号或名称已存在",
              @"307":@"数据初始化失败",
-             @"308":@"删除失败"};
+             @"308":@"删除失败",
+             @"309":@"增加失败",
+             @"310":@"不是任务管理员",
+             @"144":@"请检查用户名和用户密码，登录失败",
+             @"311":@"不在此任务人员清单中",
+             @"312":@"请先签到",
+             @"313":@"此账号没有权限签名",
+             @"314":@"重复签到",
+             @"315":@"当前变电所没有缺陷"};
 }
 
 @end

@@ -19,7 +19,6 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self setBackgroundColor:[UIColor clearColor]];
     
-    
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withData:(NSArray *)dataArr

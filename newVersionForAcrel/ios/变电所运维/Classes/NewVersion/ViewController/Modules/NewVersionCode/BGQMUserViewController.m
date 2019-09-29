@@ -372,31 +372,7 @@
             [self changeLanguage];
         }
     }else{
-        DefLog(@"点击了登出");
-//        [NetService bg_postWithPath:@"http://192.168.112.212:8080/web_manage/addGoods.do?name=xuhang" params:nil success:^(id respObjc) {
-//            //登出接口
-//            DefLog(@"%@",respObjc);
-//        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-//            DefLog(@"%@",errorMsg);
-//        }];
-        //清空NSUserDefaults
-        NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
-        NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-        for(NSString *key in [dictionary allKeys]){
-            if ([key isEqualToString:@"orderListUrl"]) {
-                continue;
-            }else if ([key isEqualToString:kaccount]) {
-                continue;
-            }else if ([key isEqualToString:kpassword]) {
-                continue;
-            }else{
-                [defatluts removeObjectForKey:key];
-                [defatluts synchronize];
-            }
-        }
-        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
-        UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-        [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
+
     }
 }
 

@@ -156,7 +156,7 @@
             [label2 setFont:[UIFont systemFontOfSize:FixedDeathFontMinSize]];
             NSString *unitStr = [NSString changgeNonulWithString:infoArray[i][@"unit"]];
             NSString *valueStr = [NSString changgeNonulWithString:infoArray[i][@"value"]];
-            if (!valueStr.length) {
+            if (!valueStr.length || [valueStr isEqualToString:@"null"] ||  [valueStr isEqualToString:@"(null)"] ) {
                 label2.text = @"暂无数据";
             }else if([valueStr containsString:@";"]) {
                 NSArray  *arrayStr = [valueStr componentsSeparatedByString:@";"];
