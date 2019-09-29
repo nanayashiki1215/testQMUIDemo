@@ -46,24 +46,43 @@
         self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         [self addTarget:self action:@selector(gridClick:) forControlEvents:UIControlEventTouchUpInside];
         
-        // 图片icon
-        UIImageView * imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-(GridHeight-35)/2, GridHeight/4-10, GridHeight-35 , GridHeight-35)];
-        if ([imageString containsString:@"dsbgl"]) {
-            imageIcon.image = [UIImage imageNamed:imageString];
+        if (isPad) {
+            // 图片icon
+            UIImageView * imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-(GridHeight-85)/2, GridHeight/4-10, GridHeight-85 , GridHeight-85)];
+            if ([imageString containsString:@"dsbgl"]) {
+                imageIcon.image = [UIImage imageNamed:imageString];
+            }else{
+                [imageIcon sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:imageString]] placeholderImage:[UIImage imageNamed:@""]];
+            }
+            imageIcon.tag = self.gridId;
+            [self addSubview:imageIcon];
+            // 标题
+            UILabel * title_label = [[UILabel alloc]initWithFrame:CGRectMake(0, GridHeight/4 + GridHeight - 45 - 70, GridHeight-80, 20)];
+            title_label.text = title;
+            title_label.textAlignment = NSTextAlignmentCenter;
+            title_label.font = [UIFont systemFontOfSize:18];
+            title_label.backgroundColor = [UIColor clearColor];
+            title_label.textColor = UIColorFromRGB(0x3c454c);
+            [imageIcon addSubview:title_label];
         }else{
-            [imageIcon sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:imageString]] placeholderImage:[UIImage imageNamed:@""]];
+            // 图片icon
+            UIImageView * imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-(GridHeight-35)/2, GridHeight/4-10, GridHeight-35 , GridHeight-35)];
+            if ([imageString containsString:@"dsbgl"]) {
+                imageIcon.image = [UIImage imageNamed:imageString];
+            }else{
+                [imageIcon sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:imageString]] placeholderImage:[UIImage imageNamed:@""]];
+            }
+            imageIcon.tag = self.gridId;
+            [self addSubview:imageIcon];
+            // 标题
+            UILabel * title_label = [[UILabel alloc]initWithFrame:CGRectMake(0, GridHeight/4 + GridHeight - 45, GridHeight, 20)];
+            title_label.text = title;
+            title_label.textAlignment = NSTextAlignmentCenter;
+            title_label.font = [UIFont systemFontOfSize:14];
+            title_label.backgroundColor = [UIColor clearColor];
+            title_label.textColor = UIColorFromRGB(0x3c454c);
+            [self addSubview:title_label];
         }
-        imageIcon.tag = self.gridId;
-        [self addSubview:imageIcon];
-        
-        // 标题
-        UILabel * title_label = [[UILabel alloc]initWithFrame:CGRectMake(0, GridHeight/4 + GridHeight - 45, GridHeight, 20)];
-        title_label.text = title;
-        title_label.textAlignment = NSTextAlignmentCenter;
-        title_label.font = [UIFont systemFontOfSize:14];
-        title_label.backgroundColor = [UIColor clearColor];
-        title_label.textColor = UIColorFromRGB(0x3c454c);
-        [self addSubview:title_label];
         
         //////////
         [self setGridId:gridId];

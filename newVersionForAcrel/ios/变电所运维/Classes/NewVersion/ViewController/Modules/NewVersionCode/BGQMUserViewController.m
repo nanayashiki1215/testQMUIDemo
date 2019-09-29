@@ -124,7 +124,7 @@
 
 - (void)setupNavigationItems {
     [super setupNavigationItems];
-//    self.title = DefLocalizedString(@"About");
+    self.title = DefLocalizedString(@"About");
 }
 
 - (void)creatView{

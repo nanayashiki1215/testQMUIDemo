@@ -67,9 +67,8 @@
 		B614C3CF233AFC8C0072459F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B614C3CE233AFC8C0072459F /* MediaPlayer.framework */; };
 		B614C3D0233AFC950072459F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E964ADADF144AE8C84462B /* Security.framework */; };
 		B614C3D1233AFC9D0072459F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F46F29FBC2C4358860FA57E /* SystemConfiguration.framework */; };
+		B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B614C3D4233B00240072459F /* QMUIResources.bundle */; };
 		B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */; };
-		B62F3FED233C48F900E08DE8 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B62F3FEA233C48D700E08DE8 /* QMUIKit.framework */; };
-		B62F3FEE233C490F00E08DE8 /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B62F3FEA233C48D700E08DE8 /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */; };
 		B637965A22F1732D007AC38F /* JGUserFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */; };
 		B637965B22F1732D007AC38F /* JGPredicateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965622F1732C007AC38F /* JGPredicateMethod.m */; };
@@ -141,6 +140,8 @@
 		B657DDDD22927C760009BCB0 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B657DDBE22927C760009BCB0 /* UIButton+WebCache.m */; };
 		B657DDDE22927C760009BCB0 /* SDWebImageWebPCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B657DDBF22927C760009BCB0 /* SDWebImageWebPCoder.m */; };
 		B657DE142292859F0009BCB0 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B657DE10229284410009BCB0 /* GLKit.framework */; };
+		B65E7A02233C3E440037D3ED /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; };
+		B65E7A03233C3E440037D3ED /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B66BA6F622F274470027EE05 /* BGQMFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F522F274470027EE05 /* BGQMFeedBackViewController.m */; };
 		B66BA6FB22F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F922F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m */; };
 		B66BA6FE22F274A90027EE05 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6FC22F274A90027EE05 /* BRPlaceholderTextView.m */; };
@@ -547,16 +548,16 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = CordovaLib;
 		};
-		B62F3FE9233C48D700E08DE8 /* PBXContainerItemProxy */ = {
+		B64D3B38233B62C20016DF9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B62F3FE4233C48D700E08DE8 /* qmui.xcodeproj */;
+			containerPortal = B64D3B33233B62C20016DF9F /* qmui.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = FE0AFAD11D82B9D8000D21D9;
 			remoteInfo = QMUIKit;
 		};
-		B62F3FEB233C48D700E08DE8 /* PBXContainerItemProxy */ = {
+		B64D3B3A233B62C20016DF9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B62F3FE4233C48D700E08DE8 /* qmui.xcodeproj */;
+			containerPortal = B64D3B33233B62C20016DF9F /* qmui.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CD4EA571228C401E00A55066;
 			remoteInfo = QMUIKitTests;
@@ -570,7 +571,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B62F3FEE233C490F00E08DE8 /* QMUIKit.framework in Embed Frameworks */,
+				B65E7A03233C3E440037D3ED /* QMUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,9 +762,9 @@
 		B614C3C0233AF00B0072459F /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		B614C3C4233AF0AF0072459F /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		B614C3CE233AFC8C0072459F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B614C3D4233B00240072459F /* QMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUIResources.bundle; sourceTree = "<group>"; };
 		B624D8CE2317CAEA00A16F5A /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
-		B62F3FE4233C48D700E08DE8 /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "QMUI_iOS-master/qmui.xcodeproj"; sourceTree = "<group>"; };
 		B637964722F1251D007AC38F /* BGQMUserHeadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserHeadTableViewCell.h; sourceTree = "<group>"; };
 		B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMUserHeadTableViewCell.m; sourceTree = "<group>"; };
 		B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGUserFeedBackViewController.m; sourceTree = "<group>"; };
@@ -781,6 +782,7 @@
 		B63B00D622B099C2004E070F /* BGQMNewHomeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMNewHomeTableViewController.m; sourceTree = "<group>"; };
 		B63B00D822B0C2CA004E070F /* BGQMHomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMHomeTableViewCell.h; sourceTree = "<group>"; };
 		B63B00D922B0C2CA004E070F /* BGQMHomeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMHomeTableViewCell.m; sourceTree = "<group>"; };
+		B63CE2D2233DB42900CE7E0F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BGLoginViewController.xib; sourceTree = "<group>"; };
 		B643761F22938FFB00A92D74 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B64376442293D25100A92D74 /* BGUIWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGUIWebViewController.h; sourceTree = "<group>"; };
 		B64376452293D25100A92D74 /* BGUIWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGUIWebViewController.m; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 		B645F30422AF3C2B00D5420A /* NSArray+PinYinSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PinYinSearcher.h"; sourceTree = "<group>"; };
 		B645F30522AF3C2B00D5420A /* NSString+PinYinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYinConverter.h"; sourceTree = "<group>"; };
 		B645F30622AF3C2B00D5420A /* SWPinYinHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPinYinHeader.h; sourceTree = "<group>"; };
+		B64D3B33233B62C20016DF9F /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "QMUI_iOS-3.2.1/qmui.xcodeproj"; sourceTree = "<group>"; };
 		B6548A9222B32765005CCD21 /* BGQMEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMEventViewController.h; sourceTree = "<group>"; };
 		B6548A9322B32765005CCD21 /* BGQMEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMEventViewController.m; sourceTree = "<group>"; };
 		B6548A9522B33087005CCD21 /* BGQMEventTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMEventTableViewCell.h; sourceTree = "<group>"; };
@@ -1677,12 +1680,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B62F3FED233C48F900E08DE8 /* QMUIKit.framework in Frameworks */,
 				B614C3C5233AF0AF0072459F /* libxml2.tbd in Frameworks */,
 				B614C3C1233AF00B0072459F /* Photos.framework in Frameworks */,
 				B60C808522A8A7780016D936 /* OpenAL.framework in Frameworks */,
 				B60C808322A8A76B0016D936 /* CoreMedia.framework in Frameworks */,
 				B657DE142292859F0009BCB0 /* GLKit.framework in Frameworks */,
+				B65E7A02233C3E440037D3ED /* QMUIKit.framework in Frameworks */,
 				B60C808122A8A7520016D936 /* AudioToolbox.framework in Frameworks */,
 				B614C3D1233AFC9D0072459F /* SystemConfiguration.framework in Frameworks */,
 				B60C807F22A8A74A0016D936 /* VideoToolbox.framework in Frameworks */,
@@ -1756,6 +1759,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				B614C3D4233B00240072459F /* QMUIResources.bundle */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				EB87FDF31871DA8E0020F90C /* www */,
 				EB87FDF11871DA420020F90C /* Staging */,
@@ -2037,15 +2041,6 @@
 			path = WSDatePickerView;
 			sourceTree = "<group>";
 		};
-		B62F3FE5233C48D700E08DE8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B62F3FEA233C48D700E08DE8 /* QMUIKit.framework */,
-				B62F3FEC233C48D700E08DE8 /* QMUIKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B637964F22F1732C007AC38F /* UserFeedBackVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -2099,6 +2094,15 @@
 				B645F30622AF3C2B00D5420A /* SWPinYinHeader.h */,
 			);
 			path = SWPinYinSearcher;
+			sourceTree = "<group>";
+		};
+		B64D3B34233B62C20016DF9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B64D3B39233B62C20016DF9F /* QMUIKit.framework */,
+				B64D3B3B233B62C20016DF9F /* QMUIKitTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B6548A8C22B32605005CCD21 /* HomeSeconderyViewController */ = {
@@ -3110,7 +3114,7 @@
 		B6E15604228CF0E600CB4A5F /* BGLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				B62F3FE4233C48D700E08DE8 /* qmui.xcodeproj */,
+				B64D3B33233B62C20016DF9F /* qmui.xcodeproj */,
 				B6C6177722F968DC008DD6E7 /* WechtSDK1.8.2 */,
 				B66BA70222F275270027EE05 /* SDPhotoBrowser */,
 				B6EB9B9822C99F8100136A6C /* EZOpenSDK */,
@@ -3727,8 +3731,8 @@
 					ProjectRef = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
 				},
 				{
-					ProductGroup = B62F3FE5233C48D700E08DE8 /* Products */;
-					ProjectRef = B62F3FE4233C48D700E08DE8 /* qmui.xcodeproj */;
+					ProductGroup = B64D3B34233B62C20016DF9F /* Products */;
+					ProjectRef = B64D3B33233B62C20016DF9F /* qmui.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -3753,18 +3757,18 @@
 			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B62F3FEA233C48D700E08DE8 /* QMUIKit.framework */ = {
+		B64D3B39233B62C20016DF9F /* QMUIKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = QMUIKit.framework;
-			remoteRef = B62F3FE9233C48D700E08DE8 /* PBXContainerItemProxy */;
+			remoteRef = B64D3B38233B62C20016DF9F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B62F3FEC233C48D700E08DE8 /* QMUIKitTests.xctest */ = {
+		B64D3B3B233B62C20016DF9F /* QMUIKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = QMUIKitTests.xctest;
-			remoteRef = B62F3FEB233C48D700E08DE8 /* PBXContainerItemProxy */;
+			remoteRef = B64D3B3A233B62C20016DF9F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -3778,6 +3782,7 @@
 				B6A8E24522A4E51400E36D8F /* BGRedSpotCell.xib in Resources */,
 				B657DD4D22927AB10009BCB0 /* BGHeadPortraitViewController.xib in Resources */,
 				B6EB9BD122C99FDB00136A6C /* EZUIKitPlaybackViewController.xib in Resources */,
+				B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				B68D2D2722A656F1001C00EC /* pageControlDot@3x.png in Resources */,
 				B6EB9BD622C99FDB00136A6C /* BGVideoStartViewController.xib in Resources */,
@@ -4319,6 +4324,7 @@
 			children = (
 				B6B1B62E229536A700F1B5D2 /* English */,
 				B6B1B630229536B100F1B5D2 /* zh-Hans */,
+				B63CE2D2233DB42900CE7E0F /* en */,
 			);
 			name = BGLoginViewController.xib;
 			sourceTree = "<group>";
@@ -4376,6 +4382,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2.6.5;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4408,6 +4415,7 @@
 					"$(PROJECT_DIR)/变电所运维/Classes/NewVersion/BGLibrary/EZUIKit",
 					"$(PROJECT_DIR)/变电所运维/Classes/NewVersion/BGLibrary/WechtSDK1.8.2",
 				);
+				MARKETING_VERSION = 2.4.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "变电所运维";
 				PROVISIONING_PROFILE_SPECIFIER = substation_dev;
@@ -4427,6 +4435,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 2.6.5;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4457,6 +4466,7 @@
 					"$(PROJECT_DIR)/变电所运维/Classes/NewVersion/BGLibrary/EZUIKit",
 					"$(PROJECT_DIR)/变电所运维/Classes/NewVersion/BGLibrary/WechtSDK1.8.2",
 				);
+				MARKETING_VERSION = 2.4.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "变电所运维";
 				PROVISIONING_PROFILE_SPECIFIER = substation_dis;
