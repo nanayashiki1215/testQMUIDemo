@@ -85,31 +85,6 @@
 //    [self hasUpdateVersion];
 }
 
-//如果有最新版本上传到蒲公英，提示更新
-- (void)hasUpdateVersion{
-    __weak __typeof(self)weakSelf = self;
-    NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
-    NSString *currentBulidVersion=infoDic[@"CFBundleVersion"];
-    
-    //蒲公英的apikey，appkey
-    NSDictionary *paramDic = @{@"_api_key":kPGYApiKey,@"appKey":kPGYAPPKEY};
-    [NetService bg_httpPostWithPath:@"https://www.pgyer.com/apiv2/app/check" params:paramDic success:^(id respObjc) {
-        if ([currentBulidVersion integerValue]<[respObjc[@"data"][@"buildVersionNo"]integerValue]) {
-            //如果当前手机安装app的bulid号<蒲公英上最新打包的bulid号，则提示更新
-            UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"版本有更新" message:@"检测到新版本,是否更新?"  preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-            [ac addAction:cancelAction];
-            UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                NSURL *url = [NSURL URLWithString:respObjc[@"data"][@"buildShortcutUrl"]];
-                [[UIApplication sharedApplication] openURL:url];
-            }];
-            [ac addAction:doneAction];
-            [weakSelf presentViewController:ac animated:YES completion:nil];
-        }
-    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-        
-    }];
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -181,7 +156,6 @@
             }else{
                 [cell.iconImage setImage:[UIImage imageNamed:@"Electric"]];
             }
-           
         }
     }
     cell.homeTableCelldelegate = self;
@@ -189,7 +163,23 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    DefLog(@"点击了%ld %@",(long)indexPath.row,self.listArrData[indexPath.row][@"fMenuname"]);
+    BGQMHomeTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    BGQMCategoryListConViewController *eventVC = [[BGQMCategoryListConViewController alloc] init];
+    if (cell.dataArr) {
+        NSMutableArray *listArr = [NSMutableArray new];
+        for (NSDictionary *cellData in cell.dataArr) {
+            NSString *name = [NSString changgeNonulWithString:cellData[@"fMenuname"]];
+            if (name.length) {
+                 [listArr addObject:name];
+            }
+        }
+        eventVC.titleArr = [listArr copy];
+        eventVC.allDataArr = cell.dataArr;
+    }
+    eventVC.clickIndex = 0;
+    eventVC.clickIndexOfSelectedCell = (long)indexPath.row;
+    [self.navigationController pushViewController:eventVC animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -287,7 +277,6 @@
 }
 
 -(void)getNetDataWithModel:(BGQMSubstationModel *)model{
-
     UserManager *user = [UserManager manager];
     NSInteger subid = [user.fsubID integerValue];
     NSDictionary *param = @{@"fSubid":@(subid),@"pid":user.homefMenuid};

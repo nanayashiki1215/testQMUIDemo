@@ -72,28 +72,32 @@
     
     self.contactLabel = [[UILabel alloc] qmui_initWithFont:[UIFont systemFontOfSize:FixedDeathFontLargeSize] textColor:[UIColor whiteColor]];
     self.contactLabel.frame = CGRectMake(10, 50, SCREEN_WIDTH-10, 30.f);
-    if (contactStr.length) {
-        self.contactLabel.text = [NSString stringWithFormat:@"联系人：%@",contactStr];
-    }else{
-        self.contactLabel.text = [NSString stringWithFormat:@"联系人："];
-    }
+    self.contactLabel.text = @"";
+    //2019.10.8临时注释
+//    if (contactStr.length) {
+//        self.contactLabel.text = [NSString stringWithFormat:@"联系人：%@",contactStr];
+//    }else{
+//        self.contactLabel.text = [NSString stringWithFormat:@"联系人："];
+//    }
     
     self.phoneLabel = [[UILabel alloc] qmui_initWithFont:[UIFont systemFontOfSize:FixedDeathFontLargeSize] textColor:[UIColor whiteColor]];
     self.phoneLabel.frame = CGRectMake(10, 80, 200, 30.f);
     
-    if (contactPhone.length) {
-        self.phoneLabel.text = [NSString stringWithFormat:@"联系人电话：%@",contactPhone];
-        CGSize labelsize = [self labelAutoCalculateRectWith:self.phoneLabel.text  FontSize:FixedDeathFontLargeSize  MaxSize:CGSizeMake(350, 30)];
-        self.phoneLabel.frame = CGRectMake(10, 80, labelsize.width, 30.f);
-//        self.phoneLabel.textAlignment = NSTextAlignmentCenter;
-        self.PhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.PhoneBtn.frame = CGRectMake(11+self.phoneLabel.frame.size.width, 80, 30, 30);
-        self.PhoneBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        [self.PhoneBtn setImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
-        [self.PhoneBtn addTarget:self action:@selector(CLickPhoneBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
-    }else{
-        self.phoneLabel.text = @"联系人电话：";
-    }
+     self.phoneLabel.text = @"";
+    //2019.10.8临时注释
+//    if (contactPhone.length) {
+//        self.phoneLabel.text = [NSString stringWithFormat:@"联系人电话：%@",contactPhone];
+//        CGSize labelsize = [self labelAutoCalculateRectWith:self.phoneLabel.text  FontSize:FixedDeathFontLargeSize  MaxSize:CGSizeMake(350, 30)];
+//        self.phoneLabel.frame = CGRectMake(10, 80, labelsize.width, 30.f);
+////        self.phoneLabel.textAlignment = NSTextAlignmentCenter;
+//        self.PhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        self.PhoneBtn.frame = CGRectMake(11+self.phoneLabel.frame.size.width, 80, 30, 30);
+//        self.PhoneBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//        [self.PhoneBtn setImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+//        [self.PhoneBtn addTarget:self action:@selector(CLickPhoneBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+//    }else{
+//        self.phoneLabel.text = @"联系人电话：";
+//    }
     
     if (addressStr.length) {
         CGSize textWidth = [self sizeWithText:self.addressLabel.text font:self.addressLabel.font maxSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT)];

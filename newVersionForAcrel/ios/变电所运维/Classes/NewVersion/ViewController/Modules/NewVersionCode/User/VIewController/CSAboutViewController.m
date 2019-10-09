@@ -160,43 +160,25 @@
 
 - (IBAction)versonUpdateAction:(UIButton *)sender {
     //检查版本升级
-    [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
-        if (respObjc) {
-            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
-        
-            }];
-            QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"VersionUpdate") message:respObjc preferredStyle:QMUIAlertControllerStyleAlert];
-            [alertController addAction:action2];
-            
-            QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-            visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
-            alertController.mainVisualEffectView = visualEffectView;
-            alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
-            alertController.alertButtonBackgroundColor = nil;
-            [alertController showWithAnimated:YES];
-        }
-    }];
     
-//    NSDictionary *data = [[NSUserDefaults standardUserDefaults] objectForKey:kversion];
-//    NSString *version = [data objectForKeyNotNull:kversion];
-//    NSString *url = [data objectForKeyNotNull:kurl];
-//    NSString *force = [data objectForKeyNotNull:kforce];
-//    if (!version || !url) {
-//        return;
-//    }
-//    NSString *title = [NSString stringWithFormat:@"您确定要更新到:V%@版本？",version];
-//    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"版本更新" message:title preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *cacleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/id%@",kAppleId]]];
+//    [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
+//        if (respObjc) {
+//            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
 //
+//            }];
+//            QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"VersionUpdate") message:respObjc preferredStyle:QMUIAlertControllerStyleAlert];
+//            [alertController addAction:action2];
+//
+//            QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+//            visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
+//            alertController.mainVisualEffectView = visualEffectView;
+//            alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
+//            alertController.alertButtonBackgroundColor = nil;
+//            [alertController showWithAnimated:YES];
+//        }
 //    }];
-//    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        [[UIApplication sharedApplication]openURL:[NSURL bg_URLWithString:url]];
-//    }];
-//    if (![force isEqualToString:@"1"]) {
-//        [alertVC addAction:cacleAction];
-//    }
-//    [alertVC addAction:sureAction];
-//    [self presentViewController:alertVC animated:YES completion:nil];
+    
 }
 
 #pragma mark 弹出选择框

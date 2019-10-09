@@ -133,6 +133,49 @@
     }];
 }
 
+// get update专用方法
++ (void)bg_getWithUpdatePath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail {
+    NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
+//    BGUserInfo *user = [BGUserInfo gettingLoginSuccessLastLogin];
+//    NSString *tenantId = user.tenantId;
+//    if ([tenantId notEmptyOrNull]) {
+//        [mutParams setNotNullObject:tenantId ForKey:ktenantId];
+//    }
+    NSString *urlString = [BASE_URL stringByAppendingString:path];
+    [NetService bg_httpGetWithPath:urlString params:mutParams success:^(id responseObject) {
+//        NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
+//        NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+        //        k0000 成功
+        //        401 token过期
+//        if ([respMsg isEqualToString:@"Unauthorized"]) {
+//            //
+//            [self loginOut];
+//        }
+//        if ([respCode isEqualToString:k0000]) {
+
+            if (Success) {
+                Success(responseObject);
+            }
+//        }else{
+////            NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+//            respMsg = [NSString stringWithFormat:@"%@",[NetService failCodeDic][respCode]];
+//            if (!respMsg || [respMsg isEqualToString:@"(null)"] || [respMsg isEqualToString:@"null"]) {
+//                respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+//                if (!respMsg) {
+//                    respMsg = @"未知错误";
+//                }
+//            }
+//            if (Fail) {
+//                Fail(responseObject,respCode,respMsg);
+//            }
+//        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (Fail) {
+            Fail(nil,nil,nil);
+        }
+    }];
+}
+
 // 带头get方法
 + (void)bg_getWithTokenWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail {
     NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];

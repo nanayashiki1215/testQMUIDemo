@@ -92,11 +92,10 @@
 //812.0f 414 896
 #define DefVideoCellHeight (SCREEN_HEIGHT == 480)?310:((SCREEN_HEIGHT == 568)?310:((SCREEN_HEIGHT == 667)?310:((SCREEN_HEIGHT == 736)?310:((SCREEN_HEIGHT == 812)?310:((SCREEN_HEIGHT == 896)?310:500)))))
 
-//蒲公英apikey
-#define kPGYApiKey @"be81dce8d9e5535e96e2e154e26c8537"
-#define kPGYAPPKEY @"89f9f06b839db68dfd84098468600994"
+
 //腾讯bugly
 #define BGBuglyApi @"8632a9dc1c"
+
 //百度地图
 #define BGBaiduMapApi @"h9c5UNS4vqDm1c6E8aS6jtjbN6SQxPjS"
 
