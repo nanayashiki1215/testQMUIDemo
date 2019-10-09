@@ -16,6 +16,7 @@
 #import "QMUISlider.h"
 #import "QMUICore.h"
 #import "UIImage+QMUI.h"
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] <= 12.0
 
 @implementation QMUISlider
 
@@ -65,8 +66,13 @@
 
 - (UIView *)thumbViewIfExist {
     // thumbView 并非在一开始就存在，而是在某个时机才生成的，所以可能返回 nil
-    UIView *thumbView = [self valueForKey:@"thumbView"];
-    return thumbView;
+    if (UNDERiOS12) {
+        UIView *thumbView = [self valueForKey:@"thumbView"];
+        return thumbView;
+    }else{
+        return nil;
+    }
+   
 }
 
 #pragma mark - Override

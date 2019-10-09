@@ -28,6 +28,7 @@
 //系统版本判断
 #define UIDEVICE_SYSTEMVERSION  [[UIDevice currentDevice].systemVersion floatValue]
 #define iOS11 [[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0
+#define UNDERiOS11 [[[UIDevice currentDevice] systemVersion] floatValue] <= 11.0
 #define iOS9 [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0
 #define iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 #define iOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0

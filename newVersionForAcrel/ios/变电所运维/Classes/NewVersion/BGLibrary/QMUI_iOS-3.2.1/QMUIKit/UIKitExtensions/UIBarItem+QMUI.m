@@ -17,7 +17,7 @@
 #import "QMUICore.h"
 #import "UIView+QMUI.h"
 #import "QMUIWeakObjectContainer.h"
-
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] <= 12.0
 @interface UIBarItem ()
 
 @property(nonatomic, copy) NSString *qmuibaritem_viewDidSetBlockIdentifier;
@@ -75,7 +75,7 @@ static char kAssociatedObjectKey_referenceItem;
 
 - (UIView *)qmui_view {
     // UIBarItem 本身没有 view 属性，只有子类 UIBarButtonItem 和 UITabBarItem 才有
-    if ([self respondsToSelector:@selector(view)]) {
+    if ([self respondsToSelector:@selector(view)] && UNDERiOS12) {
         return [self valueForKey:@"view"];
     }
     return nil;

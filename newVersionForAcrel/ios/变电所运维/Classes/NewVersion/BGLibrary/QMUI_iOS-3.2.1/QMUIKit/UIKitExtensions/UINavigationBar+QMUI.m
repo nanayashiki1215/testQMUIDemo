@@ -14,10 +14,14 @@
 //
 
 #import "UINavigationBar+QMUI.h"
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] <= 12.0
 
 @implementation UINavigationBar (QMUI)
 
 - (UIView *)qmui_backgroundView {
+    if (!UNDERiOS12) {
+        return nil;
+    }
     return [self valueForKey:@"_backgroundView"];
 }
 
@@ -29,6 +33,7 @@
         UIView *result = customView && customView.superview ? customView : (imageView && imageView.superview ? imageView : visualEffectView);
         return result;
     } else {
+        
         UIView *backdrop = [self.qmui_backgroundView valueForKey:@"_adaptiveBackdrop"];
         UIView *result = backdrop && backdrop.superview ? backdrop : self.qmui_backgroundView;
         return result;

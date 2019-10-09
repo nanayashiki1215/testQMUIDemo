@@ -18,6 +18,7 @@
 #import "UIImage+QMUI.h"
 #import "UIView+QMUI.h"
 
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] <= 12.0
 #define SearchBarActiveHeightIOS11Later (IS_NOTCHED_SCREEN ? 55.0f : 50.0f)
 #define SearchBarNormalHeightIOS11Later 56.0f
 
@@ -199,6 +200,7 @@ static char kAssociatedObjectKey_cancelButtonFont;
 }
 
 - (UISearchController *)qmui_searchController {
+    
     return [self valueForKey:@"_searchController"];
 }
 
@@ -258,8 +260,12 @@ static char kAssociatedObjectKey_cancelButtonFont;
 }
 
 - (UIView *)qmui_backgroundView {
-    UIView *backgroundView = [self valueForKey:@"background"];
-    return backgroundView;
+    if(UNDERiOS12){
+        UIView *backgroundView = [self valueForKey:@"background"];
+        return backgroundView;
+    }else{
+        return nil;
+    }
 }
 
 - (void)qmuisb_setFrame:(CGRect)frame {

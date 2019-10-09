@@ -275,23 +275,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "53A23623-E73E-42A5-857E-2BA1FBEF2D27"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x53d8;&#x7535;&#x6240;&#x8fd0;&#x7ef4;/Classes/NewVersion/ViewController/Modules/NewVersionCode/Home/VIewController/EZUVideoVC/CustomView/BGQMVideoTableViewCell.m"
-            timestampString = "589107655.487758"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
-            landmarkName = "-play"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "DBC946FB-CA79-4E10-A40A-C42ED6F6C653"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"

@@ -581,11 +581,11 @@ QMUISynthesizeIdCopyProperty(tempRightBarButtonItems, setTempRightBarButtonItems
         if (@available(iOS 11, *)) {
             ExtendImplementationOfVoidMethodWithoutArguments([UINavigationBar class], @selector(layoutSubviews), ^(UINavigationBar *selfObject) {
                 UIView *contentView = selfObject.qmui_contentView;
-                if (contentView) {
-                    NSDirectionalEdgeInsets value = contentView.directionalLayoutMargins;
-                    value.leading = value.trailing - (selfObject.qmui_customizingBackBarButtonItem ? 8 : 0);
-                    contentView.directionalLayoutMargins = value;
-                }
+//                if (contentView) {
+//                    NSDirectionalEdgeInsets value = contentView.directionalLayoutMargins;
+//                    value.leading = value.trailing - (selfObject.qmui_customizingBackBarButtonItem ? 8 : 0);
+//                    contentView.directionalLayoutMargins = value;
+//                }
             });
         }
     });
