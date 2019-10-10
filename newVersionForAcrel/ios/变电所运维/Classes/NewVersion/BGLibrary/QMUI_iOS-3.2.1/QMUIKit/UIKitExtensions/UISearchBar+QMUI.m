@@ -18,7 +18,7 @@
 #import "UIImage+QMUI.h"
 #import "UIView+QMUI.h"
 
-#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] <= 12.0
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0
 #define SearchBarActiveHeightIOS11Later (IS_NOTCHED_SCREEN ? 55.0f : 50.0f)
 #define SearchBarNormalHeightIOS11Later 56.0f
 

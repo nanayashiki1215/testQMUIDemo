@@ -14,7 +14,7 @@
 //
 
 #import "UINavigationBar+QMUI.h"
-#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] <= 12.0
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0
 
 @implementation UINavigationBar (QMUI)
 

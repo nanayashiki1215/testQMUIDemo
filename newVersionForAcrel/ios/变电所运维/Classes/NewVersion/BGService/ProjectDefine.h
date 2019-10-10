@@ -28,7 +28,7 @@
 //系统版本判断
 #define UIDEVICE_SYSTEMVERSION  [[UIDevice currentDevice].systemVersion floatValue]
 #define iOS11 [[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0
-#define UNDERiOS11 [[[UIDevice currentDevice] systemVersion] floatValue] <= 11.0
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0
 #define iOS9 [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0
 #define iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 #define iOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
@@ -95,10 +95,10 @@
 
 
 //腾讯bugly
-#define BGBuglyApi @"8632a9dc1c"
+#define BGBuglyApi @"7286a5b272"
 
 //百度地图
-#define BGBaiduMapApi @"h9c5UNS4vqDm1c6E8aS6jtjbN6SQxPjS"
+#define BGBaiduMapApi @"sTYHQCTNY0H8L4k5vPtdXqRcaEgYfYtZ"
 
 //萤石云
 #define EZUIKitAppKey           @"EZUIKitAppKey"

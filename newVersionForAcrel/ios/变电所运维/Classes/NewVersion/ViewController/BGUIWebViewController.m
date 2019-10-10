@@ -9,7 +9,7 @@
 #import <WebKit/WebKit.h>
 #import "WSDatePickerView.h"
 #import <BMKLocationKit/BMKLocationComponent.h>
-
+#import <UIKit/UIWindowScene.h>
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -49,9 +49,26 @@
 
 @property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
 
+@property (nonatomic, strong) UIView *viewStatusColorBlend;//背景层
+
 @end
 
 @implementation BGUIWebViewController
+
+//+ (void)load {
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//
+//        swizzling_exchangeMethod([self class], @selector(presentViewController:animated:completion:), @selector(myPresentViewController:animated:completion:));
+//    });
+//}
+//- (void)myPresentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+//    //设置满屏，不需要小卡片
+//    if(@available(iOS 13.0, *)) {
+//        viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
+//    }
+//    [self myPresentViewController:viewControllerToPresent animated:flag completion:completion];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -104,25 +121,59 @@
             [self loadOnlineHtml];
         }
     }
-   
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+    if (@available(iOS 13.0, *)) {
+        self.viewStatusColorBlend.backgroundColor = [UIColor clearColor];
+        [self.viewStatusColorBlend removeFromSuperview];
+        
+    }else{
+        [self setStatusBarBackgroundColor:[UIColor clearColor]];
+    }
 }
 
 
 //设置状态栏颜色
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
     
-    if (UNDERiOS11) {
+    if (UNDERiOS12) {
         UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
         if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
             statusBar.backgroundColor = color;
         }
+    }else{
+        if (@available(iOS 13.0, *)) {
+//            UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].keyWindow.windowScene.statusBarManager;
+//            id _statusBar = nil;
+//            if ([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
+//                UIView *_localStatusBar = [statusBarManager performSelector:@selector(createLocalStatusBar)];
+//                if ([_localStatusBar respondsToSelector:@selector(statusBar)]) {
+//                    _statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+////                    self.view.backgroundColor = color;
+//                    UIView * statusBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+//                    statusBarView.backgroundColor = [UIColor orangeColor];
+//                    [_statusBar addSubview:statusBarView];
+//                }
+                UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+//                self.viewStatusColorBlend = [[UIView alloc] initWithFrame:keyWindow.windowScene.statusBarManager.statusBarFrame];
+                self.viewStatusColorBlend.backgroundColor = color;
+                [keyWindow addSubview:self.viewStatusColorBlend];
+//            }
+        }
     }
     
+}
+
+-(UIView *)viewStatusColorBlend{
+    if (!_viewStatusColorBlend) {
+        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+        if (@available(iOS 13.0, *)) {
+            _viewStatusColorBlend = [[UIView alloc] initWithFrame:keyWindow.windowScene.statusBarManager.statusBarFrame];
+        }
+    }
+    return _viewStatusColorBlend;
 }
 
 -(void)loadLocalHtml{
@@ -321,7 +372,10 @@
         if(self.showWebType == showWebTypeDevice){
             
 //            _webView.backgroundColor = [UIColor clearColor];
-            if (iOS11) {
+            if (@available(iOS 13.0, *)) {
+                _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
+            }
+            else if (iOS11) {
 //                _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
                 _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
             } else if (iOS9){
@@ -511,7 +565,8 @@
         
         NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
         NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
-        NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
+        NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+//       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
        [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
            NSLog(@"item%@",item);
        }];

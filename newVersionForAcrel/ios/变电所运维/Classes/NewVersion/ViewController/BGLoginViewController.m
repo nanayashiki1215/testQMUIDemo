@@ -249,7 +249,6 @@
         NSArray *menuArr = user.rootMenuData[@"rootMenu"];
         if (!menuArr.count) {
             [MBProgressHUD showError:@"为确保正常显示，请至少添加一个tab页功能"];
-            
         }
         NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
         [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];

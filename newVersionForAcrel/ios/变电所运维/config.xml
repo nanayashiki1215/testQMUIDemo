@@ -19,7 +19,7 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
-    <name>变电所运维</name>
+    <name>企业用电运维云平台</name>
     <description>app</description>
     <author email="" href="" />
     <content src="http://116.62.170.211/app/v-beyERj-zh_CN-/app/index.w" />

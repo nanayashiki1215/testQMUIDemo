@@ -52,7 +52,7 @@
 #import "NSBundle+Language.h"
 
 #define CLIENT_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
-#define WXAppId @"wx9fef0c8aa79e4091"
+#define WXAppId @"wx3e0b2d7e2d2bbc62"
 
 BMKMapManager* _mapManager;
 @implementation AppDelegate
@@ -138,7 +138,7 @@ BMKMapManager* _mapManager;
     [WXApi registerApp:WXAppId];
     //配置百度地图
     // 初始化定位SDK
-    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:@"30mqIBvuqydx3v3nNXRmEAA5V2zH3kqq" authDelegate:self];
+    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BGBaiduMapApi authDelegate:self];
     //要使用百度地图，请先启动BMKMapManager
     _mapManager = [[BMKMapManager alloc] init];
     
@@ -154,7 +154,7 @@ BMKMapManager* _mapManager;
     }
     
     //启动引擎并设置AK并设置delegate
-    BOOL result = [_mapManager start:@"30mqIBvuqydx3v3nNXRmEAA5V2zH3kqq" generalDelegate:self];
+    BOOL result = [_mapManager start:BGBaiduMapApi generalDelegate:self];
     if (!result) {
         NSLog(@"启动引擎失败");
     }
@@ -204,12 +204,12 @@ BMKMapManager* _mapManager;
 #pragma mark - BaiduMapAPI
 - (void)registerBaiduMapApi{
     // 要使用百度地图，请先启动BaiduMapManager
-    _mapManager = [[BMKMapManager alloc]init];
-    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BGBaiduMapApi authDelegate:self];
-    BOOL ret = [_mapManager start:BGBaiduMapApi generalDelegate:self];
-    if (!ret) {
-        NSLog(@"manager start failed!");
-    }
+//    _mapManager = [[BMKMapManager alloc]init];
+//    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BGBaiduMapApi authDelegate:self];
+//    BOOL ret = [_mapManager start:BGBaiduMapApi generalDelegate:self];
+//    if (!ret) {
+//        NSLog(@"manager start failed!");
+//    }
 }
 
 - (void)createTabBarController {

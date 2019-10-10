@@ -158,23 +158,6 @@
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
 		B67D69AB229BC6D6007152DF /* BGNomalWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = B67D69AA229BC6D6007152DF /* BGNomalWebView.m */; };
-		B68D2C3422A5FB3A001C00EC /* PNPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1122A5FB3A001C00EC /* PNPieChartDataItem.m */; };
-		B68D2C3522A5FB3A001C00EC /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1622A5FB3A001C00EC /* PNChartLabel.m */; };
-		B68D2C3622A5FB3A001C00EC /* PNScatterChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1822A5FB3A001C00EC /* PNScatterChartDataItem.m */; };
-		B68D2C3722A5FB3A001C00EC /* PNRadarChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1A22A5FB3A001C00EC /* PNRadarChartDataItem.m */; };
-		B68D2C3822A5FB3A001C00EC /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1B22A5FB3A001C00EC /* PNGenericChart.m */; };
-		B68D2C3922A5FB3A001C00EC /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1C22A5FB3A001C00EC /* PNBarChart.m */; };
-		B68D2C3A22A5FB3A001C00EC /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1D22A5FB3A001C00EC /* PNLineChart.m */; };
-		B68D2C3B22A5FB3A001C00EC /* PNCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1E22A5FB3A001C00EC /* PNCircleChart.m */; };
-		B68D2C3C22A5FB3A001C00EC /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C1F22A5FB3A001C00EC /* PNLineChartData.m */; };
-		B68D2C3D22A5FB3A001C00EC /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C2022A5FB3A001C00EC /* PNLineChartDataItem.m */; };
-		B68D2C3E22A5FB3A001C00EC /* PNPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C2222A5FB3A001C00EC /* PNPieChart.m */; };
-		B68D2C3F22A5FB3A001C00EC /* PNRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C2322A5FB3A001C00EC /* PNRadarChart.m */; };
-		B68D2C4022A5FB3B001C00EC /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C2522A5FB3A001C00EC /* PNColor.m */; };
-		B68D2C4122A5FB3B001C00EC /* PNScatterChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C2622A5FB3A001C00EC /* PNScatterChartData.m */; };
-		B68D2C4222A5FB3B001C00EC /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C2722A5FB3A001C00EC /* PNBar.m */; };
-		B68D2C4322A5FB3B001C00EC /* PNScatterChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C2B22A5FB3A001C00EC /* PNScatterChart.m */; };
-		B68D2C4722A5FC84001C00EC /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4522A5FC84001C00EC /* UICountingLabel.m */; };
 		B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */; };
 		B68D2C7022A63D87001C00EC /* NSString+Arc4random.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4E22A63D86001C00EC /* NSString+Arc4random.m */; };
 		B68D2C7122A63D87001C00EC /* NSArray+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C5022A63D86001C00EC /* NSArray+Bounds.m */; };
@@ -596,7 +579,7 @@
 		1C8F1D315C1C4EA286A21520 /* AppVersion.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = AppVersion.h; path = "cordova-plugin-app-version/AppVersion.h"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* 变电所运维.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "变电所运维.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* 企业用电运维云平台.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "企业用电运维云平台.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		213DCCB6C8C2452AA63932DC /* AppPreferences.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AppPreferences.m; path = "cordova-plugin-app-preferences/AppPreferences.m"; sourceTree = "<group>"; };
 		216BBA759C4A4241835A3B4A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -931,42 +914,6 @@
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
 		B67D69A9229BC6D6007152DF /* BGNomalWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGNomalWebView.h; sourceTree = "<group>"; };
 		B67D69AA229BC6D6007152DF /* BGNomalWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGNomalWebView.m; sourceTree = "<group>"; };
-		B68D2C0F22A5FB3A001C00EC /* PNChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChart.h; sourceTree = "<group>"; };
-		B68D2C1022A5FB3A001C00EC /* PNPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChart.h; sourceTree = "<group>"; };
-		B68D2C1122A5FB3A001C00EC /* PNPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChartDataItem.m; sourceTree = "<group>"; };
-		B68D2C1222A5FB3A001C00EC /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
-		B68D2C1322A5FB3A001C00EC /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
-		B68D2C1422A5FB3A001C00EC /* PNScatterChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNScatterChartData.h; sourceTree = "<group>"; };
-		B68D2C1522A5FB3A001C00EC /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
-		B68D2C1622A5FB3A001C00EC /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
-		B68D2C1722A5FB3A001C00EC /* PNRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRadarChart.h; sourceTree = "<group>"; };
-		B68D2C1822A5FB3A001C00EC /* PNScatterChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNScatterChartDataItem.m; sourceTree = "<group>"; };
-		B68D2C1922A5FB3A001C00EC /* PNScatterChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNScatterChart.h; sourceTree = "<group>"; };
-		B68D2C1A22A5FB3A001C00EC /* PNRadarChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRadarChartDataItem.m; sourceTree = "<group>"; };
-		B68D2C1B22A5FB3A001C00EC /* PNGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNGenericChart.m; sourceTree = "<group>"; };
-		B68D2C1C22A5FB3A001C00EC /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
-		B68D2C1D22A5FB3A001C00EC /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
-		B68D2C1E22A5FB3A001C00EC /* PNCircleChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNCircleChart.m; sourceTree = "<group>"; };
-		B68D2C1F22A5FB3A001C00EC /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
-		B68D2C2022A5FB3A001C00EC /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
-		B68D2C2122A5FB3A001C00EC /* PNPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChartDataItem.h; sourceTree = "<group>"; };
-		B68D2C2222A5FB3A001C00EC /* PNPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChart.m; sourceTree = "<group>"; };
-		B68D2C2322A5FB3A001C00EC /* PNRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRadarChart.m; sourceTree = "<group>"; };
-		B68D2C2422A5FB3A001C00EC /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
-		B68D2C2522A5FB3A001C00EC /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
-		B68D2C2622A5FB3A001C00EC /* PNScatterChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNScatterChartData.m; sourceTree = "<group>"; };
-		B68D2C2722A5FB3A001C00EC /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
-		B68D2C2822A5FB3A001C00EC /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
-		B68D2C2922A5FB3A001C00EC /* PNGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGenericChart.h; sourceTree = "<group>"; };
-		B68D2C2A22A5FB3A001C00EC /* PNRadarChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRadarChartDataItem.h; sourceTree = "<group>"; };
-		B68D2C2B22A5FB3A001C00EC /* PNScatterChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNScatterChart.m; sourceTree = "<group>"; };
-		B68D2C2C22A5FB3A001C00EC /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
-		B68D2C2D22A5FB3A001C00EC /* PNScatterChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNScatterChartDataItem.h; sourceTree = "<group>"; };
-		B68D2C2E22A5FB3A001C00EC /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
-		B68D2C2F22A5FB3A001C00EC /* PNCircleChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNCircleChart.h; sourceTree = "<group>"; };
-		B68D2C3022A5FB3A001C00EC /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
-		B68D2C4522A5FC84001C00EC /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
-		B68D2C4622A5FC84001C00EC /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		B68D2C4B22A63D86001C00EC /* NSArray+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Bounds.h"; sourceTree = "<group>"; };
 		B68D2C4C22A63D86001C00EC /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GHome.m"; sourceTree = "<group>"; };
@@ -1751,7 +1698,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* 变电所运维.app */,
+				1D6058910D05DD3D006BFB54 /* 企业用电运维云平台.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2256,49 +2203,6 @@
 				B6733F3722B8D6F7005B1DDE /* WKWebViewJavascriptBridge.h */,
 			);
 			path = WebViewJavascriptBridge;
-			sourceTree = "<group>";
-		};
-		B68D2C0E22A5FB3A001C00EC /* PNChart */ = {
-			isa = PBXGroup;
-			children = (
-				B68D2C4622A5FC84001C00EC /* UICountingLabel.h */,
-				B68D2C4522A5FC84001C00EC /* UICountingLabel.m */,
-				B68D2C0F22A5FB3A001C00EC /* PNChart.h */,
-				B68D2C1022A5FB3A001C00EC /* PNPieChart.h */,
-				B68D2C1122A5FB3A001C00EC /* PNPieChartDataItem.m */,
-				B68D2C1222A5FB3A001C00EC /* PNLineChartDataItem.h */,
-				B68D2C1322A5FB3A001C00EC /* PNBar.h */,
-				B68D2C1422A5FB3A001C00EC /* PNScatterChartData.h */,
-				B68D2C1522A5FB3A001C00EC /* PNColor.h */,
-				B68D2C1622A5FB3A001C00EC /* PNChartLabel.m */,
-				B68D2C1722A5FB3A001C00EC /* PNRadarChart.h */,
-				B68D2C1822A5FB3A001C00EC /* PNScatterChartDataItem.m */,
-				B68D2C1922A5FB3A001C00EC /* PNScatterChart.h */,
-				B68D2C1A22A5FB3A001C00EC /* PNRadarChartDataItem.m */,
-				B68D2C1B22A5FB3A001C00EC /* PNGenericChart.m */,
-				B68D2C1C22A5FB3A001C00EC /* PNBarChart.m */,
-				B68D2C1D22A5FB3A001C00EC /* PNLineChart.m */,
-				B68D2C1E22A5FB3A001C00EC /* PNCircleChart.m */,
-				B68D2C1F22A5FB3A001C00EC /* PNLineChartData.m */,
-				B68D2C2022A5FB3A001C00EC /* PNLineChartDataItem.m */,
-				B68D2C2122A5FB3A001C00EC /* PNPieChartDataItem.h */,
-				B68D2C2222A5FB3A001C00EC /* PNPieChart.m */,
-				B68D2C2322A5FB3A001C00EC /* PNRadarChart.m */,
-				B68D2C2422A5FB3A001C00EC /* PNChartLabel.h */,
-				B68D2C2522A5FB3A001C00EC /* PNColor.m */,
-				B68D2C2622A5FB3A001C00EC /* PNScatterChartData.m */,
-				B68D2C2722A5FB3A001C00EC /* PNBar.m */,
-				B68D2C2822A5FB3A001C00EC /* PNBarChart.h */,
-				B68D2C2922A5FB3A001C00EC /* PNGenericChart.h */,
-				B68D2C2A22A5FB3A001C00EC /* PNRadarChartDataItem.h */,
-				B68D2C2B22A5FB3A001C00EC /* PNScatterChart.m */,
-				B68D2C2C22A5FB3A001C00EC /* PNChartDelegate.h */,
-				B68D2C2D22A5FB3A001C00EC /* PNScatterChartDataItem.h */,
-				B68D2C2E22A5FB3A001C00EC /* PNLineChartData.h */,
-				B68D2C2F22A5FB3A001C00EC /* PNCircleChart.h */,
-				B68D2C3022A5FB3A001C00EC /* PNLineChart.h */,
-			);
-			path = PNChart;
 			sourceTree = "<group>";
 		};
 		B68D2C4922A63D86001C00EC /* GHDropMenu */ = {
@@ -3121,7 +3025,6 @@
 				B6EB9B9022C99F8100136A6C /* EZUIKit */,
 				B6A92E0122BA2D0900D16AE9 /* Bugly.framework */,
 				B6733F2F22B8D6F7005B1DDE /* WebViewJavascriptBridge */,
-				B68D2C0E22A5FB3A001C00EC /* PNChart */,
 				B60C7FF622A8A3F10016D936 /* Openssl */,
 				B657DD8322927C760009BCB0 /* SDWebImage */,
 				B6E15657228D419700CB4A5F /* MJRefresh */,
@@ -3696,7 +3599,7 @@
 			);
 			name = "变电所运维";
 			productName = "变电所运维";
-			productReference = 1D6058910D05DD3D006BFB54 /* 变电所运维.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* 企业用电运维云平台.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3877,7 +3780,6 @@
 				B6C768A322A0B8DC00DA675D /* QMUIConfigurationTemplate.m in Sources */,
 				B6B1B62B229534E300F1B5D2 /* BGBaiduMapViewController.m in Sources */,
 				B6C7690622A0B8DC00DA675D /* QDBadgeViewController.m in Sources */,
-				B68D2C3B22A5FB3A001C00EC /* PNCircleChart.m in Sources */,
 				B6C1540C22E7F4D0004B8614 /* CSAboutViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
@@ -3903,7 +3805,6 @@
 				B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */,
 				B657DDD422927C760009BCB0 /* NSData+ImageContentType.m in Sources */,
 				B657DD7A22927AEC0009BCB0 /* TZPhotoPreviewCell.m in Sources */,
-				B68D2C4322A5FB3B001C00EC /* PNScatterChart.m in Sources */,
 				B6C768B522A0B8DC00DA675D /* QDUIViewBorderViewController.m in Sources */,
 				B6E1568B228D419800CB4A5F /* UIView+MJExtension.m in Sources */,
 				B6E155FA228CF09C00CB4A5F /* NSString+BGRect.m in Sources */,
@@ -3931,7 +3832,6 @@
 				B6C768BE22A0B8DC00DA675D /* QDChangeNavBarStyleViewController.m in Sources */,
 				B6E155B7228CEDF900CB4A5F /* BGImageUtils.m in Sources */,
 				B6C768ED22A0B8DC00DA675D /* QDScrollAnimatorViewController.m in Sources */,
-				B68D2C3722A5FB3A001C00EC /* PNRadarChartDataItem.m in Sources */,
 				B6E155F8228CF09C00CB4A5F /* UIImage+BGPhotoImage.m in Sources */,
 				B6E1564E228D418700CB4A5F /* ViewController+MASAdditions.m in Sources */,
 				B6D7358322F81E320067F246 /* BGQMPersonalInfoViewController.m in Sources */,
@@ -3976,13 +3876,11 @@
 				B6C768F922A0B8DC00DA675D /* QDPieProgressViewController.m in Sources */,
 				B68D2D0222A646C1001C00EC /* JXCategoryBaseView.m in Sources */,
 				B657DDC622927C760009BCB0 /* UIImage+ForceDecode.m in Sources */,
-				B68D2C4122A5FB3B001C00EC /* PNScatterChartData.m in Sources */,
 				B657DDCD22927C760009BCB0 /* SDWebImagePrefetcher.m in Sources */,
 				B66BA70C22F275270027EE05 /* SDBrowserImageView.m in Sources */,
 				B6E155FC228CF09C00CB4A5F /* UILabel+BGCopy.m in Sources */,
 				B68D2CE122A646C1001C00EC /* JXCategoryIndicatorLineView.m in Sources */,
 				B68D2C7422A63D87001C00EC /* GHDropMenu.m in Sources */,
-				B68D2C3422A5FB3A001C00EC /* PNPieChartDataItem.m in Sources */,
 				B68D2CE622A646C1001C00EC /* JXCategoryIndicatorComponentView.m in Sources */,
 				B6E15580228CED3A00CB4A5F /* BGLoginViewController.m in Sources */,
 				01A9F690A5B84F17927D7C2B /* baiduMapViewController.mm in Sources */,
@@ -4002,18 +3900,15 @@
 				B68D2C7322A63D87001C00EC /* NSString+Size.m in Sources */,
 				B6E15600228CF09C00CB4A5F /* NSString+BGExtension.m in Sources */,
 				B6C768A922A0B8DC00DA675D /* QDCommonGridViewController.m in Sources */,
-				B68D2C3622A5FB3A001C00EC /* PNScatterChartDataItem.m in Sources */,
 				B6C7691622A1056D00DA675D /* BGQMUIInspectViewController.m in Sources */,
 				B68D2C7E22A63D87001C00EC /* GHCustomAlertView.m in Sources */,
 				B68D2CE822A646C1001C00EC /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				B66BA6FB22F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m in Sources */,
 				B6E15653228D418700CB4A5F /* View+MASAdditions.m in Sources */,
 				0A9C9FEAA71E4DC989C6C586 /* NSObject+ObjectMap.m in Sources */,
-				B68D2C3A22A5FB3A001C00EC /* PNLineChart.m in Sources */,
 				B6024AD822FA6224000A2A98 /* BGQMSettingPersonInfoViewController.m in Sources */,
 				B6C768D522A0B8DC00DA675D /* QDThemeViewController.m in Sources */,
 				5ABC4C89ECA44CAC92981EE2 /* AppVersion.m in Sources */,
-				B68D2C3522A5FB3A001C00EC /* PNChartLabel.m in Sources */,
 				B6C768F322A0B8DC00DA675D /* QDAssetsManagerViewController.m in Sources */,
 				B6C768BF22A0B8DC00DA675D /* QDSliderViewController.m in Sources */,
 				D3D19E855E094BF38F8B3AE2 /* CDVSplashScreen.m in Sources */,
@@ -4032,7 +3927,6 @@
 				B6E155C2228CEDF900CB4A5F /* NSDate+BGExtension.m in Sources */,
 				B6E156C2228D501700CB4A5F /* KeyString.m in Sources */,
 				B6E15651228D418700CB4A5F /* MASLayoutConstraint.m in Sources */,
-				B68D2C4022A5FB3B001C00EC /* PNColor.m in Sources */,
 				B6C768D422A0B8DC00DA675D /* QDToolBarButtonViewController.m in Sources */,
 				B6C768BB22A0B8DC00DA675D /* QDObjectMethodsListViewController.m in Sources */,
 				B6E1564D228D418700CB4A5F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -4089,7 +3983,6 @@
 				B63B00D222B0967E004E070F /* BGQMHomeHeadView.m in Sources */,
 				B657DDD822927C760009BCB0 /* UIImage+MemoryCacheCost.m in Sources */,
 				B6E156B5228D41AC00CB4A5F /* AFNetworkReachabilityManager.m in Sources */,
-				B68D2C3F22A5FB3A001C00EC /* PNRadarChart.m in Sources */,
 				B6C768E722A0B8DC00DA675D /* QDToastListViewController.m in Sources */,
 				B6E2188D22A4AA2A003C2969 /* BGQMHomeViewController.m in Sources */,
 				B68D2CDF22A646C1001C00EC /* JXCategoryTitleVerticalZoomCell.m in Sources */,
@@ -4100,7 +3993,6 @@
 				B6E155C8228CEDF900CB4A5F /* ECAuthorizationTools.m in Sources */,
 				B6E15603228CF09C00CB4A5F /* NSString+BGChangeNoNull.m in Sources */,
 				B6C768C822A0B8DC00DA675D /* QDUIViewLayoutViewController.m in Sources */,
-				B68D2C3C22A5FB3A001C00EC /* PNLineChartData.m in Sources */,
 				5A9A414B65D14AF5BF278DCD /* CDVAssetLibraryFilesystem.m in Sources */,
 				B68D2D1422A653E6001C00EC /* MSCycleScrollView.m in Sources */,
 				B6E156BC228D4B8B00CB4A5F /* BGHttpService.m in Sources */,
@@ -4154,7 +4046,6 @@
 				4A11C3C36DA84491AD873511 /* ZipPlugin.m in Sources */,
 				B657DDC922927C760009BCB0 /* UIImage+GIF.m in Sources */,
 				B68D2CFE22A646C1001C00EC /* JXCategoryIndicatorParamsModel.m in Sources */,
-				B68D2C4222A5FB3B001C00EC /* PNBar.m in Sources */,
 				B657DD7422927AEC0009BCB0 /* UIView+Layout.m in Sources */,
 				B6E155F2228CF09C00CB4A5F /* UIButton+BGExtension.m in Sources */,
 				B68D2CFA22A646C1001C00EC /* JXCategoryNumberCellModel.m in Sources */,
@@ -4217,11 +4108,9 @@
 				B6E1560A228CF0F400CB4A5F /* MBProgressHUD.m in Sources */,
 				B68D2C7B22A63D87001C00EC /* GHDropMenuTitleItem.m in Sources */,
 				B6C768AD22A0B8DC00DA675D /* QDCommonTableViewController.m in Sources */,
-				B68D2C3D22A5FB3A001C00EC /* PNLineChartDataItem.m in Sources */,
 				B6EB9BDA22C99FF500136A6C /* BGQMVideoTableViewCell.m in Sources */,
 				B657DDCB22927C760009BCB0 /* SDWebImageCoderHelper.m in Sources */,
 				B657DD7E22927AEC0009BCB0 /* TZImageRequestOperation.m in Sources */,
-				B68D2C3922A5FB3A001C00EC /* PNBarChart.m in Sources */,
 				B6C7690022A0B8DC00DA675D /* QDComponentsViewController.m in Sources */,
 				B6E155C3228CEDF900CB4A5F /* UIView+BGExtension.m in Sources */,
 				B6C768CD22A0B8DC00DA675D /* QDFoldCollectionViewLayout.m in Sources */,
@@ -4237,7 +4126,6 @@
 				B6C768E422A0B8DC00DA675D /* QDMultipleDelegatesViewController.m in Sources */,
 				B6E155B8228CEDF900CB4A5F /* CompputeTools.m in Sources */,
 				B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */,
-				B68D2C3822A5FB3A001C00EC /* PNGenericChart.m in Sources */,
 				B6C768F522A0B8DC00DA675D /* QDImagePreviewExampleViewController.m in Sources */,
 				B637965B22F1732D007AC38F /* JGPredicateMethod.m in Sources */,
 				B68D2CDE22A646C1001C00EC /* JXCategoryTitleVerticalZoomCellModel.m in Sources */,
@@ -4249,7 +4137,6 @@
 				B66BA70A22F275270027EE05 /* SDPhotoBrowser.m in Sources */,
 				B6C768FC22A0B8DC00DA675D /* QDSaveVideoToSpecifiedAlbumViewController.m in Sources */,
 				D4B1D6F12CE144EF9A050808 /* CDVDevice.m in Sources */,
-				B68D2C4722A5FC84001C00EC /* UICountingLabel.m in Sources */,
 				B6C768EE22A0B8DC00DA675D /* QDImagePickerExampleViewController.m in Sources */,
 				B68D2CF322A646C1001C00EC /* JXCategoryTitleCell.m in Sources */,
 				B6E156AF228D41AC00CB4A5F /* AFHTTPSessionManager.m in Sources */,
@@ -4280,7 +4167,6 @@
 				B6C768A122A0B8DC00DA675D /* QMUIConfigurationTemplateGrass.m in Sources */,
 				B6C768B622A0B8DC00DA675D /* QDLinkButtonViewController.m in Sources */,
 				B68D2CF722A646C1001C00EC /* JXCategoryImageCellModel.m in Sources */,
-				B68D2C3E22A5FB3A001C00EC /* PNPieChart.m in Sources */,
 				F32BA64DE29D40F5B71420CA /* CDVSpinnerDialog.m in Sources */,
 				B6733F3A22B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.m in Sources */,
 				B657DDC822927C760009BCB0 /* SDWebImageDownloader.m in Sources */,
@@ -4382,7 +4268,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2.6.5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4418,7 +4304,8 @@
 				);
 				MARKETING_VERSION = 2.5.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "变电所运维";
+				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
+				PRODUCT_NAME = "企业用电运维云平台";
 				PROVISIONING_PROFILE_SPECIFIER = substation_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4433,10 +4320,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 2.6.5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4470,8 +4357,9 @@
 				);
 				MARKETING_VERSION = 2.5.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "变电所运维";
-				PROVISIONING_PROFILE_SPECIFIER = substation_dis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
+				PRODUCT_NAME = "企业用电运维云平台";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

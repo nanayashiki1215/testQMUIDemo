@@ -17,7 +17,7 @@
 #import "QMUICore.h"
 #import "UIView+QMUI.h"
 #import "QMUIWeakObjectContainer.h"
-#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] <= 12.0
+#define UNDERiOS12 [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0
 @interface UIBarItem ()
 
 @property(nonatomic, copy) NSString *qmuibaritem_viewDidSetBlockIdentifier;
