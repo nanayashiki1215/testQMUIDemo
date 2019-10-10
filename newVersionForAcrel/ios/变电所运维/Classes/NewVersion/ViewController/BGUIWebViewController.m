@@ -8,6 +8,8 @@
 #import "BGUIWebViewController.h"
 #import <WebKit/WebKit.h>
 #import "WSDatePickerView.h"
+#import <BMKLocationKit/BMKLocationComponent.h>
+
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -39,10 +41,13 @@
 
 @end
 
-@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate>
+@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate>
+
 @property (strong,nonatomic) WKWebView *webView;
 //网页加载进度视图
 @property (nonatomic, strong) UIProgressView * progressView;
+
+@property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
 
 @end
 
@@ -265,7 +270,9 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"getiOSTime"];
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"needHiddenTabbar"];
 //        pushNewWebView
+//        getLocation
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushNewWebView"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"getLocation"];
         config.userContentController = wkUController;
         
         //以下代码适配文本大小
@@ -435,8 +442,7 @@
         datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
         datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
         [datepicker show];
-    }
-    if([message.name isEqualToString:@"goBackiOS"]){
+    }else if([message.name isEqualToString:@"goBackiOS"]){
         //返回到原生页面
         [self.navigationController popViewControllerAnimated:YES];
         [self setStatusBarBackgroundColor:[UIColor clearColor]];
@@ -481,8 +487,70 @@
         nomWebView.showWebType = showWebTypeAlarmWithTab;
         nomWebView.titleName = titleName;
         [self.navigationController pushViewController:nomWebView animated:YES];
+    }else if ([message.name isEqualToString:@"getLocation"]){
+//    self.locationManager = [[BMKLocationManager alloc] init];
+//       locationManager.delegate = self;
+//       locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+//       locationManager.distanceFilter = kCLDistanceFilterNone;
+//       locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//       locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+//       locationManager.pausesLocationUpdatesAutomatically = NO;
+//       locationManager.allowsBackgroundLocationUpdates = YES;
+//       locationManager.locationTimeout = 10;
+//       locationManager.reGeocodeTimeout = 10;
+
+        [self getLoation];
     }
 }
+
+-(void)getLoation{
+    __weak __typeof(self)weakSelf = self;
+    [self.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
+             //获取经纬度和该定位点对应的位置信息
+        DefLog(@"%@ %d",location,state);
+        NSString *locationStrJS = [NSString stringWithFormat:@"alertAction('%@')",location.location];
+       [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+           NSLog(@"alert");
+       }];
+    }];
+    //开启定位服务
+
+}
+
+#pragma mark - Lazy loading
+- (BMKLocationManager *)locationManager {
+    if (!_locationManager) {
+        //初始化BMKLocationManager类的实例
+        _locationManager = [[BMKLocationManager alloc] init];
+        //设置定位管理类实例的代理
+        _locationManager.delegate = self;
+        //设定定位坐标系类型，默认为 BMKLocationCoordinateTypeGCJ02
+        _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+        //设定定位精度，默认为 kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设定定位类型，默认为 CLActivityTypeAutomotiveNavigation
+        _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+        //指定定位是否会被系统自动暂停，默认为NO
+        _locationManager.pausesLocationUpdatesAutomatically = NO;
+        /**
+         是否允许后台定位，默认为NO。只在iOS 9.0及之后起作用。
+         设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
+         由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
+         */
+        _locationManager.allowsBackgroundLocationUpdates = NO;
+        /**
+         指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
+         注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)
+         后开始计算。
+         */
+        _locationManager.locationTimeout = 10;
+    }
+    return _locationManager;
+}
+- (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
+    DefLog(@"定位失败");
+}
+
 
 - (void)hideTabbar:(BOOL)hide {
     
@@ -658,6 +726,8 @@
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"needHiddenTabbar"];
 //    pushNewWebView
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushNewWebView"];
+//    getLocation
+     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocation"];
 //    getiOSTime
     //移除观察者
     [_webView removeObserver:self
@@ -701,5 +771,7 @@
 - (void)listDidDisappear {
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
+
+
 
 @end

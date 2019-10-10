@@ -99,10 +99,6 @@
     return NULL;
 }
 
-
-
-
-
 -(NSString *)getMimeType:(NSString *)localURI{
     NSString *extension = [localURI pathExtension];
     

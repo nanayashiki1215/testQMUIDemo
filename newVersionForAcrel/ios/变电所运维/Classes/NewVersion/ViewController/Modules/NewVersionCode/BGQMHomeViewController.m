@@ -621,6 +621,7 @@
 {
     if (codeId == 0)
     {
+        
         BGQMMoveBtnViewController *otherView = [[BGQMMoveBtnViewController alloc] init];
         otherView.showMoreGridIdArray = self.moreGridIdArray;
         otherView.showMoreGridTitleArray = self.moreGridTitleArray;

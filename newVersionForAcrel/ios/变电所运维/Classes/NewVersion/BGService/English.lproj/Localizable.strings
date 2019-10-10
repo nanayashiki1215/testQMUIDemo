@@ -22,6 +22,7 @@
 "User name cannot be empty"="User name cannot be empty";
 "Password cannot be empty"="Password cannot be empty";
 "Domain name filling out is not standard"="Domain name filling out is not standard";
+"savePassword"="SavePWD";
 
 //BGCheckAppVersionMgr
 "Tip"="Tips";

@@ -469,6 +469,10 @@
 +(void)loginOut{
     
     QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+        
+        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+       UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+       [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
         //清空NSUserDefaults
         //清空NSUserDefaults 退出登录
         NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
@@ -488,9 +492,7 @@
                 [defatluts synchronize];
             }
         }
-        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
-        UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-        [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
+       
     }];
     QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:QMUIAlertControllerStyleAlert];
     [alertController addAction:action];

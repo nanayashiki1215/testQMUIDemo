@@ -90,7 +90,7 @@
     [self.view addSubview:self.checkBtn];
     
     UIButton *label12 = [[UIButton alloc]initWithFrame:CGRectMake(self.checkBtn.frame.size.width+5+32, self.signInBtn.frame.origin.y-47, 70, 30)];
-    [label12 setTitle:@"记住密码" forState:UIControlStateNormal];
+    [label12 setTitle:DefLocalizedString(@"savePassword") forState:UIControlStateNormal];
     label12.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [label12 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [label12 addTarget:self action:@selector(labelClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -331,9 +331,9 @@
     [UIApplication sharedApplication].keyWindow.rootViewController = tabBarViewController;
 }
 - (IBAction)autoText:(UIButton *)sender {
-    self.pwdTextField.text = @"Acrel123654";
-    self.usenameTextField.text = @"admin";
-    self.addressTextField.text = @"http://116.236.149.162:8090";
+//    self.pwdTextField.text = @"Acrel123654";
+//    self.usenameTextField.text = @"admin";
+//    self.addressTextField.text = @"http://116.236.149.162:8090";
 }
 
 -(void)viewWillAppear:(BOOL)animated{

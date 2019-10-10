@@ -29,6 +29,8 @@
 "User name cannot be empty"="用户名不能为空";
 "Password cannot be empty"="密码不能为空";
 "Domain name filling out is not standard"="域名填写不规范";
+"savePassword"="保存密码";
+
 
 //home
 "Videodata" = "视频直播";
