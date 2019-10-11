@@ -233,7 +233,7 @@
         if (errorMsg) {
             [MBProgressHUD showError:errorMsg toView:self.view withAfterDelay:2.0f];
         }else{
-            [MBProgressHUD showError:@"请求失败,请检查域名/服务器地址" toView:self.view withAfterDelay:2.0f];
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址" toView:self.view withAfterDelay:2.0f];
         }
     }];
 //    [NetService bg_postWithPath:@"http://192.168.112.210:8080/web_manage/login.do" params:@{@"":@""}
