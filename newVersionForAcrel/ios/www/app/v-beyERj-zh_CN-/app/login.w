@@ -173,7 +173,7 @@
       <meta charset="utf-8" __cid="cIrEnMz" class="cIrEnMz">  
       <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="cIrEnMz" class="cIrEnMz">  
       <meta name="viewport" content="width=device-width, initial-scale=1" __cid="cIrEnMz" class="cIrEnMz">  
-      <title __cid="cIrEnMz" class="cIrEnMz">变电所运维云平台</title>  
+      <title __cid="cIrEnMz" class="cIrEnMz">企业用电运维云平台云平台</title>  
       <link href="../app/css/bootstrap.min.css" rel="stylesheet" __cid="cIrEnMz" class="cIrEnMz">  
       <link href="../app/css/main.css" rel="stylesheet" __cid="cIrEnMz" class="cIrEnMz"> 
     </head>  

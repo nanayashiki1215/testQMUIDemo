@@ -172,7 +172,7 @@
       <meta charset="utf-8" __cid="cjQBNbm" class="cjQBNbm">  
       <meta http-equiv="X-UA-Compatible" content="IE=edge" __cid="cjQBNbm" class="cjQBNbm">  
       <meta name="viewport" content="width=device-width, initial-scale=1" __cid="cjQBNbm" class="cjQBNbm">  
-      <title __cid="cjQBNbm" class="cjQBNbm">变电所运维云平台</title>  
+      <title __cid="cjQBNbm" class="cjQBNbm">企业用电运维云平台云平台</title>  
       <link href="../app/css/bootstrap.min.css" rel="stylesheet" __cid="cjQBNbm" class="cjQBNbm">  
       <link href="../app/css/bootstrap-table.css" rel="stylesheet" __cid="cjQBNbm" class="cjQBNbm">  
       <link href="../app/css/main.css" rel="stylesheet" __cid="cjQBNbm" class="cjQBNbm"> 
