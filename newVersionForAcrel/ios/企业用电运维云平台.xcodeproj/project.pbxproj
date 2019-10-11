@@ -151,13 +151,8 @@
 		B66BA70C22F275270027EE05 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA70622F275270027EE05 /* SDBrowserImageView.m */; };
 		B66BA70F22F27D400027EE05 /* BGCreatTrendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA70D22F27D400027EE05 /* BGCreatTrendsModel.m */; };
 		B66BA71222F27EE80027EE05 /* BGShowUrlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */; };
-		B6733F3A22B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B6733F3022B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.m */; };
-		B6733F3B22B8D6F7005B1DDE /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B6733F3122B8D6F7005B1DDE /* WKWebViewJavascriptBridge.m */; };
-		B6733F3C22B8D6F7005B1DDE /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B6733F3222B8D6F7005B1DDE /* WebViewJavascriptBridge.m */; };
-		B6733F3D22B8D6F7005B1DDE /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = B6733F3522B8D6F7005B1DDE /* WebViewJavascriptBridge_JS.m */; };
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
-		B67D69AB229BC6D6007152DF /* BGNomalWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = B67D69AA229BC6D6007152DF /* BGNomalWebView.m */; };
 		B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */; };
 		B68D2C7022A63D87001C00EC /* NSString+Arc4random.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4E22A63D86001C00EC /* NSString+Arc4random.m */; };
 		B68D2C7122A63D87001C00EC /* NSArray+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C5022A63D86001C00EC /* NSArray+Bounds.m */; };
@@ -902,18 +897,8 @@
 		B66BA70E22F27D400027EE05 /* BGCreatTrendsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGCreatTrendsModel.h; sourceTree = "<group>"; };
 		B66BA71022F27EE80027EE05 /* BGShowUrlModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGShowUrlModel.h; sourceTree = "<group>"; };
 		B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGShowUrlModel.m; sourceTree = "<group>"; };
-		B6733F3022B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
-		B6733F3122B8D6F7005B1DDE /* WKWebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewJavascriptBridge.m; sourceTree = "<group>"; };
-		B6733F3222B8D6F7005B1DDE /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
-		B6733F3322B8D6F7005B1DDE /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
-		B6733F3422B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
-		B6733F3522B8D6F7005B1DDE /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
-		B6733F3622B8D6F7005B1DDE /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
-		B6733F3722B8D6F7005B1DDE /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		B6733F3E22B8D77A005B1DDE /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
-		B67D69A9229BC6D6007152DF /* BGNomalWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGNomalWebView.h; sourceTree = "<group>"; };
-		B67D69AA229BC6D6007152DF /* BGNomalWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGNomalWebView.m; sourceTree = "<group>"; };
 		B68D2C4B22A63D86001C00EC /* NSArray+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Bounds.h"; sourceTree = "<group>"; };
 		B68D2C4C22A63D86001C00EC /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GHome.m"; sourceTree = "<group>"; };
@@ -2190,21 +2175,6 @@
 			path = SDPhotoBrowser;
 			sourceTree = "<group>";
 		};
-		B6733F2F22B8D6F7005B1DDE /* WebViewJavascriptBridge */ = {
-			isa = PBXGroup;
-			children = (
-				B6733F3022B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.m */,
-				B6733F3122B8D6F7005B1DDE /* WKWebViewJavascriptBridge.m */,
-				B6733F3222B8D6F7005B1DDE /* WebViewJavascriptBridge.m */,
-				B6733F3322B8D6F7005B1DDE /* WebViewJavascriptBridge_JS.h */,
-				B6733F3422B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.h */,
-				B6733F3522B8D6F7005B1DDE /* WebViewJavascriptBridge_JS.m */,
-				B6733F3622B8D6F7005B1DDE /* WebViewJavascriptBridge.h */,
-				B6733F3722B8D6F7005B1DDE /* WKWebViewJavascriptBridge.h */,
-			);
-			path = WebViewJavascriptBridge;
-			sourceTree = "<group>";
-		};
 		B68D2C4922A63D86001C00EC /* GHDropMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -3024,7 +2994,6 @@
 				B6EB9B9822C99F8100136A6C /* EZOpenSDK */,
 				B6EB9B9022C99F8100136A6C /* EZUIKit */,
 				B6A92E0122BA2D0900D16AE9 /* Bugly.framework */,
-				B6733F2F22B8D6F7005B1DDE /* WebViewJavascriptBridge */,
 				B60C7FF622A8A3F10016D936 /* Openssl */,
 				B657DD8322927C760009BCB0 /* SDWebImage */,
 				B6E15657228D419700CB4A5F /* MJRefresh */,
@@ -3061,8 +3030,6 @@
 				B6E15623228D2C9800CB4A5F /* BGWebViewController.m */,
 				B6380A9222CB2084002500E0 /* Dis-test */,
 				B6A92DFF22BA222500D16AE9 /* scroll */,
-				B67D69A9229BC6D6007152DF /* BGNomalWebView.h */,
-				B67D69AA229BC6D6007152DF /* BGNomalWebView.m */,
 				B6A92DFD22B9D03300D16AE9 /* assets */,
 				B6733F4222B8E20E005B1DDE /* eventTest.html */,
 				B6DFF1A122FCF9AB002D269C /* aDevices */,
@@ -3613,7 +3580,7 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JLG36R4UAW;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -3944,7 +3911,6 @@
 				B64BFB48FF2B4FDAA7A53FC2 /* AppPreferences.m in Sources */,
 				B6E15692228D419800CB4A5F /* MJRefreshNormalHeader.m in Sources */,
 				B6C768C122A0B8DC00DA675D /* QDAlertController.m in Sources */,
-				B67D69AB229BC6D6007152DF /* BGNomalWebView.m in Sources */,
 				B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */,
 				5771310B99B242BD843EAAEE /* CDVFile.m in Sources */,
 				B68D2D0722A64C5B001C00EC /* BGQMCategoryListConViewController.m in Sources */,
@@ -3971,7 +3937,6 @@
 				B657DD7522927AEC0009BCB0 /* TZPhotoPreviewController.m in Sources */,
 				B6E15655228D418700CB4A5F /* MASViewConstraint.m in Sources */,
 				B6C768E522A0B8DC00DA675D /* QDMultipleImagePickerPreviewViewController.m in Sources */,
-				B6733F3C22B8D6F7005B1DDE /* WebViewJavascriptBridge.m in Sources */,
 				B6CA22A522C09F1B00AAA1CA /* BGHomeViewController.m in Sources */,
 				B6C768EA22A0B8DC00DA675D /* QDCellHeightKeyCacheViewController.m in Sources */,
 				E552285B4331456088A4A9F6 /* CDVLocalFilesystem.m in Sources */,
@@ -4036,7 +4001,6 @@
 				B6E156B6228D41AC00CB4A5F /* AFSecurityPolicy.m in Sources */,
 				B6C768D722A0B8DC00DA675D /* QDRippleAnimationViewController.m in Sources */,
 				B6C768DC22A0B8DC00DA675D /* QDAllSystemFontsViewController.m in Sources */,
-				B6733F3D22B8D6F7005B1DDE /* WebViewJavascriptBridge_JS.m in Sources */,
 				B6E15699228D419800CB4A5F /* MJRefreshComponent.m in Sources */,
 				B68D2C7922A63D87001C00EC /* GHDropMenuFilterTagItem.m in Sources */,
 				50A24CB3C7CA4C60B5EA859F /* CDVReachability.m in Sources */,
@@ -4118,7 +4082,6 @@
 				B6E155BD228CEDF900CB4A5F /* MyMD5.m in Sources */,
 				B6E155FE228CF09C00CB4A5F /* NSDictionary+BGExtension.m in Sources */,
 				B68D2C7222A63D87001C00EC /* UIView+Extension.m in Sources */,
-				B6733F3B22B8D6F7005B1DDE /* WKWebViewJavascriptBridge.m in Sources */,
 				B6C768DB22A0B8DC00DA675D /* QDReplicatorLayerViewController.m in Sources */,
 				B68D2D0022A646C1001C00EC /* JXCategoryListCollectionContainerView.m in Sources */,
 				B6C768D822A0B8DC00DA675D /* QDAllAnimationViewController.m in Sources */,
@@ -4168,7 +4131,6 @@
 				B6C768B622A0B8DC00DA675D /* QDLinkButtonViewController.m in Sources */,
 				B68D2CF722A646C1001C00EC /* JXCategoryImageCellModel.m in Sources */,
 				F32BA64DE29D40F5B71420CA /* CDVSpinnerDialog.m in Sources */,
-				B6733F3A22B8D6F7005B1DDE /* WebViewJavascriptBridgeBase.m in Sources */,
 				B657DDC822927C760009BCB0 /* SDWebImageDownloader.m in Sources */,
 				B68D2CF822A646C1001C00EC /* JXCategoryNumberView.m in Sources */,
 				B657DDD022927C760009BCB0 /* SDAnimatedImageRep.m in Sources */,

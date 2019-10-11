@@ -10,7 +10,6 @@
 #import "JXCategoryView.h"
 #import "JXCategoryListCollectionContainerView.h"
 #import "BGQMElectViewController.h"
-#import "BGNomalWebView.h"
 #import "BGUIWebViewController.h"
 #import "BGQMVideoListTableVC.h"
 

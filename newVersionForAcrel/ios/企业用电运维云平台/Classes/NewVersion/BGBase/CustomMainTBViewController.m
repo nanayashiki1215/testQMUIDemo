@@ -11,7 +11,7 @@
 #import "BGHomeViewController.h"
 #import "BGUIWebViewController.h"
 #import "UIImage+BGExtension.h"
-#import "BGNomalWebView.h"
+
 
 @interface CustomMainTBViewController()
 
@@ -35,10 +35,10 @@
     
     BGUIWebViewController *webvc2 = [[BGUIWebViewController alloc] initWithNibName:@"BGWebViewController" bundle:nil];
 //    webvc2.localUrlString = @"www/app/v-beyERj-zh_CN-/app/alarm.w";
-//    BGNomalWebView *webvc2 = [[BGNomalWebView alloc] init];
+
     [self addChildViewController:webvc2 title:DefLocalizedString(@"Alarm") image:@"alarm" selectedImage:@"alarm2"];
     
-//    BGNomalWebView *webvc3 = [[BGNomalWebView alloc] init];
+
     BGUIWebViewController *webvc3 = [[BGUIWebViewController alloc] initWithNibName:@"BGWebViewController" bundle:nil];
     //    UINavigationController *nav1 =[[UINavigationController alloc] initWithRootViewController:firstVC1];
     [self addChildViewController:webvc3 title:DefLocalizedString(@"About") image:@"contact" selectedImage:@"us"];

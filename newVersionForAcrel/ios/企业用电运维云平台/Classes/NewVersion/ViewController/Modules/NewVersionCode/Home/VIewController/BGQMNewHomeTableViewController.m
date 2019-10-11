@@ -12,7 +12,6 @@
 #import "BGQMEventViewController.h"
 #import "MJRefreshHeader.h"
 #import "MJRefreshNormalHeader.h"
-#import "BGNomalWebView.h"
 #import "BGQMCategoryListConViewController.h"
 #import "BGCheckAppVersionMgr.h"
 
