@@ -117,8 +117,7 @@
 //    }
     NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
     NSString *iOSUrl = [NSString changgeNonulWithString:self.allDataArr[index][@"fFunctionfield"]];
-    if(iOSUrl){
-        if(iOSUrl.length>0){
+    if(iOSUrl.length){
             NSArray * strarr = [iOSUrl componentsSeparatedByString:@"."];
             NSString *urlStr= strarr.firstObject;
             BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
@@ -126,12 +125,11 @@
             nomWebView.isUseOnline = NO;
             nomWebView.localUrlString = filePath;
             return nomWebView;
-        }
-    }else if(url){
+    }else if(url.length){
         //其他均用url加载 通用方法
 //        fFunctionfield
 //        NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
-        if (url.length) {
+        
             BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
             urlWebView.isUseOnline = YES;
             UserManager *user = [UserManager manager];
@@ -144,7 +142,6 @@
                 urlWebView.onlineUrlString = urlStr;
                 return urlWebView;
             }
-        }
 //        NSArray * strarr = [url componentsSeparatedByString:@"."];
 //        NSString *urlStr= strarr.firstObject;
 //        BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
