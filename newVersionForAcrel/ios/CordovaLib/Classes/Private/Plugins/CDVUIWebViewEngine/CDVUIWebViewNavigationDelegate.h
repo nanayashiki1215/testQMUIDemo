@@ -20,8 +20,6 @@
 //#import <UIKit/UIKit.h>
 //#import "CDVUIWebViewEngine.h"
 //
-//@interface CDVUIWebViewNavigationDelegate : NSObject <UIWebViewDelegate>
-//
 //@property (nonatomic, weak) CDVPlugin* enginePlugin;
 //
 //- (instancetype)initWithEnginePlugin:(CDVPlugin*)enginePlugin;
