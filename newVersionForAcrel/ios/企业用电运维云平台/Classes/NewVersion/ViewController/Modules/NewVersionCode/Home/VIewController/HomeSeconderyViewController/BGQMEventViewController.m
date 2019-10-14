@@ -126,7 +126,7 @@ static NSString * const kCellIdentifier = @"BGEventDynamiccell";
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // estimatedHeightForRowAtIndexPath 的返回值会用于“该 indexPath 对应的 key 尚未有被缓存的高度”时，换句话说，如果该 indexPath 对应的 key 已经缓存了高度，则不会再调用该 indexPath 的 estimatedHeightForRowAtIndexPath 方法。
     // 可通过观察 Xcode 控制台的 log 来判断当前方法是否被调用
-    NSLog(@"%@ - estimatedHeightForRowAtIndexPath called", @(indexPath.row));
+    DefLog(@"%@ - estimatedHeightForRowAtIndexPath called", @(indexPath.row));
     return 300;
 }
 

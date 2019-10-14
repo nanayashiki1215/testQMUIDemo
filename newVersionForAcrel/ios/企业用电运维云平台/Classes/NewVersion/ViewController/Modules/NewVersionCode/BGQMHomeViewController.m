@@ -91,7 +91,7 @@
         
     }];
     //配置小红点
-//    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:@""];
+//    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:@"13"];
 }
 
 -(void)addselfHeadView{
@@ -317,7 +317,7 @@
 #pragma mark - 点击格子
 - (void)gridItemDidClicked:(CustomGrid *)gridItem
 {
-    NSLog(@"您点击的格子Tag是：%ld", (long)gridItem.gridId);
+    DefLog(@"您点击的格子Tag是：%ld", (long)gridItem.gridId);
     isSkip = YES;
 
     //查看是否有选中的格子，并且比较点击的格子是否就是选中的格子
@@ -364,7 +364,7 @@
 #pragma mark - 删除格子
 - (void)gridItemDidDeleteClicked:(UIButton *)deleteButton
 {
-    NSLog(@"您删除的格子是GridId：%ld", (long)deleteButton.tag);
+    DefLog(@"您删除的格子是GridId：%ld", (long)deleteButton.tag);
     for (NSInteger i = 0; i < _gridListArray.count; i++) {
         CustomGrid *removeGrid = _gridListArray[i];
         if (removeGrid.gridId == deleteButton.tag) {
@@ -406,8 +406,8 @@
 #pragma mark - 长按格子
 - (void)pressGestureStateBegan:(UILongPressGestureRecognizer *)longPressGesture withGridItem:(CustomGrid *) grid
 {
-    NSLog(@"长按.........");
-    NSLog(@"isSelected: %d", isSelected);
+    DefLog(@"长按.........");
+    DefLog(@"isSelected: %d", isSelected);
 
     //判断格子是否已经被选中并且是否可移动状态,如果选中就加一个放大的特效
     if (isSelected && grid.isChecked) {
@@ -417,7 +417,7 @@
     //没有一个格子选中的时候
     if (!isSelected) {
 
-        NSLog(@"没有一个格子选中............");
+        DefLog(@"没有一个格子选中............");
         grid.isChecked = YES;
         grid.isMove = YES;
         isSelected = YES;
@@ -444,7 +444,7 @@
 - (void)pressGestureStateChangedWithPoint:(CGPoint) gridPoint gridItem:(CustomGrid *) gridItem
 {
     if (isSelected && gridItem.isChecked) {
-        //        NSLog(@"UIGestureRecognizerStateChanged.........");
+        //        DefLog(@"UIGestureRecognizerStateChanged.........");
 
         [_gridListView bringSubviewToFront:gridItem];
         //应用移动后的X坐标
@@ -460,7 +460,7 @@
         NSInteger toIndex = [CustomGrid indexOfPoint:gridItem.center withButton:gridItem gridArray:_gridListArray];
 
         NSInteger borderIndex = [_showGridIDArray indexOfObject:@"0"];
-        NSLog(@"borderIndex: %ld", (long)borderIndex);
+        DefLog(@"borderIndex: %ld", (long)borderIndex);
 
         if (toIndex < 0 || toIndex >= borderIndex) {
             contain = NO;
@@ -473,7 +473,7 @@
 
             //判断格子的移动方向，是从后往前还是从前往后拖动
             if ((fromIndex - toIndex) > 0) {
-                //                NSLog(@"从后往前拖动格子.......");
+                //                DefLog(@"从后往前拖动格子.......");
                 //从移动格子的位置开始，始终获取最后一个格子的索引位置
                 NSInteger lastGridIndex = fromIndex;
                 for (NSInteger i = toIndex; i < fromIndex; i++) {
@@ -491,7 +491,7 @@
 
             }else if((fromIndex - toIndex) < 0){
                 //从前往后拖动格子
-                //                NSLog(@"从前往后拖动格子.......");
+                //                DefLog(@"从前往后拖动格子.......");
                 //从移动格子到目标格子之间的所有格子向前移动一格
                 for (NSInteger i = fromIndex; i < toIndex; i++) {
                     CustomGrid *topOneGrid = _gridListArray[i];
@@ -512,7 +512,7 @@
 #pragma mark - 拖动格子结束
 - (void)pressGestureStateEnded:(CustomGrid *) gridItem
 {
-    //    NSLog(@"拖动格子结束.........");
+    //    DefLog(@"拖动格子结束.........");
     if (isSelected && gridItem.isChecked) {
         //撤销格子的放大特效
         [UIView animateWithDuration:0.5 animations:^{
@@ -608,7 +608,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSUserDefaults standardUserDefaults] setObject:moreIdArray forKey:@"moregridID"];
     
-    NSLog(@"更新后imageArray = %@ titleArray = %@",imageArray,titleArray);
+    DefLog(@"更新后imageArray = %@ titleArray = %@",imageArray,titleArray);
 
     NSInteger gridHeight;
     gridHeight = 123 * (self.showGridArray.count/3);
@@ -676,14 +676,14 @@
         [self.navigationController pushViewController:nomWebView animated:YES];
     }
     else {
-        NSLog(@"点击了%@格子",title);
+        DefLog(@"点击了%@格子",title);
     }
 }
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(MSCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    NSLog(@"---点击了第%ld张图片", (long)index);
+    DefLog(@"---点击了第%ld张图片", (long)index);
     [self.navigationController pushViewController:[BGQMloginViewController new] animated:YES];
 }
 
@@ -697,7 +697,7 @@
     titleArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"title"];
     imageArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
     idArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"gridID"];
-    NSLog(@"array = %@",titleArray);
+    DefLog(@"array = %@",titleArray);
 
     NSArray * moretitleArray = [[NSArray alloc]init];
     NSArray * moreimageArray = [[NSArray alloc]init];
@@ -767,12 +767,12 @@
         // 默认
         for (int i = 0; i< [BGQMSingletonManager shareInstance].showGridArray.count; i++) {
             [defaString appendString:[BGQMSingletonManager shareInstance].showGridArray[i]];
-            //        NSLog(@"defaString = %@",defaString);
+            //        DefLog(@"defaString = %@",defaString);
         }
         // 本地
         for (int i = 0; i< titleArray.count; i++) {
             [localString appendString:titleArray[i]];
-            //        NSLog(@"localString = %@",localString);
+            //        DefLog(@"localString = %@",localString);
         }
         
         // 如果本地数组有改变

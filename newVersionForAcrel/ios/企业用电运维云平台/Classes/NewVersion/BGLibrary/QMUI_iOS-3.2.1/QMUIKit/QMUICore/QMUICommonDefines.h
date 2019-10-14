@@ -206,6 +206,14 @@
 #define QMUIViewAnimationOptionsCurveOut (7<<16)
 #define QMUIViewAnimationOptionsCurveIn (8<<16)
 
+#pragma mark - ios13
+/// 将 KVC 代码包裹在这个宏中，可忽略系统的  KVC 访问限制
+#define BeginIgnoreUIKVCAccessProhibited if (@available(iOS 13.0, *)) NSThread.currentThread.qmui_shouldIgnoreUIKVCAccessProhibited = YES;
+#define EndIgnoreUIKVCAccessProhibited if (@available(iOS 13.0, *)) NSThread.currentThread.qmui_shouldIgnoreUIKVCAccessProhibited = NO;
+/// @property(nonatomic, assign) BOOL xxx
+#define QMUISynthesizeBOOLProperty(_getterName, _setterName) _QMUISynthesizeNonObject(_getterName, _setterName, BOOL, numberWithBool, boolValue)
+#define IgnoreKVCAccessProhibited   [QMUICMI ignoreKVCAccessProhibited]
+
 #pragma mark - 无障碍访问
 CG_INLINE void
 AddAccessibilityLabel(NSObject *obj, NSString *label) {

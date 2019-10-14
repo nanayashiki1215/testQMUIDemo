@@ -266,7 +266,7 @@
                     position:@"center"];
     }
     
-    NSLog(@"play error:%@(%ld)",error.errorString,error.internalErrorCode);
+    DefLog(@"play error:%@(%ld)",error.errorString,error.internalErrorCode);
 }
 
 - (void) EZUIPlayer:(EZUIPlayer *)player previewWidth:(CGFloat)pWidth previewHeight:(CGFloat)pHeight
@@ -309,7 +309,7 @@
 
         NSString *showString = [selectDate stringWithFormat:@"yyyy年MM月dd日"];
         NSString *dateString = [selectDate stringWithFormat:@"yyyyMMdd"];
-        NSLog(@"选择的日期：%@",dateString);
+        DefLog(@"选择的日期：%@",dateString);
         [clickSelectBtn setTitle:showString forState:UIControlStateNormal];
         NSString *timerStr = [NSString stringWithFormat:@"%@?begin=%@000000&end=%@235959",weakSelf.urlStr,dateString,dateString];
         DefLog(@"timeStr:%@",timerStr);

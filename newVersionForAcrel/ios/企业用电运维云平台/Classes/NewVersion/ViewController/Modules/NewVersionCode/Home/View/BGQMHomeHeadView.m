@@ -269,7 +269,7 @@
             //我的位置代表起点位置为当前位置，也可以输入其他位置作为起点位置，如天安门
             NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=%f,%f&mode=driving&src=JumpMapDemo", desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
-            NSLog(@"%@",urlString);
+            DefLog(@"%@",urlString);
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
             
@@ -287,7 +287,7 @@
             
             NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=applicationName&sid=BGVIS1&sname=%@&did=BGVIS2&dlat=%f&dlon=%f&dev=0&m=0&t=0",@"我的位置",desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//@"我的位置"可替换为@"终点名称"
             
-            NSLog(@"%@",urlString);
+            DefLog(@"%@",urlString);
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
             
@@ -304,7 +304,7 @@
             
             NSString *urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%f,%f&directionsmode=driving",appName,urlScheme,desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
-            NSLog(@"%@",urlString);
+            DefLog(@"%@",urlString);
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
             
@@ -322,7 +322,7 @@
             
             NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?type=drive&from=我的位置&to=%@&tocoord=%f,%f&policy=1&referer=%@", @"终点名称", desCoordinate.latitude, desCoordinate.longitude, appName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
-            NSLog(@"%@",urlString);
+            DefLog(@"%@",urlString);
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
             
@@ -372,7 +372,7 @@
         nextResponder = appRootVC.presentedViewController;
     }else{
 
-        NSLog(@"===%@",[window subviews]);
+        DefLog(@"===%@",[window subviews]);
         UIView *frontView = [[window subviews] objectAtIndex:0];
         nextResponder = [frontView nextResponder];
     }

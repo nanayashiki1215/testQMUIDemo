@@ -23,7 +23,7 @@
     __weak __typeof(self)weakSelf = self;
     self.navigationAnimator.animationBlock = ^(QMUINavigationBarScrollingSnapAnimator * _Nonnull animator, BOOL offsetYReached) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-        NSLog(@"导航栏%@, inset.top = %.2f, offset.y = %.2f", offsetYReached ? @"被隐藏了" : @"显示出来了", strongSelf.tableView.contentInset.top, strongSelf.tableView.contentOffset.y);
+        DefLog(@"导航栏%@, inset.top = %.2f, offset.y = %.2f", offsetYReached ? @"被隐藏了" : @"显示出来了", strongSelf.tableView.contentInset.top, strongSelf.tableView.contentOffset.y);
         [strongSelf.navigationController setNavigationBarHidden:offsetYReached animated:YES];
     };
     

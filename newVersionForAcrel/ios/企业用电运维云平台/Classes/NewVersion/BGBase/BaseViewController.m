@@ -115,7 +115,7 @@
             }else if (constant.constant == -16){
                 constant.constant = -10;
             }
-//            NSLog(@"%f",constant.constant);
+//            DefLog(@"%f",constant.constant);
         }
     }
 }

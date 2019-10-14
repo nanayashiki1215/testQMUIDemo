@@ -77,7 +77,7 @@
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"gesture begin");
+        DefLog(@"gesture begin");
         // CGPoint point = [gesture locationInView:self.collectionView];
         // NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
@@ -87,13 +87,13 @@
         }
     }
     else if (gesture.state == UIGestureRecognizerStateChanged) {
-        NSLog(@"gesture chagned");
+        DefLog(@"gesture chagned");
         CGPoint point = [gesture translationInView:self.collectionView];
         self.collectionViewLayout.curPoint = point;
         [self.collectionViewLayout invalidateLayout];
     }
     else if (gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"gesture canceled or ended");
+        DefLog(@"gesture canceled or ended");
         CGFloat maxDistance = fmax(fabs(self.collectionViewLayout.curPoint.x), fabs(self.collectionViewLayout.curPoint.y));
         self.collectionViewLayout.isMoving = NO;
         self.collectionViewLayout.curIndexPath = nil;

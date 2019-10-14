@@ -81,7 +81,7 @@ const CGFloat kContentMarginBotom = 10;
 //    }
     
     resultSize.height = resultHeight;
-    NSLog(@"%@ 的 cell 的 sizeThatFits: 被调用（说明这个 cell 的高度重新计算了一遍）", self.nameLabel.text);
+    DefLog(@"%@ 的 cell 的 sizeThatFits: 被调用（说明这个 cell 的高度重新计算了一遍）", self.nameLabel.text);
     return resultSize;
 }
 

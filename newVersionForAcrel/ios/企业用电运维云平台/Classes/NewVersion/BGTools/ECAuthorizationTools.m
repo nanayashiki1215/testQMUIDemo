@@ -88,7 +88,7 @@
 {
     BOOL isLocationServicesEnabled = [CLLocationManager locationServicesEnabled];
     if (!isLocationServicesEnabled) {
-        NSLog(@"定位服务不可用，例如定位没有打开...");
+        DefLog(@"定位服务不可用，例如定位没有打开...");
         [ECAuthorizationTools executeCallBackForForLocationServices:accessStatusCallBack
                                                        accessStatus:ECLocationAuthorizationStatus_NotSupport
                                                                type:ECPrivacyType_LocationServices];
@@ -192,7 +192,7 @@
             [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
                 
                 if (error) {
-                    NSLog(@"error:%@",error);
+                    DefLog(@"error:%@",error);
                     [self executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_NotSupport type:ECPrivacyType_Contacts];
                 }else{
                     if (granted) {
@@ -263,7 +263,7 @@
                 if (error) {
                     [self executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_Denied type:ECPrivacyType_Calendars];
                     
-                    NSLog(@"erro:%@",error);
+                    DefLog(@"erro:%@",error);
                 }
                 if (granted) {
                     [self executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_Authorized type:ECPrivacyType_Calendars];
@@ -305,7 +305,7 @@
                 if (error) {
                     [self executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_Denied type:ECPrivacyType_Reminders];
                     
-                    NSLog(@"erro:%@",error);
+                    DefLog(@"erro:%@",error);
                 }
                 if (granted) {
                     [self executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_Authorized type:ECPrivacyType_Reminders];
@@ -399,7 +399,7 @@
         }
         
     } else {
-        NSLog(@"相册不可用！");
+        DefLog(@"相册不可用！");
         [self executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_NotSupport type:ECPrivacyType_Photos];
     }
 }
@@ -600,7 +600,7 @@
                         }
                     }else{
                         if (error) {
-                            NSLog(@"requestHealthAuthorization: error:%@",error);
+                            DefLog(@"requestHealthAuthorization: error:%@",error);
                         }
                     }
                 }];
@@ -613,12 +613,12 @@
             }
         }else{
             [ECAuthorizationTools executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_NotSupport type:ECPrivacyType_Health];
-            NSLog(@"unavailable");
+            DefLog(@"unavailable");
             // Health data is not avaliable on all device.
         }
     }else{
         [ECAuthorizationTools executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_NotSupport type:ECPrivacyType_Health];
-        NSLog(@"iOS8以下不支持");
+        DefLog(@"iOS8以下不支持");
     }
 }
 
@@ -640,14 +640,14 @@
             }];
         }
     } else {
-        NSLog(@"The home is available on ios8 or later");
+        DefLog(@"The home is available on ios8 or later");
     }
 }
 
 #pragma mark - HMHomeManagerDelegate
 - (void)homeManagerDidUpdateHomes:(HMHomeManager *)manager{
     if (manager.homes.count > 0) {
-        NSLog(@"A home exists, so we have access.");
+        DefLog(@"A home exists, so we have access.");
         if (self.HomeAccessCallBackBlock) {
             self.HomeAccessCallBackBlock(YES);
         }
@@ -657,7 +657,7 @@
         [manager addHomeWithName:@"Test Home" completionHandler:^(HMHome * _Nullable home, NSError * _Nullable error) {
             
             if (!error) {
-                NSLog(@"We have access for home.");
+                DefLog(@"We have access for home.");
                 if (self.HomeAccessCallBackBlock) {
                     self.HomeAccessCallBackBlock(YES);
                 }
@@ -665,9 +665,9 @@
                 // tips：出现错误，错误类型参考 HMError.h
                 if (error.code == HMErrorCodeHomeAccessNotAuthorized) {
                     // User denied permission.
-                    NSLog(@"用户拒绝!!");
+                    DefLog(@"用户拒绝!!");
                 } else {
-                    NSLog(@"HOME_ERROR:%ld,%@",error.code, error.localizedDescription);
+                    DefLog(@"HOME_ERROR:%ld,%@",error.code, error.localizedDescription);
                 }
                 if (self.HomeAccessCallBackBlock) {
                     self.HomeAccessCallBackBlock(YES);
@@ -734,7 +734,7 @@
         }
     }else{
         [self executeCallBack:accessStatusCallBack accessStatus:ECAuthorizationStatus_NotSupport type:ECPrivacyType_MediaAndAppleMusic];
-        NSLog(@"AppleMusic只支持iOS9.3+");
+        DefLog(@"AppleMusic只支持iOS9.3+");
     }
 }
 
@@ -750,10 +750,10 @@
         // Do something with the activity reported.
         [self.cmManager stopActivityUpdates];
         
-        NSLog(@"We have access for MotionAndFitness.");
+        DefLog(@"We have access for MotionAndFitness.");
     }];
     
-    NSLog(@"We don't have permission to MotionAndFitness.");
+    DefLog(@"We don't have permission to MotionAndFitness.");
 }
 
 
@@ -768,7 +768,7 @@
         if (accessStatusCallBack) {
             accessStatusCallBack(accessStatus, type);
             
-            NSLog(@"\n//************************************************************//\n获取权限类型：%@\n权限状态：%@\n//************************************************************//\n",[ECAuthorizationTools stringForPrivacyType:type], [ECAuthorizationTools stringForAuthorizationStatus:accessStatus]);
+            DefLog(@"\n//************************************************************//\n获取权限类型：%@\n权限状态：%@\n//************************************************************//\n",[ECAuthorizationTools stringForPrivacyType:type], [ECAuthorizationTools stringForAuthorizationStatus:accessStatus]);
         }
     });
 }
@@ -780,7 +780,7 @@
         if (accessStatusCallBack) {
             accessStatusCallBack(accessStatus);
             
-            NSLog(@"\n//************************************************************//\n获取权限类型：%@\n权限状态：%@\n//************************************************************//\n",[ECAuthorizationTools stringForPrivacyType:type], [ECAuthorizationTools stringForLocationAuthorizationStatus:accessStatus]);
+            DefLog(@"\n//************************************************************//\n获取权限类型：%@\n权限状态：%@\n//************************************************************//\n",[ECAuthorizationTools stringForPrivacyType:type], [ECAuthorizationTools stringForLocationAuthorizationStatus:accessStatus]);
         }
     });
 }

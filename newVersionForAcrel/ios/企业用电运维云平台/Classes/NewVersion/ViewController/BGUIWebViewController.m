@@ -10,6 +10,7 @@
 #import "WSDatePickerView.h"
 #import <BMKLocationKit/BMKLocationComponent.h>
 #import <UIKit/UIWindowScene.h>
+#import <CoreLocation/CLLocationManager.h>
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -80,6 +81,9 @@
 //    if (@available(iOS 11.0, *)) {
 //        self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
 //    }
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
     [self.view addSubview:self.webView];
 //    [self.view addSubview:self.progressView];
     //添加监测网页加载进度的观察者
@@ -214,7 +218,7 @@
     if ([keyPath isEqualToString:NSStringFromSelector(@selector(estimatedProgress))]
         && object == _webView) {
         
-        NSLog(@"网页加载进度 = %f",_webView.estimatedProgress);
+        DefLog(@"网页加载进度 = %f",_webView.estimatedProgress);
 //        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //        self.progressView.progress = _webView.estimatedProgress;
         if (_webView.estimatedProgress >= 1.0f) {
@@ -257,7 +261,7 @@
     //changeColor()是JS方法名，completionHandler是异步回调block
     NSString *jsString = [NSString stringWithFormat:@"changeColor('%@')", @"Js参数"];
     [_webView evaluateJavaScript:jsString completionHandler:^(id _Nullable data, NSError * _Nullable error) {
-        NSLog(@"改变HTML的背景色");
+        DefLog(@"改变HTML的背景色");
     }];
     
     //改变字体大小 调用原生JS方法
@@ -267,7 +271,7 @@
     NSString * path =  [[NSBundle mainBundle] pathForResource:@"girl" ofType:@"png"];
     NSString *jsPicture = [NSString stringWithFormat:@"changePicture('%@','%@')", @"pictureId",path];
     [_webView evaluateJavaScript:jsPicture completionHandler:^(id _Nullable data, NSError * _Nullable error) {
-        NSLog(@"切换本地头像");
+        DefLog(@"切换本地头像");
     }];
     
 }
@@ -473,7 +477,7 @@
 //被自定义的WKScriptMessageHandler在回调方法里通过代理回调回来，绕了一圈就是为了解决内存不释放的问题
 //通过接收JS传出消息的name进行捕捉的回调方法
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    NSLog(@"name:%@\\\\n body:%@\\\\n frameInfo:%@\\\\n",message.name,message.body,message.frameInfo);
+    DefLog(@"name:%@\\\\n body:%@\\\\n frameInfo:%@\\\\n",message.name,message.body,message.frameInfo);
     //用message.body获得JS传出的参数体
 //    NSDictionary *parameter = message.body;
     //JS调用OC
@@ -484,12 +488,12 @@
         WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
             NSString *showString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
             NSString *dateString = [selectDate stringWithFormat:@"yyyyMMdd"];
-            NSLog(@"选择的日期：%@",dateString);
+            DefLog(@"选择的日期：%@",dateString);
             
 //            DefLog(@"timeStr:%@",timerStr);
             NSString *timeStrJS = [NSString stringWithFormat:@"alertAction('%@')",showString];
             [weakSelf.webView evaluateJavaScript:timeStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-                NSLog(@"alert");
+                DefLog(@"alert");
             }];
         }];
         datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
@@ -542,18 +546,22 @@
         nomWebView.titleName = titleName;
         [self.navigationController pushViewController:nomWebView animated:YES];
     }else if ([message.name isEqualToString:@"getLocation"]){
-//    self.locationManager = [[BMKLocationManager alloc] init];
-//       locationManager.delegate = self;
-//       locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
-//       locationManager.distanceFilter = kCLDistanceFilterNone;
-//       locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//       locationManager.activityType = CLActivityTypeAutomotiveNavigation;
-//       locationManager.pausesLocationUpdatesAutomatically = NO;
-//       locationManager.allowsBackgroundLocationUpdates = YES;
-//       locationManager.locationTimeout = 10;
-//       locationManager.reGeocodeTimeout = 10;
 
-        [self getLoation];
+        if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+
+            //定位功能可用
+            [self getLoation];
+
+        }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
+
+            //定位不能用
+            NSString *locationStr = @"";
+            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                DefLog(@"item%@",item);
+            }];
+        }
+        
     }
 }
 
@@ -568,7 +576,7 @@
         NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
 //       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
        [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-           NSLog(@"item%@",item);
+           DefLog(@"item%@",item);
        }];
     }];
     //开启定位服务
@@ -679,7 +687,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
     NSString * urlStr = navigationAction.request.URL.absoluteString;
-    NSLog(@"发送跳转请求：%@",urlStr);
+    DefLog(@"发送跳转请求：%@",urlStr);
     //自己定义的协议头
     NSString *htmlHeadString = @"github://";
     if([urlStr hasPrefix:htmlHeadString]){
@@ -704,7 +712,7 @@
 // 根据客户端受到的服务器响应头以及response相关信息来决定是否可以跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
     NSString * urlStr = navigationResponse.response.URL.absoluteString;
-    NSLog(@"当前跳转地址：%@",urlStr);
+    DefLog(@"当前跳转地址：%@",urlStr);
     //允许跳转
     decisionHandler(WKNavigationResponsePolicyAllow);
     //不允许跳转
@@ -809,7 +817,7 @@
 }
 
 - (void)listDidAppear {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    DefLog(@"%@", NSStringFromSelector(_cmd));
     //因为`JXCategoryListCollectionContainerView`内部通过`UICollectionView`的cell加载列表。当切换tab的时候，之前的列表所在的cell就被回收到缓存池，就会从视图层级树里面被剔除掉，即没有显示出来且不在视图层级里面。这个时候MJRefreshHeader所持有的UIActivityIndicatorView就会被设置hidden。所以需要在列表显示的时候，且isRefreshing==YES的时候，再让UIActivityIndicatorView重新开启动画。
     //    if (self.showScrollerView.mj_header.isRefreshing) {
     //        UIActivityIndicatorView *activity = [self.showScrollerView.mj_header valueForKey:@"loadingView"];
@@ -827,7 +835,7 @@
 }
 
 - (void)listDidDisappear {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    DefLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 

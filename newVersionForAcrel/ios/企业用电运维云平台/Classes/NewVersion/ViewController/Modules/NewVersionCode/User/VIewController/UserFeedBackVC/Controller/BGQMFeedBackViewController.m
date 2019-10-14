@@ -87,7 +87,7 @@
     }else if(imageArr.count!=0&&model.textContent.length==0){
         model.msgType = @1;
     }else{
-        NSLog(@"必须有内容才能发送");
+        DefLog(@"必须有内容才能发送");
         [MBProgressHUD showError:@"必须有内容才能发送"];
         return;
     }

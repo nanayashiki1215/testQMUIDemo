@@ -240,3 +240,9 @@
 - (BOOL)qmui_hasBindingKey:(NSString *)key;
 
 @end
+@interface NSThread (QMUI_KVC)
+
+/// 是否将当前线程标记为忽略系统的 KVC access prohibited 警告，默认为 NO，当开启后，NSException 将不会再抛出 access prohibited 异常
+/// @see BeginIgnoreUIKVCAccessProhibited、EndIgnoreUIKVCAccessProhibited
+@property(nonatomic, assign) BOOL qmui_shouldIgnoreUIKVCAccessProhibited;
+@end

@@ -89,7 +89,7 @@ static NSString *PopoverViewCellRI = @"PopoverViewCellRI";
         length = window.bounds.size.width - 5;
     }
     
-    NSLog(@"%f",length);
+    DefLog(@"%f",length);
     //右间隔最小5x
     if ((frame.origin.x + frame.size.width) > length) {
         frame.origin.x = length - frame.size.width;

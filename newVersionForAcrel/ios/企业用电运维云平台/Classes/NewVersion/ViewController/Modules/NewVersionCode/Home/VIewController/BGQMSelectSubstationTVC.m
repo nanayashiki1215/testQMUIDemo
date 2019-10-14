@@ -394,7 +394,7 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"输入字符串为：%@ -- %lu", searchText, (unsigned long)searchText.length);
+    DefLog(@"输入字符串为：%@ -- %lu", searchText, (unsigned long)searchText.length);
   
 }
 

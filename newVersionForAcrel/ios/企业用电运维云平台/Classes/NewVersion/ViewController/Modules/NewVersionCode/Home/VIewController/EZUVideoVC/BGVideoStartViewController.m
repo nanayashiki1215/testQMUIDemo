@@ -149,8 +149,8 @@
 
 - (void)timeCheckUpdateNetworkAccessToken{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    //    NSLog(@"之前时间：%@", [userDefault objectForKey:@"nowDate"]);//之前存储的时间
-    //    NSLog(@"现在时间%@",[NSDate date]);//现在的时间
+    //    DefLog(@"之前时间：%@", [userDefault objectForKey:@"nowDate"]);//之前存储的时间
+    //    DefLog(@"现在时间%@",[NSDate date]);//现在的时间
     NSDate *now = [NSDate date];
     NSDate *agoDate = [userDefault objectForKey:@"nowDate"];
     
@@ -159,10 +159,10 @@
     
     NSString *ageDateString = [dateFormatter stringFromDate:agoDate];
     NSString *nowDateString = [dateFormatter stringFromDate:now];
-    NSLog(@"日期比较：之前：%@ 现在：%@",ageDateString,nowDateString);
+    DefLog(@"日期比较：之前：%@ 现在：%@",ageDateString,nowDateString);
     
     if ([ageDateString isEqualToString:nowDateString]) {
-        NSLog(@"一天就显示一次");
+        DefLog(@"一天就显示一次");
         
     }else{
         __weak typeof(self) weakSelf = self;
@@ -214,7 +214,7 @@
 {
 //    [QRCodeScanViewController showQRCodeScanFrom:self resultBlock:^(NSDictionary *jsonInfo){
 //
-//        NSLog(@"=====url json info:%@",jsonInfo);
+//        DefLog(@"=====url json info:%@",jsonInfo);
 //
 //        NSString *appKey = jsonInfo[@"AppKey"];
 //        NSString *accessToken = jsonInfo[@"AccessToken"];
@@ -507,7 +507,7 @@
 //    }
     NSString *urlInputString = [NSString stringWithFormat:@"%@begin=%@&end=%@",urlStr,self.startTimeStr,self.endTimeStr];
 //    self.urlInput.text = @"ezopen://open.ys7.com/183414608/1.rec?begin=20190509000000&end=20190509235959";
-    NSLog(@"输入的时间段为：%@",urlInputString);
+    DefLog(@"输入的时间段为：%@",urlInputString);
     NSString *modeStr = [self readStringWithKey:EZUIKitMode];
     [self showPlayerControllerWithAppKey:self.appKeyInput.text
                                   access:self.accessTokenInput.text
@@ -542,7 +542,7 @@
     WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
         
         NSString *dateString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
-        NSLog(@"选择的日期：%@",dateString);
+        DefLog(@"选择的日期：%@",dateString);
         [sender setTitle:dateString forState:UIControlStateNormal];
         weakSelf.startTimeStr = [selectDate stringWithFormat:@"yyyyMMddHHmmss"];
 //        [weakSelf setTimeWithDateStr:dateStrWithSet andIsOrNotBeginTime:YES];
@@ -559,7 +559,7 @@
     WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
         
         NSString *dateString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
-        NSLog(@"选择的日期：%@",dateString);
+        DefLog(@"选择的日期：%@",dateString);
         [sender setTitle:dateString forState:UIControlStateNormal];
         weakSelf.endTimeStr = [selectDate stringWithFormat:@"yyyyMMddHHmmss"];
 //        [weakSelf setTimeWithDateStr:dateStrWithSet andIsOrNotBeginTime:NO];

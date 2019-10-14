@@ -286,7 +286,7 @@
 	];
 
 	if (error != nil) {
-		NSLog(@"NSString JSONObject error: %@", [error localizedDescription]);
+		DefLog(@"NSString JSONObject error: %@", [error localizedDescription]);
 	}
 
 	@try {

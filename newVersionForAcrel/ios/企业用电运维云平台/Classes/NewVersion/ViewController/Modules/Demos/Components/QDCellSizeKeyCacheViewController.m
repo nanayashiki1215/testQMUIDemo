@@ -120,7 +120,7 @@
     UICollectionViewLayoutAttributes *result = [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
     CGFloat resultHeight = [self.textLabel sizeThatFits:CGSizeMake(result.size.width - UIEdgeInsetsGetHorizontalValue(self.paddings), CGFLOAT_MAX)].height + UIEdgeInsetsGetVerticalValue(self.paddings);
     CGSize resultSize = CGSizeFlatted(CGSizeMake(result.size.width, resultHeight));
-    NSLog(@"第 %@ 个 cell 的 preferredLayoutAttributesFittingAttributes: 被调用（说明这个 cell 的 size 重新计算了一遍），结果为 %@", @(self.indexPath.item), NSStringFromCGSize(resultSize));
+    DefLog(@"第 %@ 个 cell 的 preferredLayoutAttributesFittingAttributes: 被调用（说明这个 cell 的 size 重新计算了一遍），结果为 %@", @(self.indexPath.item), NSStringFromCGSize(resultSize));
     result.size = resultSize;
     return result;
 }

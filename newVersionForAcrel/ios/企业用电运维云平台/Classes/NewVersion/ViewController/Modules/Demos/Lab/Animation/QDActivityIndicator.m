@@ -180,11 +180,11 @@
     
     if (currentOffsetY > beginAnimationOffset || currentOffsetY < -distanceForStartRefresh) {
         // 还没到开始动画的临界点，或者已经超过完整走完动画的距离，则什么都不用做
-//        NSLog(@"还没到，继续拉！！！currentOffsetY = %.2f, beginAnimationOffset = %.2f", currentOffsetY, beginAnimationOffset);
+//        DefLog(@"还没到，继续拉！！！currentOffsetY = %.2f, beginAnimationOffset = %.2f", currentOffsetY, beginAnimationOffset);
         return;
     }
     
-//    NSLog(@"开始了！！！currentOffsetY = %.2f, beginAnimationOffset = %.2f", currentOffsetY, beginAnimationOffset);
+//    DefLog(@"开始了！！！currentOffsetY = %.2f, beginAnimationOffset = %.2f", currentOffsetY, beginAnimationOffset);
     for (NSInteger i = 0, l = _lines.count; i < l; i++) {
         CALayer *line = _lines[i];
         line.speed = 0.0;
@@ -192,7 +192,7 @@
             [line addAnimation:[self groupAnimationWithIndex:i] forKey:QDActivityIndicatorAnimationKey];
         }
         _currentOffsetTime = ((-currentOffsetY + beginAnimationOffset) / distanceForCompleteAnimation) * AnimationDuration * 0.4;// timeOffset为0.6时loading刚好走完一轮，所以这里按总时间 * 0.4，从而保证loading停靠在顶部时，timeOffset刚好为0.6
-//        NSLog(@"_currentOffsetTime = %.2f, currentOffsetY = %.2f, distanceForStartRefresh = %.2f, distanceForCompleteAnimation = %.2f", (float)_currentOffsetTime, currentOffsetY, distanceForStartRefresh, distanceForCompleteAnimation);
+//        DefLog(@"_currentOffsetTime = %.2f, currentOffsetY = %.2f, distanceForStartRefresh = %.2f, distanceForCompleteAnimation = %.2f", (float)_currentOffsetTime, currentOffsetY, distanceForStartRefresh, distanceForCompleteAnimation);
         line.timeOffset = _currentOffsetTime;
     }
 }

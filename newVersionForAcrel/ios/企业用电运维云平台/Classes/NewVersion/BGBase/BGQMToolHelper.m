@@ -47,6 +47,7 @@
 //        UITabBar *tabbar = mainVc.tabBarController.tabBar;
 //        tabbar.tintColor = TabBarTintColor;
         QDTabBarViewController *mainTBVC =(QDTabBarViewController *) mainVc;
+        
         mainTBVC.tabBar.items[itemnumber].qmui_shouldShowUpdatesIndicator = isShow;
         mainTBVC.tabBar.items[itemnumber].qmui_badgeInteger = [showText integerValue];
     }

@@ -52,7 +52,7 @@ return _sharedObject; \
         [WXApi sendReq:req];
     }else{
         
-        NSLog(@"未安装微信应用或版本过低");
+        DefLog(@"未安装微信应用或版本过低");
     }
 }
 
@@ -79,7 +79,7 @@ return _sharedObject; \
             
             if(req.errCode == 0){
                 
-                NSLog(@"获取code：%@", req.code);
+                DefLog(@"获取code：%@", req.code);
                 
 //                req.code;
             }

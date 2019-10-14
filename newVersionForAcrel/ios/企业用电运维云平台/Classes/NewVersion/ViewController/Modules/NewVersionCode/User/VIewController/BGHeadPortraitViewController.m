@@ -75,7 +75,7 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     
-    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
+    DefLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
 }
 
 
@@ -263,7 +263,7 @@
     NSString *imageFilePath = [path stringByAppendingPathComponent:@"MyHeaderImage"];
     BOOL success = [UIImageJPEGRepresentation(image, 1) writeToFile:imageFilePath  atomically:YES];
     if (success){
-        NSLog(@"写入本地成功");
+        DefLog(@"写入本地成功");
     }
     
 }

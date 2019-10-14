@@ -15,7 +15,10 @@
 
 #import "NSObject+QMUI.h"
 #import "QMUIWeakObjectContainer.h"
+#import "QMUICore.h"
+#import "NSString+QMUI.h"
 #import <objc/message.h>
+
 
 @implementation NSObject (QMUI)
 
@@ -313,3 +316,45 @@ static char kAssociatedObjectKey_QMUIAllBoundObjects;
 }
 
 @end
+
+@implementation NSThread (QMUI_KVC)
+
+QMUISynthesizeBOOLProperty(qmui_shouldIgnoreUIKVCAccessProhibited, setQmui_shouldIgnoreUIKVCAccessProhibited)
+
+@end
+
+@interface NSException (QMUI_KVC)
+
+@end
+
+@implementation NSException (QMUI_KVC)
+
++ (void)load {
+    if (@available(iOS 13.0, *)) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            OverrideImplementation(object_getClass([NSException class]), @selector(raise:format:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
+                return ^(NSObject *selfObject, NSExceptionName raise, NSString *format, ...) {
+                    
+                    if (raise == NSGenericException && [format isEqualToString:@"Access to %@'s %@ ivar is prohibited. This is an application bug"]) {
+                        BOOL shouldIgnoreUIKVCAccessProhibited = ((QMUICMIActivated && IgnoreKVCAccessProhibited) || NSThread.currentThread.qmui_shouldIgnoreUIKVCAccessProhibited);
+                        if (shouldIgnoreUIKVCAccessProhibited) return;
+                        
+                        QMUILogWarn(@"NSObject (QMUI)", @"使用 KVC 访问了 UIKit 的私有属性，会触发系统的 NSException，建议尽量避免此类操作，仍需访问可使用 BeginIgnoreUIKVCAccessProhibited 和 EndIgnoreUIKVCAccessProhibited 把相关代码包裹起来，或者直接使用 qmui_valueForKey: 、qmui_setValue:forKey:");
+                    }
+                    
+                    id (*originSelectorIMP)(id, SEL, NSExceptionName name, NSString *, ...);
+                    originSelectorIMP = (id (*)(id, SEL, NSExceptionName name, NSString *, ...))originalIMPProvider();
+                    va_list args;
+                    va_start(args, format);
+                    NSString *reason =  [[NSString alloc] initWithFormat:format arguments:args];
+                    originSelectorIMP(selfObject, originCMD, raise, reason);
+                    va_end(args);
+                };
+            });
+        });
+    }
+}
+
+@end
+

@@ -542,11 +542,11 @@ typedef void(^doneBlock)(NSDate *);
             if (component == 0) {
                 yearIndex = row;
                 self.showYearView.text =_yearArray[yearIndex];
-                NSLog(@"yearIndex = %ld",row);
+                DefLog(@"yearIndex = %ld",row);
             }
             if (component == 1) {
                 monthIndex = row;
-                NSLog(@"monthIndex = %ld",row);
+                DefLog(@"monthIndex = %ld",row);
             }
         }
             break;

@@ -210,7 +210,7 @@
                     position:@"center"];
     }
     
-    NSLog(@"play error:%@(%ld)",error.errorString,(long)error.internalErrorCode);
+    DefLog(@"play error:%@(%ld)",error.errorString,(long)error.internalErrorCode);
 }
 
 - (void) EZUIPlayer:(EZUIPlayer *)player previewWidth:(CGFloat)pWidth previewHeight:(CGFloat)pHeight

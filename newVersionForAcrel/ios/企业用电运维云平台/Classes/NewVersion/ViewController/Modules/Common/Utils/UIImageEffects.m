@@ -114,17 +114,17 @@
     // Check pre-conditions.
     if (inputImage.size.width < 1 || inputImage.size.height < 1)
     {
-        NSLog(@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", inputImage.size.width, inputImage.size.height, inputImage);
+        DefLog(@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", inputImage.size.width, inputImage.size.height, inputImage);
         return nil;
     }
     if (!inputImage.CGImage)
     {
-        NSLog(@"*** error: inputImage must be backed by a CGImage: %@", inputImage);
+        DefLog(@"*** error: inputImage must be backed by a CGImage: %@", inputImage);
         return nil;
     }
     if (maskImage && !maskImage.CGImage)
     {
-        NSLog(@"*** error: effectMaskImage must be backed by a CGImage: %@", maskImage);
+        DefLog(@"*** error: effectMaskImage must be backed by a CGImage: %@", maskImage);
         return nil;
     }
     
@@ -173,7 +173,7 @@
         vImage_Error e = vImageBuffer_InitWithCGImage(&effectInBuffer, &format, NULL, inputImage.CGImage, kvImagePrintDiagnosticsToConsole);
         if (e != kvImageNoError)
         {
-            NSLog(@"*** error: vImageBuffer_InitWithCGImage returned error code %zi for inputImage: %@", e, inputImage);
+            DefLog(@"*** error: vImageBuffer_InitWithCGImage returned error code %zi for inputImage: %@", e, inputImage);
             UIGraphicsEndImageContext();
             return nil;
         }

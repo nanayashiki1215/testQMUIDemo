@@ -334,7 +334,7 @@
                     position:@"center"];
     }
     
-    NSLog(@"play error:%@(%ld)",error.errorString,(long)error.internalErrorCode);
+    DefLog(@"play error:%@(%ld)",error.errorString,(long)error.internalErrorCode);
 }
 
 - (void) EZUIPlayer:(EZUIPlayer *)player previewWidth:(CGFloat)pWidth previewHeight:(CGFloat)pHeight
@@ -465,8 +465,8 @@
 
 - (void)timeCheckUpdateNetworkAccessToken{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    //    NSLog(@"之前时间：%@", [userDefault objectForKey:@"nowDate"]);//之前存储的时间
-    //    NSLog(@"现在时间%@",[NSDate date]);//现在的时间
+    //    DefLog(@"之前时间：%@", [userDefault objectForKey:@"nowDate"]);//之前存储的时间
+    //    DefLog(@"现在时间%@",[NSDate date]);//现在的时间
     NSDate *now = [NSDate date];
     NSDate *agoDate = [userDefault objectForKey:@"nowDate"];
     
@@ -475,10 +475,10 @@
     
     NSString *ageDateString = [dateFormatter stringFromDate:agoDate];
     NSString *nowDateString = [dateFormatter stringFromDate:now];
-    NSLog(@"日期比较：之前：%@ 现在：%@",ageDateString,nowDateString);
+    DefLog(@"日期比较：之前：%@ 现在：%@",ageDateString,nowDateString);
     
     if ([ageDateString isEqualToString:nowDateString]) {
-        NSLog(@"一天就显示一次");
+        DefLog(@"一天就显示一次");
         
     }else{
         __weak typeof(self) weakSelf = self;

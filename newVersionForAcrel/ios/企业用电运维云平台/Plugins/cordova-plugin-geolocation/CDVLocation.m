@@ -127,7 +127,7 @@
         } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
             [self.locationManager  requestWhenInUseAuthorization];
         } else {
-            NSLog(@"[Warning] No NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription key is defined in the Info.plist file.");
+            DefLog(@"[Warning] No NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription key is defined in the Info.plist file.");
         }
         return;
     }
@@ -305,7 +305,7 @@
              NSArray* addressArray = [mark.addressDictionary objectForKey:@"FormattedAddressLines"];
              MyAddress = addressArray[0];
            }
-           NSLog(@"%@", MyAddress);
+           DefLog(@"%@", MyAddress);
          }
          
          [returnInfo setObject:MyAddress forKey:@"address"];
@@ -339,7 +339,7 @@
 
 - (void)locationManager:(CLLocationManager*)manager didFailWithError:(NSError*)error
 {
-    NSLog(@"locationManager::didFailWithError %@", [error localizedFailureReason]);
+    DefLog(@"locationManager::didFailWithError %@", [error localizedFailureReason]);
 
     CDVLocationData* lData = self.locationData;
     if (lData && __locationStarted) {

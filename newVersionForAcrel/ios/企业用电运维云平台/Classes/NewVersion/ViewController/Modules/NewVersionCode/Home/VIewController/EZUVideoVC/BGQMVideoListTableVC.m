@@ -232,7 +232,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
     //    }
 //    NSString *urlInputString = [NSString stringWithFormat:@"%@begin=%@&end=%@",urlStr,self.startTimeStr,self.endTimeStr];
     //    self.urlInput.text = @"ezopen://open.ys7.com/183414608/1.rec?begin=20190509000000&end=20190509235959";
-//    NSLog(@"输入的时间段为：%@",urlInputString);
+//    DefLog(@"输入的时间段为：%@",urlInputString);
 //    NSString *modeStr = [self readStringWithKey:EZUIKitMode];
 //    [self showPlayerControllerWithAppKey:EZAPPKEY
 //                                  access:EZAPPTestAccessToken
@@ -485,7 +485,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 }
 
 - (void)listDidAppear {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    DefLog(@"%@", NSStringFromSelector(_cmd));
     //因为`JXCategoryListCollectionContainerView`内部通过`UICollectionView`的cell加载列表。当切换tab的时候，之前的列表所在的cell就被回收到缓存池，就会从视图层级树里面被剔除掉，即没有显示出来且不在视图层级里面。这个时候MJRefreshHeader所持有的UIActivityIndicatorView就会被设置hidden。所以需要在列表显示的时候，且isRefreshing==YES的时候，再让UIActivityIndicatorView重新开启动画。
     //    if (self.showScrollerView.mj_header.isRefreshing) {
     //        UIActivityIndicatorView *activity = [self.showScrollerView.mj_header valueForKey:@"loadingView"];
@@ -494,7 +494,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 }
 
 - (void)listDidDisappear {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    DefLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 

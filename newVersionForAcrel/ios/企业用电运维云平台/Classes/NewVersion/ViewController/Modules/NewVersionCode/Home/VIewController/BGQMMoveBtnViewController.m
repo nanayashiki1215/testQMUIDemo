@@ -63,7 +63,7 @@
     NSMutableArray *titleArr = [BGQMSingletonManager shareInstance].moreshowGridArray;
     NSMutableArray *imageArr = [BGQMSingletonManager shareInstance].moreshowImageGridArray;
     NSMutableArray *idArr = [BGQMSingletonManager shareInstance].moreshowGridIDArray;
-    NSLog(@"title :%@ , image :%@ , id :%@ ",titleArr,imageArr,idArr);
+    DefLog(@"title :%@ , image :%@ , id :%@ ",titleArr,imageArr,idArr);
     _showGridArray = [[NSMutableArray alloc]initWithArray:titleArr];
     _showImageGridArray = [[NSMutableArray alloc]initWithArray:imageArr];
     _showGridIDArray = [[NSMutableArray alloc]initWithArray:idArr];
@@ -159,7 +159,7 @@
 //响应格子删除事件
 - (void)gridItemDidDeleteClicked:(UIButton *)deleteButton
 {
-    NSLog(@"您添加的格子GridId：%ld", (long)deleteButton.tag);
+    DefLog(@"您添加的格子GridId：%ld", (long)deleteButton.tag);
     
     for (NSInteger i = 0; i < self.gridItemArray.count; i++) {
         CustomGrid *deleteGird = self.gridItemArray[i];
@@ -201,7 +201,7 @@
     {
         CustomGrid *gridItem = _gridItemArray[i];
         gridItem.gridCenterPoint = gridItem.center;
-        NSLog(@"所有格子的位置信息{gridIndex: %ld, gridCenterPoint: %@, gridID: %ld}",
+        DefLog(@"所有格子的位置信息{gridIndex: %ld, gridCenterPoint: %@, gridID: %ld}",
               (long)gridItem.gridIndex, NSStringFromCGPoint(gridItem.gridCenterPoint), (long)gridItem.gridId);
     }
 }
@@ -318,14 +318,14 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSUserDefaults standardUserDefaults] setObject:moreIdArray forKey:@"gridID"];
     
-    NSLog(@"更新后titleArray = %@",titleArray);
-    NSLog(@"更新后imageArray = %@",imageArray);
+    DefLog(@"更新后titleArray = %@",titleArray);
+    DefLog(@"更新后imageArray = %@",imageArray);
     
 }
 
 - (void)itemAction:(NSString *)title
 {
-    NSLog(@"点击了%@格子",title);
+    DefLog(@"点击了%@格子",title);
 }
 
 - (void)backToPreView

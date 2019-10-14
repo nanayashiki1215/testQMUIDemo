@@ -74,7 +74,6 @@
     self.pwdTextField.placeholder = NSLocalizedString(@"passwordText",nil);
     self.pwdTextField.secureTextEntry = YES;
     
-    
     UserManager *user = [UserManager manager];
     self.checkBtn = [[UIButton alloc]initWithFrame:CGRectMake(32, self.signInBtn.frame.origin.y-40, 16, 16)];
     self.checkBtn.layer.borderWidth = 1;

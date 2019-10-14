@@ -265,7 +265,7 @@ static CGSize const kDefaultDotSize = {8, 8};
         if ([abstractDotView respondsToSelector:@selector(changeActivityState:dotView:pageDotSize:)]) {
             [abstractDotView changeActivityState:active dotView:abstractDotView pageDotSize:_pageDotSize];
         } else {
-            NSLog(@"Custom view : %@ must implement an 'changeActivityState' method or you can subclass %@ to help you.", self.dotViewClass, [MSAbstractDotView class]);
+            DefLog(@"Custom view : %@ must implement an 'changeActivityState' method or you can subclass %@ to help you.", self.dotViewClass, [MSAbstractDotView class]);
         }
     } else if (self.dotImage && self.currentDotImage) {
         UIImageView *dotView = (UIImageView *)[self.dots objectAtIndex:index];

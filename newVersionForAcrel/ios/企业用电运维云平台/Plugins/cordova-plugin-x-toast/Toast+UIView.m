@@ -274,7 +274,7 @@ static id styling;
         return [point CGPointValue];
     }
 
-    NSLog(@"Warning: Invalid position for toast.");
+    DefLog(@"Warning: Invalid position for toast.");
     return [self centerPointForPosition:CSToastDefaultPosition withToast:toast withAddedPixelsY:addPixelsY];
 }
 

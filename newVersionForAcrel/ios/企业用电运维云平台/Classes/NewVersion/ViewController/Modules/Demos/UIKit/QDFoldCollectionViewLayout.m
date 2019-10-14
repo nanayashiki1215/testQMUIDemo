@@ -100,7 +100,7 @@
 //}
 //
 //- (void)finalizeCollectionViewUpdates {
-//    NSLog(@"finalizeCollectionViewUpdates");
+//    DefLog(@"finalizeCollectionViewUpdates");
 //    self.deleteIndexPaths = nil;
 //}
 

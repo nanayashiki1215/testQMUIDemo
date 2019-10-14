@@ -53,7 +53,7 @@ NSString *const kmsgDetail = @"msgDetail";
 
 #pragma mark - 潘弘   /*作者：潘弘*/
 NSString *const kfirstShowApp = @"firstShowApp";
-//https://appstoreconnect.apple.com/WebObjects/iTunesConnect.woa/ra/ng/app/1277572475
+//https://appstoreconnect.apple.com/WebObjects/iTunesConnect.woa/ra/ng/app/1483154227
 NSString *const kAppleId = @"1483154227";
 
 NSString *const kBaseUrlString = @"BaseUrlString";
