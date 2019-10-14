@@ -67,7 +67,7 @@
 
 @end
 
-@interface CDVInAppBrowserViewController : UIViewController <UIWebViewDelegate, CDVScreenOrientationDelegate>{
+@interface CDVInAppBrowserViewController : UIViewController <CDVScreenOrientationDelegate>{
     @private
     NSString* _userAgent;
     NSString* _prevUserAgent;
@@ -75,14 +75,14 @@
     CDVInAppBrowserOptions *_browserOptions;
     
 #ifdef __CORDOVA_4_0_0
-    CDVUIWebViewDelegate* _webViewDelegate;
+//    CDVUIWebViewDelegate* _webViewDelegate;
 #else
-    CDVWebViewDelegate* _webViewDelegate;
+//    CDVWebViewDelegate* _webViewDelegate;
 #endif
     
 }
 
-@property (nonatomic, strong) IBOutlet UIWebView* webView;
+//@property (nonatomic, strong) IBOutlet WKWebView* webView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* closeButton;
 @property (nonatomic, strong) IBOutlet UILabel* addressLabel;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* backButton;

@@ -147,25 +147,7 @@
 //    QDNavigationController *uikitNavController = [[QDNavigationController alloc] initWithRootViewController:uikitViewController];
 //    uikitNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:NSLocalizedString(@"Home",nil) image:[UIImageMake(@"bghome") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bghomeselect") tag:0];
 //    AddAccessibilityHint(uikitNavController.tabBarItem, @"首页");
-//
-//    //报警
-//    BGUIWebViewController *componentViewController = [[BGUIWebViewController alloc] init];
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"alarms" ofType:@"html" inDirectory:@"aDevices"];
-//    componentViewController.isUseOnline = NO;
-//    componentViewController.localUrlString = filePath;
-//    componentViewController.showWebType = showWebTypeAlarm;
-//    //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-//    componentViewController.hidesBottomBarWhenPushed = NO;
-//    QDNavigationController *componentNavController = [[QDNavigationController alloc] initWithRootViewController:componentViewController];
-//    componentNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:NSLocalizedString(@"Alarm",nil) image:[UIImageMake(@"bgbaojing") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgbaojingselect") tag:1];
-//    AddAccessibilityHint(componentNavController.tabBarItem, @"实时报警系统");
-//
-//    // 我的
-//    BGQMUserViewController *ownVC = [[BGQMUserViewController alloc] init];
-//    ownVC.hidesBottomBarWhenPushed = NO;
-//    QDNavigationController *ownNavController = [[QDNavigationController alloc] initWithRootViewController:ownVC];
-//    ownNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:NSLocalizedString(@"About",nil) image:[UIImageMake(@"bgperson") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgpersonselect") tag:3];
-//
+
     
 //    self.viewControllers = @[uikitNavController, componentNavController,ownNavController];
     self.viewControllers = [mainControllers copy];

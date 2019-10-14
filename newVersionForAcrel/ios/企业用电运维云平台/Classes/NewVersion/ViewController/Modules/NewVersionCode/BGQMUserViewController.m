@@ -10,7 +10,7 @@
 #import "BGHeadTableViewCell.h"
 #import "BGRedSpotCell.h"
 #import "BGHeadPortraitViewController.h"
-#import "BGWebViewController.h"
+
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
 #import "BGQMloginViewController.h"

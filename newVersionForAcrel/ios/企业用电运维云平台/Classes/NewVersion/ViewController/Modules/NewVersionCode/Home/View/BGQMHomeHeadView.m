@@ -227,11 +227,7 @@
     NSMutableString *str = [[NSMutableString alloc] initWithFormat:@"telprompt://%@",string];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
    
-//    NSMutableString* str = [[NSMutableString alloc] initWithFormat:@"tel:%@",string];
-//    UIWebView * callWebview = [[UIWebView alloc] init];
-//    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-//    [[UIApplication sharedApplication].keyWindow addSubview:callWebview];
-    
+
 }
 
 -(void)CLickAddressBtnEvent:(UIButton *)btn{

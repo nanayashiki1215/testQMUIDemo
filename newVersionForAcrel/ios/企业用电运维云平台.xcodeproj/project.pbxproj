@@ -414,7 +414,6 @@
 		B6E15613228CFFD300CB4A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6E15615228CFFD300CB4A5F /* InfoPlist.strings */; };
 		B6E15619228D009500CB4A5F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6E1561B228D009500CB4A5F /* Localizable.strings */; };
 		B6E15621228D2B0300CB4A5F /* CustomMainTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E15620228D2B0300CB4A5F /* CustomMainTBViewController.m */; };
-		B6E15625228D2C9800CB4A5F /* BGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E15623228D2C9800CB4A5F /* BGWebViewController.m */; };
 		B6E15631228D3E7F00CB4A5F /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1562F228D3E7F00CB4A5F /* PopoverView.m */; };
 		B6E15632228D3E7F00CB4A5F /* PopoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E15630228D3E7F00CB4A5F /* PopoverCell.m */; };
 		B6E1564D228D418700CB4A5F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E15635228D418700CB4A5F /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -1409,8 +1408,6 @@
 		B6E1561C228D009800CB4A5F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B6E1561F228D2B0300CB4A5F /* CustomMainTBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomMainTBViewController.h; sourceTree = "<group>"; };
 		B6E15620228D2B0300CB4A5F /* CustomMainTBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMainTBViewController.m; sourceTree = "<group>"; };
-		B6E15622228D2C9800CB4A5F /* BGWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGWebViewController.h; sourceTree = "<group>"; };
-		B6E15623228D2C9800CB4A5F /* BGWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGWebViewController.m; sourceTree = "<group>"; };
 		B6E1562D228D3E7F00CB4A5F /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		B6E1562E228D3E7F00CB4A5F /* PopoverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverCell.h; sourceTree = "<group>"; };
 		B6E1562F228D3E7F00CB4A5F /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
@@ -3026,8 +3023,6 @@
 				B64376442293D25100A92D74 /* BGUIWebViewController.h */,
 				B64376452293D25100A92D74 /* BGUIWebViewController.m */,
 				B64376462293D25100A92D74 /* BGUIWebViewController.xib */,
-				B6E15622228D2C9800CB4A5F /* BGWebViewController.h */,
-				B6E15623228D2C9800CB4A5F /* BGWebViewController.m */,
 				B6380A9222CB2084002500E0 /* Dis-test */,
 				B6A92DFF22BA222500D16AE9 /* scroll */,
 				B6A92DFD22B9D03300D16AE9 /* assets */,
@@ -3580,7 +3575,7 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JLG36R4UAW;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -3973,7 +3968,6 @@
 				B6EB9BCE22C99FDB00136A6C /* BGVideoStartViewController.m in Sources */,
 				B6E15601228CF09C00CB4A5F /* NSArray+BGExtension.m in Sources */,
 				B6C768C622A0B8DC00DA675D /* QDTextViewController.m in Sources */,
-				B6E15625228D2C9800CB4A5F /* BGWebViewController.m in Sources */,
 				B657DD7B22927AEC0009BCB0 /* TZImagePickerController.m in Sources */,
 				B6C7690322A0B8DC00DA675D /* QDStaticTableViewController.m in Sources */,
 				B6E1568C228D419800CB4A5F /* MJRefreshBackGifFooter.m in Sources */,
@@ -4230,7 +4224,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4285,7 +4279,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -18,8 +18,8 @@
  */
 
 #import "CDVUserAgentUtil.h"
-
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 // #define VerboseLog NSLog
 #define VerboseLog(...) do {} while (0)
@@ -54,8 +54,8 @@ static NSMutableArray* gPendingSetUserAgentBlocks = nil;
         BOOL cachedValueIsOld = ![systemAndLocale isEqualToString:cordovaUserAgentVersion];
 
         if ((gOriginalUserAgent == nil) || cachedValueIsOld) {
-            UIWebView* sampleWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-            gOriginalUserAgent = [sampleWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+            WKWebView* sampleWebView = [[WKWebView alloc] initWithFrame:CGRectZero];
+//            gOriginalUserAgent = [sampleWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 
             [userDefaults setObject:gOriginalUserAgent forKey:kCdvUserAgentKey];
             [userDefaults setObject:systemAndLocale forKey:kCdvUserAgentVersionKey];

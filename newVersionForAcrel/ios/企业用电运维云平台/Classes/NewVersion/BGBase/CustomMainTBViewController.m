@@ -7,7 +7,7 @@
 
 #import "CustomMainTBViewController.h"
 #import "CustomNavigationController.h"
-#import "BGWebViewController.h"
+
 #import "BGHomeViewController.h"
 #import "BGUIWebViewController.h"
 #import "UIImage+BGExtension.h"
@@ -32,16 +32,7 @@
     BGHomeViewController *homeVC = [[BGHomeViewController alloc] initWithNibName:@"BGHomeViewController" bundle:nil];
 //    UINavigationController *nav1 =[[UINavigationController alloc] initWithRootViewController:firstVC1];
     [self addChildViewController:homeVC title:DefLocalizedString(@"Home") image:@"home2" selectedImage:@"index"];
-    
-    BGUIWebViewController *webvc2 = [[BGUIWebViewController alloc] initWithNibName:@"BGWebViewController" bundle:nil];
-//    webvc2.localUrlString = @"www/app/v-beyERj-zh_CN-/app/alarm.w";
-
-    [self addChildViewController:webvc2 title:DefLocalizedString(@"Alarm") image:@"alarm" selectedImage:@"alarm2"];
-    
-
-    BGUIWebViewController *webvc3 = [[BGUIWebViewController alloc] initWithNibName:@"BGWebViewController" bundle:nil];
-    //    UINavigationController *nav1 =[[UINavigationController alloc] initWithRootViewController:firstVC1];
-    [self addChildViewController:webvc3 title:DefLocalizedString(@"About") image:@"contact" selectedImage:@"us"];
+  
 }
 
 /**

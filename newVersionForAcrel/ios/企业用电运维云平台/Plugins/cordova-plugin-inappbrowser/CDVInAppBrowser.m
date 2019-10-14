@@ -139,10 +139,10 @@
     if (self.inAppBrowserViewController == nil) {
         NSString* originalUA = [CDVUserAgentUtil originalUserAgent];
         self.inAppBrowserViewController = [[CDVInAppBrowserViewController alloc] initWithUserAgent:originalUA prevUserAgent:[self.commandDelegate userAgent] browserOptions: browserOptions];
-        self.inAppBrowserViewController.navigationDelegate = self;
+//        self.inAppBrowserViewController.navigationDelegate = self;
 
         if ([self.viewController conformsToProtocol:@protocol(CDVScreenOrientationDelegate)]) {
-            self.inAppBrowserViewController.orientationDelegate = (UIViewController <CDVScreenOrientationDelegate>*)self.viewController;
+//            self.inAppBrowserViewController.orientationDelegate = (UIViewController <CDVScreenOrientationDelegate>*)self.viewController;
         }
     }
 
@@ -175,25 +175,25 @@
 
     // prevent webView from bouncing
     if (browserOptions.disallowoverscroll) {
-        if ([self.inAppBrowserViewController.webView respondsToSelector:@selector(scrollView)]) {
-            ((UIScrollView*)[self.inAppBrowserViewController.webView scrollView]).bounces = NO;
-        } else {
-            for (id subview in self.inAppBrowserViewController.webView.subviews) {
-                if ([[subview class] isSubclassOfClass:[UIScrollView class]]) {
-                    ((UIScrollView*)subview).bounces = NO;
-                }
-            }
-        }
+//        if ([self.inAppBrowserViewController.webView respondsToSelector:@selector(scrollView)]) {
+//            ((UIScrollView*)[self.inAppBrowserViewController.webView scrollView]).bounces = NO;
+//        } else {
+//            for (id subview in self.inAppBrowserViewController.webView.subviews) {
+//                if ([[subview class] isSubclassOfClass:[UIScrollView class]]) {
+//                    ((UIScrollView*)subview).bounces = NO;
+//                }
+//            }
+//        }
     }
 
     // UIWebView options
-    self.inAppBrowserViewController.webView.scalesPageToFit = browserOptions.enableviewportscale;
-    self.inAppBrowserViewController.webView.mediaPlaybackRequiresUserAction = browserOptions.mediaplaybackrequiresuseraction;
-    self.inAppBrowserViewController.webView.allowsInlineMediaPlayback = browserOptions.allowinlinemediaplayback;
-    if (IsAtLeastiOSVersion(@"6.0")) {
-        self.inAppBrowserViewController.webView.keyboardDisplayRequiresUserAction = browserOptions.keyboarddisplayrequiresuseraction;
-        self.inAppBrowserViewController.webView.suppressesIncrementalRendering = browserOptions.suppressesincrementalrendering;
-    }
+//    self.inAppBrowserViewController.webView.scalesPageToFit = browserOptions.enableviewportscale;
+//    self.inAppBrowserViewController.webView.mediaPlaybackRequiresUserAction = browserOptions.mediaplaybackrequiresuseraction;
+//    self.inAppBrowserViewController.webView.allowsInlineMediaPlayback = browserOptions.allowinlinemediaplayback;
+//    if (IsAtLeastiOSVersion(@"6.0")) {
+//        self.inAppBrowserViewController.webView.keyboardDisplayRequiresUserAction = browserOptions.keyboarddisplayrequiresuseraction;
+//        self.inAppBrowserViewController.webView.suppressesIncrementalRendering = browserOptions.suppressesincrementalrendering;
+//    }
 
     [self.inAppBrowserViewController navigateTo:url];
     if (!browserOptions.hidden) {
@@ -267,19 +267,19 @@
 - (void)injectDeferredObject:(NSString*)source withWrapper:(NSString*)jsWrapper
 {
     // Ensure an iframe bridge is created to communicate with the CDVInAppBrowserViewController
-    [self.inAppBrowserViewController.webView stringByEvaluatingJavaScriptFromString:@"(function(d){_cdvIframeBridge=d.getElementById('_cdvIframeBridge');if(!_cdvIframeBridge) {var e = _cdvIframeBridge = d.createElement('iframe');e.id='_cdvIframeBridge'; e.style.display='none';d.body.appendChild(e);}})(document)"];
-
-    if (jsWrapper != nil) {
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:@[source] options:0 error:nil];
-        NSString* sourceArrayString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        if (sourceArrayString) {
-            NSString* sourceString = [sourceArrayString substringWithRange:NSMakeRange(1, [sourceArrayString length] - 2)];
-            NSString* jsToInject = [NSString stringWithFormat:jsWrapper, sourceString];
-            [self.inAppBrowserViewController.webView stringByEvaluatingJavaScriptFromString:jsToInject];
-        }
-    } else {
-        [self.inAppBrowserViewController.webView stringByEvaluatingJavaScriptFromString:source];
-    }
+//    [self.inAppBrowserViewController.webView stringByEvaluatingJavaScriptFromString:@"(function(d){_cdvIframeBridge=d.getElementById('_cdvIframeBridge');if(!_cdvIframeBridge) {var e = _cdvIframeBridge = d.createElement('iframe');e.id='_cdvIframeBridge'; e.style.display='none';d.body.appendChild(e);}})(document)"];
+//
+//    if (jsWrapper != nil) {
+//        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:@[source] options:0 error:nil];
+//        NSString* sourceArrayString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        if (sourceArrayString) {
+//            NSString* sourceString = [sourceArrayString substringWithRange:NSMakeRange(1, [sourceArrayString length] - 2)];
+//            NSString* jsToInject = [NSString stringWithFormat:jsWrapper, sourceString];
+//            [self.inAppBrowserViewController.webView stringByEvaluatingJavaScriptFromString:jsToInject];
+//        }
+//    } else {
+//        [self.inAppBrowserViewController.webView stringByEvaluatingJavaScriptFromString:source];
+//    }
 }
 
 - (void)injectScriptCode:(CDVInvokedUrlCommand*)command
@@ -360,76 +360,76 @@
  * value to pass to the callback. [NSURL path] should take care of the URL-unescaping, and a JSON_EXCEPTION
  * is returned if the JSON is invalid.
  */
-- (BOOL)webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSURL* url = request.URL;
-    BOOL isTopLevelNavigation = [request.URL isEqual:[request mainDocumentURL]];
-
-    // See if the url uses the 'gap-iab' protocol. If so, the host should be the id of a callback to execute,
-    // and the path, if present, should be a JSON-encoded value to pass to the callback.
-    if ([[url scheme] isEqualToString:@"gap-iab"]) {
-        NSString* scriptCallbackId = [url host];
-        CDVPluginResult* pluginResult = nil;
-
-        if ([self isValidCallbackId:scriptCallbackId]) {
-            NSString* scriptResult = [url path];
-            NSError* __autoreleasing error = nil;
-
-            // The message should be a JSON-encoded array of the result of the script which executed.
-            if ((scriptResult != nil) && ([scriptResult length] > 1)) {
-                scriptResult = [scriptResult substringFromIndex:1];
-                NSData* decodedResult = [NSJSONSerialization JSONObjectWithData:[scriptResult dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-                if ((error == nil) && [decodedResult isKindOfClass:[NSArray class]]) {
-                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:(NSArray*)decodedResult];
-                } else {
-                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_JSON_EXCEPTION];
-                }
-            } else {
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[]];
-            }
-            [self.commandDelegate sendPluginResult:pluginResult callbackId:scriptCallbackId];
-            return NO;
-        }
-    } else if ((self.callbackId != nil) && isTopLevelNavigation) {
-        // Send a loadstart event for each top-level navigation (includes redirects).
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                                      messageAsDictionary:@{@"type":@"loadstart", @"url":[url absoluteString]}];
-        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
-    }
-
-    return YES;
-}
-
-- (void)webViewDidStartLoad:(UIWebView*)theWebView
-{
-}
-
-- (void)webViewDidFinishLoad:(UIWebView*)theWebView
-{
-    if (self.callbackId != nil) {
-        // TODO: It would be more useful to return the URL the page is actually on (e.g. if it's been redirected).
-        NSString* url = [self.inAppBrowserViewController.currentURL absoluteString];
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                                      messageAsDictionary:@{@"type":@"loadstop", @"url":url}];
-        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
-    }
-}
-
-- (void)webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
-{
-    if (self.callbackId != nil) {
-        NSString* url = [self.inAppBrowserViewController.currentURL absoluteString];
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                                                      messageAsDictionary:@{@"type":@"loaderror", @"url":url, @"code": [NSNumber numberWithInteger:error.code], @"message": error.localizedDescription}];
-        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
-    }
-}
+//- (BOOL)webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
+//{
+//    NSURL* url = request.URL;
+//    BOOL isTopLevelNavigation = [request.URL isEqual:[request mainDocumentURL]];
+//
+//    // See if the url uses the 'gap-iab' protocol. If so, the host should be the id of a callback to execute,
+//    // and the path, if present, should be a JSON-encoded value to pass to the callback.
+//    if ([[url scheme] isEqualToString:@"gap-iab"]) {
+//        NSString* scriptCallbackId = [url host];
+//        CDVPluginResult* pluginResult = nil;
+//
+//        if ([self isValidCallbackId:scriptCallbackId]) {
+//            NSString* scriptResult = [url path];
+//            NSError* __autoreleasing error = nil;
+//
+//            // The message should be a JSON-encoded array of the result of the script which executed.
+//            if ((scriptResult != nil) && ([scriptResult length] > 1)) {
+//                scriptResult = [scriptResult substringFromIndex:1];
+//                NSData* decodedResult = [NSJSONSerialization JSONObjectWithData:[scriptResult dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+//                if ((error == nil) && [decodedResult isKindOfClass:[NSArray class]]) {
+//                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:(NSArray*)decodedResult];
+//                } else {
+//                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_JSON_EXCEPTION];
+//                }
+//            } else {
+//                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[]];
+//            }
+//            [self.commandDelegate sendPluginResult:pluginResult callbackId:scriptCallbackId];
+//            return NO;
+//        }
+//    } else if ((self.callbackId != nil) && isTopLevelNavigation) {
+//        // Send a loadstart event for each top-level navigation (includes redirects).
+//        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+//                                                      messageAsDictionary:@{@"type":@"loadstart", @"url":[url absoluteString]}];
+//        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+//
+//        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+//    }
+//
+//    return YES;
+//}
+//
+//- (void)webViewDidStartLoad:(UIWebView*)theWebView
+//{
+//}
+//
+//- (void)webViewDidFinishLoad:(UIWebView*)theWebView
+//{
+//    if (self.callbackId != nil) {
+//        // TODO: It would be more useful to return the URL the page is actually on (e.g. if it's been redirected).
+//        NSString* url = [self.inAppBrowserViewController.currentURL absoluteString];
+//        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+//                                                      messageAsDictionary:@{@"type":@"loadstop", @"url":url}];
+//        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+//
+//        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+//    }
+//}
+//
+//- (void)webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
+//{
+//    if (self.callbackId != nil) {
+//        NSString* url = [self.inAppBrowserViewController.currentURL absoluteString];
+//        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+//                                                      messageAsDictionary:@{@"type":@"loaderror", @"url":url, @"code": [NSNumber numberWithInteger:error.code], @"message": error.localizedDescription}];
+//        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+//
+//        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+//    }
+//}
 
 - (void)browserExit
 {
@@ -470,9 +470,9 @@
         _prevUserAgent = prevUserAgent;
         _browserOptions = browserOptions;
 #ifdef __CORDOVA_4_0_0
-        _webViewDelegate = [[CDVUIWebViewDelegate alloc] initWithDelegate:self];
+//        _webViewDelegate = [[CDVUIWebViewDelegate alloc] initWithDelegate:self];
 #else
-        _webViewDelegate = [[CDVWebViewDelegate alloc] initWithDelegate:self];
+//        _webViewDelegate = [[CDVWebViewDelegate alloc] initWithDelegate:self];
 #endif
         
         [self createViews];
@@ -483,33 +483,33 @@
 
 // Prevent crashes on closing windows
 -(void)dealloc {
-   self.webView.delegate = nil;
+//   self.webView.delegate = nil;
 }
 
 - (void)createViews
 {
     // We create the views in code for primarily for ease of upgrades and not requiring an external .xib to be included
 
-    CGRect webViewBounds = self.view.bounds;
-    BOOL toolbarIsAtBottom = ![_browserOptions.toolbarposition isEqualToString:kInAppBrowserToolbarBarPositionTop];
-    webViewBounds.size.height -= _browserOptions.location ? FOOTER_HEIGHT : TOOLBAR_HEIGHT;
-    self.webView = [[UIWebView alloc] initWithFrame:webViewBounds];
-
-    self.webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-
-    [self.view addSubview:self.webView];
-    [self.view sendSubviewToBack:self.webView];
-
-    self.webView.delegate = _webViewDelegate;
-    self.webView.backgroundColor = [UIColor whiteColor];
-
-    self.webView.clearsContextBeforeDrawing = YES;
-    self.webView.clipsToBounds = YES;
-    self.webView.contentMode = UIViewContentModeScaleToFill;
-    self.webView.multipleTouchEnabled = YES;
-    self.webView.opaque = YES;
-    self.webView.scalesPageToFit = NO;
-    self.webView.userInteractionEnabled = YES;
+//    CGRect webViewBounds = self.view.bounds;
+//    BOOL toolbarIsAtBottom = ![_browserOptions.toolbarposition isEqualToString:kInAppBrowserToolbarBarPositionTop];
+//    webViewBounds.size.height -= _browserOptions.location ? FOOTER_HEIGHT : TOOLBAR_HEIGHT;
+//    self.webView = [[UIWebView alloc] initWithFrame:webViewBounds];
+//
+//    self.webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+//
+//    [self.view addSubview:self.webView];
+//    [self.view sendSubviewToBack:self.webView];
+//
+////    self.webView.delegate = _webViewDelegate;
+//    self.webView.backgroundColor = [UIColor whiteColor];
+//
+//    self.webView.clearsContextBeforeDrawing = YES;
+//    self.webView.clipsToBounds = YES;
+//    self.webView.contentMode = UIViewContentModeScaleToFill;
+//    self.webView.multipleTouchEnabled = YES;
+//    self.webView.opaque = YES;
+//    self.webView.scalesPageToFit = NO;
+//    self.webView.userInteractionEnabled = YES;
 
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.spinner.alpha = 1.000;
@@ -518,7 +518,7 @@
     self.spinner.clearsContextBeforeDrawing = NO;
     self.spinner.clipsToBounds = NO;
     self.spinner.contentMode = UIViewContentModeScaleToFill;
-    self.spinner.frame = CGRectMake(CGRectGetMidX(self.webView.frame), CGRectGetMidY(self.webView.frame), 20.0, 20.0);
+//    self.spinner.frame = CGRectMake(CGRectGetMidX(self.webView.frame), CGRectGetMidY(self.webView.frame), 20.0, 20.0);
     self.spinner.hidden = NO;
     self.spinner.hidesWhenStopped = YES;
     self.spinner.multipleTouchEnabled = NO;
@@ -534,13 +534,13 @@
     UIBarButtonItem* fixedSpaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     fixedSpaceButton.width = 20;
 
-    float toolbarY = toolbarIsAtBottom ? self.view.bounds.size.height - TOOLBAR_HEIGHT : 0.0;
-    CGRect toolbarFrame = CGRectMake(0.0, toolbarY, self.view.bounds.size.width, TOOLBAR_HEIGHT);
+//    float toolbarY = toolbarIsAtBottom ? self.view.bounds.size.height - TOOLBAR_HEIGHT : 0.0;
+//    CGRect toolbarFrame = CGRectMake(0.0, toolbarY, self.view.bounds.size.width, TOOLBAR_HEIGHT);
 
-    self.toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
+    self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     self.toolbar.alpha = 1.000;
     self.toolbar.autoresizesSubviews = YES;
-    self.toolbar.autoresizingMask = toolbarIsAtBottom ? (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin) : UIViewAutoresizingFlexibleWidth;
+//    self.toolbar.autoresizingMask = toolbarIsAtBottom ? (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin) : UIViewAutoresizingFlexibleWidth;
     self.toolbar.barStyle = UIBarStyleBlackOpaque;
     self.toolbar.clearsContextBeforeDrawing = NO;
     self.toolbar.clipsToBounds = NO;
@@ -551,9 +551,9 @@
     self.toolbar.userInteractionEnabled = YES;
 
     CGFloat labelInset = 5.0;
-    float locationBarY = toolbarIsAtBottom ? self.view.bounds.size.height - FOOTER_HEIGHT : self.view.bounds.size.height - LOCATIONBAR_HEIGHT;
+//    float locationBarY = toolbarIsAtBottom ? self.view.bounds.size.height - FOOTER_HEIGHT : self.view.bounds.size.height - LOCATIONBAR_HEIGHT;
 
-    self.addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelInset, locationBarY, self.view.bounds.size.width - labelInset, LOCATIONBAR_HEIGHT)];
+//    self.addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelInset, locationBarY, self.view.bounds.size.width - labelInset, LOCATIONBAR_HEIGHT)];
     self.addressLabel.adjustsFontSizeToFitWidth = NO;
     self.addressLabel.alpha = 1.000;
     self.addressLabel.autoresizesSubviews = YES;
@@ -602,7 +602,7 @@
 
 - (void) setWebViewFrame : (CGRect) frame {
     NSLog(@"Setting the WebView's frame to %@", NSStringFromCGRect(frame));
-    [self.webView setFrame:frame];
+//    [self.webView setFrame:frame];
 }
 
 - (void)setCloseButtonTitle:(NSString*)title
@@ -738,7 +738,7 @@
 
 - (void)viewDidUnload
 {
-    [self.webView loadHTMLString:nil baseURL:nil];
+//    [self.webView loadHTMLString:nil baseURL:nil];
     [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
     [super viewDidUnload];
 }
@@ -774,25 +774,25 @@
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
 
     if (_userAgentLockToken != 0) {
-        [self.webView loadRequest:request];
+//        [self.webView loadRequest:request];
     } else {
-        __weak CDVInAppBrowserViewController* weakSelf = self;
-        [CDVUserAgentUtil acquireLock:^(NSInteger lockToken) {
-            _userAgentLockToken = lockToken;
-            [CDVUserAgentUtil setUserAgent:_userAgent lockToken:lockToken];
-            [weakSelf.webView loadRequest:request];
-        }];
+//        __weak CDVInAppBrowserViewController* weakSelf = self;
+//        [CDVUserAgentUtil acquireLock:^(NSInteger lockToken) {
+//            _userAgentLockToken = lockToken;
+//            [CDVUserAgentUtil setUserAgent:_userAgent lockToken:lockToken];
+////            [weakSelf.webView loadRequest:request];
+//        }];
     }
 }
 
 - (void)goBack:(id)sender
 {
-    [self.webView goBack];
+//    [self.webView goBack];
 }
 
 - (void)goForward:(id)sender
 {
-    [self.webView goForward];
+//    [self.webView goForward];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -818,78 +818,77 @@
 
 - (void) rePositionViews {
     if ([_browserOptions.toolbarposition isEqualToString:kInAppBrowserToolbarBarPositionTop]) {
-        [self.webView setFrame:CGRectMake(self.webView.frame.origin.x, TOOLBAR_HEIGHT, self.webView.frame.size.width, self.webView.frame.size.height)];
+//        [self.webView setFrame:CGRectMake(self.webView.frame.origin.x, TOOLBAR_HEIGHT, self.webView.frame.size.width, self.webView.frame.size.height)];
         [self.toolbar setFrame:CGRectMake(self.toolbar.frame.origin.x, [self getStatusBarOffset], self.toolbar.frame.size.width, self.toolbar.frame.size.height)];
     }
 }
 
-#pragma mark UIWebViewDelegate
 
-- (void)webViewDidStartLoad:(UIWebView*)theWebView
-{
-    // loading url, start spinner, update back/forward
-
-    self.addressLabel.text = NSLocalizedString(@"Loading...", nil);
-    self.backButton.enabled = theWebView.canGoBack;
-    self.forwardButton.enabled = theWebView.canGoForward;
-
-    [self.spinner startAnimating];
-
-    return [self.navigationDelegate webViewDidStartLoad:theWebView];
-}
-
-- (BOOL)webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    BOOL isTopLevelNavigation = [request.URL isEqual:[request mainDocumentURL]];
-
-    if (isTopLevelNavigation) {
-        self.currentURL = request.URL;
-    }
-    return [self.navigationDelegate webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView*)theWebView
-{
-    // update url, stop spinner, update back/forward
-
-    self.addressLabel.text = [self.currentURL absoluteString];
-    self.backButton.enabled = theWebView.canGoBack;
-    self.forwardButton.enabled = theWebView.canGoForward;
-
-    [self.spinner stopAnimating];
-
-    // Work around a bug where the first time a PDF is opened, all UIWebViews
-    // reload their User-Agent from NSUserDefaults.
-    // This work-around makes the following assumptions:
-    // 1. The app has only a single Cordova Webview. If not, then the app should
-    //    take it upon themselves to load a PDF in the background as a part of
-    //    their start-up flow.
-    // 2. That the PDF does not require any additional network requests. We change
-    //    the user-agent here back to that of the CDVViewController, so requests
-    //    from it must pass through its white-list. This *does* break PDFs that
-    //    contain links to other remote PDF/websites.
-    // More info at https://issues.apache.org/jira/browse/CB-2225
-    BOOL isPDF = [@"true" isEqualToString :[theWebView stringByEvaluatingJavaScriptFromString:@"document.body==null"]];
-    if (isPDF) {
-        [CDVUserAgentUtil setUserAgent:_prevUserAgent lockToken:_userAgentLockToken];
-    }
-
-    [self.navigationDelegate webViewDidFinishLoad:theWebView];
-}
-
-- (void)webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
-{
-    // log fail message, stop spinner, update back/forward
-    NSLog(@"webView:didFailLoadWithError - %ld: %@", (long)error.code, [error localizedDescription]);
-
-    self.backButton.enabled = theWebView.canGoBack;
-    self.forwardButton.enabled = theWebView.canGoForward;
-    [self.spinner stopAnimating];
-
-    self.addressLabel.text = NSLocalizedString(@"Load Error", nil);
-
-    [self.navigationDelegate webView:theWebView didFailLoadWithError:error];
-}
+//- (void)webViewDidStartLoad:(UIWebView*)theWebView
+//{
+//    // loading url, start spinner, update back/forward
+//
+//    self.addressLabel.text = NSLocalizedString(@"Loading...", nil);
+//    self.backButton.enabled = theWebView.canGoBack;
+//    self.forwardButton.enabled = theWebView.canGoForward;
+//
+//    [self.spinner startAnimating];
+//
+//    return [self.navigationDelegate webViewDidStartLoad:theWebView];
+//}
+//
+//- (BOOL)webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
+//{
+//    BOOL isTopLevelNavigation = [request.URL isEqual:[request mainDocumentURL]];
+//
+//    if (isTopLevelNavigation) {
+//        self.currentURL = request.URL;
+//    }
+//    return [self.navigationDelegate webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
+//}
+//
+//- (void)webViewDidFinishLoad:(UIWebView*)theWebView
+//{
+//    // update url, stop spinner, update back/forward
+//
+//    self.addressLabel.text = [self.currentURL absoluteString];
+//    self.backButton.enabled = theWebView.canGoBack;
+//    self.forwardButton.enabled = theWebView.canGoForward;
+//
+//    [self.spinner stopAnimating];
+//
+//    // Work around a bug where the first time a PDF is opened, all UIWebViews
+//    // reload their User-Agent from NSUserDefaults.
+//    // This work-around makes the following assumptions:
+//    // 1. The app has only a single Cordova Webview. If not, then the app should
+//    //    take it upon themselves to load a PDF in the background as a part of
+//    //    their start-up flow.
+//    // 2. That the PDF does not require any additional network requests. We change
+//    //    the user-agent here back to that of the CDVViewController, so requests
+//    //    from it must pass through its white-list. This *does* break PDFs that
+//    //    contain links to other remote PDF/websites.
+//    // More info at https://issues.apache.org/jira/browse/CB-2225
+//    BOOL isPDF = [@"true" isEqualToString :[theWebView stringByEvaluatingJavaScriptFromString:@"document.body==null"]];
+//    if (isPDF) {
+//        [CDVUserAgentUtil setUserAgent:_prevUserAgent lockToken:_userAgentLockToken];
+//    }
+//
+//    [self.navigationDelegate webViewDidFinishLoad:theWebView];
+//}
+//
+//- (void)webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
+//{
+//    // log fail message, stop spinner, update back/forward
+//    NSLog(@"webView:didFailLoadWithError - %ld: %@", (long)error.code, [error localizedDescription]);
+//
+//    self.backButton.enabled = theWebView.canGoBack;
+//    self.forwardButton.enabled = theWebView.canGoForward;
+//    [self.spinner stopAnimating];
+//
+//    self.addressLabel.text = NSLocalizedString(@"Load Error", nil);
+//
+//    [self.navigationDelegate webView:theWebView didFailLoadWithError:error];
+//}
 
 #pragma mark CDVScreenOrientationDelegate
 

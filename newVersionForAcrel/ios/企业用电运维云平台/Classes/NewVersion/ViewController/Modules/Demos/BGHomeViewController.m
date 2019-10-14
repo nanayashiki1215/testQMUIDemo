@@ -9,7 +9,6 @@
 #import "PopoverView.h"
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
-#import "BGWebViewController.h"
 #import "BGHeadPortraitViewController.h"
 //#import "YPAMapChooseViewController.h"
 //#import "SingleLocDemoViewController.h"
@@ -63,8 +62,7 @@
                 BGHeadPortraitViewController *hpvc = [[BGHeadPortraitViewController alloc] initWithNibName:@"BGHeadPortraitViewController" bundle:nil];
                 [weakSelf pushViewController:hpvc animation:YES];
             }else if([code isEqualToString:@"1003"]){
-                BGWebViewController *web = [[BGWebViewController alloc] init];
-                [weakSelf pushViewController:web animation:YES];
+                
             }else if([code isEqualToString:@"1004"]){
 //                //显示高德地理位置
 //                YPAMapChooseViewController *locationC = [[YPAMapChooseViewController alloc] initWithNibName:@"YPAMapChooseViewController" bundle:nil];
