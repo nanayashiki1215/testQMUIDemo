@@ -29,12 +29,12 @@
 
 @property (nonatomic, strong, readonly) UIView* engineWebView;
 
-- (id)loadRequest:(NSURLRequest*)request;
-- (id)loadHTMLString:(NSString*)string baseURL:(NSURL*)baseURL;
-- (void)evaluateJavaScript:(NSString*)javaScriptString completionHandler:(void (^)(id, NSError*))completionHandler;
+//- (id)loadRequest:(NSURLRequest*)request;
+//- (id)loadHTMLString:(NSString*)string baseURL:(NSURL*)baseURL;
+//- (void)evaluateJavaScript:(NSString*)javaScriptString completionHandler:(void (^)(id, NSError*))completionHandler;
 
-- (NSURL*)URL;
-- (BOOL)canLoadRequest:(NSURLRequest*)request;
+//- (NSURL*)URL;
+//- (BOOL)canLoadRequest:(NSURLRequest*)request;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)updateWithInfo:(NSDictionary*)info;

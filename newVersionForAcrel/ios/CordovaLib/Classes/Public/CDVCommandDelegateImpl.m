@@ -73,18 +73,18 @@
 - (void)evalJsHelper2:(NSString*)js
 {
     CDV_EXEC_LOG(@"Exec: evalling: %@", [js substringToIndex:MIN([js length], 160)]);
-    [_viewController.webViewEngine evaluateJavaScript:js completionHandler:^(id obj, NSError* error) {
-        // TODO: obj can be something other than string
-        if ([obj isKindOfClass:[NSString class]]) {
-            NSString* commandsJSON = (NSString*)obj;
-            if ([commandsJSON length] > 0) {
-                CDV_EXEC_LOG(@"Exec: Retrieved new exec messages by chaining.");
-            }
-
-            [_commandQueue enqueueCommandBatch:commandsJSON];
-            [_commandQueue executePending];
-        }
-    }];
+//    [_viewController.webViewEngine evaluateJavaScript:js completionHandler:^(id obj, NSError* error) {
+//        // TODO: obj can be something other than string
+//        if ([obj isKindOfClass:[NSString class]]) {
+//            NSString* commandsJSON = (NSString*)obj;
+//            if ([commandsJSON length] > 0) {
+//                CDV_EXEC_LOG(@"Exec: Retrieved new exec messages by chaining.");
+//            }
+//
+//            [_commandQueue enqueueCommandBatch:commandsJSON];
+//            [_commandQueue executePending];
+//        }
+//    }];
 }
 
 - (void)evalJsHelper:(NSString*)js

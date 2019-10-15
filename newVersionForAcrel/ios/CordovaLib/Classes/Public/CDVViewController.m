@@ -332,20 +332,20 @@
         // Fix the memory leak caused by the strong reference.
         [weakSelf setLockToken:lockToken];
         if (appURL) {
-            NSURLRequest* appReq = [NSURLRequest requestWithURL:appURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
-            [self.webViewEngine loadRequest:appReq];
+//            NSURLRequest* appReq = [NSURLRequest requestWithURL:appURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+//            [self.webViewEngine loadRequest:appReq];
         } else {
             NSString* loadErr = [NSString stringWithFormat:@"ERROR: Start Page at '%@/%@' was not found.", self.wwwFolderName, self.startPage];
             NSLog(@"%@", loadErr);
 
             NSURL* errorUrl = [self errorURL];
             if (errorUrl) {
-                errorUrl = [NSURL URLWithString:[NSString stringWithFormat:@"?error=%@", [loadErr stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet]] relativeToURL:errorUrl];
-                NSLog(@"%@", [errorUrl absoluteString]);
-                [self.webViewEngine loadRequest:[NSURLRequest requestWithURL:errorUrl]];
+//                errorUrl = [NSURL URLWithString:[NSString stringWithFormat:@"?error=%@", [loadErr stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet]] relativeToURL:errorUrl];
+//                NSLog(@"%@", [errorUrl absoluteString]);
+//                [self.webViewEngine loadRequest:[NSURLRequest requestWithURL:errorUrl]];
             } else {
-                NSString* html = [NSString stringWithFormat:@"<html><body> %@ </body></html>", loadErr];
-                [self.webViewEngine loadHTMLString:html baseURL:nil];
+//                NSString* html = [NSString stringWithFormat:@"<html><body> %@ </body></html>", loadErr];
+//                [self.webViewEngine loadHTMLString:html baseURL:nil];
             }
         }
     }];
@@ -531,18 +531,18 @@
     if (NSClassFromString(webViewEngineClass)) {
         self.webViewEngine = [[NSClassFromString(webViewEngineClass) alloc] initWithFrame:bounds];
         // if a webView engine returns nil (not supported by the current iOS version) or doesn't conform to the protocol, or can't load the request, we use UIWebView
-        if (!self.webViewEngine || ![self.webViewEngine conformsToProtocol:@protocol(CDVWebViewEngineProtocol)] || ![self.webViewEngine canLoadRequest:[NSURLRequest requestWithURL:self.appUrl]]) {
-            self.webViewEngine = [[NSClassFromString(defaultWebViewEngineClass) alloc] initWithFrame:bounds];
-        }
+//        if (!self.webViewEngine || ![self.webViewEngine conformsToProtocol:@protocol(CDVWebViewEngineProtocol)] || ![self.webViewEngine canLoadRequest:[NSURLRequest requestWithURL:self.appUrl]]) {
+//            self.webViewEngine = [[NSClassFromString(defaultWebViewEngineClass) alloc] initWithFrame:bounds];
+//        }
     } else {
         self.webViewEngine = [[NSClassFromString(defaultWebViewEngineClass) alloc] initWithFrame:bounds];
     }
 
     if ([self.webViewEngine isKindOfClass:[CDVPlugin class]]) {
-        [self registerPlugin:(CDVPlugin*)self.webViewEngine withClassName:webViewEngineClass];
+//        [self registerPlugin:(CDVPlugin*)self.webViewEngine withClassName:webViewEngineClass];
     }
 
-    return self.webViewEngine.engineWebView;
+    return nil;
 }
 
 - (NSString*)userAgent
@@ -789,7 +789,7 @@
     [_commandQueue dispose];
     [[self.pluginObjects allValues] makeObjectsPerformSelector:@selector(dispose)];
 
-    [self.webViewEngine loadHTMLString:@"about:blank" baseURL:nil];
+//    [self.webViewEngine loadHTMLString:@"about:blank" baseURL:nil];
     [self.pluginObjects removeAllObjects];
     [self.webView removeFromSuperview];
     self.webViewEngine = nil;

@@ -112,7 +112,7 @@
     [jsonStr appendString:@"}"];
     NSString * jsCallBack = [NSString stringWithFormat:@"%@(%@);", _eventCBId, jsonStr];
     //[self.webView stringByEvaluatingJavaScriptFromString:jsCallBack];
-    [self.webViewEngine evaluateJavaScript:jsCallBack completionHandler:nil];
+//    [self.webViewEngine evaluateJavaScript:jsCallBack completionHandler:nil];
 }
 -(void)parseDictionary:(NSDictionary *)inDictionary intoJSON:(NSMutableString *)jsonString
 {
