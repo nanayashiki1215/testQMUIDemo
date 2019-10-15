@@ -21,11 +21,7 @@
 #import <Cordova/CDVInvokedUrlCommand.h>
 #import <Cordova/CDVScreenOrientationDelegate.h>
 
-#ifdef __CORDOVA_4_0_0
-//    #import <Cordova/CDVUIWebViewDelegate.h>
-#else
-//    #import <Cordova/CDVWebViewDelegate.h>
-#endif
+
 
 @class CDVInAppBrowserViewController;
 
@@ -56,10 +52,10 @@
 @property (nonatomic, copy) NSString* transitionstyle;
 
 @property (nonatomic, assign) BOOL enableviewportscale;
-@property (nonatomic, assign) BOOL mediaplaybackrequiresuseraction;
+//@property (nonatomic, assign) BOOL mediaplaybackrequiresuseraction;
 @property (nonatomic, assign) BOOL allowinlinemediaplayback;
 @property (nonatomic, assign) BOOL keyboarddisplayrequiresuseraction;
-@property (nonatomic, assign) BOOL suppressesincrementalrendering;
+//@property (nonatomic, assign) BOOL suppressesincrementalrendering;
 @property (nonatomic, assign) BOOL hidden;
 @property (nonatomic, assign) BOOL disallowoverscroll;
 
@@ -75,14 +71,13 @@
     CDVInAppBrowserOptions *_browserOptions;
     
 #ifdef __CORDOVA_4_0_0
-//    CDVUIWebViewDelegate* _webViewDelegate;
+
 #else
-//    CDVWebViewDelegate* _webViewDelegate;
+
 #endif
     
 }
 
-//@property (nonatomic, strong) IBOutlet WKWebView* webView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* closeButton;
 @property (nonatomic, strong) IBOutlet UILabel* addressLabel;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* backButton;

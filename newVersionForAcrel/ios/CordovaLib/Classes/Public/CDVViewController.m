@@ -20,7 +20,7 @@
 #import <objc/message.h>
 #import "CDV.h"
 #import "CDVPlugin+Private.h"
-//#import "CDVUIWebViewDelegate.h"
+
 #import "CDVConfigParser.h"
 #import "CDVUserAgentUtil.h"
 #import <AVFoundation/AVFoundation.h>
@@ -38,7 +38,7 @@
 @property (nonatomic, readwrite, strong) NSMutableDictionary* pluginObjects;
 @property (nonatomic, readwrite, strong) NSMutableArray* startupPluginNames;
 @property (nonatomic, readwrite, strong) NSDictionary* pluginsMap;
-@property (nonatomic, readwrite, strong) id <CDVWebViewEngineProtocol> webViewEngine;
+//@property (nonatomic, readwrite, strong) id <CDVWebViewEngineProtocol> webViewEngine;
 
 @property (readwrite, assign) BOOL initialized;
 
@@ -54,8 +54,8 @@
 @synthesize wwwFolderName, startPage, initialized, openURL, baseUserAgent;
 @synthesize commandDelegate = _commandDelegate;
 @synthesize commandQueue = _commandQueue;
-@synthesize webViewEngine = _webViewEngine;
-@dynamic webView;
+//@synthesize webViewEngine = _webViewEngine;
+//@dynamic webView;
 
 - (void)__init
 {
@@ -262,10 +262,7 @@
 
 - (UIView*)webView
 {
-    if (self.webViewEngine != nil) {
-        return self.webViewEngine.engineWebView;
-    }
-
+  
     return nil;
 }
 
@@ -332,20 +329,16 @@
         // Fix the memory leak caused by the strong reference.
         [weakSelf setLockToken:lockToken];
         if (appURL) {
-//            NSURLRequest* appReq = [NSURLRequest requestWithURL:appURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
-//            [self.webViewEngine loadRequest:appReq];
+//            NSURLRequest* appReq = [NSURLRequest requestWithURL:appURL cach
         } else {
             NSString* loadErr = [NSString stringWithFormat:@"ERROR: Start Page at '%@/%@' was not found.", self.wwwFolderName, self.startPage];
             NSLog(@"%@", loadErr);
 
             NSURL* errorUrl = [self errorURL];
             if (errorUrl) {
-//                errorUrl = [NSURL URLWithString:[NSString stringWithFormat:@"?error=%@", [loadErr stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet]] relativeToURL:errorUrl];
-//                NSLog(@"%@", [errorUrl absoluteString]);
-//                [self.webViewEngine loadRequest:[NSURLRequest requestWithURL:errorUrl]];
+//                errorUrl = [NSURL URLWithString:[NSString stringWithFormat:@"?error=%@", [loadErr stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet]] relativeToURL:erro
             } else {
-//                NSString* html = [NSString stringWithFormat:@"<html><body> %@ </body></html>", loadErr];
-//                [self.webViewEngine loadHTMLString:html baseURL:nil];
+
             }
         }
     }];
@@ -520,53 +513,17 @@
     NSString* defaultWebViewEngineClass = [self.settings cordovaSettingForKey:@"CordovaDefaultWebViewEngine"];
     NSString* webViewEngineClass = [self.settings cordovaSettingForKey:@"CordovaWebViewEngine"];
 
-    if (!defaultWebViewEngineClass) {
-        defaultWebViewEngineClass = @"CDVUIWebViewEngine";
-    }
-    if (!webViewEngineClass) {
-        webViewEngineClass = defaultWebViewEngineClass;
-    }
+    
 
-    // Find webViewEngine
-    if (NSClassFromString(webViewEngineClass)) {
-        self.webViewEngine = [[NSClassFromString(webViewEngineClass) alloc] initWithFrame:bounds];
-        // if a webView engine returns nil (not supported by the current iOS version) or doesn't conform to the protocol, or can't load the request, we use UIWebView
-//        if (!self.webViewEngine || ![self.webViewEngine conformsToProtocol:@protocol(CDVWebViewEngineProtocol)] || ![self.webViewEngine canLoadRequest:[NSURLRequest requestWithURL:self.appUrl]]) {
-//            self.webViewEngine = [[NSClassFromString(defaultWebViewEngineClass) alloc] initWithFrame:bounds];
-//        }
-    } else {
-        self.webViewEngine = [[NSClassFromString(defaultWebViewEngineClass) alloc] initWithFrame:bounds];
-    }
-
-    if ([self.webViewEngine isKindOfClass:[CDVPlugin class]]) {
-//        [self registerPlugin:(CDVPlugin*)self.webViewEngine withClassName:webViewEngineClass];
-    }
+ 
 
     return nil;
 }
 
 - (NSString*)userAgent
 {
-    if (_userAgent != nil) {
-        return _userAgent;
-    }
-
-    NSString* localBaseUserAgent;
-    if (self.baseUserAgent != nil) {
-        localBaseUserAgent = self.baseUserAgent;
-    } else if ([self.settings cordovaSettingForKey:@"OverrideUserAgent"] != nil) {
-        localBaseUserAgent = [self.settings cordovaSettingForKey:@"OverrideUserAgent"];
-    } else {
-        localBaseUserAgent = [CDVUserAgentUtil originalUserAgent];
-    }
-    NSString* appendUserAgent = [self.settings cordovaSettingForKey:@"AppendUserAgent"];
-    if (appendUserAgent) {
-        _userAgent = [NSString stringWithFormat:@"%@ %@", localBaseUserAgent, appendUserAgent];
-    } else {
-        // Use our address as a unique number to append to the User-Agent.
-        _userAgent = localBaseUserAgent;
-    }
-    return _userAgent;
+   
+    return nil;
 }
 
 - (void)createGapView
@@ -667,19 +624,19 @@
 
     id obj = [self.pluginObjects objectForKey:className];
     if (!obj) {
-        obj = [[NSClassFromString(className)alloc] initWithWebViewEngine:_webViewEngine];
-        if (!obj) {
-            NSString* fullClassName = [NSString stringWithFormat:@"%@.%@",
-                                       NSBundle.mainBundle.infoDictionary[@"CFBundleExecutable"],
-                                       className];
-            obj = [[NSClassFromString(fullClassName)alloc] initWithWebViewEngine:_webViewEngine];
-        }
-
-        if (obj != nil) {
-            [self registerPlugin:obj withClassName:className];
-        } else {
-            NSLog(@"CDVPlugin class %@ (pluginName: %@) does not exist.", className, pluginName);
-        }
+//        obj = [[NSClassFromString(className)alloc] initWithWebViewEngine:_webViewEngine];
+//        if (!obj) {
+//            NSString* fullClassName = [NSString stringWithFormat:@"%@.%@",
+//                                       NSBundle.mainBundle.infoDictionary[@"CFBundleExecutable"],
+//                                       className];
+//            obj = [[NSClassFromString(fullClassName)alloc] initWithWebViewEngine:_webViewEngine];
+//        }
+//
+//        if (obj != nil) {
+//            [self registerPlugin:obj withClassName:className];
+//        } else {
+//            NSLog(@"CDVPlugin class %@ (pluginName: %@) does not exist.", className, pluginName);
+//        }
     }
     return obj;
 }
@@ -789,10 +746,10 @@
     [_commandQueue dispose];
     [[self.pluginObjects allValues] makeObjectsPerformSelector:@selector(dispose)];
 
-//    [self.webViewEngine loadHTMLString:@"about:blank" baseURL:nil];
+
     [self.pluginObjects removeAllObjects];
     [self.webView removeFromSuperview];
-    self.webViewEngine = nil;
+//    self.webViewEngine = nil;
 }
 
 - (NSInteger*)userAgentLockToken

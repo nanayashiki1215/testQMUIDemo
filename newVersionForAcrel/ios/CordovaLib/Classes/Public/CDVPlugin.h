@@ -22,7 +22,7 @@
 #import "CDVPluginResult.h"
 #import "NSMutableArray+QueueAdditions.h"
 #import "CDVCommandDelegate.h"
-#import "CDVWebViewEngineProtocol.h"
+
 
 @interface UIView (org_apache_cordova_UIView_Extension)
 
@@ -55,8 +55,6 @@ extern NSString* const CDVRemoteNotificationError CDV_DEPRECATED(4.0, "Functiona
 
 @interface CDVPlugin : NSObject {}
 
-@property (nonatomic, readonly, weak) UIView* webView;
-@property (nonatomic, readonly, weak) id <CDVWebViewEngineProtocol> webViewEngine;
 
 @property (nonatomic, weak) UIViewController* viewController;
 @property (nonatomic, weak) id <CDVCommandDelegate> commandDelegate;
@@ -72,13 +70,7 @@ extern NSString* const CDVRemoteNotificationError CDV_DEPRECATED(4.0, "Functiona
 - (void)onReset;
 - (void)dispose;
 
-/*
- // see initWithWebView implementation
- - (void) onPause {}
- - (void) onResume {}
- - (void) onOrientationWillChange {}
- - (void) onOrientationDidChange {}
- */
+
 
 - (id)appDelegate;
 

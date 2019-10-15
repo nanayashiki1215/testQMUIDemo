@@ -187,8 +187,7 @@
         NSURL *pathURL = [NSURL fileURLWithPath:self.localUrlString];
         [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
     }
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"/sfa/html/index.html" withExtension:nil];
-//    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+
 }
 
 -(void)loadOnlineHtml{
@@ -407,13 +406,8 @@
         
         //        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.chinadaily.com.cn"]];
         //        [request addValue:[self readCurrentCookieWithDomain:@"http://www.chinadaily.com.cn"] forHTTPHeaderField:@"Cookie"];
-        //        [_webView loadRequest:request];
-//        NSString *path;
-//        if (self.localUrlString) {
-//            path = [[NSBundle mainBundle] pathForResource:self.localUrlString ofType:nil];
-//        }
-//        NSString *htmlString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//        [_webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+     
+
         
     }
     return _webView;

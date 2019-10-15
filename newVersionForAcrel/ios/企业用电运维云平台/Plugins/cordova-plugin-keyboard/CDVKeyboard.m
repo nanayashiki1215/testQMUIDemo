@@ -102,7 +102,7 @@
                                                                  [weakSelf.commandDelegate evalJs: [NSString stringWithFormat:@"cordova.fireWindowEvent('keyboardHeightWillChange', { 'keyboardHeight': %f })", height]];
                                                              }];
 
-    self.webView.scrollView.delegate = self;
+//    self.webView.scrollView.delegate = self;
 }
 
 #pragma mark HideFormAccessoryBar
@@ -158,16 +158,16 @@ static IMP WKOriginalImp;
         return;
     }
 
-    self.webView.scrollView.scrollEnabled = YES;
+//    self.webView.scrollView.scrollEnabled = YES;
 
     CGRect screen = [[UIScreen mainScreen] bounds];
     CGRect statusBar = [[UIApplication sharedApplication] statusBarFrame];
     CGRect keyboard = ((NSValue*)notif.userInfo[@"UIKeyboardFrameEndUserInfoKey"]).CGRectValue;
 
     // Work within the webview's coordinate system
-    keyboard = [self.webView convertRect:keyboard fromView:nil];
-    statusBar = [self.webView convertRect:statusBar fromView:nil];
-    screen = [self.webView convertRect:screen fromView:nil];
+//    keyboard = [self.webView convertRect:keyboard fromView:nil];
+//    statusBar = [self.webView convertRect:statusBar fromView:nil];
+//    screen = [self.webView convertRect:screen fromView:nil];
 
     // if the webview is below the status bar, offset and shrink its frame
     if ([self settingForKey:@"StatusBarOverlaysWebView"] != nil && ![[self settingForKey:@"StatusBarOverlaysWebView"] boolValue]) {
@@ -183,11 +183,11 @@ static IMP WKOriginalImp;
     CGRect keyboardIntersection = CGRectIntersection(screen, keyboard);
     if (CGRectContainsRect(screen, keyboardIntersection) && !CGRectIsEmpty(keyboardIntersection) && _shrinkView && self.keyboardIsVisible) {
         screen.size.height -= keyboardIntersection.size.height;
-        self.webView.scrollView.scrollEnabled = !self.disableScrollingInShrinkView;
+//        self.webView.scrollView.scrollEnabled = !self.disableScrollingInShrinkView;
     }
 
     // A view's frame is in its superview's coordinate system so we need to convert again
-    self.webView.frame = [self.webView.superview convertRect:screen fromView:self.webView];
+//    self.webView.frame = [self.webView.superview convertRect:screen fromView:self.webView];
 }
 
 #pragma mark UIScrollViewDelegate
@@ -237,7 +237,7 @@ static IMP WKOriginalImp;
 
 - (void)hide:(CDVInvokedUrlCommand*)command
 {
-    [self.webView endEditing:YES];
+//    [self.webView endEditing:YES];
 }
 
 #pragma mark dealloc

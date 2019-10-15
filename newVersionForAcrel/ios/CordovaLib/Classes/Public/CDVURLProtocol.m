@@ -51,12 +51,12 @@ NSString* const kCDVAssetsLibraryPrefixes = @"assets-library://";
     return request;
 }
 
-- (void)startLoading
-{
+//- (void)startLoading
+//{
     // NSLog(@"%@ received %@ - start", self, NSStringFromSelector(_cmd));
-    NSURL* url = [[self request] URL];
-
-    if ([[url absoluteString] hasPrefix:kCDVAssetsLibraryPrefixes]) {
+//    NSURL* url = [[self request] URL];
+//
+//    if ([[url absoluteString] hasPrefix:kCDVAssetsLibraryPrefixes]) {
 //        ALAssetsLibraryAssetForURLResultBlock resultBlock = ^(ALAsset* asset) {
 //            if (asset) {
 //                // We have the asset!  Get the data and send it along.
@@ -70,7 +70,7 @@ NSString* const kCDVAssetsLibraryPrefixes = @"assets-library://";
 //                // Retrieving the asset failed for some reason.  Send an error.
 //                [self sendResponseWithResponseCode:404 data:nil mimeType:nil];
 //            }
-        };
+//        };
 //        ALAssetsLibraryAccessFailureBlock failureBlock = ^(NSError* error) {
 //            // Retrieving the asset failed for some reason.  Send an error.
 //            [self sendResponseWithResponseCode:401 data:nil mimeType:nil];
@@ -78,17 +78,17 @@ NSString* const kCDVAssetsLibraryPrefixes = @"assets-library://";
 //
 //        ALAssetsLibrary* assetsLibrary = [[ALAssetsLibrary alloc] init];
 //        [assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
-        return;
+//        return;
 //    }
 
 //    NSString* body = [NSString stringWithFormat:@"Access not allowed to URL: %@", url];
 //    [self sendResponseWithResponseCode:401 data:[body dataUsingEncoding:NSASCIIStringEncoding] mimeType:nil];
-}
+//}
 
-- (void)stopLoading
-{
+//- (void)stopLoading
+//{
     // do any cleanup here
-}
+//}
 
 + (BOOL)requestIsCacheEquivalent:(NSURLRequest*)requestA toRequest:(NSURLRequest*)requestB
 {
@@ -105,9 +105,9 @@ NSString* const kCDVAssetsLibraryPrefixes = @"assets-library://";
 
     [[self client] URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
     if (data != nil) {
-        [[self client] URLProtocol:self didLoadData:data];
+//        [[self client] URLProtocol:self didLoadData:data];
     }
-    [[self client] URLProtocolDidFinishLoading:self];
+//    [[self client] URLProtocolDidFinishLoading:self];
 }
 
 @end

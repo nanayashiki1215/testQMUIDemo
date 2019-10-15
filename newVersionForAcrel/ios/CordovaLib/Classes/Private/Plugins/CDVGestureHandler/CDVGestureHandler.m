@@ -46,20 +46,20 @@
         self.lpgr.minimumPressDuration = 0.05f;
     }
 
-    NSArray *views = self.webView.subviews;
-    if (views.count == 0) {
-        NSLog(@"No webview subviews found, not applying the longpress fix.");
-        return;
-    }
-    for (int i=0; i<views.count; i++) {
-        UIView *webViewScrollView = views[i];
-        if ([webViewScrollView isKindOfClass:[UIScrollView class]]) {
-            NSArray *webViewScrollViewSubViews = webViewScrollView.subviews;
-            UIView *browser = webViewScrollViewSubViews[0];
-            [browser addGestureRecognizer:self.lpgr];
-            break;
-        }
-    }
+//    NSArray *views = self.webView.subviews;
+//    if (views.count == 0) {
+//        NSLog(@"No webview subviews found, not applying the longpress fix.");
+//        return;
+//    }
+//    for (int i=0; i<views.count; i++) {
+//        UIView *webViewScrollView = views[i];
+//        if ([webViewScrollView isKindOfClass:[UIScrollView class]]) {
+//            NSArray *webViewScrollViewSubViews = webViewScrollView.subviews;
+//            UIView *browser = webViewScrollViewSubViews[0];
+//            [browser addGestureRecognizer:self.lpgr];
+//            break;
+//        }
+//    }
 }
 
 - (void)handleLongPressGestures:(UILongPressGestureRecognizer*)sender

@@ -19,6 +19,6 @@
 
 @interface CDVPlugin (Private)
 
-- (instancetype)initWithWebViewEngine:(id <CDVWebViewEngineProtocol>)theWebViewEngine;
+//- (instancetype)initWithWebViewEngine:(id <CDVWebViewEngineProtocol>)theWebViewEngine;
 
 @end

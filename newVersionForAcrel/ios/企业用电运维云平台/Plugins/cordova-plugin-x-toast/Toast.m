@@ -32,25 +32,25 @@
     return;
   }
 
-  [self.webView makeToast:message
-                 duration:durationInt
-                 position:position
-               addPixelsY:addPixelsY == nil ? 0 : [addPixelsY intValue]
-                     data:data
-                  styling:styling
-          commandDelegate:self.commandDelegate
-               callbackId:command.callbackId];
-
-  CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-  pluginResult.keepCallback = [NSNumber numberWithBool:YES];
-  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+//  [self.webView makeToast:message
+//                 duration:durationInt
+//                 position:position
+//               addPixelsY:addPixelsY == nil ? 0 : [addPixelsY intValue]
+//                     data:data
+//                  styling:styling
+//          commandDelegate:self.commandDelegate
+//               callbackId:command.callbackId];
+//
+//  CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+//  pluginResult.keepCallback = [NSNumber numberWithBool:YES];
+//  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)hide:(CDVInvokedUrlCommand*)command {
-  [self.webView hideToast];
-
-  CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+//  [self.webView hideToast];
+//
+//  CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+//  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
