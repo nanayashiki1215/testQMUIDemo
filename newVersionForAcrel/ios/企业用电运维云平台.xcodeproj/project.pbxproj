@@ -17,7 +17,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		2A26539090E747C2929DE853 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648D8EB102844BFB8C01DD1F /* CoreLocation.framework */; };
 		2E95AED19A84454D979E5FBF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 216BBA759C4A4241835A3B4A /* libsqlite3.0.tbd */; };
-		3FF0F795A00B4D3FB69F358B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E964ADADF144AE8C84462B /* Security.framework */; };
 		4A1FC029AE944D1589ACE1D3 /* LZKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD7505F9D6E4131A73F1515 /* LZKeychain.m */; };
 		53512C05AF1D442DBA8AF74F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379C72E7294B4715923102A6 /* CoreTelephony.framework */; };
 		5C68959B6E6D476E9D7BF866 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FEFA5752A8491293D2BF27 /* UIKit.framework */; };
@@ -469,7 +468,6 @@
 		B6FBB08A230E3C2B00166E36 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FBB089230E3C2B00166E36 /* NSBundle+Language.m */; };
 		B96B5C86285D46748C1C9991 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78620912BA1544F58112C0FB /* mapapi.bundle */; };
 		BE257C798B5344F5ACB68D16 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1CDA8235DF473C9BC8CC77 /* MessageUI.framework */; };
-		CFCBB0BA43AB404DB6DBF1B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F46F29FBC2C4358860FA57E /* SystemConfiguration.framework */; };
 		D190522BC7E1471B8CF43BF2 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C53EFD2C2481EAFB35B23 /* UIImage+Rotate.m */; };
 		DFD47A073F1640FC915D1708 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 998596CAB07D42F9A927B9E4 /* libcrypto.a */; };
 		F1686AD107474FEC98F56C51 /* BMKLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB338DA6075449C838C3EA9 /* BMKLocationKit.framework */; };
@@ -961,7 +959,6 @@
 		B68D2D3D22A660C3001C00EC /* BGQMSingletonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSingletonManager.m; sourceTree = "<group>"; };
 		B695823622A75CC900D12CA4 /* BGNetworkDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGNetworkDefine.h; sourceTree = "<group>"; };
 		B695823922A7633500D12CA4 /* BGNetworkDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGNetworkDefine.m; sourceTree = "<group>"; };
-		B69F7E2722FBB9E5005B0B03 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CSAboutViewController.xib; sourceTree = "<group>"; };
 		B69F7E2B22FBB9EF005B0B03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CSAboutViewController.xib; sourceTree = "<group>"; };
 		B69F7E2C22FBB9F3005B0B03 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CSAboutViewController.xib"; sourceTree = "<group>"; };
 		B6A8E23F22A4E51200E36D8F /* BGRedSpotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRedSpotCell.m; sourceTree = "<group>"; };
@@ -984,10 +981,13 @@
 		B6B1B628229534E200F1B5D2 /* BGBaiduMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGBaiduMapViewController.h; sourceTree = "<group>"; };
 		B6B1B629229534E200F1B5D2 /* BGBaiduMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGBaiduMapViewController.m; sourceTree = "<group>"; };
 		B6B1B62A229534E200F1B5D2 /* BGBaiduMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BGBaiduMapViewController.xib; sourceTree = "<group>"; };
-		B6B1B62E229536A700F1B5D2 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/BGLoginViewController.xib; sourceTree = "<group>"; };
 		B6B1B630229536B100F1B5D2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/BGLoginViewController.xib"; sourceTree = "<group>"; };
 		B6C1540922E7F4D0004B8614 /* CSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAboutViewController.h; sourceTree = "<group>"; };
 		B6C1540A22E7F4D0004B8614 /* CSAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAboutViewController.m; sourceTree = "<group>"; };
+		B6C281E82356DC9200C0DAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BGQMUserHeadTableViewCell.xib; sourceTree = "<group>"; };
+		B6C281E92356DC9600C0DAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BGCrearTrendsBaseTableViewCell.xib; sourceTree = "<group>"; };
+		B6C281EA2356DC9900C0DAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CSAboutViewController.xib; sourceTree = "<group>"; };
+		B6C281EB2356DC9D00C0DAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BGLoginViewController.xib; sourceTree = "<group>"; };
 		B6C6177822F968DC008DD6E7 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		B6C6177922F968DC008DD6E7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		B6C6177A22F968DC008DD6E7 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
@@ -1476,10 +1476,8 @@
 		B6ED2044229BACE30044EFC9 /* ColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		B6F4C03D22B72D15005A7695 /* BGQMEventDynamicTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMEventDynamicTableViewCell.h; sourceTree = "<group>"; };
 		B6F4C03E22B72D15005A7695 /* BGQMEventDynamicTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMEventDynamicTableViewCell.m; sourceTree = "<group>"; };
-		B6FB483B22FABD86006F94CF /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/BGQMUserHeadTableViewCell.xib; sourceTree = "<group>"; };
 		B6FB483F22FABD88006F94CF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/BGQMUserHeadTableViewCell.xib"; sourceTree = "<group>"; };
 		B6FB484022FABD8C006F94CF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BGQMUserHeadTableViewCell.xib; sourceTree = "<group>"; };
-		B6FB484222FAC098006F94CF /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/BGCrearTrendsBaseTableViewCell.xib; sourceTree = "<group>"; };
 		B6FB484422FAC09A006F94CF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/BGCrearTrendsBaseTableViewCell.xib"; sourceTree = "<group>"; };
 		B6FB484522FAC09C006F94CF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BGCrearTrendsBaseTableViewCell.xib; sourceTree = "<group>"; };
 		B6FBB083230E353C00166E36 /* BGQMChangeLanguageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMChangeLanguageViewController.h; sourceTree = "<group>"; };
@@ -1538,9 +1536,7 @@
 				B63BFF66234DBFDD009C70BC /* BaiduMapAPI_Map.framework in Frameworks */,
 				BE257C798B5344F5ACB68D16 /* MessageUI.framework in Frameworks */,
 				53512C05AF1D442DBA8AF74F /* CoreTelephony.framework in Frameworks */,
-				3FF0F795A00B4D3FB69F358B /* Security.framework in Frameworks */,
 				A74793AC903946A1BB94C37D /* OpenGLES.framework in Frameworks */,
-				CFCBB0BA43AB404DB6DBF1B6 /* SystemConfiguration.framework in Frameworks */,
 				5C68959B6E6D476E9D7BF866 /* UIKit.framework in Frameworks */,
 				0A2108A0B0DD4421883C2CC8 /* Foundation.framework in Frameworks */,
 				2E95AED19A84454D979E5FBF /* libsqlite3.0.tbd in Frameworks */,
@@ -3392,11 +3388,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BGQM;
-				LastUpgradeCheck = 510;
+				LastUpgradeCheck = 1110;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JLG36R4UAW;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -3408,6 +3404,7 @@
 				English,
 				en,
 				"zh-Hans",
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -3923,9 +3920,9 @@
 		B69F7E2822FBB9E5005B0B03 /* CSAboutViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B69F7E2722FBB9E5005B0B03 /* English */,
 				B69F7E2B22FBB9EF005B0B03 /* en */,
 				B69F7E2C22FBB9F3005B0B03 /* zh-Hans */,
+				B6C281EA2356DC9900C0DAB6 /* Base */,
 			);
 			name = CSAboutViewController.xib;
 			sourceTree = "<group>";
@@ -3933,9 +3930,9 @@
 		B6B1B62F229536A700F1B5D2 /* BGLoginViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6B1B62E229536A700F1B5D2 /* English */,
 				B6B1B630229536B100F1B5D2 /* zh-Hans */,
 				B63CE2D2233DB42900CE7E0F /* en */,
+				B6C281EB2356DC9D00C0DAB6 /* Base */,
 			);
 			name = BGLoginViewController.xib;
 			sourceTree = "<group>";
@@ -3961,9 +3958,9 @@
 		B6FB483C22FABD86006F94CF /* BGQMUserHeadTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6FB483B22FABD86006F94CF /* English */,
 				B6FB483F22FABD88006F94CF /* zh-Hans */,
 				B6FB484022FABD8C006F94CF /* en */,
+				B6C281E82356DC9200C0DAB6 /* Base */,
 			);
 			name = BGQMUserHeadTableViewCell.xib;
 			sourceTree = "<group>";
@@ -3971,9 +3968,9 @@
 		B6FB484322FAC098006F94CF /* BGCrearTrendsBaseTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6FB484222FAC098006F94CF /* English */,
 				B6FB484422FAC09A006F94CF /* zh-Hans */,
 				B6FB484522FAC09C006F94CF /* en */,
+				B6C281E92356DC9600C0DAB6 /* Base */,
 			);
 			name = BGCrearTrendsBaseTableViewCell.xib;
 			sourceTree = "<group>";
@@ -3990,11 +3987,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = JLG36R4UAW;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4031,7 +4028,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";
-				PROVISIONING_PROFILE_SPECIFIER = substation_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4048,7 +4045,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4093,20 +4090,36 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_INPUT_FILETYPE = automatic;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -4123,20 +4136,35 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_INPUT_FILETYPE = automatic;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

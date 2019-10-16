@@ -19,10 +19,10 @@
 @implementation UINavigationBar (QMUI)
 
 - (UIView *)qmui_backgroundView {
-    if (!UNDERiOS12) {
-        return nil;
+    if (UNDERiOS12) {
+        return [self valueForKey:@"_backgroundView"];
     }
-    return [self valueForKey:@"_backgroundView"];
+    return nil;
 }
 
 - (__kindof UIView *)qmui_backgroundContentView {

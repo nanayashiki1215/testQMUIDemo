@@ -72,12 +72,12 @@
     
     NSString* libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     NSString* libPathNoSync = [libPath stringByAppendingPathComponent:@"NoCloud"];
-//    NSString* localURI = [[libPathNoSync stringByAppendingPathComponent:@"www"] stringByAppendingPathComponent:resourcepath];
-//    if([fileManager fileExistsAtPath:localURI]){
-//        NSLog(@"本地存在文件:%@",localURI);
-//        return localURI;
-//    }
-    NSString* localURI = nil;
+    NSString* localURI = [[libPathNoSync stringByAppendingPathComponent:@"www"] stringByAppendingPathComponent:resourcepath];
+    if([fileManager fileExistsAtPath:localURI]){
+        NSLog(@"本地存在文件:%@",localURI);
+        return localURI;
+    }
+   
     
     NSBundle* mainBundle = [NSBundle mainBundle];
     
@@ -88,7 +88,7 @@
     NSString* directoryStr = @"www";
     
     if ([directoryPartsJoined length] > 0) {
-//        directoryStr = [NSString stringWithFormat:@"%@/%@/", @"www", [directoryParts componentsJoinedByString:@"/"]];
+        directoryStr = [NSString stringWithFormat:@"%@/%@/", @"www", [directoryParts componentsJoinedByString:@"/"]];
     }
     localURI = [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
     if([fileManager fileExistsAtPath:localURI]){
