@@ -80,23 +80,23 @@ static id styling;
     [self showToast:toast duration:duration position:position];
 }
 
-- (void)makeToast:(NSString *)message
-         duration:(NSTimeInterval)duration
-         position:(id)position addPixelsY:(int)addPixelsY
-             data:(NSDictionary*)_data
-          styling:(NSDictionary*)_styling
-  commandDelegate:(id <CDVCommandDelegate>)_commandDelegate
-       callbackId:(NSString *)_callbackId {
-
-    commandDelegate = _commandDelegate;
-    callbackId = _callbackId;
-    msg = message;
-    data = _data;
-    styling = _styling;
-
-    UIView *toast = [self viewForMessage:message title:nil image:nil];
-    [self showToast:toast duration:duration position:position addedPixelsY:addPixelsY];
-}
+//- (void)makeToast:(NSString *)message
+//         duration:(NSTimeInterval)duration
+//         position:(id)position addPixelsY:(int)addPixelsY
+//             data:(NSDictionary*)_data
+//          styling:(NSDictionary*)_styling
+//  commandDelegate:(id <CDVCommandDelegate>)_commandDelegate
+//       callbackId:(NSString *)_callbackId {
+//
+//    commandDelegate = _commandDelegate;
+//    callbackId = _callbackId;
+//    msg = message;
+//    data = _data;
+//    styling = _styling;
+//
+//    UIView *toast = [self viewForMessage:message title:nil image:nil];
+//    [self showToast:toast duration:duration position:position addedPixelsY:addPixelsY];
+//}
 
 - (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration position:(id)position title:(NSString *)title {
     UIView *toast = [self viewForMessage:message title:title image:nil];
@@ -196,8 +196,8 @@ static id styling;
       [dict setObject:data forKey:@"data"];
     }
   
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict];
-    [commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+//    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict];
+//    [commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 
 #pragma mark - Toast Activity Methods

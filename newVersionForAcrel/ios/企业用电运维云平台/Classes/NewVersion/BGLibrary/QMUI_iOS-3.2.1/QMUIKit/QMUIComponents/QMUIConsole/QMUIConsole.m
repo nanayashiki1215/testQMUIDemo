@@ -33,6 +33,7 @@
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
     static QMUIConsole *instance = nil;
+ 
     dispatch_once(&onceToken,^{
         instance = [[super allocWithZone:NULL] init];
         instance.canShow = IS_DEBUG;

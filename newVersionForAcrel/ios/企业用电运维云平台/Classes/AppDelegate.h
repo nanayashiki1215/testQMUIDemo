@@ -25,12 +25,13 @@
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
-#import <Cordova/CDVViewController.h>
-#import <Cordova/CDVAppDelegate.h>
+
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import <BMKLocationkit/BMKLocationAuth.h>
 
-@interface AppDelegate : CDVAppDelegate <BMKGeneralDelegate, BMKLocationAuthDelegate>{}
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate, BMKLocationAuthDelegate>{}
+
+@property(strong, nonatomic) UIWindow *window;
 
 @end

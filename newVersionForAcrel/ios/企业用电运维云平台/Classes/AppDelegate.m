@@ -27,7 +27,7 @@
 
 #import "AppDelegate.h"
 #import "JustepURLProtocol.h"
-#import "MainViewController.h"
+
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
 //#import <AMapFoundationKit/AMapFoundationKit.h>
@@ -57,27 +57,27 @@
 BMKMapManager* _mapManager;
 @implementation AppDelegate
 
-- (id)init
-{
+//- (id)init
+//{
   /** If you need to do any extra app-specific initialization, you can do it here
    *  -jm
    **/
-  NSHTTPCookieStorage* cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//  NSHTTPCookieStorage* cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//
+//  [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+//
+//  int cacheSizeMemory = 8 * 1024 * 1024; // 8MB
+//  int cacheSizeDisk = 32 * 1024 * 1024; // 32MB
+//#if __has_feature(objc_arc)
+//  NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"];
+//#else
+//  NSURLCache* sharedCache = [[[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"] autorelease];
+//#endif
+//  [NSURLCache setSharedURLCache:sharedCache];
   
-  [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-  
-  int cacheSizeMemory = 8 * 1024 * 1024; // 8MB
-  int cacheSizeDisk = 32 * 1024 * 1024; // 32MB
-#if __has_feature(objc_arc)
-  NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"];
-#else
-  NSURLCache* sharedCache = [[[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"] autorelease];
-#endif
-  [NSURLCache setSharedURLCache:sharedCache];
-  
-  self = [super init];
-  return self;
-}
+//  self = [super init];
+//  return self;
+//}
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
@@ -128,9 +128,9 @@ BMKMapManager* _mapManager;
     [QDCommonUI renderGlobalAppearances];
     
     // 预加载 QQ 表情，避免第一次使用时卡顿
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [QDUIHelper qmuiEmotions];
-    });
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        [QDUIHelper qmuiEmotions];
+//    });
     
     //配置bugly上传
     [Bugly startWithAppId:BGBuglyApi];
