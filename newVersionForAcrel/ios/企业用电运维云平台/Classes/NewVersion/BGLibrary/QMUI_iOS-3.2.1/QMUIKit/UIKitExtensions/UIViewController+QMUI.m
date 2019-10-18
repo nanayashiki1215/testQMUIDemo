@@ -98,22 +98,22 @@ QMUISynthesizeIdCopyProperty(qmui_visibleStateDidChangeBlock, setQmui_visibleSta
 }
 
 - (NSString *)qmuivc_description {
-    NSString *result = [NSString stringWithFormat:@"%@\nsuperclass:\t\t\t\t%@\ntitle:\t\t\t\t\t%@\nview:\t\t\t\t\t%@", [self qmuivc_description], NSStringFromClass(self.superclass), self.title, [self isViewLoaded] ? self.view : nil];
+    NSString *_result = [NSString stringWithFormat:@"%@\nsuperclass:\t\t\t\t%@\ntitle:\t\t\t\t\t%@\nview:\t\t\t\t\t%@", [self qmuivc_description], NSStringFromClass(self.superclass), self.title, [self isViewLoaded] ? self.view : nil];
     
     if ([self isKindOfClass:[UINavigationController class]]) {
         
         UINavigationController *navController = (UINavigationController *)self;
         NSString *navDescription = [NSString stringWithFormat:@"\nviewControllers(%@):\t\t%@\ntopViewController:\t\t%@\nvisibleViewController:\t%@", @(navController.viewControllers.count), [self descriptionWithViewControllers:navController.viewControllers], [navController.topViewController qmuivc_description], [navController.visibleViewController qmuivc_description]];
-        result = [result stringByAppendingString:navDescription];
+        _result = [_result stringByAppendingString:navDescription];
         
     } else if ([self isKindOfClass:[UITabBarController class]]) {
         
         UITabBarController *tabBarController = (UITabBarController *)self;
         NSString *tabBarDescription = [NSString stringWithFormat:@"\nviewControllers(%@):\t\t%@\nselectedViewController(%@):\t%@", @(tabBarController.viewControllers.count), [self descriptionWithViewControllers:tabBarController.viewControllers], @(tabBarController.selectedIndex), [tabBarController.selectedViewController qmuivc_description]];
-        result = [result stringByAppendingString:tabBarDescription];
+        _result = [_result stringByAppendingString:tabBarDescription];
         
     }
-    return result;
+    return _result;
 }
 
 - (NSString *)descriptionWithViewControllers:(NSArray<UIViewController *> *)viewControllers {

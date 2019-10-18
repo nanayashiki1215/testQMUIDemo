@@ -372,7 +372,6 @@
 		B6E155C5228CEDF900CB4A5F /* BGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E155A2228CEDF900CB4A5F /* BGScrollView.m */; };
 		B6E155C6228CEDF900CB4A5F /* NSString+BGTimeString.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E155AB228CEDF900CB4A5F /* NSString+BGTimeString.m */; };
 		B6E155C7228CEDF900CB4A5F /* SKControllerTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E155AC228CEDF900CB4A5F /* SKControllerTools.m */; };
-		B6E155C8228CEDF900CB4A5F /* ECAuthorizationTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E155B1228CEDF900CB4A5F /* ECAuthorizationTools.m */; };
 		B6E155C9228CEDF900CB4A5F /* BGJson.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E155B3228CEDF900CB4A5F /* BGJson.m */; };
 		B6E155F2228CF09C00CB4A5F /* UIButton+BGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E155D0228CF09B00CB4A5F /* UIButton+BGExtension.m */; };
 		B6E155F3228CF09C00CB4A5F /* UILabel+BGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E155D1228CF09B00CB4A5F /* UILabel+BGExtension.m */; };
@@ -1246,7 +1245,6 @@
 		B6E15594228CEDF900CB4A5F /* MyMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMD5.m; sourceTree = "<group>"; };
 		B6E15595228CEDF900CB4A5F /* UIImage+BGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BGExtension.m"; sourceTree = "<group>"; };
 		B6E15596228CEDF900CB4A5F /* BGJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGJson.h; sourceTree = "<group>"; };
-		B6E15597228CEDF900CB4A5F /* ECAuthorizationTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECAuthorizationTools.h; sourceTree = "<group>"; };
 		B6E15598228CEDF900CB4A5F /* UIView+BGChangeCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BGChangeCorner.m"; sourceTree = "<group>"; };
 		B6E15599228CEDF900CB4A5F /* BGUUIDTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGUUIDTool.m; sourceTree = "<group>"; };
 		B6E1559A228CEDF900CB4A5F /* UIColor+BGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BGExtension.m"; sourceTree = "<group>"; };
@@ -1270,7 +1268,6 @@
 		B6E155AE228CEDF900CB4A5F /* UIColor+BGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BGExtension.h"; sourceTree = "<group>"; };
 		B6E155AF228CEDF900CB4A5F /* BGUUIDTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGUUIDTool.h; sourceTree = "<group>"; };
 		B6E155B0228CEDF900CB4A5F /* UIView+BGChangeCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BGChangeCorner.h"; sourceTree = "<group>"; };
-		B6E155B1228CEDF900CB4A5F /* ECAuthorizationTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECAuthorizationTools.m; sourceTree = "<group>"; };
 		B6E155B2228CEDF900CB4A5F /* UIImage+BGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BGExtension.h"; sourceTree = "<group>"; };
 		B6E155B3228CEDF900CB4A5F /* BGJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGJson.m; sourceTree = "<group>"; };
 		B6E155CC228CEECD00CB4A5F /* ProjectDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectDefine.h; sourceTree = "<group>"; };
@@ -2706,7 +2703,6 @@
 				B6A8E25022A50A7400E36D8F /* UITabBar+BGbadge.m */,
 				B6E15595228CEDF900CB4A5F /* UIImage+BGExtension.m */,
 				B6E15596228CEDF900CB4A5F /* BGJson.h */,
-				B6E15597228CEDF900CB4A5F /* ECAuthorizationTools.h */,
 				B6E15598228CEDF900CB4A5F /* UIView+BGChangeCorner.m */,
 				B6E15599228CEDF900CB4A5F /* BGUUIDTool.m */,
 				B6E1559A228CEDF900CB4A5F /* UIColor+BGExtension.m */,
@@ -2730,7 +2726,6 @@
 				B6E155AE228CEDF900CB4A5F /* UIColor+BGExtension.h */,
 				B6E155AF228CEDF900CB4A5F /* BGUUIDTool.h */,
 				B6E155B0228CEDF900CB4A5F /* UIView+BGChangeCorner.h */,
-				B6E155B1228CEDF900CB4A5F /* ECAuthorizationTools.m */,
 				B6E155B2228CEDF900CB4A5F /* UIImage+BGExtension.h */,
 				B6E155B3228CEDF900CB4A5F /* BGJson.m */,
 				B60C7FF122A89B260016D936 /* LogCategory.h */,
@@ -3365,7 +3360,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "企业用电运维云平台" */;
 			buildPhases = (
-				304B58A110DAC018002A0835 /* Copy www directory */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -3495,21 +3489,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		304B58A110DAC018002A0835 /* Copy www directory */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy www directory";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "NODEJS_PATH=/usr/local/bin; NVM_NODE_PATH=~/.nvm/versions/node/`nvm version 2>/dev/null`/bin; N_NODE_PATH=`find /usr/local/n/versions/node/* -maxdepth 0 -type d 2>/dev/null | tail -1`/bin; XCODE_NODE_PATH=`xcode-select --print-path`/usr/share/xcs/Node/bin; PATH=$NODEJS_PATH:$NVM_NODE_PATH:$N_NODE_PATH:$XCODE_NODE_PATH:$PATH && node cordova/lib/copy-www-build-step.js\n";
-			showEnvVarsInLog = 0;
-		};
 		B64D020A22C4A29200FF9717 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -3738,7 +3717,6 @@
 				B6C768A722A0B8DC00DA675D /* QDCommonGroupListViewController.m in Sources */,
 				B6EB9BD422C99FDB00136A6C /* EZPlaybackProgressBar.m in Sources */,
 				B68D2CF922A646C1001C00EC /* JXCategoryNumberCell.m in Sources */,
-				B6E155C8228CEDF900CB4A5F /* ECAuthorizationTools.m in Sources */,
 				B6E15603228CF09C00CB4A5F /* NSString+BGChangeNoNull.m in Sources */,
 				B6C768C822A0B8DC00DA675D /* QDUIViewLayoutViewController.m in Sources */,
 				B68D2D1422A653E6001C00EC /* MSCycleScrollView.m in Sources */,
@@ -3990,7 +3968,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4045,7 +4023,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

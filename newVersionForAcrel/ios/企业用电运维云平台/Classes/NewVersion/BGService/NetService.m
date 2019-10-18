@@ -98,6 +98,7 @@
 //    if ([tenantId notEmptyOrNull]) {
 //        [mutParams setNotNullObject:tenantId ForKey:ktenantId];
 //    }
+    __weak __typeof(self)weakSelf = self;
     NSString *urlString = [BASE_URL stringByAppendingString:path];
     [NetService bg_httpGetWithPath:urlString params:mutParams success:^(id responseObject) {
         NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
@@ -105,8 +106,9 @@
         //        k0000 成功
         //        401 token过期
         if ([respMsg isEqualToString:@"Unauthorized"]) {
-            //
-            [self loginOut];
+            
+            [weakSelf loginOut];
+            return ;
         }
         if ([respCode isEqualToString:k0000]) {
             
@@ -188,6 +190,7 @@
     if (!user.versionNo) {
         return;
     }
+    __weak __typeof(self)weakSelf = self;
     NSString *baseURL = [BASE_URL stringByAppendingString:user.versionNo];
     NSString *urlString = [baseURL stringByAppendingString:path];
     [NetService bg_httpGetWithTokenWithPath:urlString params:mutParams success:^(id responseObject) {
@@ -196,8 +199,9 @@
 //        k0000 成功
 //        401 token过期
         if ([respMsg isEqualToString:@"Unauthorized"]) {
-            //
-            [self loginOut];
+            
+            [weakSelf loginOut];
+            return ;
         }
         if ([respCode isEqualToString:k0000]) {
             if (Success) {
@@ -468,16 +472,14 @@
 
 +(void)loginOut{
     
-    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
-        
-        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
-       UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-       [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
-        //清空NSUserDefaults
-        //清空NSUserDefaults 退出登录
-        NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:UIAlertControllerStyleAlert];
+    
+   
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //确认处理
+         NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
         NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-        for(NSString *key in [dictionary allKeys]){
+        for(NSString *key in [dictionary allKeys]){
             if ([key isEqualToString:@"orderListUrl"]) {
                 continue;
             }else if ([key isEqualToString:kaccount]) {
@@ -492,17 +494,73 @@
                 [defatluts synchronize];
             }
         }
-       
+        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+        UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+        [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
     }];
-    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:QMUIAlertControllerStyleAlert];
-    [alertController addAction:action];
+   
+    [alert addAction:action2];
+    [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
     
-    QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-    visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
-    alertController.mainVisualEffectView = visualEffectView;
-    alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
-    alertController.alertButtonBackgroundColor = nil;
-    [alertController showWithAnimated:YES];
+//    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+//
+//       NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+//        NSDictionary *dictionary = [defatluts dictionaryRepresentation];
+//        for(NSString *key in [dictionary allKeys]){
+//            if ([key isEqualToString:@"orderListUrl"]) {
+//                continue;
+//            }else if ([key isEqualToString:kaccount]) {
+//                continue;
+//            }else if ([key isEqualToString:kpassword]) {
+//                continue;
+//            }else if ([key isEqualToString:@"isSavePwd"]){
+//                continue;
+//            }
+//            else{
+//                [defatluts removeObjectForKey:key];
+//                [defatluts synchronize];
+//            }
+//        }
+//        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+//        UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+//        [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
+//
+//    }];
+//    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:QMUIAlertControllerStyleAlert];
+//    [alertController addAction:action];
+//
+//    QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+//    visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
+//    alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
+//    alertController.alertButtonBackgroundColor = nil;
+//    [alertController showWithAnimated:YES];
+}
+
++ (UIViewController *)findCurrentViewController
+{
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    UIViewController *topViewController = [window rootViewController];
+    
+    while (true) {
+        
+        if (topViewController.presentedViewController) {
+            
+            topViewController = topViewController.presentedViewController;
+            
+        } else if ([topViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)topViewController topViewController]) {
+            
+            topViewController = [(UINavigationController *)topViewController topViewController];
+            
+        } else if ([topViewController isKindOfClass:[UITabBarController class]]) {
+            
+            UITabBarController *tab = (UITabBarController *)topViewController;
+            topViewController = tab.selectedViewController;
+            
+        } else {
+            break;
+        }
+    }
+    return topViewController;
 }
 
 #pragma mark - code码映射

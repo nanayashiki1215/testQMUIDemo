@@ -328,6 +328,7 @@
     QDTabBarViewController *tabBarViewController = [[QDTabBarViewController alloc] init];
     [UIApplication sharedApplication].keyWindow.rootViewController = tabBarViewController;
 }
+
 - (IBAction)autoText:(UIButton *)sender {
 //    self.pwdTextField.text = @"Acrel123654";
 //    self.usenameTextField.text = @"admin";

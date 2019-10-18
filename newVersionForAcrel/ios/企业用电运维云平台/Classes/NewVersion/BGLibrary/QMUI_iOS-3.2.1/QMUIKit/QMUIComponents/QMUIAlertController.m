@@ -965,7 +965,7 @@ static QMUIAlertController *alertControllerAppearance;
         weakSelf.willShow = NO;
         weakSelf.showing = NO;
         weakSelf.maskView.alpha = 0;
-        if (self.preferredStyle == QMUIAlertControllerStyleAlert) {
+        if (weakSelf.preferredStyle == QMUIAlertControllerStyleAlert) {
             weakSelf.containerView.alpha = 0;
         } else {
             weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.view.bounds) - CGRectGetMinY(weakSelf.containerView.frame), 0);
@@ -1175,9 +1175,10 @@ static QMUIAlertController *alertControllerAppearance;
 #pragma mark - <QMUIAlertActionDelegate>
 
 - (void)didClickAlertAction:(QMUIAlertAction *)alertAction {
+    __weak __typeof(self)weakSelf = self;
     [self hideWithAnimated:YES completion:^{
         if (alertAction.handler) {
-            alertAction.handler(self, alertAction);
+            alertAction.handler(weakSelf, alertAction);
         }
     }];
 }

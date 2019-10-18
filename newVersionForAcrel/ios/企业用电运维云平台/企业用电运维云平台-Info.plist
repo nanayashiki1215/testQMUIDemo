@@ -67,14 +67,6 @@
 	<string>App需要您的同意,才能访问日历</string>
 	<key>NSCameraUsageDescription</key>
 	<string>App需要您的同意才可以访问您的摄像头</string>
-	<key>NSContactsUsageDescription</key>
-	<string>App需要您的同意,才能访问通讯录</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>App需要您的同意,才能访问健康分享</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>App需要您的同意,才能访问健康更新</string>
-	<key>NSHomeKitUsageDescription</key>
-	<string>APP需要您的同意,才能访问HomeKit</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>App需要您的同意才可以访问您的位置</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -85,16 +77,10 @@
 	<string>App需要您的同意才可以访问您的位置</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>App需要您的同意才可以访问您的麦克风</string>
-	<key>NSMotionUsageDescription</key>
-	<string>App需要您的同意,才能访问运动与健身</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>App需要您的同意才可以访问相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App需要您的同意才可以访问相册</string>
-	<key>NSRemindersUsageDescription</key>
-	<string>App需要您的同意,才能访问提醒事项</string>
-	<key>NSSiriUsageDescription</key>
-	<string>App需要您的同意,才能访问Siri</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>App需要您的同意,才能访问语音识别</string>
 	<key>Privacy - Bluetooth Always Usage Description</key>
