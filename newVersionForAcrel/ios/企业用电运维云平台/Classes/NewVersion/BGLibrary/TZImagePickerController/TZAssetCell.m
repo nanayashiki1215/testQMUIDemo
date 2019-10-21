@@ -42,7 +42,7 @@
         if ([self.representedAssetIdentifier isEqualToString:model.asset.localIdentifier]) {
             self.imageView.image = photo;
         } else {
-             NSLog(@"this cell is showing other asset");
+             DefLog(@"this cell is showing other asset");
             [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
         }
         if (!isDegraded) {

@@ -89,7 +89,7 @@
 }
 
 //- (void)prepareForCollectionViewUpdates:(NSArray<UICollectionViewUpdateItem *> *)updateItems {
-//    NSLog(@"prepareForCollectionViewUpdates:");
+//    DefLog(@"prepareForCollectionViewUpdates:");
 //    [super prepareForCollectionViewUpdates:updateItems];
 //    self.deleteIndexPaths = [NSMutableArray array];
 //    for (UICollectionViewUpdateItem *update in updateItems) {

@@ -166,7 +166,7 @@
     NSError *err;
     id objc = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&err];
     if(err) {
-        NSLog(@"json解析失败：%@",err);
+        DefLog(@"json解析失败：%@",err);
         return nil;
     }
     return objc;

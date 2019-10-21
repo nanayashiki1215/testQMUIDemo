@@ -408,7 +408,7 @@ static char kDTActionHandlerLongPressGestureKey;
              self.transform = t;
          } completion:^(BOOL finished)
          {
-             NSLog(@"完成");
+             DefLog(@"完成");
          }];
     }];
 }

@@ -926,6 +926,6 @@ typedef NS_ENUM (NSUInteger,GHDropMenuShowType) {
 }
 
 - (void)dealloc {
-    NSLog(@"释放了");
+    DefLog(@"释放了");
 }
 @end

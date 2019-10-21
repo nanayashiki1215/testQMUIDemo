@@ -603,7 +603,7 @@
 }
 
 - (void)dealloc {
-    // NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+    // DefLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
 - (void)addSelectedModel:(TZAssetModel *)model {
@@ -759,7 +759,7 @@
 }
 
 - (void)dealloc {
-    // NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+    // DefLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

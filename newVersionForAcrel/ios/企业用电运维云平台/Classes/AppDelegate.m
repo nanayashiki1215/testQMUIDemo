@@ -148,15 +148,15 @@ BMKMapManager* _mapManager;
      如果需要使用GCJ02坐标，需要设置CoordinateType为：BMK_COORDTYPE_COMMON.
      */
     if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK:BMK_COORDTYPE_BD09LL]) {
-        NSLog(@"经纬度类型设置成功");
+        DefLog(@"经纬度类型设置成功");
     } else {
-        NSLog(@"经纬度类型设置失败");
+        DefLog(@"经纬度类型设置失败");
     }
     
     //启动引擎并设置AK并设置delegate
     BOOL result = [_mapManager start:BGBaiduMapApi generalDelegate:self];
     if (!result) {
-        NSLog(@"启动引擎失败");
+        DefLog(@"启动引擎失败");
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -278,4 +278,16 @@ BMKMapManager* _mapManager;
     
     return [WXAUTH handleOpenURL:url];
 }
+
+//程序被杀死
+-(void)applicationWillTerminate:(UIApplication *)application{
+    
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // 实现如下代码，才能使程序处于后台时被杀死，调用applicationWillTerminate:方法
+    [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^(){}];
+}
+
 @end

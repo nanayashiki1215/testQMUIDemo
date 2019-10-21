@@ -32,7 +32,7 @@
     [self addSubview:self.waterFallLabel];
 }
 - (CGFloat)getCellHeight  {
-    NSLog(@"self.waterFallLabel.frame.size.height%f",self.waterFallLabel.frame.size.height);
+    DefLog(@"self.waterFallLabel.frame.size.height%f",self.waterFallLabel.frame.size.height);
     return self.waterFallLabel.frame.size.height;
 }
 - (void)layoutSubviews {

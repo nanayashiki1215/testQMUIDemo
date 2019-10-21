@@ -52,7 +52,7 @@
 //    [NetService bg_httpPostWithPath:applePath params:nil success:^(id respObjc) {
 //        NSArray *array = respObjc[@"results"];
 //        if (array.count < 1) {
-//            NSLog(@"此APPID为未上架的APP或者查询不到");
+//            DefLog(@"此APPID为未上架的APP或者查询不到");
 //            return;
 //        }
 //        NSDictionary *dic = array[0];
@@ -60,7 +60,7 @@
         //    float currentVersionFloat = [currentVersion floatValue];//使用中的版本号
         
         //打印版本号
-//        NSLog(@"当前版本号:%@\n商店版本号:%@",currentVersion,appStoreVersion);
+//        DefLog(@"当前版本号:%@\n商店版本号:%@",currentVersion,appStoreVersion);
         // 当前版本号小于商店版本号,就更新
         if([currentVersion floatValue] < [self.fVersion floatValue]) {
             self.appId = appId;
@@ -93,7 +93,7 @@
                                                            error:&error];
     if (error)
     {
-        //NSLog(@"json格式string解析失败:%@",error);
+        //DefLog(@"json格式string解析失败:%@",error);
         return nil;
     }
     

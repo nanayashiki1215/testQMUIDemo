@@ -341,7 +341,7 @@
 ////    NSString *fileName = [MyMD5 d5:fileUrlPath];
 //    NSString *upPath = [fileUrlPath lowercaseString];
 //    if (fileUrlPath == nil) {
-//        NSLog(@"请检查请求URL：%@",fileUrlPath);
+//        DefLog(@"请检查请求URL：%@",fileUrlPath);
 //        return;
 //    }
 //    //需要处理汉字url
@@ -359,7 +359,7 @@
 //        NSInteger totalLength = [[NSDictionary dictionaryWithContentsOfFile: TotalLengthPlist][ Filename] integerValue];
 //
 //        if (totalLength &&  DownloadLength == totalLength) {
-//            NSLog(@"######文件已经下载过了");
+//            DefLog(@"######文件已经下载过了");
 //            return nil;
 //        }
 //
@@ -398,7 +398,7 @@
 //    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile: TotalLengthPlist];
 //    if (dict == nil) dict = [NSMutableDictionary dictionary];
 //    dict[Filename] = @(self.totalLength);
-//    NSLog(@"新下载路径地址:%@",TotalLengthPlist);
+//    DefLog(@"新下载路径地址:%@",TotalLengthPlist);
 //    [dict writeToFile:TotalLengthPlist atomically:YES];
 //
 //    // 接收这个请求，允许接收服务器的数据

@@ -491,7 +491,7 @@ static dispatch_once_t onceToken;
                 PHAsset *asset = [[PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:nil] firstObject];
                 completion(asset, nil);
             } else if (error) {
-                NSLog(@"保存照片出错:%@",error.localizedDescription);
+                DefLog(@"保存照片出错:%@",error.localizedDescription);
                 if (completion) {
                     completion(nil, error);
                 }
@@ -521,7 +521,7 @@ static dispatch_once_t onceToken;
                 PHAsset *asset = [[PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:nil] firstObject];
                 completion(asset, nil);
             } else if (error) {
-                NSLog(@"保存视频出错:%@",error.localizedDescription);
+                DefLog(@"保存视频出错:%@",error.localizedDescription);
                 if (completion) {
                     completion(nil, error);
                 }
@@ -565,9 +565,9 @@ static dispatch_once_t onceToken;
     options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
     options.networkAccessAllowed = YES;
     [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset* avasset, AVAudioMix* audioMix, NSDictionary* info){
-        // NSLog(@"Info:\n%@",info);
+        // DefLog(@"Info:\n%@",info);
         AVURLAsset *videoAsset = (AVURLAsset*)avasset;
-        // NSLog(@"AVAsset URL: %@",myAsset.URL);
+        // DefLog(@"AVAsset URL: %@",myAsset.URL);
         [self startExportVideoWithVideoAsset:videoAsset presetName:presetName success:success failure:failure];
     }];
 }
@@ -593,7 +593,7 @@ static dispatch_once_t onceToken;
         if (videoAsset.URL && videoAsset.URL.lastPathComponent) {
             outputPath = [outputPath stringByReplacingOccurrencesOfString:@".mp4" withString:[NSString stringWithFormat:@"-%@", videoAsset.URL.lastPathComponent]];
         }
-        // NSLog(@"video outputPath = %@",outputPath);
+        // DefLog(@"video outputPath = %@",outputPath);
         session.outputURL = [NSURL fileURLWithPath:outputPath];
         
         // Optimize for network use.
@@ -606,7 +606,7 @@ static dispatch_once_t onceToken;
             if (failure) {
                 failure(@"该视频类型暂不支持导出", nil);
             }
-            NSLog(@"No supported file types 视频类型暂不支持导出");
+            DefLog(@"No supported file types 视频类型暂不支持导出");
             return;
         } else {
             session.outputFileType = [supportedTypeArray objectAtIndex:0];
@@ -629,28 +629,28 @@ static dispatch_once_t onceToken;
             dispatch_async(dispatch_get_main_queue(), ^{
                 switch (session.status) {
                     case AVAssetExportSessionStatusUnknown: {
-                        NSLog(@"AVAssetExportSessionStatusUnknown");
+                        DefLog(@"AVAssetExportSessionStatusUnknown");
                     }  break;
                     case AVAssetExportSessionStatusWaiting: {
-                        NSLog(@"AVAssetExportSessionStatusWaiting");
+                        DefLog(@"AVAssetExportSessionStatusWaiting");
                     }  break;
                     case AVAssetExportSessionStatusExporting: {
-                        NSLog(@"AVAssetExportSessionStatusExporting");
+                        DefLog(@"AVAssetExportSessionStatusExporting");
                     }  break;
                     case AVAssetExportSessionStatusCompleted: {
-                        NSLog(@"AVAssetExportSessionStatusCompleted");
+                        DefLog(@"AVAssetExportSessionStatusCompleted");
                         if (success) {
                             success(outputPath);
                         }
                     }  break;
                     case AVAssetExportSessionStatusFailed: {
-                        NSLog(@"AVAssetExportSessionStatusFailed");
+                        DefLog(@"AVAssetExportSessionStatusFailed");
                         if (failure) {
                             failure(@"视频导出失败", session.error);
                         }
                     }  break;
                     case AVAssetExportSessionStatusCancelled: {
-                        NSLog(@"AVAssetExportSessionStatusCancelled");
+                        DefLog(@"AVAssetExportSessionStatusCancelled");
                         if (failure) {
                             failure(@"导出任务已被取消", nil);
                         }

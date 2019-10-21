@@ -103,7 +103,7 @@
     
     if (! jsonData)
     {
-        NSLog(@"Got an error: %@", error);
+        DefLog(@"Got an error: %@", error);
     }else
     {
         jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

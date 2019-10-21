@@ -194,7 +194,7 @@ static id _instance;
     NSString *realURL = path;
     NSString *upPath = [realURL lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
-        NSLog(@"请检查请求URL：%@",path);
+        DefLog(@"请检查请求URL：%@",path);
         return;
     }
     
@@ -202,14 +202,14 @@ static id _instance;
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
 //    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager POST:realURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
             if (Success) {
                 Success(responseObject);
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nError:%@\n***************   End   *************** \n\n.",realURL,params,error);
+        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nError:%@\n***************   End   *************** \n\n.",realURL,params,error);
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -221,7 +221,7 @@ static id _instance;
     NSString *realURL = path;
     NSString *upPath = [realURL lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
-        NSLog(@"请检查请求URL：%@",path);
+        DefLog(@"请检查请求URL：%@",path);
         return;
     }
     
@@ -229,14 +229,14 @@ static id _instance;
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
     //    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager POST:realURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
             if (Success) {
                 Success(responseObject);
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nError:%@\n***************   End   *************** \n\n.",realURL,params,error);
+        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nError:%@\n***************   End   *************** \n\n.",realURL,params,error);
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -247,7 +247,7 @@ static id _instance;
 + (void)bg_httpGetWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail {
     NSString *upPath = [path lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
-        NSLog(@"请检查请求URL：%@",path);
+        DefLog(@"请检查请求URL：%@",path);
         return;
     }
     NSString *realURL = path;
@@ -257,12 +257,12 @@ static id _instance;
     [manager GET:realURL parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+        DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
             Success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
+        DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -273,7 +273,7 @@ static id _instance;
 + (void)bg_httpGetWithTokenWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail {
     NSString *upPath = [path lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
-        NSLog(@"请检查请求URL：%@",path);
+        DefLog(@"请检查请求URL：%@",path);
         return;
     }
     NSString *realURL = path;
@@ -283,13 +283,13 @@ static id _instance;
     [manager GET:realURL parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+        DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         
         if (Success) {
             Success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
+        DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -299,7 +299,7 @@ static id _instance;
 + (void)bg_httpPutWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
     NSString *upPath = [path lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
-        NSLog(@"请检查请求URL：%@",path);
+        DefLog(@"请检查请求URL：%@",path);
         return;
     }
     NSString *realURL = path;
@@ -307,12 +307,12 @@ static id _instance;
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
     [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager PUT:realURL parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"\n\n***************  Start  ***************\nPUT:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+        DefLog(@"\n\n***************  Start  ***************\nPUT:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
             Success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"\n\n***************  Start  ***************\nPUT:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
+        DefLog(@"\n\n***************  Start  ***************\nPUT:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -324,7 +324,7 @@ static id _instance;
 +(void)bg_httpDownloadFileFromUrlPath:(NSString *)fileUrlPath andSaveTo:(NSString *)localFullFilePath progress:(BGNetServiceProgressBlock)progress success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
     NSString *upPath = [fileUrlPath lowercaseString];
     if (fileUrlPath == nil) {
-        NSLog(@"请检查请求URL：%@",fileUrlPath);
+        DefLog(@"请检查请求URL：%@",fileUrlPath);
         return;
     }
     //需要处理汉字url
@@ -338,7 +338,7 @@ static id _instance;
         return [NSURL fileURLWithPath:localFullFilePath];
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         [[BGHttpService manager].tasksMutDic removeObjectForKey:encodeUrlStr];
-        NSLog(@"\n\n***************  Start  ***************\nDownload:\nURL:%@\nSaveTo:%@\nError:%@\n***************   End   ***************\n\n.",fileUrlPath,filePath.absoluteString,error);
+        DefLog(@"\n\n***************  Start  ***************\nDownload:\nURL:%@\nSaveTo:%@\nError:%@\n***************   End   ***************\n\n.",fileUrlPath,filePath.absoluteString,error);
         if (nil == error && Success) {
             Success(filePath);
         }else if (Fail){
@@ -347,7 +347,7 @@ static id _instance;
         }
     }];
     [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionDownloadTask * _Nonnull downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-        NSLog(@"%p %f/completed=%lld/total=%lld",downloadTask,(double)totalBytesWritten/(double)totalBytesExpectedToWrite, totalBytesWritten , totalBytesExpectedToWrite);
+        DefLog(@"%p %f/completed=%lld/total=%lld",downloadTask,(double)totalBytesWritten/(double)totalBytesExpectedToWrite, totalBytesWritten , totalBytesExpectedToWrite);
         if (progress) {
             progress(session,downloadTask,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
         }
@@ -401,7 +401,7 @@ static id _instance;
     }
     NSString *upPath = [urlStr lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
-        NSLog(@"请检查请求URL：%@",urlStr);
+        DefLog(@"请检查请求URL：%@",urlStr);
         return;
     }
     NSString *realURL = urlStr;
@@ -418,17 +418,17 @@ static id _instance;
 //        [formData throttleBandwidthWithPacketSize:1024*80 delay:1.0];
         //        [formData appendPartWithFileData:uploadFileData name:@"file" fileName:params[kfileName] mimeType:@"application/octet-stream"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"%f/completed=%lld/total=%lld",(double)uploadProgress.completedUnitCount/(double)uploadProgress.totalUnitCount, uploadProgress.completedUnitCount , uploadProgress.totalUnitCount);
+        DefLog(@"%f/completed=%lld/total=%lld",(double)uploadProgress.completedUnitCount/(double)uploadProgress.totalUnitCount, uploadProgress.completedUnitCount , uploadProgress.totalUnitCount);
         if (progress) {
             progress(nil,nil,uploadProgress.completedUnitCount,uploadProgress.totalUnitCount,(uploadProgress.totalUnitCount-uploadProgress.completedUnitCount));
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+        DefLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
             Success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
+        DefLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",realURL,params,error);
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -448,12 +448,12 @@ static id _instance;
     [BGHttpService bg_httpUploadDataTo:shortUrlPath params:params fileData:data progress:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
         
     } success:^(id  _Nullable objc) {
-        NSLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",shortUrlPath,params,objc);
+        DefLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",shortUrlPath,params,objc);
         if (Success) {
             Success(objc);
         }
     } failure:^(id respObjc, NSString * _Nullable errorCode, NSString * _Nullable errorMsg) {
-        NSLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",shortUrlPath,params,errorMsg);
+        DefLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",shortUrlPath,params,errorMsg);
         if (Fail) {
             Fail(nil,errorCode,errorMsg);
         }
@@ -473,12 +473,12 @@ static id _instance;
             [formData appendPartWithFileData:uploadDatas[i] name:@"files" fileName:params[@"fileName"] mimeType:@"multipart/form-data;boundary=boundary"];
         }
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",URLString,params,responseObject);
+        DefLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",URLString,params,responseObject);
         if (success) {
             success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",URLString,params,error);
+        DefLog(@"\n\n***************  Start  ***************\nUpload:\nURL:%@\nParams:%@\nError:%@\n***************   End   ***************\n\n.",URLString,params,error);
         if (failure) {
             failure(nil,nil,nil);
         }
@@ -496,7 +496,7 @@ static id _instance;
 ////    NSString *fileName = [MyMD5 d5:fileUrlPath];
 //    NSString *upPath = [fileUrlPath lowercaseString];
 //    if (fileUrlPath == nil) {
-//        NSLog(@"请检查请求URL：%@",fileUrlPath);
+//        DefLog(@"请检查请求URL：%@",fileUrlPath);
 //        return;
 //    }
 //    //需要处理汉字url
@@ -514,7 +514,7 @@ static id _instance;
 //        NSInteger totalLength = [[NSDictionary dictionaryWithContentsOfFile: TotalLengthPlist][ Filename] integerValue];
 //
 //        if (totalLength &&  DownloadLength == totalLength) {
-//            NSLog(@"######文件已经下载过了");
+//            DefLog(@"######文件已经下载过了");
 //            return nil;
 //        }
 //
@@ -553,7 +553,7 @@ static id _instance;
 //    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile: TotalLengthPlist];
 //    if (dict == nil) dict = [NSMutableDictionary dictionary];
 //    dict[Filename] = @(self.totalLength);
-//    NSLog(@"新下载路径地址:%@",TotalLengthPlist);
+//    DefLog(@"新下载路径地址:%@",TotalLengthPlist);
 //    [dict writeToFile:TotalLengthPlist atomically:YES];
 //
 //    // 接收这个请求，允许接收服务器的数据

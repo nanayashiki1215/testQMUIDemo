@@ -172,7 +172,7 @@
                     }
                 });
 #ifdef DEBUG
-                NSLog(@"[TZImagePickerController] getOriginalPhotoDataWithAsset:%f error:%@", progress, error);
+                DefLog(@"[TZImagePickerController] getOriginalPhotoDataWithAsset:%f error:%@", progress, error);
 #endif
             } completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
                 if (!isDegraded) {

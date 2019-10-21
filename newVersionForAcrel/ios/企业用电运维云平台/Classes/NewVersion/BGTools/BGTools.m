@@ -66,7 +66,7 @@
         // 视图是被presented出来的
         rootVC = [rootVC presentedViewController];
     }
-    NSLog(@"\n%@\n",rootVC);
+    DefLog(@"\n%@\n",rootVC);
     
     if ([rootVC isKindOfClass:[UITabBarController class]]) {
         // 根视图为UITabBarController

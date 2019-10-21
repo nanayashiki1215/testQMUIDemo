@@ -143,13 +143,13 @@ API_AVAILABLE(ios(10.0))
     //高度是否符合
     CGFloat totalHeight = (self.indexItems.count * self.titleFontSize) + ((self.indexItems.count + 1) * self.titleSpace);
     if (CGRectGetHeight(self.frame) < totalHeight) {
-        NSLog(@"View height is not enough");
+        DefLog(@"View height is not enough");
         return;
     }
     //宽度是否符合
     CGFloat totalWidth = self.titleFontSize + self.marginRight;
     if (CGRectGetWidth(self.frame) < totalWidth) {
-        NSLog(@"View width is not enough");
+        DefLog(@"View width is not enough");
         return;
     }
     //设置Y坐标最小值
