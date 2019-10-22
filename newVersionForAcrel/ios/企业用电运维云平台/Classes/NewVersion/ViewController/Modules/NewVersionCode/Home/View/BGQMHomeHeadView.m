@@ -331,9 +331,10 @@
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:action];
     
-    [[self getCurrentVC] presentViewController:alert animated:YES completion:^{
-        
-    }];
+//    [[self getCurrentVC] presentViewController:alert animated:YES completion:^{
+//
+//    }];
+    [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
 }
 
 - (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font maxSize:(CGSize)maxSize {
@@ -343,50 +344,33 @@
     
 }
 
-
--(UIViewController *)getCurrentVC
+- (UIViewController *)findCurrentViewController
 {
-    UIViewController *result = nil;
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    //app默认windowLevel是UIWindowLevelNormal，如果不是，找到UIWindowLevelNormal的
-    if (window.windowLevel != UIWindowLevelNormal)
-    {
-        NSArray *windows = [[UIApplication sharedApplication] windows];
-        for(UIWindow * tmpWin in windows)
-        {
-            if (tmpWin.windowLevel == UIWindowLevelNormal)
-            {
-                window = tmpWin;
-                break;
-            }
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    UIViewController *topViewController = [window rootViewController];
+    
+    while (true) {
+        
+        if (topViewController.presentedViewController) {
+            
+            topViewController = topViewController.presentedViewController;
+            
+        } else if ([topViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)topViewController topViewController]) {
+            
+            topViewController = [(UINavigationController *)topViewController topViewController];
+            
+        } else if ([topViewController isKindOfClass:[UITabBarController class]]) {
+            
+            UITabBarController *tab = (UITabBarController *)topViewController;
+            topViewController = tab.selectedViewController;
+            
+        } else {
+            break;
         }
     }
-    id  nextResponder = nil;
-    UIViewController *appRootVC=window.rootViewController;
-    //    如果是present上来的appRootVC.presentedViewController 不为nil
-    if (appRootVC.presentedViewController) {
-        nextResponder = appRootVC.presentedViewController;
-    }else{
-
-        DefLog(@"===%@",[window subviews]);
-        UIView *frontView = [[window subviews] objectAtIndex:0];
-        nextResponder = [frontView nextResponder];
-    }
-
-    if ([nextResponder isKindOfClass:[UITabBarController class]]){
-        UITabBarController * tabbar = (UITabBarController *)nextResponder;
-        UINavigationController * nav = (UINavigationController *)tabbar.viewControllers[tabbar.selectedIndex];
-        //        UINavigationController * nav = tabbar.selectedViewController ; 上下两种写法都行
-        result=nav.childViewControllers.lastObject;
-
-    }else if ([nextResponder isKindOfClass:[UINavigationController class]]){
-        UIViewController * nav = (UIViewController *)nextResponder;
-        result = nav.childViewControllers.lastObject;
-    }else{
-        result = nextResponder;
-    }
-    return result;
+    return topViewController;
 }
+
 
 //将字符串特定的字变成红色
 - (void)redXingWithLabel:(UILabel *)tempLabel atIndex:(NSInteger)tempIndex andLength:(NSInteger)tempLength{

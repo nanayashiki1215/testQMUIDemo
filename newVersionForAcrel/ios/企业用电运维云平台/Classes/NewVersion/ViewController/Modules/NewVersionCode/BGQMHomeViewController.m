@@ -659,7 +659,7 @@
     }else if (codeId == 348){
         //348 巡视记录
         BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"patrolSelectSubstation" ofType:@"html" inDirectory:@"aDevices"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allPatrolRecord" ofType:@"html" inDirectory:@"aDevices"];
         nomWebView.isUseOnline = NO;
         nomWebView.localUrlString = filePath;
         nomWebView.showWebType = showWebTypeDevice;
@@ -668,7 +668,7 @@
     }else if (codeId == 349){
         //349 缺陷管理
         BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"defectSelectSubstation" ofType:@"html" inDirectory:@"aDevices"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allDefectPage" ofType:@"html" inDirectory:@"aDevices"];
         nomWebView.isUseOnline = NO;
         nomWebView.localUrlString = filePath;
         nomWebView.showWebType = showWebTypeDevice;
