@@ -49,7 +49,7 @@
 @property (nonatomic, strong) UIProgressView * progressView;
 
 @property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
-
+    
 @property (nonatomic, strong) UIView *viewStatusColorBlend;//背景层
 
 @end
@@ -529,6 +529,7 @@
         [self hideTabbar:isHidden];
     }else if ([message.name isEqualToString:@"pushNewWebView"]){
         DefLog(@"%@",message.body);
+        
         NSString *titleName = message.body[@"title"];
         NSString *url = message.body[@"url"];
         BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
