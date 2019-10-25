@@ -621,7 +621,6 @@
 {
     if (codeId == 0)
     {
-        
         BGQMMoveBtnViewController *otherView = [[BGQMMoveBtnViewController alloc] init];
         otherView.showMoreGridIdArray = self.moreGridIdArray;
         otherView.showMoreGridTitleArray = self.moreGridTitleArray;
@@ -647,6 +646,19 @@
         nomWebView.showWebType = showWebTypeDevice;
 //        self.tabBarController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:nomWebView animated:YES];
+        
+        
+//        nomWebView.isUseOnline = YES;
+//        UserManager *user = [UserManager manager];
+       //list
+//        if (user.singleSubFullData) {
+//           NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
+//           NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+//           NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+//           NSString *urlStr = [str stringByAppendingString:url];
+//           nomWebView.onlineUrlString = urlStr;
+//        }
+        
     }else if (codeId == 347){
         //347 待办事项
         BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];

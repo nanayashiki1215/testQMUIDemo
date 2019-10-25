@@ -9,7 +9,7 @@
 #define ProjectDefine_h
 
 //打印log
-#if 0
+#if 1
 #define DefLog(format,...) NSLog(format,##__VA_ARGS__)
 #else
 #define DefLog(format,...)

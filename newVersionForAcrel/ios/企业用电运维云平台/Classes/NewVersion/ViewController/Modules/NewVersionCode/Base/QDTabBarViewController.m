@@ -100,17 +100,39 @@
                 [mainControllers addObject:uikitNavController];
             }else if ([fCode isEqualToString:@"alarmPage"]){
                 BGUIWebViewController *componentViewController = [[BGUIWebViewController alloc] init];
-                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"alarms" ofType:@"html" inDirectory:@"aDevices"];
-                componentViewController.isUseOnline = NO;
-                componentViewController.localUrlString = filePath;
-                componentViewController.showWebType = showWebTypeAlarm;
-                componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
-                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-                componentViewController.hidesBottomBarWhenPushed = NO;
-                QDNavigationController *componentNavController = [[QDNavigationController alloc] initWithRootViewController:componentViewController];
-                componentNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:homePageText image:[UIImageMake(@"bgbaojing") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgbaojingselect") tag:1];
-                AddAccessibilityHint(componentNavController.tabBarItem, @"实时报警系统");
-                [mainControllers addObject:componentNavController];
+//                fActionurl = "alarms.html";
+                NSString *fFunctionfield = [NSString changgeNonulWithString:dic[@"fFunctionfield"]];
+                NSString *fActionurl = [NSString changgeNonulWithString:dic[@"fActionurl"]];
+                if (fFunctionfield.length>0) {
+                    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"alarms" ofType:@"html" inDirectory:@"aDevices"];
+                    componentViewController.isUseOnline = NO;
+                    componentViewController.localUrlString = filePath;
+                    componentViewController.showWebType = showWebTypeAlarm;
+                    componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
+                    //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                    componentViewController.hidesBottomBarWhenPushed = NO;
+                    QDNavigationController *componentNavController = [[QDNavigationController alloc] initWithRootViewController:componentViewController];
+                    componentNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:homePageText image:[UIImageMake(@"bgbaojing") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgbaojingselect") tag:1];
+                    AddAccessibilityHint(componentNavController.tabBarItem, @"实时报警系统");
+                    [mainControllers addObject:componentNavController];
+                }else{
+                    componentViewController.isUseOnline = YES;
+                    UserManager *user = [UserManager manager];
+                    if (user.singleSubFullData) {
+                       NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
+                       componentViewController.showWebType = showWebTypeAlarm;
+                       componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
+                       NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                       NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                       NSString *urlStr = [str stringByAppendingString:fActionurl];
+                       componentViewController.onlineUrlString = urlStr;
+                       componentViewController.hidesBottomBarWhenPushed = NO;
+                       QDNavigationController *componentNavController = [[QDNavigationController alloc] initWithRootViewController:componentViewController];
+                       componentNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:homePageText image:[UIImageMake(@"bgbaojing") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgbaojingselect") tag:1];
+                       AddAccessibilityHint(componentNavController.tabBarItem, @"实时报警系统");
+                       [mainControllers addObject:componentNavController];
+                    }
+                }
             }else if ([fCode isEqualToString:@"userPage"]){
                 BGQMUserViewController *ownVC = [[BGQMUserViewController alloc] init];
                 ownVC.hidesBottomBarWhenPushed = NO;
