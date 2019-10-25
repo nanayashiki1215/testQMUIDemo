@@ -541,11 +541,13 @@
         nomWebView.titleName = titleName;
         [self.navigationController pushViewController:nomWebView animated:YES];
     }else if ([message.name isEqualToString:@"getLocation"]){
-
+//获取定位 百度地图
+        
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
 
             //定位功能可用
             [self getLoation];
+            sleep(1);
 
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
 
@@ -575,7 +577,6 @@
        }];
     }];
     //开启定位服务
-
 }
 
 #pragma mark - Lazy loading

@@ -279,6 +279,10 @@ BMKMapManager* _mapManager;
     return [WXAUTH handleOpenURL:url];
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 //程序被杀死
 -(void)applicationWillTerminate:(UIApplication *)application{
     
@@ -289,5 +293,6 @@ BMKMapManager* _mapManager;
     // 实现如下代码，才能使程序处于后台时被杀死，调用applicationWillTerminate:方法
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^(){}];
 }
+
 
 @end
