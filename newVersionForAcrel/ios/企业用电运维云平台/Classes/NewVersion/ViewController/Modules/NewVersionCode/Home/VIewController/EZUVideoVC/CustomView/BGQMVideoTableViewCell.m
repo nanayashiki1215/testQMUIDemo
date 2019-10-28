@@ -247,7 +247,16 @@
     
     if ([error.errorString isEqualToString:UE_ERROR_INNER_VERIFYCODE_ERROR])
     {
-        [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",NSLocalizedString(@"verify_code_wrong", @"验证码错误"),
+        [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",NSLocalizedString(@"verify_code_wrong", @"验证码错误,请重新获取url地址增加验证码"),
+                              error.errorString,
+                              error.internalErrorCode]
+                    duration:1.5
+                    position:@"center"];
+    }
+    else if ([error.errorString isEqualToString:UE_ERROR_APPKEY_ERROR])
+    {
+        [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
+                              NSLocalizedString(@"Appkeyaccesstokendonotmatch", @"appkey和AccessToken不匹配,建议更换appkey或者AccessToken"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -256,7 +265,16 @@
     else if ([error.errorString isEqualToString:UE_ERROR_TRANSF_DEVICE_OFFLINE])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"device_offline", @"设备不在线"),
+                              NSLocalizedString(@"device_offline", @"设备不在线，确认设备上线之后重试"),
+                              error.errorString,
+                              error.internalErrorCode]
+                    duration:1.5
+                    position:@"center"];
+    }
+    else if ([error.errorString isEqualToString:UE_ERROR_ACCESSTOKEN_ERROR_OR_EXPIRE])
+    {
+        [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
+                               NSLocalizedString(@"accesstoken_fail", @"accesstoken异常或失效，需要重新获取"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -265,7 +283,7 @@
     else if ([error.errorString isEqualToString:UE_ERROR_DEVICE_NOT_EXIST])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"device_not_exist", @"设备不存在"),
+                              NSLocalizedString(@"device_not_exist", @"设备不存在,请前往网页端进行配置"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -274,7 +292,7 @@
     else if ([error.errorString isEqualToString:UE_ERROR_CAMERA_NOT_EXIST])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"camera_not_exist", @"通道不存在"),
+                              NSLocalizedString(@"camera_not_exist", @"通道不存在，设备参数错误，请前往网页端进行配置"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -283,7 +301,7 @@
     else if ([error.errorString isEqualToString:UE_ERROR_INNER_STREAM_TIMEOUT])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"connect_out_time", @"连接超时"),
+                              NSLocalizedString(@"connect_out_time", @"连接设备超时，请检测设备网路连接是否正常"),
                               error.errorString,error.internalErrorCode]
                     duration:1.5
                     position:@"center"];
@@ -291,7 +309,7 @@
     else if ([error.errorString isEqualToString:UE_ERROR_CAS_MSG_PU_NO_RESOURCE])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"connect_device_limit", @"设备连接数过大"),
+                              NSLocalizedString(@"connect_device_limit", @"设备连接数过大，可咨询客服获取升级流程"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -300,7 +318,7 @@
     else if ([error.errorString isEqualToString:UE_ERROR_NOT_FOUND_RECORD_FILES])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"not_find_file", @"未找到录像文件"),
+                              NSLocalizedString(@"not_find_file", @"未找到录像文件，请前往网页端进行配置"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -309,7 +327,7 @@
     else if ([error.errorString isEqualToString:UE_ERROR_PARAM_ERROR])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"param_error", @"参数错误"),
+                              NSLocalizedString(@"param_error", @"参数错误，请前往网页端进行配置"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -318,7 +336,34 @@
     else if ([error.errorString isEqualToString:UE_ERROR_URL_FORMAT_ERROR])
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"play_url_format_wrong", @"播放url格式错误"),
+                              NSLocalizedString(@"play_url_format_wrong", @"播放地址格式错误，请前往网页端进行配置"),
+                              error.errorString,
+                              error.internalErrorCode]
+                    duration:1.5
+                    position:@"center"];
+    }
+    else if ([error.errorString isEqualToString:UE_ERROR_TRANSF_TERMINAL_BINDING])
+    {
+        [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
+                              NSLocalizedString(@"currentAccount", @"当前账号开启了终端绑定，只允许指定设备登录操作"),
+                              error.errorString,
+                              error.internalErrorCode]
+                    duration:1.5
+                    position:@"center"];
+    }
+    else if ([error.errorString isEqualToString:UE_ERROR_INNER_DEVICE_NULLINFO])
+    {
+        [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
+                              NSLocalizedString(@"informationEmpty", @"设备信息异常为空，请前往网页端进行配置"),
+                              error.errorString,
+                              error.internalErrorCode]
+                    duration:1.5
+                    position:@"center"];
+    }
+    else if ([error.errorString isEqualToString:UE_ERROR_STREAM_CLIENT_LIMIT])
+    {
+        [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
+                              NSLocalizedString(@"Limitofconcurrentaccess", @"取流并发路数限制"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5
@@ -327,7 +372,7 @@
     else
     {
         [self.bgView makeToast:[NSString stringWithFormat:@"%@(%@[%ld])",
-                              NSLocalizedString(@"play_fail", @"播放失败"),
+                              NSLocalizedString(@"play_fail", @"播放失败，请联系萤石云官方人员处理"),
                               error.errorString,
                               error.internalErrorCode]
                     duration:1.5

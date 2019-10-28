@@ -47,8 +47,14 @@
 "not_find_file" = "not_find_file";
 "param_error" = "param_error";
 "play_url_format_wrong" = "play_url_format_wrong";
-"play_fail" = "play_fail";
+"play_fail" = "Play fails, please contact the ezviz official personnel to deal with fluorite cloud";
 "not_found_record_files"="not_found_record_files";
+"Appkeyaccesstokendonotmatch"="Appkey and accesstoken do not match";
+"currentAccount"="Terminal binding is enabled for the current account";
+"informationEmpty"="The device information is abnormally empty. Please go to the webpage for configuration";
+"Limitofconcurrentaccess"="Limit of concurrent access";
+"accesstoken_fail"="Abnormal or invalid, need to be retrieved";
+
 //"param_error" = "";
 
 //首页

@@ -622,6 +622,7 @@
 }
 - (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
     DefLog(@"定位失败");
+    self.pageStillLoading = NO;
 }
 
 
