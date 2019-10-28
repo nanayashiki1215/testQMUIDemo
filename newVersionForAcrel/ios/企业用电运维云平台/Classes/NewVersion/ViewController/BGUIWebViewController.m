@@ -18,6 +18,7 @@
 //WKScriptMessageHandler 这个协议类专门用来处理JavaScript调用原生OC的方法
 @property (nonatomic, weak) id<WKScriptMessageHandler> scriptDelegate;
 
+
 - (instancetype)initWithDelegate:(id<WKScriptMessageHandler>)scriptDelegate;
 
 @end
@@ -51,6 +52,8 @@
 @property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
     
 @property (nonatomic, strong) UIView *viewStatusColorBlend;//背景层
+
+@property (nonatomic) BOOL pageStillLoading;//线程等待
 
 @end
 
@@ -547,7 +550,7 @@
 
             //定位功能可用
             [self getLoation];
-            sleep(1);
+            
 
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
 
@@ -564,6 +567,8 @@
 
 -(void)getLoation{
     __weak __typeof(self)weakSelf = self;
+    self.pageStillLoading = YES;
+
     [self.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
              //获取经纬度和该定位点对应的位置信息
         DefLog(@"%@ %d",location,state);
@@ -574,8 +579,14 @@
 //       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
        [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
            DefLog(@"item%@",item);
+           weakSelf.pageStillLoading = NO;
        }];
     }];
+    
+    while (self.pageStillLoading) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+   
     //开启定位服务
 }
 
