@@ -129,7 +129,6 @@
         //其他均用url加载 通用方法
 //        fFunctionfield
 //        NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
-        
             BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
             urlWebView.isUseOnline = YES;
             UserManager *user = [UserManager manager];

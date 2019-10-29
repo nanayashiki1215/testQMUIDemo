@@ -31,6 +31,7 @@
     NSArray *_selectlanageArr;
     NSArray *_versionArr;
     NSString *_orderListUrl;
+    NSDictionary *_homeALLFullData;
 //    BGQMSubstationModel *_subModel;
 }
 
@@ -70,6 +71,11 @@
 @property(nonatomic,copy)NSString *homefMenuid;//首页Menuid
 @property(nonatomic,copy)NSArray *selectlanageArr;//切换语言Arr
 @property(nonatomic,copy)NSArray *versionArr;//版本描述与版权所有
+
+//20191028
+@property (nonatomic,strong) NSDictionary *homeALLFullData;//首页配置全量数据
+
+
 
 //获取单例
 +(instancetype)manager;

@@ -274,6 +274,20 @@ static UserManager* manager;
     [DefNSUD setObject:_versionNo forKey:@"versionNo"];
     DefNSUDSynchronize
 }
+
+-(void)setHomeALLFullData:(NSDictionary *)homeALLFullData{
+    _homeALLFullData = homeALLFullData;
+    [DefNSUD setObject:_homeALLFullData
+                forKey:@"homeALLFullData"];
+    DefNSUDSynchronize
+}
+
+-(NSDictionary *)homeALLFullData{
+    _homeALLFullData = [DefNSUD objectForKey:@"homeALLFullData"];
+    return _homeALLFullData;
+}
+
+
 //[DefNSUD setObject:respObjc[kdata] forKey:@"Token"];
 //DefNSUDSynchronize
 

@@ -619,6 +619,27 @@
 #pragma mark 点击 按钮
 - (void)itemAction:(NSString *)title andClickId:(NSInteger)codeId
 {
+//    componentViewController.isUseOnline = YES;
+//                      UserManager *user = [UserManager manager];
+//                      //外链H5
+//                      if (user.rootMenuData) {
+//                         NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+//                         componentViewController.showWebType = showWebTypeAlarm;
+//                         componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
+//                         NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+//                         NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+//                         NSString *urlStr = [str stringByAppendingString:fActionurl];
+//                         componentViewController.onlineUrlString = urlStr;
+//                         componentViewController.hidesBottomBarWhenPushed = NO;
+//                         QDNavigationController *componentNavController = [[QDNavigationController alloc] initWithRootViewController:componentViewController];
+//                         componentNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:homePageText image:[UIImageMake(@"bgbaojing") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgbaojingselect") tag:1];
+//                         AddAccessibilityHint(componentNavController.tabBarItem, @"实时报警系统");
+//                         [mainControllers addObject:componentNavController];
+//                      }
+     //外链H5
+    UserManager *user = [UserManager manager];
+    NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+
     if (codeId == 0)
     {
         BGQMMoveBtnViewController *otherView = [[BGQMMoveBtnViewController alloc] init];
@@ -629,7 +650,8 @@
     }else if (codeId == 345){
         //345 监控系统
         BGQMNewHomeTableViewController *homeSystemVC = [[BGQMNewHomeTableViewController alloc] init];
-        UserManager *user = [UserManager manager];
+       
+//        user.rootMenuData 获取首页相关数据
         for (NSDictionary *nodeDic in homeList) {
             if ([nodeDic[@"fCode"] isEqualToString:@"345"]) {
                 user.homefMenuid = [NSString changgeNonulWithString:nodeDic[@"fMenuid"]];
@@ -639,15 +661,34 @@
     }
     else if (codeId == 346){
         //346 设备管理
-        BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"selectedSubstation" ofType:@"html" inDirectory:@"aDevices"];
-        nomWebView.isUseOnline = NO;
-        nomWebView.localUrlString = filePath;
-        nomWebView.showWebType = showWebTypeDevice;
-//        self.tabBarController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:nomWebView animated:YES];
-        
-        
+        NSString *fAction;
+        NSString *fFunctionurl;
+        for (NSDictionary *nodeDic in homeList) {
+            if ([nodeDic[@"fCode"] isEqualToString:@"346"]) {
+                fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+            }
+        }
+        if (fFunctionurl.length>0) {
+            BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"selectedSubstation" ofType:@"html" inDirectory:@"aDevices"];
+            nomWebView.isUseOnline = NO;
+            nomWebView.localUrlString = filePath;
+            nomWebView.showWebType = showWebTypeDevice;
+    //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nomWebView animated:YES];
+        }else{
+            BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+            urlWebView.isUseOnline = YES;
+            if (versionURL.length>0) {
+                NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                NSString *urlStr = [str stringByAppendingString:fAction];
+                urlWebView.onlineUrlString = urlStr;
+                urlWebView.showWebType = showWebTypeDevice;
+               [self.navigationController pushViewController:urlWebView animated:YES];
+             }
+        }
 //        nomWebView.isUseOnline = YES;
 //        UserManager *user = [UserManager manager];
        //list
@@ -661,31 +702,95 @@
         
     }else if (codeId == 347){
         //347 待办事项
-        BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
-        nomWebView.isUseOnline = NO;
-        nomWebView.localUrlString = filePath;
-        nomWebView.showWebType = showWebTypeDevice;
-        //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:nomWebView animated:YES];
+        NSString *fAction;
+        NSString *fFunctionurl;
+        for (NSDictionary *nodeDic in homeList) {
+            if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+            }
+        }
+        if (fFunctionurl.length>0) {
+           BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
+           nomWebView.isUseOnline = NO;
+           nomWebView.localUrlString = filePath;
+           nomWebView.showWebType = showWebTypeDevice;
+           //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+           [self.navigationController pushViewController:nomWebView animated:YES];
+        }else{
+            BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+            urlWebView.isUseOnline = YES;
+            if (versionURL.length>0) {
+                NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                NSString *urlStr = [str stringByAppendingString:fAction];
+                urlWebView.onlineUrlString = urlStr;
+                urlWebView.showWebType = showWebTypeDevice;
+               [self.navigationController pushViewController:urlWebView animated:YES];
+             }
+        }
     }else if (codeId == 348){
         //348 巡视记录
-        BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allPatrolRecord" ofType:@"html" inDirectory:@"aDevices"];
-        nomWebView.isUseOnline = NO;
-        nomWebView.localUrlString = filePath;
-        nomWebView.showWebType = showWebTypeDevice;
-        //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:nomWebView animated:YES];
+        NSString *fAction;
+       NSString *fFunctionurl;
+       for (NSDictionary *nodeDic in homeList) {
+           if ([nodeDic[@"fCode"] isEqualToString:@"348"]) {
+               fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+               fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+           }
+       }
+       if (fFunctionurl.length>0) {
+          BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+          NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allPatrolRecord" ofType:@"html" inDirectory:@"aDevices"];
+          nomWebView.isUseOnline = NO;
+          nomWebView.localUrlString = filePath;
+          nomWebView.showWebType = showWebTypeDevice;
+          //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+          [self.navigationController pushViewController:nomWebView animated:YES];
+       }else{
+           BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+           urlWebView.isUseOnline = YES;
+           if (versionURL.length>0) {
+               NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+               NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+               NSString *urlStr = [str stringByAppendingString:fAction];
+               urlWebView.onlineUrlString = urlStr;
+               urlWebView.showWebType = showWebTypeDevice;
+              [self.navigationController pushViewController:urlWebView animated:YES];
+            }
+       }
     }else if (codeId == 349){
         //349 缺陷管理
-        BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allDefectPage" ofType:@"html" inDirectory:@"aDevices"];
-        nomWebView.isUseOnline = NO;
-        nomWebView.localUrlString = filePath;
-        nomWebView.showWebType = showWebTypeDevice;
-        //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:nomWebView animated:YES];
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"349"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allDefectPage" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
+       
     }
     else {
         DefLog(@"点击了%@格子",title);

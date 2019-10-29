@@ -118,8 +118,9 @@
                 }else{
                     componentViewController.isUseOnline = YES;
                     UserManager *user = [UserManager manager];
-                    if (user.singleSubFullData) {
-                       NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
+                    //外链H5
+                    if (user.rootMenuData) {
+                       NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
                        componentViewController.showWebType = showWebTypeAlarm;
                        componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
                        NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];

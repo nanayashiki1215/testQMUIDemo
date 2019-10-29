@@ -135,7 +135,6 @@
     if (@available(iOS 13.0, *)) {
         self.viewStatusColorBlend.backgroundColor = [UIColor clearColor];
         [self.viewStatusColorBlend removeFromSuperview];
-        
     }else{
         [self setStatusBarBackgroundColor:[UIColor clearColor]];
     }
@@ -532,7 +531,6 @@
         [self hideTabbar:isHidden];
     }else if ([message.name isEqualToString:@"pushNewWebView"]){
         DefLog(@"%@",message.body);
-        
         NSString *titleName = message.body[@"title"];
         NSString *url = message.body[@"url"];
         BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
@@ -665,6 +663,11 @@
     [self.progressView setProgress:0.0f animated:NO];
 //    [MBProgressHUD hideHUDForView:self.view animated:YES];xx
     [MBProgressHUD showError:[NSString stringWithFormat:@"页面加载失败,错误码：%ld",(long)error.code]];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"showError" ofType:@"html" inDirectory:@"aDevices"];
+    NSURL *pathURL = [NSURL fileURLWithPath:filePath];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
+    
 }
 
 // 当内容开始返回时调用
