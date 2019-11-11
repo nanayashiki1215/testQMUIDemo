@@ -29,6 +29,7 @@ typedef enum {
 @property (nonatomic,copy) NSString *urlParams;
 @property (nonatomic,assign) NSInteger showWebType; //展示类型
 @property (nonatomic,copy) NSString *menuId;//待查询的菜单ID
+@property (nonatomic,copy) NSString *isFromAlarm;//从报警页面跳入
 
 @end
 

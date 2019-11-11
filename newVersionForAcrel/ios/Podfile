@@ -1,0 +1,7 @@
+platform :ios,'10.0'
+target "企业用电运维云平台" do
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/aliyun/aliyun-specs.git'
+pod 'AlicloudPush', '~> 1.9.8'
+end
+

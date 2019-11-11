@@ -19,6 +19,7 @@
 		2E95AED19A84454D979E5FBF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 216BBA759C4A4241835A3B4A /* libsqlite3.0.tbd */; };
 		4A1FC029AE944D1589ACE1D3 /* LZKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD7505F9D6E4131A73F1515 /* LZKeychain.m */; };
 		53512C05AF1D442DBA8AF74F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379C72E7294B4715923102A6 /* CoreTelephony.framework */; };
+		56C538D56E35D90C8B5CCBAE /* libPods-企业用电运维云平台.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1402876BE41FCF1E16E529F0 /* libPods-企业用电运维云平台.a */; };
 		5C68959B6E6D476E9D7BF866 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FEFA5752A8491293D2BF27 /* UIKit.framework */; };
 		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
 		72A3A93A1D824587B174FAF0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF2192BC124D03B1473ED2 /* CoreData.framework */; };
@@ -49,6 +50,12 @@
 		B614C3D0233AFC950072459F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E964ADADF144AE8C84462B /* Security.framework */; };
 		B614C3D1233AFC9D0072459F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F46F29FBC2C4358860FA57E /* SystemConfiguration.framework */; };
 		B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B614C3D4233B00240072459F /* QMUIResources.bundle */; };
+		B61953F2237926DC00036E97 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953EF237926DB00036E97 /* libresolv.tbd */; };
+		B61953F82379273E00036E97 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F42379273E00036E97 /* UTDID.framework */; };
+		B61953F92379273E00036E97 /* AlicloudUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F52379273E00036E97 /* AlicloudUtils.framework */; };
+		B61953FA2379273E00036E97 /* CloudPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F62379273E00036E97 /* CloudPushSDK.framework */; };
+		B61953FB2379273E00036E97 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F72379273E00036E97 /* UTMini.framework */; };
+		B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */; };
 		B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */; };
 		B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */; };
 		B637965A22F1732D007AC38F /* JGUserFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */; };
@@ -227,6 +234,7 @@
 		B6A92E0222BA2D0A00D16AE9 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A92E0122BA2D0900D16AE9 /* Bugly.framework */; };
 		B6AACF2A22AE383D00632304 /* BGQMSelectSubstationTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AACF2922AE383D00632304 /* BGQMSelectSubstationTVC.m */; };
 		B6AACF2F22AE408700632304 /* NSString+PinYin.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AACF2D22AE408700632304 /* NSString+PinYin.m */; };
+		B6B0085323794F60002A4465 /* LZLPushMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B0085123794F5E002A4465 /* LZLPushMessage.m */; };
 		B6B1B62B229534E300F1B5D2 /* BGBaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B1B629229534E200F1B5D2 /* BGBaiduMapViewController.m */; };
 		B6B1B62C229534E300F1B5D2 /* BGBaiduMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6B1B62A229534E200F1B5D2 /* BGBaiduMapViewController.xib */; };
 		B6B1B62D229536A700F1B5D2 /* BGLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6B1B62F229536A700F1B5D2 /* BGLoginViewController.xib */; };
@@ -509,6 +517,7 @@
 		08EF2192BC124D03B1473ED2 /* CoreData.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0F46F29FBC2C4358860FA57E /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		12B2FB11C21B4E7E80FCFE67 /* NSObject+ObjectMap.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "NSObject+ObjectMap.h"; path = "com.justep.cordova.plugin.baiduMapBase/NSObject+ObjectMap.h"; sourceTree = "<group>"; };
+		1402876BE41FCF1E16E529F0 /* libPods-企业用电运维云平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-企业用电运维云平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1449480A1EE10CB70026AA73 /* JustepURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JustepURLProtocol.h; sourceTree = "<group>"; };
 		1449480B1EE10CB70026AA73 /* JustepURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JustepURLProtocol.m; sourceTree = "<group>"; };
 		1449480C1EE10CB70026AA73 /* NSData+AES128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES128.h"; sourceTree = "<group>"; };
@@ -532,6 +541,7 @@
 		810F2CC0D03145419CAC1953 /* NSObject+ObjectMap.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ObjectMap.m"; path = "com.justep.cordova.plugin.baiduMapBase/NSObject+ObjectMap.m"; sourceTree = "<group>"; };
 		82295CFC3962484097C104F0 /* UIImage+Rotate.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "UIImage+Rotate.h"; path = "com.justep.cordova.plugin.baiduMapBase/UIImage+Rotate.h"; sourceTree = "<group>"; };
 		8482AE96D99A476390473BC9 /* Toast+UIView.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "Toast+UIView.h"; path = "cordova-plugin-x-toast/Toast+UIView.h"; sourceTree = "<group>"; };
+		8B297D49658DE26098C3D18E /* Pods-企业用电运维云平台.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-企业用电运维云平台.release.xcconfig"; path = "Target Support Files/Pods-企业用电运维云平台/Pods-企业用电运维云平台.release.xcconfig"; sourceTree = "<group>"; };
 		8C3C53EFD2C2481EAFB35B23 /* UIImage+Rotate.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Rotate.m"; path = "com.justep.cordova.plugin.baiduMapBase/UIImage+Rotate.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* 企业用电运维云平台-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "企业用电运维云平台-Info.plist"; path = "企业用电运维云平台/企业用电运维云平台-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
 		998596CAB07D42F9A927B9E4 /* libcrypto.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; name = libcrypto.a; path = "企业用电运维云平台/Plugins/com.justep.cordova.plugin.baiduMapBase/libcrypto.a"; sourceTree = "<group>"; };
@@ -647,6 +657,12 @@
 		B614C3C4233AF0AF0072459F /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		B614C3CE233AFC8C0072459F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B614C3D4233B00240072459F /* QMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUIResources.bundle; sourceTree = "<group>"; };
+		B61953EF237926DB00036E97 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		B61953F42379273E00036E97 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
+		B61953F52379273E00036E97 /* AlicloudUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudUtils.framework; sourceTree = "<group>"; };
+		B61953F62379273E00036E97 /* CloudPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CloudPushSDK.framework; sourceTree = "<group>"; };
+		B61953F72379273E00036E97 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTMini.framework; sourceTree = "<group>"; };
+		B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AliyunEmasServices-Info.plist"; sourceTree = "<group>"; };
 		B624D8CE2317CAEA00A16F5A /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		B637964722F1251D007AC38F /* BGQMUserHeadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserHeadTableViewCell.h; sourceTree = "<group>"; };
@@ -977,6 +993,9 @@
 		B6AACF2922AE383D00632304 /* BGQMSelectSubstationTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSelectSubstationTVC.m; sourceTree = "<group>"; };
 		B6AACF2D22AE408700632304 /* NSString+PinYin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin.m"; sourceTree = "<group>"; };
 		B6AACF2E22AE408700632304 /* NSString+PinYin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin.h"; sourceTree = "<group>"; };
+		B6B0085123794F5E002A4465 /* LZLPushMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZLPushMessage.m; sourceTree = "<group>"; };
+		B6B0085223794F60002A4465 /* LZLPushMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZLPushMessage.h; sourceTree = "<group>"; };
+		B6B0085423795244002A4465 /* 企业用电运维云平台.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "企业用电运维云平台.entitlements"; path = "企业用电运维云平台/企业用电运维云平台.entitlements"; sourceTree = "<group>"; };
 		B6B1B628229534E200F1B5D2 /* BGBaiduMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGBaiduMapViewController.h; sourceTree = "<group>"; };
 		B6B1B629229534E200F1B5D2 /* BGBaiduMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGBaiduMapViewController.m; sourceTree = "<group>"; };
 		B6B1B62A229534E200F1B5D2 /* BGBaiduMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BGBaiduMapViewController.xib; sourceTree = "<group>"; };
@@ -1485,6 +1504,7 @@
 		B9FEFA5752A8491293D2BF27 /* UIKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C9E964ADADF144AE8C84462B /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CC1CDA8235DF473C9BC8CC77 /* MessageUI.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DEE3AE4B73D27FA2DB81F7A1 /* Pods-企业用电运维云平台.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-企业用电运维云平台.debug.xcconfig"; path = "Target Support Files/Pods-企业用电运维云平台/Pods-企业用电运维云平台.debug.xcconfig"; sourceTree = "<group>"; };
 		E7758F09110646999F08912A /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		EA88DA4A24AE45D6B52BC285 /* LZKeychain.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = LZKeychain.h; path = "cordova-plugin-device/LZKeychain.h"; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
@@ -1500,6 +1520,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61953F2237926DC00036E97 /* libresolv.tbd in Frameworks */,
+				B61953FA2379273E00036E97 /* CloudPushSDK.framework in Frameworks */,
 				B63BFF69234DC0A7009C70BC /* CoreGraphics.framework in Frameworks */,
 				B614C3C5233AF0AF0072459F /* libxml2.tbd in Frameworks */,
 				B614C3C1233AF00B0072459F /* Photos.framework in Frameworks */,
@@ -1528,6 +1550,7 @@
 				FAE6567CB3DB4762849C1A88 /* libssl.a in Frameworks */,
 				B614C3D0233AFC950072459F /* Security.framework in Frameworks */,
 				B6EB9BB422C99F8100136A6C /* libEZUIKit.a in Frameworks */,
+				B61953FB2379273E00036E97 /* UTMini.framework in Frameworks */,
 				B60C805022A8A3F10016D936 /* libcrypto.a in Frameworks */,
 				F1686AD107474FEC98F56C51 /* BMKLocationKit.framework in Frameworks */,
 				B63BFF66234DBFDD009C70BC /* BaiduMapAPI_Map.framework in Frameworks */,
@@ -1540,7 +1563,10 @@
 				B6EB9BB522C99F8100136A6C /* libEZOpenSDK.a in Frameworks */,
 				72A3A93A1D824587B174FAF0 /* CoreData.framework in Frameworks */,
 				B63BFF65234DBFDD009C70BC /* BaiduMapAPI_Base.framework in Frameworks */,
+				B61953F92379273E00036E97 /* AlicloudUtils.framework in Frameworks */,
 				1BA65013D26F48C7859BD8E8 /* libz.dylib in Frameworks */,
+				B61953F82379273E00036E97 /* UTDID.framework in Frameworks */,
+				56C538D56E35D90C8B5CCBAE /* libPods-企业用电运维云平台.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1570,9 +1596,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1C84E8DC5BBAC2F149D9B689 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DEE3AE4B73D27FA2DB81F7A1 /* Pods-企业用电运维云平台.debug.xcconfig */,
+				8B297D49658DE26098C3D18E /* Pods-企业用电运维云平台.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				B6B0085423795244002A4465 /* 企业用电运维云平台.entitlements */,
+				B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */,
 				B614C3D4233B00240072459F /* QMUIResources.bundle */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1581,6 +1618,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				1C84E8DC5BBAC2F149D9B689 /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1614,6 +1652,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B61953EF237926DB00036E97 /* libresolv.tbd */,
 				B63BFF68234DC0A6009C70BC /* CoreGraphics.framework */,
 				B614C3CE233AFC8C0072459F /* MediaPlayer.framework */,
 				B614C3C4233AF0AF0072459F /* libxml2.tbd */,
@@ -1648,6 +1687,7 @@
 				216BBA759C4A4241835A3B4A /* libsqlite3.0.tbd */,
 				08EF2192BC124D03B1473ED2 /* CoreData.framework */,
 				5E1EB3449FFC48479E3A8359 /* libz.dylib */,
+				1402876BE41FCF1E16E529F0 /* libPods-企业用电运维云平台.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1793,6 +1833,19 @@
 				B60C80AF22A8AE4E0016D936 /* UIView+Extension.m */,
 			);
 			path = WSDatePickerView;
+			sourceTree = "<group>";
+		};
+		B61953F32379273E00036E97 /* AliyunOneSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B6B0085223794F60002A4465 /* LZLPushMessage.h */,
+				B6B0085123794F5E002A4465 /* LZLPushMessage.m */,
+				B61953F42379273E00036E97 /* UTDID.framework */,
+				B61953F52379273E00036E97 /* AlicloudUtils.framework */,
+				B61953F62379273E00036E97 /* CloudPushSDK.framework */,
+				B61953F72379273E00036E97 /* UTMini.framework */,
+			);
+			path = AliyunOneSDK;
 			sourceTree = "<group>";
 		};
 		B637964F22F1732C007AC38F /* UserFeedBackVC */ = {
@@ -2808,6 +2861,7 @@
 		B6E15604228CF0E600CB4A5F /* BGLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				B61953F32379273E00036E97 /* AliyunOneSDK */,
 				B64D3B33233B62C20016DF9F /* qmui.xcodeproj */,
 				B6C6177722F968DC008DD6E7 /* WechtSDK1.8.2 */,
 				B66BA70222F275270027EE05 /* SDPhotoBrowser */,
@@ -3360,6 +3414,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "企业用电运维云平台" */;
 			buildPhases = (
+				064491572F409C1952E1EA63 /* [CP] Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -3401,6 +3456,7 @@
 				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
@@ -3459,6 +3515,7 @@
 				B6C6178122F968DC008DD6E7 /* README.txt in Resources */,
 				B6E1560D228CF32E00CB4A5F /* NativeImg.xcassets in Resources */,
 				B6B1B62C229534E300F1B5D2 /* BGBaiduMapViewController.xib in Resources */,
+				B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */,
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
 				B68D2D3422A65E2A001C00EC /* app_item_add.png in Resources */,
 				B6FB484122FAC098006F94CF /* BGCrearTrendsBaseTableViewCell.xib in Resources */,
@@ -3489,6 +3546,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		064491572F409C1952E1EA63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-企业用电运维云平台-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B64D020A22C4A29200FF9717 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -3799,6 +3878,7 @@
 				B6E155FD228CF09C00CB4A5F /* NSString+Rect.m in Sources */,
 				B6C7690222A0B8DC00DA675D /* QDModalPresentationViewController.m in Sources */,
 				B68D2CE522A646C1001C00EC /* JXCategoryIndicatorBallView.m in Sources */,
+				B6B0085323794F60002A4465 /* LZLPushMessage.m in Sources */,
 				B6C7690722A0B8DC00DA675D /* QDNavigationBarScrollingSnapAnimatorViewController.m in Sources */,
 				B657DDDD22927C760009BCB0 /* UIButton+WebCache.m in Sources */,
 				B6C768FF22A0B8DC00DA675D /* QDNavigationTitleViewController.m in Sources */,
@@ -3958,13 +4038,14 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3047A50F1AB8059700498E2A /* build-debug.xcconfig */;
+			baseConfigurationReference = DEE3AE4B73D27FA2DB81F7A1 /* Pods-企业用电运维云平台.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "企业用电运维云平台/企业用电运维云平台.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -3982,6 +4063,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/AMapLib",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/AliyunOneSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4013,13 +4095,14 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3047A5101AB8059700498E2A /* build-release.xcconfig */;
+			baseConfigurationReference = 8B297D49658DE26098C3D18E /* Pods-企业用电运维云平台.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "企业用电运维云平台/企业用电运维云平台.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
@@ -4037,6 +4120,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/AMapLib",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/AliyunOneSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4066,7 +4150,7 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
+			baseConfigurationReference = DEE3AE4B73D27FA2DB81F7A1 /* Pods-企业用电运维云平台.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -4112,7 +4196,7 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
+			baseConfigurationReference = 8B297D49658DE26098C3D18E /* Pods-企业用电运维云平台.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";

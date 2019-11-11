@@ -50,12 +50,27 @@
 #import "WXApi.h"
 #import "WXAuth.h"
 #import "NSBundle+Language.h"
+#import <CloudPushSDK/CloudPushSDK.h>
+// iOS 10 notification
+#import <UserNotifications/UserNotifications.h>
+#import "LZLPushMessage.h"
 
 #define CLIENT_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define WXAppId @"wx3e0b2d7e2d2bbc62"
 
 BMKMapManager* _mapManager;
-@implementation AppDelegate
+
+static NSString *const EMASAppKey = @"28124642";
+static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
+
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
+
+@end
+
+@implementation AppDelegate{
+    // iOS 10通知中心
+    UNUserNotificationCenter *_notificationCenter;
+}
 
 //- (id)init
 //{
@@ -132,6 +147,19 @@ BMKMapManager* _mapManager;
 //        [QDUIHelper qmuiEmotions];
 //    });
     
+    // APNs注册，获取deviceToken并上报
+    [self registerAPNS:application];
+    // 初始化SDK
+    [self initCloudPush];
+    // 监听推送通道打开动作
+    [self listenerOnChannelOpened];
+    // 监听推送消息到达
+    [self registerMessageReceive];
+    // 点击通知将App从关闭状态启动时，将通知打开回执上报
+    // [CloudPushSDK handleLaunching:launchOptions];(Deprecated from v1.8.1)
+    [CloudPushSDK sendNotificationAck:launchOptions];
+    
+    
     //配置bugly上传
     [Bugly startWithAppId:BGBuglyApi];
     //配置微信sdk
@@ -188,6 +216,206 @@ BMKMapManager* _mapManager;
 //  [self.window makeKeyAndVisible];
   
   return YES;
+}
+
+#pragma mark - PushAPI
+/**
+ *    向APNs注册，获取deviceToken用于推送
+ *
+ *    @param     application
+ */
+- (void)registerAPNS:(UIApplication *)application {
+    float systemVersionNum = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (systemVersionNum >= 10.0) {
+        // iOS 10 notifications
+        _notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
+        // 创建category，并注册到通知中心
+        [self createCustomNotificationCategory];
+        _notificationCenter.delegate = self;
+        // 请求推送权限
+        [_notificationCenter requestAuthorizationWithOptions:UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                // granted
+                NSLog(@"User authored notification.");
+                // 向APNs注册，获取deviceToken
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [application registerForRemoteNotifications];
+                });
+            } else {
+                // not granted
+                NSLog(@"User denied notification.");
+            }
+        }];
+    } else if (systemVersionNum >= 8.0) {
+        // iOS 8 Notifications
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+        [application registerUserNotificationSettings:
+         [UIUserNotificationSettings settingsForTypes:
+          (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+                                           categories:nil]];
+        [application registerForRemoteNotifications];
+#pragma clang diagnostic pop
+    } else {
+        // iOS < 8 Notifications
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+#pragma clang diagnostic pop
+    }
+}
+
+/**
+ *  创建并注册通知category(iOS 10+)
+ */
+- (void)createCustomNotificationCategory {
+    // 自定义`action1`和`action2`
+    UNNotificationAction *action1 = [UNNotificationAction actionWithIdentifier:@"action1" title:@"test1" options: UNNotificationActionOptionNone];
+    UNNotificationAction *action2 = [UNNotificationAction actionWithIdentifier:@"action2" title:@"test2" options: UNNotificationActionOptionNone];
+    // 创建id为`test_category`的category，并注册两个action到category
+    // UNNotificationCategoryOptionCustomDismissAction表明可以触发通知的dismiss回调
+    UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"test_category" actions:@[action1, action2] intentIdentifiers:@[] options:
+                                        UNNotificationCategoryOptionCustomDismissAction];
+    // 注册category到通知中心
+    [_notificationCenter setNotificationCategories:[NSSet setWithObjects:category, nil]];
+}
+
+- (void)initCloudPush {
+    // 正式上线建议关闭
+//    [CloudPushSDK turnOnDebug];
+    // SDK初始化，手动输出appKey和appSecret
+    [CloudPushSDK asyncInit:EMASAppKey appSecret:EMASAppSecret callback:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            NSLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
+        } else {
+            NSLog(@"Push SDK init failed, error: %@", res.error);
+        }
+    }];
+    
+    // SDK初始化，无需输入配置信息
+    // 请从控制台下载AliyunEmasServices-Info.plist配置文件，并正确拖入工程
+//    [CloudPushSDK autoInit:^(CloudPushCallbackResult *res) {
+//        if (res.success) {
+//            NSLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
+//        } else {
+//            NSLog(@"Push SDK init failed, error: %@", res.error);
+//        }
+//    }];
+}
+
+/**
+ *  主动获取设备通知是否授权(iOS 10+)
+ */
+- (void)getNotificationSettingStatus {
+    [_notificationCenter getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+        if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
+            NSLog(@"User authed.");
+        } else {
+            NSLog(@"User denied.");
+        }
+    }];
+}
+
+
+/*
+ *  APNs注册成功回调，将返回的deviceToken上传到CloudPush服务器
+ */
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"Upload deviceToken to CloudPush server.");
+    [CloudPushSDK registerDevice:deviceToken withCallback:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            NSLog(@"Register deviceToken success, deviceToken: %@", [CloudPushSDK getApnsDeviceToken]);
+        } else {
+            NSLog(@"Register deviceToken failed, error: %@", res.error);
+        }
+    }];
+}
+
+/*
+ *  APNs注册失败回调
+ */
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@", error);
+}
+
+#pragma mark Channel Opened
+/**
+ *    注册推送通道打开监听
+ */
+- (void)listenerOnChannelOpened {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onChannelOpened:)
+                                                 name:@"CCPDidChannelConnectedSuccess"
+                                               object:nil];
+}
+
+/**
+ *    推送通道打开回调
+ *
+ *    @param     notification
+ */
+- (void)onChannelOpened:(NSNotification *)notification {
+//    [MsgToolBox showAlert:@"温馨提示" content:@"消息通道建立成功"];
+    NSLog(@"消息通道建立成功");
+}
+
+
+#pragma mark Receive Message
+/**
+ *    @brief    注册推送消息到来监听
+ */
+- (void)registerMessageReceive {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onMessageReceived:)
+                                                 name:@"CCPDidReceiveMessageNotification"
+                                               object:nil];
+}
+
+/**
+ *    处理到来推送消息
+ *
+ *    @param     notification
+ */
+- (void)onMessageReceived:(NSNotification *)notification {
+    NSLog(@"Receive one message!");
+   
+    CCPSysMessage *message = [notification object];
+    NSString *title = [[NSString alloc] initWithData:message.title encoding:NSUTF8StringEncoding];
+    NSString *body = [[NSString alloc] initWithData:message.body encoding:NSUTF8StringEncoding];
+    NSLog(@"Receive message title: %@, content: %@.", title, body);
+    
+    LZLPushMessage *tempVO = [[LZLPushMessage alloc] init];
+    tempVO.messageContent = [NSString stringWithFormat:@"title: %@, content: %@", title, body];
+    tempVO.isRead = 0;
+    
+    if(![NSThread isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(tempVO.messageContent != nil) {
+                [self insertPushMessage:tempVO];
+            }
+        });
+    } else {
+        if(tempVO.messageContent != nil) {
+            [self insertPushMessage:tempVO];
+        }
+    }
+}
+
+- (void)insertPushMessage:(LZLPushMessage *)model {
+//    PushMessageDAO *dao = [[PushMessageDAO alloc] init];
+//    [dao insert:model];
+}
+
+/* 同步通知角标数到服务端 */
+- (void)syncBadgeNum:(NSUInteger)badgeNum {
+    [CloudPushSDK syncBadgeNum:badgeNum withCallback:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            NSLog(@"Sync badge num: [%lu] success.", (unsigned long)badgeNum);
+        } else {
+            NSLog(@"Sync badge num: [%lu] failed, error: %@", (unsigned long)badgeNum, res.error);
+        }
+    }];
 }
 
 #pragma mark - AMapAPI

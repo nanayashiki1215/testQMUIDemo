@@ -127,6 +127,7 @@
                        NSString *str = [GetBaseURL stringByAppendingString:urlstring];
                        NSString *urlStr = [str stringByAppendingString:fActionurl];
                        componentViewController.onlineUrlString = urlStr;
+                        componentViewController.isFromAlarm = @"1";
                        componentViewController.hidesBottomBarWhenPushed = NO;
                        QDNavigationController *componentNavController = [[QDNavigationController alloc] initWithRootViewController:componentViewController];
                        componentNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:homePageText image:[UIImageMake(@"bgbaojing") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgbaojingselect") tag:1];

@@ -664,10 +664,15 @@
 //    [MBProgressHUD hideHUDForView:self.view animated:YES];xx
     [MBProgressHUD showError:[NSString stringWithFormat:@"页面加载失败,错误码：%ld",(long)error.code]];
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"showError" ofType:@"html" inDirectory:@"aDevices"];
-    NSURL *pathURL = [NSURL fileURLWithPath:filePath];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
-    
+    if([self.isFromAlarm isEqualToString:@"1"]){
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"showErrorFromAlarm" ofType:@"html" inDirectory:@"aDevices"];
+                  NSURL *pathURL = [NSURL fileURLWithPath:filePath];
+               [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
+    }else{
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"showError" ofType:@"html" inDirectory:@"aDevices"];
+           NSURL *pathURL = [NSURL fileURLWithPath:filePath];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
+    }
 }
 
 // 当内容开始返回时调用

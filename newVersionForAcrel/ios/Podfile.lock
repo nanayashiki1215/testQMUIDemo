@@ -1,0 +1,29 @@
+PODS:
+  - AlicloudPush (1.9.9):
+    - AlicloudUT
+    - AlicloudUtils
+  - AlicloudUT (5.2.0.12):
+    - AlicloudUTDID
+  - AlicloudUTDID (1.1.0.19)
+  - AlicloudUtils (1.3.7):
+    - AlicloudUTDID
+
+DEPENDENCIES:
+  - AlicloudPush (~> 1.9.8)
+
+SPEC REPOS:
+  https://github.com/aliyun/aliyun-specs.git:
+    - AlicloudPush
+    - AlicloudUT
+    - AlicloudUTDID
+    - AlicloudUtils
+
+SPEC CHECKSUMS:
+  AlicloudPush: c7cfdbd6a8034507c8772a052737f13ce607f32e
+  AlicloudUT: b7673ac4e19b89857a22ca5651880c80525b5650
+  AlicloudUTDID: 79f509c3e997ef85fe307f8bfb2bb3be27f7e205
+  AlicloudUtils: ec441e41aa746d779c2c3958aa9489c59cb434ea
+
+PODFILE CHECKSUM: 642428d19961ff67310799aa3d3abc8c8338ff62
+
+COCOAPODS: 1.6.1
