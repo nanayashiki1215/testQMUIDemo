@@ -195,6 +195,7 @@ static id _instance;
     NSString *upPath = [realURL lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
         DefLog(@"请检查请求URL：%@",path);
+        Fail(nil,nil,nil);
         return;
     }
     
@@ -222,6 +223,7 @@ static id _instance;
     NSString *upPath = [realURL lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
         DefLog(@"请检查请求URL：%@",path);
+         Fail(nil,nil,nil);
         return;
     }
     
@@ -248,6 +250,7 @@ static id _instance;
     NSString *upPath = [path lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
         DefLog(@"请检查请求URL：%@",path);
+         Fail(nil,nil,nil);
         return;
     }
     NSString *realURL = path;
@@ -274,6 +277,7 @@ static id _instance;
     NSString *upPath = [path lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
         DefLog(@"请检查请求URL：%@",path);
+         Fail(nil,nil,nil);
         return;
     }
     NSString *realURL = path;
@@ -300,6 +304,7 @@ static id _instance;
     NSString *upPath = [path lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
         DefLog(@"请检查请求URL：%@",path);
+         Fail(nil,nil,nil);
         return;
     }
     NSString *realURL = path;
@@ -402,6 +407,7 @@ static id _instance;
     NSString *upPath = [urlStr lowercaseString];
     if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
         DefLog(@"请检查请求URL：%@",urlStr);
+        Fail(nil,nil,nil);
         return;
     }
     NSString *realURL = urlStr;

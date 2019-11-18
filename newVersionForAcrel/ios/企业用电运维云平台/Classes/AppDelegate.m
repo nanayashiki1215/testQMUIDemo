@@ -159,7 +159,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // [CloudPushSDK handleLaunching:launchOptions];(Deprecated from v1.8.1)
     [CloudPushSDK sendNotificationAck:launchOptions];
     
-    
     //配置bugly上传
     [Bugly startWithAppId:BGBuglyApi];
     //配置微信sdk
@@ -303,11 +302,18 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // 通知角标数清0
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     // 同步角标数到服务端
-     [self syncBadgeNum:0];
-    
+    [self syncBadgeNum:0];
+    // 取得通知自定义字段内容，例：获取key为"Extras"的内容
+    NSString *pushType = [userInfo valueForKey:@"pushType"];
+    [self pushViewControllerWithType:pushType];
     // 通知打开回执上报
     [CloudPushSDK sendNotificationAck:userInfo];
+    
     NSLog(@"Notification, date: %@, title: %@, subtitle: %@, body: %@, badge: %d, extras: %@.", noticeDate, title, subtitle, body, badge, extras);
+}
+
+-(void)pushViewControllerWithType:(NSString *)pushType{
+    DefLog(@"pushType:%@",pushType);
 }
 
 /**

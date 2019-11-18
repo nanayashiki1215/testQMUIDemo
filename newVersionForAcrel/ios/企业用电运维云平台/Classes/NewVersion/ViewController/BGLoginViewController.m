@@ -132,6 +132,7 @@
         user.isSavePwd = NO;
     }
 }
+
 -(void)labelClick:(UIButton *)label{
     UserManager *user = [UserManager manager];
     self.checkBtn.selected = !self.checkBtn.selected;
@@ -208,7 +209,6 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
         user.token = respObjc[kdata][@"authorization"];
-        
 //        NSDictionary *userInfo = respObjc[kdata][@"userInfo"];
 //        if (userInfo) {
 //            NSString *username = [userInfo bg_StringForKeyNotNull:@"fUsername"];
