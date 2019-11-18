@@ -29,6 +29,7 @@
 		A74793AC903946A1BB94C37D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7758F09110646999F08912A /* OpenGLES.framework */; };
 		B6024AD822FA6224000A2A98 /* BGQMSettingPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6024AD622FA6224000A2A98 /* BGQMSettingPersonInfoViewController.m */; };
 		B6024AD922FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6024AD722FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib */; };
+		B607C2FF237A3BB20097CF98 /* PushMessageDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = B607C2FE237A3BB20097CF98 /* PushMessageDAO.m */; };
 		B60C7FF322A89B260016D936 /* LogCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B60C7FF222A89B260016D936 /* LogCategory.m */; };
 		B60C805022A8A3F10016D936 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B60C7FF722A8A3F10016D936 /* libcrypto.a */; };
 		B60C805122A8A3F10016D936 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B60C804F22A8A3F10016D936 /* libssl.a */; };
@@ -50,6 +51,7 @@
 		B614C3D0233AFC950072459F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E964ADADF144AE8C84462B /* Security.framework */; };
 		B614C3D1233AFC9D0072459F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F46F29FBC2C4358860FA57E /* SystemConfiguration.framework */; };
 		B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B614C3D4233B00240072459F /* QMUIResources.bundle */; };
+		B616043F237E3F6C007A8C44 /* silent.caf in Resources */ = {isa = PBXBuildFile; fileRef = B616043C237E3F6B007A8C44 /* silent.caf */; };
 		B61953F2237926DC00036E97 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953EF237926DB00036E97 /* libresolv.tbd */; };
 		B61953F82379273E00036E97 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F42379273E00036E97 /* UTDID.framework */; };
 		B61953F92379273E00036E97 /* AlicloudUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F52379273E00036E97 /* AlicloudUtils.framework */; };
@@ -145,6 +147,7 @@
 		B66BA71222F27EE80027EE05 /* BGShowUrlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */; };
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
+		B68AF11D237BD75800F51D0E /* BGQMMsgNotifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */; };
 		B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */; };
 		B68D2C7022A63D87001C00EC /* NSString+Arc4random.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4E22A63D86001C00EC /* NSString+Arc4random.m */; };
 		B68D2C7122A63D87001C00EC /* NSArray+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C5022A63D86001C00EC /* NSArray+Bounds.m */; };
@@ -548,6 +551,8 @@
 		B6024AD522FA6224000A2A98 /* BGQMSettingPersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMSettingPersonInfoViewController.h; sourceTree = "<group>"; };
 		B6024AD622FA6224000A2A98 /* BGQMSettingPersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSettingPersonInfoViewController.m; sourceTree = "<group>"; };
 		B6024AD722FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BGQMSettingPersonInfoViewController.xib; sourceTree = "<group>"; };
+		B607C2FB237A3BB00097CF98 /* PushMessageDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushMessageDAO.h; sourceTree = "<group>"; };
+		B607C2FE237A3BB20097CF98 /* PushMessageDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushMessageDAO.m; sourceTree = "<group>"; };
 		B60C7FF122A89B260016D936 /* LogCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogCategory.h; sourceTree = "<group>"; };
 		B60C7FF222A89B260016D936 /* LogCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogCategory.m; sourceTree = "<group>"; };
 		B60C7FF722A8A3F10016D936 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -657,6 +662,7 @@
 		B614C3C4233AF0AF0072459F /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		B614C3CE233AFC8C0072459F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B614C3D4233B00240072459F /* QMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUIResources.bundle; sourceTree = "<group>"; };
+		B616043C237E3F6B007A8C44 /* silent.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = silent.caf; sourceTree = "<group>"; };
 		B61953EF237926DB00036E97 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		B61953F42379273E00036E97 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
 		B61953F52379273E00036E97 /* AlicloudUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudUtils.framework; sourceTree = "<group>"; };
@@ -826,6 +832,8 @@
 		B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGShowUrlModel.m; sourceTree = "<group>"; };
 		B6733F3E22B8D77A005B1DDE /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
+		B68AF11B237BD75800F51D0E /* BGQMMsgNotifViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMMsgNotifViewController.h; sourceTree = "<group>"; };
+		B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMMsgNotifViewController.m; sourceTree = "<group>"; };
 		B68D2C4B22A63D86001C00EC /* NSArray+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Bounds.h"; sourceTree = "<group>"; };
 		B68D2C4C22A63D86001C00EC /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GHome.m"; sourceTree = "<group>"; };
@@ -1609,6 +1617,7 @@
 			isa = PBXGroup;
 			children = (
 				B6B0085423795244002A4465 /* 企业用电运维云平台.entitlements */,
+				B616043C237E3F6B007A8C44 /* silent.caf */,
 				B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */,
 				B614C3D4233B00240072459F /* QMUIResources.bundle */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
@@ -1838,6 +1847,8 @@
 		B61953F32379273E00036E97 /* AliyunOneSDK */ = {
 			isa = PBXGroup;
 			children = (
+				B607C2FB237A3BB00097CF98 /* PushMessageDAO.h */,
+				B607C2FE237A3BB20097CF98 /* PushMessageDAO.m */,
 				B6B0085223794F60002A4465 /* LZLPushMessage.h */,
 				B6B0085123794F5E002A4465 /* LZLPushMessage.m */,
 				B61953F42379273E00036E97 /* UTDID.framework */,
@@ -3245,6 +3256,8 @@
 				B657DD4B22927AB00009BCB0 /* BGHeadPortraitViewController.xib */,
 				B6FBB083230E353C00166E36 /* BGQMChangeLanguageViewController.h */,
 				B6FBB084230E353C00166E36 /* BGQMChangeLanguageViewController.m */,
+				B68AF11B237BD75800F51D0E /* BGQMMsgNotifViewController.h */,
+				B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */,
 			);
 			path = VIewController;
 			sourceTree = "<group>";
@@ -3526,6 +3539,7 @@
 				B6024AD922FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib in Resources */,
 				B6380A9322CB2085002500E0 /* Dis-test in Resources */,
 				B6C6178322F968DC008DD6E7 /* read_me.txt in Resources */,
+				B616043F237E3F6C007A8C44 /* silent.caf in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
 				B6B1B62D229536A700F1B5D2 /* BGLoginViewController.xib in Resources */,
 				B68D2D2422A656F1001C00EC /* 005.jpg in Resources */,
@@ -3878,6 +3892,7 @@
 				B6E155FD228CF09C00CB4A5F /* NSString+Rect.m in Sources */,
 				B6C7690222A0B8DC00DA675D /* QDModalPresentationViewController.m in Sources */,
 				B68D2CE522A646C1001C00EC /* JXCategoryIndicatorBallView.m in Sources */,
+				B607C2FF237A3BB20097CF98 /* PushMessageDAO.m in Sources */,
 				B6B0085323794F60002A4465 /* LZLPushMessage.m in Sources */,
 				B6C7690722A0B8DC00DA675D /* QDNavigationBarScrollingSnapAnimatorViewController.m in Sources */,
 				B657DDDD22927C760009BCB0 /* UIButton+WebCache.m in Sources */,
@@ -3911,6 +3926,7 @@
 				B64376472293D25100A92D74 /* BGUIWebViewController.m in Sources */,
 				B6E155BD228CEDF900CB4A5F /* MyMD5.m in Sources */,
 				B6E155FE228CF09C00CB4A5F /* NSDictionary+BGExtension.m in Sources */,
+				B68AF11D237BD75800F51D0E /* BGQMMsgNotifViewController.m in Sources */,
 				B68D2C7222A63D87001C00EC /* UIView+Extension.m in Sources */,
 				B6C768DB22A0B8DC00DA675D /* QDReplicatorLayerViewController.m in Sources */,
 				B68D2D0022A646C1001C00EC /* JXCategoryListCollectionContainerView.m in Sources */,

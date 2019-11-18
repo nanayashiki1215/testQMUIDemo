@@ -49,6 +49,10 @@
 //代理方法
 @property(nonatomic, weak)id<CustomGridDelegate> delegate;
 
+@property(nonatomic, strong)UILabel *badgeLabel;
+//未读数
+@property(nonatomic, assign)NSInteger unreadBadge;
+
 /**
  * 创建格子
  * @param pointX   格子所在位置的X坐标
@@ -65,7 +69,8 @@
             atIndex:(NSInteger)index
         isAddDelete:(BOOL)isAddDelete
          deleteIcon:(UIImage *)deleteIcon
-      withIconImage:(NSString *)imageString;
+      withIconImage:(NSString *)imageString
+    withBadgeNumber:(NSString *)number;
 
 //根据格子的坐标计算格子的索引位置
 + (NSInteger)indexOfPoint:(CGPoint)point

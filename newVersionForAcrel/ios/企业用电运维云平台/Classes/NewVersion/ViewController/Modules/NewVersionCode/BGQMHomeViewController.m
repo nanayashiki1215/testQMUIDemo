@@ -72,7 +72,6 @@
 - (void)initSubviews {
     [super initSubviews];
     // 对 subviews 的初始化写在这里
-    
 }
 
 - (void)viewDidLoad {
@@ -250,8 +249,9 @@
 - (void)creatMyScrollView
 {
 #pragma mark - 可拖动的按钮
-    normalImage = [UIImage imageNamed:@"app_item_bg"];
-    highlightedImage = [UIImage imageNamed:@"app_item_bg"];
+    //隐藏白色背景
+//    normalImage = [UIImage imageNamed:@"app_item_bg"];
+//    highlightedImage = [UIImage imageNamed:@"app_item_bg"];
     deleteIconImage = [UIImage imageNamed:@"app_item_plus"];
 
 //    myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 180+64, ScreenWidth, ScreenHeight-64-180)];
@@ -276,7 +276,14 @@
         if ([gridTitle isEqualToString:@"更多"]) {
             isAddDelete = NO;
         }
-        CustomGrid *gridItem = [[CustomGrid alloc] initWithFrame:CGRectZero title:gridTitle normalImage:normalImage highlightedImage:highlightedImage gridId:gridID atIndex:index isAddDelete:isAddDelete deleteIcon:deleteIconImage  withIconImage:gridImage];
+        NSString *number;
+        [UserManager manager].privateUnreadNumStr = @"9";
+        if (gridID == 347) {
+            number = [UserManager manager].privateUnreadNumStr;
+        }else{
+            number = @"0";
+        }
+        CustomGrid *gridItem = [[CustomGrid alloc] initWithFrame:CGRectZero title:gridTitle normalImage:normalImage highlightedImage:highlightedImage gridId:gridID atIndex:index isAddDelete:isAddDelete deleteIcon:deleteIconImage withIconImage:gridImage withBadgeNumber:number];
         [gridItem.layer setMasksToBounds:YES];
         [gridItem.layer setBorderWidth:0];
         gridItem.delegate = self;
@@ -301,7 +308,7 @@
 }
 
 #pragma mark --- 更新页面
--(void)getNewData
+-(void) getNewData
 {
     NSInteger gridHeight;
     if (self.showGridArray.count % 3 == 0) {
@@ -319,7 +326,7 @@
 {
     DefLog(@"您点击的格子Tag是：%ld", (long)gridItem.gridId);
     isSkip = YES;
-
+//    [UserManager manager].privateUnreadNumStr = @"0";
     //查看是否有选中的格子，并且比较点击的格子是否就是选中的格子
     for (NSInteger i = 0; i < [_gridListArray count]; i++) {
         CustomGrid *item = _gridListArray[i];

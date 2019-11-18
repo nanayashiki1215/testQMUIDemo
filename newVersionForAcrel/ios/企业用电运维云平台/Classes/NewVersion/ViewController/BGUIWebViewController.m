@@ -55,6 +55,8 @@
 
 @property (nonatomic) BOOL pageStillLoading;//线程等待
 
+@property (nonatomic, strong) UIView *statusBar;
+
 @end
 
 @implementation BGUIWebViewController
@@ -99,7 +101,11 @@
                       options:NSKeyValueObservingOptionNew
                       context:nil];
     if (self.titleName.length>0) {
-        [self loadLocalWithParamHtml];
+        if (self.showWebType == showWebFromMsgNotif) {
+             [self loadLocalHtml];
+        }else{
+            [self loadLocalWithParamHtml];
+        }
     }else{
         if (!self.isUseOnline) {
             [self loadLocalHtml];
@@ -122,6 +128,25 @@
     
     if(self.showWebType == showWebTypeAlarm){
 //      报警类型重新加载
+        self.navigationController.navigationBarHidden = YES;
+//        if (@available(iOS 13.0, *)) {
+//           self.statusBar = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager.statusBarFrame] ;
+//            self.statusBar.backgroundColor = COLOR_WEBNAVBAR;
+//            [[UIApplication sharedApplication].keyWindow addSubview:self.statusBar];
+//        } else {
+//            // Fallback on earlier versions
+//            UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//               if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+//                   statusBar.backgroundColor = COLOR_WEBNAVBAR;
+//               }
+//        }
+        if (@available(iOS 13.0, *)) {
+            self.viewStatusColorBlend.backgroundColor = COLOR_WEBNAVBAR;
+            [[UIApplication sharedApplication].keyWindow addSubview:self.viewStatusColorBlend];
+//            [self.viewStatusColorBlend removeFromSuperview];
+        }else{
+            [self setStatusBarBackgroundColor:COLOR_WEBNAVBAR];
+        }
         if (!self.isUseOnline) {
             [self loadLocalHtml];
         }else{
@@ -138,6 +163,7 @@
     }else{
         [self setStatusBarBackgroundColor:[UIColor clearColor]];
     }
+    
 }
 
 
@@ -189,7 +215,6 @@
         NSURL *pathURL = [NSURL fileURLWithPath:self.localUrlString];
         [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
     }
-
 }
 
 -(void)loadOnlineHtml{
@@ -374,8 +399,7 @@
         [config.userContentController addScriptMessageHandler:weakScriptMessageDelegate name:@"iOS"];
         [config.userContentController addUserScript:wkUScript2];
         
-        if(self.showWebType == showWebTypeDevice){
-            
+        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif){
 //            _webView.backgroundColor = [UIColor clearColor];
             if (@available(iOS 13.0, *)) {
                 _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
@@ -644,11 +668,14 @@
     UIView *tab = self.tabBarController.view;
     if (hide) {
         self.view.frame = tab.bounds;
+//        self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        self.webView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 //        self.hideTabbarBefore = true;
     } else {
         self.view.frame = CGRectMake(tab.bounds.origin.x, tab.bounds.origin.y, tab.bounds.size.width, tab.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
     }
 }
+
 
 #pragma mark -- WKNavigationDelegate
 /*
@@ -667,7 +694,7 @@
     if([self.isFromAlarm isEqualToString:@"1"]){
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"showErrorFromAlarm" ofType:@"html" inDirectory:@"aDevices"];
                   NSURL *pathURL = [NSURL fileURLWithPath:filePath];
-               [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
     }else{
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"showError" ofType:@"html" inDirectory:@"aDevices"];
            NSURL *pathURL = [NSURL fileURLWithPath:filePath];

@@ -21,6 +21,7 @@
 #import "BGQMUIInspectViewController.h"
 #import "BGQMUserViewController.h"
 #import "QMUIConfigurationTemplate.h"
+#import <CloudPushSDK/CloudPushSDK.h>
 
 @interface BGLoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *hbgView;//上半部背景
@@ -223,9 +224,11 @@
             user.versionNo = verStr;
             user.autoLogin = YES;
             [weakSelf makeRootMenu];
+            [weakSelf addAlias:userId];
         }else{
             [MBProgressHUD showError:@"登录失败，未获取到版本号"];
         }
+        
         DefLog(@"%@",respObjc);
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -256,6 +259,16 @@
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
+    }];
+}
+
+- (void)addAlias:(NSString *)alias {
+    [CloudPushSDK addAlias:alias withCallback:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            DefLog(@"别名添加成功,别名：%@",alias);
+        } else {
+            DefLog(@"别名添加失败，错误: %@", res.error);
+        }
     }];
 }
 
@@ -300,19 +313,20 @@
 #pragma mark 键盘处理
 - (void)keyboardWillChangeFrame:(NSNotification *)note{
     UIWindow *keywindow = [[UIApplication sharedApplication] keyWindow];
-    if ([keywindow performSelector:@selector(firstResponder)] == self.pwdTextField) {
-        // 取出键盘最终的frame
-        CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        // 取出键盘弹出需要花费的时间
-        double duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        // 修改transform
-        [UIView animateWithDuration:duration animations:^{
-            CGFloat ty = [UIScreen mainScreen].bounds.size.height - rect.origin.y;
-            self.view.transform = CGAffineTransformMakeTranslation(0, - ty);
-        }];
+    if ([keywindow performSelector:@selector(firstResponder)] == self.pwdTextField ) {
+        if (SCREEN_HEIGHT < 700) {
+            // 取出键盘最终的frame
+           CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+           // 取出键盘弹出需要花费的时间
+           double duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+           // 修改transform
+           [UIView animateWithDuration:duration animations:^{
+               CGFloat ty = [UIScreen mainScreen].bounds.size.height - rect.origin.y;
+               self.view.transform = CGAffineTransformMakeTranslation(0, - ty);
+           }];
+        }
     }
 }
-
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {

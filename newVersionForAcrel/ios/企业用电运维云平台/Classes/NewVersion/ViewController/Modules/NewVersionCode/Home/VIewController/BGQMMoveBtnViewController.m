@@ -115,7 +115,7 @@
         NSString *gridTitle = self.showGridArray[index];
         NSString *gridImageStr = self.showImageGridArray[index];
         NSInteger gridID = [self.showGridIDArray[index] integerValue];
-        CustomGrid *gridItem = [[CustomGrid alloc] initWithFrame:CGRectZero title:gridTitle normalImage:normalImage highlightedImage:highlightedImage gridId:gridID atIndex:index isAddDelete:YES deleteIcon:deleteIconImage withIconImage:gridImageStr];
+        CustomGrid *gridItem = [[CustomGrid alloc] initWithFrame:CGRectZero title:gridTitle normalImage:normalImage highlightedImage:highlightedImage gridId:gridID atIndex:index isAddDelete:YES deleteIcon:deleteIconImage withIconImage:gridImageStr withBadgeNumber:@"0"];
         gridItem.delegate = self;
         gridItem.gridTitle = gridTitle;
         gridItem.gridImageString = gridImageStr;

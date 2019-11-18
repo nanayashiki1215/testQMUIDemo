@@ -48,4 +48,6 @@
 #import "QDUIHelper.h"
 #import "QDThemeManager.h"
 
+#import "PushMessageDAO.h"
+
 #endif

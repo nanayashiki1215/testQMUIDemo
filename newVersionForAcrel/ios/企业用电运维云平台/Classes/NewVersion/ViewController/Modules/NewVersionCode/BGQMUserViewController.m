@@ -23,6 +23,7 @@
 #import "BGQMPersonalInfoViewController.h"
 #import "WXApi.h"
 #import "BGQMChangeLanguageViewController.h"
+#import "BGUIWebViewController.h"
 
 @interface BGQMUserViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong) QMUITableView *tableview;
@@ -289,6 +290,8 @@
             imageName = @"userOwnPic4";
         }else if ([code isEqualToString:@"switchLanguage"]){
             imageName = @"userOwnPic5";
+        }else if ([code isEqualToString:@"MsgNotification"]){
+            imageName = @"userOwnPic6";
         }else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
         }
@@ -371,6 +374,9 @@
         }else if ([code isEqualToString:@"switchLanguage"]){
             [self changeLanguage];
         }
+        else if ([code isEqualToString:@"MsgNotification"]){
+            [self setMessageNotification];
+        }
     }else{
 
     }
@@ -452,7 +458,7 @@
     }];
     QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"ClearCache")  message:message preferredStyle:QMUIAlertControllerStyleAlert];
     [alertController addAction:action];
-     [alertController addAction:action2];
+    [alertController addAction:action2];
     
     QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
     visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
@@ -628,6 +634,18 @@
 -(void)changeLanguage{
     BGQMChangeLanguageViewController *changeLVC = [[BGQMChangeLanguageViewController alloc] init];
     [self.navigationController pushViewController:changeLVC animated:YES];
+}
+
+#pragma mark - 设置消息通知开关
+-(void)setMessageNotification{
+    BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"msgNotifSetting" ofType:@"html" inDirectory:@"aDevices"];
+    nomWebView.isUseOnline = NO;
+    nomWebView.localUrlString = filePath;
+    nomWebView.showWebType = showWebFromMsgNotif;
+//    nomWebView.urlParams = url;
+    nomWebView.titleName = @"消息通知设置";
+    [self.navigationController pushViewController:nomWebView animated:YES];
 }
 
 @end

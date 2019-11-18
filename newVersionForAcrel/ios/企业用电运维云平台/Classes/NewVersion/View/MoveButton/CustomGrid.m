@@ -8,6 +8,8 @@
 
 #import "CustomGrid.h"
 
+static NSInteger const pointWidth = 20; //小红点的宽高
+static NSInteger const rightRange = pointWidth/2; //距离控件右边的距离
 
 @implementation CustomGrid
 
@@ -32,6 +34,7 @@
         isAddDelete:(BOOL)isAddDelete
          deleteIcon:(UIImage *)deleteIcon
       withIconImage:(NSString *)imageString
+    withBadgeNumber:(NSString *)number
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -64,6 +67,26 @@
             title_label.backgroundColor = [UIColor clearColor];
             title_label.textColor = UIColorFromRGB(0x3c454c);
             [imageIcon addSubview:title_label];
+            //小红点
+           if ([number integerValue]>0) {
+               CGRect frame = CGRectMake(GridHeight - 85 + self.frame.size.width/2-(GridHeight - 85)/2 - rightRange, GridHeight/4-10-rightRange, pointWidth, pointWidth);
+               self.badgeLabel = [[UILabel alloc] initWithFrame:frame];
+               self.badgeLabel.textColor = [UIColor whiteColor];
+               self.badgeLabel.font = [UIFont systemFontOfSize:12.f];
+               if([number integerValue]>99){
+                   number = @"···";
+               }
+               self.badgeLabel.text = number;
+               self.badgeLabel.backgroundColor = [UIColor qmui_colorWithHexString:@"ff5153"];
+               self.badgeLabel.textAlignment = NSTextAlignmentCenter;
+               //圆角为宽度的一半
+               self.badgeLabel.layer.cornerRadius = pointWidth / 2;
+               //确保可以有圆角
+               self.badgeLabel.layer.masksToBounds = YES;
+               [self addSubview:self.badgeLabel];
+           }else{
+               [self.badgeLabel removeFromSuperview];
+           }
         }else{
             // 图片icon
             UIImageView * imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-(GridHeight-35)/2, GridHeight/4-10, GridHeight-35 , GridHeight-35)];
@@ -82,9 +105,29 @@
             title_label.backgroundColor = [UIColor clearColor];
             title_label.textColor = UIColorFromRGB(0x3c454c);
             [self addSubview:title_label];
+            //小红点
+            if ([number integerValue]>0) {
+                CGRect frame = CGRectMake(GridHeight - 35 + self.frame.size.width/2-(GridHeight-35)/2 - rightRange-1, GridHeight/4-10-rightRange+1, pointWidth, pointWidth);
+                self.badgeLabel = [[UILabel alloc] initWithFrame:frame];
+                self.badgeLabel.textColor = [UIColor whiteColor];
+                self.badgeLabel.font = [UIFont systemFontOfSize:12.f];
+                if([number integerValue]>99){
+                    number = @"···";
+                }
+                self.badgeLabel.text = number;
+                self.badgeLabel.backgroundColor = [UIColor qmui_colorWithHexString:@"ff5153"];
+                self.badgeLabel.textAlignment = NSTextAlignmentCenter;
+                //圆角为宽度的一半
+                self.badgeLabel.layer.cornerRadius = pointWidth / 2;
+                //确保可以有圆角
+                self.badgeLabel.layer.masksToBounds = YES;
+                [self addSubview:self.badgeLabel];
+            }else{
+                [self.badgeLabel removeFromSuperview];
+            }
         }
         
-        //////////
+        //
         [self setGridId:gridId];
         [self setGridIndex:index];
         [self setGridCenterPoint:self.center];
@@ -113,6 +156,7 @@
     return self;
 }
 - (void)layoutSubviews {
+    self.backgroundColor = [UIColor clearColor];
     [super layoutSubviews];
     
 }

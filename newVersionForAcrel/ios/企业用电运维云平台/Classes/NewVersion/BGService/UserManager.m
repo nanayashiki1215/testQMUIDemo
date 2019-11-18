@@ -287,7 +287,6 @@ static UserManager* manager;
     return _homeALLFullData;
 }
 
-
 //[DefNSUD setObject:respObjc[kdata] forKey:@"Token"];
 //DefNSUDSynchronize
 
@@ -303,15 +302,16 @@ static UserManager* manager;
 //    return _subModel;
 //}
 
-//-(void)setPrivateUnreadNumStr:(NSString *)privateUnreadNumStr{
-//    _privateUnreadNumStr = privateUnreadNumStr;
-//    [DefNSUD setObject:privateUnreadNumStr
-//                forKey:@"privateUnreadNumStr"];
-//    DefNSUDSynchronize
-//}
-//-(NSString *)privateUnreadNumStr{
-//    _privateUnreadNumStr = [DefNSUD objectForKey:@"privateUnreadNumStr"];
-//    return _privateUnreadNumStr;
-//}
+-(void)setPrivateUnreadNumStr:(NSString *)privateUnreadNumStr{
+    _privateUnreadNumStr = privateUnreadNumStr;
+    [DefNSUD setObject:privateUnreadNumStr
+                forKey:@"privateUnreadNumStr"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)privateUnreadNumStr{
+    _privateUnreadNumStr = [DefNSUD objectForKey:@"privateUnreadNumStr"];
+    return _privateUnreadNumStr;
+}
 
 @end

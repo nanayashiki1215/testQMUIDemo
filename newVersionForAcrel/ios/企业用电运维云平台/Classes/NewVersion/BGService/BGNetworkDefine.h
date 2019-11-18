@@ -37,7 +37,7 @@
 #define BGGetRootMenu @"/getRootMenu"
 
 //变电所列表 get 请求
-#define getSubstationListByUser @"/getSubstationListByUser?pageNo=1&pageSize=99"
+#define getSubstationListByUser @"/getSubstationListByUser?pageNo=1&pageSize=999"
 
 //变电所详情Ui接口
 //#define getSubinfoVo @"/getSubinfoVo"

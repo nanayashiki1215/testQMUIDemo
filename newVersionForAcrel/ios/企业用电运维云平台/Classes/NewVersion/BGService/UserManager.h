@@ -31,6 +31,7 @@
     NSArray *_selectlanageArr;
     NSArray *_versionArr;
     NSString *_orderListUrl;
+    NSString *_privateUnreadNumStr;
     NSDictionary *_homeALLFullData;
 //    BGQMSubstationModel *_subModel;
 }
