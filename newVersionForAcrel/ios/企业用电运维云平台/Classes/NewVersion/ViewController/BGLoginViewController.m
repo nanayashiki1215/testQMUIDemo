@@ -228,7 +228,6 @@
         }else{
             [MBProgressHUD showError:@"登录失败，未获取到版本号"];
         }
-        
         DefLog(@"%@",respObjc);
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -247,19 +246,26 @@
     [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
-        user.rootMenuData = respObjc[kdata];
-        NSArray *menuArr = user.rootMenuData[@"rootMenu"];
-        if (!menuArr.count) {
-            [MBProgressHUD showError:@"为确保正常显示，请至少添加一个tab页功能"];
-        }
-        NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
-        [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
-        DefNSUDSynchronize
-        [weakSelf createTabBarController];
+        NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
+       if (rootData) {
+           user.rootMenuData = respObjc[kdata];
+           NSArray *menuArr = user.rootMenuData[@"rootMenu"];
+           if (!menuArr.count) {
+               DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+               return ;
+           }
+           NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
+           [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
+           DefNSUDSynchronize
+           [weakSelf createTabBarController];
+       }else{
+           DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能", nil);
+       }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
     }];
+    
 }
 
 - (void)addAlias:(NSString *)alias {

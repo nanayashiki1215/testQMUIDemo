@@ -50,16 +50,20 @@
     [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
-        user.rootMenuData = respObjc[kdata];
-        NSArray *menuArr = user.rootMenuData[@"rootMenu"];
-        if (!menuArr.count) {
-            DefQuickAlert(@"为确保正常显示，请至少添加一个tab页功能", nil);
-            
+        NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
+        if (rootData) {
+            user.rootMenuData = respObjc[kdata];
+            NSArray *menuArr = user.rootMenuData[@"rootMenu"];
+            if (!menuArr.count) {
+                DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+            }
+            NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
+            [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
+            DefNSUDSynchronize
+            [weakSelf createViewControllers];
+        }else{
+            DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能", nil);
         }
-        NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
-        [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
-        DefNSUDSynchronize
-        [weakSelf createViewControllers];
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
         

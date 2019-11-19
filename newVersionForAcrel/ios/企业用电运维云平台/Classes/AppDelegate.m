@@ -62,6 +62,8 @@ BMKMapManager* _mapManager;
 
 static NSString *const EMASAppKey = @"28124642";
 static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
+//static NSString *const EMASAppKey = @"28138725";
+//static NSString *const EMASAppSecret = @"b09811ee7cc07441dc4e999f7b82b16b";
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -206,8 +208,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }
     // 启动动画
 //    [self startLaunchingAnimation];
-   
-    
 //   BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
 //   UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
 //   self.window.rootViewController = naVC;
@@ -364,13 +364,19 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // 正式上线建议关闭
 //    [CloudPushSDK turnOnDebug];
     // SDK初始化，手动输出appKey和appSecret
-    [CloudPushSDK asyncInit:EMASAppKey appSecret:EMASAppSecret callback:^(CloudPushCallbackResult *res) {
-        if (res.success) {
-            NSLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
-        } else {
-            NSLog(@"Push SDK init failed, error: %@", res.error);
-        }
-    }];
+    UserManager *user = [UserManager manager];
+    user.emasAppSecret = EMASAppSecret;
+    user.emasAppKey = EMASAppKey;
+    if (user.emasAppKey.length && user.emasAppSecret.length) {
+        [CloudPushSDK asyncInit:user.emasAppKey appSecret:user.emasAppSecret callback:^(CloudPushCallbackResult *res) {
+            if (res.success) {
+                NSLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
+            } else {
+                NSLog(@"Push SDK init failed, error: %@", res.error);
+            }
+        }];
+    }
+    
     
     // SDK初始化，无需输入配置信息
     // 请从控制台下载AliyunEmasServices-Info.plist配置文件，并正确拖入工程

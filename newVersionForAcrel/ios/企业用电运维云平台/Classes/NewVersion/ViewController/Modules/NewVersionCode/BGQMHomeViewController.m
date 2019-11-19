@@ -130,7 +130,30 @@
         [myScrollView removeFromSuperview];
         [self.gridListView removeFromSuperview];
         [self creatMyScrollView];
+        //报警查询方法
+        [self JudgeWhetherGetUnreadWarningMessage];
     }
+}
+
+-(void)JudgeWhetherGetUnreadWarningMessage{
+    [NetService bg_getWithTokenWithPath:@"/getUnreadWarningMessage" params:@{} success:^(id respObjc) {
+        DefLog(@"%@",respObjc);
+        NSArray *array = [respObjc objectForKeyNotNull:kdata];
+        if (array) {
+            NSInteger sum = 0;
+            for (NSDictionary *warningDic in array) {
+                NSInteger count = [[warningDic bg_StringForKeyNotNull:@"count"] integerValue];
+                sum += count;
+            }
+            if (sum>0) {
+                [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+            }else{
+                [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+            }
+        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        
+    }];
 }
 
 //更新数据

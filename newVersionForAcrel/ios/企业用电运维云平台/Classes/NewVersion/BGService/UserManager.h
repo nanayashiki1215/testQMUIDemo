@@ -33,7 +33,8 @@
     NSString *_orderListUrl;
     NSString *_privateUnreadNumStr;
     NSDictionary *_homeALLFullData;
-//    BGQMSubstationModel *_subModel;
+    NSString *_emasAppKey;
+    NSString *_emasAppSecret;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -52,7 +53,8 @@
 @property(nonatomic,strong)NSArray *functionsPrefixArray;/**< 用于辨别是否有数据，显示小红点 数组 */
 
 @property(nonatomic,strong)NSArray *privateChatListArray;//私聊的会话列表
-@property(nonatomic,copy)NSString *privateUnreadNumStr;/**< 私聊的未读数 */
+
+
 
 //20190611
 @property (nonatomic,strong) NSDictionary *rootMenuData;//全量菜单数据
@@ -76,6 +78,10 @@
 //20191028
 @property (nonatomic,strong) NSDictionary *homeALLFullData;//首页配置全量数据
 
+//20191118
+@property(nonatomic,copy)NSString *privateUnreadNumStr;/**< 推送未读数 */
+@property(nonatomic,copy)NSString *emasAppKey;/**< 推送AppKey */
+@property(nonatomic,copy)NSString *emasAppSecret;/**< 推送AppSecret */
 
 
 //获取单例

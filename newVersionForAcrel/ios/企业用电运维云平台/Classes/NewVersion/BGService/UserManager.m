@@ -304,7 +304,7 @@ static UserManager* manager;
 
 -(void)setPrivateUnreadNumStr:(NSString *)privateUnreadNumStr{
     _privateUnreadNumStr = privateUnreadNumStr;
-    [DefNSUD setObject:privateUnreadNumStr
+    [DefNSUD setObject:_privateUnreadNumStr
                 forKey:@"privateUnreadNumStr"];
     DefNSUDSynchronize
 }
@@ -313,5 +313,33 @@ static UserManager* manager;
     _privateUnreadNumStr = [DefNSUD objectForKey:@"privateUnreadNumStr"];
     return _privateUnreadNumStr;
 }
+
+//存储appkey
+-(void)setEmasAppKey:(NSString *)emasAppKey{
+    _emasAppKey = emasAppKey;
+    [DefNSUD setObject:_emasAppKey
+                forKey:@"emasAppKey"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)emasAppKey{
+    _emasAppKey = [DefNSUD objectForKey:@"emasAppKey"];
+    return _emasAppKey;
+}
+
+//存储emasAppSecret
+-(void)setEmasAppSecret:(NSString *)emasAppSecret{
+    _emasAppSecret = emasAppSecret;
+    [DefNSUD setObject:_emasAppSecret
+                forKey:@"emasAppSecret"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)emasAppSecret{
+    _emasAppSecret = [DefNSUD objectForKey:@"emasAppSecret"];
+    return _emasAppSecret;
+}
+
+
 
 @end
