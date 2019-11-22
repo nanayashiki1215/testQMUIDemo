@@ -11,6 +11,8 @@
 #import <BMKLocationKit/BMKLocationComponent.h>
 #import <UIKit/UIWindowScene.h>
 #import <CoreLocation/CLLocationManager.h>
+#import "BGFileDownModel.h"
+#import <QuickLook/QuickLook.h>
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -22,6 +24,7 @@
 - (instancetype)initWithDelegate:(id<WKScriptMessageHandler>)scriptDelegate;
 
 @end
+
 @implementation WeakWebViewScriptMessageDelegate
 
 - (instancetype)initWithDelegate:(id<WKScriptMessageHandler>)scriptDelegate {
@@ -43,7 +46,7 @@
 
 @end
 
-@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate>
+@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate,QLPreviewControllerDataSource>
 
 @property (strong,nonatomic) WKWebView *webView;
 //网页加载进度视图
@@ -56,6 +59,9 @@
 @property (nonatomic) BOOL pageStillLoading;//线程等待
 
 @property (nonatomic, strong) UIView *statusBar;
+
+@property (strong, nonatomic)QLPreviewController *previewController;
+@property (copy, nonatomic)NSURL *fileURL; //文件路径
 
 @end
 
@@ -86,6 +92,10 @@
 //    if (@available(iOS 11.0, *)) {
 //        self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
 //    }
+    self.previewController = [[QLPreviewController alloc]  init];
+//    [self.previewController.navigationBar setTintColor:COLOR_NAVBAR];
+    self.previewController.dataSource  = self;
+    
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
@@ -103,6 +113,10 @@
     if (self.titleName.length>0) {
         if (self.showWebType == showWebFromMsgNotif) {
              [self loadLocalHtml];
+        }else if([self.isFromFile isEqualToString:@"openFile"]){
+            self.navigationController.navigationBarHidden = NO;
+           
+//            [self showDifferentFile];
         }else{
             [self loadLocalWithParamHtml];
         }
@@ -149,11 +163,19 @@
         }else{
             [self setStatusBarBackgroundColor:COLOR_WEBNAVBAR];
         }
-        if (!self.isUseOnline) {
-            [self loadLocalHtml];
+        if([self.isFromFile isEqualToString:@"openFile"]){
+//            [self showDifferentFile];
+//            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+           
+            self.navigationController.navigationBarHidden = NO;
         }else{
-            [self loadOnlineHtml];
+            if (!self.isUseOnline) {
+               [self loadLocalHtml];
+           }else{
+               [self loadOnlineHtml];
+           }
         }
+       
     }
 }
 
@@ -368,6 +390,8 @@
 //        getLocation
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushNewWebView"];
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"getLocation"];
+        //跳转文件页面
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushDownFileVC"];
         config.userContentController = wkUController;
         
         //以下代码适配文本大小
@@ -384,6 +408,15 @@
 //            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes'; \
 //            var head = document.getElementsByTagName('head')[0];\
 //            head.appendChild(meta);";
+        }else if ([self.isFromFile isEqualToString:@"openFile"]){
+            //自适应网页内容
+           NSString *jScript;
+           jScript = @"var meta = document.createElement('meta'); \
+           meta.name = 'viewport'; \
+           meta.content = 'text/html,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'; \
+           meta.charset = 'utf-8'; \
+           var head = document.getElementsByTagName('head')[0];\
+           head.appendChild(meta);";
         }else{
             jScript = @"var meta = document.createElement('meta'); \
             meta.name = 'viewport'; \
@@ -582,12 +615,10 @@
     }else if ([message.name isEqualToString:@"getLocation"]){
         //获取定位 百度地图
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
-            
             //定位功能可用
             [self getLoation];
 
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
-
             //定位不能用
             NSString *locationStr = @"";
             NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
@@ -595,8 +626,141 @@
                 DefLog(@"item%@",item);
             }];
         }
+    }else if ([message.name isEqualToString:@"pushDownFileVC"]){
+        //点击了文件
+        NSDictionary *msgDic = message.body;
+        [self didClickDownloadButton:msgDic];
     }
 }
+
+#pragma mark - 文件下载打开
+
+-(void)didClickDownloadButton:(NSDictionary *)downDic{
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    NSString *url = [downDic bg_StringForKeyNotNull:@"fFilepath"];
+    NSString *filecode = [downDic bg_StringForKeyNotNull:@"fFilecode"];
+    NSString *fileName1 = [downDic bg_StringForKeyNotNull:@"fFilename"];
+//    NSString *url = @"fileSystem/filesManagement";
+//    NSString *filecode =  @"71babdb74bff47c1ac8ce00307ac1fb6.docx";
+//    NSString *fileName1 = @"测试文档";
+    //        6ac19ed59a474ce6bc08b8419d922607.txt
+    //        2e2eb1ceb8b74750a707f02964bf4e91.pdf
+    DefLog(@"我点击了第%ld行",(long)button.tag);
+    BGFileDownModel *downloadModel = [[BGFileDownModel alloc] init];
+    downloadModel.fileName = filecode;
+    downloadModel.nickName = fileName1;
+    downloadModel.fileType = @"1";
+    downloadModel.fileUrlString = [GetBaseURL stringByAppendingString:[NSString stringWithFormat:@"/%@/%@",url,filecode]];
+    
+    NSString *fileName = [downloadModel.fileName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //    urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [downloadModel.fileUrlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
+    
+    //拼接本地地址
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    documentPath = [documentPath stringByAppendingFormat:@"/Files"];
+//    documentPath = [documentPath stringByAppendingPathComponent:downloadModel.fileName];//不用加“/”
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+//    documentPath = [documentPath stringByAppendingFormat:@"/%@",downloadModel.fileName];
+    documentPath = [documentPath stringByAppendingFormat:@"/%@",fileName];
+
+//    NSString *fileType = [[documentPath componentsSeparatedByString:@"."] lastObject];
+    BOOL exist = [manager fileExistsAtPath:documentPath];
+    DefLog(@"%@",documentPath);
+    if (exist) {
+        DefLog(@"找到本地缓存的文件");
+        BGFileDownModel *isDownloadedmodel = [BGFileDownModel searchFileNameInRealm:downloadModel.fileName];
+        NSString *documentPathLocal = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+       documentPathLocal = [documentPathLocal stringByAppendingFormat:@"/Files/%@",isDownloadedmodel.fileName];
+         //文档，其他 支持格式 txt/pdf/html/doc/docx/xls/xlsx/ppt/pptx
+        NSFileManager* fm = [NSFileManager defaultManager];
+        NSData* data = [[NSData alloc] init];
+        data = [fm contentsAtPath:documentPathLocal];
+//        NSData *data = [NSData dataWithContentsOfURL:documentPathLocal];
+        NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//        BGUIWebViewController *webVC = [[BGUIWebViewController alloc] init];
+//        webVC.titleName = isDownloadedmodel.nickName;
+//        webVC.downloadFileName = isDownloadedmodel.fileName;
+//        webVC.isFromFile = @"openFile";
+//        webVC.Filelocaldata = data;
+//        webVC.fileLocalUrlPath = documentPathLocal;
+//        [self.navigationController pushViewController:webVC animated:YES];
+        self.fileURL = [NSURL fileURLWithPath:documentPathLocal];
+        [self.navigationController pushViewController:self.previewController animated:YES];
+//        [self presentViewController:self.previewController animated:YES completion:nil];
+        //刷新界面,如果不刷新的话，不重新走一遍代理方法，返回的url还是上一次的url
+        [self.previewController refreshCurrentPreviewItem];
+    }else{
+    //网络请求下载文件
+    __weak __typeof(self)weakSelf = self;
+    [NetService bg_downloadFileFromUrlPath:urlString andSaveTo:documentPath progress:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+         NSLog(@"%p %f/completed=%lld/total=%lld",downloadTask,(double)totalBytesWritten/(double)totalBytesExpectedToWrite, totalBytesWritten , totalBytesExpectedToWrite);
+        //        dispatch_async(dispatch_get_main_queue(), ^{
+        //            downloadCell.fileDownBtn.hidden = YES;
+        //            downloadCell.downLoadingLabel.hidden = NO;
+        //            [downloadCell.fileDownBtn setNeedsDisplay];
+        //            [downloadCell.downLoadingLabel setNeedsDisplay];
+        //        });
+    } success:^(id respObjc) {
+         NSLog(@"succeed:%@",respObjc);
+        if (respObjc) {
+            NSString *localString = [(NSURL *)respObjc absoluteString];
+            [realm beginWriteTransaction];
+            downloadModel.fileLocalString = localString;
+            downloadModel.isOwnDownloaded = NO;
+            [realm addObject:downloadModel];
+            [realm commitWriteTransaction];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                downloadCell.downLoadingLabel.text = @"下载完成";
+//                downloadCell.downLoadingLabel.hidden = YES;
+//                downloadCell.fileDownBtn.hidden = YES;
+//                [downloadCell.fileDownBtn setNeedsDisplay];
+//                [downloadCell.downLoadingLabel setNeedsDisplay];
+//                [weakSelf.tableview reloadData];
+//            });
+        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+         NSLog(@"error");
+    }];
+    }
+}
+
+//-(void)showDifferentFile{
+//    if (!self.Filelocaldata) {
+//        return;
+//    }
+//
+////    NSURL *pathUrl = [NSURL URLWithString:self.fileLocalUrlPath];
+////    //加载
+////    NSURLRequest *request = [NSURLRequest requestWithURL:pathUrl];
+////    [self.webView loadRequest:request];
+//
+//    NSString *fileType = [[self.downloadFileName componentsSeparatedByString:@"."] lastObject];
+//    if ([fileType isEqualToString:@"txt"]) {
+////        [self.webView loadData:self.Filelocaldata MIMEType:@"text/plain" textEncodingName:@"UTF-8" baseURL:nil];
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"text/plain"  characterEncodingName:@"UTF-8" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"pdf"]){
+////        [self.webView loadData:self.Filelocaldata MIMEType:@"application/pdf" textEncodingName:@"UTF-8" baseURL:nil];
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"application/pdf"  characterEncodingName:@"UTF-8" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"html"]){
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"text/html" characterEncodingName:@"UTF-8" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"docx"]){
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"application/vnd.openxmlformats-officedocument.wordprocessingml.document" characterEncodingName:@"GB2312" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"doc"]){
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"application/msword" characterEncodingName:@"UTF-8" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"ppt"]){
+//        [self.webView loadData:self.Filelocaldata  MIMEType:@"application/vnd.ms-powerpoint" characterEncodingName:@"UTF-8" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"pptx"]){
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"application/vnd.openxmlformats-officedocument.presentationml.presentation" characterEncodingName:@"UTF-8" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"xls"]){
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"application/vnd.ms-excel    application/x-excel" characterEncodingName:@"UTF-8" baseURL:nil];
+//    }else if ([fileType isEqualToString:@"xlsx"]){
+//        [self.webView loadData:self.Filelocaldata MIMEType:@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" characterEncodingName:@"UTF-8" baseURL:nil];
+//    }
+//
+//}
 
 -(void)getLoation{
     __weak __typeof(self)weakSelf = self;
@@ -848,6 +1012,8 @@
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushNewWebView"];
 //    getLocation
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocation"];
+    
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushDownFileVC"];
 //    getiOSTime
     //移除观察者
     [_webView removeObserver:self
@@ -891,6 +1057,21 @@
 - (void)listDidDisappear {
     DefLog(@"%@", NSStringFromSelector(_cmd));
     
+}
+
+#pragma mark - QLPreviewControllerDataSource
+-(id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+//    NSURL *url = [NSURL fileURLWithPath:self.savePath];
+//       FotileFileItem *item = [[FotileFileItem alloc] init];
+//
+//       item.previewItemURL = url; //url
+//       item.name = self.navTitle; //title
+    
+    return self.fileURL;
+}
+
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)previewController{
+    return 1;
 }
 
 //左滑页面

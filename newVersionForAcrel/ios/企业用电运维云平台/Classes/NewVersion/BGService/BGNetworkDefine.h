@@ -59,6 +59,7 @@
 #define GetSystemImageBaseURL [NSString stringWithFormat:@"/%@/",[BGNetworkDefine getSystemImageUrlstr]]
 #define getSystemIconADS [GetBaseURL stringByAppendingString:GetSystemImageBaseURL]
 
+
 //获取设备管理的图片
 
 

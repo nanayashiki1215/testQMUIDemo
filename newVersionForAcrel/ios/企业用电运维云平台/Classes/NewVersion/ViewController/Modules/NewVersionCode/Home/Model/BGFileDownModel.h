@@ -10,6 +10,7 @@
 
 @interface BGFileDownModel : RLMObject
 @property(nonatomic,strong)NSString *fileName;
+@property(nonatomic,strong)NSString *nickName;
 /**
  0-图片
  1-文档

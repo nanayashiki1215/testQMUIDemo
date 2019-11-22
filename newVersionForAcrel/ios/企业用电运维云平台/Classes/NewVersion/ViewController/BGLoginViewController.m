@@ -218,7 +218,7 @@
                             [kdata][@"userId"]];
         if (userId) {
             user.bguserId = userId;
-            [self setDefaultRealmForUser:userId];
+//            [self setDefaultRealmForUser:userId];
         }
         NSString *verStr = [NSString changgeNonulWithString:respObjc[kdata][@"webAPIInfo"][@"fVersion"]];
         if (verStr.length) {
@@ -241,17 +241,30 @@
 //    [NetService bg_postWithPath:@"http://192.168.112.210:8080/web_manage/login.do" params:@{@"":@""}
 }
 
-- (void)setDefaultRealmForUser:(NSString *)username {
-    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+//- (void)setDefaultRealmForUser:(NSString *)username {
+//    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+//    // 设置新的架构版本。这个版本号必须高于之前所用的版本号（如果您之前从未设置过架构版本，那么这个版本号设置为 0）
+//    config.schemaVersion = 2;
+//
+//    // 使用默认的目录，但是请将文件名替换为用户名
+//    config.fileURL = [[[config.fileURL URLByDeletingLastPathComponent]
+//                            URLByAppendingPathComponent:username]
+//                            URLByAppendingPathExtension:@"realm"];
+//
+//    // 设置闭包，这个闭包将会在打开低于上面所设置版本号的 Realm 数据库的时候被自动调用
+//    config.migrationBlock = ^(RLMMigration *migration, uint64_t oldSchemaVersion) {
+//        // 目前我们还未进行数据迁移，因此 oldSchemaVersion == 0
+//        if (oldSchemaVersion < 1) {
+//            // 什么都不要做！Realm 会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构
+//        }
+//    };
+//
+//    // 将该配置设置为默认 Realm 配置
+//    [RLMRealmConfiguration setDefaultConfiguration:config];
+//    // 现在我们已经告诉了 Realm 如何处理架构的变化，打开文件之后将会自动执行迁移
+//    [RLMRealm defaultRealm];
+//}
 
-    // 使用默认的目录，但是请将文件名替换为用户名
-    config.fileURL = [[[config.fileURL URLByDeletingLastPathComponent]
-                            URLByAppendingPathComponent:username]
-                            URLByAppendingPathExtension:@"realm"];
-
-    // 将该配置设置为默认 Realm 配置
-    [RLMRealmConfiguration setDefaultConfiguration:config];
-}
 
 -(void)makeRootMenu{
      BGWeakSelf;
