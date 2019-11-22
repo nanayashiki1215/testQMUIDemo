@@ -129,6 +129,7 @@
     if(self.showWebType == showWebTypeAlarm){
 //      报警类型重新加载
         self.navigationController.navigationBarHidden = YES;
+         [self hideTabbar:NO];
 //        if (@available(iOS 13.0, *)) {
 //           self.statusBar = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager.statusBarFrame] ;
 //            self.statusBar.backgroundColor = COLOR_WEBNAVBAR;
@@ -140,6 +141,7 @@
 //                   statusBar.backgroundColor = COLOR_WEBNAVBAR;
 //               }
 //        }
+        
         if (@available(iOS 13.0, *)) {
             self.viewStatusColorBlend.backgroundColor = COLOR_WEBNAVBAR;
             [[UIApplication sharedApplication].keyWindow addSubview:self.viewStatusColorBlend];
@@ -155,6 +157,15 @@
     }
 }
 
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    // 禁用返回手势
+//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    }
+//}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if (@available(iOS 13.0, *)) {
@@ -163,7 +174,10 @@
     }else{
         [self setStatusBarBackgroundColor:[UIColor clearColor]];
     }
-    
+    // 开启返回手势
+//   if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//       self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//   }
 }
 
 
@@ -566,13 +580,11 @@
         nomWebView.titleName = titleName;
         [self.navigationController pushViewController:nomWebView animated:YES];
     }else if ([message.name isEqualToString:@"getLocation"]){
-//获取定位 百度地图
-        
+        //获取定位 百度地图
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
-
+            
             //定位功能可用
             [self getLoation];
-            
 
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
 
@@ -583,7 +595,6 @@
                 DefLog(@"item%@",item);
             }];
         }
-        
     }
 }
 
@@ -879,7 +890,31 @@
 
 - (void)listDidDisappear {
     DefLog(@"%@", NSStringFromSelector(_cmd));
+    
 }
+
+//左滑页面
+//- (void)willMoveToParentViewController:(UIViewController*)parent
+//{
+//    [super willMoveToParentViewController:parent];
+//
+//    NSLog(@"%s,%@",__FUNCTION__,parent);
+//
+//}
+//
+//- (void)didMoveToParentViewController:(UIViewController*)parent
+//{
+//    [super didMoveToParentViewController:parent];
+//
+//    NSLog(@"%s,%@",__FUNCTION__,parent);
+//    if(self.isFromAlarm){
+//           [self hideTabbar:NO];
+//       }
+//    if(!parent){
+//        NSLog(@"离开页面");
+//
+//    }
+//}
 
 
 

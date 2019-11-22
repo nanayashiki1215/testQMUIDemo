@@ -340,6 +340,18 @@ static UserManager* manager;
     return _emasAppSecret;
 }
 
+//存储报警未读数 未使用
+-(void)setAlarmUnreadNumStr:(NSString *)alarmUnreadNumStr{
+    _alarmUnreadNumStr = alarmUnreadNumStr;
+    [DefNSUD setObject:_alarmUnreadNumStr
+                forKey:@"alarmUnreadNumStr"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)alarmUnreadNumStr{
+    _alarmUnreadNumStr = [DefNSUD objectForKey:@"alarmUnreadNumStr"];
+    return _alarmUnreadNumStr;
+}
 
 
 @end

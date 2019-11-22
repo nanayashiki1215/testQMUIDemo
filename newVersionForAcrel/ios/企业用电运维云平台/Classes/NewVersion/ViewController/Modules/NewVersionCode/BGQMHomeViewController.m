@@ -300,7 +300,6 @@
             isAddDelete = NO;
         }
         NSString *number;
-        [UserManager manager].privateUnreadNumStr = @"9";
         if (gridID == 347) {
             number = [UserManager manager].privateUnreadNumStr;
         }else{
@@ -349,7 +348,9 @@
 {
     DefLog(@"您点击的格子Tag是：%ld", (long)gridItem.gridId);
     isSkip = YES;
-//    [UserManager manager].privateUnreadNumStr = @"0";
+    if (gridItem.gridId == 347) {
+        [UserManager manager].privateUnreadNumStr = @"0";
+    }
     //查看是否有选中的格子，并且比较点击的格子是否就是选中的格子
     for (NSInteger i = 0; i < [_gridListArray count]; i++) {
         CustomGrid *item = _gridListArray[i];
@@ -358,7 +359,7 @@
             item.isMove = NO;
             isSelected = NO;
             isSkip = NO;
-
+            
             //隐藏删除图标
             UIButton *removeBtn = (UIButton *)[self.gridListView viewWithTag:item.gridId];
             removeBtn.hidden = YES;
@@ -821,6 +822,36 @@
                }
           }
        
+    }else if (codeId == 350){
+        //349 缺陷管理
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"350"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"fileList" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
     }
     else {
         DefLog(@"点击了%@格子",title);

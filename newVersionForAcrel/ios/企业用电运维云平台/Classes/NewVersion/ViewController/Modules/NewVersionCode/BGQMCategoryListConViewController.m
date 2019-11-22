@@ -398,7 +398,6 @@
     self.categoryView.titles = self.titles;
     [self.categoryView reloadData];
     
-    
     [self.listContainerView reloadData];
 }
 

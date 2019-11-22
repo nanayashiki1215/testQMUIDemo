@@ -14,8 +14,8 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/BGUIWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "699"
-            endingLineNumber = "699"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
             landmarkName = "-webView:didFailProvisionalNavigation:withError:"
             landmarkType = "7">
          </BreakpointContent>

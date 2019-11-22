@@ -218,6 +218,7 @@
                             [kdata][@"userId"]];
         if (userId) {
             user.bguserId = userId;
+            [self setDefaultRealmForUser:userId];
         }
         NSString *verStr = [NSString changgeNonulWithString:respObjc[kdata][@"webAPIInfo"][@"fVersion"]];
         if (verStr.length) {
@@ -238,6 +239,18 @@
         }
     }];
 //    [NetService bg_postWithPath:@"http://192.168.112.210:8080/web_manage/login.do" params:@{@"":@""}
+}
+
+- (void)setDefaultRealmForUser:(NSString *)username {
+    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+
+    // 使用默认的目录，但是请将文件名替换为用户名
+    config.fileURL = [[[config.fileURL URLByDeletingLastPathComponent]
+                            URLByAppendingPathComponent:username]
+                            URLByAppendingPathExtension:@"realm"];
+
+    // 将该配置设置为默认 Realm 配置
+    [RLMRealmConfiguration setDefaultConfiguration:config];
 }
 
 -(void)makeRootMenu{

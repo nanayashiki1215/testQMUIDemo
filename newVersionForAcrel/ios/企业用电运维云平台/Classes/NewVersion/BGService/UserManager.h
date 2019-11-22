@@ -35,6 +35,7 @@
     NSDictionary *_homeALLFullData;
     NSString *_emasAppKey;
     NSString *_emasAppSecret;
+    NSString *_alarmUnreadNumStr;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -79,7 +80,8 @@
 @property (nonatomic,strong) NSDictionary *homeALLFullData;//首页配置全量数据
 
 //20191118
-@property(nonatomic,copy)NSString *privateUnreadNumStr;/**< 推送未读数 */
+@property(nonatomic,copy)NSString *privateUnreadNumStr;/**< 任务推送未读数 */
+@property(nonatomic,copy)NSString *alarmUnreadNumStr;/**< 报警推送未读数 */
 @property(nonatomic,copy)NSString *emasAppKey;/**< 推送AppKey */
 @property(nonatomic,copy)NSString *emasAppSecret;/**< 推送AppSecret */
 

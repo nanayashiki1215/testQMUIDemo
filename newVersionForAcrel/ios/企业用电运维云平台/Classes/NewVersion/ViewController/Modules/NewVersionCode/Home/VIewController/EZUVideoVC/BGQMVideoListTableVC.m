@@ -42,13 +42,11 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = DefVideoCellHeight;
 //    self.shouldShowSearchBar = YES;
-    
 //    [self.searchController ]
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 //    self.titleView.userInteractionEnabled = YES;// 要titleView支持点击，需要打开它的 userInteractionEnabled，这个属性默认是 NO
 //    self.titleView.title = @"";
 //    self.titleView.accessoryType = QMUINavigationTitleViewAccessoryTypeDisclosureIndicator;
@@ -110,7 +108,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
                         [MBProgressHUD showError:@"视频相关信息不全，需补全视频信息。"];
                         continue;
                     }else{
-                         [weakSelf.mutArray addObject:videoDic];
+                        [weakSelf.mutArray addObject:videoDic];
                     }
                 }
             }

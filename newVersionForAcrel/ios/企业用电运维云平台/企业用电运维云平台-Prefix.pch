@@ -49,5 +49,6 @@
 #import "QDThemeManager.h"
 
 #import "PushMessageDAO.h"
+#import <Realm/Realm.h>
 
 #endif

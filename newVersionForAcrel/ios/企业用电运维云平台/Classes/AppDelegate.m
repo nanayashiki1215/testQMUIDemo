@@ -51,6 +51,7 @@
 #import "WXAuth.h"
 #import "NSBundle+Language.h"
 #import <CloudPushSDK/CloudPushSDK.h>
+#import "BGUIWebViewController.h"
 // iOS 10 notification
 #import <UserNotifications/UserNotifications.h>
 #import "LZLPushMessage.h"
@@ -213,7 +214,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 //   self.window.rootViewController = naVC;
 //
 //  [self.window makeKeyAndVisible];
-  
   return YES;
 }
 
@@ -314,18 +314,100 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 
 -(void)pushViewControllerWithType:(NSString *)pushType{
     DefLog(@"pushType:%@",pushType);
+    //现场报警
+    if([pushType isEqualToString:@"alarm"]){
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+        UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
+        //跳转到报警页面
+        [tabViewController setSelectedIndex:1];
+    }else if ([pushType isEqualToString:@"communication"]){
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+        UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
+        //跳转到报警页面
+        [tabViewController setSelectedIndex:1];
+    }else if ([pushType isEqualToString:@"work"]){
+        NSArray *homeList;
+        UserManager *user = [UserManager manager];
+        NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+        NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+        for (NSDictionary *homeDic in uiArray) {
+            NSString *fCode = [NSString changgeNonulWithString:homeDic[@"fCode"]];
+            if ([fCode isEqualToString:@"homePage"]) {
+                homeList = homeDic[@"nodes"];
+            }
+        }
+        if (homeList.count>0) {
+            //347 待办事项
+            NSString *fAction;
+            NSString *fFunctionurl;
+            for (NSDictionary *nodeDic in homeList) {
+                if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                    fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                    fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                }
+            }
+            if (fFunctionurl.length>0) {
+               BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                       NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
+               nomWebView.isUseOnline = NO;
+               nomWebView.localUrlString = filePath;
+               nomWebView.showWebType = showWebTypeDevice;
+               //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+//               [self.navigationController pushViewController:nomWebView animated:YES];
+                 [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+            }else{
+                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                urlWebView.isUseOnline = YES;
+                if (versionURL.length>0) {
+                    NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                    NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                    NSString *urlStr = [str stringByAppendingString:fAction];
+                    urlWebView.onlineUrlString = urlStr;
+                    urlWebView.showWebType = showWebTypeDevice;
+                   [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                 }
+            }
+        }
+    }
 }
 
+- (UIViewController *)findCurrentViewController
+{
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    UIViewController *topViewController = [window rootViewController];
+    
+    while (true) {
+        
+        if (topViewController.presentedViewController) {
+            
+            topViewController = topViewController.presentedViewController;
+            
+        } else if ([topViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)topViewController topViewController]) {
+            
+            topViewController = [(UINavigationController *)topViewController topViewController];
+            
+        } else if ([topViewController isKindOfClass:[UITabBarController class]]) {
+            
+            UITabBarController *tab = (UITabBarController *)topViewController;
+            topViewController = tab.selectedViewController;
+            
+        } else {
+            break;
+        }
+    }
+    return topViewController;
+}
 /**
  *  App处于前台时收到通知(iOS 10+)
  */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     NSLog(@"Receive a notification in foregound.");
     // 处理iOS 10通知，并上报通知打开回执
-    [self handleiOS10Notification:notification];
+//    [self handleiOS10Notification:notification];
     // 通知不弹出
     completionHandler(UNNotificationPresentationOptionNone);
-    
     // 通知弹出，且带有声音、内容和角标
     //completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
 }
@@ -402,7 +484,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }];
 }
 
-
 /*
  *  APNs注册成功回调，将返回的deviceToken上传到CloudPush服务器
  */
@@ -464,7 +545,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
  */
 - (void)onMessageReceived:(NSNotification *)notification {
     NSLog(@"Receive one message!");
-   
+    
     CCPSysMessage *message = [notification object];
     NSString *title = [[NSString alloc] initWithData:message.title encoding:NSUTF8StringEncoding];
     NSString *body = [[NSString alloc] initWithData:message.body encoding:NSUTF8StringEncoding];
@@ -493,6 +574,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     [UserManager manager].privateUnreadNumStr = [NSString stringWithFormat:@"%ld",(long)num+1];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; //清除角标
+    
 //    PushMessageDAO *dao = [[PushMessageDAO alloc] init];
 //    [dao insert:model];
 }
