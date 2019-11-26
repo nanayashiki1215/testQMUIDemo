@@ -21,7 +21,7 @@
 //开发环境
 #define BASE_URL [GetBaseURL stringByAppendingString:BaseFileURLString]
 #define GetBaseURL [NSString stringWithFormat:@"%@",[BGNetworkDefine getBaseUslString]]
-#define DefaultBaseUrlString @"http://116.236.149.162:8090"
+#define DefaultBaseUrlString @"http://116.236.149.165:8090"
 #define BaseFileURLString @"/SubstationWEBV2/"
 #define UseMoxtra YES
 #define UseAgora NO

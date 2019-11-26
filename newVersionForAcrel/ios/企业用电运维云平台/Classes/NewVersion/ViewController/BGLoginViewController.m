@@ -214,6 +214,7 @@
 //            NSString *username = [userInfo bg_StringForKeyNotNull:@"fUsername"];
 //            user.bgnickName = username;
 //        }
+        NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
         NSString *userId = [NSString changgeNonulWithString:respObjc
                             [kdata][@"userId"]];
         if (userId) {
@@ -225,6 +226,14 @@
             user.versionNo = verStr;
             user.autoLogin = YES;
             [weakSelf makeRootMenu];
+            NSString *msgPushKey = [NSString bg_changgeNullStringWithString:pushInfo[@"messageIOSKey"]];
+            NSString *msgPushSecret = [NSString bg_changgeNullStringWithString:pushInfo[@"messageIOSSecret"]];
+            user.emasAppSecret = msgPushSecret;
+            user.emasAppKey = msgPushKey;
+            
+            // 初始化SDK
+            [weakSelf initCloudPush];
+            //
             [weakSelf addAlias:userId];
         }else{
             [MBProgressHUD showError:@"登录失败，未获取到版本号"];
@@ -302,6 +311,35 @@
             DefLog(@"别名添加失败，错误: %@", res.error);
         }
     }];
+}
+
+- (void)initCloudPush {
+    // 正式上线建议关闭
+//    [CloudPushSDK turnOnDebug];
+    // SDK初始化，手动输出appKey和appSecret
+    UserManager *user = [UserManager manager];
+//    user.emasAppSecret = EMASAppSecret;
+//    user.emasAppKey = EMASAppKey;
+    if (user.emasAppKey.length && user.emasAppSecret.length) {
+        [CloudPushSDK asyncInit:user.emasAppKey appSecret:user.emasAppSecret callback:^(CloudPushCallbackResult *res) {
+            if (res.success) {
+                NSLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
+            } else {
+                NSLog(@"Push SDK init failed, error: %@", res.error);
+            }
+        }];
+    }
+    
+    
+    // SDK初始化，无需输入配置信息
+    // 请从控制台下载AliyunEmasServices-Info.plist配置文件，并正确拖入工程
+//    [CloudPushSDK autoInit:^(CloudPushCallbackResult *res) {
+//        if (res.success) {
+//            NSLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
+//        } else {
+//            NSLog(@"Push SDK init failed, error: %@", res.error);
+//        }
+//    }];
 }
 
 //-(void)getWebAPIVersion{

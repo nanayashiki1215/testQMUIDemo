@@ -227,8 +227,6 @@
 		B695823A22A7633500D12CA4 /* BGNetworkDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = B695823922A7633500D12CA4 /* BGNetworkDefine.m */; };
 		B69F7E2622FBB9E5005B0B03 /* CSAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69F7E2822FBB9E5005B0B03 /* CSAboutViewController.xib */; };
 		B6A60CA023862ECC00073E0B /* CSImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A60C9F23862ECB00073E0B /* CSImageBrowserViewController.m */; };
-		B6A60CA42386551A00073E0B /* BGWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A60CA22386551700073E0B /* BGWebController.m */; };
-		B6A60CA52386551A00073E0B /* BGWebController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A60CA32386551A00073E0B /* BGWebController.xib */; };
 		B6A8E24422A4E51400E36D8F /* BGRedSpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A8E23F22A4E51200E36D8F /* BGRedSpotCell.m */; };
 		B6A8E24522A4E51400E36D8F /* BGRedSpotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A8E24322A4E51300E36D8F /* BGRedSpotCell.xib */; };
 		B6A8E24922A4E59100E36D8F /* BGHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A8E24722A4E59100E36D8F /* BGHeadTableViewCell.m */; };
@@ -361,13 +359,9 @@
 		B6C7691622A1056D00DA675D /* BGQMUIInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7691522A1056D00DA675D /* BGQMUIInspectViewController.m */; };
 		B6CA22A422C09F1B00AAA1CA /* BGHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6CA22A222C09F1A00AAA1CA /* BGHomeViewController.xib */; };
 		B6CA22A522C09F1B00AAA1CA /* BGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CA22A322C09F1A00AAA1CA /* BGHomeViewController.m */; };
-		B6D3B18723861EF0005CAF90 /* BGFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3B18523861EEB005CAF90 /* BGFileViewController.m */; };
-		B6D3B18823861EF0005CAF90 /* BGFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D3B18623861EF0005CAF90 /* BGFileViewController.xib */; };
 		B6D3B18B23861F0B005CAF90 /* CSFileManage.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3B18A23861F0A005CAF90 /* CSFileManage.m */; };
 		B6D3B18E23861F41005CAF90 /* BGFileDownModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3B18D23861F41005CAF90 /* BGFileDownModel.m */; };
 		B6D3B19123862A8D005CAF90 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D3B19023862A8C005CAF90 /* Realm.framework */; };
-		B6D3B19523862D01005CAF90 /* BGFileDownLoadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3B19323862CFD005CAF90 /* BGFileDownLoadTableViewCell.m */; };
-		B6D3B19623862D01005CAF90 /* BGFileDownLoadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D3B19423862D00005CAF90 /* BGFileDownLoadTableViewCell.xib */; };
 		B6D7358322F81E320067F246 /* BGQMPersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D7358222F81E310067F246 /* BGQMPersonalInfoViewController.m */; };
 		B6DBAF9C22B1E17C000C9922 /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAF9822B1E17C000C9922 /* JZLocationConverter.m */; };
 		B6DBAFA222B22969000C9922 /* SectionIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAF9F22B22967000C9922 /* SectionIndicatorView.m */; };
@@ -996,9 +990,6 @@
 		B69F7E2C22FBB9F3005B0B03 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CSAboutViewController.xib"; sourceTree = "<group>"; };
 		B6A60C9C23862EC800073E0B /* CSImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSImageBrowserViewController.h; sourceTree = "<group>"; };
 		B6A60C9F23862ECB00073E0B /* CSImageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSImageBrowserViewController.m; sourceTree = "<group>"; };
-		B6A60CA12386551400073E0B /* BGWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGWebController.h; sourceTree = "<group>"; };
-		B6A60CA22386551700073E0B /* BGWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGWebController.m; sourceTree = "<group>"; };
-		B6A60CA32386551A00073E0B /* BGWebController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGWebController.xib; sourceTree = "<group>"; };
 		B6A8E23F22A4E51200E36D8F /* BGRedSpotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRedSpotCell.m; sourceTree = "<group>"; };
 		B6A8E24222A4E51200E36D8F /* BGRedSpotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRedSpotCell.h; sourceTree = "<group>"; };
 		B6A8E24322A4E51300E36D8F /* BGRedSpotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGRedSpotCell.xib; sourceTree = "<group>"; };
@@ -1260,17 +1251,11 @@
 		B6CA22A122C09F1900AAA1CA /* BGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGHomeViewController.h; sourceTree = "<group>"; };
 		B6CA22A222C09F1A00AAA1CA /* BGHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGHomeViewController.xib; sourceTree = "<group>"; };
 		B6CA22A322C09F1A00AAA1CA /* BGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHomeViewController.m; sourceTree = "<group>"; };
-		B6D3B18223861EE8005CAF90 /* BGFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGFileViewController.h; sourceTree = "<group>"; };
-		B6D3B18523861EEB005CAF90 /* BGFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGFileViewController.m; sourceTree = "<group>"; };
-		B6D3B18623861EF0005CAF90 /* BGFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGFileViewController.xib; sourceTree = "<group>"; };
 		B6D3B18923861F08005CAF90 /* CSFileManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSFileManage.h; sourceTree = "<group>"; };
 		B6D3B18A23861F0A005CAF90 /* CSFileManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSFileManage.m; sourceTree = "<group>"; };
 		B6D3B18C23861F3E005CAF90 /* BGFileDownModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGFileDownModel.h; sourceTree = "<group>"; };
 		B6D3B18D23861F41005CAF90 /* BGFileDownModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGFileDownModel.m; sourceTree = "<group>"; };
 		B6D3B19023862A8C005CAF90 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		B6D3B19223862C7B005CAF90 /* BGFileDownLoadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGFileDownLoadTableViewCell.h; sourceTree = "<group>"; };
-		B6D3B19323862CFD005CAF90 /* BGFileDownLoadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGFileDownLoadTableViewCell.m; sourceTree = "<group>"; };
-		B6D3B19423862D00005CAF90 /* BGFileDownLoadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGFileDownLoadTableViewCell.xib; sourceTree = "<group>"; };
 		B6D7358122F81E310067F246 /* BGQMPersonalInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMPersonalInfoViewController.h; sourceTree = "<group>"; };
 		B6D7358222F81E310067F246 /* BGQMPersonalInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMPersonalInfoViewController.m; sourceTree = "<group>"; };
 		B6DBAF9822B1E17C000C9922 /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
@@ -3313,17 +3298,8 @@
 				B6548A8C22B32605005CCD21 /* HomeSeconderyViewController */,
 				B68D2D3922A65FBC001C00EC /* BGQMMoveBtnViewController.h */,
 				B68D2D3A22A65FBC001C00EC /* BGQMMoveBtnViewController.m */,
-				B6D3B19223862C7B005CAF90 /* BGFileDownLoadTableViewCell.h */,
-				B6D3B19323862CFD005CAF90 /* BGFileDownLoadTableViewCell.m */,
-				B6D3B19423862D00005CAF90 /* BGFileDownLoadTableViewCell.xib */,
-				B6A60CA12386551400073E0B /* BGWebController.h */,
-				B6A60CA22386551700073E0B /* BGWebController.m */,
-				B6A60CA32386551A00073E0B /* BGWebController.xib */,
 				B6A60C9C23862EC800073E0B /* CSImageBrowserViewController.h */,
 				B6A60C9F23862ECB00073E0B /* CSImageBrowserViewController.m */,
-				B6D3B18223861EE8005CAF90 /* BGFileViewController.h */,
-				B6D3B18523861EEB005CAF90 /* BGFileViewController.m */,
-				B6D3B18623861EF0005CAF90 /* BGFileViewController.xib */,
 			);
 			path = VIewController;
 			sourceTree = "<group>";
@@ -3579,7 +3555,6 @@
 				B6C6178122F968DC008DD6E7 /* README.txt in Resources */,
 				B6E1560D228CF32E00CB4A5F /* NativeImg.xcassets in Resources */,
 				B6B1B62C229534E300F1B5D2 /* BGBaiduMapViewController.xib in Resources */,
-				B6A60CA52386551A00073E0B /* BGWebController.xib in Resources */,
 				B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */,
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
 				B68D2D3422A65E2A001C00EC /* app_item_add.png in Resources */,
@@ -3604,8 +3579,6 @@
 				B68D2D3522A65E2A001C00EC /* app_item_plus.png in Resources */,
 				B96B5C86285D46748C1C9991 /* mapapi.bundle in Resources */,
 				B6548A9922B33087005CCD21 /* BGQMEventTableViewCell.xib in Resources */,
-				B6D3B19623862D01005CAF90 /* BGFileDownLoadTableViewCell.xib in Resources */,
-				B6D3B18823861EF0005CAF90 /* BGFileViewController.xib in Resources */,
 				B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */,
 				B6EB9BCF22C99FDB00136A6C /* EZUIKitViewController.xib in Resources */,
 			);
@@ -3699,7 +3672,6 @@
 				B68D2C8122A63F04001C00EC /* GHWaterFallLabel.m in Sources */,
 				B657DD4E22927AB10009BCB0 /* BGHeadPortraitViewController.m in Sources */,
 				B6D3B18E23861F41005CAF90 /* BGFileDownModel.m in Sources */,
-				B6D3B18723861EF0005CAF90 /* BGFileViewController.m in Sources */,
 				B6C768E822A0B8DC00DA675D /* QDFloatLayoutViewController.m in Sources */,
 				B68D2CF422A646C1001C00EC /* JXCategoryTitleView.m in Sources */,
 				B68D2CEA22A646C1001C00EC /* JXCategoryIndicatorCell.m in Sources */,
@@ -3735,7 +3707,6 @@
 				B68D2D3E22A660C3001C00EC /* BGQMSingletonManager.m in Sources */,
 				B6C768AC22A0B8DC00DA675D /* QDNavigationController.m in Sources */,
 				B6E156B9228D4AB800CB4A5F /* NetService.m in Sources */,
-				B6D3B19523862D01005CAF90 /* BGFileDownLoadTableViewCell.m in Sources */,
 				B6C7690922A0B8DC00DA675D /* QDCellSizeKeyCacheViewController.m in Sources */,
 				B6E155F6228CF09C00CB4A5F /* NSMutableDictionary+BGExtention.m in Sources */,
 				B6C7690822A0B8DC00DA675D /* QDConsoleViewController.m in Sources */,
@@ -3827,7 +3798,6 @@
 				B6E15692228D419800CB4A5F /* MJRefreshNormalHeader.m in Sources */,
 				B6C768C122A0B8DC00DA675D /* QDAlertController.m in Sources */,
 				B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */,
-				B6A60CA42386551A00073E0B /* BGWebController.m in Sources */,
 				B68D2D0722A64C5B001C00EC /* BGQMCategoryListConViewController.m in Sources */,
 				B6E155F5228CF09C00CB4A5F /* UITableView+BGExtension.m in Sources */,
 				B68D2C7522A63D87001C00EC /* GHDropMenuOptionCell.m in Sources */,
@@ -4125,7 +4095,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4183,7 +4153,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

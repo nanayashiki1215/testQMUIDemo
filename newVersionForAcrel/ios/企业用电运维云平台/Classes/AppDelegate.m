@@ -99,40 +99,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    //self.viewController = [[MainViewController alloc] init];
-    //return [super application:application didFinishLaunchingWithOptions:launchOptions];
-  //
-//  if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"clientVersion"] isEqualToString:CLIENT_VERSION]) {
-//    //
-//  }
-//  else{
-//    //
-//    [[NSUserDefaults standardUserDefaults] setObject:CLIENT_VERSION forKey:@"clientVersion"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSString* libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-//    NSString* libPathNoSync = [libPath stringByAppendingPathComponent:@"NoCloud"];
-//    NSString* localURI = [libPathNoSync stringByAppendingPathComponent:@"www"];
-//    NSString *bakURI = [libPathNoSync stringByAppendingPathComponent:@"www_bak"];
-//    if([fileManager fileExistsAtPath:localURI]){
-//      if ([fileManager fileExistsAtPath:bakURI]) {
-//        [fileManager removeItemAtPath:bakURI error:nil];
-//      }
-//      [fileManager moveItemAtPath:localURI toPath:bakURI error:nil];
-//      NSLog(@"%@%@",localURI,bakURI);
-//    }
-//  }
-//  CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//    //注册高德地图服务
-//    [self registerAMapAPIKey];
-//    //注册百度地图服务
-//    [self registerBaiduMapApi];
-//#if __has_feature(objc_arc)
-//  self.window = [[UIWindow alloc] initWithFrame:screenBounds];
-//#else
-//  self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
-//#endif
-//  self.window.autoresizesSubviews = YES;
     
     //切换语言
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"] && ![[[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"] isEqualToString:@""]) {
@@ -149,18 +115,15 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        [QDUIHelper qmuiEmotions];
 //    });
-    
    
     // APNs注册，获取deviceToken并上报
     [self registerAPNS:application];
-    // 初始化SDK
-    [self initCloudPush];
-    // 监听推送通道打开动作
+   // 监听推送通道打开动作
     [self listenerOnChannelOpened];
-    // 监听推送消息到达
+   // 监听推送消息到达
     [self registerMessageReceive];
     
-    //数据库升级
+    //配置数据库 升级
     [self reloadRealm];
     // 点击通知将App从关闭状态启动时，将通知打开回执上报
     // [CloudPushSDK handleLaunching:launchOptions];(Deprecated from v1.8.1)
@@ -198,7 +161,25 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     UserManager *user = [UserManager manager];
     
     if (user.autoLogin) {
-        //获取功能权限
+        //已登录 获取功能权限「」「」
+        __weak __typeof(self)weakSelf = self;
+        [NetService bg_getWithTokenWithPath:@"/getMessagePushInfo" params:@{} success:^(id respObjc) {
+            DefLog(@"%@",respObjc);
+            NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
+            NSString *messageIOSKey = [NSString bg_changgeNullStringWithString:pushInfo[@"messageIOSKey"]];
+            NSString *messageIOSSecret = [NSString bg_changgeNullStringWithString:@"messageIOSSecret"];
+            if (messageIOSKey.length && messageIOSSecret.length) {
+                user.emasAppKey = messageIOSKey;
+                user.emasAppSecret = messageIOSSecret;
+            }
+            // 初始化SDK
+            [weakSelf initCloudPush];
+            [weakSelf addAlias:user.bguserId];
+        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+            // 初始化SDK
+            [weakSelf initCloudPush];
+            [weakSelf addAlias:user.bguserId];
+        }];
         // 界面
         [self createTabBarController];
         
@@ -213,12 +194,18 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }
     // 启动动画
 //    [self startLaunchingAnimation];
-//   BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
-//   UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-//   self.window.rootViewController = naVC;
-//
-//  [self.window makeKeyAndVisible];
+    
   return YES;
+}
+
+- (void)addAlias:(NSString *)alias {
+    [CloudPushSDK addAlias:alias withCallback:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            DefLog(@"别名添加成功,别名：%@",alias);
+        } else {
+            DefLog(@"别名添加失败，错误: %@", res.error);
+        }
+    }];
 }
 
 #pragma mark - PushAPI
@@ -451,8 +438,8 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 //    [CloudPushSDK turnOnDebug];
     // SDK初始化，手动输出appKey和appSecret
     UserManager *user = [UserManager manager];
-    user.emasAppSecret = EMASAppSecret;
-    user.emasAppKey = EMASAppKey;
+//    user.emasAppSecret = EMASAppSecret;
+//    user.emasAppKey = EMASAppKey;
     if (user.emasAppKey.length && user.emasAppSecret.length) {
         [CloudPushSDK asyncInit:user.emasAppKey appSecret:user.emasAppSecret callback:^(CloudPushCallbackResult *res) {
             if (res.success) {

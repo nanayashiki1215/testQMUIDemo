@@ -613,7 +613,7 @@
         nomWebView.titleName = titleName;
         [self.navigationController pushViewController:nomWebView animated:YES];
     }else if ([message.name isEqualToString:@"getLocation"]){
-        //获取定位 百度地图
+        //获取定位 百度地图 签到
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
             //定位功能可用
             [self getLoation];
@@ -673,20 +673,14 @@
         DefLog(@"找到本地缓存的文件");
         BGFileDownModel *isDownloadedmodel = [BGFileDownModel searchFileNameInRealm:downloadModel.fileName];
         NSString *documentPathLocal = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-       documentPathLocal = [documentPathLocal stringByAppendingFormat:@"/Files/%@",isDownloadedmodel.fileName];
+        documentPathLocal = [documentPathLocal stringByAppendingFormat:@"/Files/%@",isDownloadedmodel.fileName];
          //文档，其他 支持格式 txt/pdf/html/doc/docx/xls/xlsx/ppt/pptx
         NSFileManager* fm = [NSFileManager defaultManager];
         NSData* data = [[NSData alloc] init];
         data = [fm contentsAtPath:documentPathLocal];
 //        NSData *data = [NSData dataWithContentsOfURL:documentPathLocal];
         NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-//        BGUIWebViewController *webVC = [[BGUIWebViewController alloc] init];
-//        webVC.titleName = isDownloadedmodel.nickName;
-//        webVC.downloadFileName = isDownloadedmodel.fileName;
-//        webVC.isFromFile = @"openFile";
-//        webVC.Filelocaldata = data;
-//        webVC.fileLocalUrlPath = documentPathLocal;
-//        [self.navigationController pushViewController:webVC animated:YES];
+
         self.fileURL = [NSURL fileURLWithPath:documentPathLocal];
         [self.navigationController pushViewController:self.previewController animated:YES];
 //        [self presentViewController:self.previewController animated:YES completion:nil];
@@ -712,6 +706,22 @@
             downloadModel.isOwnDownloaded = NO;
             [realm addObject:downloadModel];
             [realm commitWriteTransaction];
+            
+            BGFileDownModel *isDownloadedmodel = [BGFileDownModel searchFileNameInRealm:downloadModel.fileName];
+                   NSString *documentPathLocal = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            documentPathLocal = [documentPathLocal stringByAppendingFormat:@"/Files/%@",isDownloadedmodel.fileName];
+             //        BGUIWebViewController *webVC = [[BGUIWebViewController alloc] init];
+            //        webVC.titleName = isDownloadedmodel.nickName;
+            //        webVC.downloadFileName = isDownloadedmodel.fileName;
+            //        webVC.isFromFile = @"openFile";
+            //        webVC.Filelocaldata = data;
+            //        webVC.fileLocalUrlPath = documentPathLocal;
+            //        [self.navigationController pushViewController:webVC animated:YES];
+            weakSelf.fileURL = [NSURL fileURLWithPath:documentPathLocal];
+            [weakSelf.navigationController pushViewController:weakSelf.previewController animated:YES];
+            //        [self presentViewController:self.previewController animated:YES completion:nil];
+                    //刷新界面,如果不刷新的话，不重新走一遍代理方法，返回的url还是上一次的url
+            [weakSelf.previewController refreshCurrentPreviewItem];
 //            dispatch_async(dispatch_get_main_queue(), ^{
 //                downloadCell.downLoadingLabel.text = @"下载完成";
 //                downloadCell.downLoadingLabel.hidden = YES;
