@@ -496,7 +496,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@", error);
 }
 
-#pragma mark Channel Opened
+#pragma mark - Channel Opened
 /**
  *    注册推送通道打开监听
  */
@@ -681,6 +681,10 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }];
 }
 
+#pragma mark - application
+
+
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
     return [WXAUTH handleOpenURL:url];
@@ -711,6 +715,12 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^(){}];
 }
 
+-(BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{
+    
+}
+
+
+#pragma mark - Realm
 
 //数据迁移，添加数据库迁移方法，数据库数据改变时增加版本号
 -(void)reloadRealm{
@@ -731,5 +741,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // 现在我们已经告诉了 Realm 如何处理架构的变化，打开文件之后将会自动执行迁移
     [RLMRealm defaultRealm];
 }
+
+
 
 @end
