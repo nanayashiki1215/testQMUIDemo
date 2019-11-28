@@ -21,7 +21,7 @@
 #import "BGQMFeedBackViewController.h"
 #import "CSAboutViewController.h"
 #import "BGQMPersonalInfoViewController.h"
-#import "WXApi.h"
+//#import "WXApi.h"
 #import "BGQMChangeLanguageViewController.h"
 #import "BGUIWebViewController.h"
 
@@ -561,58 +561,58 @@
     moreOperationController.items = @[
                                       // 第一行
                                       @[
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:DefLocalizedString(@"ShareWechatFriends") handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              if([WXApi isWXAppInstalled]){//判断当前设备是否安装微信客户端
-                                                  
-                                                  //创建多媒体消息结构体
-                                                  WXMediaMessage *message = [WXMediaMessage message];
-                                                  message.title = @"变电所运维";//标题
-                                                  message.description = @"上海安科瑞股份有限公司";//描述
-                                                  [message setThumbImage:[UIImage imageNamed:@"app-vision.png"]];//设置预览图
-                                                  
-                                                  //创建网页数据对象
-                                                  WXWebpageObject *webObj = [WXWebpageObject object];
-                                                  webObj.webpageUrl = shareString;//链接
-                                                  message.mediaObject = webObj;
-                                                  
-                                                  SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
-                                                  sendReq.bText = NO;//不使用文本信息
-                                                  sendReq.message = message;
-                                                  sendReq.scene = WXSceneSession;//分享到好友会话
-                                                  
-                                                  [WXApi sendReq:sendReq];//发送对象实例
-                                              }else{
-                                                  
-                                                  //未安装微信应用或版本过低
-                                              }
-                                              [moreOperationController hideToBottom];// 如果嫌每次都在 handler 里写 hideToBottom 烦，也可以直接把这句写到 moreOperationController:didSelectItemView: 里，它可与 handler 共存
-                                          }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:DefLocalizedString(@"ShareWechatFriendCircle") handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              if([WXApi isWXAppInstalled]){//判断当前设备是否安装微信客户端
-                                                  
-                                                  //创建多媒体消息结构体
-                                                  WXMediaMessage *message = [WXMediaMessage message];
-                                                  message.title = @"变电所运维";//标题
-                                                  message.description = @"上海安科瑞股份有限公司";//描述
-                                                  [message setThumbImage:[UIImage imageNamed:@"app-vision.png"]];//设置预览图
-                                                  
-                                                  //创建网页数据对象
-                                                  WXWebpageObject *webObj = [WXWebpageObject object];
-                                                  webObj.webpageUrl = shareString;//链接
-                                                  message.mediaObject = webObj;
-                                                  
-                                                  SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
-                                                  sendReq.bText = NO;//不使用文本信息
-                                                  sendReq.message = message;
-                                                  sendReq.scene = WXSceneTimeline;//分享到好友会话
-                                                  
-                                                  [WXApi sendReq:sendReq];//发送对象实例
-                                              }else{
-                                                  
-                                                  //未安装微信应用或版本过低
-                                              }
-                                              [moreOperationController hideToBottom];
-                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:DefLocalizedString(@"ShareWechatFriends") handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              if([WXApi isWXAppInstalled]){//判断当前设备是否安装微信客户端
+//
+//                                                  //创建多媒体消息结构体
+//                                                  WXMediaMessage *message = [WXMediaMessage message];
+//                                                  message.title = @"变电所运维";//标题
+//                                                  message.description = @"上海安科瑞股份有限公司";//描述
+//                                                  [message setThumbImage:[UIImage imageNamed:@"app-vision.png"]];//设置预览图
+//
+//                                                  //创建网页数据对象
+//                                                  WXWebpageObject *webObj = [WXWebpageObject object];
+//                                                  webObj.webpageUrl = shareString;//链接
+//                                                  message.mediaObject = webObj;
+//
+//                                                  SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
+//                                                  sendReq.bText = NO;//不使用文本信息
+//                                                  sendReq.message = message;
+//                                                  sendReq.scene = WXSceneSession;//分享到好友会话
+//
+//                                                  [WXApi sendReq:sendReq];//发送对象实例
+//                                              }else{
+//
+//                                                  //未安装微信应用或版本过低
+//                                              }
+//                                              [moreOperationController hideToBottom];// 如果嫌每次都在 handler 里写 hideToBottom 烦，也可以直接把这句写到 moreOperationController:didSelectItemView: 里，它可与 handler 共存
+//                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:DefLocalizedString(@"ShareWechatFriendCircle") handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              if([WXApi isWXAppInstalled]){//判断当前设备是否安装微信客户端
+//
+//                                                  //创建多媒体消息结构体
+//                                                  WXMediaMessage *message = [WXMediaMessage message];
+//                                                  message.title = @"变电所运维";//标题
+//                                                  message.description = @"上海安科瑞股份有限公司";//描述
+//                                                  [message setThumbImage:[UIImage imageNamed:@"app-vision.png"]];//设置预览图
+//
+//                                                  //创建网页数据对象
+//                                                  WXWebpageObject *webObj = [WXWebpageObject object];
+//                                                  webObj.webpageUrl = shareString;//链接
+//                                                  message.mediaObject = webObj;
+//
+//                                                  SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
+//                                                  sendReq.bText = NO;//不使用文本信息
+//                                                  sendReq.message = message;
+//                                                  sendReq.scene = WXSceneTimeline;//分享到好友会话
+//
+//                                                  [WXApi sendReq:sendReq];//发送对象实例
+//                                              }else{
+//
+//                                                  //未安装微信应用或版本过低
+//                                              }
+//                                              [moreOperationController hideToBottom];
+//                                          }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_link") title:DefLocalizedString(@"Copylinks")  handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               UIPasteboard *pab = [UIPasteboard generalPasteboard];
                                               [pab setString:shareString];

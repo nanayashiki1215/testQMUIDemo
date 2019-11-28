@@ -47,8 +47,8 @@
 #import "BGQMUserViewController.h"
 #import "BGQMNewHomeTableViewController.h"
 #import <Bugly/Bugly.h>
-#import "WXApi.h"
-#import "WXAuth.h"
+//#import "WXApi.h"
+//#import "WXAuth.h"
 #import "NSBundle+Language.h"
 #import <CloudPushSDK/CloudPushSDK.h>
 #import "BGUIWebViewController.h"
@@ -132,7 +132,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     //配置bugly上传
     [Bugly startWithAppId:BGBuglyApi];
     //配置微信sdk
-    [WXApi registerApp:WXAppId];
+//    [WXApi registerApp:WXAppId];
     //配置百度地图
     // 初始化定位SDK
     [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BGBaiduMapApi authDelegate:self];
@@ -563,7 +563,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     //任务未读数
     NSInteger num = [[UserManager manager].privateUnreadNumStr integerValue];
     [UserManager manager].privateUnreadNumStr = [NSString stringWithFormat:@"%ld",(long)num+1];
-    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; //清除角标
     
 //    PushMessageDAO *dao = [[PushMessageDAO alloc] init];
@@ -685,20 +684,20 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 
 
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
-    return [WXAUTH handleOpenURL:url];
-}
+//    return [WXAUTH handleOpenURL:url];
+//}
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
     
-    return [WXAUTH handleOpenURL:url];
-}
+//    return [WXAUTH handleOpenURL:url];
+//}
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
-    return [WXAUTH handleOpenURL:url];
-}
+//    return [WXAUTH handleOpenURL:url];
+//}
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window {
     return UIInterfaceOrientationMaskPortrait;
@@ -715,9 +714,9 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^(){}];
 }
 
--(BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{
-    
-}
+//-(BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{
+//
+//}
 
 
 #pragma mark - Realm

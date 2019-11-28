@@ -243,10 +243,6 @@
 		B6B1B62C229534E300F1B5D2 /* BGBaiduMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6B1B62A229534E200F1B5D2 /* BGBaiduMapViewController.xib */; };
 		B6B1B62D229536A700F1B5D2 /* BGLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6B1B62F229536A700F1B5D2 /* BGLoginViewController.xib */; };
 		B6C1540C22E7F4D0004B8614 /* CSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C1540A22E7F4D0004B8614 /* CSAboutViewController.m */; };
-		B6C6178022F968DC008DD6E7 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C6177A22F968DC008DD6E7 /* WXApiManager.m */; };
-		B6C6178122F968DC008DD6E7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B6C6177C22F968DC008DD6E7 /* README.txt */; };
-		B6C6178222F968DC008DD6E7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C6177E22F968DC008DD6E7 /* libWeChatSDK.a */; };
-		B6C6178322F968DC008DD6E7 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = B6C6177F22F968DC008DD6E7 /* read_me.txt */; };
 		B6C6178622F96B07008DD6E7 /* WXAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C6178522F96B07008DD6E7 /* WXAuth.m */; };
 		B6C7689F22A0B8DC00DA675D /* QDThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C767C222A0B8DC00DA675D /* QDThemeManager.m */; };
 		B6C768A022A0B8DC00DA675D /* QMUIConfigurationTemplatePinkRose.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C767C322A0B8DC00DA675D /* QMUIConfigurationTemplatePinkRose.m */; };
@@ -1020,14 +1016,6 @@
 		B6C281E92356DC9600C0DAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BGCrearTrendsBaseTableViewCell.xib; sourceTree = "<group>"; };
 		B6C281EA2356DC9900C0DAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CSAboutViewController.xib; sourceTree = "<group>"; };
 		B6C281EB2356DC9D00C0DAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BGLoginViewController.xib; sourceTree = "<group>"; };
-		B6C6177822F968DC008DD6E7 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
-		B6C6177922F968DC008DD6E7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		B6C6177A22F968DC008DD6E7 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
-		B6C6177B22F968DC008DD6E7 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		B6C6177C22F968DC008DD6E7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		B6C6177D22F968DC008DD6E7 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
-		B6C6177E22F968DC008DD6E7 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		B6C6177F22F968DC008DD6E7 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		B6C6178422F96B07008DD6E7 /* WXAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAuth.h; sourceTree = "<group>"; };
 		B6C6178522F96B07008DD6E7 /* WXAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAuth.m; sourceTree = "<group>"; };
 		B6C767C022A0B8DC00DA675D /* QMUIConfigurationTemplateGrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplateGrass.h; sourceTree = "<group>"; };
@@ -1566,7 +1554,6 @@
 				2A26539090E747C2929DE853 /* CoreLocation.framework in Frameworks */,
 				DFD47A073F1640FC915D1708 /* libcrypto.a in Frameworks */,
 				B63BFF67234DBFDD009C70BC /* BaiduMapAPI_Utils.framework in Frameworks */,
-				B6C6178222F968DC008DD6E7 /* libWeChatSDK.a in Frameworks */,
 				FAE6567CB3DB4762849C1A88 /* libssl.a in Frameworks */,
 				B614C3D0233AFC950072459F /* Security.framework in Frameworks */,
 				B6EB9BB422C99F8100136A6C /* libEZUIKit.a in Frameworks */,
@@ -2378,21 +2365,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		B6C6177722F968DC008DD6E7 /* WechtSDK1.8.2 */ = {
-			isa = PBXGroup;
-			children = (
-				B6C6177822F968DC008DD6E7 /* WXApiManager.h */,
-				B6C6177922F968DC008DD6E7 /* WXApi.h */,
-				B6C6177A22F968DC008DD6E7 /* WXApiManager.m */,
-				B6C6177B22F968DC008DD6E7 /* WXApiObject.h */,
-				B6C6177C22F968DC008DD6E7 /* README.txt */,
-				B6C6177D22F968DC008DD6E7 /* WechatAuthSDK.h */,
-				B6C6177E22F968DC008DD6E7 /* libWeChatSDK.a */,
-				B6C6177F22F968DC008DD6E7 /* read_me.txt */,
-			);
-			path = WechtSDK1.8.2;
-			sourceTree = "<group>";
-		};
 		B6C767BD22A0B8DC00DA675D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -2895,7 +2867,6 @@
 				B6D3B18F23862A8C005CAF90 /* RealmSDK */,
 				B61953F32379273E00036E97 /* AliyunOneSDK */,
 				B64D3B33233B62C20016DF9F /* qmui.xcodeproj */,
-				B6C6177722F968DC008DD6E7 /* WechtSDK1.8.2 */,
 				B66BA70222F275270027EE05 /* SDPhotoBrowser */,
 				B6EB9B9822C99F8100136A6C /* EZOpenSDK */,
 				B6EB9B9022C99F8100136A6C /* EZUIKit */,
@@ -3552,7 +3523,6 @@
 				B64376482293D25100A92D74 /* BGUIWebViewController.xib in Resources */,
 				B68D2D2622A656F1001C00EC /* placeholder.png in Resources */,
 				B6CA22A422C09F1B00AAA1CA /* BGHomeViewController.xib in Resources */,
-				B6C6178122F968DC008DD6E7 /* README.txt in Resources */,
 				B6E1560D228CF32E00CB4A5F /* NativeImg.xcassets in Resources */,
 				B6B1B62C229534E300F1B5D2 /* BGBaiduMapViewController.xib in Resources */,
 				B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */,
@@ -3565,7 +3535,6 @@
 				B68D2D2322A656F1001C00EC /* pageControlCurrentDot@2x.png in Resources */,
 				B6024AD922FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib in Resources */,
 				B6380A9322CB2085002500E0 /* Dis-test in Resources */,
-				B6C6178322F968DC008DD6E7 /* read_me.txt in Resources */,
 				B616043F237E3F6C007A8C44 /* silent.caf in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
 				B6B1B62D229536A700F1B5D2 /* BGLoginViewController.xib in Resources */,
@@ -3882,7 +3851,6 @@
 				B6C768DC22A0B8DC00DA675D /* QDAllSystemFontsViewController.m in Sources */,
 				B6E15699228D419800CB4A5F /* MJRefreshComponent.m in Sources */,
 				B68D2C7922A63D87001C00EC /* GHDropMenuFilterTagItem.m in Sources */,
-				B6C6178022F968DC008DD6E7 /* WXApiManager.m in Sources */,
 				B6AACF2F22AE408700632304 /* NSString+PinYin.m in Sources */,
 				B6E155B9228CEDF900CB4A5F /* BGFileUtils.m in Sources */,
 				B657DDC922927C760009BCB0 /* UIImage+GIF.m in Sources */,
@@ -4095,7 +4063,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4153,7 +4121,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
