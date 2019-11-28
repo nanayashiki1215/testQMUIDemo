@@ -9,8 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+//消息推送管理类
 @interface BGDistributeMessage : NSObject
+
 +(void)distributeMessage:(id)message;
+
 @end
 
 NS_ASSUME_NONNULL_END

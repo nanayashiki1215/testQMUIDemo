@@ -93,6 +93,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
             NSString *ysAppKey = [NSString changgeNonulWithString:platformdic[@"ysAppKey"]];
             NSString *ysToken = [NSString changgeNonulWithString:platformdic[@"ysToken"]];
             if (!ysAppKey || !ysToken) {
+                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端添加视频相关信息。" buttonTitle:nil buttonAction:nil];
                 return ;
             }else{
                 //初始化

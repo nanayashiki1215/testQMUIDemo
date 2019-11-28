@@ -775,7 +775,7 @@
 -(void)getLoation{
     __weak __typeof(self)weakSelf = self;
     self.pageStillLoading = YES;
-
+    
     [self.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
              //获取经纬度和该定位点对应的位置信息
         DefLog(@"%@ %d",location,state);
@@ -785,7 +785,7 @@
         NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
 //       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
        [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-           DefLog(@"item%@",item);
+           NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
            weakSelf.pageStillLoading = NO;
        }];
     }];
@@ -793,6 +793,7 @@
     while (self.pageStillLoading) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
+    
    
     //开启定位服务
 }
