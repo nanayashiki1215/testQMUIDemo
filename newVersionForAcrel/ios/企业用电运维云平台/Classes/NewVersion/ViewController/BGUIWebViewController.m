@@ -13,6 +13,7 @@
 #import <CoreLocation/CLLocationManager.h>
 #import "BGFileDownModel.h"
 #import <QuickLook/QuickLook.h>
+#import "QLPreviewController+autoTitle.h"
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -675,13 +676,14 @@
         NSString *documentPathLocal = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         documentPathLocal = [documentPathLocal stringByAppendingFormat:@"/Files/%@",isDownloadedmodel.fileName];
          //文档，其他 支持格式 txt/pdf/html/doc/docx/xls/xlsx/ppt/pptx
-        NSFileManager* fm = [NSFileManager defaultManager];
-        NSData* data = [[NSData alloc] init];
-        data = [fm contentsAtPath:documentPathLocal];
+//        NSFileManager* fm = [NSFileManager defaultManager];
+//        NSData* data = [[NSData alloc] init];
+//        data = [fm contentsAtPath:documentPathLocal];
 //        NSData *data = [NSData dataWithContentsOfURL:documentPathLocal];
-        NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//        NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 
         self.fileURL = [NSURL fileURLWithPath:documentPathLocal];
+        self.previewController.qlpTitle = downloadModel.nickName;
         [self.navigationController pushViewController:self.previewController animated:YES];
 //        [self presentViewController:self.previewController animated:YES completion:nil];
         //刷新界面,如果不刷新的话，不重新走一遍代理方法，返回的url还是上一次的url
@@ -704,6 +706,7 @@
             [realm beginWriteTransaction];
             downloadModel.fileLocalString = localString;
             downloadModel.isOwnDownloaded = NO;
+            downloadModel.nickName = fileName1;
             [realm addObject:downloadModel];
             [realm commitWriteTransaction];
             
@@ -718,6 +721,7 @@
             //        webVC.fileLocalUrlPath = documentPathLocal;
             //        [self.navigationController pushViewController:webVC animated:YES];
             weakSelf.fileURL = [NSURL fileURLWithPath:documentPathLocal];
+            weakSelf.previewController.qlpTitle = fileName1;
             [weakSelf.navigationController pushViewController:weakSelf.previewController animated:YES];
             //        [self presentViewController:self.previewController animated:YES completion:nil];
                     //刷新界面,如果不刷新的话，不重新走一遍代理方法，返回的url还是上一次的url
@@ -1077,7 +1081,7 @@
 //
 //       item.previewItemURL = url; //url
 //       item.name = self.navTitle; //title
-    
+
     return self.fileURL;
 }
 

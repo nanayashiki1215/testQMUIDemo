@@ -148,6 +148,7 @@
 		B66BA71222F27EE80027EE05 /* BGShowUrlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */; };
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
+		B679E327238FA828004818E6 /* QLPreviewController+autoTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B679E326238FA828004818E6 /* QLPreviewController+autoTitle.m */; };
 		B68AF11D237BD75800F51D0E /* BGQMMsgNotifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */; };
 		B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */; };
 		B68D2C7022A63D87001C00EC /* NSString+Arc4random.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4E22A63D86001C00EC /* NSString+Arc4random.m */; };
@@ -835,6 +836,8 @@
 		B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGShowUrlModel.m; sourceTree = "<group>"; };
 		B6733F3E22B8D77A005B1DDE /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
+		B679E325238FA828004818E6 /* QLPreviewController+autoTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QLPreviewController+autoTitle.h"; sourceTree = "<group>"; };
+		B679E326238FA828004818E6 /* QLPreviewController+autoTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "QLPreviewController+autoTitle.m"; sourceTree = "<group>"; };
 		B68AF11B237BD75800F51D0E /* BGQMMsgNotifViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMMsgNotifViewController.h; sourceTree = "<group>"; };
 		B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMMsgNotifViewController.m; sourceTree = "<group>"; };
 		B68D2C4B22A63D86001C00EC /* NSArray+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Bounds.h"; sourceTree = "<group>"; };
@@ -2862,6 +2865,8 @@
 				B6E155EF228CF09C00CB4A5F /* NSString+BGChangeNoNull.m */,
 				B6E155F0228CF09C00CB4A5F /* NSDictionaryAdditions.h */,
 				B6E155F1228CF09C00CB4A5F /* UIImage+BGPhotoImage.h */,
+				B679E325238FA828004818E6 /* QLPreviewController+autoTitle.h */,
+				B679E326238FA828004818E6 /* QLPreviewController+autoTitle.m */,
 			);
 			path = BGExtension;
 			sourceTree = "<group>";
@@ -3845,6 +3850,7 @@
 				B68D2C7A22A63D87001C00EC /* GHDropMenuFilterInputItem.m in Sources */,
 				B6C768F722A0B8DC00DA675D /* QDImagePreviewViewController1.m in Sources */,
 				B6C768B322A0B8DC00DA675D /* QDSearchViewController.m in Sources */,
+				B679E327238FA828004818E6 /* QLPreviewController+autoTitle.m in Sources */,
 				B6C768CE22A0B8DC00DA675D /* QDCAAnimationViewController.m in Sources */,
 				B66BA6FE22F274A90027EE05 /* BRPlaceholderTextView.m in Sources */,
 				B6E2189122A4AB61003C2969 /* BGQMAlarmViewController.m in Sources */,
