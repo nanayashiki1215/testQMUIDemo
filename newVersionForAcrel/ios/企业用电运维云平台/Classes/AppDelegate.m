@@ -52,6 +52,8 @@
 #import "NSBundle+Language.h"
 #import <CloudPushSDK/CloudPushSDK.h>
 #import "BGUIWebViewController.h"
+#import "NSString+BGExtension.h"
+#import "BGDistributeMessage.h"
 // iOS 10 notification
 #import <UserNotifications/UserNotifications.h>
 #import "LZLPushMessage.h"
@@ -165,24 +167,29 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         __weak __typeof(self)weakSelf = self;
         [NetService bg_getWithTokenWithPath:@"/getMessagePushInfo" params:@{} success:^(id respObjc) {
             DefLog(@"%@",respObjc);
-            NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
-            NSString *messageIOSKey = [NSString bg_changgeNullStringWithString:pushInfo[@"messageIOSKey"]];
-            NSString *messageIOSSecret = [NSString bg_changgeNullStringWithString:@"messageIOSSecret"];
-            if (messageIOSKey.length && messageIOSSecret.length) {
-                user.emasAppKey = messageIOSKey;
-                user.emasAppSecret = messageIOSSecret;
+            if ([respObjc[kdata] isKindOfClass:[NSDictionary class]] && [respObjc[kdata] objectForKey:@"messagePushInfo"]) {
+                NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
+                if ([pushInfo objectForKey:@"messageIOSKey"] && [pushInfo objectForKey:@"messageIOSSecret"]) {
+                    NSString *messageIOSKey = [pushInfo bg_StringForKeyNotNull:@"messageIOSKey"];
+                    NSString *messageIOSSecret = [pushInfo bg_StringForKeyNotNull:@"messageIOSSecret"];
+                    if (messageIOSKey.length && messageIOSSecret.length) {
+                        user.emasAppKey = messageIOSKey;
+                        user.emasAppSecret = messageIOSSecret;
+                    }
+                    // 初始化SDK
+                    [weakSelf initCloudPush];
+                    [weakSelf addAlias:user.bguserId];
+                }
             }
-            // 初始化SDK
-            [weakSelf initCloudPush];
-            [weakSelf addAlias:user.bguserId];
         } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-            // 初始化SDK
-            [weakSelf initCloudPush];
-            [weakSelf addAlias:user.bguserId];
+            // 失败如果有则补偿初始化SDK
+            if (user.emasAppKey && user.emasAppSecret) {
+                [weakSelf initCloudPush];
+                [weakSelf addAlias:user.bguserId];
+            }
         }];
         // 界面
         [self createTabBarController];
-        
     }else{
 //        BGQMloginViewController *loginVC = [[BGQMloginViewController alloc] init];
         //设置状态栏颜色
@@ -208,7 +215,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }];
 }
 
-#pragma mark - PushAPI
+#pragma mark - PushAPI 通知
 /**
  *    向APNs注册，获取deviceToken用于推送
  *
@@ -496,7 +503,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@", error);
 }
 
-#pragma mark - Channel Opened
+#pragma mark Receive Message 消息
 /**
  *    注册推送通道打开监听
  */
@@ -517,8 +524,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     NSLog(@"消息通道建立成功");
 }
 
-
-#pragma mark Receive Message
 /**
  *    @brief    注册推送消息到来监听
  */
@@ -543,7 +548,8 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     NSLog(@"Receive message title: %@, content: %@.", title, body);
     
     LZLPushMessage *tempVO = [[LZLPushMessage alloc] init];
-    tempVO.messageContent = [NSString stringWithFormat:@"title: %@, content: %@", title, body];
+    tempVO.messageContent = body;
+    tempVO.messageTitle = title;
     tempVO.isRead = 0;
     
     if(![NSThread isMainThread]) {
@@ -561,10 +567,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 
 - (void)insertPushMessage:(LZLPushMessage *)model {
     //任务未读数
-    NSInteger num = [[UserManager manager].privateUnreadNumStr integerValue];
-    [UserManager manager].privateUnreadNumStr = [NSString stringWithFormat:@"%ld",(long)num+1];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; //清除角标
-    
+    [BGDistributeMessage distributeMessage:model.messageContent];
 //    PushMessageDAO *dao = [[PushMessageDAO alloc] init];
 //    [dao insert:model];
 }
@@ -740,7 +743,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // 现在我们已经告诉了 Realm 如何处理架构的变化，打开文件之后将会自动执行迁移
     [RLMRealm defaultRealm];
 }
-
 
 
 @end

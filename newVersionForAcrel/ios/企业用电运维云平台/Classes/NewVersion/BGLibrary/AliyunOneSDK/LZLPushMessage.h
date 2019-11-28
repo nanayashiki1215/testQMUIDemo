@@ -12,6 +12,7 @@
 
 @property int id;
 @property NSString *messageContent;
+@property NSString *messageTitle;
 @property BOOL isRead;
 
 @end

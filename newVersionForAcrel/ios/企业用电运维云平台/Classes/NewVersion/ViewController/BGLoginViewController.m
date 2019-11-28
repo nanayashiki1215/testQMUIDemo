@@ -209,12 +209,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
         user.token = respObjc[kdata][@"authorization"];
-//        NSDictionary *userInfo = respObjc[kdata][@"userInfo"];
-//        if (userInfo) {
-//            NSString *username = [userInfo bg_StringForKeyNotNull:@"fUsername"];
-//            user.bgnickName = username;
-//        }
-        NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
+        DefLog(@"%@",respObjc);
         NSString *userId = [NSString changgeNonulWithString:respObjc
                             [kdata][@"userId"]];
         if (userId) {
@@ -226,19 +221,25 @@
             user.versionNo = verStr;
             user.autoLogin = YES;
             [weakSelf makeRootMenu];
-            NSString *msgPushKey = [NSString bg_changgeNullStringWithString:pushInfo[@"messageIOSKey"]];
-            NSString *msgPushSecret = [NSString bg_changgeNullStringWithString:pushInfo[@"messageIOSSecret"]];
-            user.emasAppSecret = msgPushSecret;
-            user.emasAppKey = msgPushKey;
-            
-            // 初始化SDK
-            [weakSelf initCloudPush];
-            //
-            [weakSelf addAlias:userId];
         }else{
             [MBProgressHUD showError:@"登录失败，未获取到版本号"];
         }
-        DefLog(@"%@",respObjc);
+        
+        if ([respObjc[kdata] isKindOfClass:[NSDictionary class]] && [respObjc[kdata] objectForKey:@"messagePushInfo"]) {
+            NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
+            if ([pushInfo objectForKey:@"messageIOSKey"] && [pushInfo objectForKey:@"messageIOSSecret"]) {
+               NSString *messageIOSKey = [pushInfo bg_StringForKeyNotNull:@"messageIOSKey"];
+               NSString *messageIOSSecret = [pushInfo bg_StringForKeyNotNull:@"messageIOSSecret"];
+               if (messageIOSKey.length && messageIOSSecret.length) {
+                   user.emasAppKey = messageIOSKey;
+                   user.emasAppSecret = messageIOSSecret;
+               }
+               // 初始化SDK
+               [weakSelf initCloudPush];
+               [weakSelf addAlias:user.bguserId];
+           }
+       }
+       
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (errorMsg) {

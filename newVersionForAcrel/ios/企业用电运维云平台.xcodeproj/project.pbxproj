@@ -59,6 +59,7 @@
 		B61953FB2379273E00036E97 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F72379273E00036E97 /* UTMini.framework */; };
 		B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */; };
 		B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */; };
+		B626289E238F656300ED4825 /* BGDistributeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B626289D238F656300ED4825 /* BGDistributeMessage.m */; };
 		B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */; };
 		B637965A22F1732D007AC38F /* JGUserFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */; };
 		B637965B22F1732D007AC38F /* JGPredicateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965622F1732C007AC38F /* JGPredicateMethod.m */; };
@@ -671,6 +672,8 @@
 		B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AliyunEmasServices-Info.plist"; sourceTree = "<group>"; };
 		B624D8CE2317CAEA00A16F5A /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
+		B626289C238F656300ED4825 /* BGDistributeMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGDistributeMessage.h; sourceTree = "<group>"; };
+		B626289D238F656300ED4825 /* BGDistributeMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGDistributeMessage.m; sourceTree = "<group>"; };
 		B637964722F1251D007AC38F /* BGQMUserHeadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserHeadTableViewCell.h; sourceTree = "<group>"; };
 		B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMUserHeadTableViewCell.m; sourceTree = "<group>"; };
 		B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGUserFeedBackViewController.m; sourceTree = "<group>"; };
@@ -2801,6 +2804,8 @@
 				B6C7690A22A0C2E100DA675D /* UserManager.m */,
 				B6ED203F229B7D4B0044EFC9 /* BGCheckAppVersionMgr.h */,
 				B6ED2040229B7D4B0044EFC9 /* BGCheckAppVersionMgr.m */,
+				B626289C238F656300ED4825 /* BGDistributeMessage.h */,
+				B626289D238F656300ED4825 /* BGDistributeMessage.m */,
 				B6E156BB228D4B8B00CB4A5F /* BGHttpService.h */,
 				B6E156BA228D4B8A00CB4A5F /* BGHttpService.m */,
 				B6E156B8228D4AB800CB4A5F /* NetService.h */,
@@ -3879,6 +3884,7 @@
 				B657DDC522927C760009BCB0 /* SDWebImageFrame.m in Sources */,
 				B657DD7222927AEC0009BCB0 /* TZAssetModel.m in Sources */,
 				B657DDDB22927C760009BCB0 /* UIView+WebCache.m in Sources */,
+				B626289E238F656300ED4825 /* BGDistributeMessage.m in Sources */,
 				B6E155C7228CEDF900CB4A5F /* SKControllerTools.m in Sources */,
 				B6C768C722A0B8DC00DA675D /* QDOrientationViewController.m in Sources */,
 				B6C768A822A0B8DC00DA675D /* QDCommonViewController.m in Sources */,
