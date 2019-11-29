@@ -62,6 +62,11 @@
         //打印版本号
 //        DefLog(@"当前版本号:%@\n商店版本号:%@",currentVersion,appStoreVersion);
         // 当前版本号小于商店版本号,就更新
+        if (!self.fVersion) {
+            return;
+        }
+        self.fVersion  = [self.fVersion stringByReplacingOccurrencesOfString:@"."withString:@""];
+        currentVersion = [currentVersion stringByReplacingOccurrencesOfString:@"."withString:@""];
         if([currentVersion floatValue] < [self.fVersion floatValue]) {
             self.appId = appId;
             if ([self.isConstraints isEqualToString:@"true"]) {

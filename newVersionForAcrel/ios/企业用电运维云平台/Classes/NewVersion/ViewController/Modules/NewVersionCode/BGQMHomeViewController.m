@@ -85,7 +85,7 @@
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"筛选变电所" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftBtn)];
 //    [self creatView];
     [self addselfHeadView];
-    //检查版本升级
+    //检查版本升级 迭代更新
     [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
         
     }];

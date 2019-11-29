@@ -143,7 +143,8 @@
 //    if ([tenantId notEmptyOrNull]) {
 //        [mutParams setNotNullObject:tenantId ForKey:ktenantId];
 //    }
-    NSString *urlString = [BASE_URL stringByAppendingString:path];
+    
+    NSString *urlString = [[@"http://www.acrelcloud.cn" stringByAppendingString:BaseFileURLString] stringByAppendingString:path];
     [NetService bg_httpGetWithPath:urlString params:mutParams success:^(id responseObject) {
 //        NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
 //        NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];

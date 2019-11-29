@@ -557,7 +557,6 @@
             NSString *showString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
             NSString *dateString = [selectDate stringWithFormat:@"yyyyMMdd"];
             DefLog(@"选择的日期：%@",dateString);
-            
 //            DefLog(@"timeStr:%@",timerStr);
             NSString *timeStrJS = [NSString stringWithFormat:@"alertAction('%@')",showString];
             [weakSelf.webView evaluateJavaScript:timeStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {

@@ -114,7 +114,7 @@
     [self.pwdTextField addTarget:self action:@selector(textFieldEditEnd) forControlEvents:UIControlEventEditingDidEnd];
 
     
-    //检查版本
+    //检查版本升级 迭代更新
     [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
         
     }];
