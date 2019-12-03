@@ -84,6 +84,7 @@
     [self.actionSheet showInView:self.view];
     
 }
+
 //选图片方式
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([actionSheet isEqual:self.actionSheet]) {

@@ -90,7 +90,6 @@ QMUISynthesizeIdCopyProperty(qmui_hitTestBlock, setQmui_hitTestBlock)
                         return;
                     }
                 }
-                
                 // call super
                 void (*originSelectorIMP)(id, SEL, UIView *);
                 originSelectorIMP = (void (*)(id, SEL, UIView *))originalIMPProvider();
@@ -107,7 +106,6 @@ QMUISynthesizeIdCopyProperty(qmui_hitTestBlock, setQmui_hitTestBlock)
                         return;
                     }
                 }
-                
                 // call super
                 void (*originSelectorIMP)(id, SEL, UIView *, NSInteger);
                 originSelectorIMP = (void (*)(id, SEL, UIView *, NSInteger))originalIMPProvider();

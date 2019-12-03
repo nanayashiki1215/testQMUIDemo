@@ -14,6 +14,8 @@
 #import "BGFileDownModel.h"
 #import <QuickLook/QuickLook.h>
 #import "QLPreviewController+autoTitle.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -47,7 +49,7 @@
 
 @end
 
-@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate,QLPreviewControllerDataSource>
+@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate,QLPreviewControllerDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (strong,nonatomic) WKWebView *webView;
 //网页加载进度视图
@@ -63,6 +65,11 @@
 
 @property (strong, nonatomic)QLPreviewController *previewController;
 @property (copy, nonatomic)NSURL *fileURL; //文件路径
+
+@property (strong,nonatomic) NSString * picDataInfo;
+@property (nonatomic,assign) BOOL editeOrNot;
+@property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong) NSString *indexStr;
 
 @end
 
@@ -268,7 +275,6 @@
 //        NSString * pathString = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"app/html"];
         NSString * urlString2 = [self.urlParams stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString2 relativeToURL:pathURL]]];
-
     }
 }
 
@@ -393,6 +399,7 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"getLocation"];
         //跳转文件页面
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushDownFileVC"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"takePhoto"];
         config.userContentController = wkUController;
         
         //以下代码适配文本大小
@@ -541,6 +548,7 @@
     
 }
 
+#pragma mark - H5互调方法
 
 //被自定义的WKScriptMessageHandler在回调方法里通过代理回调回来，绕了一圈就是为了解决内存不释放的问题
 //通过接收JS传出消息的name进行捕捉的回调方法
@@ -630,7 +638,215 @@
         //点击了文件
         NSDictionary *msgDic = message.body;
         [self didClickDownloadButton:msgDic];
+    }else if ([message.name isEqualToString:@"takePhoto"]){
+        //点击了拍照
+        NSDictionary *imageDic = message.body;
+        [self openCamera:imageDic];
     }
+}
+
+#pragma mark - 拍照功能
+
+/**
+ *  调用照相机
+ */
+ 
+- (void)openCamera:(NSDictionary *)imageDic{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    self.indexStr = imageDic[@"index"];
+//    picker.allowsEditing = YES; //可编辑
+    //判断是否可以打开照相机
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        //摄像头
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                //出现这个问题，基本就是UI操作放在了非主线程中操作导致。我的问题是webview的回调，有时候会进入子线程处理。所以统一加上dispatch_async(dispatch_get_main_queue...
+        dispatch_async(dispatch_get_main_queue(), ^{ //不加这句有时候点击会闪退
+            [self presentViewController:picker animated:YES completion:nil];
+        });
+    }
+    else
+    {
+        
+        NSLog(@"没有摄像头");
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    UIImage *image = [[UIImage alloc] init];
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    if([mediaType isEqualToString:@"public.movie"])
+    {
+        return;
+        //        NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        //        NSLog(@"found a video");
+        //        //获取视频的thumbnail
+        //        MPMoviePlayerController *player = [[MPMoviePlayerController alloc]initWithContentURL:videoURL];
+        //        image = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
+        //        player = nil;
+    }else{
+//          __block NSMutableDictionary *imageMetadata = nil;
+//          NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+//              ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//              [library assetForURL:assetURL
+//                       resultBlock:^(ALAsset *asset)  {
+//                           imageMetadata = [[NSMutableDictionary alloc] initWithDictionary:asset.defaultRepresentation.metadata];
+                           //控制台输出查看照片的metadata
+          self.picDataInfo = info[UIImagePickerControllerMediaMetadata][@"{TIFF}"][@"DateTime"];
+          NSLog(@"%@**********", self.picDataInfo);
+          self.editeOrNot = YES;
+//                           UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"]; //先把图片转成NSData
+          UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+          self.image = image;
+//                           [picker dismissViewControllerAnimated:YES completion:nil]; //关闭相册界面
+//                           self.imageView = [CRMFactory createImageViewWithFrame:CGRectMake(15, self.takePhotoButton.frame.origin.y, 60, 60) image:image];
+//                           [self.view addSubview:_imageView];
+                           //看大图
+//                           self.imageView.userInteractionEnabled = YES;
+//                           UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPic)];
+//                           [self.imageView addGestureRecognizer:tap];
+                          
+//                           self.takePhotoButton.frame = CGRectMake(15 + 60 + 15, self.takePhotoButton.frame.origin.y, 60, 60);
+//                           UIImage *scaleImage = [CRMDatahandle scaleFromImage:image];
+        UIImage *waterPoint = [self addText:image text:self.picDataInfo];
+        NSData *data = UIImageJPEGRepresentation(waterPoint, 0.5);
+    //                        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *base64Data = [data base64EncodedDataWithOptions:0];
+        NSString *baseString = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
+        NSString *dataStr = [data base64Encoding];
+//                  NSLog(@"baseString:%@",baseString);
+//                  UIImageView *viewImage = [[UIImageView alloc] initWithImage:waterPoint];
+//                  viewImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//                  [self.view addSubview:viewImage];
+//                 NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",baseString];
+        
+        NSString *documentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingFormat:@"/Files"];
+        //    documentPath = [documentPath stringByAppendingPathComponent:downloadModel.fileName];//不用加“/”
+        NSFileManager *manager = [NSFileManager defaultManager];
+        [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+
+        NSString *fileDateName = [NSString stringWithFormat:@"%.f.jpg",[[NSDate date] timeIntervalSince1970]];
+        documentPath = [documentPath stringByAppendingFormat:@"/%@",fileDateName];
+        
+        [UIImageJPEGRepresentation(waterPoint,1) writeToFile:documentPath atomically:YES];
+        
+         NSString *imgBaseJS = [NSString stringWithFormat:@"imgBase('%@','%@')",dataStr,self.indexStr];
+         [self.webView evaluateJavaScript:imgBaseJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+             DefLog(@"item%@",item);
+         }];
+                  
+              
+//              }failureBlock:^(NSError *error) {
+//
+//          }];
+//        __block NSString *createdAssetID =nil;//唯一标识，可以用于图片资源获取
+//        NSError *error =nil;
+//        [[PHPhotoLibrary sharedPhotoLibrary]performChangesAndWait:^{
+//            createdAssetID = [PHAssetChangeRequest creationRequestForAssetFromImage:image].placeholderForCreatedAsset.localIdentifier;
+//
+//        } error:&error];
+////
+//        [[PHPhotoLibrary sharedPhotoLibrary]performChanges:^{
+//            PHAssetChangeRequest *changeAssetRequest =
+//            [PHAssetChangeRequest creationRequestForAssetFromImage:waterPoint];
+//            PHAssetCollection *targetCollection =[[PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil] lastObject];
+//
+//            PHAssetCollectionChangeRequest *changeCollectionRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:targetCollection];
+//            PHObjectPlaceholder *assetPlaceholder = [changeAssetRequest placeholderForCreatedAsset];
+//            [changeCollectionRequest addAssets:@[assetPlaceholder]];
+//
+//        } completionHandler:^(BOOL success,NSError * _Nullable error) {
+//            NSLog(@"finished adding");
+//        }];
+        
+//        image = info[UIImagePickerControllerOriginalImage];
+        
+//        [self uploadPickImage:documentPath andImageFileName:fileDateName];
+//    NSURL *imageURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+//    assets-library://asset/asset.JPG?id=106E99A1-4F6A-45A2-B320-B0AD4A8E8473&ext=JPG
+//    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
+//    {
+//        ALAssetRepresentation *representation = [myasset defaultRepresentation];
+//        self.imageFileName = [representation filename];
+//        NSLog(@"imageFileName : %@",self.imageFileName);
+//    };
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self uploadPickImage:[imageURL absoluteString]];
+//    [self sendImageMessage:image];
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.tableview reloadData];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
+    }
+//    });
+    
+    
+    //获取图片的NSURL 来源于AssetsLibrary.framework  #import <AssetsLibrary/AssetsLibrary.h>
+//    NSURL *url = [info objectForKey:UIImagePickerControllerReferenceURL];
+//    //ALAssetsLibrary 获取图片和视频
+//    ALAssetsLibrary *library = [[ALAssetsLibrary alloc]init];
+//    //根据url获取指定的图片  如果获取到了资源执行resultBlock，否则执行failureBlock
+//    //ALAsset实例 代表一个图片或者视频
+//    [library assetForURL:url resultBlock:^(ALAsset *asset){
+//        //defaultRepresentation 获取资源文件的默认属性
+//        //metadata 获取数据的数据，就是在默认属性中的数据，称之为元数据
+//        NSDictionary *imageData = [[NSMutableDictionary alloc]initWithDictionary:asset.defaultRepresentation.metadata];
+//        //kCGImagePropertyGPSDictionary 关于GPS的字典数据  来源于ImageIO.framework  #import <ImageIO/ImageIO.h>
+//
+//        NSDictionary *gpsData = [imageData objectForKey:(NSString *)kCGImagePropertyGPSDictionary];
+//        //打印纬度
+//        NSLog(@"打印纬度:%@",[gpsData objectForKey:@"Altitude"]);
+//
+//    }failureBlock:^(NSError *error){
+//        NSLog(@"error:%@",error);
+//    }];
+}
+
+- (UIImage *)addText:(UIImage *)img text:(NSString *)mark {
+    if (mark.length != 0) {
+    } else {
+        //将时间戳转换成时间
+        NSDate *date = [NSDate date];
+        //    限定格式
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@" yyyy-MM-dd  hh:mm:ss"];
+        [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+        NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"china"];//时区名字或地区名字
+        [formatter setTimeZone:timeZone];
+       mark = [formatter stringFromDate:date];
+    }
+   
+    int w = img.size.width;
+    int h = img.size.height;
+//    UIGraphicsBeginImageContext(img.size);
+    UIGraphicsBeginImageContextWithOptions(img.size, NO, 0);
+    [img drawInRect:CGRectMake(0, 0, w, h)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:50],
+//                                NSParagraphStyleAttributeName: paragraphStyle,
+                                NSForegroundColorAttributeName : [UIColor redColor]
+//                                NSTextEffectAttributeName: NSTextEffectLetterpressStyle
+                                };
+    [mark drawInRect:CGRectMake(w-500, h - 440, 500, 100) withAttributes:attribute];
+    
+    //添加水印文字
+    UIImage *aImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return aImage;
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    NSString *imgUpCancelJS = [NSString stringWithFormat:@"imgUpCancel('%@')",self.indexStr];
+    [self.webView evaluateJavaScript:imgUpCancelJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+        DefLog(@"item%@",item);
+    }];
+     
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self popViewControllerAnimation:YES];
 }
 
 #pragma mark - 文件下载打开
@@ -775,6 +991,8 @@
 //
 //}
 
+#pragma mark - 获取地址
+
 -(void)getLoation{
     __weak __typeof(self)weakSelf = self;
     self.pageStillLoading = YES;
@@ -872,7 +1090,9 @@
  */
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    
 }
+
 
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
@@ -1028,7 +1248,10 @@
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocation"];
     
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushDownFileVC"];
-//    getiOSTime
+
+//    takePhoto
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"takePhoto"];
+    
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];

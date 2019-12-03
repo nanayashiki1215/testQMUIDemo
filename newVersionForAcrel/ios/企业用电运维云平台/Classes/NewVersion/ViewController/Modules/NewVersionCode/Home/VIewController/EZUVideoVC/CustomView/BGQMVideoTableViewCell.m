@@ -23,6 +23,7 @@
         if (self.urlStr) {
             self.mPlayer = [EZUIPlayer createPlayerWithUrl:self.urlStr];
             self.mPlayer.mDelegate = self;
+            self.isPLaying = NO;
 //            self.mPlayer.previewView.frame = CGRectMake(0, 0,CGRectGetWidth(self.mPlayer.previewView.frame),CGRectGetHeight(self.mPlayer.previewView.frame));
 //            self.mPlayer.customIndicatorView = nil;//去除加载动画
 //            self.mPlayer.previewView.frame = CGRectMake(0, 0, SCREEN_WIDTH-leftOrRightMargin *4, CGRectGetHeight(self.mPlayer.previewView.frame)-leftOrRightMargin*2);
@@ -431,11 +432,12 @@
     {
         [self stop];
         self.isChangeHeight = NO;
+        self.isPLaying = NO;
     }
     else
     {
         [self play];
-        
+        self.isPLaying =YES;
     }
     btn.selected = !btn.selected;
 }

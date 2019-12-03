@@ -18,6 +18,7 @@
 @property(nonatomic, strong) NSMutableArray *mutArray;//需要展示的数据
 @property(nonatomic, strong) NSMutableArray *searchArray;//搜索后的数据
 @property(nonatomic, strong) NSMutableArray *allDataArray;//原始全数据
+@property(nonatomic, strong) NSMutableArray *cellNameArray;//保存cell
 
 @property(nonatomic, strong) NSString *ezappkeystr;//临时AppKey
 @property(nonatomic, strong) NSString *ezappTokenstr;//临时Apptoken
@@ -54,6 +55,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 //    [self initPopupContainerViewIfNeeded];
     self.mutArray = [NSMutableArray new];
     self.searchArray = [NSMutableArray new];
+   
     [self getVideoListData];
 //    UIView *searchTextField = nil;
     // 经测试, 需要设置barTintColor后, 才能拿到UISearchBarTextField对象
@@ -127,6 +129,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+     self.cellNameArray = [NSMutableArray new];
 //    self.shouldShowSearchBar = YES;
 //    self.searchBar.delegate = self;
 }
@@ -137,6 +140,22 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    NSInteger sections = self.tableView.numberOfSections;
+    if (sections>0) {
+         for (int section = 0; section < sections; section++) {
+            NSInteger rows = [self.tableView numberOfRowsInSection:section];
+            for (int row = 0; row < rows; row++) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+                BGQMVideoTableViewCell *videoCell = [self.tableView cellForRowAtIndexPath:indexPath];
+                if (videoCell.isPLaying) {
+                     [videoCell playBtnClick:videoCell.playBtn];
+                }
+//                [videoCell stop];
+            }
+        }
+    }
+       
+//    }
 //    [self.searchBar resignFirstResponder];
 //    self.shouldShowSearchBar = NO;
 //    [self.searchController dismissViewControllerAnimated:NO completion:nil];
@@ -192,6 +211,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 //    BGQMVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:videoCellIdentifier];
     NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
     BGQMVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    [self.cellNameArray addObject:CellIdentifier];
     if (self.searchController.active) {
         if (!videoCell) {
             videoCell = [[BGQMVideoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withPlayerData:self.searchArray[indexPath.row]];

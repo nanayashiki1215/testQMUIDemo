@@ -43,7 +43,11 @@
 @property (nonatomic,copy) NSString *apiUrl;
 @property (nonatomic,assign) CGFloat cellheight;
 @property (nonatomic,assign) BOOL isChangeHeight;
+@property (nonatomic,assign) BOOL isPLaying;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withPlayerData:(NSDictionary *)playData;
+-(void)releasePlayer;
+-(void)stop;
+-(void)playBtnClick:(UIButton *) btn;
 
 @end
