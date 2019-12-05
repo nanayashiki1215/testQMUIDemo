@@ -10,6 +10,7 @@
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
 
+
 @interface NetService ()
 
 @end
@@ -105,9 +106,13 @@
         NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
         //        k0000 成功
         //        401 token过期
-        if ([respMsg isEqualToString:@"Unauthorized"]) {
+        if ([respMsg isEqualToString:@"Unauthorized"] || [respCode isEqualToString:@"600"]) {
             
-            [weakSelf loginOut];
+            [weakSelf loginOut:respCode];
+            return ;
+        }else if([respCode isEqualToString:@"700"]){
+            NSString *token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"token"]];
+            [UserManager manager].token = token;
             return ;
         }
         if ([respCode isEqualToString:k0000]) {
@@ -199,9 +204,13 @@
         NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
 //        k0000 成功
 //        401 token过期
-        if ([respMsg isEqualToString:@"Unauthorized"]) {
+        if ([respMsg isEqualToString:@"Unauthorized"]|| [respCode isEqualToString:@"600"]) {
             
-            [weakSelf loginOut];
+            [weakSelf loginOut:respCode];
+            return ;
+        }else if([respCode isEqualToString:@"700"]){
+            NSString *token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"token"]];
+            [UserManager manager].token = token;
             return ;
         }
         if ([respCode isEqualToString:k0000]) {
@@ -471,37 +480,67 @@
 
 #pragma mark - 断点续传方案二
 
-+(void)loginOut{
++(void)loginOut:(NSString *)respCode{
+    if ([respCode isEqualToString:@"600"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"软件授权已过期" message:@"您使用的软件授权已过期，请咨询软件服务商，并在网页端进行配置。" preferredStyle:UIAlertControllerStyleAlert];
+         
+        
+         UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             //确认处理
+              NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+             NSDictionary *dictionary = [defatluts dictionaryRepresentation];
+             for(NSString *key in [dictionary allKeys]){
+                 if ([key isEqualToString:@"orderListUrl"]) {
+                     continue;
+                 }else if ([key isEqualToString:kaccount]) {
+                     continue;
+                 }else if ([key isEqualToString:kpassword]) {
+                     continue;
+                 }else if ([key isEqualToString:@"isSavePwd"]){
+                     continue;
+                 }
+                 else{
+                     [defatluts removeObjectForKey:key];
+                     [defatluts synchronize];
+                 }
+             }
+             BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+             UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+             [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
+         }];
+         
+         [alert addAction:action2];
+         [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:UIAlertControllerStyleAlert];
+         UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             //确认处理
+              NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+             NSDictionary *dictionary = [defatluts dictionaryRepresentation];
+             for(NSString *key in [dictionary allKeys]){
+                 if ([key isEqualToString:@"orderListUrl"]) {
+                     continue;
+                 }else if ([key isEqualToString:kaccount]) {
+                     continue;
+                 }else if ([key isEqualToString:kpassword]) {
+                     continue;
+                 }else if ([key isEqualToString:@"isSavePwd"]){
+                     continue;
+                 }
+                 else{
+                     [defatluts removeObjectForKey:key];
+                     [defatluts synchronize];
+                 }
+             }
+             BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+             UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+             [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
+         }];
+         
+         [alert addAction:action2];
+         [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
+    }
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:UIAlertControllerStyleAlert];
-    
-   
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //确认处理
-         NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
-        NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-        for(NSString *key in [dictionary allKeys]){
-            if ([key isEqualToString:@"orderListUrl"]) {
-                continue;
-            }else if ([key isEqualToString:kaccount]) {
-                continue;
-            }else if ([key isEqualToString:kpassword]) {
-                continue;
-            }else if ([key isEqualToString:@"isSavePwd"]){
-                continue;
-            }
-            else{
-                [defatluts removeObjectForKey:key];
-                [defatluts synchronize];
-            }
-        }
-        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
-        UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-        [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
-    }];
-    
-    [alert addAction:action2];
-    [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
     
 //    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
 //

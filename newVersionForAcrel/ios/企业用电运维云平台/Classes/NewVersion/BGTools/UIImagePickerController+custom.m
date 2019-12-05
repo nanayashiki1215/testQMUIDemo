@@ -129,14 +129,43 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
  @return 加工完成的图片
  */
 + (UIImage *)compressImage:(UIImage *)image andAddTime:(NSString *)showTime{
-    NSData *data = UIImageJPEGRepresentation(image, 0.1);
-    UIImage *resultImage = [UIImage imageWithData:data];
+//    NSData *data = UIImageJPEGRepresentation(image, 0.01);
+    UIImage *resultImage = [self imageCompressWithSimple:image];
     UIImage *waterPoint = [self addText:resultImage text:showTime];
     return waterPoint;
 }
 
++ (UIImage*)imageCompressWithSimple:(UIImage*)image{
+    CGSize size = image.size;
+    CGFloat scale = 1.0;
+    //TODO:KScreenWidth屏幕宽
+    
+    CGFloat KScreenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat KScreenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    if (size.width > KScreenWidth || size.height > KScreenHeight) {
+        if (size.width > size.height) {
+            scale = KScreenWidth / size.width;
+        }else {
+            scale = KScreenHeight / size.height;
+        }
+    }
+    CGFloat width = size.width;
+    CGFloat height = size.height;
+    CGFloat scaledWidth = width * scale;
+    CGFloat scaledHeight = height * scale;
+    CGSize secSize =CGSizeMake(scaledWidth, scaledHeight);
+    //TODO:设置新图片的宽高
+    UIGraphicsBeginImageContext(secSize); // this will crop
+    [image drawInRect:CGRectMake(0,0,scaledWidth,scaledHeight)];
+    UIImage* newImage= UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 + (UIImage *)addText:(UIImage *)img text:(NSString *)mark {
     if (mark.length != 0) {
+        mark = [mark stringByReplacingOccurrencesOfString:@":" withString:@"-"];
     } else {
         //将时间戳转换成时间
         NSDate *date = [NSDate date];
@@ -156,12 +185,12 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
     [img drawInRect:CGRectMake(0, 0, w, h)];
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
-    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:70],
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:30],
 //                                NSParagraphStyleAttributeName: paragraphStyle,
                                 NSForegroundColorAttributeName : [UIColor redColor]
 //                                NSTextEffectAttributeName: NSTextEffectLetterpressStyle
                                 };
-    [mark drawInRect:CGRectMake(w-600, h - 140, 600, 100) withAttributes:attribute];
+    [mark drawInRect:CGRectMake(w-300, h - 50, 300, 50) withAttributes:attribute];
     
     //添加水印文字
     UIImage *aImage = UIGraphicsGetImageFromCurrentImageContext();
