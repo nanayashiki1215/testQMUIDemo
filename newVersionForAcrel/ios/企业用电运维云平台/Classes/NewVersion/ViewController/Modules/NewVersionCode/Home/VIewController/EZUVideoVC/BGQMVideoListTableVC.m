@@ -94,8 +94,14 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
         if (platformdic) {
             NSString *ysAppKey = [NSString changgeNonulWithString:platformdic[@"ysAppKey"]];
             NSString *ysToken = [NSString changgeNonulWithString:platformdic[@"ysToken"]];
-            if (!ysAppKey || !ysToken) {
+            if (!ysAppKey && !ysToken) {
                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端添加视频相关信息。" buttonTitle:nil buttonAction:nil];
+                return ;
+            }else if(!ysAppKey){
+                [weakSelf showEmptyViewWithText:@"萤石云Appkey为空" detailText:@"可前往网页端添加视频相关信息。" buttonTitle:nil buttonAction:nil];
+                return ;
+            }else if(!ysToken){
+                [weakSelf showEmptyViewWithText:@"萤石云Secret为空" detailText:@"可前往网页端添加视频相关信息。" buttonTitle:nil buttonAction:nil];
                 return ;
             }else{
                 //初始化

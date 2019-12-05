@@ -34,6 +34,7 @@
 
 #define BGUPdateAddress @"sys/getWebAPIVersion"
 
+//
 #define BGGetRootMenu @"/getRootMenu"
 
 //变电所列表 get 请求
@@ -58,7 +59,6 @@
 #define SystemImageIconADS @"/fileSystem/app/icon/"
 #define GetSystemImageBaseURL [NSString stringWithFormat:@"/%@/",[BGNetworkDefine getSystemImageUrlstr]]
 #define getSystemIconADS [GetBaseURL stringByAppendingString:GetSystemImageBaseURL]
-
 
 //获取设备管理的图片
 

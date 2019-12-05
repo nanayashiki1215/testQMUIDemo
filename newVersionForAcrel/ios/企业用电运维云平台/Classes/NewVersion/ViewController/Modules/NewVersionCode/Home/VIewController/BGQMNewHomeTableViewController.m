@@ -56,7 +56,7 @@
 //    self.tableView.bounces = NO;
     //去除滚动条
     self.tableView.showsVerticalScrollIndicator = NO;
-    //去分割线
+    //去分割线f
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     __weak __typeof(self)weakSelf = self;
 //    self.tableView.mj_header.backgroundColor = COLOR_NAVBAR;

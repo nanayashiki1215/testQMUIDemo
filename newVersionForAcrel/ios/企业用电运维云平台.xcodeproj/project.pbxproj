@@ -137,6 +137,7 @@
 		B657DE142292859F0009BCB0 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B657DE10229284410009BCB0 /* GLKit.framework */; };
 		B65E7A02233C3E440037D3ED /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; };
 		B65E7A03233C3E440037D3ED /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B664F58B239892CD00D6766F /* UIImagePickerController+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = B664F58A239892CD00D6766F /* UIImagePickerController+custom.m */; };
 		B66BA6F622F274470027EE05 /* BGQMFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F522F274470027EE05 /* BGQMFeedBackViewController.m */; };
 		B66BA6FB22F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F922F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m */; };
 		B66BA6FE22F274A90027EE05 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6FC22F274A90027EE05 /* BRPlaceholderTextView.m */; };
@@ -815,6 +816,8 @@
 		B657DDC022927C760009BCB0 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
 		B657DE10229284410009BCB0 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B657DE12229284660009BCB0 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B664F587239892CD00D6766F /* UIImagePickerController+custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+custom.h"; sourceTree = "<group>"; };
+		B664F58A239892CD00D6766F /* UIImagePickerController+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+custom.m"; sourceTree = "<group>"; };
 		B66BA6F422F274470027EE05 /* BGQMFeedBackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMFeedBackViewController.h; sourceTree = "<group>"; };
 		B66BA6F522F274470027EE05 /* BGQMFeedBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMFeedBackViewController.m; sourceTree = "<group>"; };
 		B66BA6F722F274570027EE05 /* BGCrearTrendsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGCrearTrendsBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -2746,6 +2749,8 @@
 				B6DBAF9722B1E17C000C9922 /* JZLocationConverter */,
 				B6DBAF9E22B22967000C9922 /* IndexView.h */,
 				B6DBAFA122B22968000C9922 /* IndexView.m */,
+				B664F587239892CD00D6766F /* UIImagePickerController+custom.h */,
+				B664F58A239892CD00D6766F /* UIImagePickerController+custom.m */,
 				B6DBAFA022B22968000C9922 /* SectionIndicatorView.h */,
 				B6DBAF9F22B22967000C9922 /* SectionIndicatorView.m */,
 				B6ED2044229BACE30044EFC9 /* ColorManager.m */,
@@ -3620,6 +3625,7 @@
 				B6B1B62B229534E300F1B5D2 /* BGBaiduMapViewController.m in Sources */,
 				B6C7690622A0B8DC00DA675D /* QDBadgeViewController.m in Sources */,
 				B6D3B18B23861F0B005CAF90 /* CSFileManage.m in Sources */,
+				B664F58B239892CD00D6766F /* UIImagePickerController+custom.m in Sources */,
 				B6C1540C22E7F4D0004B8614 /* CSAboutViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,

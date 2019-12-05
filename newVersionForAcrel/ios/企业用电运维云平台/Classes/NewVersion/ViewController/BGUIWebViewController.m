@@ -16,6 +16,7 @@
 #import "QLPreviewController+autoTitle.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
+#import "UIImagePickerController+custom.h"
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -104,6 +105,9 @@
 //    [self.previewController.navigationBar setTintColor:COLOR_NAVBAR];
     self.previewController.dataSource  = self;
     
+    //注册runtime图片加载器替换系统
+    [UIImagePickerController hookDelegate];
+    
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
@@ -135,6 +139,8 @@
             [self loadOnlineHtml];
         }
     }
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -688,55 +694,39 @@
         //        image = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
         //        player = nil;
     }else{
-//          __block NSMutableDictionary *imageMetadata = nil;
-//          NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-//              ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//              [library assetForURL:assetURL
-//                       resultBlock:^(ALAsset *asset)  {
-//                           imageMetadata = [[NSMutableDictionary alloc] initWithDictionary:asset.defaultRepresentation.metadata];
-                           //控制台输出查看照片的metadata
-          self.picDataInfo = info[UIImagePickerControllerMediaMetadata][@"{TIFF}"][@"DateTime"];
-          NSLog(@"%@**********", self.picDataInfo);
-          self.editeOrNot = YES;
-//                           UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"]; //先把图片转成NSData
-          UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-          self.image = image;
-//                           [picker dismissViewControllerAnimated:YES completion:nil]; //关闭相册界面
-//                           self.imageView = [CRMFactory createImageViewWithFrame:CGRectMake(15, self.takePhotoButton.frame.origin.y, 60, 60) image:image];
-//                           [self.view addSubview:_imageView];
-                           //看大图
-//                           self.imageView.userInteractionEnabled = YES;
-//                           UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPic)];
-//                           [self.imageView addGestureRecognizer:tap];
-                          
-//                           self.takePhotoButton.frame = CGRectMake(15 + 60 + 15, self.takePhotoButton.frame.origin.y, 60, 60);
-//                           UIImage *scaleImage = [CRMDatahandle scaleFromImage:image];
-        UIImage *waterPoint = [self addText:image text:self.picDataInfo];
-        NSData *data = UIImageJPEGRepresentation(waterPoint, 0.5);
-    //                        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-        NSData *base64Data = [data base64EncodedDataWithOptions:0];
-        NSString *baseString = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
-        NSString *dataStr = [data base64Encoding];
+
+//          self.picDataInfo = info[UIImagePickerControllerMediaMetadata][@"{TIFF}"][@"DateTime"];
+//          NSLog(@"%@**********", self.picDataInfo);
+//          self.editeOrNot = YES;
+////                           UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"]; //先把图片转成NSData
+//          UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+//          self.image = image;
+//        UIImage *waterPoint = [self addText:image text:self.picDataInfo];
+//        NSData *data = UIImageJPEGRepresentation(waterPoint, 0.5);
+//    //                        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+//        NSData *base64Data = [data base64EncodedDataWithOptions:0];
+//        NSString *baseString = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
+//        NSString *dataStr = [data base64Encoding];
 //                  NSLog(@"baseString:%@",baseString);
 //                  UIImageView *viewImage = [[UIImageView alloc] initWithImage:waterPoint];
 //                  viewImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 //                  [self.view addSubview:viewImage];
 //                 NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",baseString];
         
-        NSString *documentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingFormat:@"/Files"];
-        //    documentPath = [documentPath stringByAppendingPathComponent:downloadModel.fileName];//不用加“/”
-        NSFileManager *manager = [NSFileManager defaultManager];
-        [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
-
-        NSString *fileDateName = [NSString stringWithFormat:@"%.f.jpg",[[NSDate date] timeIntervalSince1970]];
-        documentPath = [documentPath stringByAppendingFormat:@"/%@",fileDateName];
+//        NSString *documentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingFormat:@"/Files"];
+//        //    documentPath = [documentPath stringByAppendingPathComponent:downloadModel.fileName];//不用加“/”
+//        NSFileManager *manager = [NSFileManager defaultManager];
+//        [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+//
+//        NSString *fileDateName = [NSString stringWithFormat:@"%.f.jpg",[[NSDate date] timeIntervalSince1970]];
+//        documentPath = [documentPath stringByAppendingFormat:@"/%@",fileDateName];
+//
+//        [UIImageJPEGRepresentation(waterPoint,1) writeToFile:documentPath atomically:YES];
         
-        [UIImageJPEGRepresentation(waterPoint,1) writeToFile:documentPath atomically:YES];
-        
-         NSString *imgBaseJS = [NSString stringWithFormat:@"imgBase('%@','%@')",dataStr,self.indexStr];
-         [self.webView evaluateJavaScript:imgBaseJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-             DefLog(@"item%@",item);
-         }];
+//         NSString *imgBaseJS = [NSString stringWithFormat:@"imgBase('%@','%@')",baseString,self.indexStr];
+//         [self.webView evaluateJavaScript:imgBaseJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+//             DefLog(@"item%@",item);
+//         }];
                   
               
 //              }failureBlock:^(NSError *error) {
@@ -1257,6 +1247,8 @@
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(title))];
+    
+    [UIImagePickerController unHookDelegate];
     //移除注册的js方法
 //    self.webView.UIDelegate = nil;
 //    self.webView.navigationDelegate = nil;

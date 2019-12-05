@@ -499,7 +499,7 @@
         UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
         [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
     }];
-   
+    
     [alert addAction:action2];
     [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
     
