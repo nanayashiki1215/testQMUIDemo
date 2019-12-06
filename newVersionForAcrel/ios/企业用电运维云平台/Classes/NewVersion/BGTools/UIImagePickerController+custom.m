@@ -165,7 +165,11 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
 
 + (UIImage *)addText:(UIImage *)img text:(NSString *)mark {
     if (mark.length != 0) {
-        mark = [mark stringByReplacingOccurrencesOfString:@":" withString:@"-"];
+        NSArray * ar = [mark componentsSeparatedByString:@" "];
+        NSString *yearStr = ar.firstObject;
+        NSString *timeStr = ar.lastObject;
+        yearStr = [[yearStr stringByReplacingOccurrencesOfString:@":" withString:@"-"] stringByAppendingString:@" "];
+        mark = [yearStr stringByAppendingString:timeStr];
     } else {
         //将时间戳转换成时间
         NSDate *date = [NSDate date];
@@ -190,7 +194,7 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
                                 NSForegroundColorAttributeName : [UIColor redColor]
 //                                NSTextEffectAttributeName: NSTextEffectLetterpressStyle
                                 };
-    [mark drawInRect:CGRectMake(w-300, h - 50, 300, 50) withAttributes:attribute];
+    [mark drawInRect:CGRectMake(10, h - 50, w-10, 50) withAttributes:attribute];
     
     //添加水印文字
     UIImage *aImage = UIGraphicsGetImageFromCurrentImageContext();

@@ -119,6 +119,7 @@
         make.width.mas_offset(60);
         make.centerY.equalTo(self.iconCameraImage.mas_centerY);
     }];
+    
     [_playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.playBackBtn.mas_left).offset(5);
         make.width.mas_offset(60);

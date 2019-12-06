@@ -629,6 +629,8 @@
     }else if ([message.name isEqualToString:@"getLocation"]){
         //获取定位 百度地图 签到
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+            self.pageStillLoading = YES;
+            
             //定位功能可用
             [self getLoation];
 
