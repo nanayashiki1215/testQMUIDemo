@@ -129,9 +129,12 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
  @return 加工完成的图片
  */
 + (UIImage *)compressImage:(UIImage *)image andAddTime:(NSString *)showTime{
-//    NSData *data = UIImageJPEGRepresentation(image, 0.01);
-    UIImage *resultImage = [self imageCompressWithSimple:image];
+    NSData *data = UIImageJPEGRepresentation(image, 0.3);
+    UIImage *underImage = [UIImage imageWithData:data];
+    UIImage *resultImage = [self imageCompressWithSimple:underImage];
     UIImage *waterPoint = [self addText:resultImage text:showTime];
+//    NSData *lastdata = UIImageJPEGRepresentation(waterPoint, 0.3);
+//    UIImage *lastImage = [UIImage imageWithData:lastdata];
     return waterPoint;
 }
 
@@ -140,8 +143,8 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
     CGFloat scale = 1.0;
     //TODO:KScreenWidth屏幕宽
     
-    CGFloat KScreenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat KScreenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat KScreenWidth = [UIScreen mainScreen].bounds.size.width/2;
+    CGFloat KScreenHeight = [UIScreen mainScreen].bounds.size.height/2;
     
     if (size.width > KScreenWidth || size.height > KScreenHeight) {
         if (size.width > size.height) {
@@ -173,7 +176,7 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
     } else {
         //将时间戳转换成时间
         NSDate *date = [NSDate date];
-        //    限定格式
+        //限定格式
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd  hh:mm:ss"];
         [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
@@ -189,7 +192,7 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
     [img drawInRect:CGRectMake(0, 0, w, h)];
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
-    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:30],
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:15],
 //                                NSParagraphStyleAttributeName: paragraphStyle,
                                 NSForegroundColorAttributeName : [UIColor redColor]
 //                                NSTextEffectAttributeName: NSTextEffectLetterpressStyle
