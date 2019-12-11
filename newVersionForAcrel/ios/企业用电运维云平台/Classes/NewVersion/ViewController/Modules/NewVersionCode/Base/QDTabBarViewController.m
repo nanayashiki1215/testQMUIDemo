@@ -17,6 +17,8 @@
 #import "BGQMCategoryListConViewController.h"
 #import "BGQMNewHomeTableViewController.h"
 #import "BGUIWebViewController.h"
+#import "BGLoginViewController.h"
+#import "CustomNavigationController.h"
 
 //#import "JXCategoryTitleView.h"
 //#import "JXCategoryIndicatorLineView.h"
@@ -29,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UserManager *user = [UserManager manager];
-    NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+    NSArray *uiArray = [user.rootMenuData objectForKeyNotNull:@"rootMenu"];
     if (uiArray.count>0) {
         [self createViewControllers];
         [self updateHomeData];
@@ -52,17 +54,39 @@
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
         if (rootData) {
-            user.rootMenuData = respObjc[kdata];
-            NSArray *menuArr = user.rootMenuData[@"rootMenu"];
-            if (!menuArr.count) {
+            NSArray *menuArr = [rootData objectForKeyNotNull:@"rootMenu"];
+            if (!menuArr || !menuArr.count) {
                 DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+                NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+                NSDictionary *dictionary = [defatluts dictionaryRepresentation];
+                for (NSString *key in [dictionary allKeys]){
+                    if ([key isEqualToString:@"orderListUrl"]) {
+                        continue;
+                    }else if ([key isEqualToString:kaccount]) {
+                        continue;
+                    }else if ([key isEqualToString:kpassword]) {
+                        continue;
+                    }else if ([key isEqualToString:@"isSavePwd"]){
+                        continue;
+                    }
+                    else{
+                        [defatluts removeObjectForKey:key];
+                        [defatluts synchronize];
+                    }
+                }
+                BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+                UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+                [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
+                
+                return ;
             }
+            user.rootMenuData = respObjc[kdata];
             NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
             [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
             DefNSUDSynchronize
             [weakSelf createViewControllers];
         }else{
-            DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能", nil);
+            DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -73,14 +97,19 @@
 -(void)updateHomeData{
     [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
         UserManager *user = [UserManager manager];
-        user.rootMenuData = respObjc[kdata];
-        NSArray *menuArr = user.rootMenuData[@"rootMenu"];
-        if (!menuArr.count) {
-            DefQuickAlert(@"为确保正常显示，请至少添加一个tab页功能", nil);
+        NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
+        if (rootData) {
+            NSArray *menuArr = [rootData objectForKeyNotNull:@"rootMenu"];
+            if (!menuArr || !menuArr.count) {
+                DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+                //确认处理
+                return ;
+            }
+            user.rootMenuData = rootData;
+            NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
+            [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
+            DefNSUDSynchronize
         }
-        NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
-        [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
-        DefNSUDSynchronize
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         
     }];

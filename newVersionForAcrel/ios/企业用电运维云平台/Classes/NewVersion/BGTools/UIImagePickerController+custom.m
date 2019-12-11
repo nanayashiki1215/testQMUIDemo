@@ -112,7 +112,6 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
     NSArray *documentDirectories =
     NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                         NSUserDomainMask, YES);
-    
     NSString *documentDirectory = [documentDirectories objectAtIndex:0];
     NSDate *date = [NSDate date];
     NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
@@ -123,7 +122,7 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
 }
 
 /**
- 压缩图片
+ 压缩图片   
  
  @param image 原始图片
  @return 加工完成的图片

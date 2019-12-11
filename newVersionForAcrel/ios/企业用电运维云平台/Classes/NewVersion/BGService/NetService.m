@@ -112,7 +112,9 @@
             return ;
         }else if([respCode isEqualToString:@"700"]){
             NSString *token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"token"]];
-            [UserManager manager].token = token;
+            if(token.length>0){
+                [UserManager manager].token = token;
+            }
             return ;
         }
         if ([respCode isEqualToString:k0000]) {
@@ -210,7 +212,9 @@
             return ;
         }else if([respCode isEqualToString:@"700"]){
             NSString *token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"token"]];
-            [UserManager manager].token = token;
+            if(token.length>0){
+                [UserManager manager].token = token;
+            }
             return ;
         }
         if ([respCode isEqualToString:k0000]) {
@@ -483,13 +487,11 @@
 +(void)loginOut:(NSString *)respCode{
     if ([respCode isEqualToString:@"600"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"软件授权已过期" message:@"您使用的软件授权已过期，请咨询软件服务商，并在网页端进行配置。" preferredStyle:UIAlertControllerStyleAlert];
-         
-        
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              //确认处理
               NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-             for(NSString *key in [dictionary allKeys]){
+             for (NSString *key in [dictionary allKeys]){
                  if ([key isEqualToString:@"orderListUrl"]) {
                      continue;
                  }else if ([key isEqualToString:kaccount]) {
@@ -515,9 +517,9 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:UIAlertControllerStyleAlert];
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              //确认处理
-              NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+             NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-             for(NSString *key in [dictionary allKeys]){
+             for (NSString *key in [dictionary allKeys]){
                  if ([key isEqualToString:@"orderListUrl"]) {
                      continue;
                  }else if ([key isEqualToString:kaccount]) {
@@ -540,7 +542,6 @@
          [alert addAction:action2];
          [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
     }
-    
     
 //    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
 //

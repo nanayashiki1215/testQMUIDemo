@@ -284,18 +284,18 @@
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
        if (rootData) {
-           user.rootMenuData = respObjc[kdata];
-           NSArray *menuArr = user.rootMenuData[@"rootMenu"];
-           if (!menuArr.count) {
+           NSArray *menuArr = [rootData objectForKeyNotNull:@"rootMenu"];
+           if (!menuArr || !menuArr.count) {
                DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
                return ;
            }
+           user.rootMenuData = respObjc[kdata];
            NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
            [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
            DefNSUDSynchronize
            [weakSelf createTabBarController];
        }else{
-           DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能", nil);
+           DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
        }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

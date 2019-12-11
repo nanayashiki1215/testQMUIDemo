@@ -38,7 +38,7 @@
            //清空NSUserDefaults 退出登录
            NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
            NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-           for(NSString *key in [dictionary allKeys]){
+           for(NSString *key in [dictionary allKeys]){
                if ([key isEqualToString:@"orderListUrl"]) {
                    continue;
                }else if ([key isEqualToString:kaccount]) {

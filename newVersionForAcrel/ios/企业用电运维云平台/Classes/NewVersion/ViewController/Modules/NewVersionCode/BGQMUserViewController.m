@@ -70,6 +70,14 @@
         [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
 //            [MBProgressHUD hideHUDForView:self.view animated:YES];
             UserManager *user = [UserManager manager];
+            NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
+            if (rootData) {
+               NSArray *menuArr = [rootData objectForKeyNotNull:@"rootMenu"];
+               if (!menuArr || !menuArr.count) {
+                   DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+                   return ;
+               }
+            }
             user.rootMenuData = respObjc[kdata];
             NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
             [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
@@ -162,6 +170,8 @@
     self.imageHeadPic = [[UIImageView alloc] initWithFrame:CGRectMake(15, 110, 80, 80)];
     if (user.imageUrl) {
          [self.imageHeadPic sd_setImageWithURL:[NSURL URLWithString:[getImageIconADS stringByAppendingString:user.imageUrl]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
+        self.imageHeadPic.layer.masksToBounds = YES;
+        self.imageHeadPic.layer.cornerRadius = 40.f;
     }else{
         [self.imageHeadPic setImage:[UIImage imageNamed:@"touxiang"]];
     }
@@ -223,6 +233,8 @@
 //    self.telLabel.text = @"";
     if (personaldata.imageUrl.length>0) {
         [self.imageHeadPic sd_setImageWithURL:[NSURL URLWithString:[getImageIconADS stringByAppendingString:personaldata.imageUrl]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
+        self.imageHeadPic.layer.masksToBounds = YES;
+        self.imageHeadPic.layer.cornerRadius = 40.f;
     }
 }
 
