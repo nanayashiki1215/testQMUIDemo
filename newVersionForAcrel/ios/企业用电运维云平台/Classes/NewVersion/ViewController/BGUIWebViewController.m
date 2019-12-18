@@ -127,8 +127,9 @@
              [self loadLocalHtml];
         }else if([self.isFromFile isEqualToString:@"openFile"]){
             self.navigationController.navigationBarHidden = NO;
-           
 //            [self showDifferentFile];
+        }else if (self.showWebType == showWebTypePolicy){
+            [self loadLocalHtml];
         }else{
             [self loadLocalWithParamHtml];
         }
@@ -406,6 +407,8 @@
         //跳转文件页面
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushDownFileVC"];
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"takePhoto"];
+        //判断网链接
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"judgeNetWork"];
         config.userContentController = wkUController;
         
         //以下代码适配文本大小
@@ -650,6 +653,9 @@
         //点击了拍照
         NSDictionary *imageDic = message.body;
         [self openCamera:imageDic];
+    }else if([message.name isEqualToString:@"judgeNetWork"]){
+//        NSString *dataStatus = message.body;
+//        [self networkReachability];
     }
 }
 
@@ -1075,6 +1081,42 @@
     }
 }
 
+#pragma mark -- 判断网络链接
+
+-(void)networkReachability{
+     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    //    __weak AFNetworkReachabilityManager *weak = manager;
+    __weak __typeof(self)weakSelf = self;
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSString *locStrJs = @"";
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+//                DefLog(@"isreach:yes");
+                NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+//                DefLog(@"isreach:no");
+//                DefQuickAlert(@"当前无网络链接，请检查网络设置", nil);
+                NSLog(@"AFNetworkReachabilityStatusNotReachable");
+                locStrJs = @"当前无网络链接，请检查网络设置";
+               [weakSelf.webView evaluateJavaScript:[NSString stringWithFormat:@"showToast('%@')", locStrJs] completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+//                   NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
+//                       weakSelf.pageStillLoading = NO;
+               }];
+                                
+                break;
+            
+            default:
+                //AFNetworkReachabilityStatusUnknown
+                NSLog(@"AFNetworkReachabilityStatusUnknown");
+                break;
+        }
+    DefLog(@"%d,%d,%d",weak.isReachable,weak.isReachableViaWiFi,weak.isReachableViaWWAN);
+    }];
+        
+    [manager startMonitoring];  //开启网络监视器；
+}
 
 #pragma mark -- WKNavigationDelegate
 /*
@@ -1243,7 +1285,7 @@
 
 //    takePhoto
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"takePhoto"];
-    
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"judgeNetWork"];
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
@@ -1304,6 +1346,8 @@
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)previewController{
     return 1;
 }
+
+
 
 //左滑页面
 //- (void)willMoveToParentViewController:(UIViewController*)parent

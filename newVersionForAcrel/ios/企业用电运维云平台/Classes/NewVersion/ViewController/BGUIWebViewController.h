@@ -16,7 +16,8 @@ typedef enum {
     showWebTypeDevice,
     showWebTypeAlarm,
     showWebTypeAlarmWithTab,
-    showWebFromMsgNotif //从消息通知页面跳入
+    showWebFromMsgNotif, //从消息通知页面跳入
+    showWebTypePolicy//隐私政策 显示navbar 可通用
 } showWebType;
 
 @interface BGUIWebViewController : UIViewController<JXCategoryListCollectionContentViewDelegate,UIScrollViewDelegate>

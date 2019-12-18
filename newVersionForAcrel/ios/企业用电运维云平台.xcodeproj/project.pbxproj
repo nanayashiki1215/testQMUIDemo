@@ -138,6 +138,7 @@
 		B65E7A02233C3E440037D3ED /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; };
 		B65E7A03233C3E440037D3ED /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B64D3B39233B62C20016DF9F /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B664F58B239892CD00D6766F /* UIImagePickerController+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = B664F58A239892CD00D6766F /* UIImagePickerController+custom.m */; };
+		B6693D9523A9B4DA006DFEF0 /* WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6693D9423A9B4DA006DFEF0 /* WelcomeView.m */; };
 		B66BA6F622F274470027EE05 /* BGQMFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F522F274470027EE05 /* BGQMFeedBackViewController.m */; };
 		B66BA6FB22F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6F922F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m */; };
 		B66BA6FE22F274A90027EE05 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA6FC22F274A90027EE05 /* BRPlaceholderTextView.m */; };
@@ -818,6 +819,8 @@
 		B657DE12229284660009BCB0 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		B664F587239892CD00D6766F /* UIImagePickerController+custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+custom.h"; sourceTree = "<group>"; };
 		B664F58A239892CD00D6766F /* UIImagePickerController+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+custom.m"; sourceTree = "<group>"; };
+		B6693D9323A9B4DA006DFEF0 /* WelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeView.h; sourceTree = "<group>"; };
+		B6693D9423A9B4DA006DFEF0 /* WelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeView.m; sourceTree = "<group>"; };
 		B66BA6F422F274470027EE05 /* BGQMFeedBackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMFeedBackViewController.h; sourceTree = "<group>"; };
 		B66BA6F522F274470027EE05 /* BGQMFeedBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMFeedBackViewController.m; sourceTree = "<group>"; };
 		B66BA6F722F274570027EE05 /* BGCrearTrendsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGCrearTrendsBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -2744,8 +2747,9 @@
 		B6E15586228CEDF900CB4A5F /* BGTools */ = {
 			isa = PBXGroup;
 			children = (
+				B6693D9323A9B4DA006DFEF0 /* WelcomeView.h */,
+				B6693D9423A9B4DA006DFEF0 /* WelcomeView.m */,
 				B68D2C4922A63D86001C00EC /* GHDropMenu */,
-				B6ED2043229BACE30044EFC9 /* ColorManager.h */,
 				B6DBAF9722B1E17C000C9922 /* JZLocationConverter */,
 				B6DBAF9E22B22967000C9922 /* IndexView.h */,
 				B6DBAFA122B22968000C9922 /* IndexView.m */,
@@ -2753,6 +2757,7 @@
 				B664F58A239892CD00D6766F /* UIImagePickerController+custom.m */,
 				B6DBAFA022B22968000C9922 /* SectionIndicatorView.h */,
 				B6DBAF9F22B22967000C9922 /* SectionIndicatorView.m */,
+				B6ED2043229BACE30044EFC9 /* ColorManager.h */,
 				B6ED2044229BACE30044EFC9 /* ColorManager.m */,
 				B6E15587228CEDF900CB4A5F /* UIView+ChangeCorner.m */,
 				B6E15588228CEDF900CB4A5F /* BGScrollView.h */,
@@ -3851,6 +3856,7 @@
 				B68D2D0422A646C1001C00EC /* JXCategoryBaseCellModel.m in Sources */,
 				B6E1568A228D419800CB4A5F /* NSBundle+MJRefresh.m in Sources */,
 				B60C80B122A8AE4E0016D936 /* WSDatePickerView.m in Sources */,
+				B6693D9523A9B4DA006DFEF0 /* WelcomeView.m in Sources */,
 				B6C768F422A0B8DC00DA675D /* QDCustomToastAnimator.m in Sources */,
 				B68D2C7A22A63D87001C00EC /* GHDropMenuFilterInputItem.m in Sources */,
 				B6C768F722A0B8DC00DA675D /* QDImagePreviewViewController1.m in Sources */,

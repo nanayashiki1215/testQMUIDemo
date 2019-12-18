@@ -528,8 +528,7 @@
                      continue;
                  }else if ([key isEqualToString:@"isSavePwd"]){
                      continue;
-                 }
-                 else{
+                 }else{
                      [defatluts removeObjectForKey:key];
                      [defatluts synchronize];
                  }

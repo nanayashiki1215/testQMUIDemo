@@ -9,6 +9,7 @@
 #import "CSAboutViewController.h"
 #import "BGCheckAppVersionMgr.h"
 #import "UIColor+BGExtension.h"
+#import "BGUIWebViewController.h"
 //#import "BGTools.h"
 
 @interface CSAboutViewController ()
@@ -65,10 +66,12 @@
             if (arr.count>0) {
                 UserManager *user = [UserManager manager];
                 user.versionArr = arr;
+                [self checkVersonFromLocal];
             }else{
                 UserManager *user = [UserManager manager];
                 user.versionArr = @[];
             }
+            
         } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
             
         }];
@@ -107,7 +110,7 @@
         for (NSDictionary *dic in user.versionArr) {
             NSString *fCode = dic[@"fCode"];
             if ([fCode isEqualToString:@"appDescribe"]) {
-                UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 350, SCREEN_WIDTH-40, 100)];
+                UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 350, SCREEN_WIDTH-40, 100)];
                 detailLabel.text = [NSString changgeNonulWithString:dic[@"fExplain"]];
                 detailLabel.textAlignment = NSTextAlignmentLeft;
                 detailLabel.textColor = [UIColor grayColor];
@@ -116,7 +119,7 @@
                 [self.view addSubview:detailLabel];
 //                self.detailtext.text = [NSString changgeNonulWithString:dic[@"fExplain"]];
             } else if([fCode isEqualToString:@"Copyright"]){
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-45, SCREEN_WIDTH, 45)];
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 25)];
                 label.text = [NSString changgeNonulWithString:dic[@"fExplain"]];
                 label.textAlignment = NSTextAlignmentCenter;
                 label.textColor = [UIColor grayColor];
@@ -127,6 +130,46 @@
             }
         }
     }
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-90, SCREEN_WIDTH, 25)];
+    label.text = @"《用户协议和隐私政策》";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blueColor];
+    label.adjustsFontSizeToFitWidth = YES;
+    [label setFont:[UIFont systemFontOfSize:13.f]];
+    label.userInteractionEnabled=YES;
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
+    [label addGestureRecognizer:labelTapGestureRecognizer];
+    [self.view addSubview:label];
+}
+
+-(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+   
+   UILabel *label=(UILabel*)recognizer.view;
+   NSLog(@"%@被点击了",label.text);
+//if (1) {
+               BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                       NSString *filePath = [[NSBundle mainBundle] pathForResource:@"policy" ofType:@"html" inDirectory:@"aDevices"];
+               nomWebView.isUseOnline = NO;
+               nomWebView.localUrlString = filePath;
+               nomWebView.showWebType = showWebTypePolicy;
+               nomWebView.titleName = @"用户协议和隐私政策";
+               //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+//               [self.navigationController pushViewController:nomWebView animated:YES];
+            [self.navigationController pushViewController:nomWebView animated:YES];
+//            }else{
+//                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+//                urlWebView.isUseOnline = YES;
+//                if (versionURL.length>0) {
+//                    NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+//                    NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+//                    NSString *urlStr = [str stringByAppendingString:fAction];
+//                    urlWebView.onlineUrlString = urlStr;
+//                    urlWebView.showWebType = showWebTypeDevice;
+//                   [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+//                 }
+//            }
+   
 }
 
 -(void)checkVersonFromServer{
