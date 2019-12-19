@@ -137,7 +137,7 @@
 }
 
 - (void)creatView{
-    self.tableview = [[QMUITableView alloc] qmui_initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.tableview = [[QMUITableView alloc] qmui_initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-BGHeight_TabBar)];
     if (@available(iOS 11.0, *)) {
         self.tableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {

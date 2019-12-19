@@ -638,6 +638,8 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     [self.window makeKeyAndVisible];
 }
 
+
+//闪屏切换启动页
 - (void)startLaunchingAnimation {
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     UIViewController *viewController = [[UIStoryboard storyboardWithName:@"CDVLaunchScreen" bundle:nil] instantiateViewControllerWithIdentifier:@"LaunchScreen"];
@@ -670,12 +672,13 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         }
     }];
     
-    [UIView animateWithDuration:.15 delay:0.9 options:QMUIViewAnimationOptionsCurveOut animations:^{
-        [launchScreenView layoutIfNeeded];
-        logoImageView.alpha = 0.0;
-        copyrightLabel.alpha = 0;
-    } completion:nil];
-    [UIView animateWithDuration:1.2 delay:0.9 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//    [UIView animateWithDuration:.15 delay:0.9 options:QMUIViewAnimationOptionsCurveOut animations:^{
+//        [launchScreenView layoutIfNeeded];
+//        logoImageView.alpha = 0.0;
+//        copyrightLabel.alpha = 0;
+//    } completion:nil];
+    //展示多久
+    [UIView animateWithDuration:2.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         maskView.alpha = 0;
         backgroundImageView.alpha = 0;
     } completion:^(BOOL finished) {
