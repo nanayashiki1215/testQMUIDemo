@@ -4122,7 +4122,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/WechtSDK1.8.2",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";
@@ -4178,7 +4178,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/WechtSDK1.8.2",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";

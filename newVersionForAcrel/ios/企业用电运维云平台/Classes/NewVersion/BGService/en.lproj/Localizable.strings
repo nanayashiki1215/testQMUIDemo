@@ -11,11 +11,17 @@
 "usernameText"="username";
 "passwordText"="password";
 
-"Home"="Home";
-"Alarm"="Alarm";
-"About"="User";
-"Inspect"="Inspect";
-"Electric"="Electric";
+//"Home"="Home";
+//"Alarm"="Alarm";
+//"About"="User";
+//"Inspect"="Inspect";
+//"Electric"="Electric";
+
+"Home"="主页";
+"Alarm"="报警";
+"Electric"="电力";
+"Inspect"="巡检";
+"About"="用户";
 
 //登录
 "Domain name cannot be empty"="Domain name cannot be empty";

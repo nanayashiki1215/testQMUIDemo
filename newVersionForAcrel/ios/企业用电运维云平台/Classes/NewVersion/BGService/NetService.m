@@ -206,7 +206,7 @@
         NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
 //        k0000 成功
 //        401 token过期
-        if ([respMsg isEqualToString:@"Unauthorized"]|| [respCode isEqualToString:@"600"]) {
+        if ([respMsg isEqualToString:@"Unauthorized"] || [respCode isEqualToString:@"600"]) {
             
             [weakSelf loginOut:respCode];
             return ;

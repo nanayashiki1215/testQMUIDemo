@@ -86,7 +86,7 @@ static id _instance;
                     NSLog(@"AFNetworkReachabilityStatusUnknown");
                     break;
             }
-            DefLog(@"%d,%d,%d",weak.isReachable,weak.isReachableViaWiFi,weak.isReachableViaWWAN);
+//            DefLog(@"%d,%d,%d",weak.isReachable,weak.isReachableViaWiFi,weak.isReachableViaWWAN);
         }];
     
     [manager startMonitoring];  //开启网络监视器；

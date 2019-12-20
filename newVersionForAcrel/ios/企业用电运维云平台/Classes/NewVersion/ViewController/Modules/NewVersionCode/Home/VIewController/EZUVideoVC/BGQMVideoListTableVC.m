@@ -124,7 +124,6 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
         }
         weakSelf.allDataArray = [NSMutableArray arrayWithArray:[weakSelf.mutArray copy]];
         if (!weakSelf.mutArray.count) {
-            
             [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:nil buttonAction:nil];
         }else{
             [weakSelf.tableView reloadData];
