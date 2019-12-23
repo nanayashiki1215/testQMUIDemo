@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +12,7 @@
             <connections>
                 <outlet property="addressTextField" destination="WSn-Q1-hQa" id="C23-hA-qDx"/>
                 <outlet property="hbgView" destination="X2Z-qZ-pge" id="jY6-cl-W0U"/>
+                <outlet property="ipAddressView" destination="X2H-Lr-OYM" id="F9L-ry-Lde"/>
                 <outlet property="pwdBottomLine" destination="jx5-97-urG" id="u4B-C6-B9e"/>
                 <outlet property="pwdTextField" destination="jYu-VN-wDI" id="L47-U4-8fb"/>
                 <outlet property="signInBtn" destination="zDC-mL-kYc" id="31L-SS-1jQ"/>
@@ -43,11 +42,10 @@
                             </constraints>
                         </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSn-Q1-hQa">
-                            <rect key="frame" x="60" y="5" width="329" height="45"/>
+                            <rect key="frame" x="60" y="5" width="299" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Kjs-S8-Zqz"/>
                             </constraints>
-                            <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done"/>
                         </textField>
@@ -62,8 +60,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="75" id="0ey-RZ-V4F"/>
-                        <constraint firstItem="WSn-Q1-hQa" firstAttribute="trailing" secondItem="TV2-7a-poO" secondAttribute="trailing" id="1Kg-SJ-qJU"/>
-                        <constraint firstAttribute="trailing" secondItem="WSn-Q1-hQa" secondAttribute="trailing" constant="25" id="Amj-Nh-D2H"/>
+                        <constraint firstAttribute="trailing" secondItem="WSn-Q1-hQa" secondAttribute="trailing" constant="55" id="Amj-Nh-D2H"/>
                         <constraint firstItem="E52-F8-b55" firstAttribute="leading" secondItem="X2H-Lr-OYM" secondAttribute="leading" constant="25" id="KaM-Dp-qnJ"/>
                         <constraint firstItem="TV2-7a-poO" firstAttribute="top" secondItem="E52-F8-b55" secondAttribute="bottom" constant="15" id="VP2-hM-C7d"/>
                         <constraint firstItem="WSn-Q1-hQa" firstAttribute="leading" secondItem="E52-F8-b55" secondAttribute="trailing" constant="10" id="dAl-Sh-2y6"/>
@@ -87,7 +84,6 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="gLK-sI-uMz"/>
                             </constraints>
-                            <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" keyboardType="twitter" returnKeyType="done"/>
                         </textField>
@@ -126,7 +122,6 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="yAY-6H-IyK"/>
                             </constraints>
-                            <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES"/>
                         </textField>
@@ -185,6 +180,7 @@
                 <constraint firstItem="X2H-Lr-OYM" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="49d-Kn-IYm"/>
                 <constraint firstItem="X2H-Lr-OYM" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="4Ts-9q-Qd0"/>
                 <constraint firstItem="X2Z-qZ-pge" firstAttribute="trailing" secondItem="X2H-Lr-OYM" secondAttribute="trailing" id="8Lo-aA-pgN"/>
+                <constraint firstItem="D9r-hC-Rec" firstAttribute="trailing" secondItem="TV2-7a-poO" secondAttribute="trailing" id="AWH-ev-fVE"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="DFe-Yx-GUp"/>
                 <constraint firstItem="X2H-Lr-OYM" firstAttribute="top" secondItem="X2Z-qZ-pge" secondAttribute="bottom" constant="20" id="Jcw-Fr-Z0r"/>
                 <constraint firstItem="X2Z-qZ-pge" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ka2-mp-KLd"/>

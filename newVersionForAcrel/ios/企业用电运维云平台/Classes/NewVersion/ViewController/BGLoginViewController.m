@@ -30,9 +30,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *usenameTextField;//用户名
 @property (weak, nonatomic) IBOutlet UITextField *pwdTextField;//密码
 @property (weak, nonatomic) IBOutlet UIView *pwdBottomLine;
+@property (weak, nonatomic) IBOutlet UIView *ipAddressView;
 @property(nonatomic, copy) NSArray<NSObject<QDThemeProtocol> *> *themes;
-
+@property(nonatomic, strong) QMUIPopupMenuView *popupByWindow;
 @property(nonatomic,strong)UIButton *checkBtn;
+@property(nonatomic,strong)UIButton *selectAddress;
 
 @end
 
@@ -108,6 +110,19 @@
         self.pwdTextField.text = @"";
     }
     
+    //添加多选按钮
+    if (user.orderUrlArray.count>0) {
+          self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.addressTextField.frame.size.width-30,(self.ipAddressView.frame.size.height+25)/2, 25, 25)];
+        //    self.selectAddress.layer.borderWidth = 1;
+        //    self.selectAddress.layer.borderColor = [[UIColor grayColor]CGColor];
+        //    self.selectAddress.layer.cornerRadius = 2;
+            [self.selectAddress addTarget:self action:@selector(showMoreIPAddress:) forControlEvents:UIControlEventTouchUpInside];
+            [self.selectAddress setBackgroundImage:[UIImage imageNamed:@"lishi"] forState:UIControlStateNormal];
+            [self.addressTextField addSubview:self.selectAddress];
+            
+    }
+   
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 //    [self.pwdTextField addTarget:self action:@selector(keyboardWillChangeFrame:) forControlEvents:UIControlEventEditingDidBegin];
     //输入结束
@@ -119,6 +134,55 @@
         
     }];
     [self setTheme];
+}
+
+-(void)showMoreIPAddress:(UIButton *)showMoreBtn{
+    UserManager *user = [UserManager manager];
+    // 使用方法 2，以 UIWindow 的形式显示到界面上，这种无需默认隐藏，也无需 add 到某个 UIView 上
+    __weak __typeof(self)weakSelf = self;
+       self.popupByWindow = [[QMUIPopupMenuView alloc] init];
+       self.popupByWindow.automaticallyHidesWhenUserTap = YES;// 点击空白地方消失浮层
+       self.popupByWindow.maskViewBackgroundColor = UIColorMaskWhite;// 使用方法 2 并且打开了 automaticallyHidesWhenUserTap 的情况下，可以修改背景遮罩的颜色
+       self.popupByWindow.shouldShowItemSeparator = YES;
+       self.popupByWindow.itemConfigurationHandler = ^(QMUIPopupMenuView *aMenuView, QMUIPopupMenuButtonItem *aItem, NSInteger section, NSInteger index) {
+           // 利用 itemConfigurationHandler 批量设置所有 item 的样式
+//           aItem.button.highlightedBackgroundColor = [UIColor.qd_tintColor colorWithAlphaComponent:.2];
+       };
+    
+
+//    NSMutableSet *orderUrlMutArr = [user.orderUrlArray mutableCopy];
+//    [orderUrlMutArr addObject:orderListUrl];
+    NSMutableArray *orderMutArr = [NSMutableArray new];
+    if(user.orderUrlArray.count>0){
+        for (NSString *orderUrl in user.orderUrlArray) {
+            QMUIPopupMenuButtonItem *item = [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:orderUrl handler:^(QMUIPopupMenuButtonItem *aItem) {
+                weakSelf.addressTextField.text = aItem.title;
+                [aItem.menuView hideWithAnimated:YES];
+            }];
+            [orderMutArr addObject:item];
+        }
+    }
+    self.popupByWindow.items = [orderMutArr copy];
+//       self.popupByWindow.items = @[
+//                                    [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:@"Components" handler:^(QMUIPopupMenuButtonItem *aItem) {
+//                                        weakSelf.addressTextField.text = aItem.title;
+//                                        [aItem.menuView hideWithAnimated:YES];
+//                                    }],
+//                                    [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:@"Lab" handler:^(QMUIPopupMenuButtonItem *aItem) {
+//                                         weakSelf.addressTextField.text = aItem.title;
+//                                        [aItem.menuView hideWithAnimated:YES];
+//                                    }],
+//                                    [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:@"http://116.236.149.165.8090" handler:^(QMUIPopupMenuButtonItem *aItem) {
+//                                         weakSelf.addressTextField.text = aItem.title;
+//                                         [aItem.menuView hideWithAnimated:YES];
+//                                    }]
+//       ];
+       self.popupByWindow.didHideBlock = ^(BOOL hidesByUserTap) {
+//           [weakSelf.button2 setTitle:@"显示菜单浮层" forState:UIControlStateNormal];
+       };
+       self.popupByWindow.sourceView = self.selectAddress;// 相对于 button2 布局
+    
+    [self.popupByWindow showWithAnimated:YES];
 }
 
 -(void)checkBtnEvent:(UIButton *)btn12{
@@ -210,6 +274,25 @@
         UserManager *user = [UserManager manager];
         user.token = respObjc[kdata][@"authorization"];
         DefLog(@"%@",respObjc);
+        //给IP地址存入
+        NSMutableArray *orderUrlMutArr = nil;
+        if (user.orderUrlArray.count>0) {
+            orderUrlMutArr = [user.orderUrlArray mutableCopy];
+            BOOL isNeedAdd = YES;
+            for (NSString *url in user.orderUrlArray) {
+                if ([url isEqualToString:orderListUrl]) {
+                    isNeedAdd = NO;
+                }
+            }
+            if (isNeedAdd) {
+                [orderUrlMutArr addObject:orderListUrl];
+            }
+        }else{
+            orderUrlMutArr = [NSMutableArray new];
+            [orderUrlMutArr addObject:orderListUrl];
+        }
+        user.orderUrlArray = [orderUrlMutArr copy];
+        //存userid
         NSString *userId = [NSString changgeNonulWithString:respObjc
                             [kdata][@"userId"]];
         if (userId) {

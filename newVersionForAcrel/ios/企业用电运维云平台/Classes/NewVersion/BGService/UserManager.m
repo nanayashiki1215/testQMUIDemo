@@ -353,5 +353,16 @@ static UserManager* manager;
     return _alarmUnreadNumStr;
 }
 
+-(void)setOrderUrlArray:(NSArray *)orderUrlArray{
+    _orderUrlArray = orderUrlArray;
+    [DefNSUD setObject:_orderUrlArray
+                forKey:@"orderUrlArray"];
+    DefNSUDSynchronize
+}
+
+-(NSArray *)orderUrlArray{
+    _orderUrlArray = [DefNSUD objectForKey:@"orderUrlArray"];
+    return _orderUrlArray;
+}
 
 @end

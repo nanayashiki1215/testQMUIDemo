@@ -167,6 +167,25 @@
     imageView.frame =CGRectMake(0, 0, SCREEN_WIDTH, 250);
     //头像
     UserManager *user = [UserManager manager];
+    NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+    //    homeList = [NSArray new];
+    for (NSDictionary *userDic in uiArray) {
+        NSString *fCode = [NSString changgeNonulWithString:userDic[@"fCode"]];
+        if ([fCode isEqualToString:@"userPage"]) {
+            
+            NSString *imageStr = [NSString changgeNonulWithString:userDic[@"fIconurl"]];
+                    
+            //        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(insideImageOpionX, 8, insideHeight/5*3-15, insideHeight/5*3-15)];
+                    
+            DefLog(@"%@",[getSystemIconADS stringByAppendingString:imageStr]);
+            if (!imageStr.length) {
+                imageView.image = [UIImage imageNamed:@"ownbgPic"];
+            }else{
+                 [imageView sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:imageStr]] placeholderImage:[UIImage imageNamed:@" bghomeheadpic"]];
+            }
+        }
+    }
+    
     self.imageHeadPic = [[UIImageView alloc] initWithFrame:CGRectMake(15, 110, 80, 80)];
     if (user.imageUrl) {
          [self.imageHeadPic sd_setImageWithURL:[NSURL URLWithString:[getImageIconADS stringByAppendingString:user.imageUrl]] placeholderImage:[UIImage imageNamed:@"touxiang"]];

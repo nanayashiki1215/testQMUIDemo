@@ -70,24 +70,25 @@ static id _instance;
 + (void)startMonitoringNetWorkReachability {
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
 //    __weak AFNetworkReachabilityManager *weak = manager;
-        [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-            switch (status) {
-                case AFNetworkReachabilityStatusReachableViaWWAN:
-                case AFNetworkReachabilityStatusReachableViaWiFi:
-                    DefLog(@"isreach:yes");
-                    NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
-                    break;
-                case AFNetworkReachabilityStatusNotReachable:
-                    DefLog(@"isreach:no");
-                    DefQuickAlert(@"当前无网络链接，请检查网络设置", nil);
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                DefLog(@"isreach:yes");
+                NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                DefLog(@"isreach:no");
+                DefQuickAlert(@"当前无网络链接，请检查网络设置", nil);
 //                    NSLog(@"AFNetworkReachabilityStatusNotReachable");
-                    break;
-                default://AFNetworkReachabilityStatusUnknown
-                    NSLog(@"AFNetworkReachabilityStatusUnknown");
-                    break;
-            }
+                break;
+            default:
+                //AFNetworkReachabilityStatusUnknown
+                NSLog(@"AFNetworkReachabilityStatusUnknown");
+                break;
+        }
 //            DefLog(@"%d,%d,%d",weak.isReachable,weak.isReachableViaWiFi,weak.isReachableViaWWAN);
-        }];
+    }];
     
     [manager startMonitoring];  //开启网络监视器；
 }
@@ -469,6 +470,7 @@ static id _instance;
         }
     }];
 }
+
 //多图上传
 + (void)bg_httpUploadMostImageWithURLString:(NSString *)URLString
                              parameters:(NSDictionary *)params

@@ -23,9 +23,9 @@
     NSString *_fsubName;
     NSString *_token;
     NSString *_versionNo;
-     NSString *_bgnickName;
-     NSString *_bgtelphone;
-     NSString *_bgaddress;
+    NSString *_bgnickName;
+    NSString *_bgtelphone;
+    NSString *_bgaddress;
     NSString *_bguserId;
     NSString *_homefMenuid;
     NSArray *_selectlanageArr;
@@ -36,6 +36,7 @@
     NSString *_emasAppKey;
     NSString *_emasAppSecret;
     NSString *_alarmUnreadNumStr;
+    NSArray *_orderUrlArray;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -54,8 +55,6 @@
 @property(nonatomic,strong)NSArray *functionsPrefixArray;/**< 用于辨别是否有数据，显示小红点 数组 */
 
 @property(nonatomic,strong)NSArray *privateChatListArray;//私聊的会话列表
-
-
 
 //20190611
 @property (nonatomic,strong) NSDictionary *rootMenuData;//全量菜单数据
@@ -85,6 +84,8 @@
 @property(nonatomic,copy)NSString *emasAppKey;/**< 推送AppKey */
 @property(nonatomic,copy)NSString *emasAppSecret;/**< 推送AppSecret */
 
+//用于存档ip地址记录
+@property(nonatomic,copy)NSArray *orderUrlArray;
 
 //获取单例
 +(instancetype)manager;

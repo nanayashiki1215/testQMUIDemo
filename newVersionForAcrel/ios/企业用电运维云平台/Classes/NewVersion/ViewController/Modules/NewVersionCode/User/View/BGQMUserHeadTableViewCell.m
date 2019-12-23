@@ -47,6 +47,8 @@
                    continue;
                }else if ([key isEqualToString:@"isSavePwd"]){
                    continue;
+               }else if ([key isEqualToString:@"orderUrlArray"]){
+                   continue;
                }
                else{
                    [defatluts removeObjectForKey:key];

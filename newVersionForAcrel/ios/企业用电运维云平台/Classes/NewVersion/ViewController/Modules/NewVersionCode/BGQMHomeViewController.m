@@ -98,7 +98,11 @@
 -(void)addselfHeadView{
     //背景图
     self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bghomeheadpic"]];
-    self.imageView.frame =CGRectMake(0, 0, SCREEN_WIDTH, 240);
+    if(isPad){
+        self.imageView.frame =CGRectMake(0, 0, SCREEN_WIDTH, 280);
+    }else{
+        self.imageView.frame =CGRectMake(0, 0, SCREEN_WIDTH, ScreenHeight/3.5);
+    }
     [_homeScrollView addSubview:self.imageView];
 
 }
@@ -182,6 +186,8 @@
                      continue;
                  }else if ([key isEqualToString:@"isSavePwd"]){
                      continue;
+                 }else if ([key isEqualToString:@"orderUrlArray"]){
+                     continue;
                  }
                  else{
                      [defatluts removeObjectForKey:key];
@@ -199,6 +205,7 @@
         NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
         [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
         DefNSUDSynchronize
+        
         [weakSelf createDemoData];
         NSMutableArray *titleArr = [BGQMSingletonManager shareInstance].showGridArray;
         NSMutableArray *imageArr = [BGQMSingletonManager shareInstance].showImageGridArray;
@@ -211,7 +218,6 @@
         [weakSelf creatMyScrollView];
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
     }];
 }
 
@@ -235,6 +241,8 @@
                    }else if ([key isEqualToString:kpassword]) {
                        continue;
                    }else if ([key isEqualToString:@"isSavePwd"]){
+                       continue;
+                   }else if ([key isEqualToString:@"orderUrlArray"]){
                        continue;
                    }
                    else{
@@ -967,6 +975,16 @@
         NSString *fCode = [NSString changgeNonulWithString:homeDic[@"fCode"]];
         if ([fCode isEqualToString:@"homePage"]) {
             homeList = homeDic[@"nodes"];
+            NSString *imageStr = [NSString changgeNonulWithString:homeDic[@"fIconurl"]];
+                    
+            //        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(insideImageOpionX, 8, insideHeight/5*3-15, insideHeight/5*3-15)];
+                    
+            DefLog(@"%@",[getSystemIconADS stringByAppendingString:imageStr]);
+            if (!imageStr.length) {
+                self.imageView.image = [UIImage imageNamed:@"bghomeheadpic"];
+            }else{
+                 [self.imageView sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:imageStr]] placeholderImage:[UIImage imageNamed:@" bghomeheadpic"]];
+            }
         }
     }
     if (homeList.count>0) {

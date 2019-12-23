@@ -1104,8 +1104,7 @@
 //                   NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
 //                       weakSelf.pageStillLoading = NO;
                }];
-                                
-                break;
+               break;
             
             default:
                 //AFNetworkReachabilityStatusUnknown
