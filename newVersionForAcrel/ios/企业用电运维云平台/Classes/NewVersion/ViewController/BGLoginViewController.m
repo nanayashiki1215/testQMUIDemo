@@ -110,14 +110,14 @@
         self.pwdTextField.text = @"";
     }
     
-    //添加多选按钮
-    if (user.orderUrlArray.count>0) {
-          self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.addressTextField.frame.size.width-30,(self.ipAddressView.frame.size.height+25)/2, 25, 25)];
+    //添加多选按钮 ip地址保存
+    if (user.orderUrlArray.count>1) {
+          self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.addressTextField.frame.size.width-30,(self.ipAddressView.frame.size.height+20)/2+1, 20, 20)];
         //    self.selectAddress.layer.borderWidth = 1;
         //    self.selectAddress.layer.borderColor = [[UIColor grayColor]CGColor];
         //    self.selectAddress.layer.cornerRadius = 2;
             [self.selectAddress addTarget:self action:@selector(showMoreIPAddress:) forControlEvents:UIControlEventTouchUpInside];
-            [self.selectAddress setBackgroundImage:[UIImage imageNamed:@"lishi"] forState:UIControlStateNormal];
+            [self.selectAddress setBackgroundImage:[UIImage imageNamed:@"ipdizhi"] forState:UIControlStateNormal];
             [self.addressTextField addSubview:self.selectAddress];
             
     }
@@ -144,6 +144,7 @@
        self.popupByWindow.automaticallyHidesWhenUserTap = YES;// 点击空白地方消失浮层
        self.popupByWindow.maskViewBackgroundColor = UIColorMaskWhite;// 使用方法 2 并且打开了 automaticallyHidesWhenUserTap 的情况下，可以修改背景遮罩的颜色
        self.popupByWindow.shouldShowItemSeparator = YES;
+       self.popupByWindow.preferLayoutDirection = QMUIPopupContainerViewLayoutDirectionBelow;
        self.popupByWindow.itemConfigurationHandler = ^(QMUIPopupMenuView *aMenuView, QMUIPopupMenuButtonItem *aItem, NSInteger section, NSInteger index) {
            // 利用 itemConfigurationHandler 批量设置所有 item 的样式
 //           aItem.button.highlightedBackgroundColor = [UIColor.qd_tintColor colorWithAlphaComponent:.2];
@@ -153,30 +154,26 @@
 //    NSMutableSet *orderUrlMutArr = [user.orderUrlArray mutableCopy];
 //    [orderUrlMutArr addObject:orderListUrl];
     NSMutableArray *orderMutArr = [NSMutableArray new];
-    if(user.orderUrlArray.count>0){
-        for (NSString *orderUrl in user.orderUrlArray) {
-            QMUIPopupMenuButtonItem *item = [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:orderUrl handler:^(QMUIPopupMenuButtonItem *aItem) {
+    if(user.orderUrlArray.count>1){
+//         NSDictionary *orderObject = @{@"ipAddress":orderListUrl,@"account":weakSelf.usenameTextField.text,@"pwd":weakSelf.pwdTextField.text,@"isSavePwd":isSave};
+        for (NSDictionary *orderObject in user.orderUrlArray) {
+            NSString *showIpAddress = [NSString changgeNonulWithString:orderObject[@"ipAddress"]];
+            QMUIPopupMenuButtonItem *item = [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:showIpAddress handler:^(QMUIPopupMenuButtonItem *aItem) {
                 weakSelf.addressTextField.text = aItem.title;
+                weakSelf.usenameTextField.text = [NSString changgeNonulWithString:orderObject[@"account"]];
+                NSString *issave = [NSString changgeNonulWithString:orderObject[@"isSavePwd"]];
+                if ([issave isEqualToString:@"YES"]) {
+                    weakSelf.pwdTextField.text = [NSString changgeNonulWithString:orderObject[@"pwd"]];
+                }else{
+                    weakSelf.pwdTextField.text = @"";
+                }
                 [aItem.menuView hideWithAnimated:YES];
             }];
             [orderMutArr addObject:item];
         }
     }
     self.popupByWindow.items = [orderMutArr copy];
-//       self.popupByWindow.items = @[
-//                                    [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:@"Components" handler:^(QMUIPopupMenuButtonItem *aItem) {
-//                                        weakSelf.addressTextField.text = aItem.title;
-//                                        [aItem.menuView hideWithAnimated:YES];
-//                                    }],
-//                                    [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:@"Lab" handler:^(QMUIPopupMenuButtonItem *aItem) {
-//                                         weakSelf.addressTextField.text = aItem.title;
-//                                        [aItem.menuView hideWithAnimated:YES];
-//                                    }],
-//                                    [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:@"http://116.236.149.165.8090" handler:^(QMUIPopupMenuButtonItem *aItem) {
-//                                         weakSelf.addressTextField.text = aItem.title;
-//                                         [aItem.menuView hideWithAnimated:YES];
-//                                    }]
-//       ];
+    
        self.popupByWindow.didHideBlock = ^(BOOL hidesByUserTap) {
 //           [weakSelf.button2 setTitle:@"显示菜单浮层" forState:UIControlStateNormal];
        };
@@ -279,17 +276,22 @@
         if (user.orderUrlArray.count>0) {
             orderUrlMutArr = [user.orderUrlArray mutableCopy];
             BOOL isNeedAdd = YES;
-            for (NSString *url in user.orderUrlArray) {
+            for (NSDictionary *ipdic in user.orderUrlArray) {
+                NSString *url = [NSString changgeNonulWithString:ipdic[@"ipAddress"]];
                 if ([url isEqualToString:orderListUrl]) {
                     isNeedAdd = NO;
                 }
             }
             if (isNeedAdd) {
-                [orderUrlMutArr addObject:orderListUrl];
+                NSString *isSave = user.isSavePwd?@"YES":@"NO";
+                NSDictionary *orderObject = @{@"ipAddress":orderListUrl,@"account":weakSelf.usenameTextField.text,@"pwd":weakSelf.pwdTextField.text,@"isSavePwd":isSave};
+                [orderUrlMutArr addObject:orderObject];
             }
         }else{
             orderUrlMutArr = [NSMutableArray new];
-            [orderUrlMutArr addObject:orderListUrl];
+            NSString *isSave = user.isSavePwd?@"YES":@"NO";
+            NSDictionary *orderObject = @{@"ipAddress":orderListUrl,@"account":weakSelf.usenameTextField.text,@"pwd":weakSelf.pwdTextField.text,@"isSavePwd":isSave};
+            [orderUrlMutArr addObject:orderObject];
         }
         user.orderUrlArray = [orderUrlMutArr copy];
         //存userid
