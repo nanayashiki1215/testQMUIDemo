@@ -17,6 +17,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "UIImagePickerController+custom.h"
+#import "ZYSuspensionView.h"
+#import "YYServiceViewController.h"
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -50,7 +52,7 @@
 
 @end
 
-@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate,QLPreviewControllerDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface BGUIWebViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate,QLPreviewControllerDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZYSuspensionViewDelegate>
 
 @property (strong,nonatomic) WKWebView *webView;
 //网页加载进度视图
@@ -68,9 +70,14 @@
 @property (copy, nonatomic)NSURL *fileURL; //文件路径
 
 @property (strong,nonatomic) NSString * picDataInfo;
+
 @property (nonatomic,assign) BOOL editeOrNot;
+
 @property (nonatomic,strong) UIImage *image;
+
 @property (nonatomic,strong) NSString *indexStr;
+
+@property (nonatomic, weak) ZYSuspensionView *susView;
 
 @end
 
@@ -141,6 +148,8 @@
         }
     }
     
+   
+   
     
 }
 
@@ -191,6 +200,17 @@
            }
         }
        
+    }
+    
+     if (self.showWebType == showWebTypeDevice) {
+            UIColor *color = [UIColor colorWithRed:0.97 green:0.30 blue:0.30 alpha:1.00];
+    //        ZYSuspensionView *susView = [ZYSuspensionView shareInstanceWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], 200, 55, 55) color:color delegate:self];
+            ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], 200, 55, 55) color:color delegate:self];
+               susView.leanType = ZYSuspensionViewLeanTypeEachSide;
+               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
+               [susView show];
+               self.susView = susView;
+            
     }
 }
 
@@ -1295,6 +1315,7 @@
     //移除注册的js方法
 //    self.webView.UIDelegate = nil;
 //    self.webView.navigationDelegate = nil;
+     [self.susView removeFromScreen];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -1347,6 +1368,17 @@
 }
 
 
+#pragma mark - ZYSuspensionViewDelegate 悬浮球代理
+- (void)suspensionViewClick:(ZYSuspensionView *)suspensionView
+{
+    NSLog(@"click %@",suspensionView.titleLabel.text);
+    UIViewController *subVC = [[YYServiceViewController alloc] init];
+    subVC.title = @"轨迹追踪";
+    [self.navigationController pushViewController:subVC animated:NO];
+//    [self presentViewController:subVC animated:YES completion:nil];
+    [self.susView removeFromScreen];
+    
+}
 
 //左滑页面
 //- (void)willMoveToParentViewController:(UIViewController*)parent

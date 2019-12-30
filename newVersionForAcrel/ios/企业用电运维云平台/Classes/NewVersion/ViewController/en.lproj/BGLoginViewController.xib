@@ -57,7 +57,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="75" id="0ey-RZ-V4F"/>
                         <constraint firstAttribute="trailing" secondItem="WSn-Q1-hQa" secondAttribute="trailing" constant="55" id="Amj-Nh-D2H"/>
@@ -95,7 +95,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="ljO-8e-SrL" firstAttribute="leading" secondItem="4so-4t-w16" secondAttribute="trailing" constant="10" id="E7F-tp-BUV"/>
                         <constraint firstItem="ljO-8e-SrL" firstAttribute="trailing" secondItem="D9r-hC-Rec" secondAttribute="trailing" id="OOm-pQ-RvP"/>
@@ -133,7 +133,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="cRE-xH-tN1" firstAttribute="leading" secondItem="ysj-3H-6fA" secondAttribute="leading" constant="25" id="8WY-Py-9dd"/>
                         <constraint firstItem="jYu-VN-wDI" firstAttribute="centerY" secondItem="cRE-xH-tN1" secondAttribute="centerY" id="FTn-2Z-pB7"/>

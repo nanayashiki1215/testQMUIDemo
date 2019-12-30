@@ -51,6 +51,7 @@
     // - 初始化
     //渐变色：87 178 247   57 124 207
     self.hbgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 250);
+//    self.hbgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     [self.hbgView.layer addSublayer:[UIColor setGradualChangingColor:self.hbgView fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
     UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-p"]];
     imageV.frame = CGRectMake((SCREEN_WIDTH-imageV.frame.size.width)/2, 40, imageV.frame.size.width, imageV.frame.size.height);
@@ -112,12 +113,15 @@
     
     //添加多选按钮 ip地址保存
     if (user.orderUrlArray.count>1) {
-          self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.addressTextField.frame.size.width-30,(self.ipAddressView.frame.size.height+20)/2+1, 20, 20)];
+//          self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.addressTextField.frame.size.width-30,(self.ipAddressView.frame.size.height+20)/2 + 1, 20, 20)];
+        self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.addressTextField.frame.size.width-30,0,self.addressTextField.frame.size.height,self.addressTextField.frame.size.height)];
         //    self.selectAddress.layer.borderWidth = 1;
         //    self.selectAddress.layer.borderColor = [[UIColor grayColor]CGColor];
         //    self.selectAddress.layer.cornerRadius = 2;
             [self.selectAddress addTarget:self action:@selector(showMoreIPAddress:) forControlEvents:UIControlEventTouchUpInside];
-            [self.selectAddress setBackgroundImage:[UIImage imageNamed:@"ipdizhi"] forState:UIControlStateNormal];
+//            [self.selectAddress setBackgroundImage:[UIImage imageNamed:@"ipdizhi"] forState:UIControlStateNormal];
+            [self.selectAddress setImage:[UIImage imageNamed:@"ipdizhi"] forState:UIControlStateNormal];
+//            [self.selectAddress setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
             [self.addressTextField addSubview:self.selectAddress];
             
     }

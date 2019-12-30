@@ -47,6 +47,7 @@
 #import "BGQMUserViewController.h"
 #import "BGQMNewHomeTableViewController.h"
 #import <Bugly/Bugly.h>
+
 //#import "WXApi.h"
 //#import "WXAuth.h"
 #import "NSBundle+Language.h"
@@ -135,7 +136,12 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     [Bugly startWithAppId:BGBuglyApi];
     //配置微信sdk
 //    [WXApi registerApp:WXAppId];
+    
     //配置百度地图
+    // 每次调用startService开启轨迹服务之前，可以重新设置这些信息。
+   BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:FALSE];
+   [[BTKAction sharedInstance] initInfo:basicInfoOption];
+       
     // 初始化定位SDK
     [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BGBaiduMapApi authDelegate:self];
     //要使用百度地图，请先启动BMKMapManager
@@ -747,5 +753,27 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     [RLMRealm defaultRealm];
 }
 
+-(void)applicationDidBecomeActive:(UIApplication *)application {
+    // 每次进入应用时将角标清零
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
+
+#pragma mark - BMKGeneralDelegate
+-(void)onGetNetworkState:(int)iError {
+    if (0 == iError) {
+        DefLog(@"联网成功");
+    } else{
+        DefLog(@"onGetNetworkState %d",iError);
+    }
+}
+
+- (void)onGetPermissionState:(int)iError {
+    if (0 == iError) {
+        DefLog(@"授权成功");
+    } else {
+        DefLog(@"onGetPermissionState %d",iError);
+    }
+}
 
 @end

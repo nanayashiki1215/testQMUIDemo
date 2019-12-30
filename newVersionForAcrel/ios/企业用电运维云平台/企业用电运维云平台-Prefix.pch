@@ -50,5 +50,7 @@
 
 #import "PushMessageDAO.h"
 #import <Realm/Realm.h>
+#import <BaiduTraceSDK/BaiduTraceSDK.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 #endif

@@ -98,12 +98,35 @@
 //812.0f 414 896
 #define DefVideoCellHeight (SCREEN_HEIGHT == 480)?310:((SCREEN_HEIGHT == 568)?310:((SCREEN_HEIGHT == 667)?310:((SCREEN_HEIGHT == 736)?310:((SCREEN_HEIGHT == 812)?310:((SCREEN_HEIGHT == 896)?310:500)))))
 
+#define CURRENT_LOCALE [NSLocale currentLocale]
+#define APP_DELEGATE [[UIApplication sharedApplication] delegate]
 
+#define USER_DEFAULTS [NSUserDefaults standardUserDefaults]
+
+#define MAIN_BUNDLE [NSBundle mainBundle]
+
+#define GLOBAL_QUEUE dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+#define MAIN_QUEUE dispatch_get_main_queue()
+#define CURRENT_IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+
+
+#define YYServiceOperationResultNotification @"YYServiceOperationResultNotification"
+#define kTableViewCellPickerViewHeight 216
+#define kTableViewCellAnimationShowDuration 0.25
+#define kTableViewCellAnimationHideDuration 0.1
+#define kHeightForHeaderInSection 28
+
+#define BGSERVICEID 218619
 //腾讯bugly
 #define BGBuglyApi @"7286a5b272"
 
 //百度地图
 #define BGBaiduMapApi @"sTYHQCTNY0H8L4k5vPtdXqRcaEgYfYtZ"
+//
+#define ENTITY_NAME @"entity_name"
+#define HISTORY_TRACK_START_TIME @"history_track_start_time"
+#define HISTORY_TRACK_END_TIME @"history_track_end_time"
+#define LATEST_LOCATION @"latest_location"
 
 //萤石云
 #define EZUIKitAppKey           @"EZUIKitAppKey"
