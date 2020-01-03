@@ -456,7 +456,8 @@ static NSString * const kArrowTitle = @"箭头";
 -(YYHistoryTrackParam *)param {
     if (_param == nil) {
         _param = [[YYHistoryTrackParam alloc] init];
-        _param.entityName = [USER_DEFAULTS objectForKey:ENTITY_NAME];
+        //配置查询人的entityName 用userid记录
+        _param.entityName = [UserManager manager].bguserId;
         NSInteger startTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_START_TIME];
         if (startTime != 0) {
             _param.startTime = startTime;

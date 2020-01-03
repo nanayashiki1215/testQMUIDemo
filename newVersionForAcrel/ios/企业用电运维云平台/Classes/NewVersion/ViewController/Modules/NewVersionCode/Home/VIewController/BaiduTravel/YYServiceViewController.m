@@ -324,7 +324,8 @@
 }
 
 /**
- 点击Gather采集按钮触发的事件
+ 点击查看记录
+ 
  */
 -(void)gatherButtonTapped {
     // 如果已经开始采集就停止采集；否则就开始采集
@@ -372,14 +373,15 @@
     return _mapView;
 }
 
+//配置轨迹相关参数
 -(YYServiceParam *)serviceBasicInfo {
     if (_serviceBasicInfo == nil) {
         _serviceBasicInfo = [[YYServiceParam alloc] init];
         // 配置默认值
         //设置采集周期
-        _serviceBasicInfo.gatherInterval = 10;
+        _serviceBasicInfo.gatherInterval = 30;
         //设置上传周期
-        _serviceBasicInfo.packInterval = 30;
+        _serviceBasicInfo.packInterval = 60;
         // @[@"步行、骑行、跑步", @"驾车", @"火车、飞机", @"其他类型"];
         _serviceBasicInfo.activityType = CLActivityTypeAutomotiveNavigation;
         // @[@"最高精度（插电才有效）", @"米级", @"十米级别", @"百米级别", @"公里级别", @"最低精度"];
@@ -388,6 +390,7 @@
         _serviceBasicInfo.distanceFilter = kCLDistanceFilterNone;
         //开启保活
         _serviceBasicInfo.keepAlive = YES;
+        //设置唯一id 利用ip地址+userid的方式
         NSString *entityName = [UserManager manager].bguserId;
         if (entityName != nil && entityName.length != 0) {
             _serviceBasicInfo.entityName = entityName;

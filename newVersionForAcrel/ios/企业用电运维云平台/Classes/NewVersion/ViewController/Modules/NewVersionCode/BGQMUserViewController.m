@@ -671,6 +671,7 @@
 -(void)setMessageNotification{
     BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"msgNotifSetting" ofType:@"html" inDirectory:@"aDevices"];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"APPDownloadPage" ofType:@"html" inDirectory:@"aDevices"];
     nomWebView.isUseOnline = NO;
     nomWebView.localUrlString = filePath;
     nomWebView.showWebType = showWebFromMsgNotif;

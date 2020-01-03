@@ -77,7 +77,7 @@
 
 @property (nonatomic,strong) NSString *indexStr;
 
-@property (nonatomic, weak) ZYSuspensionView *susView;
+//@property (nonatomic, weak) ZYSuspensionView *susView;
 
 @end
 
@@ -101,8 +101,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    self.webView.navigationDelegate = self;
-//    self.webView.scrollView.delegate = self;
+
     [self.webView.scrollView setShowsVerticalScrollIndicator:NO];
     [self.webView.scrollView setShowsHorizontalScrollIndicator:NO];
 //    if (@available(iOS 11.0, *)) {
@@ -202,16 +201,16 @@
        
     }
     
-     if (self.showWebType == showWebTypeDevice) {
-            UIColor *color = [UIColor colorWithRed:0.97 green:0.30 blue:0.30 alpha:1.00];
-    //        ZYSuspensionView *susView = [ZYSuspensionView shareInstanceWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], 200, 55, 55) color:color delegate:self];
-            ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], 200, 55, 55) color:color delegate:self];
-               susView.leanType = ZYSuspensionViewLeanTypeEachSide;
-               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
-               [susView show];
-               self.susView = susView;
-            
-    }
+//     if (self.showWebType == showWebTypeDevice) {
+//            UIColor *color = [UIColor colorWithRed:0.97 green:0.30 blue:0.30 alpha:1.00];
+//
+//            ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], 200, 55, 55) color:color delegate:self];
+//               susView.leanType = ZYSuspensionViewLeanTypeEachSide;
+//               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
+//               [susView show];
+//               self.susView = susView;
+//
+//    }
 }
 
 //- (void)viewDidAppear:(BOOL)animated
@@ -1313,9 +1312,8 @@
     
     [UIImagePickerController unHookDelegate];
     //移除注册的js方法
-//    self.webView.UIDelegate = nil;
-//    self.webView.navigationDelegate = nil;
-     [self.susView removeFromScreen];
+    
+//     [self.susView removeFromScreen];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -1368,17 +1366,17 @@
 }
 
 
-#pragma mark - ZYSuspensionViewDelegate 悬浮球代理
-- (void)suspensionViewClick:(ZYSuspensionView *)suspensionView
-{
-    NSLog(@"click %@",suspensionView.titleLabel.text);
-    UIViewController *subVC = [[YYServiceViewController alloc] init];
-    subVC.title = @"轨迹追踪";
-    [self.navigationController pushViewController:subVC animated:NO];
-//    [self presentViewController:subVC animated:YES completion:nil];
-    [self.susView removeFromScreen];
-    
-}
+//#pragma mark - ZYSuspensionViewDelegate 悬浮球代理
+//- (void)suspensionViewClick:(ZYSuspensionView *)suspensionView
+//{
+//    NSLog(@"click %@",suspensionView.titleLabel.text);
+//    UIViewController *subVC = [[YYServiceViewController alloc] init];
+//    subVC.title = @"轨迹追踪";
+//    [self.navigationController pushViewController:subVC animated:NO];
+////    [self presentViewController:subVC animated:YES completion:nil];
+////    [self.susView removeFromScreen];
+//
+//}
 
 //左滑页面
 //- (void)willMoveToParentViewController:(UIViewController*)parent
