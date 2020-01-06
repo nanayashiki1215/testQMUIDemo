@@ -556,7 +556,7 @@
 		1449480D1EE10CB70026AA73 /* NSData+AES128.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES128.m"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* 企业用电运维云平台.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "企业用电运维云平台.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* 德佑电力运维.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "德佑电力运维.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216BBA759C4A4241835A3B4A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3047A50F1AB8059700498E2A /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-debug.xcconfig"; path = "cordova/build-debug.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -1681,7 +1681,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* 企业用电运维云平台.app */,
+				1D6058910D05DD3D006BFB54 /* 德佑电力运维.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3614,7 +3614,7 @@
 			);
 			name = "企业用电运维云平台";
 			productName = "企业用电运维云平台";
-			productReference = 1D6058910D05DD3D006BFB54 /* 企业用电运维云平台.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* 德佑电力运维.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4302,8 +4302,8 @@
 				);
 				MARKETING_VERSION = 1.2.4;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
-				PRODUCT_NAME = "企业用电运维云平台";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deyou.substationplatform.operation;
+				PRODUCT_NAME = "德佑电力运维";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4358,8 +4358,8 @@
 				);
 				MARKETING_VERSION = 1.2.4;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
-				PRODUCT_NAME = "企业用电运维云平台";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deyou.substationplatform.operation;
+				PRODUCT_NAME = "德佑电力运维";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
