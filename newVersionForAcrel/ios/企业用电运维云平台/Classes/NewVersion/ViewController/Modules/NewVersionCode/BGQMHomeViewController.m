@@ -26,6 +26,8 @@
  待办事项 347
  巡视记录 348
  缺陷管理 349
+ 文档管理 350
+ 用户报告 351
  */
 
 @interface BGQMHomeViewController ()<MSCycleScrollViewDelegate,CustomGridDelegate,UIScrollViewDelegate,BGQMSelectSubstationTVCDelegate>
@@ -893,7 +895,7 @@
           }
        
     }else if (codeId == 350){
-        //349 缺陷管理
+        //350 文档管理
           NSString *fAction;
           NSString *fFunctionurl;
           for (NSDictionary *nodeDic in homeList) {
@@ -905,6 +907,36 @@
           if (fFunctionurl.length>0) {
               BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
                 NSString *filePath = [[NSBundle mainBundle] pathForResource:@"fileList" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
+    }else if (codeId == 351){
+        //351 用户报告
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"351"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CustomReport" ofType:@"html" inDirectory:@"aDevices"];
                 nomWebView.isUseOnline = NO;
                 nomWebView.localUrlString = filePath;
                 nomWebView.showWebType = showWebTypeDevice;
