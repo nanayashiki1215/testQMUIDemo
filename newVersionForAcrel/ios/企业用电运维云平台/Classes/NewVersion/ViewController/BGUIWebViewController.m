@@ -154,7 +154,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(self.showWebType == showWebTypeDevice){
+    if(self.showWebType == showWebTypeDevice || self.showWebType == showWebTypeReport){
         self.navigationController.navigationBarHidden = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self setStatusBarBackgroundColor:COLOR_WEBNAVBAR];
@@ -438,15 +438,14 @@
         
         //自适应网页内容
         NSString *jScript;
-        if(self.isAllowXZoom){
-//            jScript = @"var meta = document.createElement('meta'); \
-//            meta.name = 'viewport'; \
-//            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes'; \
-//            var head = document.getElementsByTagName('head')[0];\
-//            head.appendChild(meta);";
+        if(self.isAllowXZoom || self.showWebType == showWebTypeReport){
+            jScript = @"var meta = document.createElement('meta'); \
+            meta.name = 'viewport'; \
+            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes'; \
+            var head = document.getElementsByTagName('head')[0];\
+            head.appendChild(meta);";
         }else if ([self.isFromFile isEqualToString:@"openFile"]){
             //自适应网页内容
-           NSString *jScript;
            jScript = @"var meta = document.createElement('meta'); \
            meta.name = 'viewport'; \
            meta.content = 'text/html,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'; \
@@ -482,7 +481,7 @@
         [config.userContentController addScriptMessageHandler:weakScriptMessageDelegate name:@"iOS"];
         [config.userContentController addUserScript:wkUScript2];
         
-        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif){
+        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif || self.showWebType == showWebTypeReport){
 //            _webView.backgroundColor = [UIColor clearColor];
             if (@available(iOS 13.0, *)) {
                 _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];

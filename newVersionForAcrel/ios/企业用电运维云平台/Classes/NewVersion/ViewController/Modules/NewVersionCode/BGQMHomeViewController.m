@@ -939,7 +939,7 @@
                 NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CustomReport" ofType:@"html" inDirectory:@"aDevices"];
                 nomWebView.isUseOnline = NO;
                 nomWebView.localUrlString = filePath;
-                nomWebView.showWebType = showWebTypeDevice;
+                nomWebView.showWebType = showWebTypeReport;
                 //        self.tabBarController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:nomWebView animated:YES];
           }else{
