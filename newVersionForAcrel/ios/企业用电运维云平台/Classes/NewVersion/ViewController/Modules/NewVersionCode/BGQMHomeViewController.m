@@ -1040,6 +1040,8 @@
                     showStrIcon = @"dsbgl5";
                 }else if([showfCode isEqualToString:@"350"]){
                     showStrIcon = @"dsbgl6";
+                }else if([showfCode isEqualToString:@"351"]){
+                    showStrIcon = @"dsbgl7";
                 }
             }
             [showMutaiArray addObject:showStrTitle];
