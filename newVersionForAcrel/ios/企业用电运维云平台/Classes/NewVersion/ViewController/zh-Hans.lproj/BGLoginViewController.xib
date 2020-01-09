@@ -24,13 +24,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2Z-qZ-pge">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="250" id="uCE-bV-e2G"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2H-Lr-OYM">
-                    <rect key="frame" x="0.0" y="270" width="414" height="75"/>
+                    <rect key="frame" x="0.0" y="344" width="414" height="75"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ipAdress" translatesAutoresizingMaskIntoConstraints="NO" id="E52-F8-b55">
                             <rect key="frame" x="25" y="15" width="25" height="25"/>
@@ -69,7 +66,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0N-y5-9va">
-                    <rect key="frame" x="0.0" y="345" width="414" height="75"/>
+                    <rect key="frame" x="0.0" y="419" width="414" height="75"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-icon1" translatesAutoresizingMaskIntoConstraints="NO" id="4so-4t-w16">
                             <rect key="frame" x="25" y="15" width="25" height="25"/>
@@ -107,7 +104,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysj-3H-6fA">
-                    <rect key="frame" x="0.0" y="420" width="414" height="75"/>
+                    <rect key="frame" x="0.0" y="494" width="414" height="75"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-icon2" translatesAutoresizingMaskIntoConstraints="NO" id="cRE-xH-tN1">
                             <rect key="frame" x="25" y="15" width="25" height="25"/>
@@ -145,7 +142,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDC-mL-kYc">
-                    <rect key="frame" x="47" y="545" width="320" height="45"/>
+                    <rect key="frame" x="47" y="619" width="320" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="C0Z-ge-wIL"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="K4W-Is-VpP"/>
@@ -169,8 +166,8 @@
                 <constraint firstItem="X2Z-qZ-pge" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6PH-Hg-daI"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="DFe-Yx-GUp"/>
                 <constraint firstAttribute="trailing" secondItem="X2Z-qZ-pge" secondAttribute="trailing" id="E8R-Eh-xzq"/>
-                <constraint firstItem="X2H-Lr-OYM" firstAttribute="top" secondItem="X2Z-qZ-pge" secondAttribute="bottom" constant="20" id="Jcw-Fr-Z0r"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Mhv-Mw-78T"/>
+                <constraint firstItem="X2H-Lr-OYM" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="300" id="NMf-jh-TKM"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="top" secondItem="H0N-y5-9va" secondAttribute="bottom" id="NVO-oh-h0U"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="height" secondItem="X2H-Lr-OYM" secondAttribute="height" id="OaF-RK-5hy"/>
                 <constraint firstItem="H0N-y5-9va" firstAttribute="height" secondItem="X2H-Lr-OYM" secondAttribute="height" id="QWt-Kl-pKz"/>
@@ -180,6 +177,7 @@
                 <constraint firstItem="H0N-y5-9va" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="oRz-vX-stQ"/>
                 <constraint firstItem="zDC-mL-kYc" firstAttribute="centerX" secondItem="X2H-Lr-OYM" secondAttribute="centerX" id="pNz-wW-bhO"/>
                 <constraint firstItem="X2Z-qZ-pge" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="v0F-yF-UNU"/>
+                <constraint firstAttribute="bottom" secondItem="X2Z-qZ-pge" secondAttribute="bottom" id="x6L-dm-yaG"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>

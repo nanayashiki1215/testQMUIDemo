@@ -6,7 +6,7 @@
   
 */
 
-"LoginText" = "电力运维云平台";
+"LoginText" = "德佑云智慧电力运维服务平台";
 "serverAddressText"="域名/服务器地址+端号";
 "usernameText"="用户名";
 "passwordText"="密码";

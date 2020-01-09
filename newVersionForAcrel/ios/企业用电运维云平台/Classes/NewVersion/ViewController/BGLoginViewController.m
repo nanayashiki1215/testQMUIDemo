@@ -50,17 +50,21 @@
     self.navigationController.navigationBar.hidden = YES;
     // - 初始化
     //渐变色：87 178 247   57 124 207
-    self.hbgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 250);
-//    self.hbgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    [self.hbgView.layer addSublayer:[UIColor setGradualChangingColor:self.hbgView fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
-    UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-p"]];
-    imageV.frame = CGRectMake((SCREEN_WIDTH-imageV.frame.size.width)/2, 40, imageV.frame.size.width, imageV.frame.size.height);
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageV.frame.size.height+45, SCREEN_WIDTH, 50)];
+//    self.hbgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 250);
+    self.hbgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    UIImageView *imageBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"deyoubgImg.jpeg"]];
+    imageBG.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    [self.hbgView addSubview:imageBG];
+//    [self.hbgView.layer addSublayer:[UIColor setGradualChangingColor:self.hbgView fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
+//    UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-p"]];
+//    imageV.frame = CGRectMake((SCREEN_WIDTH-imageV.frame.size.width)/2, 40, imageV.frame.size.width, imageV.frame.size.height);
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, SCREEN_WIDTH, 50)];
     label.text = NSLocalizedString(@"LoginText",nil);
     label.textAlignment = NSTextAlignmentCenter;
     [label setFont:[UIFont fontWithName:@"Helvetica-Bold" size:23]];
     label.textColor = [UIColor whiteColor];
-    [self.hbgView addSubview:imageV];
+//    [self.hbgView addSubview:imageV];
     [self.hbgView addSubview:label];
     [self.signInBtn.layer addSublayer:[UIColor setGradualChangingColor:self.signInBtn fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
     [self.signInBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:19.f]];

@@ -25,13 +25,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2Z-qZ-pge">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="250" id="uCE-bV-e2G"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2H-Lr-OYM">
-                    <rect key="frame" x="0.0" y="270" width="414" height="75"/>
+                    <rect key="frame" x="0.0" y="344" width="414" height="75"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ipAdress" translatesAutoresizingMaskIntoConstraints="NO" id="E52-F8-b55">
                             <rect key="frame" x="25" y="15" width="25" height="25"/>
@@ -70,7 +67,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0N-y5-9va">
-                    <rect key="frame" x="0.0" y="345" width="414" height="75"/>
+                    <rect key="frame" x="0.0" y="419" width="414" height="75"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-icon1" translatesAutoresizingMaskIntoConstraints="NO" id="4so-4t-w16">
                             <rect key="frame" x="25" y="15" width="25" height="25"/>
@@ -108,7 +105,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysj-3H-6fA">
-                    <rect key="frame" x="0.0" y="420" width="414" height="75"/>
+                    <rect key="frame" x="0.0" y="494" width="414" height="75"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-icon2" translatesAutoresizingMaskIntoConstraints="NO" id="cRE-xH-tN1">
                             <rect key="frame" x="25" y="15" width="25" height="25"/>
@@ -146,7 +143,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDC-mL-kYc">
-                    <rect key="frame" x="47" y="545" width="320" height="45"/>
+                    <rect key="frame" x="47" y="619" width="320" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="C0Z-ge-wIL"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="WYv-Wk-bTd"/>
@@ -163,7 +160,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87H-nl-eSH">
-                    <rect key="frame" x="25" y="503" width="62" height="30"/>
+                    <rect key="frame" x="25" y="577" width="62" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="2gv-rn-xS1"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="GN1-yb-ePK"/>
@@ -180,8 +177,8 @@
                 <constraint firstItem="X2H-Lr-OYM" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="49d-Kn-IYm"/>
                 <constraint firstItem="X2H-Lr-OYM" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="4Ts-9q-Qd0"/>
                 <constraint firstItem="X2Z-qZ-pge" firstAttribute="trailing" secondItem="X2H-Lr-OYM" secondAttribute="trailing" id="8Lo-aA-pgN"/>
+                <constraint firstAttribute="bottom" secondItem="X2Z-qZ-pge" secondAttribute="bottom" id="9UF-XQ-PgS"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="DFe-Yx-GUp"/>
-                <constraint firstItem="X2H-Lr-OYM" firstAttribute="top" secondItem="X2Z-qZ-pge" secondAttribute="bottom" constant="20" id="Jcw-Fr-Z0r"/>
                 <constraint firstItem="X2Z-qZ-pge" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ka2-mp-KLd"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Mhv-Mw-78T"/>
                 <constraint firstItem="ysj-3H-6fA" firstAttribute="top" secondItem="H0N-y5-9va" secondAttribute="bottom" id="NVO-oh-h0U"/>
@@ -194,6 +191,7 @@
                 <constraint firstItem="zDC-mL-kYc" firstAttribute="top" secondItem="ysj-3H-6fA" secondAttribute="bottom" constant="50" id="o37-Eh-Pxx"/>
                 <constraint firstItem="H0N-y5-9va" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="oRz-vX-stQ"/>
                 <constraint firstItem="zDC-mL-kYc" firstAttribute="centerX" secondItem="X2H-Lr-OYM" secondAttribute="centerX" id="pNz-wW-bhO"/>
+                <constraint firstItem="X2H-Lr-OYM" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="300" id="tjd-zV-p30"/>
                 <constraint firstItem="87H-nl-eSH" firstAttribute="top" secondItem="ysj-3H-6fA" secondAttribute="bottom" constant="8" id="xTF-tx-W00"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
