@@ -16,6 +16,7 @@
                 <outlet property="pwdBottomLine" destination="jx5-97-urG" id="u4B-C6-B9e"/>
                 <outlet property="pwdTextField" destination="jYu-VN-wDI" id="L47-U4-8fb"/>
                 <outlet property="signInBtn" destination="zDC-mL-kYc" id="31L-SS-1jQ"/>
+                <outlet property="toTopDistance" destination="fQw-fW-MrX" id="qaD-Ar-ayD"/>
                 <outlet property="usenameTextField" destination="ljO-8e-SrL" id="0ux-w9-WEf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

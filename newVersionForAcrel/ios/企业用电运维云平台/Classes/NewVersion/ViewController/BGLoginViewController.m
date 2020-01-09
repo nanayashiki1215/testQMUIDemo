@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UIView *pwdBottomLine;
 @property (weak, nonatomic) IBOutlet UIView *ipAddressView;
 @property(nonatomic, copy) NSArray<NSObject<QDThemeProtocol> *> *themes;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toTopDistance;
+
 @property(nonatomic, strong) QMUIPopupMenuView *popupByWindow;
 @property(nonatomic,strong)UIButton *checkBtn;
 @property(nonatomic,strong)UIButton *selectAddress;
@@ -95,7 +97,8 @@
     [self.checkBtn addTarget:self action:@selector(checkBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.checkBtn setBackgroundImage:[UIImage imageNamed:@"dc.png"] forState:UIControlStateSelected];
     [self.view addSubview:self.checkBtn];
-    
+    //设置高度
+    self.toTopDistance.constant = SCREEN_HEIGHT/2;
     UIButton *label12 = [[UIButton alloc]initWithFrame:CGRectMake(self.checkBtn.frame.size.width+5+32, self.signInBtn.frame.origin.y-47, 70, 30)];
     [label12 setTitle:DefLocalizedString(@"savePassword") forState:UIControlStateNormal];
     label12.titleLabel.font = [UIFont systemFontOfSize:15.f];
