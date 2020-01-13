@@ -240,7 +240,8 @@
         DefNSUDSynchronize
         [weakSelf reloadPersonalData];
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-        
+        DefLog(@"%@",respObjc);
+       
     }];
 }
 
@@ -679,5 +680,7 @@
     nomWebView.titleName = @"消息通知设置";
     [self.navigationController pushViewController:nomWebView animated:YES];
 }
+
+
 
 @end

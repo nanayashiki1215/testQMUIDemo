@@ -196,7 +196,6 @@
     self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.layer.cornerRadius = self.frame.size.width <= self.frame.size.height ? self.frame.size.width / 2.0 : self.frame.size.height / 2.0;
     [backWindow.rootViewController.view addSubview:self];
-
     [backWindow setHidden:NO];
     [ZYSuspensionManager saveWindow:backWindow forKey:self.memoryAddressKey];
 }

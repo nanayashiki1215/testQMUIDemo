@@ -32,6 +32,9 @@
             if (Success) {
                 Success(responseObject);
             }
+        }else if ([respCode isEqualToString:@"5000"]){
+            [self pushUpErrorMsg:responseObject];
+            return ;
         }else{
 //            NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
             NSString *respMsg = [NSString stringWithFormat:@"%@",[NetService failCodeDic][respCode]];
@@ -42,10 +45,18 @@
                 }
             }
             if (Fail) {
+                if (respMsg) {
+                    [MBProgressHUD showError:respMsg];
+                }
                 Fail(responseObject,respCode,respMsg);
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (errorMsg) {
+            [MBProgressHUD showError:errorMsg];
+        }else{
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+        }
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -71,6 +82,9 @@
                     if (Success) {
                         Success(responseObject);
                     }
+                }else if ([respCode isEqualToString:@"5000"]){
+                    [self pushUpErrorMsg:responseObject];
+                    return ;
                 }else{
                     //            NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
                     NSString *respMsg = [NSString stringWithFormat:@"%@",[NetService failCodeDic][respCode]];
@@ -81,10 +95,18 @@
                         }
                     }
                     if (Fail) {
+                        if (respMsg) {
+                           [MBProgressHUD showError:respMsg];
+                        }
                         Fail(responseObject,respCode,respMsg);
                     }
                 }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (errorMsg) {
+            [MBProgressHUD showError:errorMsg];
+        }else{
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+        }
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -116,6 +138,9 @@
                 [UserManager manager].token = token;
             }
             return ;
+        }else if ([respCode isEqualToString:@"5000"]){
+            [self pushUpErrorMsg:responseObject];
+            return ;
         }
         if ([respCode isEqualToString:k0000]) {
             
@@ -132,10 +157,18 @@
                 }
             }
             if (Fail) {
+                if (respMsg) {
+                   [MBProgressHUD showError:respMsg];
+                }
                 Fail(responseObject,respCode,respMsg);
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (errorMsg) {
+            [MBProgressHUD showError:errorMsg];
+        }else{
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+        }
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -180,6 +213,11 @@
 //            }
 //        }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (errorMsg) {
+            [MBProgressHUD showError:errorMsg];
+        }else{
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+        }
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -216,6 +254,9 @@
                 [UserManager manager].token = token;
             }
             return ;
+        }else if ([respCode isEqualToString:@"5000"]){
+            [self pushUpErrorMsg:responseObject];
+            return ;
         }
         if ([respCode isEqualToString:k0000]) {
             if (Success) {
@@ -230,12 +271,20 @@
                 }
             }
             if (Fail) {
+                if (respMsg) {
+                    [MBProgressHUD showError:respMsg];
+                }
                 Fail(responseObject,respCode,respMsg);
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         if (Fail) {
             Fail(nil,nil,nil);
+        }
+        if (errorMsg) {
+            [MBProgressHUD showError:errorMsg];
+        }else{
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
         }
     }];
 }
@@ -254,13 +303,24 @@
             if (Success) {
                 Success(responseObject);
             }
+        }else if ([respCode isEqualToString:@"5000"]){
+            [self pushUpErrorMsg:responseObject];
+            return ;
         }else{
             NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
             if (Fail) {
+                if (respMsg) {
+                   [MBProgressHUD showError:respMsg];
+                }
                 Fail(responseObject,respCode,respMsg);
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (errorMsg) {
+            [MBProgressHUD showError:errorMsg];
+        }else{
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+        }
         if (Fail) {
             Fail(nil,nil,nil);
         }
@@ -711,6 +771,21 @@
              @"366":@"变电所数量达到上限",
              @"367":@"仪表数量达到上限"
     };
+}
+
+//尚未调用
++(void)pushUpErrorMsg:(NSDictionary *)responseObject{
+    NSString *baseURL = [BASE_URL stringByAppendingString:@"main/uploadExceptionLog"];
+    NSString *url = BASE_URL;
+    NSArray *arr = responseObject[@"data"][@"stackTrace"];
+    if (arr.count>0) {
+        NSDictionary *param = @{@"ip":url,@"exceptionMessage":arr};
+        [NetService bg_httpPostWithPath:baseURL params:param success:^(id responseObject) {
+            DefLog(@"%@",responseObject);
+        }failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+            DefLog(@"%@",respObjc);
+        }];
+    }
 }
 
 @end

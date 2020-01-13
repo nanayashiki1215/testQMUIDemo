@@ -1226,11 +1226,21 @@
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
     
     //用户身份信息
-    NSURLCredential * newCred = [[NSURLCredential alloc] initWithUser:@"user123" password:@"123" persistence:NSURLCredentialPersistenceNone];
-    //为 challenge 的发送方提供 credential
-    [challenge.sender useCredential:newCred forAuthenticationChallenge:challenge];
-    completionHandler(NSURLSessionAuthChallengeUseCredential,newCred);
-    
+//    NSURLCredential * newCred = [[NSURLCredential alloc] initWithUser:@"user123" password:@"123" persistence:NSURLCredentialPersistenceNone];
+//    //为 challenge 的发送方提供 credential
+//    [challenge.sender useCredential:newCred forAuthenticationChallenge:challenge];
+//    completionHandler(NSURLSessionAuthChallengeUseCredential,newCred);
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        if ([challenge previousFailureCount] == 0) {
+            NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+        } else {
+            completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+        }
+    } else {
+        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+    }
+
 }
 
 //进程被终止时调用

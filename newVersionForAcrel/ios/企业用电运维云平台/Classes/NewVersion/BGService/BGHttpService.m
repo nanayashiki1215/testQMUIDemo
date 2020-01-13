@@ -497,6 +497,8 @@ static id _instance;
     }];
 }
 
+
+
 #pragma mark - 断点续传方案一
 //新建下载
 //-(void)bg_downLoadWithURLFromBreakPoint:(NSString *)fileUrlPath

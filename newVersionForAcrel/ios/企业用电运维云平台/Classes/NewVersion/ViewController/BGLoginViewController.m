@@ -328,7 +328,6 @@
                [weakSelf addAlias:user.bguserId];
            }
        }
-       
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (errorMsg) {
