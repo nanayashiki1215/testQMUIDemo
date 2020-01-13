@@ -1030,8 +1030,6 @@
     while (self.pageStillLoading) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
-    
-   
     //开启定位服务
 }
 

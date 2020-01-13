@@ -38,6 +38,7 @@
         if ([str containsString:@"null"]){
             return nil;
         }else{
+            
             return str;
         }
     }else if([str isKindOfClass:[NSNumber class]]){
