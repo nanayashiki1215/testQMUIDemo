@@ -17,9 +17,9 @@
 @interface YYServiceViewController ()
 @property (nonatomic, strong) BMKMapView *mapView;
 @property (nonatomic, strong) UIBarButtonItem *configurationSetUpButton;
-
 @property (nonatomic, strong) UIBarButtonItem *serviceButton;
 @property (nonatomic, strong) UIBarButtonItem *gatherButton;
+@property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
 
 /**
  使用点标注表示最新位置的坐标位置
@@ -30,14 +30,16 @@
  */
 @property (nonatomic, strong) BMKCircle *locationAccuracyCircle;
 
-
 @property (nonatomic, strong) YYServiceParam *serviceBasicInfo;
+
 @property (nonatomic, assign) BOOL serviceBasicInfoAlreadySetted;
 
 @property (nonatomic, copy) ServiceParamBlock block;
+
 @property (nonatomic, strong) YYServiceParamSetViewController *vc;
 
 @property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 
@@ -59,12 +61,55 @@
     [super viewWillAppear:animated];
     [self.mapView viewWillAppear];
     self.mapView.delegate = self;
+//    self.mapView.showsUserLocation = YES;
+//    self.mapView.userTrackingMode = BMKUserTrackingModeHeading;
+    
     [self resumeTimer];
+     // 如果有之前的定位点，则将地图中心设置在定位点,如果没有的话，就保持地图中心点在默认的天安门
     NSData *locationData = [USER_DEFAULTS objectForKey:LATEST_LOCATION];
-    if (locationData) {
-        CLLocation *position = [NSKeyedUnarchiver unarchiveObjectWithData:locationData];
-        [self updateMapViewWithLocation:position];
-    }
+//    if (locationData) {
+//        CLLocation *position = [NSKeyedUnarchiver unarchiveObjectWithData:locationData];
+//        [self updateMapViewWithLocation:position];
+//    }else{
+    //    {
+    //        latest_point = {
+    //            direction = 0;
+    //            height = 5;
+    //            latitude = 31.350006313942;
+    //            loc_time = 1579050892
+    //            locate_mode = "网络定位";
+    //            longitude = 121.30641651106;
+    //            radius = 65;
+    //            speed = 0;
+    //        };
+    //        message = "成功";
+    //        status = 0;
+    //        tag = 0
+    //    }
+         [self.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
+                     //获取经纬度和该定位点对应的位置信息
+                DefLog(@"%@ %d",location,state);
+            
+//                NSDictionary *latestPoint = dict[@"latest_point"];
+//                   double latitude = [latestPoint[@"latitude"] doubleValue];
+//                   double longitude = [latestPoint[@"longitude"] doubleValue];
+                   CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(location.location.coordinate.latitude, location.location.coordinate.longitude);
+//                   double horizontalAccuracy = [latestPoint[@"radius"] doubleValue];
+//                   double loctime = [latestPoint[@"loc_time"] doubleValue];
+//                   NSDate *timestamp = [NSDate dateWithTimeIntervalSince1970:loctime];
+                  NSDate *timestamp = [NSDate now];
+                   CLLocation *latestLocation = [[CLLocation alloc] initWithCoordinate:coordinate altitude:0 horizontalAccuracy:65 verticalAccuracy:0 timestamp:timestamp];
+                   // 存储最新的实时位置只是为了在地图底图一开始加载的时候，以上一次最新的实时位置作为底图的中心点
+                   [USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:latestLocation] forKey:LATEST_LOCATION];
+                   [USER_DEFAULTS synchronize];
+                  [self updateMapViewWithLocation:latestLocation];
+//                NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
+//                NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
+             
+               
+       
+            }];
+//    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -116,6 +161,7 @@
 }
 
 -(void)onQueryTrackLatestPoint:(NSData *)response {
+
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
         NSLog(@"Entity List查询格式转换出错");
@@ -152,10 +198,10 @@
 -(void)updateServiceButtonStyle {
     dispatch_async(MAIN_QUEUE, ^{
         if ([YYServiceManager defaultManager].isServiceStarted) {
-            self.serviceButton.title = @"停止服务";
+            self.serviceButton.title = @"停止轨迹追踪";
             self.serviceButton.tintColor = [UIColor darkGrayColor];
         } else {
-            self.serviceButton.title = @"开启服务";
+            self.serviceButton.title = @"开启轨迹追踪";
             self.serviceButton.tintColor = [UIColor blueColor];
         }
     });
@@ -167,7 +213,7 @@
 //            self.gatherButton.title = @"查看记录";
 //            self.gatherButton.tintColor = [UIColor darkGrayColor];
 //        } else {
-            self.gatherButton.title = @"查看记录";
+            self.gatherButton.title = @"查看历史记录";
             self.gatherButton.tintColor = [UIColor blueColor];
 //        }
     });
@@ -412,10 +458,10 @@
         NSString *title = nil;
         UIColor *tintColor = nil;
         if ([YYServiceManager defaultManager].isServiceStarted) {
-            title = @"结束服务";
+            title = @"结束轨迹追踪";
             tintColor = [UIColor darkGrayColor];
         } else {
-            title = @"开启服务";
+            title = @"开启轨迹追踪";
             tintColor = [UIColor blueColor];
         }
         _serviceButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(serviceButtonTapped)];
@@ -432,7 +478,7 @@
 //            title = @"查看记录";
 //            tintColor = [UIColor darkGrayColor];
 //        } else {
-            title = @"查看记录";
+            title = @"查看历史记录";
             tintColor = [UIColor blueColor];
 //        }
         _gatherButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(gatherButtonTapped)];
@@ -461,6 +507,39 @@
     }
     return _locationAccuracyCircle;
 }
-
+#pragma mark - Lazy loading
+- (BMKLocationManager *)locationManager {
+    if (!_locationManager) {
+        //初始化BMKLocationManager类的实例
+        _locationManager = [[BMKLocationManager alloc] init];
+        //设置定位管理类实例的代理
+        _locationManager.delegate = self;
+        //设定定位坐标系类型，默认为 BMKLocationCoordinateTypeGCJ02
+        _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+        //设定定位精度，默认为 kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设定定位类型，默认为 CLActivityTypeAutomotiveNavigation
+        _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+        //指定定位是否会被系统自动暂停，默认为NO
+        _locationManager.pausesLocationUpdatesAutomatically = NO;
+        /**
+         是否允许后台定位，默认为NO。只在iOS 9.0及之后起作用。
+         设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
+         由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
+         */
+        _locationManager.allowsBackgroundLocationUpdates = NO;
+        /**
+         指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
+         注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)
+         后开始计算。
+         */
+        _locationManager.locationTimeout = 10;
+    }
+    return _locationManager;
+}
+- (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
+    DefLog(@"定位失败");
+  
+}
      
 @end

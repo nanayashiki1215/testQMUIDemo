@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icon_action_paopao_middle_right_highlighted.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "bg_splash.png",
+      "filename" : "icon_action_paopao_middle_right_highlighted@2x.png",
       "scale" : "2x"
     },
     {

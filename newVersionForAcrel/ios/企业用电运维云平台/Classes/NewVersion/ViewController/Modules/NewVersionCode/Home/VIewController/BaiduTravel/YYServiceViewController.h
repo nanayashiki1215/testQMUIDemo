@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BMKLocationKit/BMKLocationComponent.h>
 
-@interface YYServiceViewController : UIViewController <BMKMapViewDelegate, BTKTraceDelegate, BTKTrackDelegate, CLLocationManagerDelegate>
+@interface YYServiceViewController : UIViewController <BMKMapViewDelegate, BTKTraceDelegate, BTKTrackDelegate, CLLocationManagerDelegate,BMKLocationManagerDelegate>
 
 @end

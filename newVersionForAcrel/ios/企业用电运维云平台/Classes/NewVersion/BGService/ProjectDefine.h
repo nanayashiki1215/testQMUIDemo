@@ -116,12 +116,16 @@
 #define kTableViewCellAnimationHideDuration 0.1
 #define kHeightForHeaderInSection 28
 
-#define BGSERVICEID 218619
+//鹰眼
+//#define BGSERVICEID 218619
+#define BGSERVICEID 218611
 //腾讯bugly
 #define BGBuglyApi @"7286a5b272"
-
 //百度地图
-#define BGBaiduMapApi @"sTYHQCTNY0H8L4k5vPtdXqRcaEgYfYtZ"
+//#define BGBaiduMapApi @"sTYHQCTNY0H8L4k5vPtdXqRcaEgYfYtZ"
+#define BGBaiduMapApi @"AfE8xRvtxavqlhNrsNxKrEGnGohQIGoY"
+
+
 //
 #define ENTITY_NAME @"entity_name"
 #define HISTORY_TRACK_START_TIME @"history_track_start_time"

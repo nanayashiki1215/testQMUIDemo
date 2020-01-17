@@ -139,8 +139,8 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     
     //配置百度地图
     // 每次调用startService开启轨迹服务之前，可以重新设置这些信息。
-   BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:FALSE];
-   [[BTKAction sharedInstance] initInfo:basicInfoOption];
+    BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:FALSE];
+    [[BTKAction sharedInstance] initInfo:basicInfoOption];
        
     // 初始化定位SDK
     [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BGBaiduMapApi authDelegate:self];

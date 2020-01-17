@@ -18,7 +18,8 @@ typedef enum {
     showWebTypeAlarmWithTab,
     showWebFromMsgNotif, //从消息通知页面跳入
     showWebTypePolicy,//隐私政策 显示navbar 可通用
-    showWebTypeReport//用户报告
+    showWebTypeReport,//用户报告
+    showWebTypeZYSusView//轨迹 小圆点
 } showWebType;
 
 @interface BGUIWebViewController : UIViewController<JXCategoryListCollectionContentViewDelegate,UIScrollViewDelegate>

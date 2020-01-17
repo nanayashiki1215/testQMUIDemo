@@ -493,7 +493,7 @@ static NSString * const kArrowTitle = @"箭头";
 
 -(UIBarButtonItem *)paramSetButton {
     if (_paramSetButton == nil) {
-        UIImage *setupIcon = [UIImage imageNamed:@"settings"];
+        UIImage *setupIcon = [UIImage imageNamed:@"icon_settings"];
         _paramSetButton = [[UIBarButtonItem alloc] initWithImage:setupIcon style:UIBarButtonItemStylePlain target:self action:@selector(showParamSettings)];
     }
     return _paramSetButton;

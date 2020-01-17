@@ -79,7 +79,8 @@ static id _instance;
                 break;
             case AFNetworkReachabilityStatusNotReachable:
                 DefLog(@"isreach:no");
-                DefQuickAlert(@"当前无网络链接，请检查网络设置", nil);
+                [MBProgressHUD showError:@"当前无网络链接，请检查网络设置"];
+//                DefQuickAlert(@"当前无网络链接，请检查网络设置", nil);
 //                    NSLog(@"AFNetworkReachabilityStatusNotReachable");
                 break;
             default:

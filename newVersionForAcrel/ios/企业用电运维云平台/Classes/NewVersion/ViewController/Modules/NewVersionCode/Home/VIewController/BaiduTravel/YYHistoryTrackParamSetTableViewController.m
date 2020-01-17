@@ -707,8 +707,8 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
 
 -(NSArray *)sectionTitles {
     if (_sectionTitles == nil) {
-        _sectionTitles = @[@"终端名称",
-                           @"起止时间设置",
+        _sectionTitles = @[@"用户终端ID",
+                           @"轨迹起止时间设置",
                            @"纠偏选项设置",
                            @"里程补偿方式设置"];
     }
@@ -719,8 +719,10 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
     if (_entityNameTextField == nil) {
         _entityNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH / 2, 30)];
         NSString *entityNameStored = [USER_DEFAULTS objectForKey:ENTITY_NAME];
+        //临时方案，别浪
+        entityNameStored = [UserManager manager].bguserId;
         if (nil == entityNameStored || entityNameStored.length == 0) {
-            _entityNameTextField.placeholder = @"输入entityName";
+            _entityNameTextField.placeholder = @"开启轨迹追踪后自动获取";
         } else {
             _entityNameTextField.placeholder = entityNameStored;
             _entityNameTextField.text = entityNameStored;

@@ -202,14 +202,14 @@
     }
     
 //     if (self.showWebType == showWebTypeDevice) {
-//            UIColor *color = [UIColor colorWithRed:0.97 green:0.30 blue:0.30 alpha:1.00];
-//
-//            ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], 200, 55, 55) color:color delegate:self];
-//               susView.leanType = ZYSuspensionViewLeanTypeEachSide;
-//               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
+//        //显示轨迹
+//            UIColor *color = [UIColor colorWithRed:28/255 green:28/255 blue:28/255 alpha:0.8];
+//            ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
+//               susView.leanType = ZYSuspensionViewLeanTypeHorizontal;
+////               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
+//               [susView setImage:[UIImage imageNamed:@"icon_track"] forState:UIControlStateNormal];
 //               [susView show];
 //               self.susView = susView;
-//
 //    }
 }
 
@@ -1160,15 +1160,15 @@
     }
 }
 
-// 当内容开始返回时调用
+// 当内容到达主框架时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    
+   
 }
 
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     
-    [self getCookie];
+//    [self getCookie];
 
 }
 
@@ -1257,7 +1257,7 @@
  */
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler();
     }])];
     [self presentViewController:alertController animated:YES completion:nil];
@@ -1266,15 +1266,17 @@
 // 确认框
 //JavaScript调用confirm方法后回调的方法 confirm是js中的确定框，需要在block中把用户选择的情况传递进去
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         completionHandler(NO);
     }])];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler(YES);
     }])];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 // 输入框
 //JavaScript调用prompt方法后回调的方法 prompt是js中的输入框 需要在block中把用户输入的信息传入
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
@@ -1287,12 +1289,19 @@
     }])];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 // 页面是弹出窗口 _blank 处理
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
     if (!navigationAction.targetFrame.isMainFrame) {
         [webView loadRequest:navigationAction.request];
     }
     return nil;
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)dealloc{
@@ -1323,10 +1332,6 @@
 //     [self.susView removeFromScreen];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - JXCategoryListCollectionContentViewDelegate
 
@@ -1373,15 +1378,14 @@
 }
 
 
-//#pragma mark - ZYSuspensionViewDelegate 悬浮球代理
+//#pragma mark - ZYSuspensionViewDelegate 悬浮球代理 轨迹
 //- (void)suspensionViewClick:(ZYSuspensionView *)suspensionView
 //{
 //    NSLog(@"click %@",suspensionView.titleLabel.text);
 //    UIViewController *subVC = [[YYServiceViewController alloc] init];
 //    subVC.title = @"轨迹追踪";
+//    [self.susView removeFromScreen];
 //    [self.navigationController pushViewController:subVC animated:NO];
-////    [self presentViewController:subVC animated:YES completion:nil];
-////    [self.susView removeFromScreen];
 //
 //}
 
