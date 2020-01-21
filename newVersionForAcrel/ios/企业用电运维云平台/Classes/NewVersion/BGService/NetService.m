@@ -785,9 +785,10 @@
     };
 }
 
-//尚未调用
+//上传5000
 +(void)pushUpErrorMsg:(NSDictionary *)responseObject{
-    NSString *baseURL = [BASE_URL stringByAppendingString:@"main/uploadExceptionLog"];
+//    NSString *baseURL = [BASE_URL stringByAppendingString:@"main/uploadExceptionLog"];
+    NSString *baseURL = @"http://www.acrelcloud.cn/SubstationWEBV2/main/uploadExceptionLog";
     NSString *url = BASE_URL;
     NSArray *arr = responseObject[@"data"][@"stackTrace"];
     if (arr.count>0) {
