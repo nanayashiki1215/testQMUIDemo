@@ -37,6 +37,8 @@
     NSString *_emasAppSecret;
     NSString *_alarmUnreadNumStr;
     NSArray *_orderUrlArray;
+    NSDictionary *_yytjBaiduDic;
+    BOOL _isOpenTjBaidu;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -86,6 +88,10 @@
 
 //用于存档ip地址记录
 @property(nonatomic,copy)NSArray *orderUrlArray;
+
+//用于存取百度鹰眼轨迹配置
+@property(nonatomic,copy)NSDictionary *yytjBaiduDic;
+@property(nonatomic,assign)BOOL isOpenTjBaidu;//是否开启百度鹰眼功能
 
 //获取单例
 +(instancetype)manager;

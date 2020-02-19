@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YYHistoryTrackViewController : UIViewController <BMKMapViewDelegate>
-
+@property(nonatomic,strong)NSString *bgEntityName;//传递需要查询的轨迹id
 @end

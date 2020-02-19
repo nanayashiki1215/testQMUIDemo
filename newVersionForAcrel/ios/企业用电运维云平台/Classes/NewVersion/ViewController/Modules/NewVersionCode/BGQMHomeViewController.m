@@ -818,7 +818,7 @@
                    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
            nomWebView.isUseOnline = NO;
            nomWebView.localUrlString = filePath;
-           nomWebView.showWebType = showWebTypeDevice;
+           nomWebView.showWebType = showWebTypeDeviceForYY;
            //        self.tabBarController.hidesBottomBarWhenPushed = YES;
            [self.navigationController pushViewController:nomWebView animated:YES];
         }else{

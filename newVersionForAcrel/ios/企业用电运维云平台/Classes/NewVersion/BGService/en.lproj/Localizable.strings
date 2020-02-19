@@ -6,7 +6,7 @@
   
 */
 
-"LoginText" = "Power Operation Maintenance";
+"LoginText" = "Operation and Maintenance";
 "serverAddressText"="Domain Name/Server Address";
 "usernameText"="username";
 "passwordText"="password";
@@ -35,7 +35,7 @@
 "Newversion"="New version detected, whether to update";
 "ToUpdate"="To Update";
 "Nexttime"="Next time";
-
+    
 //homeSelect
 "Videodata" = "Videodata";
 "selectsubstation" = "selectSubstation";

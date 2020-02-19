@@ -12,6 +12,7 @@
 #import "YYHistoryTrackPoint.h"
 #import "YYArrowAnnotationView.h"
 #import "YYMultiColorPolyline.h"
+#import "WSDatePickerView.h"
 
 @interface YYHistoryTrackViewController ()
 
@@ -54,6 +55,8 @@
 @property (nonatomic, copy) NSArray *historyPoints;
 @property (nonatomic, assign) NSUInteger index;
 @property (nonatomic, strong) dispatch_queue_t pointsQueue;
+
+@property(nonatomic, strong) QMUIFillButton *searchBtn;
 @end
 
 static double const EPSILON = 0.0001;
@@ -71,11 +74,103 @@ static NSString * const kArrowTitle = @"箭头";
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+     self.navigationController.navigationBarHidden = NO;
     [self.mapView viewWillAppear];
     self.mapView.delegate = self;
     // 每次显示页面时默认用单色图
     self.wormSegmentControl.selectedSegmentIndex = 0;
+    //开始时间按钮
+    UIView *selectTimeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    selectTimeView.backgroundColor = DefColorFromRGB(181,223,228,1);
+    
+    QMUIButton *selectStartBtn = [[QMUIButton alloc] init];
+    selectStartBtn.frame = CGRectMake(5, 5, SCREEN_WIDTH/3-5, 40);
+    selectStartBtn.layer.cornerRadius = 5;
+    selectStartBtn.backgroundColor = [UIColor whiteColor];
+    selectStartBtn.titleLabel.font = UIFontMake(14);
+    [selectStartBtn setTitle:@"开始时间" forState:UIControlStateNormal];
+    [selectStartBtn addTarget:self action:@selector(selectStartTime:) forControlEvents:UIControlEventTouchUpInside];
+    [selectTimeView addSubview:selectStartBtn];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5+SCREEN_WIDTH/3+5, 5, 15, 40)];
+    label.text = @"至";
+    [selectTimeView addSubview:label];
+    
+    //结束时间按钮
+    QMUIButton *selectEndBtn =  [[QMUIButton alloc] init];
+    selectEndBtn.frame = CGRectMake(5+SCREEN_WIDTH/3+38, 5, SCREEN_WIDTH/3-5, 40);
+    selectEndBtn.layer.cornerRadius = 5;
+    selectEndBtn.titleLabel.font = UIFontMake(14);
+    selectEndBtn.backgroundColor = [UIColor whiteColor];
+    [selectEndBtn setTitle:@"结束时间" forState:UIControlStateNormal];
+    selectStartBtn.titleLabel.textColor = [UIColor blackColor];
+    [selectEndBtn addTarget:self action:@selector(selectEndTime:) forControlEvents:UIControlEventTouchUpInside];
+    [selectTimeView addSubview:selectEndBtn];
+    
+    //搜索按钮
+    self.searchBtn = [[QMUIFillButton alloc] initWithFillType:QMUIFillButtonColorGreen];
+    self.searchBtn.titleLabel.font = UIFontMake(14);
+    self.searchBtn.frame = CGRectMake(SCREEN_WIDTH-85, 10, 80, 30);
+    [self.searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
+    [self.searchBtn setImage:[UIImage imageNamed:@"searchImg"] forState:UIControlStateNormal];
+    self.searchBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
+    self.searchBtn.adjustsImageWithTitleTextColor = YES;
+    [self.searchBtn addTarget:self action:@selector(clickSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [selectTimeView addSubview:self.searchBtn];
+    
+    [self.view addSubview:selectTimeView];
 }
+
+-(void)selectStartTime:(QMUIButton *)sender{
+    //年-月-日-时-分
+//    NSInteger startTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_START_TIME];
+//                   if (startTime != 0) {
+//                       _param.startTime = startTime;
+//                   } else {
+//                       _param.startTime = [[NSDate date] timeIntervalSince1970] - 24 * 60 *60;
+//                   }
+//                   NSInteger endTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_END_TIME];
+//                   if (endTime != 0) {
+//                       _param.endTime = endTime;
+//                   } else {
+//                         _param.endTime = [[NSDate date] timeIntervalSince1970];
+//                   }
+    WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
+        
+        NSString *dateString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
+        NSLog(@"选择的日期：%@",dateString);
+        self.param.startTime = [selectDate timeIntervalSince1970];
+        [sender setTitle:dateString forState:UIControlStateNormal];
+    }];
+    datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
+    datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+    datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
+    [datepicker show];
+}
+
+-(void)selectEndTime:(QMUIButton *)sender{
+    //年-月-日-时-分
+    WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
+        
+        NSString *dateString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
+        self.param.endTime = [selectDate timeIntervalSince1970];
+        NSLog(@"选择的日期：%@",dateString);
+        [sender setTitle:dateString forState:UIControlStateNormal];
+    }];
+    datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
+    datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+    datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
+    [datepicker show];
+}
+
+-(void)clickSearchBtn:(QMUIFillButton *)sender{
+    YYHistoryViewModel *vm = [[YYHistoryViewModel alloc] init];
+    vm.completionHandler = ^(NSArray *points) {
+        self.historyPoints = points;
+        [self drawHistoryTrackWithPoints:points];
+    };
+    [vm queryHistoryWithParam:self.param];
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -138,9 +233,12 @@ static NSString * const kArrowTitle = @"箭头";
 
 #pragma mark - event response
 - (void)showParamSettings {
+    //设置按钮
     YYHistoryTrackParamSetTableViewController *paramVC = [[YYHistoryTrackParamSetTableViewController alloc] init];
     paramVC.completionHandler = ^(YYHistoryTrackParam *paramInfo) {
         self.param = paramInfo;
+        self.param.entityName = self.bgEntityName;
+        
         [self queryHistoryTrack];
     };
     [self.navigationController pushViewController:paramVC animated:YES];
@@ -166,8 +264,9 @@ static NSString * const kArrowTitle = @"箭头";
 - (void)setupUI {
     self.view.backgroundColor = [UIColor whiteColor];
     // 设置导航栏
-    NSArray *rightButtons = [NSArray arrayWithObjects:self.playButton, self.paramSetButton, self.refreshButton, nil];
-    [self.navigationItem setRightBarButtonItems:rightButtons];
+//    NSArray *rightButtons = [NSArray arrayWithObjects:self.playButton, self.paramSetButton, self.refreshButton, nil];
+//    NSArray *rightButtons = [NSArray arrayWithObjects:self.paramSetButton, self.refreshButton, nil];
+//    [self.navigationItem setRightBarButtonItems:rightButtons];
     self.navigationItem.title = @"查询历史轨迹";
     // 设置控件
     [self.view addSubview:self.mapView];
@@ -268,6 +367,7 @@ static NSString * const kArrowTitle = @"箭头";
     };
     [vm queryHistoryWithParam:self.param];
 }
+
 
 - (void)playHistoryAnnimation {
     if (self.historyPoints.count == 0) {
@@ -457,28 +557,102 @@ static NSString * const kArrowTitle = @"箭头";
     if (_param == nil) {
         _param = [[YYHistoryTrackParam alloc] init];
         //配置查询人的entityName 用userid记录
-        _param.entityName = [UserManager manager].bguserId;
-        NSInteger startTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_START_TIME];
-        if (startTime != 0) {
-            _param.startTime = startTime;
-        } else {
-            _param.startTime = [[NSDate date] timeIntervalSince1970] - 24 * 60 *60;
-        }
-        NSInteger endTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_END_TIME];
-        if (endTime != 0) {
-            _param.endTime = endTime;
-        } else {
-            _param.endTime = [[NSDate date] timeIntervalSince1970];
-        }
-        _param.isProcessed = NO;
-        BTKQueryTrackProcessOption *option = [[BTKQueryTrackProcessOption alloc] init];
-        option.denoise = TRUE;
-        option.vacuate = TRUE;
-        option.mapMatch = FALSE;
-        option.radiusThreshold = 0;
-        option.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_WALKING;
-        _param.processOption = option;
-        _param.supplementMode = BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT;
+        _param.entityName = self.bgEntityName;
+//        _param.entityName = @"116-236-149-165_8090-315";
+         // 配置默认值
+            UserManager *tjuser = [UserManager manager];
+            if (tjuser.yytjBaiduDic) {
+                NSDictionary *baiduDic = tjuser.yytjBaiduDic;
+                
+//                NSInteger startTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_START_TIME];
+//                if (startTime != 0) {
+//                    _param.startTime = startTime;
+//                } else {
+//                    _param.startTime = [[NSDate date] timeIntervalSince1970] - 24 * 60 *60;
+//                }
+//                NSInteger endTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_END_TIME];
+//                if (endTime != 0) {
+//                    _param.endTime = endTime;
+//                } else {
+//                      _param.endTime = [[NSDate date] timeIntervalSince1970];
+//                }
+                _param.isProcessed = NO;
+                BTKQueryTrackProcessOption *option = [[BTKQueryTrackProcessOption alloc] init];
+                option.denoise = TRUE;
+                option.vacuate = TRUE;
+                  
+                //是否将轨迹点绑定至道路
+               NSString *isBindTrack =[NSString changgeNonulWithString:baiduDic[@"tjIsBindTrack"]];
+               if ([isBindTrack integerValue] == 0) {
+                    option.mapMatch = FALSE;
+               }else if ([isBindTrack integerValue] == 1){
+                    option.mapMatch = TRUE;
+               }
+        
+                //若只需保留 GPS 定位点，则建议设为：20；若需保留 GPS 和 Wi-Fi 定位点，去除基站定位点，则建议设为：100
+                NSString *seclectFiltering =[NSString changgeNonulWithString:baiduDic[@"tjSeclectFiltering"]];
+                if ([seclectFiltering integerValue] == 0) {
+                    option.radiusThreshold = 0;
+                }else if ([seclectFiltering integerValue] == 1){
+                    option.radiusThreshold = 20;
+                }else{
+                    option.radiusThreshold = 100;
+                }
+                
+                // @[@"步行、骑行、跑步", @"驾车", @"火车、飞机", @"其他类型"]; 驾车
+                NSString *tjActivityType =[NSString changgeNonulWithString:baiduDic[@"tjActivityType"]];
+                if([tjActivityType integerValue] == 1){
+                    option.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_DRIVING;
+                }else if ([tjActivityType integerValue] == 3){
+                    option.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_AUTO;
+                }else if ([tjActivityType integerValue] == 2){
+                    option.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_RIDING;
+                }else{
+                    option.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_WALKING;
+                }
+              
+                _param.processOption = option;
+                
+//                BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT: 不补充，中断两点间距离不记入里程
+//                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_STRAIGHT: 使用直线距离补充
+//                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_DRIVING: 使用最短驾车路线距离补充
+//                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_RIDING: 使用最短骑行路线距离补充
+//                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_WALKING: 使用最短步行路线距离补充
+                NSString *mileageCompensation =[NSString changgeNonulWithString:baiduDic[@"tjMileageCompensation"]];
+                if([mileageCompensation integerValue] == 0){
+                    _param.supplementMode = BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT;
+                }else if ([mileageCompensation integerValue] == 1){
+                    _param.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_STRAIGHT;
+                }else if ([mileageCompensation integerValue] == 4){
+                    _param.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_DRIVING;
+                }else if ([mileageCompensation integerValue] == 3){
+                    _param.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_RIDING;
+                }else{
+                    _param.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_WALKING;
+                }
+            }else{
+//                NSInteger startTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_START_TIME];
+//                      if (startTime != 0) {
+//                          _param.startTime = startTime;
+//                      } else {
+//                          _param.startTime = [[NSDate date] timeIntervalSince1970] - 24 * 60 *60;
+//                      }
+//                      NSInteger endTime = [USER_DEFAULTS integerForKey:HISTORY_TRACK_END_TIME];
+//                      if (endTime != 0) {
+//                          _param.endTime = endTime;
+//                      } else {
+//                          _param.endTime = [[NSDate date] timeIntervalSince1970];
+//                      }
+                      _param.isProcessed = NO;
+                      BTKQueryTrackProcessOption *option = [[BTKQueryTrackProcessOption alloc] init];
+                      option.denoise = TRUE;
+                      option.vacuate = TRUE;
+                      option.mapMatch = FALSE;
+                      option.radiusThreshold = 0;
+                      option.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_WALKING;
+                      _param.processOption = option;
+                      _param.supplementMode = BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT;
+            }
     }
     return _param;
 }

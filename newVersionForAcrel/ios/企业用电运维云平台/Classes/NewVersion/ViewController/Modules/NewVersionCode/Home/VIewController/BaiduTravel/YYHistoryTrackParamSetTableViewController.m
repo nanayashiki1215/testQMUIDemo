@@ -70,7 +70,7 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = tableView.rowHeight;
     switch (indexPath.section) {
-        case 1:
+        case 0:
             switch (indexPath.row) {
                 case 1:
                     rowHeight = self.startTimePicker.hidden ? 0 : kTableViewCellPickerViewHeight;
@@ -114,46 +114,47 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
+//        case 0:
+//            return 1;
         case 0:
-            return 1;
-        case 1:
             return 4;
-        case 2:
-            return 8;
-        case 3:
-            return 2;
-        default:
-            return 1;
+//        case 2:
+//            return 8;
+//        case 3:
+//            return 2;
+//        default:
+//            return 1;
     }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    if (section == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamTextFieldCellIdentifier];
-        if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamTextFieldCellIdentifier];
-        }
-        [cell.contentView addSubview:self.entityNameTextField];
-        [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.entityNameTextField
-                                                                     attribute:NSLayoutAttributeCenterY
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:cell.contentView
-                                                                     attribute:NSLayoutAttributeCenterY
-                                                                    multiplier:1.0
-                                                                      constant:0]
-         ];
-        [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.entityNameTextField
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:cell.contentView
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                    multiplier:1.0
-                                                                      constant:20]
-         ];
-        return cell;
-    } else if (section == 1) {
+//    if (section == 0) {
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamTextFieldCellIdentifier];
+//        if (nil == cell) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamTextFieldCellIdentifier];
+//        }
+//        [cell.contentView addSubview:self.entityNameTextField];
+//        [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.entityNameTextField
+//                                                                     attribute:NSLayoutAttributeCenterY
+//                                                                     relatedBy:NSLayoutRelationEqual
+//                                                                        toItem:cell.contentView
+//                                                                     attribute:NSLayoutAttributeCenterY
+//                                                                    multiplier:1.0
+//                                                                      constant:0]
+//         ];
+//        [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.entityNameTextField
+//                                                                     attribute:NSLayoutAttributeLeft
+//                                                                     relatedBy:NSLayoutRelationEqual
+//                                                                        toItem:cell.contentView
+//                                                                     attribute:NSLayoutAttributeLeft
+//                                                                    multiplier:1.0
+//                                                                      constant:20]
+//         ];
+//        return cell;
+//    } else
+        if (section == 0) {
         if (row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamDefaultCellIdentifier];
             if (nil == cell) {
@@ -185,217 +186,218 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
         } else {
             return nil;
         }
-    } else if (section == 2) {
-        if (row == 0) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-            }
-            cell.textLabel.text = @"是否返回纠偏后的轨迹";
-            [cell.contentView addSubview:self.isProcessSwitch];
-            [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.isProcessSwitch
-                                                                         attribute:NSLayoutAttributeCenterY
-                                                                         relatedBy:NSLayoutRelationEqual
-                                                                            toItem:cell.contentView
-                                                                         attribute:NSLayoutAttributeCenterY
-                                                                        multiplier:1.0
-                                                                          constant:0]
-             ];
-            [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.isProcessSwitch
-                                                                         attribute:NSLayoutAttributeRight
-                                                                         relatedBy:NSLayoutRelationEqual
-                                                                            toItem:cell.contentView
-                                                                         attribute:NSLayoutAttributeRight
-                                                                        multiplier:1.0
-                                                                          constant:-20]
-             ];
-            return cell;
-        } else if (row == 1) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-            }
-            if (self.isProcessSwitch.on) {
-                cell.textLabel.text = @"是否去除明显的定位偏移点";
-                [cell.contentView addSubview:self.denoiseSwitch];
-                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.denoiseSwitch
-                                                                             attribute:NSLayoutAttributeCenterY
-                                                                             relatedBy:NSLayoutRelationEqual
-                                                                                toItem:cell.contentView
-                                                                             attribute:NSLayoutAttributeCenterY
-                                                                            multiplier:1.0
-                                                                              constant:0]
-                 ];
-                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.denoiseSwitch
-                                                                             attribute:NSLayoutAttributeRight
-                                                                             relatedBy:NSLayoutRelationEqual
-                                                                                toItem:cell.contentView
-                                                                             attribute:NSLayoutAttributeRight
-                                                                            multiplier:1.0
-                                                                              constant:-20]
-                 ];
-                cell.textLabel.hidden = FALSE;
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = FALSE;
-                }
-            } else {
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = TRUE;
-                }
-                cell.textLabel.hidden = TRUE;
-            }
-            return cell;
-        } else if (row == 2) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-            }
-            if (self.isProcessSwitch.on) {
-                cell.textLabel.text = @"是否去处冗余的轨迹点";
-                [cell.contentView addSubview:self.vacuateSwitch];
-                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.vacuateSwitch
-                                                                             attribute:NSLayoutAttributeCenterY
-                                                                             relatedBy:NSLayoutRelationEqual
-                                                                                toItem:cell.contentView
-                                                                             attribute:NSLayoutAttributeCenterY
-                                                                            multiplier:1.0
-                                                                              constant:0]
-                 ];
-                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.vacuateSwitch
-                                                                             attribute:NSLayoutAttributeRight
-                                                                             relatedBy:NSLayoutRelationEqual
-                                                                                toItem:cell.contentView
-                                                                             attribute:NSLayoutAttributeRight
-                                                                            multiplier:1.0
-                                                                              constant:-20]
-                 ];
-                cell.textLabel.hidden = FALSE;
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = FALSE;
-                }
-            } else {
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = TRUE;
-                }
-                cell.textLabel.hidden = TRUE;
-            }
-            return cell;
-        } else if (row == 3) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
-                
-            }
-            if (self.isProcessSwitch.on) {
-                cell.textLabel.text = @"是否将轨迹点绑定至道路";
-                [cell.contentView addSubview:self.mapMatchSwitch];
-                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.mapMatchSwitch
-                                                                             attribute:NSLayoutAttributeCenterY
-                                                                             relatedBy:NSLayoutRelationEqual
-                                                                                toItem:cell.contentView
-                                                                             attribute:NSLayoutAttributeCenterY
-                                                                            multiplier:1.0
-                                                                              constant:0]
-                 ];
-                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.mapMatchSwitch
-                                                                             attribute:NSLayoutAttributeRight
-                                                                             relatedBy:NSLayoutRelationEqual
-                                                                                toItem:cell.contentView
-                                                                             attribute:NSLayoutAttributeRight
-                                                                            multiplier:1.0
-                                                                              constant:-20]
-                 ];
-                cell.textLabel.hidden = FALSE;
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = FALSE;
-                }
-            } else {
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = TRUE;
-                }
-                cell.textLabel.hidden = TRUE;
-            }
-            
-            return cell;
-        }  else if (row == 4) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamDefaultCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamDefaultCellIdentifier];
-            }
-            if (self.isProcessSwitch.on) {
-                cell.textLabel.hidden = FALSE;
-                cell.textLabel.text = @"点击设置定位精度过滤阀值";
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = FALSE;
-                }
-            } else {
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = TRUE;
-                }
-                cell.textLabel.hidden = TRUE;
-            }
-            return cell;
-        } else if (row == 5) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
-            }
-            [cell addSubview:self.radiusThresholdPicker];
-            return cell;
-        } else if (row == 6) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamDefaultCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamDefaultCellIdentifier];
-            }
-            if (self.isProcessSwitch.on) {
-                cell.textLabel.hidden = FALSE;
-                cell.textLabel.text = @"点击设置交通方式";
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = FALSE;
-                }
-            } else {
-                for (UIView *view in cell.contentView.subviews) {
-                    view.hidden = TRUE;
-                }
-                cell.textLabel.hidden = TRUE;
-            }
-            return cell;
-        } else if (row == 7) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
-            }
-            [cell addSubview:self.transportModePicker];
-            return cell;
-        } else {
-            return nil;
-        }
-    } else if (section == 3) {
-        if (row == 0) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamDefaultCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamDefaultCellIdentifier];
-            }
-            cell.textLabel.text = @"点击设置里程补偿方式";
-            return cell;
-        } else if (row == 1) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
-            }
-            [cell addSubview:self.supplementModePicker];
-            return cell;
-        } else {
-            return nil;
-        }
-    } else {
-        return nil;
     }
+//        else if (section == 2) {
+//        if (row == 0) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//            }
+//            cell.textLabel.text = @"是否返回纠偏后的轨迹";
+//            [cell.contentView addSubview:self.isProcessSwitch];
+//            [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.isProcessSwitch
+//                                                                         attribute:NSLayoutAttributeCenterY
+//                                                                         relatedBy:NSLayoutRelationEqual
+//                                                                            toItem:cell.contentView
+//                                                                         attribute:NSLayoutAttributeCenterY
+//                                                                        multiplier:1.0
+//                                                                          constant:0]
+//             ];
+//            [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.isProcessSwitch
+//                                                                         attribute:NSLayoutAttributeRight
+//                                                                         relatedBy:NSLayoutRelationEqual
+//                                                                            toItem:cell.contentView
+//                                                                         attribute:NSLayoutAttributeRight
+//                                                                        multiplier:1.0
+//                                                                          constant:-20]
+//             ];
+//            return cell;
+//        } else if (row == 1) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//            }
+//            if (self.isProcessSwitch.on) {
+//                cell.textLabel.text = @"是否去除明显的定位偏移点";
+//                [cell.contentView addSubview:self.denoiseSwitch];
+//                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.denoiseSwitch
+//                                                                             attribute:NSLayoutAttributeCenterY
+//                                                                             relatedBy:NSLayoutRelationEqual
+//                                                                                toItem:cell.contentView
+//                                                                             attribute:NSLayoutAttributeCenterY
+//                                                                            multiplier:1.0
+//                                                                              constant:0]
+//                 ];
+//                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.denoiseSwitch
+//                                                                             attribute:NSLayoutAttributeRight
+//                                                                             relatedBy:NSLayoutRelationEqual
+//                                                                                toItem:cell.contentView
+//                                                                             attribute:NSLayoutAttributeRight
+//                                                                            multiplier:1.0
+//                                                                              constant:-20]
+//                 ];
+//                cell.textLabel.hidden = FALSE;
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = FALSE;
+//                }
+//            } else {
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = TRUE;
+//                }
+//                cell.textLabel.hidden = TRUE;
+//            }
+//            return cell;
+//        } else if (row == 2) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//            }
+//            if (self.isProcessSwitch.on) {
+//                cell.textLabel.text = @"是否去处冗余的轨迹点";
+//                [cell.contentView addSubview:self.vacuateSwitch];
+//                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.vacuateSwitch
+//                                                                             attribute:NSLayoutAttributeCenterY
+//                                                                             relatedBy:NSLayoutRelationEqual
+//                                                                                toItem:cell.contentView
+//                                                                             attribute:NSLayoutAttributeCenterY
+//                                                                            multiplier:1.0
+//                                                                              constant:0]
+//                 ];
+//                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.vacuateSwitch
+//                                                                             attribute:NSLayoutAttributeRight
+//                                                                             relatedBy:NSLayoutRelationEqual
+//                                                                                toItem:cell.contentView
+//                                                                             attribute:NSLayoutAttributeRight
+//                                                                            multiplier:1.0
+//                                                                              constant:-20]
+//                 ];
+//                cell.textLabel.hidden = FALSE;
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = FALSE;
+//                }
+//            } else {
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = TRUE;
+//                }
+//                cell.textLabel.hidden = TRUE;
+//            }
+//            return cell;
+//        } else if (row == 3) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamUISwitchCellIdentifier];
+//
+//            }
+//            if (self.isProcessSwitch.on) {
+//                cell.textLabel.text = @"是否将轨迹点绑定至道路";
+//                [cell.contentView addSubview:self.mapMatchSwitch];
+//                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.mapMatchSwitch
+//                                                                             attribute:NSLayoutAttributeCenterY
+//                                                                             relatedBy:NSLayoutRelationEqual
+//                                                                                toItem:cell.contentView
+//                                                                             attribute:NSLayoutAttributeCenterY
+//                                                                            multiplier:1.0
+//                                                                              constant:0]
+//                 ];
+//                [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.mapMatchSwitch
+//                                                                             attribute:NSLayoutAttributeRight
+//                                                                             relatedBy:NSLayoutRelationEqual
+//                                                                                toItem:cell.contentView
+//                                                                             attribute:NSLayoutAttributeRight
+//                                                                            multiplier:1.0
+//                                                                              constant:-20]
+//                 ];
+//                cell.textLabel.hidden = FALSE;
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = FALSE;
+//                }
+//            } else {
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = TRUE;
+//                }
+//                cell.textLabel.hidden = TRUE;
+//            }
+//
+//            return cell;
+//        }  else if (row == 4) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamDefaultCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamDefaultCellIdentifier];
+//            }
+//            if (self.isProcessSwitch.on) {
+//                cell.textLabel.hidden = FALSE;
+//                cell.textLabel.text = @"点击设置定位精度过滤阀值";
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = FALSE;
+//                }
+//            } else {
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = TRUE;
+//                }
+//                cell.textLabel.hidden = TRUE;
+//            }
+//            return cell;
+//        } else if (row == 5) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
+//            }
+//            [cell addSubview:self.radiusThresholdPicker];
+//            return cell;
+//        } else if (row == 6) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamDefaultCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamDefaultCellIdentifier];
+//            }
+//            if (self.isProcessSwitch.on) {
+//                cell.textLabel.hidden = FALSE;
+//                cell.textLabel.text = @"点击设置交通方式";
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = FALSE;
+//                }
+//            } else {
+//                for (UIView *view in cell.contentView.subviews) {
+//                    view.hidden = TRUE;
+//                }
+//                cell.textLabel.hidden = TRUE;
+//            }
+//            return cell;
+//        } else if (row == 7) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
+//            }
+//            [cell addSubview:self.transportModePicker];
+//            return cell;
+//        } else {
+//            return nil;
+//        }
+//    } else if (section == 3) {
+//        if (row == 0) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamDefaultCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamDefaultCellIdentifier];
+//            }
+//            cell.textLabel.text = @"点击设置里程补偿方式";
+//            return cell;
+//        } else if (row == 1) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
+//            if (nil == cell) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHistoryTrackParamPickerViewCellIdentifier];
+//            }
+//            [cell addSubview:self.supplementModePicker];
+//            return cell;
+//        } else {
+//            return nil;
+//        }
+//    } else {
+//        return nil;
+//    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case 1:
+        case 0:
             switch (indexPath.row) {
                 case 0:
                     self.startTimePicker.hidden ? [self showStartTimePickerCell] : [self hideStartTimePickerCell];
@@ -407,21 +409,21 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
                     break;
             }
             break;
-        case 2:
-            switch (indexPath.row) {
-                case 4:
-                    self.radiusThresholdPicker.hidden ? [self showRadiusThresholdPickerCell] : [self hideRadiusThresholdPickerCell];
-                    break;
-                case 6:
-                    self.transportModePicker.hidden ? [self showTransportModePickerCell] : [self hideTransportModePickerCell];
-                default:
-                    break;
-            }
-        case 3:
-            if (indexPath.row == 0) {
-                self.supplementModePicker.hidden ? [self showSupplementModePickerCell] : [self hideSupplementModePickerCell];
-            }
-            break;
+//        case 2:
+//            switch (indexPath.row) {
+//                case 4:
+//                    self.radiusThresholdPicker.hidden ? [self showRadiusThresholdPickerCell] : [self hideRadiusThresholdPickerCell];
+//                    break;
+//                case 6:
+//                    self.transportModePicker.hidden ? [self showTransportModePickerCell] : [self hideTransportModePickerCell];
+//                default:
+//                    break;
+//            }
+//        case 3:
+//            if (indexPath.row == 0) {
+//                self.supplementModePicker.hidden ? [self showSupplementModePickerCell] : [self hideSupplementModePickerCell];
+//            }
+//            break;
         default:
             break;
     }
@@ -566,7 +568,7 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
 
 #pragma mark - private function
 - (void)setupUI {
-    self.navigationItem.title = @"请求参数设置";
+    self.navigationItem.title = @"查询参数设置";
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] init];
     backBarButtonItem.title = @"返回";
     self.navigationItem.rightBarButtonItem = self.saveParamButton;
@@ -688,29 +690,100 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
 -(YYHistoryTrackParam *)paramInfo {
     if (_paramInfo == nil) {
         _paramInfo = [[YYHistoryTrackParam alloc] init];
-        _paramInfo.entityName = self.entityNameTextField.text;
-        _paramInfo.endTime = [self.endTimePicker.date timeIntervalSince1970];
-        _paramInfo.startTime = [self.startTimePicker.date timeIntervalSince1970];
-        _paramInfo.isProcessed = FALSE;
-        // 我们设置默认值为步行、保留所有轨迹点、去噪、抽稀、不绑路，可以随便设置
-        BTKQueryTrackProcessOption *processOption = [[BTKQueryTrackProcessOption alloc] init];
-        processOption.denoise = TRUE;
-        processOption.vacuate = TRUE;
-        processOption.mapMatch = FALSE;
-        processOption.radiusThreshold = 0;
-        processOption.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_WALKING;
-        _paramInfo.processOption = processOption;
-        _paramInfo.supplementMode = BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT;
+//        _paramInfo.entityName = @"311";会在YYHistoryTrackViewController中配置
+        
+                 // 配置默认值
+                UserManager *tjuser = [UserManager manager];
+                if (tjuser.yytjBaiduDic) {
+                    NSDictionary *baiduDic = tjuser.yytjBaiduDic;
+                    
+                    _paramInfo.endTime = [self.endTimePicker.date timeIntervalSince1970];
+                    _paramInfo.startTime = [self.startTimePicker.date timeIntervalSince1970];
+                    _paramInfo.isProcessed = FALSE;
+                    // 我们设置默认值为步行、保留所有轨迹点、去噪、抽稀、不绑路，可以随便设置
+                    BTKQueryTrackProcessOption *processOption = [[BTKQueryTrackProcessOption alloc] init];
+                    processOption.denoise = TRUE;
+                    processOption.vacuate = TRUE;
+                    
+                  
+                     
+                    //是否将轨迹点绑定至道路
+                   NSString *isBindTrack =[NSString changgeNonulWithString:baiduDic[@"tjIsBindTrack"]];
+                   if ([isBindTrack integerValue] == 0) {
+                        processOption.mapMatch = FALSE;
+                   }else if ([isBindTrack integerValue] == 1){
+                        processOption.mapMatch = TRUE;
+                   }
+            
+                    //若只需保留 GPS 定位点，则建议设为：20；若需保留 GPS 和 Wi-Fi 定位点，去除基站定位点，则建议设为：100
+                    NSString *seclectFiltering =[NSString changgeNonulWithString:baiduDic[@"tjSeclectFiltering"]];
+                    if ([seclectFiltering integerValue] == 0) {
+                        processOption.radiusThreshold = 0;
+                    }else if ([seclectFiltering integerValue] == 1){
+                        processOption.radiusThreshold = 20;
+                    }else{
+                        processOption.radiusThreshold = 100;
+                    }
+                    
+                    // @[@"步行、骑行、跑步", @"驾车", @"火车、飞机", @"其他类型"]; 驾车
+                    NSString *tjActivityType =[NSString changgeNonulWithString:baiduDic[@"tjActivityType"]];
+                    if([tjActivityType integerValue] == 1){
+                        processOption.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_DRIVING;
+                    }else if ([tjActivityType integerValue] == 3){
+                        processOption.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_AUTO;
+                    }else if ([tjActivityType integerValue] == 2){
+                        processOption.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_RIDING;
+                    }else{
+                        processOption.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_WALKING;
+                    }
+                  
+                    _paramInfo.processOption = processOption;
+                    
+    //                BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT: 不补充，中断两点间距离不记入里程
+    //                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_STRAIGHT: 使用直线距离补充
+    //                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_DRIVING: 使用最短驾车路线距离补充
+    //                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_RIDING: 使用最短骑行路线距离补充
+    //                - BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_WALKING: 使用最短步行路线距离补充
+                    NSString *mileageCompensation =[NSString changgeNonulWithString:baiduDic[@"tjMileageCompensation"]];
+                    if([mileageCompensation integerValue] == 0){
+                        _paramInfo.supplementMode = BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT;
+                    }else if ([mileageCompensation integerValue] == 1){
+                        _paramInfo.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_STRAIGHT;
+                    }else if ([mileageCompensation integerValue] == 4){
+                        _paramInfo.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_DRIVING;
+                    }else if ([mileageCompensation integerValue] == 3){
+                        _paramInfo.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_RIDING;
+                    }else{
+                        _paramInfo.supplementMode = BTK_TRACK_PROCESS_OPTION_SUPPLEMENT_MODE_WALKING;
+                    }
+                }else{
+                   _paramInfo.endTime = [self.endTimePicker.date timeIntervalSince1970];
+                    _paramInfo.startTime = [self.startTimePicker.date timeIntervalSince1970];
+                    _paramInfo.isProcessed = FALSE;
+                    // 我们设置默认值为步行、保留所有轨迹点、去噪、抽稀、不绑路，可以随便设置
+                    BTKQueryTrackProcessOption *processOption = [[BTKQueryTrackProcessOption alloc] init];
+                    processOption.denoise = TRUE;
+                    processOption.vacuate = TRUE;
+                    processOption.mapMatch = FALSE;
+                    processOption.radiusThreshold = 0;
+                    processOption.transportMode = BTK_TRACK_PROCESS_OPTION_TRANSPORT_MODE_WALKING;
+                    _paramInfo.processOption = processOption;
+                    _paramInfo.supplementMode = BTK_TRACK_PROCESS_OPTION_NO_SUPPLEMENT;
+                     
+                }
+        
     }
     return _paramInfo;
 }
 
 -(NSArray *)sectionTitles {
     if (_sectionTitles == nil) {
-        _sectionTitles = @[@"用户终端ID",
+        _sectionTitles = @[
+//            @"用户终端ID",
                            @"轨迹起止时间设置",
-                           @"纠偏选项设置",
-                           @"里程补偿方式设置"];
+//                           @"纠偏选项设置",
+//                           @"里程补偿方式设置"
+        ];
     }
     return _sectionTitles;
 }

@@ -45,11 +45,17 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onQueryHistoryTrack:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"HISTORY TRACK查询格式转换出错");
+//        NSLog(@"HISTORY TRACK查询格式转换出错");
+        DefQuickAlert(@"HISTORY TRACK查询格式转换出错",nil);
         return;
     }
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"HISTORY TRACK查询返回错误");
+        NSString *msg = [NSString changgeNonulWithString:dict[@"message"]];
+        if (msg) {
+            DefQuickAlert(msg,nil);
+        }else{
+            DefQuickAlert(@"HISTORY TRACK查询返回错误",nil);
+        }
         return;
     }
 
@@ -76,6 +82,11 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
             BTKQueryHistoryTrackRequest *request = [[BTKQueryHistoryTrackRequest alloc] initWithEntityName:self.param.entityName startTime:self.param.startTime endTime:self.param.endTime isProcessed:self.param.isProcessed processOption:self.param.processOption supplementMode:self.param.supplementMode outputCoordType:BTK_COORDTYPE_BD09LL sortType:BTK_TRACK_SORT_TYPE_ASC pageIndex:(2 + i) pageSize:kHistoryTrackPageSize serviceID:BGSERVICEID tag:(2 + i)];
             [[BTKTrackAction sharedInstance] queryHistoryTrackWith:request delegate:self];
         }
+        //没有查到轨迹的容错
+        if (!self.points.count) {
+            DefQuickAlert(@"该时间段内未查询到相应轨迹", nil);
+            return ;
+       }
         dispatch_group_notify(self.historyDispatchGroup, GLOBAL_QUEUE, ^{
             // 将所有查询到的轨迹点，按照loc_time升序排列，注意是稳定排序。
             // 因为绑路时会补充道路形状点，其loc_time与原始轨迹点一样，相同的loc_time在排序后必须保持原始的顺序，否则direction不准。
@@ -91,6 +102,7 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
             // 如果我们请求的是原始轨迹，最好自己计算每个轨迹点的方向，因为此时返回的direction字段可能不准确。
             if (FALSE == self.param.isProcessed) {
                 // 根据相邻两点之间的坐标，计算方向
+               
                 for (size_t i = 0; i < self.points.count - 1; i++) {
                     YYHistoryTrackPoint *point1 = (YYHistoryTrackPoint *)self.points[i];
                     YYHistoryTrackPoint *point2 = (YYHistoryTrackPoint *)self.points[i + 1];

@@ -19,6 +19,7 @@
 #import "UIImagePickerController+custom.h"
 #import "ZYSuspensionView.h"
 #import "YYServiceViewController.h"
+#import "YYHistoryTrackViewController.h"
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -77,7 +78,7 @@
 
 @property (nonatomic,strong) NSString *indexStr;
 
-//@property (nonatomic, weak) ZYSuspensionView *susView;
+@property (nonatomic, weak) ZYSuspensionView *susView;
 
 @end
 
@@ -154,7 +155,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(self.showWebType == showWebTypeDevice || self.showWebType == showWebTypeReport){
+    if(self.showWebType == showWebTypeDevice || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY){
         self.navigationController.navigationBarHidden = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self setStatusBarBackgroundColor:COLOR_WEBNAVBAR];
@@ -201,16 +202,16 @@
        
     }
     
-//     if (self.showWebType == showWebTypeDevice) {
-//        //显示轨迹
-//            UIColor *color = [UIColor colorWithRed:28/255 green:28/255 blue:28/255 alpha:0.8];
-//            ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
-//               susView.leanType = ZYSuspensionViewLeanTypeHorizontal;
-////               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
-//               [susView setImage:[UIImage imageNamed:@"icon_track"] forState:UIControlStateNormal];
-//               [susView show];
-//               self.susView = susView;
-//    }
+     if (self.showWebType == showWebTypeDeviceForYY && [UserManager manager].isOpenTjBaidu) {
+        //显示轨迹
+            UIColor *color = [UIColor colorWithRed:28/255 green:28/255 blue:28/255 alpha:0.8];
+            ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
+               susView.leanType = ZYSuspensionViewLeanTypeHorizontal;
+//               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
+               [susView setImage:[UIImage imageNamed:@"icon_track"] forState:UIControlStateNormal];
+               [susView show];
+               self.susView = susView;
+    }
 }
 
 //- (void)viewDidAppear:(BOOL)animated
@@ -429,7 +430,8 @@
         //判断网链接
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"judgeNetWork"];
         config.userContentController = wkUController;
-        
+        //添加跳转鹰眼轨迹 pushYYGJView
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushYYGJView"];
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         //用于进行JavaScript注入
@@ -481,7 +483,7 @@
         [config.userContentController addScriptMessageHandler:weakScriptMessageDelegate name:@"iOS"];
         [config.userContentController addUserScript:wkUScript2];
         
-        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif || self.showWebType == showWebTypeReport){
+        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY){
 //            _webView.backgroundColor = [UIColor clearColor];
             if (@available(iOS 13.0, *)) {
                 _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
@@ -674,6 +676,27 @@
     }else if([message.name isEqualToString:@"judgeNetWork"]){
 //        NSString *dataStatus = message.body;
 //        [self networkReachability];
+    }else if ([message.name isEqualToString:@"pushYYGJView"]){
+        YYHistoryTrackViewController *historyVC = [[YYHistoryTrackViewController alloc] init];
+        NSString *userid = [NSString changgeNonulWithString:message.body[@"entityName"]];
+        NSString *baseUrl = GetBaseURL;
+       NSString *strUrl2 = @"";
+       NSString *strUrl = [baseUrl stringByReplacingOccurrencesOfString:@"." withString:@"-"];
+       if ([strUrl containsString:@":"]) {
+           strUrl2 = [strUrl stringByReplacingOccurrencesOfString:@":" withString:@"_"];
+       }else{
+           strUrl2 = strUrl;
+       }
+       if([strUrl2 containsString:@"http"]){
+           baseUrl = [strUrl2 stringByReplacingOccurrencesOfString:@"/" withString:@""];
+       }else{
+           baseUrl = strUrl2;
+       }
+      NSString *entityName = [NSString stringWithFormat:@"%@-%@",baseUrl,userid];
+        historyVC.bgEntityName = entityName;
+        historyVC.title = @"轨迹记录";
+        [self.susView removeFromScreen];
+        [self.navigationController pushViewController:historyVC animated:YES];
     }
 }
 
@@ -1320,6 +1343,9 @@
 //    takePhoto
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"takePhoto"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"judgeNetWork"];
+    
+    //
+     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushYYGJView"];
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
@@ -1329,7 +1355,7 @@
     [UIImagePickerController unHookDelegate];
     //移除注册的js方法
     
-//     [self.susView removeFromScreen];
+     [self.susView removeFromScreen];
 }
 
 
@@ -1378,16 +1404,16 @@
 }
 
 
-//#pragma mark - ZYSuspensionViewDelegate 悬浮球代理 轨迹
-//- (void)suspensionViewClick:(ZYSuspensionView *)suspensionView
-//{
-//    NSLog(@"click %@",suspensionView.titleLabel.text);
-//    UIViewController *subVC = [[YYServiceViewController alloc] init];
-//    subVC.title = @"轨迹追踪";
-//    [self.susView removeFromScreen];
-//    [self.navigationController pushViewController:subVC animated:NO];
-//
-//}
+#pragma mark - ZYSuspensionViewDelegate 悬浮球代理 轨迹
+- (void)suspensionViewClick:(ZYSuspensionView *)suspensionView
+{
+    NSLog(@"click %@",suspensionView.titleLabel.text);
+    UIViewController *subVC = [[YYServiceViewController alloc] init];
+    subVC.title = @"轨迹追踪";
+    [self.susView removeFromScreen];
+    [self.navigationController pushViewController:subVC animated:NO];
+
+}
 
 //左滑页面
 //- (void)willMoveToParentViewController:(UIViewController*)parent

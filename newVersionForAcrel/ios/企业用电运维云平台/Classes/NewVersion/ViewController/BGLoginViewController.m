@@ -328,6 +328,18 @@
                [weakSelf addAlias:user.bguserId];
            }
        }
+        
+        //配置百度鹰眼轨迹
+        NSDictionary *trajectory = respObjc[kdata][@"trajectory"];
+        if (trajectory) {
+            user.yytjBaiduDic = trajectory;
+            NSString *isOpenBaidu = [NSString changgeNonulWithString:trajectory[@"tjIsUsing"]];
+            if ([isOpenBaidu isEqualToString:@"1"]) {
+                user.isOpenTjBaidu = YES;
+            }else{
+                user.isOpenTjBaidu = NO;
+            }
+        }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (errorMsg) {

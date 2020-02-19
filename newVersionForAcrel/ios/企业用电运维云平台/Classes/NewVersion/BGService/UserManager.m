@@ -365,4 +365,26 @@ static UserManager* manager;
     return _orderUrlArray;
 }
 
+-(void)setYytjBaiduDic:(NSDictionary *)yytjBaiduDic{
+    _yytjBaiduDic = yytjBaiduDic;
+    [DefNSUD setObject:_yytjBaiduDic
+                forKey:@"yytjBaiduDic"];
+    DefNSUDSynchronize
+}
+
+-(NSDictionary *)yytjBaiduDic{
+    _yytjBaiduDic = [DefNSUD objectForKey:@"yytjBaiduDic"];
+    return _yytjBaiduDic;
+}
+
+-(BOOL)isOpenTjBaidu{
+    _isOpenTjBaidu = [DefNSUD boolForKey:@"isOpenTjBaidu"];
+    return _isOpenTjBaidu;
+}
+
+-(void)setIsOpenTjBaidu:(BOOL)isOpenTjBaidu{
+    _isOpenTjBaidu = isOpenTjBaidu;
+    [DefNSUD setBool:_isOpenTjBaidu forKey:@"isOpenTjBaidu"];
+    DefNSUDSynchronize
+}
 @end

@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 //定义枚举类型
 typedef enum {
     showWebTypeAssets= 0,
-    showWebTypeDevice,
+    showWebTypeDevice,//设备档案、两个记录、文档管理
+    showWebTypeDeviceForYY,//待办事项 开启关闭鹰眼
     showWebTypeAlarm,
     showWebTypeAlarmWithTab,
     showWebFromMsgNotif, //从消息通知页面跳入
