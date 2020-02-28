@@ -314,6 +314,7 @@
             [MBProgressHUD showError:@"登录失败，未获取到版本号"];
         }
         
+        //动态配置视频
         if ([respObjc[kdata] isKindOfClass:[NSDictionary class]] && [respObjc[kdata] objectForKey:@"messagePushInfo"]) {
             NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
             if ([pushInfo objectForKey:@"messageIOSKey"] && [pushInfo objectForKey:@"messageIOSSecret"]) {

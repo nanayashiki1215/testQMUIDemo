@@ -20,6 +20,9 @@
 #import "ZYSuspensionView.h"
 #import "YYServiceViewController.h"
 #import "YYHistoryTrackViewController.h"
+#import "YYServiceManager.h"
+#import "YYServiceParam.h"
+#import <CoreLocation/CoreLocation.h>
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -432,6 +435,10 @@
         config.userContentController = wkUController;
         //添加跳转鹰眼轨迹 pushYYGJView
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushYYGJView"];
+        //打开鹰眼轨迹记录
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"openTrackFunction"];
+        
+        
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         //用于进行JavaScript注入
@@ -525,57 +532,57 @@
 
 
 //解决第一次进入的cookie丢失问题
-- (NSString *)readCurrentCookieWithDomain:(NSString *)domainStr{
-    NSHTTPCookieStorage*cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSMutableString * cookieString = [[NSMutableString alloc]init];
-    for (NSHTTPCookie*cookie in [cookieJar cookies]) {
-        [cookieString appendFormat:@"%@=%@;",cookie.name,cookie.value];
-    }
-    
-    //删除最后一个“;”
-    if ([cookieString hasSuffix:@";"]) {
-        [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length - 1, 1)];
-    }
-    
-    return cookieString;
-}
+//- (NSString *)readCurrentCookieWithDomain:(NSString *)domainStr{
+//    NSHTTPCookieStorage*cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//    NSMutableString * cookieString = [[NSMutableString alloc]init];
+//    for (NSHTTPCookie*cookie in [cookieJar cookies]) {
+//        [cookieString appendFormat:@"%@=%@;",cookie.name,cookie.value];
+//    }
+//
+//    //删除最后一个“;”
+//    if ([cookieString hasSuffix:@";"]) {
+//        [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length - 1, 1)];
+//    }
+//
+//    return cookieString;
+//}
 
 //解决 页面内跳转（a标签等）还是取不到cookie的问题
-- (void)getCookie{
-    
-    //取出cookie
-    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    //js函数
-    NSString *JSFuncString =
-    @"function setCookie(name,value,expires)\
-    {\
-    var oDate=new Date();\
-    oDate.setDate(oDate.getDate()+expires);\
-    document.cookie=name+'='+value+';expires='+oDate+';path=/'\
-    }\
-    function getCookie(name)\
-    {\
-    var arr = document.cookie.match(new RegExp('(^| )'+name+'=([^;]*)(;|$)'));\
-    if(arr != null) return unescape(arr[2]); return null;\
-    }\
-    function delCookie(name)\
-    {\
-    var exp = new Date();\
-    exp.setTime(exp.getTime() - 1);\
-    var cval=getCookie(name);\
-    if(cval!=null) document.cookie= name + '='+cval+';expires='+exp.toGMTString();\
-    }";
-    
-    //拼凑js字符串
-    NSMutableString *JSCookieString = JSFuncString.mutableCopy;
-    for (NSHTTPCookie *cookie in cookieStorage.cookies) {
-        NSString *excuteJSString = [NSString stringWithFormat:@"setCookie('%@', '%@', 1);", cookie.name, cookie.value];
-        [JSCookieString appendString:excuteJSString];
-    }
-    //执行js
-    [_webView evaluateJavaScript:JSCookieString completionHandler:nil];
-    
-}
+//- (void)getCookie{
+//
+//    //取出cookie
+//    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//    //js函数
+//    NSString *JSFuncString =
+//    @"function setCookie(name,value,expires)\
+//    {\
+//    var oDate=new Date();\
+//    oDate.setDate(oDate.getDate()+expires);\
+//    document.cookie=name+'='+value+';expires='+oDate+';path=/'\
+//    }\
+//    function getCookie(name)\
+//    {\
+//    var arr = document.cookie.match(new RegExp('(^| )'+name+'=([^;]*)(;|$)'));\
+//    if(arr != null) return unescape(arr[2]); return null;\
+//    }\
+//    function delCookie(name)\
+//    {\
+//    var exp = new Date();\
+//    exp.setTime(exp.getTime() - 1);\
+//    var cval=getCookie(name);\
+//    if(cval!=null) document.cookie= name + '='+cval+';expires='+exp.toGMTString();\
+//    }";
+//
+//    //拼凑js字符串
+//    NSMutableString *JSCookieString = JSFuncString.mutableCopy;
+//    for (NSHTTPCookie *cookie in cookieStorage.cookies) {
+//        NSString *excuteJSString = [NSString stringWithFormat:@"setCookie('%@', '%@', 1);", cookie.name, cookie.value];
+//        [JSCookieString appendString:excuteJSString];
+//    }
+//    //执行js
+//    [_webView evaluateJavaScript:JSCookieString completionHandler:nil];
+//
+//}
 
 #pragma mark - H5互调方法
 
@@ -676,7 +683,7 @@
     }else if([message.name isEqualToString:@"judgeNetWork"]){
 //        NSString *dataStatus = message.body;
 //        [self networkReachability];
-    }else if ([message.name isEqualToString:@"pushYYGJView"]){
+    }else if ([message.name isEqualToString:@"openTrackFunction"]){
         YYHistoryTrackViewController *historyVC = [[YYHistoryTrackViewController alloc] init];
         NSString *userid = [NSString changgeNonulWithString:message.body[@"entityName"]];
         NSString *baseUrl = GetBaseURL;
@@ -692,11 +699,29 @@
        }else{
            baseUrl = strUrl2;
        }
-      NSString *entityName = [NSString stringWithFormat:@"%@-%@",baseUrl,userid];
+       NSString *entityName = [NSString stringWithFormat:@"%@-%@",baseUrl,userid];
         historyVC.bgEntityName = entityName;
         historyVC.title = @"轨迹记录";
         [self.susView removeFromScreen];
         [self.navigationController pushViewController:historyVC animated:YES];
+    }else if ([message.name isEqualToString:@"openTrackFunction"]){
+        if ([YYServiceManager defaultManager].isServiceStarted) {
+                
+                // 停止服务
+        //        [[YYServiceManager defaultManager] stopService];
+            } else {
+                // 开启服务之间先配置轨迹服务的基础信息
+                
+                BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:[YYServiceParam serviceParamManager].keepAlive];
+                [[BTKAction sharedInstance] initInfo:basicInfoOption];
+                // 开启服务
+                BTKStartServiceOption *startServiceOption = [[BTKStartServiceOption alloc] initWithEntityName:[YYServiceParam serviceParamManager].entityName];
+                [[YYServiceManager defaultManager] startServiceWithOption:startServiceOption];
+                [YYServiceManager defaultManager].isGatherStarted = YES;
+                // 开始采集
+        //        [[YYServiceManager defaultManager] startGather];
+            }
+        
     }
 }
 
@@ -1346,6 +1371,8 @@
     
     //
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushYYGJView"];
+    
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"openTrackFunction"];
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];

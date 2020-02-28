@@ -19,4 +19,9 @@
 @property (nonatomic, assign) CLLocationDistance distanceFilter;
 @property (nonatomic, assign) BOOL keepAlive;
 
+
+//获取单例
++(instancetype)serviceParamManager;
+
+
 @end
