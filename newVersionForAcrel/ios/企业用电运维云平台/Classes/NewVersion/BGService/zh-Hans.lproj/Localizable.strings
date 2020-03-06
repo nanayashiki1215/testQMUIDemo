@@ -58,7 +58,6 @@
 "accesstoken_fail"="accesstoken异常或失效，需要重新获取";
 
 
-
 "monitorSystem"="监控系统";
 "deviceManage"="设备管理";
 
@@ -88,6 +87,17 @@
 "Upload the Avatar"="上传图片";
 "VersionUpdate"="版本更新";
 "Successfulsubmission"="提交成功,感谢您的反馈";
+"SignOut"="退出登录";
+"SignIn"="登录";
+"pathtracking"="轨迹追踪";
+"OpenTracking"="开启轨迹追踪";
+"StopTracking"="停止轨迹追踪";
+"Viewhistory"="查看历史记录";
+"TrackRecord"="轨迹记录";
+"SureSignOut"="确定退出登录吗？";
+"noData"="暂无数据";
+"search"="搜索";
+
 //language
 "Chinese-simple"="简体中文";
 //网络模块

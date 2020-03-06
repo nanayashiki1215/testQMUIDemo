@@ -67,7 +67,22 @@
 -(void)changeUserViewInfo{
         BGWeakSelf;
 //        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
+        UserManager *user = [UserManager manager];
+        NSNumber *language = [NSNumber numberWithBool:NO];
+        NSString *languageId = @"1";
+        if (user.selectlanageArr && user.selectlanageArr.count>0) {
+            for (NSDictionary *dic in user.selectlanageArr) {
+                    if ([dic[@"click"] integerValue] == 1) {
+                        languageId = dic[@"id"];
+                    }
+                }
+                if ([languageId integerValue] == 1) {
+                    language = [NSNumber numberWithBool:NO];
+                } else {
+                    language = [NSNumber numberWithBool:YES];
+                }
+        }
+        [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
 //            [MBProgressHUD hideHUDForView:self.view animated:YES];
             UserManager *user = [UserManager manager];
             NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
@@ -354,7 +369,7 @@
         return cell;
     }else{
         BGQMUserHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BGQMUserHeadTableViewCell"];
-//        [cell.quitOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+//        [cell.quitOutBtn setTitle:DefLocalizedString(@"SignOut") forState:UIControlStateNormal];
 //        if (!cell) {
 //            cell = [[BGQMUserHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"quitCell"];
 ////            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

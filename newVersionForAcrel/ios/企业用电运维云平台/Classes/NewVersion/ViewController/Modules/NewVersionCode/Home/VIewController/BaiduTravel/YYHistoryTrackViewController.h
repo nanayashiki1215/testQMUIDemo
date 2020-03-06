@@ -10,4 +10,7 @@
 
 @interface YYHistoryTrackViewController : UIViewController <BMKMapViewDelegate>
 @property(nonatomic,strong)NSString *bgEntityName;//传递需要查询的轨迹id
+@property(nonatomic,strong)NSString *startTime;//
+@property(nonatomic,strong)NSString *endTime;//
+
 @end

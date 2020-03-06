@@ -83,18 +83,52 @@
 -(void)saveLanguage{
     UserManager *user = [UserManager manager];
     user.selectlanageArr = self.dataSource;
-    NSString *languageId;
+    NSString *languageId = @"1";
     for (NSDictionary *dic in self.dataSource) {
         if ([dic[@"click"] integerValue] == 1) {
             languageId = dic[@"id"];
         }
     }
-    if ([languageId integerValue] == 1) {
-        [self changeLanguageTo:@"zh-Hans"];
-    } else {
-        [self changeLanguageTo:@"en"];
-//        [self changeLanguageTo:@"English"];
+    
+    NSNumber *language = [NSNumber numberWithBool:NO];
+    if (user.selectlanageArr && user.selectlanageArr.count>0) {
+        for (NSDictionary *dic in user.selectlanageArr) {
+                if ([dic[@"click"] integerValue] == 1) {
+                    languageId = dic[@"id"];
+                }
+            }
+            if ([languageId integerValue] == 1) {
+                language = [NSNumber numberWithBool:NO];
+            } else {
+                language = [NSNumber numberWithBool:YES];
+            }
     }
+    __weak __typeof(self)weakSelf = self;
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
+        UserManager *user = [UserManager manager];
+        NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
+        if (rootData) {
+            NSArray *menuArr = [rootData objectForKeyNotNull:@"rootMenu"];
+            if (!menuArr || !menuArr.count) {
+                DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+                //确认处理
+                return ;
+            }
+            user.rootMenuData = rootData;
+            NSString *imageSysBaseUrl = respObjc[kdata][@"iconUrl"];
+            [DefNSUD setObject:imageSysBaseUrl forKey:@"systemImageUrlstr"];
+            DefNSUDSynchronize
+            if ([languageId integerValue] == 1) {
+                    [weakSelf changeLanguageTo:@"zh-Hans"];
+                } else {
+                    [weakSelf changeLanguageTo:@"en"];
+            //        [self changeLanguageTo:@"English"];
+                }
+        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        
+    }];
+    
 }
 
 - (void)changeLanguageTo:(NSString *)language {

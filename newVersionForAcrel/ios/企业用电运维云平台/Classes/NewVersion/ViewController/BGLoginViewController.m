@@ -66,6 +66,7 @@
     [self.signInBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:19.f]];
     self.signInBtn.layer.cornerRadius = self.signInBtn.frame.size.height/2;
     self.signInBtn.layer.masksToBounds = YES;
+    [self.signInBtn setTitle:DefLocalizedString(@"SignIn") forState:UIControlStateNormal];
 //    self.signInBtn.layer.shadowOffset = CGSizeMake(0, 3);
 //    self.signInBtn.layer.shadowOpacity = 0.6;
 //    self.signInBtn.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.signInBtn.frame].CGPath;
@@ -380,7 +381,22 @@
 -(void)makeRootMenu{
      BGWeakSelf;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
+    UserManager *user = [UserManager manager];
+    NSNumber *language = [NSNumber numberWithBool:NO];
+    NSString *languageId = @"1";
+    if (user.selectlanageArr && user.selectlanageArr.count>0) {
+        for (NSDictionary *dic in user.selectlanageArr) {
+                if ([dic[@"click"] integerValue] == 1) {
+                    languageId = dic[@"id"];
+                }
+            }
+            if ([languageId integerValue] == 1) {
+                language = [NSNumber numberWithBool:NO];
+            } else {
+                language = [NSNumber numberWithBool:YES];
+            }
+    }
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];

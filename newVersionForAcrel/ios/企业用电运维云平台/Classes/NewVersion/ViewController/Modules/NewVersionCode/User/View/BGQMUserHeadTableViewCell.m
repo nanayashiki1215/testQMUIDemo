@@ -23,7 +23,8 @@
     self.quitOutBtn.layer.cornerRadius = self.quitOutBtn.frame.size.height/2;
     self.quitOutBtn.layer.masksToBounds = YES;
     [self.quitOutBtn.layer addSublayer:[UIColor setGradualChangingColor:self.quitOutBtn fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
-//    [self.quitOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    self.signoutlabel.text = DefLocalizedString(@"SignOut");
+//    [self.quitOutBtn setTitle:DefLocalizedString(@"SignOut") forState:UIControlStateNormal];
 //    [self.quitOutBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:19.f]];
 }
 
@@ -34,7 +35,7 @@
 }
 
 - (IBAction)loginOutClickEvent:(UIButton *)sender {
-    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
            //清空NSUserDefaults 退出登录
            NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
            NSDictionary *dictionary = [defatluts dictionaryRepresentation];
@@ -49,6 +50,8 @@
                    continue;
                }else if ([key isEqualToString:@"orderUrlArray"]){
                    continue;
+               }else if ([key isEqualToString:@"selectlanageArr"]){
+                   continue;
                }
                else{
                    [defatluts removeObjectForKey:key];
@@ -60,11 +63,11 @@
            [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
        }];
     
-        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Cancel") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
       
         }];
     
-       QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"退出登录" message:@"确定退出登录吗？" preferredStyle:QMUIAlertControllerStyleAlert];
+       QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"SignOut") message:DefLocalizedString(@"SureSignOut") preferredStyle:QMUIAlertControllerStyleAlert];
     
        [alertController addAction:action];
        [alertController addAction:action2];

@@ -207,13 +207,15 @@
     
      if (self.showWebType == showWebTypeDeviceForYY && [UserManager manager].isOpenTjBaidu) {
         //显示轨迹
-            UIColor *color = [UIColor colorWithRed:28/255 green:28/255 blue:28/255 alpha:0.8];
+//            UIColor *color = [UIColor colorWithRed:28/255 green:28/255 blue:28/255 alpha:0.8];
+            UIColor *color = COLOR_NAVBAR;
+//            UIColor *color = [UIColor greenColor];
             ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
-               susView.leanType = ZYSuspensionViewLeanTypeHorizontal;
+           susView.leanType = ZYSuspensionViewLeanTypeHorizontal;
 //               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
-               [susView setImage:[UIImage imageNamed:@"icon_track"] forState:UIControlStateNormal];
-               [susView show];
-               self.susView = susView;
+           [susView setImage:[UIImage imageNamed:@"yytrack"] forState:UIControlStateNormal];
+           [susView show];
+           self.susView = susView;
     }
 }
 
@@ -436,9 +438,11 @@
         //添加跳转鹰眼轨迹 pushYYGJView
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushYYGJView"];
         //打开鹰眼轨迹记录
-        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"openTrackFunction"];
-        
-        
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"openTrackFunc"];
+        //关闭y鹰眼轨迹记录
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"closeTrackFunc"];
+        //判断是否开启轨迹
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"isStartTrackFunc"];
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         //用于进行JavaScript注入
@@ -477,10 +481,33 @@
         NSString *baseUrl = [BASE_URL stringByAppendingString:user.versionNo];
         NSString *ipAddress = GetBaseURL;
         NSString *jsStartString;
-        if (self.menuId.length>0) {
-           jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,self.menuId,user.bguserId];
+        NSString *languageType = @"zh";
+        NSString *isOpenTrack = @"1";
+        if(user.selectlanageArr.count>0){
+            NSString *languageId;
+            for (NSDictionary *dic in user.selectlanageArr) {
+               if ([dic[@"click"] integerValue] == 1) {
+                   languageId = dic[@"id"];
+               }
+            }
+            if ([languageId integerValue] == 1) {
+                languageType = @"zh";
+            } else {
+                languageType = @"en";
+            }
+        }
+        
+        if (user.isOpenTjBaidu) {
+            isOpenTrack = @"1";
         }else{
-           jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','userID':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,user.bguserId];
+            isOpenTrack = @"0";
+        }
+//       window.webkit.messageHandlers.getLocation.postMessage("");
+//       loc = localStorage.getItem("locationStrJS");
+        if (self.menuId.length>0) {
+           jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
+        }else{
+           jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,user.bguserId,languageType,isOpenTrack];
         }
 //        NSString *jsStartString = [NSString stringWithFormat:@"var baserUrl = %@; var token %@",baseUrl,user.token];
         
@@ -683,28 +710,34 @@
     }else if([message.name isEqualToString:@"judgeNetWork"]){
 //        NSString *dataStatus = message.body;
 //        [self networkReachability];
-    }else if ([message.name isEqualToString:@"openTrackFunction"]){
+    }else if ([message.name isEqualToString:@"pushYYGJView"]){
         YYHistoryTrackViewController *historyVC = [[YYHistoryTrackViewController alloc] init];
         NSString *userid = [NSString changgeNonulWithString:message.body[@"entityName"]];
+        NSString *startTime = [NSString changgeNonulWithString:message.body[@"startTime"]];
+        NSString *endTime = [NSString changgeNonulWithString:message.body[@"endTime"]];
+        
         NSString *baseUrl = GetBaseURL;
-       NSString *strUrl2 = @"";
-       NSString *strUrl = [baseUrl stringByReplacingOccurrencesOfString:@"." withString:@"-"];
-       if ([strUrl containsString:@":"]) {
+        NSString *strUrl2 = @"";
+        NSString *strUrl = [baseUrl stringByReplacingOccurrencesOfString:@"." withString:@"-"];
+        if ([strUrl containsString:@":"]) {
            strUrl2 = [strUrl stringByReplacingOccurrencesOfString:@":" withString:@"_"];
-       }else{
+        }else{
            strUrl2 = strUrl;
-       }
-       if([strUrl2 containsString:@"http"]){
+        }
+        if([strUrl2 containsString:@"http"]){
            baseUrl = [strUrl2 stringByReplacingOccurrencesOfString:@"/" withString:@""];
-       }else{
+        }else{
            baseUrl = strUrl2;
-       }
-       NSString *entityName = [NSString stringWithFormat:@"%@-%@",baseUrl,userid];
+        }
+        NSString *entityName = [NSString stringWithFormat:@"%@-%@",baseUrl,userid];
         historyVC.bgEntityName = entityName;
         historyVC.title = @"轨迹记录";
+        historyVC.startTime = startTime;
+        historyVC.endTime = endTime;
+        
         [self.susView removeFromScreen];
         [self.navigationController pushViewController:historyVC animated:YES];
-    }else if ([message.name isEqualToString:@"openTrackFunction"]){
+    }else if ([message.name isEqualToString:@"openTrackFunc"]){
         if ([YYServiceManager defaultManager].isServiceStarted) {
                 
                 // 停止服务
@@ -721,7 +754,24 @@
                 // 开始采集
         //        [[YYServiceManager defaultManager] startGather];
             }
-        
+    }else if([message.name isEqualToString:@"closeTrackFunc"]){
+        if ([YYServiceManager defaultManager].isGatherStarted) {
+            [YYServiceManager defaultManager].isGatherStarted = NO;
+            // 停止采集
+            [[YYServiceManager defaultManager] stopGather];
+        }
+    }else if([message.name isEqualToString:@"isStartTrackFunc"]){
+        if ([YYServiceManager defaultManager].isGatherStarted) {
+           NSString *opentrackStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"isOpenTrack\",'%@');",@"true"];
+           [self.webView evaluateJavaScript:opentrackStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+               DefLog(@"item%@",item);
+           }];
+        }else{
+            NSString *opentrackStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"isOpenTrack\",'%@');",@"false"];
+            [self.webView evaluateJavaScript:opentrackStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                DefLog(@"item%@",item);
+            }];
+        }
     }
 }
 
@@ -1372,7 +1422,11 @@
     //
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushYYGJView"];
     
-    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"openTrackFunction"];
+    //开启关闭轨迹功能
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"openTrackFunc"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"closeTrackFunc"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"isStartTrackFunc"];
+    
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
@@ -1436,7 +1490,7 @@
 {
     NSLog(@"click %@",suspensionView.titleLabel.text);
     UIViewController *subVC = [[YYServiceViewController alloc] init];
-    subVC.title = @"轨迹追踪";
+    subVC.title = DefLocalizedString(@"pathtracking");
     [self.susView removeFromScreen];
     [self.navigationController pushViewController:subVC animated:NO];
 

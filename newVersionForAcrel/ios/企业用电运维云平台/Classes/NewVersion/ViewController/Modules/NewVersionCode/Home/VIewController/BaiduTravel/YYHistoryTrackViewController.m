@@ -89,13 +89,16 @@ static NSString * const kArrowTitle = @"箭头";
     selectStartBtn.backgroundColor = [UIColor whiteColor];
     selectStartBtn.titleLabel.font = UIFontMake(14);
     [selectStartBtn setTitle:@"开始时间" forState:UIControlStateNormal];
+    if (self.startTime.length) {
+        [selectStartBtn setTitle:[self getTimeFromTimestamp:self.startTime] forState:UIControlStateNormal];
+    }
     [selectStartBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [selectStartBtn addTarget:self action:@selector(selectStartTime:) forControlEvents:UIControlEventTouchUpInside];
     [selectTimeView addSubview:selectStartBtn];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5+SCREEN_WIDTH/3+5, 5, 15, 40)];
     label.text = @"至";
     [selectTimeView addSubview:label];
-    
+
     //结束时间按钮
     QMUIButton *selectEndBtn =  [[QMUIButton alloc] init];
     selectEndBtn.frame = CGRectMake(5+SCREEN_WIDTH/3+38, 5, SCREEN_WIDTH/3-5, 40);
@@ -103,6 +106,9 @@ static NSString * const kArrowTitle = @"箭头";
     selectEndBtn.titleLabel.font = UIFontMake(14);
     selectEndBtn.backgroundColor = [UIColor whiteColor];
     [selectEndBtn setTitle:@"结束时间" forState:UIControlStateNormal];
+    if (self.endTime.length) {
+        [selectEndBtn setTitle:[self getTimeFromTimestamp:self.endTime] forState:UIControlStateNormal];
+    }
     [selectEndBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     selectStartBtn.titleLabel.textColor = [UIColor blackColor];
     [selectEndBtn addTarget:self action:@selector(selectEndTime:) forControlEvents:UIControlEventTouchUpInside];
@@ -112,7 +118,7 @@ static NSString * const kArrowTitle = @"箭头";
     self.searchBtn = [[QMUIFillButton alloc] initWithFillType:QMUIFillButtonColorGreen];
     self.searchBtn.titleLabel.font = UIFontMake(14);
     self.searchBtn.frame = CGRectMake(SCREEN_WIDTH-85, 10, 80, 30);
-    [self.searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
+    [self.searchBtn setTitle:DefLocalizedString(@"search") forState:UIControlStateNormal];
     [self.searchBtn setImage:[UIImage imageNamed:@"searchImg"] forState:UIControlStateNormal];
     self.searchBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
     self.searchBtn.adjustsImageWithTitleTextColor = YES;
@@ -120,6 +126,18 @@ static NSString * const kArrowTitle = @"箭头";
     [selectTimeView addSubview:self.searchBtn];
     
     [self.view addSubview:selectTimeView];
+    
+    if(self.startTime.length && self.endTime.length){
+        YYHistoryViewModel *vm = [[YYHistoryViewModel alloc] init];
+        vm.completionHandler = ^(NSArray *points) {
+            self.historyPoints = points;
+            [self drawHistoryTrackWithPoints:points];
+        };
+        self.param.startTime = [self.startTime integerValue];
+        self.param.endTime = [self.endTime integerValue];
+        [vm queryHistoryWithParam:self.param];
+    }
+    
 }
 
 -(void)selectStartTime:(QMUIButton *)sender{
@@ -708,4 +726,25 @@ static NSString * const kArrowTitle = @"箭头";
     return _pointsQueue;
 }
 
+
+-(NSString *)getTimeFromTimestamp:(NSString *)timeStr{
+
+    //将对象类型的时间转换为NSDate类型
+
+   
+    NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:[timeStr integerValue]];
+
+    //设置时间格式
+
+    NSDateFormatter * formatter=[[NSDateFormatter alloc]init];
+
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+
+    //将时间转换为字符串
+
+    NSString *timeDatastr =[formatter stringFromDate:myDate];
+
+    return timeDatastr;
+
+}
 @end

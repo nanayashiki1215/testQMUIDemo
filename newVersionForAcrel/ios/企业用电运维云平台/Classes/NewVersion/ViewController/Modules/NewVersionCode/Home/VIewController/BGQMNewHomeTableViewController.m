@@ -38,7 +38,7 @@
     
     [super viewDidLoad];
 //     self.title = DefLocalizedString(@"Home");
-    self.title = @"监控系统";
+    self.title = DefLocalizedString(@"monitorSystem");
     self.view.backgroundColor = COLOR_BACKGROUND;
     // 对 self.view 的操作写在这里
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"筛选变电所" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftBtn)];
@@ -278,7 +278,22 @@
 -(void)getNetDataWithModel:(BGQMSubstationModel *)model{
     UserManager *user = [UserManager manager];
     NSInteger subid = [user.fsubID integerValue];
-    NSDictionary *param = @{@"fSubid":@(subid),@"pid":user.homefMenuid};
+    //配置国际化
+    NSNumber *language = [NSNumber numberWithBool:NO];
+       NSString *languageId = @"1";
+       if (user.selectlanageArr && user.selectlanageArr.count>0) {
+           for (NSDictionary *dic in user.selectlanageArr) {
+                   if ([dic[@"click"] integerValue] == 1) {
+                       languageId = dic[@"id"];
+                   }
+               }
+               if ([languageId integerValue] == 1) {
+                   language = [NSNumber numberWithBool:NO];
+               } else {
+                   language = [NSNumber numberWithBool:YES];
+               }
+       }
+    NSDictionary *param = @{@"fSubid":@(subid),@"pid":user.homefMenuid,@"english":language};
     __weak __typeof(self)weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [NetService bg_getWithTokenWithPath:getSubinfoVo params:param success:^(id respObjc) {

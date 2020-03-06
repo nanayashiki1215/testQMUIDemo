@@ -161,7 +161,7 @@
             NSString *unitStr = [NSString changgeNonulWithString:infoArray[i][@"unit"]];
             NSString *valueStr = [NSString changgeNonulWithString:infoArray[i][@"value"]];
             if (!valueStr.length || [valueStr isEqualToString:@"null"] ||  [valueStr isEqualToString:@"(null)"] ) {
-                label2.text = @"暂无数据";
+                label2.text = @"-";
             }else if([valueStr containsString:@";"]) {
                 NSArray  *arrayStr = [valueStr componentsSeparatedByString:@";"];
                 NSString *strRed = arrayStr[0];

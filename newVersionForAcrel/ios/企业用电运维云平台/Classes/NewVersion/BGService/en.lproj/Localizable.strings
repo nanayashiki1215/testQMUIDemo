@@ -17,11 +17,11 @@
 //"Inspect"="Inspect";
 //"Electric"="Electric";
 
-"Home"="主页";
-"Alarm"="报警";
-"Electric"="电力";
-"Inspect"="巡检";
-"About"="用户";
+"Home"="Home";
+"Alarm"="Alarms";
+"Electric"="Electric";
+"Inspect"="Inspect检";
+"About"="User";
 
 //登录
 "Domain name cannot be empty"="Domain name cannot be empty";
@@ -93,6 +93,17 @@
 "Save"="Save";
 "ChangeLanguage"="ChangeLanguage";
 "Delete"="Delete";
+"SignOut"="Sign Out";
+"SignIn"="Sign In";
+"pathtracking"="Path Tracking";
+"OpenTracking"="Open Tracking";
+"StopTracking"="Stop Tracking";
+"Viewhistory"="View history";
+"TrackRecord"="Track Record";
+"SureSignOut"="Are you sure to sign out?";
+"noData"="暂无数据";
+"search"="search";
+
 //language
 "Chinese-simple"="Chinese-simple";
 //网络模块

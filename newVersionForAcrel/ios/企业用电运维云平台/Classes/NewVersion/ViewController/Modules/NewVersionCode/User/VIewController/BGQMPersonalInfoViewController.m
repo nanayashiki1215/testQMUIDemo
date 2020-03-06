@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.tableView registerNib:[UINib nibWithNibName:@"BGRedSpotCell" bundle:nil] forCellReuseIdentifier:@"BGRedSpotCell"];
-    self.title =  DefLocalizedString(@"PersonalInfo");;
+    self.title =  DefLocalizedString(@"PersonalInfo");
 }
 
 -(void)viewWillAppear:(BOOL)animated{

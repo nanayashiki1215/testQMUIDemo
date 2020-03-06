@@ -49,7 +49,23 @@
 -(void)makeRootMenu{
     BGWeakSelf;
 //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
+    UserManager *user = [UserManager manager];
+    NSNumber *language = [NSNumber numberWithBool:NO];
+    NSString *languageId = @"1";
+    if (user.selectlanageArr && user.selectlanageArr.count>0) {
+        for (NSDictionary *dic in user.selectlanageArr) {
+                if ([dic[@"click"] integerValue] == 1) {
+                    languageId = dic[@"id"];
+                }
+            }
+            if ([languageId integerValue] == 1) {
+                language = [NSNumber numberWithBool:NO];
+            } else {
+                language = [NSNumber numberWithBool:YES];
+            }
+    }
+        
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
@@ -69,6 +85,8 @@
                     }else if ([key isEqualToString:@"isSavePwd"]){
                         continue;
                     }else if ([key isEqualToString:@"orderUrlArray"]){
+                        continue;
+                    }else if ([key isEqualToString:@"selectlanageArr"]){
                         continue;
                     }
                     else{
@@ -97,7 +115,22 @@
 }
 
 -(void)updateHomeData{
-    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:nil success:^(id respObjc) {
+    UserManager *user = [UserManager manager];
+    NSNumber *language = [NSNumber numberWithBool:NO];
+    NSString *languageId = @"1";
+    if (user.selectlanageArr && user.selectlanageArr.count>0) {
+        for (NSDictionary *dic in user.selectlanageArr) {
+                if ([dic[@"click"] integerValue] == 1) {
+                    languageId = dic[@"id"];
+                }
+            }
+            if ([languageId integerValue] == 1) {
+                language = [NSNumber numberWithBool:NO];
+            } else {
+                language = [NSNumber numberWithBool:YES];
+            }
+    }
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
         if (rootData) {
@@ -163,7 +196,7 @@
                        NSString *urlStr = [str stringByAppendingString:fActionurl];
                        componentViewController.onlineUrlString = urlStr;
                         componentViewController.isFromAlarm = @"1";
-                       componentViewController.hidesBottomBarWhenPushed = NO;
+                       componentViewController .hidesBottomBarWhenPushed = NO;
                        QDNavigationController *componentNavController = [[QDNavigationController alloc] initWithRootViewController:componentViewController];
                        componentNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:homePageText image:[UIImageMake(@"bgbaojing") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:UIImageMake(@"bgbaojingselect") tag:1];
                        AddAccessibilityHint(componentNavController.tabBarItem, @"实时报警系统");

@@ -107,7 +107,6 @@
 //                NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
              
                
-       
             }];
 //    }
 }
@@ -198,11 +197,11 @@
 -(void)updateServiceButtonStyle {
     dispatch_async(MAIN_QUEUE, ^{
         if ([YYServiceManager defaultManager].isServiceStarted) {
-            self.serviceButton.title = @"停止轨迹追踪";
+            self.serviceButton.title = DefLocalizedString(@"StopTracking");
             self.serviceButton.tintColor = [UIColor darkGrayColor];
         } else {
-            self.serviceButton.title = @"开启轨迹追踪";
-            self.serviceButton.tintColor = [UIColor blueColor];
+            self.serviceButton.title = DefLocalizedString(@"OpenTracking");
+            self.serviceButton.tintColor = COLOR_DeepLWithChange;
         }
     });
 }
@@ -213,8 +212,8 @@
 //            self.gatherButton.title = @"查看记录";
 //            self.gatherButton.tintColor = [UIColor darkGrayColor];
 //        } else {
-            self.gatherButton.title = @"查看历史记录";
-            self.gatherButton.tintColor = [UIColor blueColor];
+            self.gatherButton.title = DefLocalizedString(@"Viewhistory");
+            self.gatherButton.tintColor = COLOR_DeepLWithChange;
 //        }
     });
 }
@@ -385,7 +384,7 @@
     
     YYHistoryTrackViewController *historyVC = [[YYHistoryTrackViewController alloc] init];
     historyVC.bgEntityName = self.serviceBasicInfo.entityName;
-    historyVC.title = @"轨迹记录";
+    historyVC.title = DefLocalizedString(@"TrackRecord");
     [self.navigationController pushViewController:historyVC animated:YES];
 }
 
@@ -520,11 +519,11 @@
         NSString *title = nil;
         UIColor *tintColor = nil;
         if ([YYServiceManager defaultManager].isServiceStarted) {
-            title = @"结束轨迹追踪";
+            title = DefLocalizedString(@"StopTracking");
             tintColor = [UIColor darkGrayColor];
         } else {
-            title = @"开启轨迹追踪";
-            tintColor = [UIColor blueColor];
+            title = DefLocalizedString(@"OpenTracking");
+            tintColor = COLOR_DeepLWithChange;
         }
         _serviceButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(serviceButtonTapped)];
         _serviceButton.tintColor = tintColor;
@@ -540,8 +539,8 @@
 //            title = @"查看记录";
 //            tintColor = [UIColor darkGrayColor];
 //        } else {
-            title = @"查看历史记录";
-            tintColor = [UIColor blueColor];
+            title = DefLocalizedString(@"Viewhistory");
+            tintColor = COLOR_DeepLWithChange;
 //        }
         _gatherButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(gatherButtonTapped)];
         _gatherButton.tintColor = tintColor;

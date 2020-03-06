@@ -340,7 +340,7 @@ static char kAssociatedObjectKey_cancelButtonFont;
         self.qmui_placeholderColor = placeholderColor;
     }
 
-    self.placeholder = @"搜索";
+    self.placeholder = NSLocalizedString(@"search", nil);
     self.autocorrectionType = UITextAutocorrectionTypeNo;
     self.autocapitalizationType = UITextAutocapitalizationTypeNone;
 

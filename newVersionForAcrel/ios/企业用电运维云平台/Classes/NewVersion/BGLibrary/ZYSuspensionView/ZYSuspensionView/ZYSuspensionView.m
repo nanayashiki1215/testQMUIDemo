@@ -74,7 +74,7 @@
         self.delegate = delegate;
         self.userInteractionEnabled = YES;
         self.backgroundColor = color;
-        self.alpha = .7;
+        self.alpha = .9;
         self.titleLabel.font = [UIFont systemFontOfSize:14];
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1.0;
