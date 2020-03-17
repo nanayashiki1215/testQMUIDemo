@@ -88,15 +88,15 @@ static NSString * const kArrowTitle = @"箭头";
     selectStartBtn.layer.cornerRadius = 5;
     selectStartBtn.backgroundColor = [UIColor whiteColor];
     selectStartBtn.titleLabel.font = UIFontMake(14);
-    [selectStartBtn setTitle:@"开始时间" forState:UIControlStateNormal];
+    [selectStartBtn setTitle:DefLocalizedString(@"startTime") forState:UIControlStateNormal];
     if (self.startTime.length) {
         [selectStartBtn setTitle:[self getTimeFromTimestamp:self.startTime] forState:UIControlStateNormal];
     }
     [selectStartBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [selectStartBtn addTarget:self action:@selector(selectStartTime:) forControlEvents:UIControlEventTouchUpInside];
     [selectTimeView addSubview:selectStartBtn];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5+SCREEN_WIDTH/3+5, 5, 15, 40)];
-    label.text = @"至";
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5+SCREEN_WIDTH/3+5, 5, 18, 40)];
+    label.text = DefLocalizedString(@"to");
     [selectTimeView addSubview:label];
 
     //结束时间按钮
@@ -105,7 +105,7 @@ static NSString * const kArrowTitle = @"箭头";
     selectEndBtn.layer.cornerRadius = 5;
     selectEndBtn.titleLabel.font = UIFontMake(14);
     selectEndBtn.backgroundColor = [UIColor whiteColor];
-    [selectEndBtn setTitle:@"结束时间" forState:UIControlStateNormal];
+    [selectEndBtn setTitle:DefLocalizedString(@"endTime") forState:UIControlStateNormal];
     if (self.endTime.length) {
         [selectEndBtn setTitle:[self getTimeFromTimestamp:self.endTime] forState:UIControlStateNormal];
     }
@@ -161,9 +161,11 @@ static NSString * const kArrowTitle = @"箭头";
         self.param.startTime = [selectDate timeIntervalSince1970];
         [sender setTitle:dateString forState:UIControlStateNormal];
     }];
+    datepicker.doneButtonTitle = DefLocalizedString(@"Sure");
     datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
     datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
     datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
+    
     [datepicker show];
 }
 
@@ -176,6 +178,7 @@ static NSString * const kArrowTitle = @"箭头";
         NSLog(@"选择的日期：%@",dateString);
         [sender setTitle:dateString forState:UIControlStateNormal];
     }];
+    datepicker.doneButtonTitle = DefLocalizedString(@"Sure");
     datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
     datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
     datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
@@ -287,7 +290,7 @@ static NSString * const kArrowTitle = @"箭头";
 //    NSArray *rightButtons = [NSArray arrayWithObjects:self.playButton, self.paramSetButton, self.refreshButton, nil];
 //    NSArray *rightButtons = [NSArray arrayWithObjects:self.paramSetButton, self.refreshButton, nil];
 //    [self.navigationItem setRightBarButtonItems:rightButtons];
-    self.navigationItem.title = @"查询历史轨迹";
+    self.navigationItem.title = DefLocalizedString(@"searchHistoryTrack");
     // 设置控件
     [self.view addSubview:self.mapView];
     [self.view addSubview:self.wormSegmentControl];
@@ -577,6 +580,7 @@ static NSString * const kArrowTitle = @"箭头";
     if (_param == nil) {
         _param = [[YYHistoryTrackParam alloc] init];
         //配置查询人的entityName 用userid记录
+        
         _param.entityName = self.bgEntityName;
 //        _param.entityName = @"116-236-149-165_8090-315";
          // 配置默认值

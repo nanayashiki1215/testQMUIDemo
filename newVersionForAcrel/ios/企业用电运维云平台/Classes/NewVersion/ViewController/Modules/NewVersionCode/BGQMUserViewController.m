@@ -386,6 +386,7 @@
     }
 }
 
+//点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
      [tableView deselectRowAtIndexPath:indexPath animated:NO];
 //    if (indexPath.section == 0) {
@@ -692,7 +693,7 @@
     nomWebView.localUrlString = filePath;
     nomWebView.showWebType = showWebFromMsgNotif;
 //    nomWebView.urlParams = url;
-    nomWebView.titleName = @"消息通知设置";
+    nomWebView.titleName = DefLocalizedString(@"MsgNoticeSettings");
     [self.navigationController pushViewController:nomWebView animated:YES];
 }
 

@@ -102,7 +102,6 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
             // 如果我们请求的是原始轨迹，最好自己计算每个轨迹点的方向，因为此时返回的direction字段可能不准确。
             if (FALSE == self.param.isProcessed) {
                 // 根据相邻两点之间的坐标，计算方向
-               
                 for (size_t i = 0; i < self.points.count - 1; i++) {
                     YYHistoryTrackPoint *point1 = (YYHistoryTrackPoint *)self.points[i];
                     YYHistoryTrackPoint *point2 = (YYHistoryTrackPoint *)self.points[i + 1];

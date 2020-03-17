@@ -9,6 +9,7 @@
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
 #import "UIColor+BGExtension.h"
+#import "YYServiceManager.h"
 
 @implementation BGQMUserHeadTableViewCell
 
@@ -52,12 +53,20 @@
                    continue;
                }else if ([key isEqualToString:@"selectlanageArr"]){
                    continue;
+               }else if ([key isEqualToString:@"myLanguage"]){
+                   continue;
                }
                else{
                    [defatluts removeObjectForKey:key];
                    [defatluts synchronize];
                }
            }
+             // 停止采集轨迹
+            if ([YYServiceManager defaultManager].isGatherStarted) {
+                [YYServiceManager defaultManager].isGatherStarted = NO;
+               
+                [[YYServiceManager defaultManager] stopGather];
+            }
            BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
            UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
            [UIApplication sharedApplication].keyWindow.rootViewController = naVC;

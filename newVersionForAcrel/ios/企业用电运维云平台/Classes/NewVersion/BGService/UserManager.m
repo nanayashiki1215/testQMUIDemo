@@ -125,6 +125,7 @@ static UserManager* manager;
     [DefNSUD setObject:_bgtelphone forKey:@"bgtelphone"];
     DefNSUDSynchronize
 }
+
 -(NSString *)bgaddress{
     _bgaddress = [DefNSUD stringForKey:@"bgaddress"];
     return _bgaddress;
@@ -162,7 +163,6 @@ static UserManager* manager;
     self.account = @"test";
     self.password = @"123456";
     self.autoLogin = YES;
-    
 }
 
 -(void)setOrderListUrl:(NSString *)orderListUrl{

@@ -133,7 +133,7 @@
                       options:NSKeyValueObservingOptionNew
                       context:nil];
     if (self.titleName.length>0) {
-        if (self.showWebType == showWebFromMsgNotif) {
+        if (self.showWebType == showWebFromMsgNotif || self.showWebType == showWebTypeVersion) {
              [self loadLocalHtml];
         }else if([self.isFromFile isEqualToString:@"openFile"]){
             self.navigationController.navigationBarHidden = NO;
@@ -517,7 +517,7 @@
         [config.userContentController addScriptMessageHandler:weakScriptMessageDelegate name:@"iOS"];
         [config.userContentController addUserScript:wkUScript2];
         
-        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY){
+        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeVersion){
 //            _webView.backgroundColor = [UIColor clearColor];
             if (@available(iOS 13.0, *)) {
                 _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
@@ -1121,6 +1121,7 @@
 //       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
        [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
            NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
+           sleep(20);
            weakSelf.pageStillLoading = NO;
        }];
     }];

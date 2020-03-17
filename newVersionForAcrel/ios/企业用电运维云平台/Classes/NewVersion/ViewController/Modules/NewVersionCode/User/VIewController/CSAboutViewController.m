@@ -43,7 +43,7 @@
     //设置iPhone X导航栏88状况
     self.logoToTop.constant = BGSafeAreaTopHeight + 16 + 100;
     [self.versonUpdateBTN.layer addSublayer:[UIColor setGradualChangingColor:self.versonUpdateBTN fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
 //#if defined(BGProjectFlagUC)
 //    self.iconIV.image = [UIImage imageNamed:[BGProjectFlag stringByAppendingString:@"denglu_tm"]];
 //#elif defined(BGProjectFlagDJ)
@@ -55,6 +55,51 @@
 //
 //#endif
     
+}
+
+-(void)clickRightBtn{
+//     NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
+//     NSString *iOSUrl = [NSString changgeNonulWithString:self.allDataArr[index][@"fFunctionfield"]];
+    NSString *url = [NSString changgeNonulWithString:@""];
+    NSString *iOSUrl = [NSString changgeNonulWithString:@"versionIntroduce"];
+    if(iOSUrl.length){
+                NSArray * strarr = [iOSUrl componentsSeparatedByString:@"."];
+                NSString *urlStr= strarr.firstObject;
+                BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:urlStr ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeVersion;
+                nomWebView.titleName = DefLocalizedString(@"versionIntroduce");
+                [self.navigationController pushViewController:nomWebView animated:YES];
+    }else if(url.length){
+            //其他均用url加载 通用方法
+    //        fFunctionfield
+    //        NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
+                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                urlWebView.isUseOnline = YES;
+                UserManager *user = [UserManager manager];
+                //list
+                if (user.singleSubFullData) {
+                    NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
+                    NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                    NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                    NSString *urlStr = [str stringByAppendingString:url];
+                    urlWebView.onlineUrlString = urlStr;
+                    urlWebView.showWebType = showWebTypeVersion;
+                    [self.navigationController pushViewController:urlWebView animated:YES];
+                }
+        }else{
+            //其他均用url加载 通用方法
+            NSString *url = [NSString changgeNonulWithString:@""];
+            if (url.length) {
+                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                urlWebView.isUseOnline = YES;
+                urlWebView.onlineUrlString = url;
+                urlWebView.showWebType = showWebTypeVersion;
+                [self.navigationController pushViewController:urlWebView animated:YES];
+            }
+        }
 }
 
 -(void)getAboutNetData{

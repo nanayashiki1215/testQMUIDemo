@@ -189,8 +189,6 @@ typedef void(^doneBlock)(NSDate *);
     [self layoutIfNeeded];
     
     
-    
-    
     [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self];
     
     [self.showYearView addSubview:self.datePicker];
@@ -290,16 +288,16 @@ typedef void(^doneBlock)(NSDate *);
 {
     switch (self.datePickerStyle) {
         case DateStyleShowYearMonthDayHourMinute:
-            [self addLabelWithName:@[@"年",@"月",@"日",@"时",@"分"]];
+            [self addLabelWithName:@[DefLocalizedString(@"year"),DefLocalizedString(@"month"),DefLocalizedString(@"day"),DefLocalizedString(@"hour"),DefLocalizedString(@"Minute")]];
             return 5;
         case DateStyleShowMonthDayHourMinute:
-            [self addLabelWithName:@[@"月",@"日",@"时",@"分"]];
+            [self addLabelWithName:@[DefLocalizedString(@"month"),DefLocalizedString(@"day"),DefLocalizedString(@"hour"),DefLocalizedString(@"Minute")]];
             return 4;
         case DateStyleShowYearMonthDay:
-            [self addLabelWithName:@[@"年",@"月",@"日"]];
+            [self addLabelWithName:@[DefLocalizedString(@"year"),DefLocalizedString(@"month"),DefLocalizedString(@"day")]];
             return 3;
         case DateStyleShowYearMonth:
-            [self addLabelWithName:@[@"年",@"月"]];
+            [self addLabelWithName:@[DefLocalizedString(@"year"),DefLocalizedString(@"month")]];
             return 2;
         case DateStyleShowMonthDay:
             [self addLabelWithName:@[@"月",@"日"]];
@@ -853,6 +851,12 @@ typedef void(^doneBlock)(NSDate *);
 -(void)setDoneButtonColor:(UIColor *)doneButtonColor {
     _doneButtonColor = doneButtonColor;
     self.doneBtn.backgroundColor = doneButtonColor;
+}
+
+-(void)setDoneButtonTitle:(NSString *)doneButtonTitle{
+    _doneButtonTitle = doneButtonTitle;
+    [self.doneBtn setTitle:doneButtonTitle forState:UIControlStateNormal];
+    
 }
 
 -(void)setHideBackgroundYearLabel:(BOOL)hideBackgroundYearLabel {

@@ -101,8 +101,19 @@
 "Viewhistory"="View history";
 "TrackRecord"="Track Record";
 "SureSignOut"="Are you sure to sign out?";
-"noData"="暂无数据";
+"noData"="no Data";
 "search"="search";
+"searchHistoryTrack"="QueryHistoryTrack";
+"startTime"="StartTime";
+"endTime"="EndTime";
+"year"="Y";
+"month"="M";
+"day"="D";
+"hour"="H";
+"Minute"="M";
+"to"="To";
+"MsgNoticeSettings"="Notice Settings";
+"versionIntroduce"="Version Introduce";
 
 //language
 "Chinese-simple"="Chinese-simple";
