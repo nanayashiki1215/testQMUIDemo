@@ -3,7 +3,7 @@
 //  EzvizOpenSDK
 //
 //  Created by DeJohn Dong on 15/9/10.
-//  Copyright (c) 2015年 Hikvision. All rights reserved.
+//  Copyright (c) 2015年 Ezviz. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -31,6 +31,19 @@
  *  @return YES/NO
  */
 + (BOOL)initLibWithAppKey:(NSString *)appKey;
+
+/**
+ *  初始化接口，可设置服务器，海外用户使用该初始化方法
+ *
+ *  @param appKey 传入申请的appKey
+ *  @param url apiUrl地址
+ *  @param authUrl auth地址
+ *
+ *  @return YES/NO
+ */
++ (BOOL)initLibWithAppKey:(NSString *)appKey
+                      url:(NSString *)apiUrl
+                  authUrl:(NSString *)authUrl;
 
 /**
  *  @since 3.0.0
@@ -182,6 +195,7 @@
 + (EZPlayer *)createPlayerWithDeviceSerial:(NSString *)deviceSerial
                                   cameraNo:(NSInteger)cameraNo;
 
++ (EZPlayer *)createPlayerWithDeviceSerial:(NSString *)deviceSerial strCameraNo:(NSString *)strCameraNo;
 
 /**
  *  @since 3.0.0
@@ -410,12 +424,13 @@
                           completion:(void (^)(NSData *data, NSInteger resultCode))completion;
 
 /**
- *  @since 3.2.0
+ *  @since 1.0.0
  *  打开云存储中间页
  *
  *  @param deviceSerial 设备序列号
+ *  @param channelNo    设备通道号
  */
-+ (void)openCloudPage:(NSString *)deviceSerial;
++ (void)openCloudPage:(NSString *)deviceSerial channelNo:(NSInteger)channelNo;
 
 #pragma mark - V3.3 新增加接口
 

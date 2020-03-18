@@ -3,7 +3,7 @@
 //  EzvizOpenSDK
 //
 //  Created by DeJohn Dong on 15/9/16.
-//  Copyright (c) 2015年 Hikvision. All rights reserved.
+//  Copyright (c) 2015年 Ezviz. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -38,27 +38,19 @@ typedef NS_ENUM(NSInteger, EZMessageCode) {
 
 
 /**
- *  SD卡回放速率
+ *  回放速率
  */
 typedef NS_ENUM(NSInteger, EZPlaybackRate) {
-    EZ_PLAYBACK_RATE_1 = 1,         // 1倍速
-    EZ_PLAYBACK_RATE_2,             // 2倍速
-    EZ_PLAYBACK_RATE_2_1,           // 1/2倍速
-    EZ_PLAYBACK_RATE_4,             // 4倍速
-    EZ_PLAYBACK_RATE_4_1,           // 1/4倍速
-    EZ_PLAYBACK_RATE_8,             // 8倍速
-    EZ_PLAYBACK_RATE_8_1,           // 1/8倍速
-};
-
-/**
- *  云存储回放速率
- */
-typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
-    EZ_CLOUD_PLAYBACK_RATE_1 = 1,               // 1倍速
-    EZ_CLOUD_PLAYBACK_RATE_4 = 4,               // 4倍速
-    EZ_CLOUD_PLAYBACK_RATE_8 = 6,               // 8倍速
-    EZ_CLOUD_PLAYBACK_RATE_16 = 8,              // 16倍速
-    EZ_CLOUD_PLAYBACK_RATE_32 = 10,             // 32倍速
+    EZOPENSDK_PLAY_RATE_1_16 = 9,  //以1/16倍速度播放
+    EZOPENSDK_PLAY_RATE_1_8 = 7,   //以1/8倍速度播放
+    EZOPENSDK_PLAY_RATE_1_4 = 5,   //以1/4倍速度播放
+    EZOPENSDK_PLAY_RATE_1_2 = 3,   //以1/2倍速播放
+    EZOPENSDK_PLAY_RATE_1 = 1,     //以正常速度播放
+    EZOPENSDK_PLAY_RATE_2 = 2,     //以2倍速播放
+    EZOPENSDK_PLAY_RATE_4 = 4,     //以4倍速度播放
+    EZOPENSDK_PLAY_RATE_8 = 6,     //以8倍速度播放
+    EZOPENSDK_PLAY_RATE_16 = 8,    //以16倍速度播放
+    EZOPENSDK_PLAY_RATE_32 = 10,   //以32倍速度播放
 };
 
 /// 萤石播放器delegate方法
@@ -82,12 +74,13 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
 - (void)player:(EZPlayer *)player didReceivedMessage:(NSInteger)messageCode;
 
 /**
+ *  该方法废弃于v4.8.8版本，底层库不再支持。请使用getStreamFlow方法
  *  收到的数据长度（每秒调用一次）
  *
  *  @param player     播放器对象
  *  @param dataLength 播放器流媒体数据的长度（每秒字节数）
  */
-- (void)player:(EZPlayer *)player didReceivedDataLength:(NSInteger)dataLength;
+- (void)player:(EZPlayer *)player didReceivedDataLength:(NSInteger)dataLength DEPRECATED_MSG_ATTRIBUTE("use getStreamFlow instead");
 
 /**
  *  收到的画面长宽值
@@ -118,7 +111,8 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
  *  @return EZPlayer对象
  */
 + (instancetype)createPlayerWithDeviceSerial:(NSString *)deviceSerial cameraNo:(NSInteger)cameraNo;
-
+//for 国标
++ (instancetype)createPlayerWithDeviceSerial:(NSString *)deviceSerial strCameraNo:(NSString *)strCameraNo;
 /**
  *  根据url构造EZPlayer对象 （主要用来处理视频广场的播放）
  *
@@ -145,6 +139,34 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
  *  @return YES/NO;
  */
 - (BOOL)destoryPlayer;
+
+/**
+ *  设置使用硬件解码器优先，需在startRealPlay之前调用
+ *
+ *  @param HDPriority 是否硬解优先
+ */
+-(void)setHDPriority:(BOOL)HDPriority;
+
+/**
+ 获取当前的软硬解情况，在码流正常播放后调用
+ 
+ @return 1：软解 2：硬解 0：出错
+ */
+- (int) getHDPriorityStatus;
+
+/**
+ *  设置设备归属业务来源，需要在预览回放前调用  UIKit使用
+ *
+ *  @param bizType 类型       国标为 bizType='GB28181'
+ */
+-(void)setBizType:(NSString *)bizType;
+
+/**
+ *  平台id UIKit使用
+ *
+ *  @param platformId 类型
+*/
+-(void)setPlatformId:(NSString *)platformId;
 
 /**
  *  设置播放器的view
@@ -189,6 +211,25 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
 - (BOOL)closeSound;
 
 /**
+ 获取播放组件内部的播放库的port
+ 
+ @return 播放库的port,可能为-1（无效值）
+ */
+- (int) getInnerPlayerPort;
+
+/**
+ 获取当前已播放的总流量，单位字节
+ eg.计算每秒的流量：
+ NSInteger a = [self getStreamFlow];
+ //1s后调用
+ NSInteger b = [self getStreamFlow];
+ NSInteger perSecondFlow = b - a;
+ 
+ @return 流量值
+ */
+- (NSInteger) getStreamFlow;
+
+/**
  *  开始对讲，异步接口，返回值只是表示操作成功，不代表播放成功
  *
  *  @return YES/NO
@@ -201,6 +242,23 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
  *  @return YES/NO
  */
 - (BOOL)stopVoiceTalk;
+
+/**
+ 预览时开始本地录像预录制功能，异步方法
+ 
+ @param path 文件存储路径
+ @return YES/NO
+ */
+- (BOOL)startLocalRecordWithPathExt:(NSString *)path;
+
+
+/**
+ 结束本地录像预录制，并生成mp4录制文件，异步方法
+ 
+ @param complete 操作是否成功 YES/NO
+ */
+- (void)stopLocalRecordExt:(void (^)(BOOL ret))complete;
+
 
 /**
  *  半双工对讲专用接口，是否切换到听说状态
@@ -253,41 +311,9 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
 - (NSDate *)getOSDTime;
 
 /**
- *  设置使用硬件解码器优先，需在startRealPlay之前调用
- *
- *  @param HDPriority 是否硬解优先
- */
--(void)setHdPriority:(BOOL)HDPriority;
-
-/**
  *  停止远程回放
  */
 - (BOOL)stopPlayback;
-
-/**
- *  开始本地直播流录像功能（用户自行处理存储过程）
- *
- *  @param recordDataBlock 录像回调数据（可以对数据进行分析，比较人脸识别等）
- *
- *  @return YES/NO
- */
-- (BOOL)startLocalRecord:(void (^)(NSData *data))recordDataBlock;
-
-/**
- *  开始本地录像功能（SDK处理存储过程）
- *
- *  @param path 文件存储路径
- *
- *  @return YES/NO
- */
-- (BOOL)startLocalRecordWithPath:(NSString *)path;
-
-/**
- *  结束本地直播流录像
- *
- *  @return YES/NO
- */
-- (BOOL)stopLocalRecord;
 
 /**
  *  直播画面抓图
@@ -306,9 +332,19 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
 - (int) getPlayPort;
 
 /**
- SD卡回放专用接口，倍数回放
+ 获取当前取流方式：
 
- @param rate 回放倍率，见EZPlaybackRate,目前设备存储回放支持1、2、4、8、1/2、1/4、1/8倍数
+ @return 
+ */
+- (int) getStreamFetchType;
+
+/**
+ SD卡回放专用接口，倍数回放，支持的倍速需要设备支持
+ 1.支持抽帧快放的设备最高支持16倍速快放（所有取流方式，包括P2P）
+ 2.不支持抽帧快放的设备，仅支持内外网直连快放，最高支持8倍
+ 3.HCNetSDK取流没有快放概念，全速推流，只改变播放库速率
+ 
+ @param rate 回放倍率，见EZPlaybackRate
  @return YES/NO
  */
 - (BOOL) setPlaybackRate:(EZPlaybackRate) rate;
@@ -319,7 +355,14 @@ typedef NS_ENUM(NSInteger, EZCloudPlaybackRate) {
  @param rate 回放倍率，见EZCloudPlaybackRate,目前云存储支持1、4、8、16、32倍数
  @return YES/NO
  */
-- (BOOL) setCloudPlaybackRate:(EZCloudPlaybackRate) rate;
+- (BOOL) setCloudPlaybackRate:(EZPlaybackRate) rate;
+
+/**
+ 设置全双工对讲时的模式,对讲成功后调用
+ 
+ @param routeToSpeaker YES:使用扬声器 NO:使用听筒
+ */
+- (void) changeTalkingRouteMode:(BOOL) routeToSpeaker;
 
 @end
 

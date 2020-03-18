@@ -3,7 +3,7 @@
 //  EZGlobalSDK
 //
 //  Created by DeJohn Dong on 16/7/14.
-//  Copyright © 2016年 Hikvision. All rights reserved.
+//  Copyright © 2016年 Ezviz. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -444,8 +444,9 @@
  *  打开云存储中间页
  *
  *  @param deviceSerial 设备序列号
+ *  @param channelNo    设备通道号
  */
-+ (void)openCloudPage:(NSString *)deviceSerial;
++ (void)openCloudPage:(NSString *)deviceSerial channelNo:(NSInteger)channelNo;
 
 /**
  *  @since 1.0.0

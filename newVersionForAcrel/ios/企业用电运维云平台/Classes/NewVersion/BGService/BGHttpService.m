@@ -207,7 +207,7 @@ static id _instance;
     
     AFHTTPSessionManager *manager = [BGHttpService createHTTPSessionManager];
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
-//    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
+    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager POST:realURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
@@ -235,7 +235,7 @@ static id _instance;
     
     AFHTTPSessionManager *manager = [BGHttpService createHTTPSessionManagerWithToken];
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
-    //    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
+        [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager POST:realURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
@@ -262,7 +262,7 @@ static id _instance;
     NSString *realURL = path;
     AFHTTPSessionManager *manager = [BGHttpService createHTTPSessionManager];
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
-//    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
+    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager GET:realURL parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -289,7 +289,7 @@ static id _instance;
     NSString *realURL = path;
     AFHTTPSessionManager *manager = [BGHttpService createHTTPSessionManagerWithToken];
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
-    //    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
+        [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager GET:realURL parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -316,7 +316,7 @@ static id _instance;
     NSString *realURL = path;
     AFHTTPSessionManager *manager = [BGHttpService createHTTPSessionManager];
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
-//    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
+    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
     [manager PUT:realURL parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DefLog(@"\n\n***************  Start  ***************\nPUT:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {

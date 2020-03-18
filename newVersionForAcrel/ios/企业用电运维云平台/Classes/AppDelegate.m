@@ -112,7 +112,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     [QMUIConsole sharedInstance].canShow = NO;
     
     // QD自定义的全局样式渲染
-    [QDCommonUI renderGlobalAppearances];
+//    [QDCommonUI renderGlobalAppearances];
     
     // 预加载 QQ 表情，避免第一次使用时卡顿
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{

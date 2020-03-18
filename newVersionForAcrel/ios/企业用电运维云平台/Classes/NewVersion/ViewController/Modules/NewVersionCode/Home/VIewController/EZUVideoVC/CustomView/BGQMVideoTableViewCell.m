@@ -8,6 +8,7 @@
 
 #import "BGQMVideoTableViewCell.h"
 #import "EZUIError.h"
+#import "EZOpenSDK.h"
 #import "EZUIKitPlaybackViewController.h"
 #import "BGQMVideoListTableVC.h"
 

@@ -24,7 +24,7 @@
 		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
 		72A3A93A1D824587B174FAF0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF2192BC124D03B1473ED2 /* CoreData.framework */; };
 		7B2A3CEEE76844588867056B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A65815DAF7426F845B136A /* QuartzCore.framework */; };
-		7E1AD085E9014DB58B8F65E6 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651A81F398EF427BB81F1CD2 /* Toast+UIView.m */; };
+		7E1AD085E9014DB58B8F65E6 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651A81F398EF427BB81F1CD2 /* Toast+UIView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9573ACCF56AB4E45B41257CF /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = EDF212047675463284A64B00 /* close.png */; };
 		A74793AC903946A1BB94C37D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7758F09110646999F08912A /* OpenGLES.framework */; };
 		B6024AD822FA6224000A2A98 /* BGQMSettingPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6024AD622FA6224000A2A98 /* BGQMSettingPersonInfoViewController.m */; };
@@ -58,6 +58,47 @@
 		B61953FA2379273E00036E97 /* CloudPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F62379273E00036E97 /* CloudPushSDK.framework */; };
 		B61953FB2379273E00036E97 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F72379273E00036E97 /* UTMini.framework */; };
 		B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */; };
+		B62250CF2420AF9A0041E709 /* EZMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B62250CE2420AF9A0041E709 /* EZMain.storyboard */; };
+		B622510C2420B0720041E709 /* EZCameraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D32420B0710041E709 /* EZCameraTableViewController.m */; };
+		B622510D2420B0720041E709 /* EZWifiConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D42420B0710041E709 /* EZWifiConfigViewController.m */; };
+		B622510E2420B0720041E709 /* EZMessagePlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D52420B0710041E709 /* EZMessagePlaybackViewController.m */; };
+		B622510F2420B0720041E709 /* EZDeviceUpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D62420B0710041E709 /* EZDeviceUpgradeViewController.m */; };
+		B62251102420B0720041E709 /* EZLocalCameraListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D72420B0710041E709 /* EZLocalCameraListViewController.m */; };
+		B62251112420B0720041E709 /* UIViewController+EZBackPop.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DA2420B0710041E709 /* UIViewController+EZBackPop.m */; };
+		B62251122420B0720041E709 /* EZLocalDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DD2420B0710041E709 /* EZLocalDeviceListViewController.m */; };
+		B62251132420B0720041E709 /* EZDeviceResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DE2420B0710041E709 /* EZDeviceResultViewController.m */; };
+		B62251142420B0720041E709 /* EZMessagePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DF2420B0710041E709 /* EZMessagePhotoViewController.m */; };
+		B62251152420B0720041E709 /* EZDeviceRestartTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250E02420B0710041E709 /* EZDeviceRestartTipsViewController.m */; };
+		B62251162420B0720041E709 /* EZLivePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250E12420B0710041E709 /* EZLivePlayViewController.m */; };
+		B62251172420B0720041E709 /* EZLocalRealPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250E22420B0710041E709 /* EZLocalRealPlayViewController.m */; };
+		B62251182420B0720041E709 /* EZInputSerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250E52420B0710041E709 /* EZInputSerialViewController.m */; };
+		B62251192420B0720041E709 /* EZAPConfigResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250E72420B0710041E709 /* EZAPConfigResultViewController.m */; };
+		B622511A2420B0720041E709 /* EZAPWiFiConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250E92420B0710041E709 /* EZAPWiFiConfigViewController.m */; };
+		B622511B2420B0720041E709 /* EZDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250ED2420B0710041E709 /* EZDeviceTableViewController.m */; };
+		B622511C2420B0720041E709 /* EZWifiTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250EE2420B0710041E709 /* EZWifiTipsViewController.m */; };
+		B622511D2420B0720041E709 /* EZSupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B62250F72420B0710041E709 /* EZSupportViewController.xib */; };
+		B622511E2420B0720041E709 /* EZSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250F82420B0710041E709 /* EZSupportViewController.m */; };
+		B622511F2420B0720041E709 /* EZCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250F92420B0710041E709 /* EZCalendarViewController.m */; };
+		B62251202420B0720041E709 /* EZWifiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250FA2420B0710041E709 /* EZWifiInfoViewController.m */; };
+		B62251212420B0720041E709 /* EZSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250FD2420B0710041E709 /* EZSettingViewController.m */; };
+		B62251222420B0720041E709 /* EZDdnsDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250FE2420B0710041E709 /* EZDdnsDeviceTableViewController.m */; };
+		B62251232420B0720041E709 /* EZLocationAlertVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251002420B0710041E709 /* EZLocationAlertVCViewController.m */; };
+		B62251242420B0720041E709 /* UINavigationController+EZOpenSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251022420B0710041E709 /* UINavigationController+EZOpenSDK.m */; };
+		B62251252420B0720041E709 /* EZMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251032420B0710041E709 /* EZMessageListViewController.m */; };
+		B62251262420B0720041E709 /* EZEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251082420B0720041E709 /* EZEditViewController.m */; };
+		B62251272420B0720041E709 /* EZAddByQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251092420B0720041E709 /* EZAddByQRCodeViewController.m */; };
+		B62251282420B0720041E709 /* EZPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B622510B2420B0720041E709 /* EZPlaybackViewController.m */; };
+		B62251432420B2A30041E709 /* UIView+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622512B2420B2A20041E709 /* UIView+DDKit.m */; };
+		B62251442420B2A30041E709 /* UISegmentedControl+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622512C2420B2A20041E709 /* UISegmentedControl+DDKit.m */; };
+		B62251452420B2A30041E709 /* UIImageView+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622512F2420B2A20041E709 /* UIImageView+DDKit.m */; };
+		B62251462420B2A30041E709 /* UILabel+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251322420B2A20041E709 /* UILabel+DDKit.m */; };
+		B62251472420B2A30041E709 /* UIColor+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251342420B2A20041E709 /* UIColor+DDKit.m */; };
+		B62251482420B2A30041E709 /* NSArray+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251352420B2A20041E709 /* NSArray+DDKit.m */; };
+		B62251492420B2A30041E709 /* NSString+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251392420B2A20041E709 /* NSString+DDKit.m */; };
+		B622514A2420B2A30041E709 /* UIImage+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622513A2420B2A20041E709 /* UIImage+DDKit.m */; };
+		B622514B2420B2A30041E709 /* UIViewController+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622513C2420B2A20041E709 /* UIViewController+DDKit.m */; };
+		B622514C2420B2A30041E709 /* NSDate+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622513E2420B2A20041E709 /* NSDate+DDKit.m */; };
+		B622514D2420B2A30041E709 /* UIButton+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251402420B2A20041E709 /* UIButton+DDKit.m */; };
 		B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */; };
 		B626289E238F656300ED4825 /* BGDistributeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B626289D238F656300ED4825 /* BGDistributeMessage.m */; };
 		B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */; };
@@ -383,6 +424,38 @@
 		B6CA22A522C09F1B00AAA1CA /* BGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CA22A322C09F1A00AAA1CA /* BGHomeViewController.m */; };
 		B6CBDAC923B5E49C00B3ECA7 /* BaiduTraceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CBDAC523B5E25600B3ECA7 /* BaiduTraceSDK.framework */; };
 		B6CBDACA23B5E49C00B3ECA7 /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B6CBDAC523B5E25600B3ECA7 /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B6D320952420B44300A50F77 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320922420B44300A50F77 /* Aspects.m */; };
+		B6D320992420B46500A50F77 /* GlobalKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320972420B46500A50F77 /* GlobalKit.m */; };
+		B6D320A12420B8E400A50F77 /* DeviceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3209E2420B8E400A50F77 /* DeviceListCell.m */; };
+		B6D320A22420B8E400A50F77 /* CameraListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3209F2420B8E400A50F77 /* CameraListCell.m */; };
+		B6D320A32420B8E400A50F77 /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320A02420B8E400A50F77 /* MessageListCell.m */; };
+		B6D320A72420BBA300A50F77 /* DDCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320A62420BBA300A50F77 /* DDCollectionViewFlowLayout.m */; };
+		B6D320BE2420BDA200A50F77 /* EZCustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320AF2420BDA200A50F77 /* EZCustomTableView.m */; };
+		B6D320BF2420BDA200A50F77 /* UIImageView+EzvizOpenSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320B02420BDA200A50F77 /* UIImageView+EzvizOpenSDK.m */; };
+		B6D320C02420BDA200A50F77 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320B12420BDA200A50F77 /* Toast+UIView.m */; };
+		B6D320C12420BDA200A50F77 /* EZRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320B32420BDA200A50F77 /* EZRecordCell.m */; };
+		B6D320C22420BDA200A50F77 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320B52420BDA200A50F77 /* NSDate-Utilities.m */; };
+		B6D320C32420BDA200A50F77 /* HIKLoadViewItem+configPath.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320B62420BDA200A50F77 /* HIKLoadViewItem+configPath.m */; };
+		B6D320C42420BDA200A50F77 /* HIKLoadPercentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320B72420BDA200A50F77 /* HIKLoadPercentView.m */; };
+		B6D320C52420BDA200A50F77 /* HIKLoadViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320BA2420BDA200A50F77 /* HIKLoadViewItem.m */; };
+		B6D320C62420BDA200A50F77 /* HIKLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320BB2420BDA200A50F77 /* HIKLoadView.m */; };
+		B6D320F82420C34C00A50F77 /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320E72420C34C00A50F77 /* MWPhotoBrowser.m */; };
+		B6D320F92420C34C00A50F77 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320E82420C34C00A50F77 /* MWCaptionView.m */; };
+		B6D320FA2420C34C00A50F77 /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320EB2420C34C00A50F77 /* MWZoomingScrollView.m */; };
+		B6D320FB2420C34C00A50F77 /* UIImage+MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320EC2420C34C00A50F77 /* UIImage+MWPhotoBrowser.m */; };
+		B6D320FC2420C34C00A50F77 /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320EE2420C34C00A50F77 /* MWTapDetectingImageView.m */; };
+		B6D320FD2420C34C00A50F77 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320EF2420C34C00A50F77 /* MWPhoto.m */; };
+		B6D320FE2420C34C00A50F77 /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320F02420C34C00A50F77 /* MWTapDetectingView.m */; };
+		B6D320FF2420C34C00A50F77 /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320F22420C34C00A50F77 /* MWGridViewController.m */; };
+		B6D321002420C34C00A50F77 /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320F52420C34C00A50F77 /* MWGridCell.m */; };
+		B6D321062420C35400A50F77 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D321022420C35400A50F77 /* DALabeledCircularProgressView.m */; };
+		B6D321072420C35400A50F77 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D321032420C35400A50F77 /* DACircularProgressView.m */; };
+		B6D321112420C36800A50F77 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3210B2420C36800A50F77 /* UITableView+FDTemplateLayoutCell.m */; };
+		B6D321122420C36800A50F77 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3210D2420C36800A50F77 /* UITableView+FDKeyedHeightCache.m */; };
+		B6D321132420C36800A50F77 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3210E2420C36800A50F77 /* UITableView+FDTemplateLayoutCellDebug.m */; };
+		B6D321142420C36800A50F77 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3210F2420C36800A50F77 /* UITableView+FDIndexPathHeightCache.m */; };
+		B6D321492420C3F000A50F77 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D321482420C3EF00A50F77 /* SDWebImageDecoder.m */; };
+		B6D3216B2420C61300A50F77 /* libEZOpenSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D3216A2420C61300A50F77 /* libEZOpenSDK.a */; };
 		B6D3B18B23861F0B005CAF90 /* CSFileManage.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3B18A23861F0A005CAF90 /* CSFileManage.m */; };
 		B6D3B18E23861F41005CAF90 /* BGFileDownModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3B18D23861F41005CAF90 /* BGFileDownModel.m */; };
 		B6D3B19123862A8D005CAF90 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D3B19023862A8C005CAF90 /* Realm.framework */; };
@@ -483,7 +556,6 @@
 		B6E2189422A4AB93003C2969 /* BGQMUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2189322A4AB93003C2969 /* BGQMUserViewController.m */; };
 		B6E2189A22A4ACA7003C2969 /* BGQMElectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2189922A4ACA7003C2969 /* BGQMElectViewController.m */; };
 		B6EB9BB422C99F8100136A6C /* libEZUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EB9B9522C99F8100136A6C /* libEZUIKit.a */; };
-		B6EB9BB522C99F8100136A6C /* libEZOpenSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EB9BB322C99F8100136A6C /* libEZOpenSDK.a */; };
 		B6EB9BCC22C99FDB00136A6C /* EZUIKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BB722C99FDB00136A6C /* EZUIKitViewController.m */; };
 		B6EB9BCD22C99FDB00136A6C /* EZUISelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BB822C99FDB00136A6C /* EZUISelectViewController.m */; };
 		B6EB9BCE22C99FDB00136A6C /* BGVideoStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EB9BB922C99FDB00136A6C /* BGVideoStartViewController.m */; };
@@ -698,6 +770,88 @@
 		B61953F62379273E00036E97 /* CloudPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CloudPushSDK.framework; sourceTree = "<group>"; };
 		B61953F72379273E00036E97 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTMini.framework; sourceTree = "<group>"; };
 		B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AliyunEmasServices-Info.plist"; sourceTree = "<group>"; };
+		B62250CE2420AF9A0041E709 /* EZMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EZMain.storyboard; sourceTree = "<group>"; };
+		B62250D12420B0710041E709 /* EZWifiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWifiInfoViewController.h; sourceTree = "<group>"; };
+		B62250D22420B0710041E709 /* EZCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCalendarViewController.h; sourceTree = "<group>"; };
+		B62250D32420B0710041E709 /* EZCameraTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZCameraTableViewController.m; sourceTree = "<group>"; };
+		B62250D42420B0710041E709 /* EZWifiConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZWifiConfigViewController.m; sourceTree = "<group>"; };
+		B62250D52420B0710041E709 /* EZMessagePlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZMessagePlaybackViewController.m; sourceTree = "<group>"; };
+		B62250D62420B0710041E709 /* EZDeviceUpgradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZDeviceUpgradeViewController.m; sourceTree = "<group>"; };
+		B62250D72420B0710041E709 /* EZLocalCameraListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZLocalCameraListViewController.m; sourceTree = "<group>"; };
+		B62250D82420B0710041E709 /* EZDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceTableViewController.h; sourceTree = "<group>"; };
+		B62250D92420B0710041E709 /* EZWifiTipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWifiTipsViewController.h; sourceTree = "<group>"; };
+		B62250DA2420B0710041E709 /* UIViewController+EZBackPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+EZBackPop.m"; sourceTree = "<group>"; };
+		B62250DB2420B0710041E709 /* EZDdnsDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDdnsDeviceTableViewController.h; sourceTree = "<group>"; };
+		B62250DC2420B0710041E709 /* EZSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZSettingViewController.h; sourceTree = "<group>"; };
+		B62250DD2420B0710041E709 /* EZLocalDeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZLocalDeviceListViewController.m; sourceTree = "<group>"; };
+		B62250DE2420B0710041E709 /* EZDeviceResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZDeviceResultViewController.m; sourceTree = "<group>"; };
+		B62250DF2420B0710041E709 /* EZMessagePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZMessagePhotoViewController.m; sourceTree = "<group>"; };
+		B62250E02420B0710041E709 /* EZDeviceRestartTipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZDeviceRestartTipsViewController.m; sourceTree = "<group>"; };
+		B62250E12420B0710041E709 /* EZLivePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZLivePlayViewController.m; sourceTree = "<group>"; };
+		B62250E22420B0710041E709 /* EZLocalRealPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZLocalRealPlayViewController.m; sourceTree = "<group>"; };
+		B62250E32420B0710041E709 /* EZMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZMessageListViewController.h; sourceTree = "<group>"; };
+		B62250E42420B0710041E709 /* UINavigationController+EZOpenSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+EZOpenSDK.h"; sourceTree = "<group>"; };
+		B62250E52420B0710041E709 /* EZInputSerialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZInputSerialViewController.m; sourceTree = "<group>"; };
+		B62250E62420B0710041E709 /* EZLocationAlertVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLocationAlertVCViewController.h; sourceTree = "<group>"; };
+		B62250E72420B0710041E709 /* EZAPConfigResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAPConfigResultViewController.m; sourceTree = "<group>"; };
+		B62250E82420B0710041E709 /* EZPlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlaybackViewController.h; sourceTree = "<group>"; };
+		B62250E92420B0710041E709 /* EZAPWiFiConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAPWiFiConfigViewController.m; sourceTree = "<group>"; };
+		B62250EA2420B0710041E709 /* EZAddByQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAddByQRCodeViewController.h; sourceTree = "<group>"; };
+		B62250EB2420B0710041E709 /* EZEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZEditViewController.h; sourceTree = "<group>"; };
+		B62250EC2420B0710041E709 /* UIViewController+EZBackPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+EZBackPop.h"; sourceTree = "<group>"; };
+		B62250ED2420B0710041E709 /* EZDeviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZDeviceTableViewController.m; sourceTree = "<group>"; };
+		B62250EE2420B0710041E709 /* EZWifiTipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZWifiTipsViewController.m; sourceTree = "<group>"; };
+		B62250EF2420B0710041E709 /* EZLocalCameraListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLocalCameraListViewController.h; sourceTree = "<group>"; };
+		B62250F02420B0710041E709 /* EZDeviceUpgradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceUpgradeViewController.h; sourceTree = "<group>"; };
+		B62250F12420B0710041E709 /* EZMessagePlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZMessagePlaybackViewController.h; sourceTree = "<group>"; };
+		B62250F22420B0710041E709 /* EZWifiConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWifiConfigViewController.h; sourceTree = "<group>"; };
+		B62250F32420B0710041E709 /* EZCameraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCameraTableViewController.h; sourceTree = "<group>"; };
+		B62250F62420B0710041E709 /* EZSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZSupportViewController.h; sourceTree = "<group>"; };
+		B62250F72420B0710041E709 /* EZSupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EZSupportViewController.xib; sourceTree = "<group>"; };
+		B62250F82420B0710041E709 /* EZSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZSupportViewController.m; sourceTree = "<group>"; };
+		B62250F92420B0710041E709 /* EZCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZCalendarViewController.m; sourceTree = "<group>"; };
+		B62250FA2420B0710041E709 /* EZWifiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZWifiInfoViewController.m; sourceTree = "<group>"; };
+		B62250FB2420B0710041E709 /* EZDeviceResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceResultViewController.h; sourceTree = "<group>"; };
+		B62250FC2420B0710041E709 /* EZLocalDeviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLocalDeviceListViewController.h; sourceTree = "<group>"; };
+		B62250FD2420B0710041E709 /* EZSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZSettingViewController.m; sourceTree = "<group>"; };
+		B62250FE2420B0710041E709 /* EZDdnsDeviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZDdnsDeviceTableViewController.m; sourceTree = "<group>"; };
+		B62250FF2420B0710041E709 /* EZAPConfigResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAPConfigResultViewController.h; sourceTree = "<group>"; };
+		B62251002420B0710041E709 /* EZLocationAlertVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZLocationAlertVCViewController.m; sourceTree = "<group>"; };
+		B62251012420B0710041E709 /* EZInputSerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZInputSerialViewController.h; sourceTree = "<group>"; };
+		B62251022420B0710041E709 /* UINavigationController+EZOpenSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+EZOpenSDK.m"; sourceTree = "<group>"; };
+		B62251032420B0710041E709 /* EZMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZMessageListViewController.m; sourceTree = "<group>"; };
+		B62251042420B0710041E709 /* EZLocalRealPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLocalRealPlayViewController.h; sourceTree = "<group>"; };
+		B62251052420B0710041E709 /* EZLivePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLivePlayViewController.h; sourceTree = "<group>"; };
+		B62251062420B0710041E709 /* EZDeviceRestartTipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceRestartTipsViewController.h; sourceTree = "<group>"; };
+		B62251072420B0710041E709 /* EZMessagePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZMessagePhotoViewController.h; sourceTree = "<group>"; };
+		B62251082420B0720041E709 /* EZEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZEditViewController.m; sourceTree = "<group>"; };
+		B62251092420B0720041E709 /* EZAddByQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAddByQRCodeViewController.m; sourceTree = "<group>"; };
+		B622510A2420B0720041E709 /* EZAPWiFiConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAPWiFiConfigViewController.h; sourceTree = "<group>"; };
+		B622510B2420B0720041E709 /* EZPlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZPlaybackViewController.m; sourceTree = "<group>"; };
+		B622512B2420B2A20041E709 /* UIView+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DDKit.m"; sourceTree = "<group>"; };
+		B622512C2420B2A20041E709 /* UISegmentedControl+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+DDKit.m"; sourceTree = "<group>"; };
+		B622512D2420B2A20041E709 /* DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDKit.h; sourceTree = "<group>"; };
+		B622512E2420B2A20041E709 /* UIViewController+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DDKit.h"; sourceTree = "<group>"; };
+		B622512F2420B2A20041E709 /* UIImageView+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DDKit.m"; sourceTree = "<group>"; };
+		B62251302420B2A20041E709 /* UIImage+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DDKit.h"; sourceTree = "<group>"; };
+		B62251312420B2A20041E709 /* NSString+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDKit.h"; sourceTree = "<group>"; };
+		B62251322420B2A20041E709 /* UILabel+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+DDKit.m"; sourceTree = "<group>"; };
+		B62251332420B2A20041E709 /* NSDate+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DDKit.h"; sourceTree = "<group>"; };
+		B62251342420B2A20041E709 /* UIColor+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DDKit.m"; sourceTree = "<group>"; };
+		B62251352420B2A20041E709 /* NSArray+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DDKit.m"; sourceTree = "<group>"; };
+		B62251362420B2A20041E709 /* UIButton+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+DDKit.h"; sourceTree = "<group>"; };
+		B62251372420B2A20041E709 /* UISegmentedControl+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+DDKit.h"; sourceTree = "<group>"; };
+		B62251382420B2A20041E709 /* UIView+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DDKit.h"; sourceTree = "<group>"; };
+		B62251392420B2A20041E709 /* NSString+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDKit.m"; sourceTree = "<group>"; };
+		B622513A2420B2A20041E709 /* UIImage+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DDKit.m"; sourceTree = "<group>"; };
+		B622513B2420B2A20041E709 /* UIImageView+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DDKit.h"; sourceTree = "<group>"; };
+		B622513C2420B2A20041E709 /* UIViewController+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DDKit.m"; sourceTree = "<group>"; };
+		B622513D2420B2A20041E709 /* UIColor+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DDKit.h"; sourceTree = "<group>"; };
+		B622513E2420B2A20041E709 /* NSDate+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DDKit.m"; sourceTree = "<group>"; };
+		B622513F2420B2A20041E709 /* UILabel+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+DDKit.h"; sourceTree = "<group>"; };
+		B62251402420B2A20041E709 /* UIButton+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+DDKit.m"; sourceTree = "<group>"; };
+		B62251412420B2A20041E709 /* NSArray+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DDKit.h"; sourceTree = "<group>"; };
+		B62251422420B2A20041E709 /* DDCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCategory.h; sourceTree = "<group>"; };
 		B624D8CE2317CAEA00A16F5A /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		B626289C238F656300ED4825 /* BGDistributeMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGDistributeMessage.h; sourceTree = "<group>"; };
@@ -1323,6 +1477,100 @@
 		B6CA22A222C09F1A00AAA1CA /* BGHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGHomeViewController.xib; sourceTree = "<group>"; };
 		B6CA22A322C09F1A00AAA1CA /* BGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHomeViewController.m; sourceTree = "<group>"; };
 		B6CBDAC523B5E25600B3ECA7 /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduTraceSDK.framework; sourceTree = "<group>"; };
+		B6D320912420B44300A50F77 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
+		B6D320922420B44300A50F77 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
+		B6D320972420B46500A50F77 /* GlobalKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalKit.m; sourceTree = "<group>"; };
+		B6D320982420B46500A50F77 /* GlobalKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalKit.h; sourceTree = "<group>"; };
+		B6D3209B2420B8E400A50F77 /* CameraListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraListCell.h; sourceTree = "<group>"; };
+		B6D3209C2420B8E400A50F77 /* DeviceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListCell.h; sourceTree = "<group>"; };
+		B6D3209D2420B8E400A50F77 /* MessageListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListCell.h; sourceTree = "<group>"; };
+		B6D3209E2420B8E400A50F77 /* DeviceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListCell.m; sourceTree = "<group>"; };
+		B6D3209F2420B8E400A50F77 /* CameraListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraListCell.m; sourceTree = "<group>"; };
+		B6D320A02420B8E400A50F77 /* MessageListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListCell.m; sourceTree = "<group>"; };
+		B6D320A52420BBA300A50F77 /* DDCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		B6D320A62420BBA300A50F77 /* DDCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		B6D320A92420BDA200A50F77 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		B6D320AB2420BDA200A50F77 /* EZRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZRecordCell.h; sourceTree = "<group>"; };
+		B6D320AC2420BDA200A50F77 /* HIKLoadPercentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HIKLoadPercentView.h; sourceTree = "<group>"; };
+		B6D320AD2420BDA200A50F77 /* HIKLoadViewItem+configPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HIKLoadViewItem+configPath.h"; sourceTree = "<group>"; };
+		B6D320AE2420BDA200A50F77 /* HIKLoadViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HIKLoadViewItem.h; sourceTree = "<group>"; };
+		B6D320AF2420BDA200A50F77 /* EZCustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZCustomTableView.m; sourceTree = "<group>"; };
+		B6D320B02420BDA200A50F77 /* UIImageView+EzvizOpenSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EzvizOpenSDK.m"; sourceTree = "<group>"; };
+		B6D320B12420BDA200A50F77 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
+		B6D320B22420BDA200A50F77 /* HIKLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HIKLoadView.h; sourceTree = "<group>"; };
+		B6D320B32420BDA200A50F77 /* EZRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZRecordCell.m; sourceTree = "<group>"; };
+		B6D320B52420BDA200A50F77 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		B6D320B62420BDA200A50F77 /* HIKLoadViewItem+configPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HIKLoadViewItem+configPath.m"; sourceTree = "<group>"; };
+		B6D320B72420BDA200A50F77 /* HIKLoadPercentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HIKLoadPercentView.m; sourceTree = "<group>"; };
+		B6D320B82420BDA200A50F77 /* UIImageView+EzvizOpenSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EzvizOpenSDK.h"; sourceTree = "<group>"; };
+		B6D320B92420BDA200A50F77 /* EZCustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCustomTableView.h; sourceTree = "<group>"; };
+		B6D320BA2420BDA200A50F77 /* HIKLoadViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HIKLoadViewItem.m; sourceTree = "<group>"; };
+		B6D320BB2420BDA200A50F77 /* HIKLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HIKLoadView.m; sourceTree = "<group>"; };
+		B6D320BC2420BDA200A50F77 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
+		B6D320E32420C34C00A50F77 /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
+		B6D320E42420C34C00A50F77 /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhoto.h; sourceTree = "<group>"; };
+		B6D320E52420C34C00A50F77 /* MWPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoProtocol.h; sourceTree = "<group>"; };
+		B6D320E62420C34C00A50F77 /* MWGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridViewController.h; sourceTree = "<group>"; };
+		B6D320E72420C34C00A50F77 /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhotoBrowser.m; sourceTree = "<group>"; };
+		B6D320E82420C34C00A50F77 /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
+		B6D320E92420C34C00A50F77 /* MWTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingView.h; sourceTree = "<group>"; };
+		B6D320EA2420C34C00A50F77 /* MWPhotoBrowserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowserPrivate.h; sourceTree = "<group>"; };
+		B6D320EB2420C34C00A50F77 /* MWZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWZoomingScrollView.m; sourceTree = "<group>"; };
+		B6D320EC2420C34C00A50F77 /* UIImage+MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MWPhotoBrowser.m"; sourceTree = "<group>"; };
+		B6D320ED2420C34C00A50F77 /* MWGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridCell.h; sourceTree = "<group>"; };
+		B6D320EE2420C34C00A50F77 /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingImageView.m; sourceTree = "<group>"; };
+		B6D320EF2420C34C00A50F77 /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhoto.m; sourceTree = "<group>"; };
+		B6D320F02420C34C00A50F77 /* MWTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingView.m; sourceTree = "<group>"; };
+		B6D320F12420C34C00A50F77 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
+		B6D320F22420C34C00A50F77 /* MWGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridViewController.m; sourceTree = "<group>"; };
+		B6D320F32420C34C00A50F77 /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowser.h; sourceTree = "<group>"; };
+		B6D320F42420C34C00A50F77 /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
+		B6D320F52420C34C00A50F77 /* MWGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridCell.m; sourceTree = "<group>"; };
+		B6D320F62420C34C00A50F77 /* UIImage+MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MWPhotoBrowser.h"; sourceTree = "<group>"; };
+		B6D320F72420C34C00A50F77 /* MWZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWZoomingScrollView.h; sourceTree = "<group>"; };
+		B6D321022420C35400A50F77 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		B6D321032420C35400A50F77 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		B6D321042420C35400A50F77 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
+		B6D321052420C35400A50F77 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		B6D321092420C36800A50F77 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
+		B6D3210A2420C36800A50F77 /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
+		B6D3210B2420C36800A50F77 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
+		B6D3210C2420C36800A50F77 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
+		B6D3210D2420C36800A50F77 /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
+		B6D3210E2420C36800A50F77 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
+		B6D3210F2420C36800A50F77 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
+		B6D321102420C36800A50F77 /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
+		B6D321472420C3EF00A50F77 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		B6D321482420C3EF00A50F77 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		B6D3214D2420C61300A50F77 /* EZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZConstants.h; sourceTree = "<group>"; };
+		B6D3214E2420C61300A50F77 /* EZHCNetDeviceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHCNetDeviceSDK.h; sourceTree = "<group>"; };
+		B6D3214F2420C61300A50F77 /* EZOpenSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZOpenSDK.h; sourceTree = "<group>"; };
+		B6D321502420C61300A50F77 /* EZPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlayer.h; sourceTree = "<group>"; };
+		B6D321512420C61300A50F77 /* EZGlobalSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZGlobalSDK.h; sourceTree = "<group>"; };
+		B6D321532420C61300A50F77 /* EZDeviceVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceVersion.h; sourceTree = "<group>"; };
+		B6D321542420C61300A50F77 /* EZUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUserInfo.h; sourceTree = "<group>"; };
+		B6D321552420C61300A50F77 /* EZDeviceUpgradeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceUpgradeStatus.h; sourceTree = "<group>"; };
+		B6D321562420C61300A50F77 /* EZAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAccessToken.h; sourceTree = "<group>"; };
+		B6D321572420C61300A50F77 /* EZDeviceRecordDownloadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceRecordDownloadTask.h; sourceTree = "<group>"; };
+		B6D321582420C61300A50F77 /* EZDeviceRecordFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceRecordFile.h; sourceTree = "<group>"; };
+		B6D321592420C61300A50F77 /* EZLeaveMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLeaveMessage.h; sourceTree = "<group>"; };
+		B6D3215A2420C61300A50F77 /* EZHiddnsDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHiddnsDeviceInfo.h; sourceTree = "<group>"; };
+		B6D3215B2420C61300A50F77 /* EZDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceInfo.h; sourceTree = "<group>"; };
+		B6D3215C2420C61300A50F77 /* EZRecordDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZRecordDownloader.h; sourceTree = "<group>"; };
+		B6D3215D2420C61300A50F77 /* EZRecordDownloadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZRecordDownloadTask.h; sourceTree = "<group>"; };
+		B6D3215E2420C61300A50F77 /* EZVideoTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZVideoTransformer.h; sourceTree = "<group>"; };
+		B6D3215F2420C61300A50F77 /* EZDetectorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDetectorInfo.h; sourceTree = "<group>"; };
+		B6D321602420C61300A50F77 /* EZHCNetDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHCNetDeviceInfo.h; sourceTree = "<group>"; };
+		B6D321612420C61300A50F77 /* EZCameraInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCameraInfo.h; sourceTree = "<group>"; };
+		B6D321622420C61300A50F77 /* EZCloudRecordFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCloudRecordFile.h; sourceTree = "<group>"; };
+		B6D321632420C61300A50F77 /* EZCloudRecordDownloadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCloudRecordDownloadTask.h; sourceTree = "<group>"; };
+		B6D321642420C61300A50F77 /* EZAreaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAreaInfo.h; sourceTree = "<group>"; };
+		B6D321652420C61300A50F77 /* EZProbeDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZProbeDeviceInfo.h; sourceTree = "<group>"; };
+		B6D321662420C61300A50F77 /* EZVideoQualityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZVideoQualityInfo.h; sourceTree = "<group>"; };
+		B6D321672420C61300A50F77 /* EZAlarmInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAlarmInfo.h; sourceTree = "<group>"; };
+		B6D321682420C61300A50F77 /* EZSADPDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZSADPDeviceInfo.h; sourceTree = "<group>"; };
+		B6D321692420C61300A50F77 /* EZStorageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZStorageInfo.h; sourceTree = "<group>"; };
+		B6D3216A2420C61300A50F77 /* libEZOpenSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEZOpenSDK.a; sourceTree = "<group>"; };
 		B6D3B18923861F08005CAF90 /* CSFileManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSFileManage.h; sourceTree = "<group>"; };
 		B6D3B18A23861F0A005CAF90 /* CSFileManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSFileManage.m; sourceTree = "<group>"; };
 		B6D3B18C23861F3E005CAF90 /* BGFileDownModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGFileDownModel.h; sourceTree = "<group>"; };
@@ -1529,30 +1777,6 @@
 		B6EB9B9322C99F8100136A6C /* EZUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIKit.h; sourceTree = "<group>"; };
 		B6EB9B9422C99F8100136A6C /* EZUIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUIPlayer.h; sourceTree = "<group>"; };
 		B6EB9B9522C99F8100136A6C /* libEZUIKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEZUIKit.a; sourceTree = "<group>"; };
-		B6EB9B9B22C99F8100136A6C /* EZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZConstants.h; sourceTree = "<group>"; };
-		B6EB9B9C22C99F8100136A6C /* EZHCNetDeviceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHCNetDeviceSDK.h; sourceTree = "<group>"; };
-		B6EB9B9D22C99F8100136A6C /* EZOpenSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZOpenSDK.h; sourceTree = "<group>"; };
-		B6EB9B9E22C99F8100136A6C /* EZPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlayer.h; sourceTree = "<group>"; };
-		B6EB9B9F22C99F8100136A6C /* EZGlobalSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZGlobalSDK.h; sourceTree = "<group>"; };
-		B6EB9BA122C99F8100136A6C /* EZDeviceVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceVersion.h; sourceTree = "<group>"; };
-		B6EB9BA222C99F8100136A6C /* EZUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUserInfo.h; sourceTree = "<group>"; };
-		B6EB9BA322C99F8100136A6C /* EZDeviceUpgradeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceUpgradeStatus.h; sourceTree = "<group>"; };
-		B6EB9BA422C99F8100136A6C /* EZAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAccessToken.h; sourceTree = "<group>"; };
-		B6EB9BA522C99F8100136A6C /* EZDeviceRecordFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceRecordFile.h; sourceTree = "<group>"; };
-		B6EB9BA622C99F8100136A6C /* EZLeaveMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLeaveMessage.h; sourceTree = "<group>"; };
-		B6EB9BA722C99F8100136A6C /* EZHiddnsDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHiddnsDeviceInfo.h; sourceTree = "<group>"; };
-		B6EB9BA822C99F8100136A6C /* EZDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceInfo.h; sourceTree = "<group>"; };
-		B6EB9BA922C99F8100136A6C /* EZDetectorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDetectorInfo.h; sourceTree = "<group>"; };
-		B6EB9BAA22C99F8100136A6C /* EZHCNetDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZHCNetDeviceInfo.h; sourceTree = "<group>"; };
-		B6EB9BAB22C99F8100136A6C /* EZCameraInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCameraInfo.h; sourceTree = "<group>"; };
-		B6EB9BAC22C99F8100136A6C /* EZCloudRecordFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCloudRecordFile.h; sourceTree = "<group>"; };
-		B6EB9BAD22C99F8100136A6C /* EZAreaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAreaInfo.h; sourceTree = "<group>"; };
-		B6EB9BAE22C99F8100136A6C /* EZProbeDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZProbeDeviceInfo.h; sourceTree = "<group>"; };
-		B6EB9BAF22C99F8100136A6C /* EZVideoQualityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZVideoQualityInfo.h; sourceTree = "<group>"; };
-		B6EB9BB022C99F8100136A6C /* EZAlarmInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAlarmInfo.h; sourceTree = "<group>"; };
-		B6EB9BB122C99F8100136A6C /* EZSADPDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZSADPDeviceInfo.h; sourceTree = "<group>"; };
-		B6EB9BB222C99F8100136A6C /* EZStorageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZStorageInfo.h; sourceTree = "<group>"; };
-		B6EB9BB322C99F8100136A6C /* libEZOpenSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEZOpenSDK.a; sourceTree = "<group>"; };
 		B6EB9BB722C99FDB00136A6C /* EZUIKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUIKitViewController.m; sourceTree = "<group>"; };
 		B6EB9BB822C99FDB00136A6C /* EZUISelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUISelectViewController.m; sourceTree = "<group>"; };
 		B6EB9BB922C99FDB00136A6C /* BGVideoStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGVideoStartViewController.m; sourceTree = "<group>"; };
@@ -1616,6 +1840,7 @@
 				B614C3C1233AF00B0072459F /* Photos.framework in Frameworks */,
 				B63BFF64234DBFDD009C70BC /* BaiduMapAPI_Cloud.framework in Frameworks */,
 				B60C808522A8A7780016D936 /* OpenAL.framework in Frameworks */,
+				B6D3216B2420C61300A50F77 /* libEZOpenSDK.a in Frameworks */,
 				B60C808322A8A76B0016D936 /* CoreMedia.framework in Frameworks */,
 				B657DE142292859F0009BCB0 /* GLKit.framework in Frameworks */,
 				B6CBDAC923B5E49C00B3ECA7 /* BaiduTraceSDK.framework in Frameworks */,
@@ -1650,7 +1875,6 @@
 				5C68959B6E6D476E9D7BF866 /* UIKit.framework in Frameworks */,
 				0A2108A0B0DD4421883C2CC8 /* Foundation.framework in Frameworks */,
 				2E95AED19A84454D979E5FBF /* libsqlite3.0.tbd in Frameworks */,
-				B6EB9BB522C99F8100136A6C /* libEZOpenSDK.a in Frameworks */,
 				72A3A93A1D824587B174FAF0 /* CoreData.framework in Frameworks */,
 				B63BFF65234DBFDD009C70BC /* BaiduMapAPI_Base.framework in Frameworks */,
 				B61953F92379273E00036E97 /* AlicloudUtils.framework in Frameworks */,
@@ -1940,6 +2164,129 @@
 				B61953F72379273E00036E97 /* UTMini.framework */,
 			);
 			path = AliyunOneSDK;
+			sourceTree = "<group>";
+		};
+		B62250CB2420AF780041E709 /* EZTalkView */ = {
+			isa = PBXGroup;
+			children = (
+				B62250D02420B0710041E709 /* UIViewControllers */,
+				B62250CE2420AF9A0041E709 /* EZMain.storyboard */,
+			);
+			path = EZTalkView;
+			sourceTree = "<group>";
+		};
+		B62250D02420B0710041E709 /* UIViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B6D320962420B46500A50F77 /* Global */,
+				B6D320902420B44300A50F77 /* Aspects */,
+				B62251292420B2A20041E709 /* DDCategory */,
+				B62250D12420B0710041E709 /* EZWifiInfoViewController.h */,
+				B62250D22420B0710041E709 /* EZCalendarViewController.h */,
+				B62250D32420B0710041E709 /* EZCameraTableViewController.m */,
+				B62250D42420B0710041E709 /* EZWifiConfigViewController.m */,
+				B62250D52420B0710041E709 /* EZMessagePlaybackViewController.m */,
+				B62250D62420B0710041E709 /* EZDeviceUpgradeViewController.m */,
+				B62250D72420B0710041E709 /* EZLocalCameraListViewController.m */,
+				B62250D82420B0710041E709 /* EZDeviceTableViewController.h */,
+				B62250D92420B0710041E709 /* EZWifiTipsViewController.h */,
+				B62250DA2420B0710041E709 /* UIViewController+EZBackPop.m */,
+				B62250DB2420B0710041E709 /* EZDdnsDeviceTableViewController.h */,
+				B62250DC2420B0710041E709 /* EZSettingViewController.h */,
+				B62250DD2420B0710041E709 /* EZLocalDeviceListViewController.m */,
+				B62250DE2420B0710041E709 /* EZDeviceResultViewController.m */,
+				B62250DF2420B0710041E709 /* EZMessagePhotoViewController.m */,
+				B62250E02420B0710041E709 /* EZDeviceRestartTipsViewController.m */,
+				B62250E22420B0710041E709 /* EZLocalRealPlayViewController.m */,
+				B62250E32420B0710041E709 /* EZMessageListViewController.h */,
+				B62250E42420B0710041E709 /* UINavigationController+EZOpenSDK.h */,
+				B62250E52420B0710041E709 /* EZInputSerialViewController.m */,
+				B62250E62420B0710041E709 /* EZLocationAlertVCViewController.h */,
+				B62250E72420B0710041E709 /* EZAPConfigResultViewController.m */,
+				B62250E82420B0710041E709 /* EZPlaybackViewController.h */,
+				B62250E92420B0710041E709 /* EZAPWiFiConfigViewController.m */,
+				B62250EA2420B0710041E709 /* EZAddByQRCodeViewController.h */,
+				B62250EB2420B0710041E709 /* EZEditViewController.h */,
+				B62250EC2420B0710041E709 /* UIViewController+EZBackPop.h */,
+				B62250ED2420B0710041E709 /* EZDeviceTableViewController.m */,
+				B62250EE2420B0710041E709 /* EZWifiTipsViewController.m */,
+				B62250EF2420B0710041E709 /* EZLocalCameraListViewController.h */,
+				B62250F02420B0710041E709 /* EZDeviceUpgradeViewController.h */,
+				B62250F12420B0710041E709 /* EZMessagePlaybackViewController.h */,
+				B62250F22420B0710041E709 /* EZWifiConfigViewController.h */,
+				B62250F32420B0710041E709 /* EZCameraTableViewController.h */,
+				B62250F52420B0710041E709 /* Support */,
+				B62250F92420B0710041E709 /* EZCalendarViewController.m */,
+				B62250FA2420B0710041E709 /* EZWifiInfoViewController.m */,
+				B62250FB2420B0710041E709 /* EZDeviceResultViewController.h */,
+				B62250FC2420B0710041E709 /* EZLocalDeviceListViewController.h */,
+				B62250FD2420B0710041E709 /* EZSettingViewController.m */,
+				B62250FE2420B0710041E709 /* EZDdnsDeviceTableViewController.m */,
+				B62250FF2420B0710041E709 /* EZAPConfigResultViewController.h */,
+				B62251002420B0710041E709 /* EZLocationAlertVCViewController.m */,
+				B62251012420B0710041E709 /* EZInputSerialViewController.h */,
+				B62251022420B0710041E709 /* UINavigationController+EZOpenSDK.m */,
+				B62251032420B0710041E709 /* EZMessageListViewController.m */,
+				B62251042420B0710041E709 /* EZLocalRealPlayViewController.h */,
+				B62251062420B0710041E709 /* EZDeviceRestartTipsViewController.h */,
+				B62251072420B0710041E709 /* EZMessagePhotoViewController.h */,
+				B62251082420B0720041E709 /* EZEditViewController.m */,
+				B62251092420B0720041E709 /* EZAddByQRCodeViewController.m */,
+				B622510A2420B0720041E709 /* EZAPWiFiConfigViewController.h */,
+				B622510B2420B0720041E709 /* EZPlaybackViewController.m */,
+				B62251052420B0710041E709 /* EZLivePlayViewController.h */,
+				B62250E12420B0710041E709 /* EZLivePlayViewController.m */,
+			);
+			path = UIViewControllers;
+			sourceTree = "<group>";
+		};
+		B62250F52420B0710041E709 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				B62250F62420B0710041E709 /* EZSupportViewController.h */,
+				B62250F72420B0710041E709 /* EZSupportViewController.xib */,
+				B62250F82420B0710041E709 /* EZSupportViewController.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		B62251292420B2A20041E709 /* DDCategory */ = {
+			isa = PBXGroup;
+			children = (
+				B622512A2420B2A20041E709 /* Categories */,
+				B62251422420B2A20041E709 /* DDCategory.h */,
+			);
+			path = DDCategory;
+			sourceTree = "<group>";
+		};
+		B622512A2420B2A20041E709 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B622512B2420B2A20041E709 /* UIView+DDKit.m */,
+				B622512C2420B2A20041E709 /* UISegmentedControl+DDKit.m */,
+				B622512D2420B2A20041E709 /* DDKit.h */,
+				B622512E2420B2A20041E709 /* UIViewController+DDKit.h */,
+				B622512F2420B2A20041E709 /* UIImageView+DDKit.m */,
+				B62251302420B2A20041E709 /* UIImage+DDKit.h */,
+				B62251312420B2A20041E709 /* NSString+DDKit.h */,
+				B62251322420B2A20041E709 /* UILabel+DDKit.m */,
+				B62251332420B2A20041E709 /* NSDate+DDKit.h */,
+				B62251342420B2A20041E709 /* UIColor+DDKit.m */,
+				B62251352420B2A20041E709 /* NSArray+DDKit.m */,
+				B62251362420B2A20041E709 /* UIButton+DDKit.h */,
+				B62251372420B2A20041E709 /* UISegmentedControl+DDKit.h */,
+				B62251382420B2A20041E709 /* UIView+DDKit.h */,
+				B62251392420B2A20041E709 /* NSString+DDKit.m */,
+				B622513A2420B2A20041E709 /* UIImage+DDKit.m */,
+				B622513B2420B2A20041E709 /* UIImageView+DDKit.h */,
+				B622513C2420B2A20041E709 /* UIViewController+DDKit.m */,
+				B622513D2420B2A20041E709 /* UIColor+DDKit.h */,
+				B622513E2420B2A20041E709 /* NSDate+DDKit.m */,
+				B622513F2420B2A20041E709 /* UILabel+DDKit.h */,
+				B62251402420B2A20041E709 /* UIButton+DDKit.m */,
+				B62251412420B2A20041E709 /* NSArray+DDKit.h */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		B637964F22F1732C007AC38F /* UserFeedBackVC */ = {
@@ -2851,6 +3198,185 @@
 			path = NewVersionCode;
 			sourceTree = "<group>";
 		};
+		B6D320902420B44300A50F77 /* Aspects */ = {
+			isa = PBXGroup;
+			children = (
+				B6D320912420B44300A50F77 /* Aspects.h */,
+				B6D320922420B44300A50F77 /* Aspects.m */,
+			);
+			path = Aspects;
+			sourceTree = "<group>";
+		};
+		B6D320962420B46500A50F77 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				B6D320972420B46500A50F77 /* GlobalKit.m */,
+				B6D320982420B46500A50F77 /* GlobalKit.h */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		B6D3209A2420B8E400A50F77 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				B6D3209B2420B8E400A50F77 /* CameraListCell.h */,
+				B6D3209C2420B8E400A50F77 /* DeviceListCell.h */,
+				B6D3209D2420B8E400A50F77 /* MessageListCell.h */,
+				B6D3209E2420B8E400A50F77 /* DeviceListCell.m */,
+				B6D3209F2420B8E400A50F77 /* CameraListCell.m */,
+				B6D320A02420B8E400A50F77 /* MessageListCell.m */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		B6D320A42420BBA300A50F77 /* DDCollectionViewFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				B6D320A52420BBA300A50F77 /* DDCollectionViewFlowLayout.h */,
+				B6D320A62420BBA300A50F77 /* DDCollectionViewFlowLayout.m */,
+			);
+			path = DDCollectionViewFlowLayout;
+			sourceTree = "<group>";
+		};
+		B6D320A82420BDA200A50F77 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				B6D320A92420BDA200A50F77 /* NSDate-Utilities.h */,
+				B6D320AB2420BDA200A50F77 /* EZRecordCell.h */,
+				B6D320AC2420BDA200A50F77 /* HIKLoadPercentView.h */,
+				B6D320AD2420BDA200A50F77 /* HIKLoadViewItem+configPath.h */,
+				B6D320AE2420BDA200A50F77 /* HIKLoadViewItem.h */,
+				B6D320AF2420BDA200A50F77 /* EZCustomTableView.m */,
+				B6D320B02420BDA200A50F77 /* UIImageView+EzvizOpenSDK.m */,
+				B6D320B12420BDA200A50F77 /* Toast+UIView.m */,
+				B6D320B22420BDA200A50F77 /* HIKLoadView.h */,
+				B6D320B32420BDA200A50F77 /* EZRecordCell.m */,
+				B6D320B52420BDA200A50F77 /* NSDate-Utilities.m */,
+				B6D320B62420BDA200A50F77 /* HIKLoadViewItem+configPath.m */,
+				B6D320B72420BDA200A50F77 /* HIKLoadPercentView.m */,
+				B6D320B82420BDA200A50F77 /* UIImageView+EzvizOpenSDK.h */,
+				B6D320B92420BDA200A50F77 /* EZCustomTableView.h */,
+				B6D320BA2420BDA200A50F77 /* HIKLoadViewItem.m */,
+				B6D320BB2420BDA200A50F77 /* HIKLoadView.m */,
+				B6D320BC2420BDA200A50F77 /* Toast+UIView.h */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		B6D320E22420C34C00A50F77 /* MWPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				B6D320E32420C34C00A50F77 /* MWTapDetectingImageView.h */,
+				B6D320E42420C34C00A50F77 /* MWPhoto.h */,
+				B6D320E52420C34C00A50F77 /* MWPhotoProtocol.h */,
+				B6D320E62420C34C00A50F77 /* MWGridViewController.h */,
+				B6D320E72420C34C00A50F77 /* MWPhotoBrowser.m */,
+				B6D320E82420C34C00A50F77 /* MWCaptionView.m */,
+				B6D320E92420C34C00A50F77 /* MWTapDetectingView.h */,
+				B6D320EA2420C34C00A50F77 /* MWPhotoBrowserPrivate.h */,
+				B6D320EB2420C34C00A50F77 /* MWZoomingScrollView.m */,
+				B6D320EC2420C34C00A50F77 /* UIImage+MWPhotoBrowser.m */,
+				B6D320ED2420C34C00A50F77 /* MWGridCell.h */,
+				B6D320EE2420C34C00A50F77 /* MWTapDetectingImageView.m */,
+				B6D320EF2420C34C00A50F77 /* MWPhoto.m */,
+				B6D320F02420C34C00A50F77 /* MWTapDetectingView.m */,
+				B6D320F12420C34C00A50F77 /* MWCaptionView.h */,
+				B6D320F22420C34C00A50F77 /* MWGridViewController.m */,
+				B6D320F32420C34C00A50F77 /* MWPhotoBrowser.h */,
+				B6D320F42420C34C00A50F77 /* MWCommon.h */,
+				B6D320F52420C34C00A50F77 /* MWGridCell.m */,
+				B6D320F62420C34C00A50F77 /* UIImage+MWPhotoBrowser.h */,
+				B6D320F72420C34C00A50F77 /* MWZoomingScrollView.h */,
+			);
+			path = MWPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		B6D321012420C35400A50F77 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				B6D321022420C35400A50F77 /* DALabeledCircularProgressView.m */,
+				B6D321032420C35400A50F77 /* DACircularProgressView.m */,
+				B6D321042420C35400A50F77 /* DALabeledCircularProgressView.h */,
+				B6D321052420C35400A50F77 /* DACircularProgressView.h */,
+			);
+			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
+		B6D321082420C36800A50F77 /* UITableView-FDTemplateLayoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				B6D321092420C36800A50F77 /* UITableView+FDKeyedHeightCache.h */,
+				B6D3210A2420C36800A50F77 /* UITableView+FDTemplateLayoutCellDebug.h */,
+				B6D3210B2420C36800A50F77 /* UITableView+FDTemplateLayoutCell.m */,
+				B6D3210C2420C36800A50F77 /* UITableView+FDIndexPathHeightCache.h */,
+				B6D3210D2420C36800A50F77 /* UITableView+FDKeyedHeightCache.m */,
+				B6D3210E2420C36800A50F77 /* UITableView+FDTemplateLayoutCellDebug.m */,
+				B6D3210F2420C36800A50F77 /* UITableView+FDIndexPathHeightCache.m */,
+				B6D321102420C36800A50F77 /* UITableView+FDTemplateLayoutCell.h */,
+			);
+			path = "UITableView-FDTemplateLayoutCell";
+			sourceTree = "<group>";
+		};
+		B6D3214A2420C61300A50F77 /* EZOpenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B6D3214B2420C61300A50F77 /* include */,
+				B6D3216A2420C61300A50F77 /* libEZOpenSDK.a */,
+			);
+			path = EZOpenSDK;
+			sourceTree = "<group>";
+		};
+		B6D3214B2420C61300A50F77 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B6D3214C2420C61300A50F77 /* EZOpenSDK */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		B6D3214C2420C61300A50F77 /* EZOpenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B6D3214D2420C61300A50F77 /* EZConstants.h */,
+				B6D3214E2420C61300A50F77 /* EZHCNetDeviceSDK.h */,
+				B6D3214F2420C61300A50F77 /* EZOpenSDK.h */,
+				B6D321502420C61300A50F77 /* EZPlayer.h */,
+				B6D321512420C61300A50F77 /* EZGlobalSDK.h */,
+				B6D321522420C61300A50F77 /* modules */,
+			);
+			path = EZOpenSDK;
+			sourceTree = "<group>";
+		};
+		B6D321522420C61300A50F77 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				B6D321532420C61300A50F77 /* EZDeviceVersion.h */,
+				B6D321542420C61300A50F77 /* EZUserInfo.h */,
+				B6D321552420C61300A50F77 /* EZDeviceUpgradeStatus.h */,
+				B6D321562420C61300A50F77 /* EZAccessToken.h */,
+				B6D321572420C61300A50F77 /* EZDeviceRecordDownloadTask.h */,
+				B6D321582420C61300A50F77 /* EZDeviceRecordFile.h */,
+				B6D321592420C61300A50F77 /* EZLeaveMessage.h */,
+				B6D3215A2420C61300A50F77 /* EZHiddnsDeviceInfo.h */,
+				B6D3215B2420C61300A50F77 /* EZDeviceInfo.h */,
+				B6D3215C2420C61300A50F77 /* EZRecordDownloader.h */,
+				B6D3215D2420C61300A50F77 /* EZRecordDownloadTask.h */,
+				B6D3215E2420C61300A50F77 /* EZVideoTransformer.h */,
+				B6D3215F2420C61300A50F77 /* EZDetectorInfo.h */,
+				B6D321602420C61300A50F77 /* EZHCNetDeviceInfo.h */,
+				B6D321612420C61300A50F77 /* EZCameraInfo.h */,
+				B6D321622420C61300A50F77 /* EZCloudRecordFile.h */,
+				B6D321632420C61300A50F77 /* EZCloudRecordDownloadTask.h */,
+				B6D321642420C61300A50F77 /* EZAreaInfo.h */,
+				B6D321652420C61300A50F77 /* EZProbeDeviceInfo.h */,
+				B6D321662420C61300A50F77 /* EZVideoQualityInfo.h */,
+				B6D321672420C61300A50F77 /* EZAlarmInfo.h */,
+				B6D321682420C61300A50F77 /* EZSADPDeviceInfo.h */,
+				B6D321692420C61300A50F77 /* EZStorageInfo.h */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
 		B6D3B18F23862A8C005CAF90 /* RealmSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3038,12 +3564,12 @@
 		B6E15604228CF0E600CB4A5F /* BGLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				B6D3214A2420C61300A50F77 /* EZOpenSDK */,
 				B6B8807E23B98A8B00197FF6 /* ZYSuspensionView */,
 				B6D3B18F23862A8C005CAF90 /* RealmSDK */,
 				B61953F32379273E00036E97 /* AliyunOneSDK */,
 				B64D3B33233B62C20016DF9F /* qmui.xcodeproj */,
 				B66BA70222F275270027EE05 /* SDPhotoBrowser */,
-				B6EB9B9822C99F8100136A6C /* EZOpenSDK */,
 				B6EB9B9022C99F8100136A6C /* EZUIKit */,
 				B6A92E0122BA2D0900D16AE9 /* Bugly.framework */,
 				B60C7FF622A8A3F10016D936 /* Openssl */,
@@ -3502,64 +4028,18 @@
 			path = include;
 			sourceTree = "<group>";
 		};
-		B6EB9B9822C99F8100136A6C /* EZOpenSDK */ = {
-			isa = PBXGroup;
-			children = (
-				B6EB9B9922C99F8100136A6C /* include */,
-				B6EB9BB322C99F8100136A6C /* libEZOpenSDK.a */,
-			);
-			path = EZOpenSDK;
-			sourceTree = "<group>";
-		};
-		B6EB9B9922C99F8100136A6C /* include */ = {
-			isa = PBXGroup;
-			children = (
-				B6EB9B9A22C99F8100136A6C /* EZOpenSDK */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		B6EB9B9A22C99F8100136A6C /* EZOpenSDK */ = {
-			isa = PBXGroup;
-			children = (
-				B6EB9B9B22C99F8100136A6C /* EZConstants.h */,
-				B6EB9B9C22C99F8100136A6C /* EZHCNetDeviceSDK.h */,
-				B6EB9B9D22C99F8100136A6C /* EZOpenSDK.h */,
-				B6EB9B9E22C99F8100136A6C /* EZPlayer.h */,
-				B6EB9B9F22C99F8100136A6C /* EZGlobalSDK.h */,
-				B6EB9BA022C99F8100136A6C /* modules */,
-			);
-			path = EZOpenSDK;
-			sourceTree = "<group>";
-		};
-		B6EB9BA022C99F8100136A6C /* modules */ = {
-			isa = PBXGroup;
-			children = (
-				B6EB9BA122C99F8100136A6C /* EZDeviceVersion.h */,
-				B6EB9BA222C99F8100136A6C /* EZUserInfo.h */,
-				B6EB9BA322C99F8100136A6C /* EZDeviceUpgradeStatus.h */,
-				B6EB9BA422C99F8100136A6C /* EZAccessToken.h */,
-				B6EB9BA522C99F8100136A6C /* EZDeviceRecordFile.h */,
-				B6EB9BA622C99F8100136A6C /* EZLeaveMessage.h */,
-				B6EB9BA722C99F8100136A6C /* EZHiddnsDeviceInfo.h */,
-				B6EB9BA822C99F8100136A6C /* EZDeviceInfo.h */,
-				B6EB9BA922C99F8100136A6C /* EZDetectorInfo.h */,
-				B6EB9BAA22C99F8100136A6C /* EZHCNetDeviceInfo.h */,
-				B6EB9BAB22C99F8100136A6C /* EZCameraInfo.h */,
-				B6EB9BAC22C99F8100136A6C /* EZCloudRecordFile.h */,
-				B6EB9BAD22C99F8100136A6C /* EZAreaInfo.h */,
-				B6EB9BAE22C99F8100136A6C /* EZProbeDeviceInfo.h */,
-				B6EB9BAF22C99F8100136A6C /* EZVideoQualityInfo.h */,
-				B6EB9BB022C99F8100136A6C /* EZAlarmInfo.h */,
-				B6EB9BB122C99F8100136A6C /* EZSADPDeviceInfo.h */,
-				B6EB9BB222C99F8100136A6C /* EZStorageInfo.h */,
-			);
-			path = modules;
-			sourceTree = "<group>";
-		};
 		B6EB9BB622C99FDB00136A6C /* EZUVideoVC */ = {
 			isa = PBXGroup;
 			children = (
+				B6D321472420C3EF00A50F77 /* SDWebImageDecoder.h */,
+				B6D321482420C3EF00A50F77 /* SDWebImageDecoder.m */,
+				B6D321082420C36800A50F77 /* UITableView-FDTemplateLayoutCell */,
+				B6D321012420C35400A50F77 /* DACircularProgress */,
+				B6D320E22420C34C00A50F77 /* MWPhotoBrowser */,
+				B6D320A82420BDA200A50F77 /* CustomUI */,
+				B6D320A42420BBA300A50F77 /* DDCollectionViewFlowLayout */,
+				B6D3209A2420B8E400A50F77 /* TableViewCells */,
+				B62250CB2420AF780041E709 /* EZTalkView */,
 				B6EB9BC222C99FDB00136A6C /* CustomView */,
 				B6EB9BC822C99FDB00136A6C /* EZUIKitPlaybackViewController.h */,
 				B6EB9BBB22C99FDB00136A6C /* EZUIKitPlaybackViewController.m */,
@@ -3686,6 +4166,7 @@
 				B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */,
 				B68D2D2722A656F1001C00EC /* pageControlDot@3x.png in Resources */,
 				B6EB9BD622C99FDB00136A6C /* BGVideoStartViewController.xib in Resources */,
+				B622511D2420B0720041E709 /* EZSupportViewController.xib in Resources */,
 				B6A92E0022BA222500D16AE9 /* scroll in Resources */,
 				B6A8E24A22A4E59100E36D8F /* BGHeadTableViewCell.xib in Resources */,
 				B6E15688228D419800CB4A5F /* MJRefresh.bundle in Resources */,
@@ -3695,6 +4176,7 @@
 				B6A92DFE22B9D03300D16AE9 /* assets in Resources */,
 				B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */,
 				B68D2D3722A65E2A001C00EC /* app_item_bg.png in Resources */,
+				B62250CF2420AF9A0041E709 /* EZMain.storyboard in Resources */,
 				B64376482293D25100A92D74 /* BGUIWebViewController.xib in Resources */,
 				B68D2D2622A656F1001C00EC /* placeholder.png in Resources */,
 				B6CA22A422C09F1B00AAA1CA /* BGHomeViewController.xib in Resources */,
@@ -3786,6 +4268,8 @@
 				B6C7690622A0B8DC00DA675D /* QDBadgeViewController.m in Sources */,
 				B6D3B18B23861F0B005CAF90 /* CSFileManage.m in Sources */,
 				B664F58B239892CD00D6766F /* UIImagePickerController+custom.m in Sources */,
+				B62251162420B0720041E709 /* EZLivePlayViewController.m in Sources */,
+				B6D320A32420B8E400A50F77 /* MessageListCell.m in Sources */,
 				B6C1540C22E7F4D0004B8614 /* CSAboutViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
@@ -3794,6 +4278,7 @@
 				B6E15694228D419800CB4A5F /* MJRefreshGifHeader.m in Sources */,
 				1449480E1EE10CB70026AA73 /* JustepURLProtocol.m in Sources */,
 				1449480F1EE10CB70026AA73 /* NSData+AES128.m in Sources */,
+				B62251182420B0720041E709 /* EZInputSerialViewController.m in Sources */,
 				B6E15697228D419800CB4A5F /* MJRefreshBackFooter.m in Sources */,
 				B657DD7C22927AEC0009BCB0 /* TZLocationManager.m in Sources */,
 				B68D2CE322A646C1001C00EC /* JXCategoryIndicatorRainbowLineView.m in Sources */,
@@ -3807,13 +4292,16 @@
 				B6FBB085230E353C00166E36 /* BGQMChangeLanguageViewController.m in Sources */,
 				B657DDD222927C760009BCB0 /* SDWebImageDownloaderOperation.m in Sources */,
 				B6C768F622A0B8DC00DA675D /* QDNavigationBarScrollingAnimatorViewController.m in Sources */,
+				B6D320BE2420BDA200A50F77 /* EZCustomTableView.m in Sources */,
 				B6C768EC22A0B8DC00DA675D /* QDCollectionListViewController.m in Sources */,
+				B6D320C42420BDA200A50F77 /* HIKLoadPercentView.m in Sources */,
 				B6B880AE23B992AF00197FF6 /* YYServiceManager.m in Sources */,
 				B68D2CF022A646C1001C00EC /* JXCategoryTitleImageCell.m in Sources */,
 				B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */,
 				B657DDD422927C760009BCB0 /* NSData+ImageContentType.m in Sources */,
 				B657DD7A22927AEC0009BCB0 /* TZPhotoPreviewCell.m in Sources */,
 				B6C768B522A0B8DC00DA675D /* QDUIViewBorderViewController.m in Sources */,
+				B62251252420B0720041E709 /* EZMessageListViewController.m in Sources */,
 				B6E1568B228D419800CB4A5F /* UIView+MJExtension.m in Sources */,
 				B6E155FA228CF09C00CB4A5F /* NSString+BGRect.m in Sources */,
 				B68D2C8122A63F04001C00EC /* GHWaterFallLabel.m in Sources */,
@@ -3826,7 +4314,10 @@
 				B6E155C5228CEDF900CB4A5F /* BGScrollView.m in Sources */,
 				B6C7690122A0B8DC00DA675D /* QDCollectionDemoViewController.m in Sources */,
 				B68D2C7822A63D87001C00EC /* GHDropMenuFilterTimeChoseItem.m in Sources */,
+				B62251172420B0720041E709 /* EZLocalRealPlayViewController.m in Sources */,
 				B6E15621228D2B0300CB4A5F /* CustomMainTBViewController.m in Sources */,
+				B6D321112420C36800A50F77 /* UITableView+FDTemplateLayoutCell.m in Sources */,
+				B622511F2420B0720041E709 /* EZCalendarViewController.m in Sources */,
 				B6AACF2A22AE383D00632304 /* BGQMSelectSubstationTVC.m in Sources */,
 				B6C768E222A0B8DC00DA675D /* QDEmptyViewController.m in Sources */,
 				B6C768B822A0B8DC00DA675D /* QDTableViewHeaderFooterViewController.m in Sources */,
@@ -3847,8 +4338,11 @@
 				B68D2D0122A646C1001C00EC /* UIColor+JXAdd.m in Sources */,
 				7E1AD085E9014DB58B8F65E6 /* Toast+UIView.m in Sources */,
 				B68D2CE422A646C1001C00EC /* JXCategoryIndicatorImageView.m in Sources */,
+				B62251452420B2A30041E709 /* UIImageView+DDKit.m in Sources */,
 				B6B880BF23B9A3FC00197FF6 /* YYHistoryTrackParam.m in Sources */,
 				B637965D22F1732D007AC38F /* JGPhotoCollectionViewCell.m in Sources */,
+				B622511E2420B0720041E709 /* EZSupportViewController.m in Sources */,
+				B622514B2420B2A30041E709 /* UIViewController+DDKit.m in Sources */,
 				B6E156B3228D41AC00CB4A5F /* AFURLRequestSerialization.m in Sources */,
 				B6E15693228D419800CB4A5F /* MJRefreshStateHeader.m in Sources */,
 				B6E15654228D418700CB4A5F /* MASConstraint.m in Sources */,
@@ -3858,6 +4352,8 @@
 				B6E156B9228D4AB800CB4A5F /* NetService.m in Sources */,
 				B6C7690922A0B8DC00DA675D /* QDCellSizeKeyCacheViewController.m in Sources */,
 				B6E155F6228CF09C00CB4A5F /* NSMutableDictionary+BGExtention.m in Sources */,
+				B622511B2420B0720041E709 /* EZDeviceTableViewController.m in Sources */,
+				B62251272420B0720041E709 /* EZAddByQRCodeViewController.m in Sources */,
 				B6C7690822A0B8DC00DA675D /* QDConsoleViewController.m in Sources */,
 				B657DDCA22927C760009BCB0 /* UIImage+MultiFormat.m in Sources */,
 				B68D2D3822A65E2A001C00EC /* CustomGrid.m in Sources */,
@@ -3865,12 +4361,15 @@
 				B6C768CA22A0B8DC00DA675D /* QDTableViewController.m in Sources */,
 				B6C768C222A0B8DC00DA675D /* QDObjectViewController.m in Sources */,
 				B657DDDA22927C760009BCB0 /* UIView+WebCacheOperation.m in Sources */,
+				B6D321062420C35400A50F77 /* DALabeledCircularProgressView.m in Sources */,
 				B6E15691228D419800CB4A5F /* MJRefreshAutoNormalFooter.m in Sources */,
 				B68D2CE022A646C1001C00EC /* JXCategoryTitleVerticalZoomView.m in Sources */,
 				B68D2D1622A653E6001C00EC /* MSCollectionViewCell.m in Sources */,
 				B6E15602228CF09C00CB4A5F /* MBProgressHUD+Extension.m in Sources */,
+				B62251232420B0720041E709 /* EZLocationAlertVCViewController.m in Sources */,
 				B68D2CEF22A646C1001C00EC /* JXCategoryTitleImageView.m in Sources */,
 				B6E155FB228CF09C00CB4A5F /* NSURL+BGExtension.m in Sources */,
+				B62251112420B0720041E709 /* UIViewController+EZBackPop.m in Sources */,
 				B657DD8222927BEB0009BCB0 /* CSImageModel.m in Sources */,
 				B68D2CED22A646C1001C00EC /* JXCategoryDotView.m in Sources */,
 				B6A8E24422A4E51400E36D8F /* BGRedSpotCell.m in Sources */,
@@ -3888,9 +4387,11 @@
 				B657DDC622927C760009BCB0 /* UIImage+ForceDecode.m in Sources */,
 				B657DDCD22927C760009BCB0 /* SDWebImagePrefetcher.m in Sources */,
 				B66BA70C22F275270027EE05 /* SDBrowserImageView.m in Sources */,
+				B62251432420B2A30041E709 /* UIView+DDKit.m in Sources */,
 				B6E155FC228CF09C00CB4A5F /* UILabel+BGCopy.m in Sources */,
 				B68D2CE122A646C1001C00EC /* JXCategoryIndicatorLineView.m in Sources */,
 				B68D2C7422A63D87001C00EC /* GHDropMenu.m in Sources */,
+				B62251262420B0720041E709 /* EZEditViewController.m in Sources */,
 				B68D2CE622A646C1001C00EC /* JXCategoryIndicatorComponentView.m in Sources */,
 				B6E15580228CED3A00CB4A5F /* BGLoginViewController.m in Sources */,
 				B6548A9422B32765005CCD21 /* BGQMEventViewController.m in Sources */,
@@ -3902,6 +4403,7 @@
 				B6E2189422A4AB93003C2969 /* BGQMUserViewController.m in Sources */,
 				B68D2CFC22A646C1001C00EC /* JXCategoryFactory.m in Sources */,
 				B6C768B222A0B8DC00DA675D /* QDGhostButtonViewController.m in Sources */,
+				B6D320FD2420C34C00A50F77 /* MWPhoto.m in Sources */,
 				B68D2CF622A646C1001C00EC /* JXCategoryImageCell.m in Sources */,
 				B6C768A422A0B8DC00DA675D /* QDUIHelper.m in Sources */,
 				B6C768EB22A0B8DC00DA675D /* QDKeyboardViewController.m in Sources */,
@@ -3914,7 +4416,11 @@
 				B68D2CE822A646C1001C00EC /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				B66BA6FB22F274570027EE05 /* BGCrearTrendsBaseTableViewCell.m in Sources */,
 				B6E15653228D418700CB4A5F /* View+MASAdditions.m in Sources */,
+				B62251442420B2A30041E709 /* UISegmentedControl+DDKit.m in Sources */,
 				0A9C9FEAA71E4DC989C6C586 /* NSObject+ObjectMap.m in Sources */,
+				B6D321122420C36800A50F77 /* UITableView+FDKeyedHeightCache.m in Sources */,
+				B62251192420B0720041E709 /* EZAPConfigResultViewController.m in Sources */,
+				B6D320FC2420C34C00A50F77 /* MWTapDetectingImageView.m in Sources */,
 				B6024AD822FA6224000A2A98 /* BGQMSettingPersonInfoViewController.m in Sources */,
 				B6C768D522A0B8DC00DA675D /* QDThemeViewController.m in Sources */,
 				B6C768F322A0B8DC00DA675D /* QDAssetsManagerViewController.m in Sources */,
@@ -3929,33 +4435,43 @@
 				B6E15585228CED9600CB4A5F /* CustomNavigationController.m in Sources */,
 				B6EB9BD322C99FDB00136A6C /* EZQRView.m in Sources */,
 				B6C768D922A0B8DC00DA675D /* QDCAShapeLoadingViewController.m in Sources */,
+				B62251242420B0720041E709 /* UINavigationController+EZOpenSDK.m in Sources */,
+				B622514C2420B2A30041E709 /* NSDate+DDKit.m in Sources */,
 				B6C768F122A0B8DC00DA675D /* QDSingleImagePickerPreviewViewController.m in Sources */,
+				B6D321002420C34C00A50F77 /* MWGridCell.m in Sources */,
 				B6E155C2228CEDF900CB4A5F /* NSDate+BGExtension.m in Sources */,
 				B6E156C2228D501700CB4A5F /* KeyString.m in Sources */,
 				B6B880C323B9A4AD00197FF6 /* YYMultiColorPolyline.m in Sources */,
 				B6E15651228D418700CB4A5F /* MASLayoutConstraint.m in Sources */,
 				B6C768D422A0B8DC00DA675D /* QDToolBarButtonViewController.m in Sources */,
 				B6C768BB22A0B8DC00DA675D /* QDObjectMethodsListViewController.m in Sources */,
+				B62251152420B0720041E709 /* EZDeviceRestartTipsViewController.m in Sources */,
 				B6E1564D228D418700CB4A5F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				B66BA6F622F274470027EE05 /* BGQMFeedBackViewController.m in Sources */,
 				B657DDC322927C760009BCB0 /* SDWebImageManager.m in Sources */,
 				B6B880B023B992AF00197FF6 /* YYServiceViewController.m in Sources */,
 				B657DDD322927C760009BCB0 /* SDWebImageTransition.m in Sources */,
+				B62251122420B0720041E709 /* EZLocalDeviceListViewController.m in Sources */,
 				B6EB9BD222C99FDB00136A6C /* EZUIPlayBaseViewController.m in Sources */,
 				B6C768DF22A0B8DC00DA675D /* QDAboutViewController.m in Sources */,
 				B6B880BC23B9A3FC00197FF6 /* YYHistoryTrackViewController.m in Sources */,
+				B6D321132420C36800A50F77 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				B68D2D1822A653E6001C00EC /* MSAnimatedDotView.m in Sources */,
 				B66BA71222F27EE80027EE05 /* BGShowUrlModel.m in Sources */,
 				B68D2CFD22A646C1001C00EC /* JXCategoryCollectionView.m in Sources */,
 				B6E155F4228CF09C00CB4A5F /* UIView+Utils.m in Sources */,
 				B6ED2045229BACE30044EFC9 /* ColorManager.m in Sources */,
+				B6D320C32420BDA200A50F77 /* HIKLoadViewItem+configPath.m in Sources */,
 				B60C7FF322A89B260016D936 /* LogCategory.m in Sources */,
 				B6E15692228D419800CB4A5F /* MJRefreshNormalHeader.m in Sources */,
 				B6C768C122A0B8DC00DA675D /* QDAlertController.m in Sources */,
+				B6D321072420C35400A50F77 /* DACircularProgressView.m in Sources */,
 				B6B880C623B9A4BE00197FF6 /* YYArrowAnnotationView.m in Sources */,
+				B6D320A22420B8E400A50F77 /* CameraListCell.m in Sources */,
 				B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */,
 				B68D2D0722A64C5B001C00EC /* BGQMCategoryListConViewController.m in Sources */,
 				B6E155F5228CF09C00CB4A5F /* UITableView+BGExtension.m in Sources */,
+				B622514A2420B2A30041E709 /* UIImage+DDKit.m in Sources */,
 				B68D2C7522A63D87001C00EC /* GHDropMenuOptionCell.m in Sources */,
 				B657DDC122927C760009BCB0 /* UIImage+WebP.m in Sources */,
 				B68D2D1B22A6562E001C00EC /* MSExampleDotView.m in Sources */,
@@ -3968,6 +4484,7 @@
 				B657DDCF22927C760009BCB0 /* NSButton+WebCache.m in Sources */,
 				B68D2CE922A646C1001C00EC /* JXCategoryIndicatorCellModel.m in Sources */,
 				B6C768E322A0B8DC00DA675D /* QDEmotionsViewController.m in Sources */,
+				B6D320C02420BDA200A50F77 /* Toast+UIView.m in Sources */,
 				B6DBAF9C22B1E17C000C9922 /* JZLocationConverter.m in Sources */,
 				B657DD7D22927AEC0009BCB0 /* TZGifPhotoPreviewController.m in Sources */,
 				B6C768FD22A0B8DC00DA675D /* QDCellKeyCacheViewController.m in Sources */,
@@ -3977,12 +4494,15 @@
 				B63B00D722B099C2004E070F /* BGQMNewHomeTableViewController.m in Sources */,
 				B63B00DA22B0C2CA004E070F /* BGQMHomeTableViewCell.m in Sources */,
 				B6B880AD23B992AF00197FF6 /* YYServiceParam.m in Sources */,
+				B62251472420B2A30041E709 /* UIColor+DDKit.m in Sources */,
 				B657DD7522927AEC0009BCB0 /* TZPhotoPreviewController.m in Sources */,
 				B6E15655228D418700CB4A5F /* MASViewConstraint.m in Sources */,
+				B6D320F92420C34C00A50F77 /* MWCaptionView.m in Sources */,
 				B6C768E522A0B8DC00DA675D /* QDMultipleImagePickerPreviewViewController.m in Sources */,
 				B6CA22A522C09F1B00AAA1CA /* BGHomeViewController.m in Sources */,
 				B6C768EA22A0B8DC00DA675D /* QDCellHeightKeyCacheViewController.m in Sources */,
 				B6DBAFA322B22969000C9922 /* IndexView.m in Sources */,
+				B62251482420B2A30041E709 /* NSArray+DDKit.m in Sources */,
 				B657DDD722927C760009BCB0 /* SDWebImageGIFCoder.m in Sources */,
 				B6C6178622F96B07008DD6E7 /* WXAuth.m in Sources */,
 				B6C768C022A0B8DC00DA675D /* QDNormalButtonViewController.m in Sources */,
@@ -4000,6 +4520,7 @@
 				B6E15603228CF09C00CB4A5F /* NSString+BGChangeNoNull.m in Sources */,
 				B6C768C822A0B8DC00DA675D /* QDUIViewLayoutViewController.m in Sources */,
 				B68D2D1422A653E6001C00EC /* MSCycleScrollView.m in Sources */,
+				B622514D2420B2A30041E709 /* UIButton+DDKit.m in Sources */,
 				B6E156BC228D4B8B00CB4A5F /* BGHttpService.m in Sources */,
 				B6C768D222A0B8DC00DA675D /* QDButtonEdgeInsetsViewController.m in Sources */,
 				B6E15687228D419800CB4A5F /* MJRefreshConst.m in Sources */,
@@ -4007,8 +4528,10 @@
 				B6F4C03F22B72D15005A7695 /* BGQMEventDynamicTableViewCell.m in Sources */,
 				B6C768C322A0B8DC00DA675D /* QDUIViewQMUIViewController.m in Sources */,
 				B6C768E122A0B8DC00DA675D /* QDPopupContainerViewController.m in Sources */,
+				B6D320C62420BDA200A50F77 /* HIKLoadView.m in Sources */,
 				B657DD7322927AEC0009BCB0 /* NSBundle+TZImagePicker.m in Sources */,
 				B6C768AF22A0B8DC00DA675D /* QDTableViewCellAccessoryTypeViewController.m in Sources */,
+				B622510E2420B0720041E709 /* EZMessagePlaybackViewController.m in Sources */,
 				B6EB9BCE22C99FDB00136A6C /* BGVideoStartViewController.m in Sources */,
 				B6E15601228CF09C00CB4A5F /* NSArray+BGExtension.m in Sources */,
 				B6C768C622A0B8DC00DA675D /* QDTextViewController.m in Sources */,
@@ -4025,39 +4548,48 @@
 				B6548A9822B33087005CCD21 /* BGQMEventTableViewCell.m in Sources */,
 				B68D2D0422A646C1001C00EC /* JXCategoryBaseCellModel.m in Sources */,
 				B6E1568A228D419800CB4A5F /* NSBundle+MJRefresh.m in Sources */,
+				B6D320C52420BDA200A50F77 /* HIKLoadViewItem.m in Sources */,
 				B60C80B122A8AE4E0016D936 /* WSDatePickerView.m in Sources */,
 				B6693D9523A9B4DA006DFEF0 /* WelcomeView.m in Sources */,
 				B6C768F422A0B8DC00DA675D /* QDCustomToastAnimator.m in Sources */,
 				B68D2C7A22A63D87001C00EC /* GHDropMenuFilterInputItem.m in Sources */,
 				B6C768F722A0B8DC00DA675D /* QDImagePreviewViewController1.m in Sources */,
+				B6D320FA2420C34C00A50F77 /* MWZoomingScrollView.m in Sources */,
 				B6C768B322A0B8DC00DA675D /* QDSearchViewController.m in Sources */,
 				B679E327238FA828004818E6 /* QLPreviewController+autoTitle.m in Sources */,
 				B6B880BE23B9A3FC00197FF6 /* YYHistoryViewModel.m in Sources */,
 				B6C768CE22A0B8DC00DA675D /* QDCAAnimationViewController.m in Sources */,
 				B66BA6FE22F274A90027EE05 /* BRPlaceholderTextView.m in Sources */,
 				B6E2189122A4AB61003C2969 /* BGQMAlarmViewController.m in Sources */,
+				B62251142420B0720041E709 /* EZMessagePhotoViewController.m in Sources */,
 				B6E155C1228CEDF900CB4A5F /* UIColor+BGExtension.m in Sources */,
 				B6E1564F228D418700CB4A5F /* MASCompositeConstraint.m in Sources */,
+				B6D320992420B46500A50F77 /* GlobalKit.m in Sources */,
 				B6E1560B228CF0F400CB4A5F /* MBProgressHUD+HM.m in Sources */,
 				B6E156B6228D41AC00CB4A5F /* AFSecurityPolicy.m in Sources */,
 				B6C768D722A0B8DC00DA675D /* QDRippleAnimationViewController.m in Sources */,
 				B6C768DC22A0B8DC00DA675D /* QDAllSystemFontsViewController.m in Sources */,
 				B6E15699228D419800CB4A5F /* MJRefreshComponent.m in Sources */,
+				B622511A2420B0720041E709 /* EZAPWiFiConfigViewController.m in Sources */,
 				B68D2C7922A63D87001C00EC /* GHDropMenuFilterTagItem.m in Sources */,
 				B6AACF2F22AE408700632304 /* NSString+PinYin.m in Sources */,
 				B6E155B9228CEDF900CB4A5F /* BGFileUtils.m in Sources */,
 				B657DDC922927C760009BCB0 /* UIImage+GIF.m in Sources */,
 				B68D2CFE22A646C1001C00EC /* JXCategoryIndicatorParamsModel.m in Sources */,
+				B62251462420B2A30041E709 /* UILabel+DDKit.m in Sources */,
 				B657DD7422927AEC0009BCB0 /* UIView+Layout.m in Sources */,
 				B6E155F2228CF09C00CB4A5F /* UIButton+BGExtension.m in Sources */,
 				B68D2CFA22A646C1001C00EC /* JXCategoryNumberCellModel.m in Sources */,
 				B6E15696228D419800CB4A5F /* MJRefreshHeader.m in Sources */,
 				B6E1568E228D419800CB4A5F /* MJRefreshBackNormalFooter.m in Sources */,
 				B6E15686228D419800CB4A5F /* UIScrollView+MJRefresh.m in Sources */,
+				B62251222420B0720041E709 /* EZDdnsDeviceTableViewController.m in Sources */,
 				B6C768C922A0B8DC00DA675D /* QDNavigationBarMaxYViewController.m in Sources */,
+				B62251282420B0720041E709 /* EZPlaybackViewController.m in Sources */,
 				B68D2D0322A646C1001C00EC /* JXCategoryBaseCell.m in Sources */,
 				B6E15656228D418700CB4A5F /* MASViewAttribute.m in Sources */,
 				B6C768F222A0B8DC00DA675D /* QDSaveImageToSpecifiedAlbumViewController.m in Sources */,
+				B6D320BF2420BDA200A50F77 /* UIImageView+EzvizOpenSDK.m in Sources */,
 				B6C768EF22A0B8DC00DA675D /* QDGridViewController.m in Sources */,
 				B68D2CEB22A646C1001C00EC /* JXCategoryIndicatorView.m in Sources */,
 				B66BA70122F274FD0027EE05 /* TestSystemService.m in Sources */,
@@ -4071,6 +4603,7 @@
 				B657DDD922927C760009BCB0 /* SDImageCacheConfig.m in Sources */,
 				B657DDC522927C760009BCB0 /* SDWebImageFrame.m in Sources */,
 				B657DD7222927AEC0009BCB0 /* TZAssetModel.m in Sources */,
+				B6D320FE2420C34C00A50F77 /* MWTapDetectingView.m in Sources */,
 				B657DDDB22927C760009BCB0 /* UIView+WebCache.m in Sources */,
 				B626289E238F656300ED4825 /* BGDistributeMessage.m in Sources */,
 				B6E155C7228CEDF900CB4A5F /* SKControllerTools.m in Sources */,
@@ -4083,8 +4616,11 @@
 				B6E155FD228CF09C00CB4A5F /* NSString+Rect.m in Sources */,
 				B6C7690222A0B8DC00DA675D /* QDModalPresentationViewController.m in Sources */,
 				B68D2CE522A646C1001C00EC /* JXCategoryIndicatorBallView.m in Sources */,
+				B62251492420B2A30041E709 /* NSString+DDKit.m in Sources */,
+				B62251132420B0720041E709 /* EZDeviceResultViewController.m in Sources */,
 				B607C2FF237A3BB20097CF98 /* PushMessageDAO.m in Sources */,
 				B6B0085323794F60002A4465 /* LZLPushMessage.m in Sources */,
+				B6D320FF2420C34C00A50F77 /* MWGridViewController.m in Sources */,
 				B6C7690722A0B8DC00DA675D /* QDNavigationBarScrollingSnapAnimatorViewController.m in Sources */,
 				B657DDDD22927C760009BCB0 /* UIButton+WebCache.m in Sources */,
 				B6C768FF22A0B8DC00DA675D /* QDNavigationTitleViewController.m in Sources */,
@@ -4115,20 +4651,26 @@
 				B6C7690022A0B8DC00DA675D /* QDComponentsViewController.m in Sources */,
 				B6E155C3228CEDF900CB4A5F /* UIView+BGExtension.m in Sources */,
 				B6C768CD22A0B8DC00DA675D /* QDFoldCollectionViewLayout.m in Sources */,
+				B6D320C12420BDA200A50F77 /* EZRecordCell.m in Sources */,
 				B64376472293D25100A92D74 /* BGUIWebViewController.m in Sources */,
 				B6E155BD228CEDF900CB4A5F /* MyMD5.m in Sources */,
+				B6D320F82420C34C00A50F77 /* MWPhotoBrowser.m in Sources */,
 				B6E155FE228CF09C00CB4A5F /* NSDictionary+BGExtension.m in Sources */,
 				B68AF11D237BD75800F51D0E /* BGQMMsgNotifViewController.m in Sources */,
 				B68D2C7222A63D87001C00EC /* UIView+Extension.m in Sources */,
 				B6C768DB22A0B8DC00DA675D /* QDReplicatorLayerViewController.m in Sources */,
 				B68D2D0022A646C1001C00EC /* JXCategoryListCollectionContainerView.m in Sources */,
 				B6C768D822A0B8DC00DA675D /* QDAllAnimationViewController.m in Sources */,
+				B62251212420B0720041E709 /* EZSettingViewController.m in Sources */,
 				B6A8E25122A50A7400E36D8F /* UITabBar+BGbadge.m in Sources */,
 				B6C768E422A0B8DC00DA675D /* QDMultipleDelegatesViewController.m in Sources */,
+				B622510D2420B0720041E709 /* EZWifiConfigViewController.m in Sources */,
 				B6E155B8228CEDF900CB4A5F /* CompputeTools.m in Sources */,
+				B622511C2420B0720041E709 /* EZWifiTipsViewController.m in Sources */,
 				B6B8809723B98A8B00197FF6 /* ZYSuspensionManager.m in Sources */,
 				B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */,
 				B6C768F522A0B8DC00DA675D /* QDImagePreviewExampleViewController.m in Sources */,
+				B622510F2420B0720041E709 /* EZDeviceUpgradeViewController.m in Sources */,
 				B637965B22F1732D007AC38F /* JGPredicateMethod.m in Sources */,
 				B68D2CDE22A646C1001C00EC /* JXCategoryTitleVerticalZoomCellModel.m in Sources */,
 				B6E155B4228CEDF900CB4A5F /* UIView+ChangeCorner.m in Sources */,
@@ -4136,13 +4678,17 @@
 				B637965A22F1732D007AC38F /* JGUserFeedBackViewController.m in Sources */,
 				B657DDCE22927C760009BCB0 /* SDWebImageCoder.m in Sources */,
 				B60C80B322A8AE4E0016D936 /* UIView+Extension.m in Sources */,
+				B62251102420B0720041E709 /* EZLocalCameraListViewController.m in Sources */,
 				B66BA70A22F275270027EE05 /* SDPhotoBrowser.m in Sources */,
 				B6A60CA023862ECC00073E0B /* CSImageBrowserViewController.m in Sources */,
 				B6C768FC22A0B8DC00DA675D /* QDSaveVideoToSpecifiedAlbumViewController.m in Sources */,
 				B6C768EE22A0B8DC00DA675D /* QDImagePickerExampleViewController.m in Sources */,
 				B68D2CF322A646C1001C00EC /* JXCategoryTitleCell.m in Sources */,
+				B6D320A72420BBA300A50F77 /* DDCollectionViewFlowLayout.m in Sources */,
+				B6D320FB2420C34C00A50F77 /* UIImage+MWPhotoBrowser.m in Sources */,
 				B6E156AF228D41AC00CB4A5F /* AFHTTPSessionManager.m in Sources */,
 				B6E156B1228D41AC00CB4A5F /* AFURLSessionManager.m in Sources */,
+				B6D320A12420B8E400A50F77 /* DeviceListCell.m in Sources */,
 				B6C768B722A0B8DC00DA675D /* QDLabelViewController.m in Sources */,
 				B6C768B922A0B8DC00DA675D /* QDButtonViewController.m in Sources */,
 				B6B880BD23B9A3FC00197FF6 /* YYHistoryTrackParamSetTableViewController.m in Sources */,
@@ -4160,20 +4706,26 @@
 				4A1FC029AE944D1589ACE1D3 /* LZKeychain.m in Sources */,
 				B6C768FE22A0B8DC00DA675D /* QDImagePreviewViewController2.m in Sources */,
 				B6C768AA22A0B8DC00DA675D /* QDTabBarViewController.m in Sources */,
+				B622510C2420B0720041E709 /* EZCameraTableViewController.m in Sources */,
 				B6B8809923B98A8B00197FF6 /* ZYSuspensionContainer.m in Sources */,
 				B6E155B6228CEDF900CB4A5F /* BGTools.m in Sources */,
 				B68D2C7122A63D87001C00EC /* NSArray+Bounds.m in Sources */,
+				B6D321492420C3F000A50F77 /* SDWebImageDecoder.m in Sources */,
 				B657DD7822927AEC0009BCB0 /* TZImageManager.m in Sources */,
 				B68D2CF222A646C1001C00EC /* JXCategoryTitleCellModel.m in Sources */,
 				B6E155F3228CF09C00CB4A5F /* UILabel+BGExtension.m in Sources */,
 				B6E155BF228CEDF900CB4A5F /* UIView+BGChangeCorner.m in Sources */,
+				B6D320952420B44300A50F77 /* Aspects.m in Sources */,
 				B6EB9BCC22C99FDB00136A6C /* EZUIKitViewController.m in Sources */,
 				B6C768A122A0B8DC00DA675D /* QMUIConfigurationTemplateGrass.m in Sources */,
+				B6D321142420C36800A50F77 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				B6B880AF23B992AF00197FF6 /* YYServerFenceViewController.m in Sources */,
 				B6C768B622A0B8DC00DA675D /* QDLinkButtonViewController.m in Sources */,
 				B68D2CF722A646C1001C00EC /* JXCategoryImageCellModel.m in Sources */,
 				B657DDC822927C760009BCB0 /* SDWebImageDownloader.m in Sources */,
 				B68D2CF822A646C1001C00EC /* JXCategoryNumberView.m in Sources */,
+				B62251202420B0720041E709 /* EZWifiInfoViewController.m in Sources */,
+				B6D320C22420BDA200A50F77 /* NSDate-Utilities.m in Sources */,
 				B657DDD022927C760009BCB0 /* SDAnimatedImageRep.m in Sources */,
 				B6C768E622A0B8DC00DA675D /* QDCollectionViewDemoCell.m in Sources */,
 				B6C768BA22A0B8DC00DA675D /* QDTableViewCellInsetsViewController.m in Sources */,

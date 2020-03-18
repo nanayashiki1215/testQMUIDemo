@@ -43,17 +43,9 @@
     //设置iPhone X导航栏88状况
     self.logoToTop.constant = BGSafeAreaTopHeight + 16 + 100;
     [self.versonUpdateBTN.layer addSublayer:[UIColor setGradualChangingColor:self.versonUpdateBTN fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
-//#if defined(BGProjectFlagUC)
-//    self.iconIV.image = [UIImage imageNamed:[BGProjectFlag stringByAppendingString:@"denglu_tm"]];
-//#elif defined(BGProjectFlagDJ)
-//#if defined(BGProjectFlagDJ_AiZhiBu)
-//    self.iconIV.image = [UIImage imageNamed:[BGProjectFlag stringByAppendingString:@"AiZhiBu_login_title"]];
-//#else
-//    self.iconIV.image = [UIImage imageNamed:[BGProjectFlag stringByAppendingString:@"denglu_03"]];
-//#endif
-//
-//#endif
+    
+    //右上角版本功能介绍 列表
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
     
 }
 

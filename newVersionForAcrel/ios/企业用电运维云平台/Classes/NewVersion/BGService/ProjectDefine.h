@@ -147,6 +147,9 @@
 #define EZAPPKEY @"cec0dca73dfc4782bc84375a57cd8170"
 #define EZAPPTestAccessToken @"at.4rg8drrp61vxbdnjcwy7qv9pa4ta9t26-41vxl12n5l-0gbiy8d-3iqf5ouvx"
 #define EZBASEURL @"ezopen://open.ys7.com/"
+
+#define EZOPENSDK [EZOpenSDK class]
+
 //1.hd.live 高清
 //1.live 流畅
 //1.rec?begin=20190619000000&end=20190620235959 回放

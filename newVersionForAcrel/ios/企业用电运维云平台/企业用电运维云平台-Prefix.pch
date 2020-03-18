@@ -53,4 +53,8 @@
 #import <BaiduTraceSDK/BaiduTraceSDK.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 
+#import "EZOpenSDK.h"
+#import "EZGlobalSDK.h"
+#import "GlobalKit.h"
+
 #endif
