@@ -109,7 +109,6 @@
 #define MAIN_QUEUE dispatch_get_main_queue()
 #define CURRENT_IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 
-
 #define YYServiceOperationResultNotification @"YYServiceOperationResultNotification"
 #define kTableViewCellPickerViewHeight 216
 #define kTableViewCellAnimationShowDuration 0.25

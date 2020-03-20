@@ -42,6 +42,20 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
     });
 }
 
+
+-(void)onQueryTrackLatestPoint:(NSData *)response{
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
+}
+
+/**
+ 里程查询的回调方法
+
+ @param response 查询结果
+ */
+-(void)onQueryTrackDistance:(NSData *)response{
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
+}
+
 -(void)onQueryHistoryTrack:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
@@ -51,6 +65,10 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
     }
     if (0 != [dict[@"status"] intValue]) {
         NSString *msg = [NSString changgeNonulWithString:dict[@"message"]];
+        if ([dict[@"status"] intValue] == 3003) {
+            DefQuickAlert(@"未查询到轨迹",nil);
+            return;
+        }
         if (msg) {
             DefQuickAlert(msg,nil);
         }else{

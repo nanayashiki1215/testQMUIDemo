@@ -78,12 +78,15 @@
     DefLog(@"timeStr:%@",timerStr);
     self.urlStr = timerStr;
     
-    [self.mPlayer setEZOpenUrl:self.urlStr];
+//    [self.mPlayer setEZOpenUrl:self.urlStr];
+//     self.mPlayer = [EZUIPlayer createPlayerWithUrl:self.urlStr];
+//    self.mPlayer.mDelegate = self;
+//    [self.mPlayer setEZOpenUrl:self.urlStr];
     //        weakSelf.mPlayer = [EZUIPlayer createPlayerWithUrl:weakSelf.urlStr];
-    //        if ([EZUIPlayer getPlayModeWithUrl:weakSelf.urlStr] ==  EZUIKIT_PLAYMODE_REC)
-    //        {
-    //            [weakSelf createProgressBarWithList:weakSelf.mPlayer.recordList];
-    //        }
+//            if ([EZUIPlayer getPlayModeWithUrl:self.urlStr] ==  EZUIKIT_PLAYMODE_REC)
+//            {
+//                [self createProgressBarWithList:weakSelf.mPlayer.recordList];
+//            }
     [self play];
     
     self.selectTimeBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-160)/2, BGBLACKVIEWHEIGHT+ 10, 160, 70);
@@ -448,7 +451,9 @@
         [self.mPlayer startPlay];
         return;
     }
+    
     self.mPlayer = [EZUIPlayer createPlayerWithUrl:self.urlStr];
+    [self.mPlayer setEZOpenUrl:self.urlStr];
     self.mPlayer.mDelegate = self;
 //    self.mPlayer.customIndicatorView = nil;//设置为nil则去除加载动画
     self.mPlayer.previewView.frame = CGRectMake(0, (BGBLACKVIEWHEIGHT-CGRectGetHeight(self.mPlayer.previewView.frame))/2,

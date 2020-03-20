@@ -12,8 +12,8 @@
 #import "EZWifiConfigViewController.h"
 #import "EZAPWiFiConfigViewController.h"
 
-#define WIFI_PREFROOT_URL @"prefs:root=WIFI"
-#define WIFI_IOS10_WIFI_URL @"App-Prefs:root=WIFI"
+//#define WIFI_PREFROOT_URL @""
+//#define WIFI_IOS10_WIFI_URL @""
 
 @interface EZWifiInfoViewController ()
 
@@ -114,29 +114,29 @@
 
 - (void) showJumpSettingTip
 {
-    UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:NSLocalizedString(@"alert_title",@"提示")
-                                            message:NSLocalizedString(@"wifi_info_no_wifi_msg", @"未连接Wi-Fi,请设置合适的Wi-Fi")
-                                     preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel",@"取消")
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"wifi_info_setting",@"设置")
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
-                                                         NSString *urlStr = [[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0?WIFI_IOS10_WIFI_URL:WIFI_PREFROOT_URL;
-        
-                                                         NSURL * url = [NSURL URLWithString:urlStr];
-                                                         if([[UIApplication sharedApplication] canOpenURL:url])
-                                                         {
-                                                             [[UIApplication sharedApplication] openURL:url];
-                                                         }
-                                                     }];
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+//    UIAlertController *alertController =
+//        [UIAlertController alertControllerWithTitle:NSLocalizedString(@"alert_title",@"提示")
+//                                            message:NSLocalizedString(@"wifi_info_no_wifi_msg", @"未连接Wi-Fi,请设置合适的Wi-Fi")
+//                                     preferredStyle:UIAlertControllerStyleAlert];
+//
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel",@"取消")
+//                                                           style:UIAlertActionStyleCancel
+//                                                         handler:nil];
+//    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"wifi_info_setting",@"设置")
+//                                                       style:UIAlertActionStyleDefault
+//                                                     handler:^(UIAlertAction * _Nonnull action) {
+//                                                         NSString *urlStr = [[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0?WIFI_IOS10_WIFI_URL:WIFI_PREFROOT_URL;
+//
+//                                                         NSURL * url = [NSURL URLWithString:urlStr];
+//                                                         if([[UIApplication sharedApplication] canOpenURL:url])
+//                                                         {
+//                                                             [[UIApplication sharedApplication] openURL:url];
+//                                                         }
+//                                                     }];
+//    [alertController addAction:cancelAction];
+//    [alertController addAction:okAction];
+//
+//    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void) showModeSelect

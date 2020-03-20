@@ -64,7 +64,6 @@
 		B622510E2420B0720041E709 /* EZMessagePlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D52420B0710041E709 /* EZMessagePlaybackViewController.m */; };
 		B622510F2420B0720041E709 /* EZDeviceUpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D62420B0710041E709 /* EZDeviceUpgradeViewController.m */; };
 		B62251102420B0720041E709 /* EZLocalCameraListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D72420B0710041E709 /* EZLocalCameraListViewController.m */; };
-		B62251112420B0720041E709 /* UIViewController+EZBackPop.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DA2420B0710041E709 /* UIViewController+EZBackPop.m */; };
 		B62251122420B0720041E709 /* EZLocalDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DD2420B0710041E709 /* EZLocalDeviceListViewController.m */; };
 		B62251132420B0720041E709 /* EZDeviceResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DE2420B0710041E709 /* EZDeviceResultViewController.m */; };
 		B62251142420B0720041E709 /* EZMessagePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250DF2420B0710041E709 /* EZMessagePhotoViewController.m */; };
@@ -780,7 +779,6 @@
 		B62250D72420B0710041E709 /* EZLocalCameraListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZLocalCameraListViewController.m; sourceTree = "<group>"; };
 		B62250D82420B0710041E709 /* EZDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDeviceTableViewController.h; sourceTree = "<group>"; };
 		B62250D92420B0710041E709 /* EZWifiTipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWifiTipsViewController.h; sourceTree = "<group>"; };
-		B62250DA2420B0710041E709 /* UIViewController+EZBackPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+EZBackPop.m"; sourceTree = "<group>"; };
 		B62250DB2420B0710041E709 /* EZDdnsDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZDdnsDeviceTableViewController.h; sourceTree = "<group>"; };
 		B62250DC2420B0710041E709 /* EZSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZSettingViewController.h; sourceTree = "<group>"; };
 		B62250DD2420B0710041E709 /* EZLocalDeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZLocalDeviceListViewController.m; sourceTree = "<group>"; };
@@ -798,7 +796,6 @@
 		B62250E92420B0710041E709 /* EZAPWiFiConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAPWiFiConfigViewController.m; sourceTree = "<group>"; };
 		B62250EA2420B0710041E709 /* EZAddByQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAddByQRCodeViewController.h; sourceTree = "<group>"; };
 		B62250EB2420B0710041E709 /* EZEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZEditViewController.h; sourceTree = "<group>"; };
-		B62250EC2420B0710041E709 /* UIViewController+EZBackPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+EZBackPop.h"; sourceTree = "<group>"; };
 		B62250ED2420B0710041E709 /* EZDeviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZDeviceTableViewController.m; sourceTree = "<group>"; };
 		B62250EE2420B0710041E709 /* EZWifiTipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZWifiTipsViewController.m; sourceTree = "<group>"; };
 		B62250EF2420B0710041E709 /* EZLocalCameraListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZLocalCameraListViewController.h; sourceTree = "<group>"; };
@@ -2190,7 +2187,6 @@
 				B62250D72420B0710041E709 /* EZLocalCameraListViewController.m */,
 				B62250D82420B0710041E709 /* EZDeviceTableViewController.h */,
 				B62250D92420B0710041E709 /* EZWifiTipsViewController.h */,
-				B62250DA2420B0710041E709 /* UIViewController+EZBackPop.m */,
 				B62250DB2420B0710041E709 /* EZDdnsDeviceTableViewController.h */,
 				B62250DC2420B0710041E709 /* EZSettingViewController.h */,
 				B62250DD2420B0710041E709 /* EZLocalDeviceListViewController.m */,
@@ -2207,7 +2203,6 @@
 				B62250E92420B0710041E709 /* EZAPWiFiConfigViewController.m */,
 				B62250EA2420B0710041E709 /* EZAddByQRCodeViewController.h */,
 				B62250EB2420B0710041E709 /* EZEditViewController.h */,
-				B62250EC2420B0710041E709 /* UIViewController+EZBackPop.h */,
 				B62250ED2420B0710041E709 /* EZDeviceTableViewController.m */,
 				B62250EE2420B0710041E709 /* EZWifiTipsViewController.m */,
 				B62250EF2420B0710041E709 /* EZLocalCameraListViewController.h */,
@@ -4369,7 +4364,6 @@
 				B62251232420B0720041E709 /* EZLocationAlertVCViewController.m in Sources */,
 				B68D2CEF22A646C1001C00EC /* JXCategoryTitleImageView.m in Sources */,
 				B6E155FB228CF09C00CB4A5F /* NSURL+BGExtension.m in Sources */,
-				B62251112420B0720041E709 /* UIViewController+EZBackPop.m in Sources */,
 				B657DD8222927BEB0009BCB0 /* CSImageModel.m in Sources */,
 				B68D2CED22A646C1001C00EC /* JXCategoryDotView.m in Sources */,
 				B6A8E24422A4E51400E36D8F /* BGRedSpotCell.m in Sources */,
@@ -4816,7 +4810,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.3;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4874,7 +4869,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

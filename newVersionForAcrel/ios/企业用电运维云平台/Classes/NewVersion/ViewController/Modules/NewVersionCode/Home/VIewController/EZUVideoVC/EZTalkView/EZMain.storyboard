@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="tPl-Go-Tmu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqy-oN-m1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1056" y="145.72713643178412"/>
+            <point key="canvasLocation" x="2159" y="18"/>
         </scene>
         <!--Device Table View Controller-->
         <scene sceneID="rr5-Et-K6j">
@@ -171,7 +171,6 @@
                     <connections>
                         <outlet property="addButton" destination="yGh-cj-oPZ" id="KX9-xN-pem"/>
                         <outlet property="segmentedControl" destination="F62-D9-UTh" id="Ybb-pD-fvi"/>
-                        <segue destination="uBF-Yq-Qo0" kind="push" identifier="go2LivePlay" id="X3Q-o5-p8V"/>
                         <segue destination="I6z-uV-dEU" kind="push" identifier="go2Playback" id="Qls-Y0-o2u"/>
                         <segue destination="MVz-Sq-jf5" kind="push" identifier="go2MessageList" id="Kgx-sc-mTL"/>
                         <segue destination="3ZH-14-C2h" kind="push" identifier="go2Setting" id="1Wl-6O-XOm"/>
@@ -207,7 +206,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="fvt-9v-OHF"/>
                     <connections>
-                        <segue destination="uBF-Yq-Qo0" kind="push" identifier="go2LivePlay" id="oPv-Bb-2n6"/>
                         <segue destination="I6z-uV-dEU" kind="push" identifier="go2Playback" id="GcW-2d-Vr6"/>
                     </connections>
                 </tableViewController>
@@ -335,17 +333,17 @@
         <!--Live Play View Controller-->
         <scene sceneID="nO0-GE-9oX">
             <objects>
-                <viewController id="uBF-Yq-Qo0" customClass="EZLivePlayViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EZLivePlayViewController" id="uBF-Yq-Qo0" customClass="EZLivePlayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="heE-pR-PSR"/>
                         <viewControllerLayoutGuide type="bottom" id="3qm-Zv-a7S"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PYB-vu-Xcw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi_bg" translatesAutoresizingMaskIntoConstraints="NO" id="gFl-PI-CLn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xz-5f-ZJx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
@@ -504,10 +502,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Gq-77-ypg">
-                                <rect key="frame" x="0.0" y="248" width="375" height="399"/>
+                                <rect key="frame" x="0.0" y="248" width="375" height="419"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUI-tR-jyG">
-                                        <rect key="frame" x="77.5" y="99.5" width="100" height="100"/>
+                                        <rect key="frame" x="77.5" y="109.5" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="4pV-lo-eLV"/>
                                             <constraint firstAttribute="height" constant="100" id="CFM-rZ-KQg"/>
@@ -523,7 +521,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Eh-hh-84T">
-                                        <rect key="frame" x="197.5" y="99.5" width="100" height="100"/>
+                                        <rect key="frame" x="197.5" y="109.5" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="MdX-on-ZlR"/>
                                             <constraint firstAttribute="height" constant="100" id="uZ6-ZC-fku"/>
@@ -540,7 +538,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEO-O3-gSJ">
-                                        <rect key="frame" x="77.5" y="199.5" width="100" height="100"/>
+                                        <rect key="frame" x="77.5" y="209.5" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="HNG-1d-auy"/>
                                             <constraint firstAttribute="height" constant="100" id="fFt-WV-T6O"/>
@@ -556,7 +554,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-9r-gJZ">
-                                        <rect key="frame" x="0.0" y="287" width="375" height="112"/>
+                                        <rect key="frame" x="0.0" y="287" width="375" height="132"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Un0-bC-uwU">
                                                 <rect key="frame" x="325" y="0.0" width="50" height="50"/>
@@ -574,7 +572,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRL-ov-Bad">
-                                                <rect key="frame" x="110.5" y="-21" width="154" height="154"/>
+                                                <rect key="frame" x="110.5" y="-11" width="154" height="154"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="154" id="2qV-nc-X2D"/>
                                                     <constraint firstAttribute="height" constant="154" id="CCV-cO-2RB"/>
@@ -584,7 +582,7 @@
                                                 <state key="highlighted" image="ptz_bg"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46J-XC-G3M">
-                                                <rect key="frame" x="162.5" y="-21" width="50" height="50"/>
+                                                <rect key="frame" x="162.5" y="-11" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="bG6-29-hdH"/>
                                                     <constraint firstAttribute="height" constant="50" id="sI2-gA-aFQ"/>
@@ -595,7 +593,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpD-H2-J3L">
-                                                <rect key="frame" x="162.5" y="83" width="50" height="50"/>
+                                                <rect key="frame" x="162.5" y="93" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="8xd-ja-amB"/>
                                                     <constraint firstAttribute="height" constant="50" id="fYS-8a-jfb"/>
@@ -606,7 +604,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlW-FZ-jz8">
-                                                <rect key="frame" x="214.5" y="30" width="50" height="50"/>
+                                                <rect key="frame" x="214.5" y="40" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="JyV-sT-9Nd"/>
                                                     <constraint firstAttribute="height" constant="50" id="bVy-Jx-0Yf"/>
@@ -617,7 +615,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5e-Uk-Wgs">
-                                                <rect key="frame" x="110.5" y="31" width="50" height="50"/>
+                                                <rect key="frame" x="110.5" y="41" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="ZN7-OU-GCA"/>
                                                     <constraint firstAttribute="height" constant="50" id="et2-oA-SKp"/>
@@ -645,7 +643,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IqL-eW-ddl">
-                                        <rect key="frame" x="0.0" y="287" width="375" height="112"/>
+                                        <rect key="frame" x="0.0" y="287" width="375" height="132"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3z-1C-gSQ">
                                                 <rect key="frame" x="325" y="0.0" width="50" height="50"/>
@@ -663,7 +661,7 @@
                                                 </connections>
                                             </button>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preview_talkback" highlightedImage="spkImg" translatesAutoresizingMaskIntoConstraints="NO" id="SdD-om-sXP">
-                                                <rect key="frame" x="137.5" y="6" width="100" height="100"/>
+                                                <rect key="frame" x="137.5" y="16" width="100" height="100"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="5Av-B7-ISV"/>
@@ -683,7 +681,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQS-rQ-Xez">
-                                        <rect key="frame" x="197.5" y="199.5" width="100" height="100"/>
+                                        <rect key="frame" x="197.5" y="209.5" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="Gjc-CC-41w"/>
                                             <constraint firstAttribute="height" constant="100" id="Kpb-pS-Xes"/>
@@ -699,15 +697,15 @@
                                             <action selector="localButtonClicked:" destination="uBF-Yq-Qo0" eventType="touchUpInside" id="ghH-Hn-KkG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYB-ca-Ox6">
-                                        <rect key="frame" x="281" y="30" width="64" height="64"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYB-ca-Ox6">
+                                        <rect key="frame" x="313" y="30" width="32" height="32"/>
                                         <state key="normal" image="cloud"/>
                                         <connections>
                                             <action selector="clickCloudBtn:" destination="uBF-Yq-Qo0" eventType="touchUpInside" id="Ft8-PW-PT5"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="云存储" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXb-RI-dLd">
-                                        <rect key="frame" x="293" y="94" width="40" height="16"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="云存储" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXb-RI-dLd">
+                                        <rect key="frame" x="309" y="62" width="40" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -862,12 +860,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2170.4000000000001" y="-23.838080959520241"/>
+            <point key="canvasLocation" x="2954" y="19"/>
         </scene>
         <!--Playback View Controller-->
         <scene sceneID="eUQ-yT-QiD">
             <objects>
-                <viewController id="I6z-uV-dEU" customClass="EZPlaybackViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EZPlaybackViewController" id="I6z-uV-dEU" customClass="EZPlaybackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0R4-Gk-cpw"/>
                         <viewControllerLayoutGuide type="bottom" id="37Q-1L-JHq"/>
@@ -1470,7 +1468,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="2998.4000000000001" y="340.02998500749629"/>
+            <point key="canvasLocation" x="3936.8000000000002" y="339.58020989505252"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="5rr-1N-SjW">
@@ -1534,7 +1532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Bh-zP-3pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3920" y="-109.74512743628186"/>
+            <point key="canvasLocation" x="4858.3999999999996" y="-110.19490254872565"/>
         </scene>
         <!--Message Photo View Controller-->
         <scene sceneID="ekE-W8-1DW">
@@ -1926,7 +1924,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kWd-Kx-WD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3920" y="612.59370314842579"/>
+            <point key="canvasLocation" x="4858.3999999999996" y="612.14392803598207"/>
         </scene>
     </scenes>
     <resources>
@@ -1972,6 +1970,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GcW-2d-Vr6"/>
-        <segue reference="oPv-Bb-2n6"/>
     </inferredMetricsTieBreakers>
 </document>

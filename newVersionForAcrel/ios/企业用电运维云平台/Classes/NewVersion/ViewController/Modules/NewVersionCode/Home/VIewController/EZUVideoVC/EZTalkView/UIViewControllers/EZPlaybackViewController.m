@@ -7,7 +7,7 @@
 //
 
 #import "EZPlaybackViewController.h"
-#import "UIViewController+EZBackPop.h"
+//#import "UIViewController+EZBackPop.h"
 #import "DDCollectionViewFlowLayout.h"
 #import "MJRefresh.h"
 #import "EZRecordDownloader.h"
@@ -100,7 +100,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.isAutorotate = YES;
+//    self.isAutorotate = YES;
     self.largeTitleLabel.text = self.deviceInfo.deviceName;
     self.largeTitleLabel.hidden = YES;
     

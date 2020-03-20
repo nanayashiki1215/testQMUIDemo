@@ -10,7 +10,7 @@
 #import <mach/mach.h>
 #import <Photos/Photos.h>
 #import "EZLivePlayViewController.h"
-#import "UIViewController+EZBackPop.h"
+//#import "UIViewController+EZBackPop.h"
 #import "EZDeviceInfo.h"
 #import "EZPlayer.h"
 #import "DDKit.h"
@@ -97,12 +97,14 @@
     self.title = _deviceInfo.deviceName;
     self.largeTitleLabel.text = self.title;
     
-    self.isAutorotate = YES;
+//    self.isAutorotate = YES;
     self.isStartingTalk = NO;
     self.ptzView.hidden = YES;
     self.talkView.hidden = YES;
     
     self.talkButton.enabled = self.deviceInfo.isSupportTalk;
+//    self.talkButton.enabled = 3;
+//    self.controlButton.enabled = YES;
     self.controlButton.enabled = self.deviceInfo.isSupportPTZ;
     self.captureButton.enabled = NO;
     self.localRecordButton.enabled = NO;
@@ -793,7 +795,7 @@
 
 - (IBAction)clickCloudBtn:(id)sender {
 
-    [EZOPENSDK openCloudPage:self.deviceInfo.deviceSerial channelNo:_cameraInfo.cameraNo];
+//    [EZOPENSDK openCloudPage:self.deviceInfo.deviceSerial channelNo:_cameraInfo.cameraNo];
 }
 
 - (void)timerStart:(NSTimer *)timer

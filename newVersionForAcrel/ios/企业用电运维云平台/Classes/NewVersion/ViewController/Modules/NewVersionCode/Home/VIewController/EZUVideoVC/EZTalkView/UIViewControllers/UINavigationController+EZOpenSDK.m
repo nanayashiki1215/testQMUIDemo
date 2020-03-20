@@ -7,7 +7,7 @@
 //
 
 #import "UINavigationController+EZOpenSDK.h"
-#import "UIViewController+EZBackPop.h"
+//#import "UIViewController+EZBackPop.h"
 
 @implementation UINavigationController (EZOpenSDK)
 
@@ -18,8 +18,8 @@
 
 - (BOOL)ez_shouldAutorotate
 {
-    UIViewController *topVC = [self.viewControllers lastObject];
-    return topVC.isAutorotate;
+//    UIViewController *topVC = [self.viewControllers lastObject];
+//    return topVC.isAutorotate;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations

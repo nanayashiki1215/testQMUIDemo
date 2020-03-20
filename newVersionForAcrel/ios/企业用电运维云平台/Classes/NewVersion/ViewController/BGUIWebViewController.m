@@ -1244,6 +1244,10 @@
 
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    // 如果是被取消，这里根据自身实际业务需求进行编辑
+    if (error.code == NSURLErrorCancelled) {
+        return;
+    }
     [self.progressView setProgress:0.0f animated:NO];
 //    [MBProgressHUD hideHUDForView:self.view animated:YES];xx
     [MBProgressHUD showError:[NSString stringWithFormat:@"页面加载失败,错误码：%ld",(long)error.code]];

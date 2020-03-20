@@ -13,6 +13,12 @@
 #import "EZUIKit.h"
 #import "EZUIKitPlaybackViewController.h"
 
+#import "EZLivePlayViewController.h"
+#import "EZDeviceInfo.h"
+#import "EZCameraInfo.h"
+#import "EZVideoQualityInfo.h"
+#import "EZPlaybackViewController.h"
+
 @interface BGQMVideoListTableVC ()<BGQMVideoTableViewCellDelegate,QMUISearchControllerDelegate,QMUINavigationTitleViewDelegate,UISearchBarDelegate>
 @property(nonatomic, strong) QMUIPopupMenuView *popupMenuView;
 @property(nonatomic, strong) NSMutableArray *mutArray;//需要展示的数据
@@ -264,6 +270,25 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 //                                     url:urlStr
 //                                  apiUrl:@""
 //                                    mode:nil];
+    
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
+
+    EZLivePlayViewController *selfdetailVC = [mainSB instantiateViewControllerWithIdentifier:@"EZLivePlayViewController"];
+
+   [EZOPENSDK getDeviceInfo:@"D62206539" completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+             if (deviceInfo) {
+
+                 selfdetailVC.deviceInfo = deviceInfo;
+                 [self.ownNaviController pushViewController:selfdetailVC animated:YES];
+//                         [self presentViewController:selfdetailVC animated:YES completion:nil];
+             }
+             else {
+                 [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+             }
+    }];
+
+    
+//    [self.navigationController pushViewController:naVC animated:YES];
 }
 
 - (void) showPlayerControllerWithAppKey:(NSString *) appKey
@@ -525,13 +550,26 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 
 - (void)clickPlayBackBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(NSDictionary *)param{
     //点击了回放
-    EZUIKitPlaybackViewController *vc = [[EZUIKitPlaybackViewController alloc] init];
-    NSIndexPath *path = [self.tableView indexPathForCell:cell];
-    vc.videoTitle = self.mutArray[path.row][@"fVideoname"];
-    vc.appKey = self.ezappkeystr;
-    vc.accessToken = self.ezappTokenstr;
-    vc.urlStr =  self.mutArray[path.row][@"fPlaybackurl"];
-    [self.ownNaviController pushViewController:vc animated:YES];
+//    EZUIKitPlaybackViewController *vc = [[EZUIKitPlaybackViewController alloc] init];
+//    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+//    vc.videoTitle = self.mutArray[path.row][@"fVideoname"];
+//    vc.appKey = self.ezappkeystr;
+//    vc.accessToken = self.ezappTokenstr;
+//    vc.urlStr =  self.mutArray[path.row][@"fPlaybackurl"];
+//    [self.ownNaviController pushViewController:vc animated:YES];
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
+
+    EZPlaybackViewController *backVC = [mainSB instantiateViewControllerWithIdentifier:@"EZPlaybackViewController"];
+    
+    [EZOPENSDK getDeviceInfo:@"D62206539" completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+         if (deviceInfo) {
+             backVC.deviceInfo = deviceInfo;
+             [self.ownNaviController pushViewController:backVC animated:YES];
+         }
+         else {
+             [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+         }
+    }];
 }
 
 -(void)clickPlayBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(CGFloat)param{
@@ -541,5 +579,8 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 //    [self.tableView beginUpdates];
 //    [self.tableView endUpdates];
 }
+
+
+
 
 @end

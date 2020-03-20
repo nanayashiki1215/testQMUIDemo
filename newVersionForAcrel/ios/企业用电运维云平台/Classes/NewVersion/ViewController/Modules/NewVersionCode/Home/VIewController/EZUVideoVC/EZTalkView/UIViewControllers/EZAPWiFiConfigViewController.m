@@ -13,8 +13,8 @@
 #import "EZAPConfigResultViewController.h"
 #import "Toast+UIView.h"
 
-#define WIFI_PREFROOT_URL @"prefs:root=WIFI"
-#define WIFI_IOS10_WIFI_URL @"App-Prefs:root=WIFI"
+//#define WIFI_PREFROOT_URL @""
+//#define WIFI_IOS10_WIFI_URL @""
 
 @interface EZAPWiFiConfigViewController ()
 
@@ -110,12 +110,12 @@
 
 - (IBAction)enterSettingBtnClick:(id)sender
 {
-    NSString *urlStr = [[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0?WIFI_IOS10_WIFI_URL:WIFI_PREFROOT_URL;
-    NSURL * url = [NSURL URLWithString:urlStr];
-    if([[UIApplication sharedApplication] canOpenURL:url])
-    {
-        [[UIApplication sharedApplication] openURL:url];
-    }
+//    NSString *urlStr = [[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0?WIFI_IOS10_WIFI_URL:WIFI_PREFROOT_URL;
+//    NSURL * url = [NSURL URLWithString:urlStr];
+//    if([[UIApplication sharedApplication] canOpenURL:url])
+//    {
+//        [[UIApplication sharedApplication] openURL:url];
+//    }
 }
 
 - (IBAction)copyPwdBtnClick:(id)sender

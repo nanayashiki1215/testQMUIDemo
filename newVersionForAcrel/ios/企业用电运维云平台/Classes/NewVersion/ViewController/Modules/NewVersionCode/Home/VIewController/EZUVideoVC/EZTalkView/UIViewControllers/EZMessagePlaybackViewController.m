@@ -7,7 +7,7 @@
 //
 
 #import "EZMessagePlaybackViewController.h"
-#import "UIViewController+EZBackPop.h"
+//#import "UIViewController+EZBackPop.h"
 
 #import "EZPlayer.h"
 #import "HIKLoadView.h"
@@ -73,7 +73,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.info.alarmName;
-    self.isAutorotate = YES;
+//    self.isAutorotate = YES;
     
     self.largeBackButton.hidden = YES;
     _isOpenSound = YES;
