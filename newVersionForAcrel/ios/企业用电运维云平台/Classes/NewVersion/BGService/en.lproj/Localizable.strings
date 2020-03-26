@@ -41,9 +41,10 @@
 "selectsubstation" = "selectSubstation";
 
 //video
-"play"="play";
-"stop"="stop";
-"playBack" = "playBack";
+"play"="Play";
+"stop"="Stop";
+"playBack" = "Replay";
+"playDetail" = "Detail";
 "verify_code_wrong" = "verify_code_wrong";
 "device_offline" = "device_offline";
 "device_not_exist" = "device_not_exist";

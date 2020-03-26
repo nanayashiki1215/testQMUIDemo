@@ -40,6 +40,7 @@
 "play"="播放";
 "stop"="停止";
 "playBack" = "回放";
+"playDetail" = "详情";
 "verify_code_wrong" = "验证码错误,请重新获取url地址增加验证码";
 "device_offline" = "设备不在线，确认设备上线之后重试";
 "device_not_exist" = "设备不存在,请前往网页端进行配置";

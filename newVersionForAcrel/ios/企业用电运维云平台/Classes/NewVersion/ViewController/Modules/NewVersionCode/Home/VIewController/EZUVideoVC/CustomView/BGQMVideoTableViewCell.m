@@ -53,7 +53,7 @@
     [self.bgView addSubview:self.iconMoreImage];
     [self.bgView addSubview:self.playBtn];
     [self.bgView addSubview:self.playBackBtn];
-    
+    [self.bgView addSubview:self.playDetailBtn];
 }
 
 - (void)updateCellAppearanceWithIndexPath:(NSIndexPath *)indexPath {
@@ -115,8 +115,14 @@
         make.centerY.equalTo(self.iconCameraImage.mas_centerY);
     }];
     
-    [_playBackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_playDetailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.secView.mas_right).offset(-5);
+        make.width.mas_offset(60);
+        make.centerY.equalTo(self.iconCameraImage.mas_centerY);
+    }];
+    
+    [_playBackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.playDetailBtn.mas_left).offset(5);
         make.width.mas_offset(60);
         make.centerY.equalTo(self.iconCameraImage.mas_centerY);
     }];
@@ -219,6 +225,21 @@
     return _playBackBtn;
 }
 
+-(UIButton *)playDetailBtn{
+    if (!_playDetailBtn) {
+        _playDetailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_playDetailBtn setTitle:DefLocalizedString(@"playDetail") forState:UIControlStateNormal];
+        _playDetailBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+        _playDetailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
+        [_playDetailBtn setTitleColor:COLOR_NAVBAR forState:UIControlStateNormal];
+        [_playDetailBtn setImage:[UIImage imageNamed:@"playDetail"] forState:UIControlStateNormal];
+//        [_playBackBtn setTitle:DefLocalizedString(@"stop") forState:UIControlStateSelected];
+        //    self.playBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-80)/2, [UIScreen mainScreen].bounds.size.height - 100, 80, 40);
+        //    self.playBtn.frame = CGRectMake(100,0 , 40, 40);
+        [_playDetailBtn addTarget:self action:@selector(playDetailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _playDetailBtn;
+}
 
 - (void)dealloc
 {
@@ -544,6 +565,11 @@
     //    }
 //    [self.navigationController pushViewController:vc animated:YES];
 //    [self.qmui_viewController presentViewController:vc animated:YES completion:nil];
+}
+
+//点击了播放详情
+- (void)playDetailBtnClick:(UIButton *)btn{
+    [self.videoPlayBackdelegate clickPlayDetailBtnInCell:self withPushData:nil];
 }
 
 - (void)timeCheckUpdateNetworkAccessToken{

@@ -26,7 +26,8 @@ static NSString *reuseId = @"UITableViewCell";
     if (self = [super init]) {
         
         self.tableView = [[UITableView alloc]init];
-        self.tableView.backgroundColor = [UIColor colorWithRed:25/255.0 green:25/255.0 blue:112/255.0 alpha:0.5];
+//        self.tableView.backgroundColor = [UIColor colorWithRed:25/255.0 green:25/255.0 blue:112/255.0 alpha:0.5];
+        self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.rowHeight = 30;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
@@ -61,8 +62,10 @@ static NSString *reuseId = @"UITableViewCell";
     
     cell.textLabel.text = self.datasources[indexPath.row];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.backgroundColor = [UIColor colorWithRed:25/255.0 green:25/255.0 blue:112/255.0 alpha:0.5];
-    
+//    cell.backgroundColor = [UIColor colorWithRed:25/255.0 green:25/255.0 blue:112/255.0 alpha:0.5];
+    cell.backgroundColor = [UIColor blackColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
     return cell;
 }
 
@@ -77,5 +80,12 @@ static NSString *reuseId = @"UITableViewCell";
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
 
 @end

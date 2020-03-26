@@ -259,36 +259,32 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *urlStr = @"ezopen://open.ys7.com/183414608/1.hd.live";
-    //    }
-//    NSString *urlInputString = [NSString stringWithFormat:@"%@begin=%@&end=%@",urlStr,self.startTimeStr,self.endTimeStr];
-    //    self.urlInput.text = @"ezopen://open.ys7.com/183414608/1.rec?begin=20190509000000&end=20190509235959";
-//    DefLog(@"输入的时间段为：%@",urlInputString);
-//    NSString *modeStr = [self readStringWithKey:EZUIKitMode];
-//    [self showPlayerControllerWithAppKey:EZAPPKEY
-//                                  access:EZAPPTestAccessToken
-//                                     url:urlStr
-//                                  apiUrl:@""
-//                                    mode:nil];
+
+//    if (self.mutArray.count>0) {
+//        NSDictionary *deviceInfo = self.mutArray[indexPath.row];
+//        NSString *deviceStr = [NSString changgeNonulWithString:deviceInfo[@"fVideokey"]];
+//        if (!deviceStr || [deviceStr isEqualToString:@""]) {
+//            DefQuickAlert(@"未配置设备序列号，请前往Web端配置", nil);
+//            return;
+//        }
+//        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
+//
+//        EZLivePlayViewController *selfdetailVC = [mainSB instantiateViewControllerWithIdentifier:@"EZLivePlayViewController"];
+//
+//           [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+//                     if (deviceInfo) {
+//
+//                         selfdetailVC.deviceInfo = deviceInfo;
+//                         [self.ownNaviController pushViewController:selfdetailVC animated:YES];
+//        //                         [self presentViewController:selfdetailVC animated:YES completion:nil];
+//                     }
+//                     else {
+//                         [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+//                     }
+//            }];
+//    }
     
-    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
 
-    EZLivePlayViewController *selfdetailVC = [mainSB instantiateViewControllerWithIdentifier:@"EZLivePlayViewController"];
-
-   [EZOPENSDK getDeviceInfo:@"D62206539" completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
-             if (deviceInfo) {
-
-                 selfdetailVC.deviceInfo = deviceInfo;
-                 [self.ownNaviController pushViewController:selfdetailVC animated:YES];
-//                         [self presentViewController:selfdetailVC animated:YES completion:nil];
-             }
-             else {
-                 [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
-             }
-    }];
-
-    
-//    [self.navigationController pushViewController:naVC animated:YES];
 }
 
 - (void) showPlayerControllerWithAppKey:(NSString *) appKey
@@ -557,11 +553,18 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 //    vc.accessToken = self.ezappTokenstr;
 //    vc.urlStr =  self.mutArray[path.row][@"fPlaybackurl"];
 //    [self.ownNaviController pushViewController:vc animated:YES];
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    NSDictionary *deviceInfo = self.mutArray[indexP.row];
+    NSString *deviceStr = [NSString changgeNonulWithString:deviceInfo[@"fVideokey"]];
+    if (!deviceStr || [deviceStr isEqualToString:@""]) {
+       DefQuickAlert(@"未配置设备序列号，请前往Web端配置", nil);
+       return;
+    }
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
 
     EZPlaybackViewController *backVC = [mainSB instantiateViewControllerWithIdentifier:@"EZPlaybackViewController"];
     
-    [EZOPENSDK getDeviceInfo:@"D62206539" completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+    [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
          if (deviceInfo) {
              backVC.deviceInfo = deviceInfo;
              [self.ownNaviController pushViewController:backVC animated:YES];
@@ -570,6 +573,36 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
              [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
          }
     }];
+}
+
+-(void)clickPlayDetailBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(NSDictionary *)param{
+    if (self.mutArray.count>0) {
+        NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+        NSDictionary *deviceInfo = self.mutArray[indexP.row];
+        NSString *deviceStr = [NSString changgeNonulWithString:deviceInfo[@"fVideokey"]];
+        if (!deviceStr || [deviceStr isEqualToString:@""]) {
+           
+            [self.tableView makeToast:@"未配置设备序列号，请前往Web端配置" duration:2.0 position:@"center"];
+           return;
+        }
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
+
+        EZLivePlayViewController *selfdetailVC = [mainSB instantiateViewControllerWithIdentifier:@"EZLivePlayViewController"];
+
+           [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+                     if (deviceInfo) {
+
+                         selfdetailVC.deviceInfo = deviceInfo;
+                         [self.ownNaviController pushViewController:selfdetailVC animated:YES];
+        //                         [self presentViewController:selfdetailVC animated:YES completion:nil];
+                     }
+                     else {
+                         [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+                     }
+            }];
+    }else{
+        [self.tableView makeToast:@"无此设备，请检查Web端设备序列号" duration:2.0 position:@"center"];
+    }
 }
 
 -(void)clickPlayBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(CGFloat)param{

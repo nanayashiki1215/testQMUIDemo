@@ -20,6 +20,9 @@
 
 - (void)setCloudRecord:(EZCloudRecordFile *)cloudFile selected:(BOOL)selected
 {
+    //暂时隐藏下载功能
+    self.downloadBtn.hidden = YES;
+    
     if (![cloudFile isKindOfClass:[EZCloudRecordFile class]])
     {
         return;
@@ -64,6 +67,9 @@
 
 - (void)setDeviceRecord:(EZDeviceRecordFile *)deviceFile selected:(BOOL)selected
 {
+    //暂时隐藏下载功能
+    self.downloadBtn.hidden = YES;
+    
     self.imageView.image = nil;
     self.imageView.backgroundColor = [UIColor grayColor];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

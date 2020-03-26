@@ -21,6 +21,9 @@
 //点击播放
 - (void)clickPlayBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(CGFloat)param;
 
+//点击播放详情
+- (void)clickPlayDetailBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(NSDictionary *)param;
+
 @end
 
 @interface BGQMVideoTableViewCell : QMUITableViewCell<EZUIPlayerDelegate>
@@ -33,6 +36,7 @@
 @property (nonatomic,strong)UIImageView *iconMoreImage;
 @property (nonatomic,strong) UIButton *playBtn;
 @property (nonatomic,strong) UIButton *playBackBtn;
+@property (nonatomic,strong) UIButton *playDetailBtn;
 @property (nonatomic,strong) EZUIPlayer *mPlayer;
 
 @property (nonatomic,weak) id<BGQMVideoTableViewCellDelegate> videoPlayBackdelegate;

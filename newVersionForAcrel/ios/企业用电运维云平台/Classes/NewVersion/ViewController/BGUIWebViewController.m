@@ -685,11 +685,13 @@
         [self.navigationController pushViewController:nomWebView animated:YES];
     }else if ([message.name isEqualToString:@"getLocation"]){
         //获取定位 百度地图 签到
+        __weak __typeof(self)weakSelf = self;
+        self.pageStillLoading = YES;
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
-            self.pageStillLoading = YES;
-            
+           
+            [self performSelectorOnMainThread:@selector(getLoation) withObject:nil waitUntilDone:YES];
             //定位功能可用
-            [self getLoation];
+//            [self getLoation];
 
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
             //定位不能用
@@ -697,6 +699,7 @@
             NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
             [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                 DefLog(@"item%@",item);
+                weakSelf.pageStillLoading = NO;
             }];
         }
     }else if ([message.name isEqualToString:@"pushDownFileVC"]){
@@ -716,7 +719,8 @@
         NSString *startTime = [NSString changgeNonulWithString:message.body[@"startTime"]];
         NSString *endTime = [NSString changgeNonulWithString:message.body[@"endTime"]];
         
-        NSString *baseUrl = GetBaseURL;
+//        NSString *baseUrl = GetBaseURL;
+        NSString *baseUrl = @"https://116.236.149.165:8090";
         NSString *strUrl2 = @"";
         NSString *strUrl = [baseUrl stringByReplacingOccurrencesOfString:@"." withString:@"-"];
         if ([strUrl containsString:@":"]) {
@@ -726,6 +730,8 @@
         }
         if([strUrl2 containsString:@"http"]){
            baseUrl = [strUrl2 stringByReplacingOccurrencesOfString:@"/" withString:@""];
+           baseUrl = [baseUrl stringByReplacingOccurrencesOfString:@"http_" withString:@""];
+           baseUrl = [baseUrl stringByReplacingOccurrencesOfString:@"https_" withString:@""];
         }else{
            baseUrl = strUrl2;
         }
@@ -1109,21 +1115,30 @@
 
 -(void)getLoation{
     __weak __typeof(self)weakSelf = self;
-    self.pageStillLoading = YES;
-    
+//    self.pageStillLoading = YES;
     [self.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
              //获取经纬度和该定位点对应的位置信息
         DefLog(@"%@ %d",location,state);
+        if(location){
+            NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
+            NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
+            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+    //       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
+           [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+               NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
+               
+               weakSelf.pageStillLoading = NO;
+           }];
+        }else{
+            //定位不能用
+           NSString *locationStr = @"";
+           NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+           [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+               DefLog(@"item%@",item);
+               weakSelf.pageStillLoading = NO;
+           }];
+        }
         
-        NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
-        NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
-        NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
-//       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
-       [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-           NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
-           sleep(20);
-           weakSelf.pageStillLoading = NO;
-       }];
     }];
     
     while (self.pageStillLoading) {
