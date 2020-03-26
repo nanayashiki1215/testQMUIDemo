@@ -1216,6 +1216,7 @@
                         <outlet property="largeTitleLabel" destination="SJH-Sa-TMv" id="Azk-pA-lo4"/>
                         <outlet property="noVideoImageView" destination="KsP-XU-bB0" id="uuy-I7-RjU"/>
                         <outlet property="noVideoLabel" destination="pg3-8C-ucI" id="pWG-m9-pOS"/>
+                        <outlet property="playBackAspect" destination="0Wa-du-utY" id="K1j-Pp-f9k"/>
                         <outlet property="playButton" destination="Z3E-1u-wEn" id="kh9-WC-095"/>
                         <outlet property="playTimeLabel" destination="ruu-Hg-3Tx" id="wAa-dH-XNO"/>
                         <outlet property="playbackList" destination="jim-qG-8NV" id="dpb-Sy-z2g"/>

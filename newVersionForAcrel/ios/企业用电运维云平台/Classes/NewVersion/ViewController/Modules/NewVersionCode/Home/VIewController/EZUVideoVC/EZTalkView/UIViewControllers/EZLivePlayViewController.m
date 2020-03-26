@@ -242,10 +242,10 @@
 }
 */
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-}
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationMaskAllButUpsideDown;
+//}
 
 //全屏切换
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -1011,6 +1011,26 @@
     lineImageView4.frame = CGRectMake(averageWidth * 4, 7, lineImageView4.frame.size.width, lineImageView4.frame.size.height);
     [self.toolBar addSubview:lineImageView4];
 }
+
+#pragma mark - 屏幕旋转
+
+// 这个方法返回支持的方向
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (BOOL)shouldAutorotate {
+
+return YES;
+
+}
+
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+//
+//return UIInterfaceOrientationPortrait;
+//
+//}
+
 
 -(NSDictionary *)retErrYinshiyunDic{
     return @{@"101001":@"用户名不合法",

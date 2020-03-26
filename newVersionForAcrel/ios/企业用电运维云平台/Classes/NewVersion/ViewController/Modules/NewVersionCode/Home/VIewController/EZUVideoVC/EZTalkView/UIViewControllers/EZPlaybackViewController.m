@@ -86,6 +86,8 @@
 @property (nonatomic, strong) EZRecordDownloader *downloader;
 @property (nonatomic, strong) EZCustomTableView *cloudRateView;
 @property (nonatomic, strong) EZCustomTableView *sdCardRateView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *playBackAspect;
+
 
 @end
 
@@ -217,6 +219,13 @@
     self.largeButton.hidden = NO;
     self.voiceButton.hidden = NO;
     self.playButton.hidden = NO;
+    //修改宽度比
+    [NSLayoutConstraint deactivateConstraints:@[self.playBackAspect]];
+     
+    self.playBackAspect= [NSLayoutConstraint constraintWithItem:self.playerView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.playerView attribute:NSLayoutAttributeHeight multiplier:1.7 constant:0];
+     
+    [NSLayoutConstraint activateConstraints:@[self.playBackAspect]];
+    
     if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
        toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
     {
@@ -229,6 +238,13 @@
         self.playbackList.hidden = YES;
         self.largeBackButton.hidden = NO;
         self.navigationController.navigationBarHidden = YES;
+        
+        //修改宽度比
+           [NSLayoutConstraint deactivateConstraints:@[self.playBackAspect]];
+            
+           self.playBackAspect= [NSLayoutConstraint constraintWithItem:self.playerView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.playerView attribute:NSLayoutAttributeHeight multiplier:2.1 constant:0];
+            
+           [NSLayoutConstraint activateConstraints:@[self.playBackAspect]];
     }
 }
 

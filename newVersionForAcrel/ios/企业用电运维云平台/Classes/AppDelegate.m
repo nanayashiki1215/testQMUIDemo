@@ -711,9 +711,9 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 //    return [WXAUTH handleOpenURL:url];
 //}
 
-- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window {
-    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft;
-}
+//- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window {
+//    return UIInterfaceOrientationMaskPortrait;
+//}
 
 //程序被杀死
 -(void)applicationWillTerminate:(UIApplication *)application{

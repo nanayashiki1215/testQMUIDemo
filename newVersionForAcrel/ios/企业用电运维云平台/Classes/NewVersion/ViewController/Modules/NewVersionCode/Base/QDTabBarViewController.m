@@ -20,7 +20,8 @@
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
 #import "YYServiceManager.h"
-
+#import "EZLivePlayViewController.h"
+#import "EZPlaybackViewController.h"
 
 //#import "JXCategoryTitleView.h"
 //#import "JXCategoryIndicatorLineView.h"
@@ -254,4 +255,19 @@
 //    self.viewControllers = @[uikitNavController, componentNavController,ownNavController];
     self.viewControllers = [mainControllers copy];
 }
+
+//单独判断页面
+-(BOOL)shouldAutorotate{
+    return YES;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    UINavigationController *navCtl = self.viewControllers[0];
+    if ([navCtl.topViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.topViewController isKindOfClass:[EZPlaybackViewController class]]) {
+        return UIInterfaceOrientationMaskAll;
+    }else{
+        return UIInterfaceOrientationMaskPortrait;
+    }
+}
+
 @end
