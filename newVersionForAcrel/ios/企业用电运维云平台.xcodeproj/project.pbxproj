@@ -423,7 +423,6 @@
 		B6CA22A522C09F1B00AAA1CA /* BGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CA22A322C09F1A00AAA1CA /* BGHomeViewController.m */; };
 		B6CBDAC923B5E49C00B3ECA7 /* BaiduTraceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CBDAC523B5E25600B3ECA7 /* BaiduTraceSDK.framework */; };
 		B6CBDACA23B5E49C00B3ECA7 /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B6CBDAC523B5E25600B3ECA7 /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B6D320952420B44300A50F77 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320922420B44300A50F77 /* Aspects.m */; };
 		B6D320992420B46500A50F77 /* GlobalKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D320972420B46500A50F77 /* GlobalKit.m */; };
 		B6D320A12420B8E400A50F77 /* DeviceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3209E2420B8E400A50F77 /* DeviceListCell.m */; };
 		B6D320A22420B8E400A50F77 /* CameraListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D3209F2420B8E400A50F77 /* CameraListCell.m */; };
@@ -1474,8 +1473,6 @@
 		B6CA22A222C09F1A00AAA1CA /* BGHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGHomeViewController.xib; sourceTree = "<group>"; };
 		B6CA22A322C09F1A00AAA1CA /* BGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHomeViewController.m; sourceTree = "<group>"; };
 		B6CBDAC523B5E25600B3ECA7 /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduTraceSDK.framework; sourceTree = "<group>"; };
-		B6D320912420B44300A50F77 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
-		B6D320922420B44300A50F77 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		B6D320972420B46500A50F77 /* GlobalKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalKit.m; sourceTree = "<group>"; };
 		B6D320982420B46500A50F77 /* GlobalKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalKit.h; sourceTree = "<group>"; };
 		B6D3209B2420B8E400A50F77 /* CameraListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraListCell.h; sourceTree = "<group>"; };
@@ -2176,7 +2173,6 @@
 			isa = PBXGroup;
 			children = (
 				B6D320962420B46500A50F77 /* Global */,
-				B6D320902420B44300A50F77 /* Aspects */,
 				B62251292420B2A20041E709 /* DDCategory */,
 				B62250D12420B0710041E709 /* EZWifiInfoViewController.h */,
 				B62250D22420B0710041E709 /* EZCalendarViewController.h */,
@@ -3191,15 +3187,6 @@
 				B6E2187522A4A89D003C2969 /* Home */,
 			);
 			path = NewVersionCode;
-			sourceTree = "<group>";
-		};
-		B6D320902420B44300A50F77 /* Aspects */ = {
-			isa = PBXGroup;
-			children = (
-				B6D320912420B44300A50F77 /* Aspects.h */,
-				B6D320922420B44300A50F77 /* Aspects.m */,
-			);
-			path = Aspects;
 			sourceTree = "<group>";
 		};
 		B6D320962420B46500A50F77 /* Global */ = {
@@ -4709,7 +4696,6 @@
 				B68D2CF222A646C1001C00EC /* JXCategoryTitleCellModel.m in Sources */,
 				B6E155F3228CF09C00CB4A5F /* UILabel+BGExtension.m in Sources */,
 				B6E155BF228CEDF900CB4A5F /* UIView+BGChangeCorner.m in Sources */,
-				B6D320952420B44300A50F77 /* Aspects.m in Sources */,
 				B6EB9BCC22C99FDB00136A6C /* EZUIKitViewController.m in Sources */,
 				B6C768A122A0B8DC00DA675D /* QMUIConfigurationTemplateGrass.m in Sources */,
 				B6D321142420C36800A50F77 /* UITableView+FDIndexPathHeightCache.m in Sources */,
@@ -4810,7 +4796,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.3;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
@@ -4846,7 +4832,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";
@@ -4869,7 +4855,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.3;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4902,7 +4888,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";

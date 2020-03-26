@@ -77,8 +77,7 @@
 @property (nonatomic, strong) NSMutableData *fileData;
 @property (nonatomic, weak) MBProgressHUD *voiceHud;
 @property (nonatomic, strong) EZCameraInfo *cameraInfo;
-
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *playViewAspect;
 
 @end
 
@@ -248,6 +247,7 @@
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
+//全屏切换
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
@@ -257,6 +257,13 @@
     self.bottomView.hidden = NO;
     self.largeTitleLabel.hidden = YES;
     self.localRecrodContraint.constant = 10;
+    //修改宽度比
+    [NSLayoutConstraint deactivateConstraints:@[self.playViewAspect]];
+     
+    self.playViewAspect= [NSLayoutConstraint constraintWithItem:self.playerView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.playerView attribute:NSLayoutAttributeHeight multiplier:1.7 constant:0];
+     
+    [NSLayoutConstraint activateConstraints:@[self.playViewAspect]];
+    
     if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
        toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
     {
@@ -266,6 +273,21 @@
         self.largeTitleLabel.hidden = NO;
         self.largeBackButton.hidden = NO;
         self.bottomView.hidden = YES;
+//        self.playerView
+//        [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+////               make.height.mas_equalTo(SCREEN_HEIGHT);
+////              make.width.mas_equalTo(SCREEN_WIDTH);
+////            make.width.equalTo(self.view.mas_height).multipliedBy(1.0f);
+//             make.width.equalTo(self.view.mas_height);
+//        }];
+
+        //修改宽度比
+        [NSLayoutConstraint deactivateConstraints:@[self.playViewAspect]];
+         
+        self.playViewAspect= [NSLayoutConstraint constraintWithItem:self.playerView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.playerView attribute:NSLayoutAttributeHeight multiplier:2.1 constant:0];
+         
+        [NSLayoutConstraint activateConstraints:@[self.playViewAspect]];
+       
     }
 }
 

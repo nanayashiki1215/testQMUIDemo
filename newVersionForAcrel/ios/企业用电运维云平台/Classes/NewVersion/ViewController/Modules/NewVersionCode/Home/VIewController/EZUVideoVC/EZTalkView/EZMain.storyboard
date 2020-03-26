@@ -832,6 +832,7 @@
                         <outlet property="messageLabel" destination="YwB-6z-DKL" id="196-Ds-Vl6"/>
                         <outlet property="middleButton" destination="WSh-Ao-McO" id="vty-N8-cDz"/>
                         <outlet property="playButton" destination="xSp-4i-Jwh" id="DUU-ap-reQ"/>
+                        <outlet property="playViewAspect" destination="7NS-WA-bEr" id="nmD-vB-R3f"/>
                         <outlet property="playerPlayButton" destination="yYv-tJ-QCV" id="EIB-lc-14l"/>
                         <outlet property="playerView" destination="1Xz-5f-ZJx" id="tYS-5X-mCe"/>
                         <outlet property="ptzCloseButton" destination="Un0-bC-uwU" id="pBM-jg-Hsv"/>
@@ -860,7 +861,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2954" y="19"/>
+            <point key="canvasLocation" x="2952.8000000000002" y="18.440779610194905"/>
         </scene>
         <!--Playback View Controller-->
         <scene sceneID="eUQ-yT-QiD">
