@@ -248,12 +248,20 @@
         [MBProgressHUD showError:DefLocalizedString(@"Domain name filling out is not standard")];
         return;
     }
+    if ([self.addressTextField.text containsString:@"："] || [self.addressTextField.text containsString:@" "] || [self.addressTextField.text containsString:@"。"]) {
+           NSString *newStr = self.addressTextField.text;
+           newStr = [newStr stringByReplacingOccurrencesOfString:@"：" withString:@":"];
+           newStr = [newStr stringByReplacingOccurrencesOfString:@"。" withString:@"."];
+           newStr = [newStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+           self.addressTextField.text = newStr;
+    }
     NSString *orderListUrl;
     if (![self.addressTextField.text hasPrefix:@"http"]) {
         orderListUrl = [NSString stringWithFormat:@"http://%@",self.addressTextField.text];
     }else{
         orderListUrl = self.addressTextField.text;
     }
+   
     [DefNSUD setObject:orderListUrl forKey:kBaseUrlString];
     DefNSUDSynchronize
     

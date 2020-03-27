@@ -30,6 +30,7 @@
  缺陷管理 349
  文档管理 350
  用户报告 351
+ 设备控制 352
  */
 
 @interface BGQMHomeViewController ()<MSCycleScrollViewDelegate,CustomGridDelegate,UIScrollViewDelegate,BGQMSelectSubstationTVCDelegate>
@@ -1007,6 +1008,36 @@
                  [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
+    }else if (codeId == 352){
+        //352 设备控制
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"352"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"DeviceControlList" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeReport;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
     }
     else {
         DefLog(@"点击了%@格子",title);
@@ -1095,6 +1126,8 @@
                     showStrIcon = @"dsbgl6";
                 }else if([showfCode isEqualToString:@"351"]){
                     showStrIcon = @"dsbgl7";
+                }else if([showfCode isEqualToString:@"352"]){
+                    showStrIcon = @"dsbgl8";
                 }
             }
             [showMutaiArray addObject:showStrTitle];
