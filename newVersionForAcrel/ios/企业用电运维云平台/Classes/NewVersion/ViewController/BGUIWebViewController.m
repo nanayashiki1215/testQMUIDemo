@@ -719,8 +719,8 @@
         NSString *startTime = [NSString changgeNonulWithString:message.body[@"startTime"]];
         NSString *endTime = [NSString changgeNonulWithString:message.body[@"endTime"]];
         
-//        NSString *baseUrl = GetBaseURL;
-        NSString *baseUrl = @"https://116.236.149.165:8090";
+        NSString *baseUrl = GetBaseURL;
+//        NSString *baseUrl = @"https://116.236.149.165:8090";
         NSString *strUrl2 = @"";
         NSString *strUrl = [baseUrl stringByReplacingOccurrencesOfString:@"." withString:@"-"];
         if ([strUrl containsString:@":"]) {
@@ -750,7 +750,6 @@
         //        [[YYServiceManager defaultManager] stopService];
             } else {
                 // 开启服务之间先配置轨迹服务的基础信息
-                
                 BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:[YYServiceParam serviceParamManager].keepAlive];
                 [[BTKAction sharedInstance] initInfo:basicInfoOption];
                 // 开启服务

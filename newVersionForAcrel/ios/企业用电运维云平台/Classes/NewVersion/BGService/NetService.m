@@ -185,6 +185,7 @@
 //        [mutParams setNotNullObject:tenantId ForKey:ktenantId];
 //    }
     
+    //最新更新接口
     NSString *urlString = [[@"http://www.acrelcloud.cn" stringByAppendingString:BaseFileURLString] stringByAppendingString:path];
     [NetService bg_httpGetWithPath:urlString params:mutParams success:^(id responseObject) {
 //        NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
@@ -198,6 +199,9 @@
 //        if ([respCode isEqualToString:k0000]) {
 
             if (Success) {
+                if (!responseObject || responseObject == nil) {
+                    return ;
+                }
                 Success(responseObject);
             }
 //        }else{

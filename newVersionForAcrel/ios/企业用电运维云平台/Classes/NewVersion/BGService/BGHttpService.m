@@ -212,6 +212,10 @@ static id _instance;
         DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
             if (Success) {
+                if (!responseObject) {
+                    [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+                    return ;
+                }
                 Success(responseObject);
             }
         }
@@ -240,6 +244,10 @@ static id _instance;
         DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
             if (Success) {
+                 if (!responseObject) {
+                                   [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+                                   return ;
+                               }
                 Success(responseObject);
             }
         }
@@ -268,6 +276,10 @@ static id _instance;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
+             if (!responseObject) {
+                               [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+                               return ;
+                           }
             Success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -294,8 +306,11 @@ static id _instance;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
-        
         if (Success) {
+             if (!responseObject) {
+                               [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+                               return ;
+                           }
             Success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

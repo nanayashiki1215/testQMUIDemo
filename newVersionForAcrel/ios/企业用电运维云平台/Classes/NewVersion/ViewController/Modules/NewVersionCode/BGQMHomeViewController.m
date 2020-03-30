@@ -807,7 +807,6 @@
     }else if (codeId == 345){
         //345 监控系统
         BGQMNewHomeTableViewController *homeSystemVC = [[BGQMNewHomeTableViewController alloc] init];
-       
 //        user.rootMenuData 获取首页相关数据
         for (NSDictionary *nodeDic in homeList) {
             if ([nodeDic[@"fCode"] isEqualToString:@"345"]) {
@@ -846,17 +845,6 @@
                [self.navigationController pushViewController:urlWebView animated:YES];
              }
         }
-//        nomWebView.isUseOnline = YES;
-//        UserManager *user = [UserManager manager];
-       //list
-//        if (user.singleSubFullData) {
-//           NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
-//           NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
-//           NSString *str = [GetBaseURL stringByAppendingString:urlstring];
-//           NSString *urlStr = [str stringByAppendingString:url];
-//           nomWebView.onlineUrlString = urlStr;
-//        }
-        
     }else if (codeId == 347){
         //347 待办事项
         NSString *fAction;
@@ -883,7 +871,7 @@
                 NSString *str = [GetBaseURL stringByAppendingString:urlstring];
                 NSString *urlStr = [str stringByAppendingString:fAction];
                 urlWebView.onlineUrlString = urlStr;
-                urlWebView.showWebType = showWebTypeDevice;
+                urlWebView.showWebType = showWebTypeDeviceForYY;
                [self.navigationController pushViewController:urlWebView animated:YES];
              }
         }
@@ -1004,7 +992,7 @@
                   NSString *str = [GetBaseURL stringByAppendingString:urlstring];
                   NSString *urlStr = [str stringByAppendingString:fAction];
                   urlWebView.onlineUrlString = urlStr;
-                  urlWebView.showWebType = showWebTypeDevice;
+                  urlWebView.showWebType = showWebTypeReport;
                  [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
@@ -1023,7 +1011,7 @@
                 NSString *filePath = [[NSBundle mainBundle] pathForResource:@"DeviceControlList" ofType:@"html" inDirectory:@"aDevices"];
                 nomWebView.isUseOnline = NO;
                 nomWebView.localUrlString = filePath;
-                nomWebView.showWebType = showWebTypeReport;
+                nomWebView.showWebType = showWebTypeDevice;
                 //        self.tabBarController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:nomWebView animated:YES];
           }else{

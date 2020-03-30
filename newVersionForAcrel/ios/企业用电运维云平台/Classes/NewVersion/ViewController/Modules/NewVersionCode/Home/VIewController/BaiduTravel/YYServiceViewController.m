@@ -495,6 +495,8 @@
         }
         if([strUrl2 containsString:@"http"]){
             baseUrl = [strUrl2 stringByReplacingOccurrencesOfString:@"/" withString:@""];
+            baseUrl = [baseUrl stringByReplacingOccurrencesOfString:@"http_" withString:@""];
+            baseUrl = [baseUrl stringByReplacingOccurrencesOfString:@"https_" withString:@""];
         }else{
             baseUrl = strUrl2;
         }
