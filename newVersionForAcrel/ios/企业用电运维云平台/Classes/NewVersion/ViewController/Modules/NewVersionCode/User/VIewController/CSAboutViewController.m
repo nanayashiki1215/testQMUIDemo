@@ -45,7 +45,7 @@
     [self.versonUpdateBTN.layer addSublayer:[UIColor setGradualChangingColor:self.versonUpdateBTN fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
     
     //右上角版本功能介绍 列表
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
     
 }
 
@@ -61,8 +61,8 @@
                 NSString *filePath = [[NSBundle mainBundle] pathForResource:urlStr ofType:@"html" inDirectory:@"aDevices"];
                 nomWebView.isUseOnline = NO;
                 nomWebView.localUrlString = filePath;
-                nomWebView.showWebType = showWebTypeVersion;
-                nomWebView.titleName = DefLocalizedString(@"versionIntroduce");
+                nomWebView.showWebType = showWebTypeDevice;
+//                nomWebView.titleName = DefLocalizedString(@"versionIntroduce");
                 [self.navigationController pushViewController:nomWebView animated:YES];
     }else if(url.length){
             //其他均用url加载 通用方法
@@ -78,7 +78,7 @@
                     NSString *str = [GetBaseURL stringByAppendingString:urlstring];
                     NSString *urlStr = [str stringByAppendingString:url];
                     urlWebView.onlineUrlString = urlStr;
-                    urlWebView.showWebType = showWebTypeVersion;
+                    urlWebView.showWebType = showWebTypeDevice;
                     [self.navigationController pushViewController:urlWebView animated:YES];
                 }
         }else{
@@ -88,7 +88,7 @@
                 BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
                 urlWebView.isUseOnline = YES;
                 urlWebView.onlineUrlString = url;
-                urlWebView.showWebType = showWebTypeVersion;
+                urlWebView.showWebType = showWebTypeDevice;
                 [self.navigationController pushViewController:urlWebView animated:YES];
             }
         }

@@ -236,6 +236,8 @@
     }else{
         [self setStatusBarBackgroundColor:[UIColor clearColor]];
     }
+    
+    self.navigationController.navigationBarHidden = NO;
     // 开启返回手势
 //   if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
 //       self.navigationController.interactivePopGestureRecognizer.enabled = YES;
@@ -737,7 +739,7 @@
         }
         NSString *entityName = [NSString stringWithFormat:@"%@-%@",baseUrl,userid];
         historyVC.bgEntityName = entityName;
-        historyVC.title = @"轨迹记录";
+        historyVC.title = DefLocalizedString(@"TrackRecord");
         historyVC.startTime = startTime;
         historyVC.endTime = endTime;
         
