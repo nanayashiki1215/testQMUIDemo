@@ -56,24 +56,50 @@
 }
 
 +(void)JudgeWhetherGetUnreadWarningMessage{
-    [NetService bg_getWithTokenWithPath:@"/getUnreadWarningMessage" params:@{} success:^(id respObjc) {
-        DefLog(@"%@",respObjc);
-        NSArray *array = [respObjc objectForKeyNotNull:kdata];
-        if (array) {
-            NSInteger sum = 0;
-            for (NSDictionary *warningDic in array) {
-                NSInteger count = [[warningDic bg_StringForKeyNotNull:@"count"] integerValue];
-                sum += count;
+    UserManager *user = [UserManager manager];
+    if (!user.versionNo) {
+        return;
+    }
+    if ([user.versionNo isEqualToString:@"v5"]) {
+        [NetService bg_getWithTokenWithPath:@"/getUnConfirmedEventsNum" params:@{} success:^(id respObjc) {
+               DefLog(@"%@",respObjc);
+            NSDictionary *dict = [respObjc objectForKeyNotNull:kdata];
+               NSArray *array = [dict objectForKeyNotNull:@"unConfirmedEventsNum"];
+               if (array) {
+                   NSInteger sum = 0;
+                   for (NSDictionary *warningDic in array) {
+                       NSInteger count = [[warningDic bg_StringForKeyNotNull:@"unConfirmNum"] integerValue];
+                       sum += count;
+                   }
+                   if (sum>0) {
+                       [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                   }else{
+                       [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+                   }
+               }
+           } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+               
+           }];
+    }else{
+        [NetService bg_getWithTokenWithPath:@"/getUnreadWarningMessage" params:@{} success:^(id respObjc) {
+            DefLog(@"%@",respObjc);
+            NSArray *array = [respObjc objectForKeyNotNull:kdata];
+            if (array) {
+                NSInteger sum = 0;
+                for (NSDictionary *warningDic in array) {
+                    NSInteger count = [[warningDic bg_StringForKeyNotNull:@"count"] integerValue];
+                    sum += count;
+                }
+                if (sum>0) {
+                    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                }else{
+                    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+                }
             }
-            if (sum>0) {
-                [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
-            }else{
-                [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
-            }
-        }
-    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-        
-    }];
+        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+            
+        }];
+    }
 }
 
 @end

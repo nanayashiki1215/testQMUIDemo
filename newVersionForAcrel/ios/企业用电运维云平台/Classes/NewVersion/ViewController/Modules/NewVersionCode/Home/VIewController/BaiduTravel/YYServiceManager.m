@@ -8,6 +8,7 @@
 
 #import "YYServiceManager.h"
 #import <UserNotifications/UserNotifications.h>
+#import "YYServiceParam.h"
 
 static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNotificationIdentifier";
 
@@ -36,6 +37,7 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
     __weak __typeof(self)weakSelf = self;
     dispatch_async(GLOBAL_QUEUE, ^{
         [[BTKAction sharedInstance] startService:startServiceOption delegate:self];
+        [[BTKAction sharedInstance] changeGatherAndPackIntervals:[YYServiceParam serviceParamManager].gatherInterval packInterval:[YYServiceParam serviceParamManager].packInterval delegate:self];
         //
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf startGather];
@@ -71,6 +73,10 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
 // 需要保活以及后台轨迹追踪时，需要在Info.plist文件中增加后台定位相关配置，同时实现此回调
 - (void)onRequestAlwaysLocationAuthorization:(CLLocationManager *)locationManager {
     [locationManager requestAlwaysAuthorization];
+}
+
+-(void)onChangeGatherAndPackIntervals:(BTKChangeIntervalErrorCode)error{
+    DefLog(@"%@",error);
 }
 
 -(void)onStartService:(BTKServiceErrorCode)error {

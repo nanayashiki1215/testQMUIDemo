@@ -24,7 +24,7 @@ typedef enum {
     showWebTypeVersion//版本介绍
 } showWebType;
 
-@interface BGUIWebViewController : UIViewController<JXCategoryListCollectionContentViewDelegate,UIScrollViewDelegate>
+@interface BGUIWebViewController : UIViewController<JXCategoryListCollectionContentViewDelegate,UIScrollViewDelegate,BTKTraceDelegate>
 
 @property (nonatomic,strong) NSString *localUrlString;
 @property (nonatomic,strong) NSString *onlineUrlString;

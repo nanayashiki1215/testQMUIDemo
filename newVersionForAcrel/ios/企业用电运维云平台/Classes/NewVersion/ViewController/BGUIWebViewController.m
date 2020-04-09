@@ -205,11 +205,9 @@
        
     }
     
-     if (self.showWebType == showWebTypeDeviceForYY && [UserManager manager].isOpenTjBaidu) {
+     if (self.showWebType == showWebTypeDeviceForYY && [UserManager manager].isOpenTjBaidu && [UserManager manager].isContinueShowTJ) {
         //显示轨迹
-//            UIColor *color = [UIColor colorWithRed:28/255 green:28/255 blue:28/255 alpha:0.8];
             UIColor *color = COLOR_NAVBAR;
-//            UIColor *color = [UIColor greenColor];
             ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
            susView.leanType = ZYSuspensionViewLeanTypeHorizontal;
 //               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
@@ -519,7 +517,7 @@
         [config.userContentController addScriptMessageHandler:weakScriptMessageDelegate name:@"iOS"];
         [config.userContentController addUserScript:wkUScript2];
         
-        if(self.showWebType == showWebTypeDevice || self.showWebType == showWebFromMsgNotif || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeVersion){
+        if(self.showWebType == showWebTypeDevice  || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeVersion){
 //            _webView.backgroundColor = [UIColor clearColor];
             if (@available(iOS 13.0, *)) {
                 _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
@@ -535,10 +533,9 @@
 //                self.edgesForExtendedLayout = UIRectEdgeNone;
 //            }
             _webView.scrollView.bounces = false;
-        }else if(self.showWebType == showWebTypeAlarmWithTab || self.showWebType == showWebTypeAlarm){
+        }else if(self.showWebType == showWebTypeAlarmWithTab || self.showWebType == showWebTypeAlarm|| self.showWebType == showWebFromMsgNotif){
             _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-BGSafeAreaTopHeight) configuration:config];
         }else{
-            
             _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-BGSafeAreaTopHeight-BGTopBarHeight-BGSafeAreaBottomHeight) configuration:config];
     }
         // UI代理
@@ -691,14 +688,15 @@
         self.pageStillLoading = YES;
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
            
-            [self performSelectorOnMainThread:@selector(getLoation) withObject:nil waitUntilDone:YES];
+//            [self performSelectorOnMainThread:@selector(getLoation) withObject:nil waitUntilDone:YES];
             //定位功能可用
-//            [self getLoation];
+            [self getLoation];
 
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
             //定位不能用
             NSString *locationStr = @"";
-            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            NSString *locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
+//            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
             [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                 DefLog(@"item%@",item);
                 weakSelf.pageStillLoading = NO;
@@ -746,26 +744,80 @@
         [self.susView removeFromScreen];
         [self.navigationController pushViewController:historyVC animated:YES];
     }else if ([message.name isEqualToString:@"openTrackFunc"]){
-        if ([YYServiceManager defaultManager].isServiceStarted) {
-                
-                // 停止服务
-        //        [[YYServiceManager defaultManager] stopService];
-            } else {
-                // 开启服务之间先配置轨迹服务的基础信息
-                BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:[YYServiceParam serviceParamManager].keepAlive];
-                [[BTKAction sharedInstance] initInfo:basicInfoOption];
-                // 开启服务
-                BTKStartServiceOption *startServiceOption = [[BTKStartServiceOption alloc] initWithEntityName:[YYServiceParam serviceParamManager].entityName];
-                [[YYServiceManager defaultManager] startServiceWithOption:startServiceOption];
-                [YYServiceManager defaultManager].isGatherStarted = YES;
-                // 开始采集
-        //        [[YYServiceManager defaultManager] startGather];
-            }
+         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+
+           NSDictionary *taskDic = message.body;
+           NSString *taskID = [NSString changgeNonulWithString:taskDic[@"fTaskNumber"]];
+          if ([YYServiceManager defaultManager].isServiceStarted) {
+                  // 停止服务
+          //        [[YYServiceManager defaultManager] stopService];
+              } else {
+                  // 开启服务之间先配置轨迹服务的基础信息
+                  BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:[YYServiceParam serviceParamManager].keepAlive];
+                  [[BTKAction sharedInstance] initInfo:basicInfoOption];
+  //                [[BTKAction sharedInstance] changeGatherAndPackIntervals:[YYServiceParam serviceParamManager].gatherInterval packInterval:[YYServiceParam serviceParamManager].packInterval delegate:self];
+                  // 开启服务
+                  BTKStartServiceOption *startServiceOption = [[BTKStartServiceOption alloc] initWithEntityName:[YYServiceParam serviceParamManager].entityName];
+                  [[YYServiceManager defaultManager] startServiceWithOption:startServiceOption];
+                  [YYServiceManager defaultManager].isGatherStarted = YES;
+                  if (self.showWebType == showWebTypeDeviceForYY && [UserManager manager].isOpenTjBaidu) {
+                          //显示 开启轨迹
+                      UIColor *color = COLOR_NAVBAR;
+                      ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
+                      susView.leanType = ZYSuspensionViewLeanTypeHorizontal;
+          //               [susView setTitle:@"轨迹" forState:UIControlStateNormal];
+                      [susView setImage:[UIImage imageNamed:@"yytrack"] forState:UIControlStateNormal];
+                      [susView show];
+                      self.susView = susView;
+                      [UserManager manager].isContinueShowTJ = YES;
+  //                    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+  //                    NSInteger time = interval;
+  //                    NSString *timestamp = [NSString stringWithFormat:@"%zd",time];
+                      //使用formatter格式化后的时间
+                       NSDate *date = [NSDate date];
+                       NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                       [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                       NSString *time_now = [formatter stringFromDate:date];
+                       [UserManager manager].startTJtime = time_now;
+                       [UserManager manager].taskID = taskID;
+                  }
+  //                [[YYServiceManager defaultManager] onRequestAlwaysLocationAuthorization:];
+                  // 开始采集
+          //        [[YYServiceManager defaultManager] startGather];
+              }
+
+        }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
+           QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+             NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+             if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                 [[UIApplication sharedApplication] openURL:url];
+             }
+           }];
+           QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Cancel") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+              
+           }];
+           QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"alert_title")  message:@"使用轨迹功能，需要设置APP位置访问权限为\"始终\"。由于iOS优先保证前台APP的资源，设为\"始终\"只是减小后台运行被杀的概率，并不保证系统资源紧张时，APP在后台运行一定不会被杀掉。所以，设为始终后，也尽量保证APP处于前台。" preferredStyle:QMUIAlertControllerStyleAlert];
+           [alertController addAction:action];
+           [alertController addAction:action2];
+           
+           QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+           visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
+           alertController.mainVisualEffectView = visualEffectView;
+           alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
+           alertController.alertButtonBackgroundColor = nil;
+           [alertController showWithAnimated:YES];
+        }
+        
     }else if([message.name isEqualToString:@"closeTrackFunc"]){
+        //结束轨迹
         if ([YYServiceManager defaultManager].isGatherStarted) {
             [YYServiceManager defaultManager].isGatherStarted = NO;
-            // 停止采集
+            //停止采集
             [[YYServiceManager defaultManager] stopGather];
+            [self.susView removeFromScreen];
+            [UserManager manager].isContinueShowTJ = NO;
+            //传给后台
+            [self generateTrackRecords];
         }
     }else if([message.name isEqualToString:@"isStartTrackFunc"]){
         if ([YYServiceManager defaultManager].isGatherStarted) {
@@ -780,6 +832,54 @@
             }];
         }
     }
+}
+
+#pragma mark - 轨迹记录功能
+
+-(void)generateTrackRecords{
+    NSMutableDictionary *mutparam = [NSMutableDictionary new];
+    NSString *Projectip = GetBaseURL;
+    if([Projectip containsString:@"http:"]){
+        Projectip = [Projectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+    }else if ([Projectip containsString:@"https:"]){
+        Projectip = [Projectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+    }
+    [mutparam setObject:Projectip forKey:@"fProjectip"];
+     
+    UserManager *user = [UserManager manager];
+    NSString *startTime = user.startTJtime;
+    if (startTime.length) {
+         [mutparam setObject:startTime forKey:@"fTrackstarttime"];
+    }
+    NSString *taskNumber = user.taskID;
+    if (taskNumber && taskNumber.length) {
+        [mutparam setObject:taskNumber forKey:@"fTasknumber"];
+    }
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *endTime = [formatter stringFromDate:date];
+    [mutparam setObject:endTime forKey:@"fTrackendtime"];
+    //设置采集周期 30秒
+    NSDictionary *baiduDic = user.yytjBaiduDic;
+    NSString *tjGetherInterval =[NSString changgeNonulWithString:baiduDic[@"tjGetherInterval"]];
+    NSString *tjPackInterval =[NSString changgeNonulWithString:baiduDic[@"tjPackInterval"]];
+    if (tjGetherInterval && tjPackInterval) {
+        [mutparam setObject:tjGetherInterval forKey:@"tjGetherInterval"];
+        [mutparam setObject:tjPackInterval forKey:@"tjPackInterval"];
+    } else {
+        tjGetherInterval = @"5";
+        tjPackInterval = @"30";
+    }
+    
+    [NetService bg_getWithTokenWithPath:@"/generateTrackRecords" params:mutparam success:^(id respObjc) {
+        [UserManager manager].startTJtime = @"";
+        [UserManager manager].taskID = @"";
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        [UserManager manager].startTJtime = @"";
+        [UserManager manager].taskID = @"";
+    }];
+    
 }
 
 #pragma mark - 拍照功能
@@ -1123,7 +1223,8 @@
         if(location){
             NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
             NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
-            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+//            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            NSString *locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
     //       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
            [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
@@ -1133,7 +1234,8 @@
         }else{
             //定位不能用
            NSString *locationStr = @"";
-           NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            NSString *locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
+//           NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
            [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                DefLog(@"item%@",item);
                weakSelf.pageStillLoading = NO;

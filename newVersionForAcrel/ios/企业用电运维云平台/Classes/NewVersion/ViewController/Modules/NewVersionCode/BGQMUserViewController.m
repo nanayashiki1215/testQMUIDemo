@@ -478,7 +478,7 @@
     NSString *sizeStr = [self folderSize];
     if ([sizeStr isEqualToString:@"0.0KB"]) {
             NSString *messae = [NSString stringWithFormat:DefLocalizedString(@"nownoClearCache")];
-        BGWeakSelf;
+            BGWeakSelf;
             QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
                 [weakSelf.tableview reloadData];
             }];

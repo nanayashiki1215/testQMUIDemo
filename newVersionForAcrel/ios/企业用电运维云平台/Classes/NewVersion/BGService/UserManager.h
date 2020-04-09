@@ -39,6 +39,9 @@
     NSArray *_orderUrlArray;
     NSDictionary *_yytjBaiduDic;
     BOOL _isOpenTjBaidu;
+    BOOL _isContinueShowTJ;
+    NSString *_startTJtime;
+    NSString *_taskID;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -92,6 +95,9 @@
 //用于存取百度鹰眼轨迹配置
 @property(nonatomic,copy)NSDictionary *yytjBaiduDic;
 @property(nonatomic,assign)BOOL isOpenTjBaidu;//是否开启百度鹰眼功能
+@property(nonatomic,assign)BOOL isContinueShowTJ;//是否持续显示悬浮球
+@property(nonatomic,copy)NSString *startTJtime;/**< 轨迹开始时间 */
+@property(nonatomic,copy)NSString *taskID;/**< 与轨迹捆绑的任务ID */
 
 //获取单例
 +(instancetype)manager;

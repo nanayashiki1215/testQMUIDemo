@@ -343,7 +343,7 @@
     }
 }
 
-
+#pragma mark - 开启关闭按钮事件
 /**
  点击Service服务按钮触发的事件
  */
@@ -353,19 +353,98 @@
          [YYServiceManager defaultManager].isGatherStarted = NO;
         // 停止采集
         [[YYServiceManager defaultManager] stopGather];
+        [self generateTrackRecords];
         // 停止服务
 //        [[YYServiceManager defaultManager] stopService];
     } else {
         // 开启服务之间先配置轨迹服务的基础信息
-        BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:self.serviceBasicInfo.keepAlive];
-        [[BTKAction sharedInstance] initInfo:basicInfoOption];
-        // 开启服务
-        BTKStartServiceOption *startServiceOption = [[BTKStartServiceOption alloc] initWithEntityName:self.serviceBasicInfo.entityName];
-        [[YYServiceManager defaultManager] startServiceWithOption:startServiceOption];
-        [YYServiceManager defaultManager].isGatherStarted = YES;
-        // 开始采集
-//        [[YYServiceManager defaultManager] startGather];
+        if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+             BTKServiceOption *basicInfoOption = [[BTKServiceOption alloc] initWithAK:BGBaiduMapApi mcode:[[NSBundle mainBundle] bundleIdentifier] serviceID:BGSERVICEID keepAlive:self.serviceBasicInfo.keepAlive];
+                    [[BTKAction sharedInstance] initInfo:basicInfoOption];
+            //        [[BTKAction sharedInstance] changeGatherAndPackIntervals:self.serviceBasicInfo.gatherInterval packInterval:self.serviceBasicInfo.packInterval delegate:self];
+                    // 开启服务
+                    BTKStartServiceOption *startServiceOption = [[BTKStartServiceOption alloc] initWithEntityName:self.serviceBasicInfo.entityName];
+                    [[YYServiceManager defaultManager] startServiceWithOption:startServiceOption];
+                    [YYServiceManager defaultManager].isGatherStarted = YES;
+                    // 开始采集
+            //        [[YYServiceManager defaultManager] startGather];
+                    NSDate *date = [NSDate date];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
+                    NSString *time_now = [formatter stringFromDate:date];
+                    [UserManager manager].startTJtime = time_now;
+                   
+
+               }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
+                   QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+                        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                            [[UIApplication sharedApplication] openURL:url];
+                        }
+                      }];
+                      QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Cancel") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+                         
+                      }];
+                      QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"alert_title")  message:@"使用轨迹功能，需要设置APP位置访问权限为\"始终\"。由于iOS优先保证前台APP的资源，设为\"始终\"只是减小后台运行被杀的概率，并不保证系统资源紧张时，APP在后台运行一定不会被杀掉。所以，设为始终后，也尽量保证APP处于前台。" preferredStyle:QMUIAlertControllerStyleAlert];
+                      [alertController addAction:action];
+                      [alertController addAction:action2];
+                      
+                      QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+                      visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
+                      alertController.mainVisualEffectView = visualEffectView;
+                      alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
+                      alertController.alertButtonBackgroundColor = nil;
+                      [alertController showWithAnimated:YES];
+                 
+               }
+       
+//        [UserManager manager].taskID = taskID;
     }
+}
+
+
+
+
+
+#pragma mark - 轨迹记录功能
+
+-(void)generateTrackRecords{
+    NSMutableDictionary *mutparam = [NSMutableDictionary new];
+    NSString *Projectip = GetBaseURL;
+    [mutparam setObject:Projectip forKey:@"fProjectip"];
+    UserManager *user = [UserManager manager];
+    NSString *startTime = user.startTJtime;
+    if (startTime.length) {
+         [mutparam setObject:startTime forKey:@"fTrackstarttime"];
+    }
+    NSString *taskNumber = user.taskID;
+    if (taskNumber && taskNumber.length) {
+        [mutparam setObject:taskNumber forKey:@"fTaskNumber"];
+    }
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
+    NSString *endTime = [formatter stringFromDate:date];
+    [mutparam setObject:endTime forKey:@"fTrackendtime"];
+    //设置采集周期 30秒
+    NSDictionary *baiduDic = user.yytjBaiduDic;
+    NSString *tjGetherInterval =[NSString changgeNonulWithString:baiduDic[@"tjGetherInterval"]];
+    NSString *tjPackInterval =[NSString changgeNonulWithString:baiduDic[@"tjPackInterval"]];
+    if (tjGetherInterval && tjPackInterval) {
+        [mutparam setObject:tjGetherInterval forKey:@"tjGetherInterval"];
+        [mutparam setObject:tjPackInterval forKey:@"tjPackInterval"];
+    } else {
+        tjGetherInterval = @"5";
+        tjPackInterval = @"30";
+    }
+    [NetService bg_getWithTokenWithPath:@"/generateTrackRecords" params:mutparam success:^(id respObjc) {
+        [UserManager manager].startTJtime = @"";
+        
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        [UserManager manager].startTJtime = @"";
+        
+    }];
+    
 }
 
 /**

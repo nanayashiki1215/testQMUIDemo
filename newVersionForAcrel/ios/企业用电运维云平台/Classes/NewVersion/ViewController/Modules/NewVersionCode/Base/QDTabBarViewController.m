@@ -229,7 +229,6 @@
                 NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
                 NSString *str = [GetBaseURL stringByAppendingString:urlstring];
                 NSString *urlStr = [str stringByAppendingString:[NSString changgeNonulWithString:dic[@"fActionurl"]]];
-                
                 componentViewController.onlineUrlString = urlStr;
                 componentViewController.showWebType = showWebTypeAlarm;
                 componentViewController.hidesBottomBarWhenPushed = NO;

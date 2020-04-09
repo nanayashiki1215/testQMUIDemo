@@ -58,6 +58,7 @@
 // iOS 10 notification
 #import <UserNotifications/UserNotifications.h>
 #import "LZLPushMessage.h"
+#import "YYServiceManager.h"
 
 #define CLIENT_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define WXAppId @"wx3e0b2d7e2d2bbc62"
@@ -717,7 +718,11 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 
 //程序被杀死
 -(void)applicationWillTerminate:(UIApplication *)application{
-    
+    if ([YYServiceManager defaultManager].isServiceStarted){
+        [YYServiceManager defaultManager].isGatherStarted = NO;
+        // 停止采集
+        [[YYServiceManager defaultManager] stopGather];
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

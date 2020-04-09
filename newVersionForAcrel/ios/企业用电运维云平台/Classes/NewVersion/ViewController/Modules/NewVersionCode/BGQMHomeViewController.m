@@ -147,24 +147,50 @@
 }
 
 -(void)JudgeWhetherGetUnreadWarningMessage{
-    [NetService bg_getWithTokenWithPath:@"/getUnreadWarningMessage" params:@{} success:^(id respObjc) {
-        DefLog(@"%@",respObjc);
-        NSArray *array = [respObjc objectForKeyNotNull:kdata];
-        if (array) {
-            NSInteger sum = 0;
-            for (NSDictionary *warningDic in array) {
-                NSInteger count = [[warningDic bg_StringForKeyNotNull:@"count"] integerValue];
-                sum += count;
+    UserManager *user = [UserManager manager];
+    if (!user.versionNo) {
+        return;
+    }
+    if ([user.versionNo isEqualToString:@"v5"]) {
+        [NetService bg_getWithTokenWithPath:@"/getUnConfirmedEventsNum" params:@{} success:^(id respObjc) {
+               DefLog(@"%@",respObjc);
+            NSDictionary *dict = [respObjc objectForKeyNotNull:kdata];
+               NSArray *array = [dict objectForKeyNotNull:@"unConfirmedEventsNum"];
+               if (array) {
+                   NSInteger sum = 0;
+                   for (NSDictionary *warningDic in array) {
+                       NSInteger count = [[warningDic bg_StringForKeyNotNull:@"unConfirmNum"] integerValue];
+                       sum += count;
+                   }
+                   if (sum>0) {
+                       [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                   }else{
+                       [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+                   }
+               }
+           } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+               
+           }];
+    }else{
+        [NetService bg_getWithTokenWithPath:@"/getUnreadWarningMessage" params:@{} success:^(id respObjc) {
+            DefLog(@"%@",respObjc);
+            NSArray *array = [respObjc objectForKeyNotNull:kdata];
+            if (array) {
+                NSInteger sum = 0;
+                for (NSDictionary *warningDic in array) {
+                    NSInteger count = [[warningDic bg_StringForKeyNotNull:@"count"] integerValue];
+                    sum += count;
+                }
+                if (sum>0) {
+                    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                }else{
+                    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+                }
             }
-            if (sum>0) {
-                [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
-            }else{
-                [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
-            }
-        }
-    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-        
-    }];
+        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+            
+        }];
+    }
 }
 
 //更新数据
@@ -1000,10 +1026,12 @@
         //352 设备控制
           NSString *fAction;
           NSString *fFunctionurl;
+          NSString *fMenuid = @"";
           for (NSDictionary *nodeDic in homeList) {
               if ([nodeDic[@"fCode"] isEqualToString:@"352"]) {
                   fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
                   fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                  fMenuid = [NSString changgeNonulWithString:nodeDic[@"fMenuid"]];
               }
           }
           if (fFunctionurl.length>0) {
@@ -1012,6 +1040,7 @@
                 nomWebView.isUseOnline = NO;
                 nomWebView.localUrlString = filePath;
                 nomWebView.showWebType = showWebTypeDevice;
+                nomWebView.menuId = fMenuid;
                 //        self.tabBarController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:nomWebView animated:YES];
           }else{
@@ -1022,8 +1051,9 @@
                   NSString *str = [GetBaseURL stringByAppendingString:urlstring];
                   NSString *urlStr = [str stringByAppendingString:fAction];
                   urlWebView.onlineUrlString = urlStr;
+                  urlWebView.menuId = fMenuid;
                   urlWebView.showWebType = showWebTypeDevice;
-                 [self.navigationController pushViewController:urlWebView animated:YES];
+                  [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
     }

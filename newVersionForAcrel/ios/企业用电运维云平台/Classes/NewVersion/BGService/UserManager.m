@@ -387,4 +387,41 @@ static UserManager* manager;
     [DefNSUD setBool:_isOpenTjBaidu forKey:@"isOpenTjBaidu"];
     DefNSUDSynchronize
 }
+
+-(BOOL)isContinueShowTJ{
+    _isContinueShowTJ = [DefNSUD boolForKey:@"isContinueShowTJ"];
+    return _isContinueShowTJ;
+}
+
+-(void)setIsContinueShowTJ:(BOOL)isContinueShowTJ{
+    _isContinueShowTJ = isContinueShowTJ;
+    [DefNSUD setBool:_isContinueShowTJ forKey:@"isContinueShowTJ"];
+    DefNSUDSynchronize
+}
+
+-(void)setStartTJtime:(NSString *)startTJtime{
+    _startTJtime = startTJtime;
+    [DefNSUD setObject:_startTJtime
+                forKey:@"startTJtime"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)startTJtime{
+    _startTJtime = [DefNSUD objectForKey:@"startTJtime"];
+    return _startTJtime;
+}
+
+-(void)setTaskID:(NSString *)taskID{
+    _taskID = taskID;
+    [DefNSUD setObject:_taskID
+                forKey:@"taskID"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)taskID{
+    _taskID = [DefNSUD objectForKey:@"taskID"];
+    return _taskID;
+}
+
+
 @end

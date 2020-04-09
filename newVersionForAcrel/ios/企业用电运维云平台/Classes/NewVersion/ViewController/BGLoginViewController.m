@@ -56,6 +56,7 @@
     UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-p"]];
     imageV.frame = CGRectMake((SCREEN_WIDTH-imageV.frame.size.width)/2, 40, imageV.frame.size.width, imageV.frame.size.height);
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageV.frame.size.height+45, SCREEN_WIDTH, 50)];
+    
     label.text = NSLocalizedString(@"LoginText",nil);
     label.textAlignment = NSTextAlignmentCenter;
     [label setFont:[UIFont fontWithName:@"Helvetica-Bold" size:23]];
