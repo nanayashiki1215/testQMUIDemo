@@ -55,7 +55,7 @@ static ZYSuspensionManager *_instance;
 + (UIWindow *)windowForKey:(NSString *)key
 {
     if (!key.length) {
-        NSAssert(0, @"ZYSuspensionManager: 传入的 key 值不对");
+//        NSAssert(0, @"ZYSuspensionManager: 传入的 key 值不对");
         return nil;
     }
     
@@ -65,15 +65,15 @@ static ZYSuspensionManager *_instance;
 + (void)saveWindow:(UIWindow *)window forKey:(NSString *)key
 {
     if (!key.length) {
-        NSAssert(0, @"ZYSuspensionManager: 传入的 key 值不对");
+//        NSAssert(0, @"ZYSuspensionManager: 传入的 key 值不对");
         return;
     }
     if (!window) {
-        NSAssert(0, @"ZYSuspensionManager: 不能传入空 window");
+//        NSAssert(0, @"ZYSuspensionManager: 不能传入空 window");
         return;
     }
     
-    NSAssert([self windowForKey:key] == nil, @"ZYSuspensionManager: 已存在 key=\"%@\" 的 window", key);
+//    NSAssert([self windowForKey:key] == nil, @"ZYSuspensionManager: 已存在 key=\"%@\" 的 window", key);
     [[ZYSuspensionManager shared].windowDic setObject:window forKey:key];
 }
 

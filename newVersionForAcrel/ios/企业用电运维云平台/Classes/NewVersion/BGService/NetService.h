@@ -34,7 +34,8 @@
 
 // get专用方法
 + (void)bg_getWithUpdatePath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
-
+ //测试联调接口
++ (void)bg_getWithTestPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
 
 // get带token方法
 + (void)bg_getWithTokenWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;

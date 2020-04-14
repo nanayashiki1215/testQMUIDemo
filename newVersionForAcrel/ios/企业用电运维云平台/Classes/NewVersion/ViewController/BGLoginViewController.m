@@ -283,6 +283,7 @@
     [NetService bg_postWithPath:BGUserLoginAddress params:param success:^(id respObjc) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
+        user.loginData = respObjc[kdata];
         user.token = respObjc[kdata][@"authorization"];
         DefLog(@"%@",respObjc);
         //给IP地址存入

@@ -218,6 +218,35 @@
 //            }
 //        }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+//        if (errorMsg) {
+//            [MBProgressHUD showError:errorMsg];
+//        }else{
+//            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+//        }
+        if (Fail) {
+            Fail(nil,nil,nil);
+        }
+    }];
+}
+
+ //测试联调接口
++ (void)bg_getWithTestPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail {
+    NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
+//    BGUserInfo *user = [BGUserInfo gettingLoginSuccessLastLogin];
+//    NSString *tenantId = user.tenantId;
+//    if ([tenantId notEmptyOrNull]) {
+//        [mutParams setNotNullObject:tenantId ForKey:ktenantId];
+//    }
+    //测试联调接口
+    NSString *urlString = [[DominAddress stringByAppendingString:BaseFileURLString] stringByAppendingString:path];
+    [NetService bg_httpGetWithPath:urlString params:mutParams success:^(id responseObject) {
+            if (Success) {
+                if (!responseObject || responseObject == nil) {
+                    return ;
+                }
+                Success(responseObject);
+            }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         if (errorMsg) {
             [MBProgressHUD showError:errorMsg];
         }else{
@@ -582,6 +611,8 @@
                 [YYServiceManager defaultManager].isGatherStarted = NO;
                
                 [[YYServiceManager defaultManager] stopGather];
+                //传给后台
+                [self generateTrackRecords];
             }
              BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
              UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
@@ -621,6 +652,8 @@
                             [YYServiceManager defaultManager].isGatherStarted = NO;
                            
                             [[YYServiceManager defaultManager] stopGather];
+                            //传给后台
+                            [self generateTrackRecords];
                         }
              BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
              UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
@@ -630,6 +663,7 @@
          [alert addAction:action2];
          [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
     }
+   
     
 //    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
 //
@@ -824,6 +858,75 @@
             DefLog(@"%@",respObjc);
         }];
     }
+}
+
++(void)generateTrackRecords{
+    NSMutableDictionary *mutparam = [NSMutableDictionary new];
+    NSString *Projectip = GetBaseURL;
+    if([Projectip containsString:@"http:"]){
+        Projectip = [Projectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+    }else if ([Projectip containsString:@"https:"]){
+        Projectip = [Projectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+    }
+    [mutparam setObject:Projectip forKey:@"fProjectip"];
+     
+    UserManager *user = [UserManager manager];
+    NSString *startTime = user.startTJtime;
+    if (startTime.length) {
+         [mutparam setObject:startTime forKey:@"fTrackstarttime"];
+    }
+    NSString *taskNumber = user.taskID;
+    if (taskNumber && taskNumber.length) {
+        [mutparam setObject:taskNumber forKey:@"fTasknumber"];
+    }
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *endTime = [formatter stringFromDate:date];
+    [mutparam setObject:endTime forKey:@"fTrackendtime"];
+    //设置采集周期 30秒
+    NSDictionary *baiduDic = user.yytjBaiduDic;
+    NSString *tjGetherInterval =[NSString changgeNonulWithString:baiduDic[@"tjGetherInterval"]];
+    NSString *tjPackInterval =[NSString changgeNonulWithString:baiduDic[@"tjPackInterval"]];
+    if (tjGetherInterval && tjPackInterval) {
+        [mutparam setObject:tjGetherInterval forKey:@"tjGetherInterval"];
+        [mutparam setObject:tjPackInterval forKey:@"tjPackInterval"];
+    } else {
+        tjGetherInterval = @"5";
+        tjPackInterval = @"30";
+    }
+    NSDictionary *param = user.loginData;
+    NSString *projectname = [NSString changgeNonulWithString:param[@"fProjectname"]];
+    NSString *userid = [NSString changgeNonulWithString:param[@"userId"]];
+    NSString *username = [NSString changgeNonulWithString:param[@"username"]];
+    //组织机构编号
+    NSString *coaccountno = [NSString changgeNonulWithString:param[@"fCoaccountNo"]];
+    //组织机构名
+    NSString *coname = [NSString changgeNonulWithString:param[@"fConame"]];
+    if (projectname) {
+        [mutparam setObject:projectname forKey:@"fProjectname"];
+    }
+    if (userid) {
+        [mutparam setObject:userid forKey:@"fUserid"];
+    }
+    if (username) {
+        [mutparam setObject:username forKey:@"fUsername"];
+    }
+    if (coaccountno) {
+        [mutparam setObject:coaccountno forKey:@"fCoaccountno"];
+    }
+    if (coname) {
+        [mutparam setObject:coname forKey:@"fConame"];
+    }
+    //阿里云特殊接口 http://www.acrelcloud.cn
+    [NetService bg_getWithTestPath:@"sys/generateTrackRecords" params:mutparam success:^(id respObjc) {
+        [UserManager manager].startTJtime = @"";
+        
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        [UserManager manager].startTJtime = @"";
+       
+    }];
+    
 }
 
 @end

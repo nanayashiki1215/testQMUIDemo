@@ -75,7 +75,8 @@ id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingOptions 
         for (id <NSCopying> key in [(NSDictionary *)JSONObject allKeys]) {
             id value = (NSDictionary *)JSONObject[key];
             if (!value || [value isEqual:[NSNull null]]) {
-                [mutableDictionary removeObjectForKey:key];
+//                [mutableDictionary removeObjectForKey:key];
+                mutableDictionary[key] = @"";
             } else if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSDictionary class]]) {
                 mutableDictionary[key] = AFJSONObjectByRemovingKeysWithNullValues(value, readingOptions);
             }
@@ -295,8 +296,8 @@ id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingOptions 
 - (instancetype)copyWithZone:(NSZone *)zone {
     AFJSONResponseSerializer *serializer = [super copyWithZone:zone];
     serializer.readingOptions = self.readingOptions;
-    serializer.removesKeysWithNullValues = self.removesKeysWithNullValues;
-
+//    serializer.removesKeysWithNullValues = self.removesKeysWithNullValues;
+    serializer.removesKeysWithNullValues = YES;
     return serializer;
 }
 

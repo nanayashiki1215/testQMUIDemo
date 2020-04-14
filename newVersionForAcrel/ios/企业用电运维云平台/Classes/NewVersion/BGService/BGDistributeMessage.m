@@ -60,7 +60,7 @@
     if (!user.versionNo) {
         return;
     }
-    if ([user.versionNo isEqualToString:@"v5"]) {
+    if ([user.versionNo isEqualToString:ISVersionNo]) {
         [NetService bg_getWithTokenWithPath:@"/getUnConfirmedEventsNum" params:@{} success:^(id respObjc) {
                DefLog(@"%@",respObjc);
             NSDictionary *dict = [respObjc objectForKeyNotNull:kdata];

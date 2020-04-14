@@ -687,13 +687,13 @@
 #pragma mark - 设置消息通知开关
 -(void)setMessageNotification{
     BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"msgNotifSetting" ofType:@"html" inDirectory:@"aDevices"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"notifySetting" ofType:@"html" inDirectory:@"aDevices"];
 //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"APPDownloadPage" ofType:@"html" inDirectory:@"aDevices"];
     nomWebView.isUseOnline = NO;
     nomWebView.localUrlString = filePath;
-    nomWebView.showWebType = showWebFromMsgNotif;
+    nomWebView.showWebType = showWebTypeDevice;
 //    nomWebView.urlParams = url;
-    nomWebView.titleName = DefLocalizedString(@"MsgNoticeSettings");
+//    nomWebView.titleName = DefLocalizedString(@"MsgNoticeSettings");
     [self.navigationController pushViewController:nomWebView animated:YES];
 }
 

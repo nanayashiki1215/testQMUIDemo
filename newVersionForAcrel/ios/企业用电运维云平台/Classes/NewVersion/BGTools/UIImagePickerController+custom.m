@@ -89,18 +89,21 @@ static void unHook_delegateMethod(Class originalClass, SEL originalSel, SEL repl
     //让WKFileUploadPanel以为从相册来的图片也是从相机来的
     [dict setValue:nil forKey:@"UIImagePickerControllerReferenceURL"];
     UIImage *originImage = [dict valueForKey:imageKey];;
-    NSString *picTime = info[UIImagePickerControllerMediaMetadata][@"{TIFF}"][@"DateTime"];
-    UIImage *targetImage = [UIImagePickerController compressImage:originImage andAddTime:picTime];
+    if(originImage){
+        NSString *picTime = info[UIImagePickerControllerMediaMetadata][@"{TIFF}"][@"DateTime"];
+        UIImage *targetImage = [UIImagePickerController compressImage:originImage andAddTime:picTime];
+        NSString *imageFilePath = [UIImagePickerController imageFilePath];
+        [UIImagePickerController saveToSandBox:targetImage filePath:imageFilePath];
+        NSURL *targetImageURL = [NSURL fileURLWithPath:imageFilePath];
+        [dict setObject:targetImage forKey:imageKey];
+        [dict setObject:targetImageURL forKey:imageURLKey];
+        //方法的实现已经通过Method swizling交换了，所以这里调用的是原始实现
+        [self swizzled_imagePickerController:picker didFinishPickingMediaWithInfo:dict];
+    }else{
+        //方法的实现已经通过Method swizling交换了，所以这里调用的是原始实现
+        [self swizzled_imagePickerController:picker didFinishPickingMediaWithInfo:dict];
+    }
     
-    
-    NSString *imageFilePath = [UIImagePickerController imageFilePath];
-    [UIImagePickerController saveToSandBox:targetImage filePath:imageFilePath];
-    NSURL *targetImageURL = [NSURL fileURLWithPath:imageFilePath];
-    [dict setObject:targetImage forKey:imageKey];
-    [dict setObject:targetImageURL forKey:imageURLKey];
-    
-    //方法的实现已经通过Method swizling交换了，所以这里调用的是原始实现
-    [self swizzled_imagePickerController:picker didFinishPickingMediaWithInfo:dict];
 }
 
 + (void)saveToSandBox:(UIImage *)image filePath:(NSString *)path {

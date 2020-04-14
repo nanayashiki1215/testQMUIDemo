@@ -61,7 +61,7 @@
     
     if (sqlite3_open([self.db_path UTF8String], &db) != SQLITE_OK) {
         sqlite3_close(db);
-        NSAssert(NO,@"数据库打开失败");
+//        NSAssert(NO,@"数据库打开失败");
     } else {
         NSString *sqlStr = @"INSERT INTO PUSHMESSAGE (CONTENT, ISREAD) VALUES (?, ?)";
         sqlite3_stmt *statement;
@@ -72,7 +72,7 @@
             sqlite3_bind_int(statement, 2, model.isRead?1:0);
             // 执行SQL
             if (sqlite3_step(statement) != SQLITE_DONE) {
-                NSAssert(NO, @"插入数据失败。");
+//                NSAssert(NO, @"插入数据失败。");
             }
         }
         sqlite3_finalize(statement);

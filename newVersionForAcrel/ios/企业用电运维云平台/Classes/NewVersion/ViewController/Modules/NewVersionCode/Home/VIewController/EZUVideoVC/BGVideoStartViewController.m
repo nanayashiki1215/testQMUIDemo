@@ -125,7 +125,7 @@
         self.accessTokenInput.text = @"at.4ph79psl4eozxqe7038ze11p1396or4u-8ohib48934-00k8xx5-knvrj9znc";
     }
     //时间计划
-    [self timeCheckUpdateNetworkAccessToken];
+//    [self timeCheckUpdateNetworkAccessToken];
     
     if (urlStr)
     {

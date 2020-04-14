@@ -782,16 +782,14 @@
                        [UserManager manager].taskID = taskID;
                   }
   //                [[YYServiceManager defaultManager] onRequestAlwaysLocationAuthorization:];
-                  // 开始采集
-          //        [[YYServiceManager defaultManager] startGather];
               }
-
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
            QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
              NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
              if ([[UIApplication sharedApplication] canOpenURL:url]) {
                  [[UIApplication sharedApplication] openURL:url];
              }
+            [UserManager manager].isContinueShowTJ = YES;
            }];
            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Cancel") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
               
@@ -807,7 +805,6 @@
            alertController.alertButtonBackgroundColor = nil;
            [alertController showWithAnimated:YES];
         }
-        
     }else if([message.name isEqualToString:@"closeTrackFunc"]){
         //结束轨迹
         if ([YYServiceManager defaultManager].isGatherStarted) {
@@ -815,6 +812,10 @@
             //停止采集
             [[YYServiceManager defaultManager] stopGather];
             [self.susView removeFromScreen];
+            [UserManager manager].isContinueShowTJ = NO;
+            //传给后台
+            [self generateTrackRecords];
+        }else{
             [UserManager manager].isContinueShowTJ = NO;
             //传给后台
             [self generateTrackRecords];
@@ -871,8 +872,31 @@
         tjGetherInterval = @"5";
         tjPackInterval = @"30";
     }
-    
-    [NetService bg_getWithTokenWithPath:@"/generateTrackRecords" params:mutparam success:^(id respObjc) {
+    NSDictionary *param = user.loginData;
+    NSString *projectname = [NSString changgeNonulWithString:param[@"fProjectname"]];
+    NSString *userid = [NSString changgeNonulWithString:param[@"userId"]];
+    NSString *username = [NSString changgeNonulWithString:param[@"username"]];
+    //组织机构编号
+    NSString *coaccountno = [NSString changgeNonulWithString:param[@"fCoaccountNo"]];
+    //组织机构名
+    NSString *coname = [NSString changgeNonulWithString:param[@"fConame"]];
+    if (projectname) {
+        [mutparam setObject:projectname forKey:@"fProjectname"];
+    }
+    if (userid) {
+        [mutparam setObject:userid forKey:@"fUserid"];
+    }
+    if (username) {
+        [mutparam setObject:username forKey:@"fUsername"];
+    }
+    if (coaccountno) {
+        [mutparam setObject:coaccountno forKey:@"fCoaccountno"];
+    }
+    if (coname) {
+        [mutparam setObject:coname forKey:@"fConame"];
+    }
+    //阿里云特殊接口 http://www.acrelcloud.cn
+    [NetService bg_getWithTestPath:@"sys/generateTrackRecords" params:mutparam success:^(id respObjc) {
         [UserManager manager].startTJtime = @"";
         [UserManager manager].taskID = @"";
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {

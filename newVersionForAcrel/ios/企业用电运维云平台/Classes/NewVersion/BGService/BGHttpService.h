@@ -90,7 +90,6 @@ typedef void (^DowningProgress)(CGFloat  progress);
  *  @param Success 成功回调
  *  @param Fail    失败回调
  */
-
 +(void)bg_httpDownloadFileFromUrlPath:(NSString *)fileUrlPath andSaveTo:(NSString *)localFullFilePath progress:(BGNetServiceProgressBlock)progress success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
 //-(AFHTTPSessionManager *)bg_sessionManagerWithUrlPath:(NSString *)fileUrl;
 

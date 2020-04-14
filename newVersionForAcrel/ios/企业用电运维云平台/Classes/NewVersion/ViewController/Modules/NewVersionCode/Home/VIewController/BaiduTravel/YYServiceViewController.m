@@ -437,14 +437,44 @@
         tjGetherInterval = @"5";
         tjPackInterval = @"30";
     }
-    [NetService bg_getWithTokenWithPath:@"/generateTrackRecords" params:mutparam success:^(id respObjc) {
+    NSDictionary *param = user.loginData;
+    NSString *projectname = [NSString changgeNonulWithString:param[@"fProjectname"]];
+    NSString *userid = [NSString changgeNonulWithString:param[@"userId"]];
+    NSString *username = [NSString changgeNonulWithString:param[@"username"]];
+    //组织机构编号
+    NSString *coaccountno = [NSString changgeNonulWithString:param[@"fCoaccountNo"]];
+    //组织机构名
+    NSString *coname = [NSString changgeNonulWithString:param[@"fConame"]];
+    if (projectname) {
+        [mutparam setObject:projectname forKey:@"fProjectname"];
+    }
+    if (userid) {
+        [mutparam setObject:userid forKey:@"fUserid"];
+    }
+    if (username) {
+        [mutparam setObject:username forKey:@"fUsername"];
+    }
+    if (coaccountno) {
+        [mutparam setObject:coaccountno forKey:@"fCoaccountno"];
+    }
+    if (coname) {
+        [mutparam setObject:coname forKey:@"fConame"];
+    }
+//    [NetService bg_getWithTokenWithPath:@"/generateTrackRecords" params:mutparam success:^(id respObjc) {
+//        [UserManager manager].startTJtime = @"";
+//
+//    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+//        [UserManager manager].startTJtime = @"";
+//
+//    }];
+    //阿里云特殊接口 http://www.acrelcloud.cn
+    [NetService bg_getWithTestPath:@"sys/generateTrackRecords" params:mutparam success:^(id respObjc) {
         [UserManager manager].startTJtime = @"";
         
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [UserManager manager].startTJtime = @"";
-        
+       
     }];
-    
 }
 
 /**

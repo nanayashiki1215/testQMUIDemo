@@ -245,7 +245,7 @@ void QMUISaveVideoAtPathToSavedPhotosAlbumWithAlbumAssetsGroup(NSString *videoPa
                 }
             }
         } else {
-            NSAssert(NO, @"Fetch collection not PHCollection: %@", collection);
+//            NSAssert(NO, @"Fetch collection not PHCollection: %@", collection);
         }
     }
     

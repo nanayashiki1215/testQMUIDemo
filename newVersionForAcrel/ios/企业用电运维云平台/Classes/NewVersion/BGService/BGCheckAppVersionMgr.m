@@ -41,6 +41,13 @@
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
     }];
+//    [NetService bg_getWithUpdatePath:@"sys/getAndroidVersionErrorTest" params:@{@"fId":@"iose70eeb320a58230925c02e7",@"version":currentVersion} success:^(id respObjc) {
+//            weakSelf.isConstraints = [NSString changgeNonulWithString:respObjc[@"fConstraints"]];
+//            weakSelf.fVersion = [NSString changgeNonulWithString:respObjc[@"fVersion"]];
+//            [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
+//        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+//    //        [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
+//        }];
 }
 
 -(void)getAndroidVersionData:(NSString *)appId withCheckSuccess:(BGCheckAppVersionBlock)checkSuccess{

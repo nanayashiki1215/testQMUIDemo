@@ -42,6 +42,7 @@
     BOOL _isContinueShowTJ;
     NSString *_startTJtime;
     NSString *_taskID;
+    NSDictionary *_loginData;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -98,6 +99,7 @@
 @property(nonatomic,assign)BOOL isContinueShowTJ;//是否持续显示悬浮球
 @property(nonatomic,copy)NSString *startTJtime;/**< 轨迹开始时间 */
 @property(nonatomic,copy)NSString *taskID;/**< 与轨迹捆绑的任务ID */
+@property(nonatomic,strong)NSDictionary *loginData;//登录全量数据
 
 //获取单例
 +(instancetype)manager;

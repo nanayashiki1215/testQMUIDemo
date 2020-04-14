@@ -423,5 +423,15 @@ static UserManager* manager;
     return _taskID;
 }
 
+-(void)setLoginData:(NSDictionary *)loginData{
+    _loginData = loginData;
+    [DefNSUD setObject:_loginData
+                forKey:@"loginData"];
+    DefNSUDSynchronize
+}
 
+-(NSDictionary *)loginData{
+    _loginData = [DefNSUD objectForKey:@"loginData"];
+    return _loginData;
+}
 @end

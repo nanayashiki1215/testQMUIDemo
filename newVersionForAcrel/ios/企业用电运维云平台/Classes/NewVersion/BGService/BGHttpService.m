@@ -132,6 +132,9 @@ static id _instance;
     
     [manager.requestSerializer setValue:[UserManager manager].token forHTTPHeaderField:@"Authorization"];
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"image/jpeg",@"text/plain",@"text/xml", nil];
+    
+//    AFJSONResponseSerializer *responObjc = [];
+//    manager.responseSerializer.removesKeysWithNullValues = YES;
     //    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     //    policy.allowInvalidCertificates = YES;
     //    policy.validatesDomainName = NO;
@@ -144,7 +147,6 @@ static id _instance;
     //    manager.baseURL = [NSURL bg_URLWithString:BASE_URL];
     return manager;
 }
-
 
 + (AFHTTPSessionManager *)createHTTPSessionUploadManagerWithToken{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -277,7 +279,7 @@ static id _instance;
         DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
              if (!responseObject) {
-                               [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+//                               [MBProgressHUD showError:@"数据请求异常，返回空数据"];
                                return ;
                            }
             Success(responseObject);
