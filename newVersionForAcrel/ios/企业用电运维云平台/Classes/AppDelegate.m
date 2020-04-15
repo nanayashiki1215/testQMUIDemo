@@ -184,15 +184,41 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
                         user.emasAppSecret = messageIOSSecret;
                     }
                     // 初始化SDK
+                    NSString *uniqueProjectip = GetBaseURL;
+                    if (uniqueProjectip) {
+                        if([uniqueProjectip containsString:@"https:"]){
+                            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+                        }else if ([uniqueProjectip containsString:@"http:"]){
+                            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+                        }
+                        if ([uniqueProjectip containsString:@":"]) {
+                            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+                            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+                        }
+                    }
+                    NSString *aliasId = [NSString stringWithFormat:@"%@-%@",uniqueProjectip,user.bguserId];
                     [weakSelf initCloudPush];
-                    [weakSelf addAlias:user.bguserId];
+                    [weakSelf addAlias:aliasId];
                 }
             }
         } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
             // 失败如果有则补偿初始化SDK
             if (user.emasAppKey && user.emasAppSecret) {
                 [weakSelf initCloudPush];
-                [weakSelf addAlias:user.bguserId];
+                NSString *uniqueProjectip = GetBaseURL;
+                if (uniqueProjectip) {
+                    if([uniqueProjectip containsString:@"https:"]){
+                        uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+                    }else if ([uniqueProjectip containsString:@"http:"]){
+                        uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+                    }
+                    if ([uniqueProjectip containsString:@":"]) {
+                        NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+                        uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+                    }
+                }
+                NSString *aliasId = [NSString stringWithFormat:@"%@-%@",uniqueProjectip,user.bguserId];
+                [weakSelf addAlias:aliasId];
             }
         }];
         // 界面
@@ -502,7 +528,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         }
     }];
 }
-
 /*
  *  APNs注册失败回调
  */

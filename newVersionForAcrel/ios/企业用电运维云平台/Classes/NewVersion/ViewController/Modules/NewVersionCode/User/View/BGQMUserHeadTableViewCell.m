@@ -10,6 +10,7 @@
 #import "CustomNavigationController.h"
 #import "UIColor+BGExtension.h"
 #import "YYServiceManager.h"
+#import <CloudPushSDK/CloudPushSDK.h>
 
 @implementation BGQMUserHeadTableViewCell
 
@@ -38,6 +39,8 @@
 - (IBAction)loginOutClickEvent:(UIButton *)sender {
     QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
            //清空NSUserDefaults 退出登录
+           __weak __typeof(self)weakSelf = self;
+           [weakSelf removeAlias:nil];
            NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
            NSDictionary *dictionary = [defatluts dictionaryRepresentation];
            for(NSString *key in [dictionary allKeys]){
@@ -66,8 +69,9 @@
                 [YYServiceManager defaultManager].isGatherStarted = NO;
                
                 [[YYServiceManager defaultManager] stopGather];
-                [self generateTrackRecords];
+                [weakSelf generateTrackRecords];
             }
+        
            BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
            UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
            [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
@@ -89,6 +93,16 @@
        alertController.alertButtonBackgroundColor = nil;
        [alertController showWithAnimated:YES];
     
+}
+
+-(void)removeAlias:(NSString *)alias{
+    [CloudPushSDK removeAlias:alias withCallback:^(CloudPushCallbackResult *res) {
+           if (res.success) {
+               DefLog(@"别名移除成功,别名：%@",alias);
+           } else {
+               DefLog(@"别名移除失败，错误: %@", res.error);
+           }
+    }];
 }
 
 -(void)generateTrackRecords{

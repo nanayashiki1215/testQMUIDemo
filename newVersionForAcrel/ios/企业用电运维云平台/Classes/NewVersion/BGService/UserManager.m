@@ -434,4 +434,17 @@ static UserManager* manager;
     _loginData = [DefNSUD objectForKey:@"loginData"];
     return _loginData;
 }
+
+-(void)setUserIdForAlias:(NSString *)userIdForAlias{
+    _userIdForAlias = userIdForAlias;
+    [DefNSUD setObject:_userIdForAlias
+                forKey:@"userIdForAlias"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)userIdForAlias{
+    _userIdForAlias = [DefNSUD objectForKey:@"userIdForAlias"];
+    return _userIdForAlias;
+}
+
 @end

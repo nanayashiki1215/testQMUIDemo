@@ -274,11 +274,23 @@
         user.password = @"";
     }
     user.orderListUrl = orderListUrl;
-    
+    NSString *uniqueProjectip = orderListUrl;
+    if (uniqueProjectip) {
+        if([uniqueProjectip containsString:@"https:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+        }else if ([uniqueProjectip containsString:@"http:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        }
+        if ([uniqueProjectip containsString:@":"]) {
+            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+        }
+    }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"fLoginname":self.usenameTextField.text,
                             @"fPassword":self.pwdTextField.text,
-                            @"deviceType":@"IOS"
+                            @"deviceType":@"IOS",
+                            @"uniqueProjectip":uniqueProjectip
                         };
     [NetService bg_postWithPath:BGUserLoginAddress params:param success:^(id respObjc) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -335,9 +347,11 @@
                    user.emasAppKey = messageIOSKey;
                    user.emasAppSecret = messageIOSSecret;
                }
-               // 初始化SDK
+               // 初始化推送SDK
                [weakSelf initCloudPush];
-               [weakSelf addAlias:user.bguserId];
+               NSString *aliasId = [NSString stringWithFormat:@"%@-%@",uniqueProjectip,user.bguserId];
+               user.userIdForAlias = aliasId;
+               [weakSelf addAlias:user.userIdForAlias];
            }
        }
         
@@ -428,16 +442,22 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
     }];
-    
 }
 
 - (void)addAlias:(NSString *)alias {
-    [CloudPushSDK addAlias:alias withCallback:^(CloudPushCallbackResult *res) {
-        if (res.success) {
-            DefLog(@"别名添加成功,别名：%@",alias);
-        } else {
-            DefLog(@"别名添加失败，错误: %@", res.error);
-        }
+    [CloudPushSDK removeAlias:nil withCallback:^(CloudPushCallbackResult *res) {
+              if (res.success) {
+                  DefLog(@"别名移除成功,别名：%@",alias);
+              } else {
+                  DefLog(@"别名移除失败，错误: %@", res.error);
+              }
+            [CloudPushSDK addAlias:alias withCallback:^(CloudPushCallbackResult *res) {
+                if (res.success) {
+                    DefLog(@"别名添加成功,别名：%@",alias);
+                } else {
+                    DefLog(@"别名添加失败，错误: %@", res.error);
+                }
+            }];
     }];
 }
 

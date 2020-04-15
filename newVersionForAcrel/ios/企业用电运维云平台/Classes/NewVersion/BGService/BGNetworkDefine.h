@@ -28,7 +28,8 @@
 //发版最新版本
 #define ISVersionNo @"v5"
 //轨迹记录测试地址
-#define DominAddress @"http://116.236.149.165:8090"
+//#define DominAddress @"http://116.236.149.165:8090"
+#define DominAddress @"http://www.acrelcloud.cn"
 
 #endif
 

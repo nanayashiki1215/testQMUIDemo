@@ -10,7 +10,7 @@
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
 #import "YYServiceManager.h"
-
+#import <CloudPushSDK/CloudPushSDK.h>
 
 @interface NetService ()
 
@@ -144,7 +144,6 @@
             return ;
         }
         if ([respCode isEqualToString:k0000]) {
-            
             if (Success) {
                 Success(responseObject);
             }
@@ -583,6 +582,8 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"软件授权已过期" message:@"您使用的软件授权已过期，请咨询软件服务商，并在网页端进行配置。" preferredStyle:UIAlertControllerStyleAlert];
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              //确认处理
+             __weak __typeof(self)weakSelf = self;
+             [weakSelf removeAlias:nil];
               NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
              for (NSString *key in [dictionary allKeys]){
@@ -625,6 +626,8 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Token失效" message:@"您的Token已失效，请您重新登录。" preferredStyle:UIAlertControllerStyleAlert];
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              //确认处理
+             __weak __typeof(self)weakSelf = self;
+             [weakSelf removeAlias:nil];
              NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
              for (NSString *key in [dictionary allKeys]){
@@ -697,6 +700,16 @@
 //    alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
 //    alertController.alertButtonBackgroundColor = nil;
 //    [alertController showWithAnimated:YES];
+}
+
++(void)removeAlias:(NSString *)alias{
+    [CloudPushSDK removeAlias:alias withCallback:^(CloudPushCallbackResult *res) {
+           if (res.success) {
+               DefLog(@"别名移除成功,别名：%@",alias);
+           } else {
+               DefLog(@"别名移除失败，错误: %@", res.error);
+           }
+    }];
 }
 
 + (UIViewController *)findCurrentViewController

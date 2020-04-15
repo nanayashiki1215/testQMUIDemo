@@ -20,7 +20,7 @@
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
 #import "YYServiceManager.h"
-
+#import <CloudPushSDK/CloudPushSDK.h>
 
 /*
  监控系统 345
@@ -221,6 +221,8 @@
            if (!menuArr || !menuArr.count) {
                DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
                //确认处理
+               __weak __typeof(self)weakSelf = self;
+               [weakSelf removeAlias:nil];
               NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
              for (NSString *key in [dictionary allKeys]){
@@ -303,6 +305,8 @@
            NSArray *menuArr = [rootData objectForKeyNotNull:@"rootMenu"];
            if (!menuArr || !menuArr.count) {
                DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+               __weak __typeof(self)weakSelf = self;
+               [weakSelf removeAlias:nil];
                NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
                NSDictionary *dictionary = [defatluts dictionaryRepresentation];
                for (NSString *key in [dictionary allKeys]){
@@ -349,7 +353,15 @@
         
     }];
 }
-
+-(void)removeAlias:(NSString *)alias{
+    [CloudPushSDK removeAlias:alias withCallback:^(CloudPushCallbackResult *res) {
+           if (res.success) {
+               DefLog(@"别名移除成功,别名：%@",alias);
+           } else {
+               DefLog(@"别名移除失败，错误: %@", res.error);
+           }
+    }];
+}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     

@@ -22,6 +22,7 @@
 #import "YYServiceManager.h"
 #import "EZLivePlayViewController.h"
 #import "EZPlaybackViewController.h"
+#import <CloudPushSDK/CloudPushSDK.h>
 
 //#import "JXCategoryTitleView.h"
 //#import "JXCategoryIndicatorLineView.h"
@@ -76,6 +77,8 @@
             NSArray *menuArr = [rootData objectForKeyNotNull:@"rootMenu"];
             if (!menuArr || !menuArr.count) {
                 DefQuickAlert(@"为确保正常显示，请前往网页端配置APP菜单功能，并至少添加一个tab页功能", nil);
+                __weak __typeof(self)weakSelf = self;
+                [weakSelf removeAlias:nil];
                 NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
                 NSDictionary *dictionary = [defatluts dictionaryRepresentation];
                 for (NSString *key in [dictionary allKeys]){
@@ -102,13 +105,11 @@
                 // 停止采集轨迹
                if ([YYServiceManager defaultManager].isGatherStarted) {
                    [YYServiceManager defaultManager].isGatherStarted = NO;
-                  
                    [[YYServiceManager defaultManager] stopGather];
                }
                 BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
                 UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
                 [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
-                
                 return ;
             }
             user.rootMenuData = respObjc[kdata];
@@ -122,6 +123,16 @@
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
+    }];
+}
+
+-(void)removeAlias:(NSString *)alias{
+    [CloudPushSDK removeAlias:alias withCallback:^(CloudPushCallbackResult *res) {
+           if (res.success) {
+               DefLog(@"别名移除成功,别名：%@",alias);
+           } else {
+               DefLog(@"别名移除失败，错误: %@", res.error);
+           }
     }];
 }
 
