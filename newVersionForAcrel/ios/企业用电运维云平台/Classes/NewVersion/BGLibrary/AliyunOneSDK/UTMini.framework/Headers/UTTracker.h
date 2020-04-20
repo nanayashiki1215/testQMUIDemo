@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import <UIKit/UIViewController.h>
-//#import <UIKit/UIWebView.h>
+
 @class UTDSDKInfo;
 
 typedef enum _UTPageStatus{

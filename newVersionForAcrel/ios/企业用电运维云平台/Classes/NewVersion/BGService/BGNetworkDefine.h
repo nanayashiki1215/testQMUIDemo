@@ -76,5 +76,4 @@
 +(NSString *)getAppImageUrlstr;
 +(NSString *)getSystemImageUrlstr;
 
-
 @end

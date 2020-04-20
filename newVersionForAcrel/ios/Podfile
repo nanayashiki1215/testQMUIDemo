@@ -1,4 +1,5 @@
 platform :ios,'10.0'
+project '/Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/企业用电运维云平台.xcodeproj'
 target "企业用电运维云平台" do
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/aliyun/aliyun-specs.git'

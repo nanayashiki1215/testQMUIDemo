@@ -53,10 +53,6 @@
 		B614C3D8233B00250072459F /* QMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B614C3D4233B00240072459F /* QMUIResources.bundle */; };
 		B616043F237E3F6C007A8C44 /* silent.caf in Resources */ = {isa = PBXBuildFile; fileRef = B616043C237E3F6B007A8C44 /* silent.caf */; };
 		B61953F2237926DC00036E97 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953EF237926DB00036E97 /* libresolv.tbd */; };
-		B61953F82379273E00036E97 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F42379273E00036E97 /* UTDID.framework */; };
-		B61953F92379273E00036E97 /* AlicloudUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F52379273E00036E97 /* AlicloudUtils.framework */; };
-		B61953FA2379273E00036E97 /* CloudPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F62379273E00036E97 /* CloudPushSDK.framework */; };
-		B61953FB2379273E00036E97 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953F72379273E00036E97 /* UTMini.framework */; };
 		B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */; };
 		B62250CF2420AF9A0041E709 /* EZMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B62250CE2420AF9A0041E709 /* EZMain.storyboard */; };
 		B622510C2420B0720041E709 /* EZCameraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D32420B0710041E709 /* EZCameraTableViewController.m */; };
@@ -269,6 +265,10 @@
 		B68D2D3B22A65FBC001C00EC /* BGQMMoveBtnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2D3A22A65FBC001C00EC /* BGQMMoveBtnViewController.m */; };
 		B68D2D3E22A660C3001C00EC /* BGQMSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2D3D22A660C3001C00EC /* BGQMSingletonManager.m */; };
 		B695823A22A7633500D12CA4 /* BGNetworkDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = B695823922A7633500D12CA4 /* BGNetworkDefine.m */; };
+		B69CF25F244D689900C50A36 /* AlicloudUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69CF25B244D689800C50A36 /* AlicloudUtils.framework */; };
+		B69CF260244D689900C50A36 /* CloudPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69CF25C244D689800C50A36 /* CloudPushSDK.framework */; };
+		B69CF261244D689900C50A36 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69CF25D244D689800C50A36 /* UTDID.framework */; };
+		B69CF262244D689900C50A36 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69CF25E244D689800C50A36 /* UTMini.framework */; };
 		B69F7E2622FBB9E5005B0B03 /* CSAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69F7E2822FBB9E5005B0B03 /* CSAboutViewController.xib */; };
 		B6A60CA023862ECC00073E0B /* CSImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A60C9F23862ECB00073E0B /* CSImageBrowserViewController.m */; };
 		B6A8E24422A4E51400E36D8F /* BGRedSpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A8E23F22A4E51200E36D8F /* BGRedSpotCell.m */; };
@@ -763,10 +763,6 @@
 		B614C3D4233B00240072459F /* QMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUIResources.bundle; sourceTree = "<group>"; };
 		B616043C237E3F6B007A8C44 /* silent.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = silent.caf; sourceTree = "<group>"; };
 		B61953EF237926DB00036E97 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		B61953F42379273E00036E97 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
-		B61953F52379273E00036E97 /* AlicloudUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudUtils.framework; sourceTree = "<group>"; };
-		B61953F62379273E00036E97 /* CloudPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CloudPushSDK.framework; sourceTree = "<group>"; };
-		B61953F72379273E00036E97 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTMini.framework; sourceTree = "<group>"; };
 		B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AliyunEmasServices-Info.plist"; sourceTree = "<group>"; };
 		B62250CE2420AF9A0041E709 /* EZMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EZMain.storyboard; sourceTree = "<group>"; };
 		B62250D12420B0710041E709 /* EZWifiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWifiInfoViewController.h; sourceTree = "<group>"; };
@@ -1171,6 +1167,10 @@
 		B68D2D3D22A660C3001C00EC /* BGQMSingletonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSingletonManager.m; sourceTree = "<group>"; };
 		B695823622A75CC900D12CA4 /* BGNetworkDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGNetworkDefine.h; sourceTree = "<group>"; };
 		B695823922A7633500D12CA4 /* BGNetworkDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGNetworkDefine.m; sourceTree = "<group>"; };
+		B69CF25B244D689800C50A36 /* AlicloudUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudUtils.framework; sourceTree = "<group>"; };
+		B69CF25C244D689800C50A36 /* CloudPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CloudPushSDK.framework; sourceTree = "<group>"; };
+		B69CF25D244D689800C50A36 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
+		B69CF25E244D689800C50A36 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTMini.framework; sourceTree = "<group>"; };
 		B69F7E2B22FBB9EF005B0B03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CSAboutViewController.xib; sourceTree = "<group>"; };
 		B69F7E2C22FBB9F3005B0B03 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CSAboutViewController.xib"; sourceTree = "<group>"; };
 		B6A60C9C23862EC800073E0B /* CSImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSImageBrowserViewController.h; sourceTree = "<group>"; };
@@ -1828,8 +1828,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B61953F2237926DC00036E97 /* libresolv.tbd in Frameworks */,
-				B61953FA2379273E00036E97 /* CloudPushSDK.framework in Frameworks */,
 				B63BFF69234DC0A7009C70BC /* CoreGraphics.framework in Frameworks */,
+				B69CF262244D689900C50A36 /* UTMini.framework in Frameworks */,
 				B614C3C5233AF0AF0072459F /* libxml2.tbd in Frameworks */,
 				B614C3C1233AF00B0072459F /* Photos.framework in Frameworks */,
 				B63BFF64234DBFDD009C70BC /* BaiduMapAPI_Cloud.framework in Frameworks */,
@@ -1855,12 +1855,14 @@
 				7B2A3CEEE76844588867056B /* QuartzCore.framework in Frameworks */,
 				2A26539090E747C2929DE853 /* CoreLocation.framework in Frameworks */,
 				DFD47A073F1640FC915D1708 /* libcrypto.a in Frameworks */,
+				B69CF260244D689900C50A36 /* CloudPushSDK.framework in Frameworks */,
 				B63BFF67234DBFDD009C70BC /* BaiduMapAPI_Utils.framework in Frameworks */,
 				FAE6567CB3DB4762849C1A88 /* libssl.a in Frameworks */,
+				B69CF25F244D689900C50A36 /* AlicloudUtils.framework in Frameworks */,
 				B614C3D0233AFC950072459F /* Security.framework in Frameworks */,
 				B6EB9BB422C99F8100136A6C /* libEZUIKit.a in Frameworks */,
-				B61953FB2379273E00036E97 /* UTMini.framework in Frameworks */,
 				B60C805022A8A3F10016D936 /* libcrypto.a in Frameworks */,
+				B69CF261244D689900C50A36 /* UTDID.framework in Frameworks */,
 				F1686AD107474FEC98F56C51 /* BMKLocationKit.framework in Frameworks */,
 				B63BFF66234DBFDD009C70BC /* BaiduMapAPI_Map.framework in Frameworks */,
 				BE257C798B5344F5ACB68D16 /* MessageUI.framework in Frameworks */,
@@ -1871,9 +1873,7 @@
 				2E95AED19A84454D979E5FBF /* libsqlite3.0.tbd in Frameworks */,
 				72A3A93A1D824587B174FAF0 /* CoreData.framework in Frameworks */,
 				B63BFF65234DBFDD009C70BC /* BaiduMapAPI_Base.framework in Frameworks */,
-				B61953F92379273E00036E97 /* AlicloudUtils.framework in Frameworks */,
 				1BA65013D26F48C7859BD8E8 /* libz.dylib in Frameworks */,
-				B61953F82379273E00036E97 /* UTDID.framework in Frameworks */,
 				56C538D56E35D90C8B5CCBAE /* libPods-企业用电运维云平台.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2152,10 +2152,10 @@
 				B607C2FE237A3BB20097CF98 /* PushMessageDAO.m */,
 				B6B0085223794F60002A4465 /* LZLPushMessage.h */,
 				B6B0085123794F5E002A4465 /* LZLPushMessage.m */,
-				B61953F42379273E00036E97 /* UTDID.framework */,
-				B61953F52379273E00036E97 /* AlicloudUtils.framework */,
-				B61953F62379273E00036E97 /* CloudPushSDK.framework */,
-				B61953F72379273E00036E97 /* UTMini.framework */,
+				B69CF25B244D689800C50A36 /* AlicloudUtils.framework */,
+				B69CF25C244D689800C50A36 /* CloudPushSDK.framework */,
+				B69CF25D244D689800C50A36 /* UTDID.framework */,
+				B69CF25E244D689800C50A36 /* UTMini.framework */,
 			);
 			path = AliyunOneSDK;
 			sourceTree = "<group>";
@@ -4796,7 +4796,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.2;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
@@ -4832,7 +4832,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";
@@ -4855,7 +4855,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.2;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4888,7 +4888,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";

@@ -17,7 +17,6 @@
 				FADE58AAB9FA75C538E5E5DEF20FB03F /* PBXTargetDependency */,
 			);
 			name = AlicloudPush;
-			productName = AlicloudPush;
 		};
 		7A788D81F4AC9D6B28D24E0F86AA3468 /* AlicloudUTDID */ = {
 			isa = PBXAggregateTarget;
@@ -27,7 +26,6 @@
 			dependencies = (
 			);
 			name = AlicloudUTDID;
-			productName = AlicloudUTDID;
 		};
 		871BD2896E21EAD510358B799F1E9F2D /* AlicloudUtils */ = {
 			isa = PBXAggregateTarget;
@@ -38,7 +36,6 @@
 				AC6089DCEA65582B196C3E271E3975A4 /* PBXTargetDependency */,
 			);
 			name = AlicloudUtils;
-			productName = AlicloudUtils;
 		};
 		96FD9046A295714BD32F197B94771ACD /* AlicloudUT */ = {
 			isa = PBXAggregateTarget;
@@ -49,7 +46,6 @@
 				ED94928F55C9CBB32B4D9C5D05C15327 /* PBXTargetDependency */,
 			);
 			name = AlicloudUT;
-			productName = AlicloudUT;
 		};
 /* End PBXAggregateTarget section */
 
@@ -121,12 +117,12 @@
 		29420822AD33C42E1E23DB01C4F90D86 /* Pods-企业用电运维云平台-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-企业用电运维云平台-acknowledgements.plist"; sourceTree = "<group>"; };
 		2C15CEDBE91216F7960D2D91963FA35A /* AlicloudUtils.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlicloudUtils.xcconfig; sourceTree = "<group>"; };
 		3983CF21716080D99F2EAE4395022E1B /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTMini.framework; path = ut/UTMini.framework; sourceTree = "<group>"; };
-		59BA1925E6ADFB12942C20BC0BF596FF /* libPods-企业用电运维云平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-企业用电运维云平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59BA1925E6ADFB12942C20BC0BF596FF /* libPods-企业用电运维云平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-企业用电运维云平台.a"; path = "libPods-企业用电运维云平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DE6CB5B84E0351582197B3D56FFC271 /* AlicloudUT.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlicloudUT.xcconfig; sourceTree = "<group>"; };
 		6EF2B4BA8384351FF3FA3689BA8551E9 /* Pods-企业用电运维云平台.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-企业用电运维云平台.debug.xcconfig"; sourceTree = "<group>"; };
 		905C1DF15129EC8F5D644C1438BB4684 /* AlicloudPush.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlicloudPush.xcconfig; sourceTree = "<group>"; };
 		952E7967D17DD02CB7D74ADD0D4BEAF2 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTDID.framework; path = utdid/UTDID.framework; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C73696D834ED20918B329DFBEF0DF6B2 /* AlicloudUTDID.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlicloudUTDID.xcconfig; sourceTree = "<group>"; };
 		DB9D11E44EC30CF6F266B544502C87CC /* Pods-企业用电运维云平台.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-企业用电运维云平台.release.xcconfig"; sourceTree = "<group>"; };
 		EB8F5524E17392DA2E3864F4B175611B /* CloudPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudPushSDK.framework; path = push/CloudPushSDK.framework; sourceTree = "<group>"; };
@@ -160,6 +156,7 @@
 				5F0608EE877DAD9F4796D81F1989C230 /* Frameworks */,
 				E909A5F0B77C304A9B917AF6B660A0A7 /* Support Files */,
 			);
+			name = AlicloudUT;
 			path = AlicloudUT;
 			sourceTree = "<group>";
 		};
@@ -232,6 +229,7 @@
 				8940002D02A4F19D224B13455ACB377C /* Frameworks */,
 				01D5AB550FB9F02CD310856795623236 /* Support Files */,
 			);
+			name = AlicloudUTDID;
 			path = AlicloudUTDID;
 			sourceTree = "<group>";
 		};
@@ -268,6 +266,7 @@
 				9352C5407F753D5C8D679D2DF9D54BE3 /* Frameworks */,
 				36EA83309F760CFE5272FB10F9DFC364 /* Support Files */,
 			);
+			name = AlicloudPush;
 			path = AlicloudPush;
 			sourceTree = "<group>";
 		};
@@ -304,6 +303,7 @@
 				C8EA96F736C2C06A821E825EA15F8FF0 /* Frameworks */,
 				1034910A457C57673C9FBFDEAFE14346 /* Support Files */,
 			);
+			name = AlicloudUtils;
 			path = AlicloudUtils;
 			sourceTree = "<group>";
 		};
@@ -348,7 +348,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1020;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -356,7 +356,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 252073261947FB5DF990FCDDCBE68911 /* Products */;
@@ -442,7 +441,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -521,7 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -535,7 +534,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -572,7 +571,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -600,7 +599,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -660,7 +659,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -673,7 +673,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
