@@ -159,8 +159,13 @@
                if (array) {
                    NSInteger sum = 0;
                    for (NSDictionary *warningDic in array) {
-                       NSInteger count = [[warningDic bg_StringForKeyNotNull:@"unConfirmNum"] integerValue];
-                       sum += count;
+                        NSString *infotype = [warningDic bg_StringForKeyNotNull:@"fMessinfotypeid"];
+                         if ([infotype isEqualToString:@"1"]) {
+                            continue;
+                         }else{
+                             NSInteger count = [[warningDic bg_StringForKeyNotNull:@"unConfirmNum"] integerValue];
+                             sum += count;
+                         }
                    }
                    if (sum>0) {
                        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
@@ -223,7 +228,7 @@
                //确认处理
                __weak __typeof(self)weakSelf = self;
                [weakSelf removeAlias:nil];
-              NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
              for (NSString *key in [dictionary allKeys]){
                  if ([key isEqualToString:@"orderListUrl"]) {

@@ -64,12 +64,17 @@
         [NetService bg_getWithTokenWithPath:@"/getUnConfirmedEventsNum" params:@{} success:^(id respObjc) {
                DefLog(@"%@",respObjc);
             NSDictionary *dict = [respObjc objectForKeyNotNull:kdata];
-               NSArray *array = [dict objectForKeyNotNull:@"unConfirmedEventsNum"];
+            NSArray *array = [dict objectForKeyNotNull:@"unConfirmedEventsNum"];
                if (array) {
                    NSInteger sum = 0;
                    for (NSDictionary *warningDic in array) {
-                       NSInteger count = [[warningDic bg_StringForKeyNotNull:@"unConfirmNum"] integerValue];
-                       sum += count;
+                       NSString *infotype = [warningDic bg_StringForKeyNotNull:@"fMessinfotypeid"];
+                       if ([infotype isEqualToString:@"1"]) {
+                          continue;
+                       }else{
+                           NSInteger count = [[warningDic bg_StringForKeyNotNull:@"unConfirmNum"] integerValue];
+                           sum += count;
+                       }
                    }
                    if (sum>0) {
                        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];

@@ -28,4 +28,8 @@
 /// 通道支持的清晰度信息列表，EZVideoQualityInfo对象列表
 @property (nonatomic, strong) NSArray *videoQualityInfos;
 
+/// 设备是否开启加密
+@property (nonatomic) BOOL isEncrypt;
+/// 设备状态，1-在线，2-不在线
+@property (nonatomic) NSInteger status;
 @end

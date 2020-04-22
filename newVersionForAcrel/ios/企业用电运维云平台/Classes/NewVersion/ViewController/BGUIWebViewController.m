@@ -122,7 +122,7 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     [self.view addSubview:self.webView];
-//    [self.view addSubview:self.progressView];
+    [self.view addSubview:self.progressView];
     //添加监测网页加载进度的观察者
     [self.webView addObserver:self
                    forKeyPath:NSStringFromSelector(@selector(estimatedProgress))
@@ -150,10 +150,6 @@
             [self loadOnlineHtml];
         }
     }
-    
-   
-   
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -321,10 +317,10 @@
         
         DefLog(@"网页加载进度 = %f",_webView.estimatedProgress);
 //        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        self.progressView.progress = _webView.estimatedProgress;
+        self.progressView.progress = _webView.estimatedProgress;
         if (_webView.estimatedProgress >= 1.0f) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                self.progressView.progress = 0;
+                self.progressView.progress = 0;
 //                [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         }
@@ -1349,20 +1345,15 @@
         switch (status) {
             case AFNetworkReachabilityStatusReachableViaWWAN:
             case AFNetworkReachabilityStatusReachableViaWiFi:
-//                DefLog(@"isreach:yes");
                 NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
                 break;
             case AFNetworkReachabilityStatusNotReachable:
-//                DefLog(@"isreach:no");
-//                DefQuickAlert(@"当前无网络链接，请检查网络设置", nil);
                 NSLog(@"AFNetworkReachabilityStatusNotReachable");
                 locStrJs = @"当前无网络链接，请检查网络设置";
                [weakSelf.webView evaluateJavaScript:[NSString stringWithFormat:@"showToast('%@')", locStrJs] completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-//                   NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
-//                       weakSelf.pageStillLoading = NO;
+
                }];
                break;
-            
             default:
                 //AFNetworkReachabilityStatusUnknown
                 NSLog(@"AFNetworkReachabilityStatusUnknown");
