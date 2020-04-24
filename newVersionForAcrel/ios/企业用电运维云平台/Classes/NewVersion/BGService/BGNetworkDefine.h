@@ -27,6 +27,8 @@
 #define UseAgora NO
 //发版最新版本
 #define ISVersionNo @"v5"
+#define ISVersionNov6 @"v6"
+
 //轨迹记录测试地址
 //#define DominAddress @"http://116.236.149.165:8090"
 #define DominAddress @"http://www.acrelcloud.cn"

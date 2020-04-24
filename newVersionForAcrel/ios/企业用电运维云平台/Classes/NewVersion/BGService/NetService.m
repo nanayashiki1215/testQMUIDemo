@@ -247,9 +247,9 @@
             }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         if (errorMsg) {
-            [MBProgressHUD showError:errorMsg];
+//            [MBProgressHUD showError:errorMsg];
         }else{
-            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+//            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
         }
         if (Fail) {
             Fail(nil,nil,nil);

@@ -378,8 +378,8 @@
 - (UIProgressView *)progressView
 {
     if (!_progressView){
-        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0,1, self.view.frame.size.width, 2)];
-        _progressView.tintColor = [UIColor blueColor];
+        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0,1, self.view.frame.size.width, 0.1)];
+        _progressView.tintColor = COLOR_NAVBAR;
         _progressView.trackTintColor = [UIColor clearColor];
     }
     return _progressView;
@@ -655,6 +655,9 @@
 //        view.hidden = YES;
 //        [view removeFromSuperview];
         NSDictionary *msgDic = message.body;
+        if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+            return;
+        }
         NSString *str = msgDic[@"unreadCountSum"];
         NSInteger count = [str integerValue];
         if (count>0) {
@@ -691,8 +694,14 @@
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
             //定位不能用
             NSString *locationStr = @"";
-            NSString *locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
-//            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            NSString *locationStrJS = @"";
+            UserManager *user = [UserManager manager];
+            if ([user.versionNo isEqualToString:ISVersionNo]) {
+                 locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
+            }else{
+                 locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            }
+//
             [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                 DefLog(@"item%@",item);
                 weakSelf.pageStillLoading = NO;
@@ -701,16 +710,25 @@
     }else if ([message.name isEqualToString:@"pushDownFileVC"]){
         //点击了文件
         NSDictionary *msgDic = message.body;
+        if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+            return;
+        }
         [self didClickDownloadButton:msgDic];
     }else if ([message.name isEqualToString:@"takePhoto"]){
         //点击了拍照
         NSDictionary *imageDic = message.body;
+        if (!imageDic || imageDic == NULL || [imageDic isEqual:[NSNull null]]) {
+            return;
+        }
         [self openCamera:imageDic];
     }else if([message.name isEqualToString:@"judgeNetWork"]){
 //        NSString *dataStatus = message.body;
 //        [self networkReachability];
     }else if ([message.name isEqualToString:@"pushYYGJView"]){
         YYHistoryTrackViewController *historyVC = [[YYHistoryTrackViewController alloc] init];
+        if (!message.body || message.body == NULL || [message.body isEqual:[NSNull null]]) {
+            return;
+        }
         NSString *userid = [NSString changgeNonulWithString:message.body[@"entityName"]];
         NSString *startTime = [NSString changgeNonulWithString:message.body[@"startTime"]];
         NSString *endTime = [NSString changgeNonulWithString:message.body[@"endTime"]];
@@ -743,7 +761,11 @@
          if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
 
            NSDictionary *taskDic = message.body;
+         if (!taskDic || taskDic == NULL || [taskDic isEqual:[NSNull null]]) {
+             return;
+         }
            NSString *taskID = [NSString changgeNonulWithString:taskDic[@"fTaskNumber"]];
+             
           if ([YYServiceManager defaultManager].isServiceStarted) {
                   // 停止服务
           //        [[YYServiceManager defaultManager] stopService];
@@ -1243,9 +1265,15 @@
         if(location){
             NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
             NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
-//            NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
-            NSString *locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
-    //       NSString *locationStrJS = [NSString stringWithFormat:@"passOnLocation('%@')",locationStr];
+            NSString *locationStrJS = @"";
+
+            UserManager *user = [UserManager manager];
+            if ([user.versionNo isEqualToString:ISVersionNo]) {
+                locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
+            }else{
+                locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            }
+           
            [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
                
@@ -1253,8 +1281,15 @@
            }];
         }else{
             //定位不能用
-           NSString *locationStr = @"";
-            NSString *locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
+            NSString *locationStr = @"";
+            NSString *locationStrJS = @"";
+            UserManager *user = [UserManager manager];
+            if ([user.versionNo isEqualToString:ISVersionNo]) {
+                locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
+            }else{
+                locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+            }
+//            NSString *locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
 //           NSString *locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
            [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                DefLog(@"item%@",item);

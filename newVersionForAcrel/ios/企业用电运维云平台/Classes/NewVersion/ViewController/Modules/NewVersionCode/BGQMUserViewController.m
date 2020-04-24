@@ -339,7 +339,12 @@
             imageName = @"userOwnPic5";
         }else if ([code isEqualToString:@"MsgNotification"]){
             imageName = @"userOwnPic6";
-        }else {
+        }else if ([code isEqualToString:@"pushRecord"]){
+            imageName = @"userOwnPic6";
+        }else if ([code isEqualToString:@"settings"]){
+            imageName = @"userOwnPic6";
+        }
+        else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
         }
         cell.iconIV.image = [UIImage imageNamed:imageName];
@@ -424,6 +429,15 @@
         }
         else if ([code isEqualToString:@"MsgNotification"]){
             [self setMessageNotification];
+        }
+        //推送记录
+        else if ([code isEqualToString:@"pushRecord"]){
+                   [self setMessageNotification];
+        }
+        //设置
+        else if ([code isEqualToString:@"settings"]){
+                BGQMPersonalInfoViewController *themeVC = [[BGQMPersonalInfoViewController alloc] init];
+                [self.navigationController pushViewController:themeVC animated:YES];
         }
     }else{
 

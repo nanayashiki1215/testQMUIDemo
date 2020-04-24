@@ -118,6 +118,7 @@
 		B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F30122AF3C2B00D5420A /* NSString+PinYinConverter.m */; };
 		B645F30822AF3C2B00D5420A /* hanzi2pinyin_v2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B645F30222AF3C2B00D5420A /* hanzi2pinyin_v2.txt */; };
 		B645F30922AF3C2B00D5420A /* NSArray+PinYinSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F30322AF3C2B00D5420A /* NSArray+PinYinSearcher.m */; };
+		B64BB8BF24515F23003833F9 /* BGQMUserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B64BB8BE24515F23003833F9 /* BGQMUserSettingVC.m */; };
 		B6548A9422B32765005CCD21 /* BGQMEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6548A9322B32765005CCD21 /* BGQMEventViewController.m */; };
 		B6548A9822B33087005CCD21 /* BGQMEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6548A9622B33087005CCD21 /* BGQMEventTableViewCell.m */; };
 		B6548A9922B33087005CCD21 /* BGQMEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6548A9722B33087005CCD21 /* BGQMEventTableViewCell.xib */; };
@@ -883,6 +884,8 @@
 		B645F30422AF3C2B00D5420A /* NSArray+PinYinSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PinYinSearcher.h"; sourceTree = "<group>"; };
 		B645F30522AF3C2B00D5420A /* NSString+PinYinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYinConverter.h"; sourceTree = "<group>"; };
 		B645F30622AF3C2B00D5420A /* SWPinYinHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPinYinHeader.h; sourceTree = "<group>"; };
+		B64BB8BD24515F23003833F9 /* BGQMUserSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserSettingVC.h; sourceTree = "<group>"; };
+		B64BB8BE24515F23003833F9 /* BGQMUserSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMUserSettingVC.m; sourceTree = "<group>"; };
 		B64D3B33233B62C20016DF9F /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "QMUI_iOS-3.2.1/qmui.xcodeproj"; sourceTree = "<group>"; };
 		B6548A9222B32765005CCD21 /* BGQMEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMEventViewController.h; sourceTree = "<group>"; };
 		B6548A9322B32765005CCD21 /* BGQMEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMEventViewController.m; sourceTree = "<group>"; };
@@ -3921,6 +3924,8 @@
 				B637964F22F1732C007AC38F /* UserFeedBackVC */,
 				B6E2189222A4AB93003C2969 /* BGQMUserViewController.h */,
 				B6E2189322A4AB93003C2969 /* BGQMUserViewController.m */,
+				B64BB8BD24515F23003833F9 /* BGQMUserSettingVC.h */,
+				B64BB8BE24515F23003833F9 /* BGQMUserSettingVC.m */,
 				B6D7358122F81E310067F246 /* BGQMPersonalInfoViewController.h */,
 				B6D7358222F81E310067F246 /* BGQMPersonalInfoViewController.m */,
 				B6C1540922E7F4D0004B8614 /* CSAboutViewController.h */,
@@ -4452,6 +4457,7 @@
 				B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */,
 				B68D2D0722A64C5B001C00EC /* BGQMCategoryListConViewController.m in Sources */,
 				B6E155F5228CF09C00CB4A5F /* UITableView+BGExtension.m in Sources */,
+				B64BB8BF24515F23003833F9 /* BGQMUserSettingVC.m in Sources */,
 				B622514A2420B2A30041E709 /* UIImage+DDKit.m in Sources */,
 				B68D2C7522A63D87001C00EC /* GHDropMenuOptionCell.m in Sources */,
 				B657DDC122927C760009BCB0 /* UIImage+WebP.m in Sources */,
@@ -4796,7 +4802,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.2;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
@@ -4855,7 +4861,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.2;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
