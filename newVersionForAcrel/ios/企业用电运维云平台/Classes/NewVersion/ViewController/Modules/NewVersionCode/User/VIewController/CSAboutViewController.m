@@ -146,7 +146,7 @@
     if (user.versionArr.count>0) {
         for (NSDictionary *dic in user.versionArr) {
             NSString *fCode = dic[@"fCode"];
-            if ([fCode isEqualToString:@"appDescribe"]) {
+            if ([fCode isEqualToString:@"appDescribe"] || [fCode isEqualToString:@"appDescribeLower"]) {
                 UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 350, SCREEN_WIDTH-40, 100)];
                 detailLabel.text = [NSString changgeNonulWithString:dic[@"fExplain"]];
                 detailLabel.textAlignment = NSTextAlignmentLeft;
@@ -155,7 +155,7 @@
                 [detailLabel setFont:[UIFont systemFontOfSize:15.f]];
                 [self.view addSubview:detailLabel];
 //                self.detailtext.text = [NSString changgeNonulWithString:dic[@"fExplain"]];
-            } else if([fCode isEqualToString:@"Copyright"]){
+            } else if([fCode isEqualToString:@"Copyright"] || [fCode isEqualToString:@"CopyrightLower"]){
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 25)];
                 label.text = [NSString changgeNonulWithString:dic[@"fExplain"]];
                 label.textAlignment = NSTextAlignmentCenter;

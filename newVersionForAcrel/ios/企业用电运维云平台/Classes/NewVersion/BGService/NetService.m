@@ -322,6 +322,59 @@
     }];
 }
 
++ (void)bg_getWithTokenWithPathAndNoTips:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
+    NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
+     UserManager *user = [UserManager manager];
+        if (!user.versionNo) {
+            return;
+        }
+        __weak __typeof(self)weakSelf = self;
+        NSString *baseURL = [BASE_URL stringByAppendingString:user.versionNo];
+        NSString *urlString = [baseURL stringByAppendingString:path];
+        [NetService bg_httpGetWithTokenWithPath:urlString params:mutParams success:^(id responseObject) {
+            if (!responseObject) {
+                return ;
+            }
+            NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
+            NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+    //        k0000 成功
+    //        401 token过期
+            if ([respMsg isEqualToString:@"Unauthorized"] || [respCode isEqualToString:@"600"]) {
+                [weakSelf loginOut:respCode];
+                return ;
+            }else if([respCode isEqualToString:@"700"]){
+                NSString *token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"token"]];
+                if(token.length>0){
+                    [UserManager manager].token = token;
+                }
+                return ;
+            }else if ([respCode isEqualToString:@"5000"]){
+                [self pushUpErrorMsg:responseObject];
+                return ;
+            }
+            if ([respCode isEqualToString:k0000]) {
+                if (Success) {
+                    Success(responseObject);
+                }
+            }else{
+                respMsg = [NSString stringWithFormat:@"%@",[NetService failCodeDic][respCode]];
+                if (!respMsg || [respMsg isEqualToString:@"(null)"] || [respMsg isEqualToString:@"null"]) {
+                    respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+                    if (!respMsg) {
+                        respMsg = @"未知错误";
+                    }
+                }
+                if (Fail) {
+                    Fail(responseObject,respCode,respMsg);
+                }
+            }
+        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+            if (Fail) {
+                Fail(nil,nil,nil);
+            }
+            
+        }];
+}
 #pragma mark - 纯净版PUT接口，不允许出现提示框,判断返回码，拼接URL地址等业务逻辑！！！
 + (void)bg_putWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
     NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
@@ -853,7 +906,25 @@
              @"376":@"该变电所下，该网关下的仪表编号已存在",
              @"5000":@"error",
              @"377":@"该变电所id可用",
-             @"378":@"该变电所id不可用"
+             @"378":@"该变电所id不可用",
+             @"379":@"该条数据主键已存在",
+             @"380":@"设备重名",
+             @"381":@"该变电所没有设备分组",
+             @"382":@"该变电所当前设备分组下已存在同名设备，建议修改",
+             @"383":@"队列服务器连接超时，请检查队列服务器配置是否正确",
+             @"384":@"队列创建失败，请检查使用的队列服务器账户是都具有足够的操作权限",
+             @"385":@"业务队列不存在，请检查对应业务字段是否正确",
+             @"386":@"版本号已存在",
+             @"387":@"参数不存在",
+             @"388":@"激活码已过期，无法更新",
+             @"389":@"当前报警分类下，已存在报警类型，不可删除该报警分类",
+             @"390":@"无效订阅",
+             @"391":@"报警类型模板无法删除",
+             @"392":@"托管已到期，请联系管理员",
+             @"393":@"参数值不符合规范",
+             @"394":@"必要参数缺失",
+             @"395":@"工作通知不可更改分类",
+             @"396":@"该用户所属的组织机构已过期，请到组织机构管理中更新使用时间"
     };
 }
 

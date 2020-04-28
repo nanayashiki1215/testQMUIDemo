@@ -145,16 +145,25 @@
         }
     }else{
         if (!self.isUseOnline) {
-            [self loadLocalHtml];
+            if (self.showWebType == showWebTypeWithPush || self.showWebType == showWebTypeWithPushNoYY) {
+                [self loadLocalHtmlWithParam];
+            } else {
+                [self loadLocalHtml];
+            }
         }else{
-            [self loadOnlineHtml];
+            if (self.showWebType == showWebTypeWithPush ||self.showWebType == showWebTypeWithPushNoYY) {
+                [self loadOnlineHtmlWithParam];
+            }else{
+                [self loadOnlineHtml];
+            }
+           
         }
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(self.showWebType == showWebTypeDevice || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY){
+    if(self.showWebType == showWebTypeDevice || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeWithPush || self.showWebType == showWebTypeWithPushNoYY){
         self.navigationController.navigationBarHidden = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self setStatusBarBackgroundColor:COLOR_WEBNAVBAR];
@@ -162,7 +171,6 @@
     if (self.titleName.length>0) {
         self.navigationItem.title = self.titleName;
     }
-    
     if(self.showWebType == showWebTypeAlarm){
 //      报警类型重新加载
         self.navigationController.navigationBarHidden = YES;
@@ -198,10 +206,9 @@
                [self loadOnlineHtml];
            }
         }
-       
     }
     
-     if (self.showWebType == showWebTypeDeviceForYY && [UserManager manager].isOpenTjBaidu && [UserManager manager].isContinueShowTJ) {
+     if ((self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeWithPush) && [UserManager manager].isOpenTjBaidu && [UserManager manager].isContinueShowTJ) {
         //显示轨迹
             UIColor *color = COLOR_NAVBAR;
             ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
@@ -289,9 +296,27 @@
     }
 }
 
+//本地h5带参数
+-(void)loadLocalHtmlWithParam{
+    if (self.localUrlString) {
+        NSURL *pathURL = [NSURL fileURLWithPath:self.localUrlString];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:pathURL]];
+        NSString * urlString2 = [[NSString stringWithFormat:@"?jumpId=%@",self.pathParamStr] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString2 relativeToURL:pathURL]]];
+    }
+}
+
 -(void)loadOnlineHtml{
     if (self.onlineUrlString) {
         NSURL * url = [NSURL URLWithString:self.onlineUrlString];
+        NSURLRequest * request = [NSURLRequest requestWithURL:url];
+        [self.webView loadRequest:request];
+    }
+}
+
+-(void)loadOnlineHtmlWithParam{
+    if (self.onlineUrlString) {
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?jumpId=%@",self.onlineUrlString,self.pathParamStr]];
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
     }
@@ -513,7 +538,7 @@
         [config.userContentController addScriptMessageHandler:weakScriptMessageDelegate name:@"iOS"];
         [config.userContentController addUserScript:wkUScript2];
         
-        if(self.showWebType == showWebTypeDevice  || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeVersion){
+        if(self.showWebType == showWebTypeDevice  || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeVersion || self.showWebType == showWebTypeWithPush || self.showWebType == showWebTypeWithPushNoYY){
 //            _webView.backgroundColor = [UIColor clearColor];
             if (@available(iOS 13.0, *)) {
                 _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
@@ -778,7 +803,7 @@
                   BTKStartServiceOption *startServiceOption = [[BTKStartServiceOption alloc] initWithEntityName:[YYServiceParam serviceParamManager].entityName];
                   [[YYServiceManager defaultManager] startServiceWithOption:startServiceOption];
                   [YYServiceManager defaultManager].isGatherStarted = YES;
-                  if (self.showWebType == showWebTypeDeviceForYY && [UserManager manager].isOpenTjBaidu) {
+                  if ((self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeWithPush) && [UserManager manager].isOpenTjBaidu) {
                           //显示 开启轨迹
                       UIColor *color = COLOR_NAVBAR;
                       ZYSuspensionView *susView = [[ZYSuspensionView alloc] initWithFrame:CGRectMake([ZYSuspensionView suggestXWithWidth:100], SCREEN_HEIGHT-200, 55, 55) color:color delegate:self];
@@ -1325,7 +1350,7 @@
          设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
          由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
          */
-        _locationManager.allowsBackgroundLocationUpdates = NO;
+        _locationManager.allowsBackgroundLocationUpdates = YES;
         /**
          指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
          注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)

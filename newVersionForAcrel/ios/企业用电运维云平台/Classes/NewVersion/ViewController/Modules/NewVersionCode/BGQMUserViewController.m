@@ -24,6 +24,7 @@
 //#import "WXApi.h"
 #import "BGQMChangeLanguageViewController.h"
 #import "BGUIWebViewController.h"
+#import "BGQMUserSettingVC.h"
 
 @interface BGQMUserViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong) QMUITableView *tableview;
@@ -340,9 +341,9 @@
         }else if ([code isEqualToString:@"MsgNotification"]){
             imageName = @"userOwnPic6";
         }else if ([code isEqualToString:@"pushRecord"]){
-            imageName = @"userOwnPic6";
+            imageName = @"userOwnPic7";
         }else if ([code isEqualToString:@"settings"]){
-            imageName = @"userOwnPic6";
+            imageName = @"userOwnPic8";
         }
         else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
@@ -419,9 +420,14 @@
              [self getfolderSize];
         }else if ([code isEqualToString:@"versionInfo"]){
             CSAboutViewController *aboutVC = [[CSAboutViewController alloc] initWithNibName:@"CSAboutViewController" bundle:nil];
-            NSString *menuID = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fMenuid"]];
-            aboutVC.aboutMenuID = menuID;
-            [self.navigationController pushViewController:aboutVC animated:YES];
+             NSString *menuID = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fMenuid"]];
+            if (menuID) {
+               aboutVC.aboutMenuID = menuID;
+               [self.navigationController pushViewController:aboutVC animated:YES];
+            } else {
+                DefQuickAlert(@"数据异常，请查阅Web端个人中心配置是否规范", nil);
+            }
+           
         }else if ([code isEqualToString:@"shareApp"]){
             [self shareAPP];
         }else if ([code isEqualToString:@"switchLanguage"]){
@@ -432,12 +438,18 @@
         }
         //推送记录
         else if ([code isEqualToString:@"pushRecord"]){
-                   [self setMessageNotification];
+            [self setMessageNotification];
         }
         //设置
         else if ([code isEqualToString:@"settings"]){
-                BGQMPersonalInfoViewController *themeVC = [[BGQMPersonalInfoViewController alloc] init];
+                BGQMUserSettingVC *themeVC = [[BGQMUserSettingVC alloc] init];
+                NSString *menuID = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fMenuid"]];
+            if (menuID) {
+                themeVC.aboutMenuID = menuID;
                 [self.navigationController pushViewController:themeVC animated:YES];
+            } else {
+                DefQuickAlert(@"数据异常，请查阅Web端个人中心配置是否规范", nil);
+            }
         }
     }else{
 

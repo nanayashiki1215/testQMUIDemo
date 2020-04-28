@@ -699,7 +699,7 @@
          设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
          由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
          */
-        _locationManager.allowsBackgroundLocationUpdates = NO;
+        _locationManager.allowsBackgroundLocationUpdates = YES;
         /**
          指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
          注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)

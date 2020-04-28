@@ -15,13 +15,15 @@ typedef enum {
     showWebTypeAssets= 0,
     showWebTypeDevice,//设备档案、两个记录、文档管理
     showWebTypeDeviceForYY,//待办事项 开启关闭鹰眼
-    showWebTypeAlarm,
-    showWebTypeAlarmWithTab,
+    showWebTypeAlarm,//报警页面
+    showWebTypeAlarmWithTab,//报警tab页面
     showWebFromMsgNotif, //从消息通知页面跳入
     showWebTypePolicy,//隐私政策 显示navbar 可通用
     showWebTypeReport,//用户报告
     showWebTypeZYSusView,//轨迹 小圆点
-    showWebTypeVersion//版本介绍
+    showWebTypeVersion,//版本介绍
+    showWebTypeWithPush,//推送跳转 含轨迹球
+    showWebTypeWithPushNoYY,//推送跳转 不含轨迹球
 } showWebType;
 
 @interface BGUIWebViewController : UIViewController<JXCategoryListCollectionContentViewDelegate,UIScrollViewDelegate,BTKTraceDelegate>
@@ -42,6 +44,8 @@ typedef enum {
 @property(nonatomic,strong)NSData *Filelocaldata;//传入文件
 @property(nonatomic,strong)NSString *downloadFileName;
 @property(nonatomic,strong)NSString *fileLocalUrlPath;//本地文件路径
+//url拼接参数
+@property(nonatomic,strong)NSString *pathParamStr;//拼接url参数
 
 @end
 

@@ -71,7 +71,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 //static NSString *const EMASAppSecret = @"b09811ee7cc07441dc4e999f7b82b16b";
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
-
+@property (nonatomic, strong)CLLocationManager *locationManager;
 @end
 
 @implementation AppDelegate{
@@ -158,7 +158,8 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     } else {
         DefLog(@"经纬度类型设置失败");
     }
-    
+    //判断定位服务权限是否开通
+    [self initCLLocationManager];
     //启动引擎并设置AK并设置delegate
     BOOL result = [_mapManager start:BGBaiduMapApi generalDelegate:self];
     if (!result) {
@@ -223,6 +224,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         }];
         // 界面
         [self createTabBarController];
+        [self getAppBasicConfig];
     }else{
 //        BGQMloginViewController *loginVC = [[BGQMloginViewController alloc] init];
         //设置状态栏颜色
@@ -335,29 +337,44 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // 同步角标数到服务端
     [self syncBadgeNum:0];
     // 取得通知自定义字段内容，例：获取key为"Extras"的内容
-    NSString *pushType = [userInfo valueForKey:@"pushType"];
-    [self pushViewControllerWithType:pushType];
+    if (userInfo) {
+        [self pushViewControllerWithType:userInfo];
+    }
     // 通知打开回执上报
     [CloudPushSDK sendNotificationAck:userInfo];
     
     NSLog(@"Notification, date: %@, title: %@, subtitle: %@, body: %@, badge: %d, extras: %@.", noticeDate, title, subtitle, body, badge, extras);
 }
 
--(void)pushViewControllerWithType:(NSString *)pushType{
+-(void)pushViewControllerWithType:(NSDictionary *)userInfo{
     DefLog(@"pushType:%@",pushType);
     //现场报警
+     NSString *pushType = [userInfo bg_StringForKeyNotNull:@"pushType"];
     if([pushType isEqualToString:@"alarm"]){
+        //现场报警
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
         UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
         //跳转到报警页面
         [tabViewController setSelectedIndex:1];
+        //
+        NSString *fAlarmeventlogid = [userInfo bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+        if (fAlarmeventlogid) {
+            [self pushNoYYWebview:fAlarmeventlogid andHtmlName:@"alarmDetailView"];
+        }
     }else if ([pushType isEqualToString:@"communication"]){
+        //通讯状态
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
         UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
-        //跳转到报警页面
+        //跳转到报警
         [tabViewController setSelectedIndex:1];
+
+        NSString *fAlarmeventlogid = [userInfo bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+        if (fAlarmeventlogid) {
+            [self pushNoYYWebview:@"2" andHtmlName:@"alarmsDetailNew"];
+        }
+        
     }else if ([pushType isEqualToString:@"work"]){
         NSArray *homeList;
         UserManager *user = [UserManager manager];
@@ -371,34 +388,67 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         }
         if (homeList.count>0) {
             //347 待办事项
-            NSString *fAction;
-            NSString *fFunctionurl;
-            for (NSDictionary *nodeDic in homeList) {
-                if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
-                    fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
-                    fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
-                }
-            }
-            if (fFunctionurl.length>0) {
-               BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-                       NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
-               nomWebView.isUseOnline = NO;
-               nomWebView.localUrlString = filePath;
-               nomWebView.showWebType = showWebTypeDevice;
-               //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-//               [self.navigationController pushViewController:nomWebView animated:YES];
-                 [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+            NSString *taskid = [userInfo bg_StringForKeyNotNull:@"fTaskid"];
+            if(taskid){
+               NSString *fAction;
+               NSString *fFunctionurl;
+               for (NSDictionary *nodeDic in homeList) {
+                   if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                       fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                       fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                   }
+               }
+               if (fFunctionurl.length>0) {
+                  BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                          NSString *filePath = [[NSBundle mainBundle] pathForResource:@"missionDetail" ofType:@"html" inDirectory:@"aDevices"];
+                  nomWebView.isUseOnline = NO;
+                  nomWebView.localUrlString = filePath;
+                  nomWebView.showWebType = showWebTypeWithPush;
+                  nomWebView.pathParamStr = taskid;
+                  [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+               }else{
+                   BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                   urlWebView.isUseOnline = YES;
+                   if (versionURL.length>0) {
+                       NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                       NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                       NSString *urlStr = [str stringByAppendingString:@"missionDetail.html"];
+                       urlWebView.onlineUrlString = urlStr;
+                       urlWebView.showWebType = showWebTypeWithPush;
+                       urlWebView.pathParamStr = taskid;
+                      [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                    }
+               }
             }else{
-                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
-                urlWebView.isUseOnline = YES;
-                if (versionURL.length>0) {
-                    NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
-                    NSString *str = [GetBaseURL stringByAppendingString:urlstring];
-                    NSString *urlStr = [str stringByAppendingString:fAction];
-                    urlWebView.onlineUrlString = urlStr;
-                    urlWebView.showWebType = showWebTypeDevice;
-                   [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
-                 }
+                NSString *fAction;
+                            NSString *fFunctionurl;
+                            for (NSDictionary *nodeDic in homeList) {
+                                if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                                    fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                                    fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                }
+                            }
+                            if (fFunctionurl.length>0) {
+                               BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                                       NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
+                               nomWebView.isUseOnline = NO;
+                               nomWebView.localUrlString = filePath;
+                               nomWebView.showWebType = showWebTypeDevice;
+                               //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                //               [self.navigationController pushViewController:nomWebView animated:YES];
+                                 [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                            }else{
+                                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                                urlWebView.isUseOnline = YES;
+                                if (versionURL.length>0) {
+                                    NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                                    NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                                    NSString *urlStr = [str stringByAppendingString:fAction];
+                                    urlWebView.onlineUrlString = urlStr;
+                                    urlWebView.showWebType = showWebTypeDevice;
+                                   [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                                 }
+                            }
             }
         }
     }
@@ -430,6 +480,46 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }
     return topViewController;
 }
+
+#pragma mark - pushNoYYWebView
+-(void)pushNoYYWebview:(NSString *)jumpid andHtmlName:(NSString *)htmlName{
+    UserManager *user = [UserManager manager];
+    NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+     for (NSDictionary *dic in uiArray) {
+            NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+            if ([fCode isEqualToString:@"alarmPage"]) {
+               BGUIWebViewController *componentViewController = [[BGUIWebViewController alloc] init];
+               NSString *fFunctionfield = [NSString changgeNonulWithString:dic[@"fFunctionfield"]];
+               if (fFunctionfield.length>0) {
+                   NSString *filePath = [[NSBundle mainBundle] pathForResource:htmlName ofType:@"html" inDirectory:@"aDevices"];
+                   componentViewController.isUseOnline = NO;
+                   componentViewController.localUrlString = filePath;
+                   componentViewController.showWebType = showWebTypeWithPushNoYY;
+                   componentViewController.pathParamStr = jumpid;
+                   [[self findCurrentViewController].navigationController pushViewController:componentViewController animated:YES];
+               }else{
+                   componentViewController.isUseOnline = YES;
+                   UserManager *user = [UserManager manager];
+                   //外链H5
+                   if (user.rootMenuData) {
+                      NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+                      componentViewController.showWebType = showWebTypeWithPushNoYY;
+//                          componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
+                      NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                      NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                      NSString *urlStr = [str stringByAppendingString:[NSString stringWithFormat:@"%@.html",htmlName]];
+                      componentViewController.onlineUrlString = urlStr;
+//                           componentViewController.isFromAlarm = @"1";
+                        componentViewController.pathParamStr = jumpid;
+//                          componentViewController .hidesBottomBarWhenPushed = NO;
+                      [[self findCurrentViewController].navigationController pushViewController:componentViewController animated:YES];
+                   }
+               }
+            }
+        }
+}
+
+
 /**
  *  App处于前台时收到通知(iOS 10+)
  */
@@ -874,5 +964,53 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         DefLog(@"onGetPermissionState %d",iError);
     }
 }
+
+
+-(void)getAppBasicConfig{
+//    __weak __typeof(self)weakSelf = self;
+    [NetService bg_getWithTokenWithPathAndNoTips:@"/getAppBasicConfig" params:@{} success:^(id respObjc) {
+        if(!respObjc){
+            return ;
+        }
+        UserManager *user = [UserManager manager];
+        //配置百度鹰眼轨迹
+        NSDictionary *trajectory = respObjc[kdata][@"trajectoryConfig"];
+        if (trajectory) {
+            user.yytjBaiduDic = trajectory;
+            NSString *isOpenBaidu = [NSString changgeNonulWithString:trajectory[@"tjIsUsing"]];
+            if ([isOpenBaidu isEqualToString:@"1"]) {
+                user.isOpenTjBaidu = YES;
+            }else{
+                user.isOpenTjBaidu = NO;
+            }
+        }
+        NSString *verStr = [NSString changgeNonulWithString:respObjc[kdata][@"webAPIInfo"][@"fVersion"]];
+       if (verStr && verStr.length) {
+           user.versionNo = verStr;
+       }
+       
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        
+    }];
+}
+
+- (void)initCLLocationManager
+{
+    BOOL enable=[CLLocationManager locationServicesEnabled];
+    NSInteger status=[CLLocationManager authorizationStatus];
+    if(!enable || status<3)
+    {
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8)
+        {
+            self.locationManager = [[CLLocationManager alloc] init];
+            if ([self.locationManager respondsToSelector:@selector(allowsBackgroundLocationUpdates)]) {
+                self.locationManager.allowsBackgroundLocationUpdates = YES;
+            }
+            [self.locationManager requestAlwaysAuthorization];
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
+}
+
 
 @end

@@ -310,7 +310,7 @@ static id _instance;
         DefLog(@"\n\n***************  Start  ***************\nGET:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
         if (Success) {
              if (!responseObject) {
-                               [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+//                               [MBProgressHUD showError:@"数据请求异常，返回空数据"];
                                return ;
                            }
             Success(responseObject);
