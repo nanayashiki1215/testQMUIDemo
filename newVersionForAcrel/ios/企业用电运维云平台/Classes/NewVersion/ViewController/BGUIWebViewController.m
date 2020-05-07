@@ -686,7 +686,19 @@
         NSString *str = msgDic[@"unreadCountSum"];
         NSInteger count = [str integerValue];
         if (count>0) {
-            [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:str];
+          UserManager *user = [UserManager manager];
+          NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+          if (uiArray.count>0) {
+              for (int index = 0; index<uiArray.count; index++) {
+                  NSDictionary *dic = uiArray[index];
+                  NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+                  if ([fCode isEqualToString:@"alarmPage"]){
+                        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:index withShowText:str];
+                  }
+              }
+          }else{
+              [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:str];
+          }
         }else{
             [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
         }

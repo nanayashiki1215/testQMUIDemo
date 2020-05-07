@@ -21,6 +21,7 @@
 #import "CustomNavigationController.h"
 #import "YYServiceManager.h"
 #import <CloudPushSDK/CloudPushSDK.h>
+#import "QDTabBarViewController.h"
 
 /*
  监控系统 345
@@ -168,7 +169,19 @@
                          }
                    }
                    if (sum>0) {
-                       [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                       UserManager *user = [UserManager manager];
+                       NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+                       if (uiArray.count>0) {
+                           for (int index = 0; index<uiArray.count; index++) {
+                               NSDictionary *dic = uiArray[index];
+                               NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+                               if ([fCode isEqualToString:@"alarmPage"]){
+                                   [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:index withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                               }
+                           }
+                       }else{
+                          [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                       }
                    }else{
                        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
                    }

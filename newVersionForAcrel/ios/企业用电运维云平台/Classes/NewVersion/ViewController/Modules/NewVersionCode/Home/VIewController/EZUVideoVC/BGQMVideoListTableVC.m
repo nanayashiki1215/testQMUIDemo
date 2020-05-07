@@ -561,18 +561,41 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
        return;
     }
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
-
+    NSString *deviceNo = [NSString changgeNonulWithString:deviceInfo[@"fChannelno"]];
     EZPlaybackViewController *backVC = [mainSB instantiateViewControllerWithIdentifier:@"EZPlaybackViewController"];
-    
-    [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
-         if (deviceInfo) {
-             backVC.deviceInfo = deviceInfo;
-             [self.ownNaviController pushViewController:backVC animated:YES];
-         }
-         else {
-             [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
-         }
-    }];
+    if (deviceNo) {
+        [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+            if (deviceInfo) {
+                NSArray *cameraArr = deviceInfo.cameraInfo;
+                 if (cameraArr.count>0) {
+                     for (int index = 0; index<cameraArr.count; index++) {
+                         EZCameraInfo *camera = cameraArr[index];
+                         NSInteger deviceno = [deviceNo integerValue];
+                         if (deviceno == camera.cameraNo) {
+                             //给控制器添附index
+                             backVC.cameraIndex = index;
+                         }
+                     }
+                 }
+                backVC.deviceInfo = deviceInfo;
+                [self.ownNaviController pushViewController:backVC animated:YES];
+            }
+            else {
+                [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+            }
+       }];
+    }else{
+        [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+            if (deviceInfo) {
+                backVC.deviceInfo = deviceInfo;
+                [self.ownNaviController pushViewController:backVC animated:YES];
+            }
+            else {
+                [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+            }
+       }];
+    }
+   
 }
 
 -(void)clickPlayDetailBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(NSDictionary *)param{
@@ -586,20 +609,44 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
            return;
         }
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
-
+        NSString *deviceNo = [NSString changgeNonulWithString:deviceInfo[@"fChannelno"]];
         EZLivePlayViewController *selfdetailVC = [mainSB instantiateViewControllerWithIdentifier:@"EZLivePlayViewController"];
-
-           [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
-                     if (deviceInfo) {
-
-                         selfdetailVC.deviceInfo = deviceInfo;
-                         [self.ownNaviController pushViewController:selfdetailVC animated:YES];
-        //                         [self presentViewController:selfdetailVC animated:YES completion:nil];
-                     }
-                     else {
-                         [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
-                     }
-            }];
+//        fChannelno
+        if (deviceNo) {
+            [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+                      if (deviceInfo) {
+                          NSArray *cameraArr = deviceInfo.cameraInfo;
+                          if (cameraArr.count>0) {
+                              for (int index = 0; index<cameraArr.count; index++) {
+                                  EZCameraInfo *camera = cameraArr[index];
+                                  NSInteger deviceno = [deviceNo integerValue];
+                                  if (deviceno == camera.cameraNo) {
+                                      //给控制器添附index
+                                      selfdetailVC.cameraIndex = index;
+                                  }
+                              }
+                          }
+                          selfdetailVC.deviceInfo = deviceInfo;
+                          [self.ownNaviController pushViewController:selfdetailVC animated:YES];
+         //                         [self presentViewController:selfdetailVC animated:YES completion:nil];
+                      }
+                      else {
+                          [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+                      }
+             }];
+        }else{
+            [EZOPENSDK getDeviceInfo:deviceStr completion:^(EZDeviceInfo *deviceInfo, NSError *error) {
+                    if (deviceInfo) {
+                        selfdetailVC.deviceInfo = deviceInfo;
+                      
+                        [self.ownNaviController pushViewController:selfdetailVC animated:YES];
+       //                         [self presentViewController:selfdetailVC animated:YES completion:nil];
+                    }
+                    else {
+                        [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
+                    }
+           }];
+        }
     }else{
         [self.tableView makeToast:@"无此设备，请检查Web端设备序列号" duration:2.0 position:@"center"];
     }

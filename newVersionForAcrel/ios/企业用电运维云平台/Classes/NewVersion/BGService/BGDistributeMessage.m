@@ -72,15 +72,28 @@
                        if ([infotype isEqualToString:@"1"]) {
                           continue;
                        }else{
+                           
                            NSInteger count = [[warningDic bg_StringForKeyNotNull:@"unConfirmNum"] integerValue];
                            sum += count;
                        }
                    }
-                   if (sum>0) {
-                       [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
-                   }else{
-                       [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
-                   }
+                if (sum>0) {
+                     UserManager *user = [UserManager manager];
+                     NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+                     if (uiArray.count>0) {
+                         for (int index = 0; index<uiArray.count; index++) {
+                             NSDictionary *dic = uiArray[index];
+                             NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+                             if ([fCode isEqualToString:@"alarmPage"]){
+                                 [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:index withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                             }
+                         }
+                     }else{
+                        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                     }
+                 }else{
+                     [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+                 }
                }
            } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
                
@@ -95,11 +108,23 @@
                     NSInteger count = [[warningDic bg_StringForKeyNotNull:@"count"] integerValue];
                     sum += count;
                 }
-                if (sum>0) {
-                    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
-                }else{
-                    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
-                }
+                 if (sum>0) {
+                                      UserManager *user = [UserManager manager];
+                                      NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+                                      if (uiArray.count>0) {
+                                          for (int index = 0; index<uiArray.count; index++) {
+                                              NSDictionary *dic = uiArray[index];
+                                              NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+                                              if ([fCode isEqualToString:@"alarmPage"]){
+                                                  [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:index withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                                              }
+                                          }
+                                      }else{
+                                         [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                                      }
+                                  }else{
+                                      [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+                                  }
             }
         } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
             
@@ -107,4 +132,32 @@
     }
 }
 
++ (UIViewController *)jsd_findVisibleViewController {
+    
+    UIViewController* currentViewController = [self jsd_getRootViewController];
+
+    BOOL runLoopFind = YES;
+    while (runLoopFind) {
+        if (currentViewController.presentedViewController) {
+            currentViewController = currentViewController.presentedViewController;
+        } else {
+            if ([currentViewController isKindOfClass:[UINavigationController class]]) {
+                currentViewController = ((UINavigationController *)currentViewController).visibleViewController;
+            } else if ([currentViewController isKindOfClass:[UITabBarController class]]) {
+                currentViewController = ((UITabBarController* )currentViewController).selectedViewController;
+            } else {
+                break;
+            }
+        }
+    }
+    
+    return currentViewController;
+}
+
++ (UIViewController *)jsd_getRootViewController{
+
+    UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
+    NSAssert(window, @"The window is empty");
+    return window.rootViewController;
+}
 @end

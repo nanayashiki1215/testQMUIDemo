@@ -66,13 +66,13 @@
 	<key>NSCameraUsageDescription</key>
 	<string>App需要您的同意才可以访问您的摄像头</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App需要您的同意,才能始终访问位置</string>
+	<string>App需要您的同意才能始终访问您的位置，我们将通过您的地理位置信息获取您的位置和轨迹</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>App需要您的同意才可以访问您的位置</string>
+	<string>App需要您的同意才能访问您的位置，我们将通过您的地理位置信息获取您的位置和轨迹</string>
 	<key>NSLocationUsageDescription</key>
-	<string>App需要您的同意,才能访问位置</string>
+	<string>App需要您的同意才能访问您的位置，我们将通过您的地理位置信息获取您的位置和轨迹</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App需要您的同意才可以访问您的位置</string>
+	<string>App需要您的同意才能访问您的位置，我们将通过您的地理位置信息获取您的位置和轨迹</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>App需要您的同意才可以访问您的麦克风</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
