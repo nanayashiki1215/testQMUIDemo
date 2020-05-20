@@ -1086,6 +1086,99 @@
                   [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
+    }else if (codeId == 353){
+        //消警记录
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"353"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"alarmCleanRecord" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
+       
+    }else if (codeId == 354){
+        //发布任务
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"354"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"taskPost" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
+       
+    }else if (codeId == 355){
+        //发布任务
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"355"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"rushRepairRecord" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
+       
     }
     else {
         DefLog(@"点击了%@格子",title);
@@ -1176,6 +1269,12 @@
                     showStrIcon = @"dsbgl7";
                 }else if([showfCode isEqualToString:@"352"]){
                     showStrIcon = @"dsbgl8";
+                }else if([showfCode isEqualToString:@"353"]){
+                    showStrIcon = @"dsbgl9";
+                }else if([showfCode isEqualToString:@"354"]){
+                    showStrIcon = @"dsbgl10";
+                }else if([showfCode isEqualToString:@"355"]){
+                    showStrIcon = @"dsbgl11";
                 }
             }
             [showMutaiArray addObject:showStrTitle];

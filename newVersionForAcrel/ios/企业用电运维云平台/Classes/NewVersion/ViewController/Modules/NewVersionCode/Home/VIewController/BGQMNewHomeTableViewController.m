@@ -184,7 +184,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     //高速方案
 //#define FixedDeathHeight1 100
-    NSArray *listInArr = self.listArrData[indexPath.row][@"array"];
+    NSArray *listInArr = self.listArrData[indexPath.row][@"nodes"];
     NSInteger fixeddeathH = listInArr.count;
     double count = ceil(fixeddeathH/3.0);
     DefLog(@"%f",count);
@@ -192,6 +192,7 @@
         return FixedDeathHeight;
     }else{
         return FixedDeathHeight+(FixedDeathHeight/2*(count-2));
+//        return FixedDeathHeight+(FixedDeathHeight/2);
     }
 }
 

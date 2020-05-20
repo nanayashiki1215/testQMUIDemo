@@ -362,6 +362,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         if (fAlarmeventlogid) {
             [self pushNoYYWebview:fAlarmeventlogid andHtmlName:@"alarmDetailView"];
         }
+//        [self pushNoYYWebview:@"2020052014050488767568712" andHtmlName:@"alarmDetailView"];
     }else if ([pushType isEqualToString:@"communication"]){
         //通讯状态
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

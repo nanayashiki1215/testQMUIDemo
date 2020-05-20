@@ -15,5 +15,8 @@
 //透传navi
 @property(nonatomic,strong) UINavigationController *ownNaviController;
 
+@property(nonatomic,strong)NSString *pushTitleName;
+
+@property(nonatomic,strong)NSString *pushSubid;
 
 @end

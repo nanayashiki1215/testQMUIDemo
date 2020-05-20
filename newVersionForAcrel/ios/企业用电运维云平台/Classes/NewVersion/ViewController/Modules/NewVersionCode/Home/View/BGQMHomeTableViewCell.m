@@ -40,6 +40,8 @@
             NSInteger fixeddeathH = dataArr.count;
             NSInteger count =  ceil(fixeddeathH/3.0);
             self.cellGridView.rowHeight = (FixedDeathHeight + (FixedDeathHeight/2*(count-2)-10))/count;
+//            self.cellGridView.rowHeight = (FixedDeathHeight-10)/2;
+//            self.cellGridView.rowHeight = (FixedDeathHeight-10)/4*count;
         }
         self.dataArr = dataArr;
         //    self.cellGridView.rowHeight = self.secView.frame.size.height/3;

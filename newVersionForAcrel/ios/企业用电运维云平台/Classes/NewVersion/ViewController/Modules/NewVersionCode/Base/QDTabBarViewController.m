@@ -122,7 +122,11 @@
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
+        if ([errorCode isEqualToString:@"5000"]) {
+            [MBProgressHUD showError:@"服务器异常，错误码：5000"];
+            UserManager *user = [UserManager manager];
+            user.autoLogin = NO;
+        }
     }];
 }
 
@@ -273,7 +277,7 @@
 
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations{
     UINavigationController *navCtl = self.viewControllers[0];
-    if ([navCtl.topViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.topViewController isKindOfClass:[EZPlaybackViewController class]]) {
+    if ([navCtl.topViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.topViewController isKindOfClass:[EZPlaybackViewController class]] || [navCtl.visibleViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.visibleViewController isKindOfClass:[EZPlaybackViewController class]] ) {
         return UIInterfaceOrientationMaskAll;
     }else{
         return UIInterfaceOrientationMaskPortrait;

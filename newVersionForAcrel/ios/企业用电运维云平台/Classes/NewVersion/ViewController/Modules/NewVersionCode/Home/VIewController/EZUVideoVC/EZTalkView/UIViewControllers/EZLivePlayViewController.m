@@ -201,9 +201,7 @@
     if(self.localRecordButton.selected)
     {
         [_player stopLocalRecordExt:^(BOOL ret) {
-            
             NSLog(@"%d", ret);
-            
             [_recordTimer invalidate];
             _recordTimer = nil;
             self.localRecordLabel.hidden = YES;
@@ -251,6 +249,8 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
+//    [super viewWillTransitionToSize:size withTransitionCoordinator:duration];
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     self.navigationController.navigationBarHidden = NO;
     self.toolBar.hidden = NO;
     self.largeBackButton.hidden = YES;
@@ -369,7 +369,6 @@
             [_talkPlayer stopVoiceTalk];
         }
     }
-    
     
     //错误提示
     NSString *code = [NSString stringWithFormat:@"%ld",error.code];
@@ -495,9 +494,14 @@
 }
 
 #pragma mark - Action Methods
-
+//转屏幕
 - (IBAction)large:(id)sender
 {
+//    NSNumber *orientationUnknown = [NSNumber numberWithInt:0];
+//    [[UIDevice currentDevice] setValue:orientationUnknown forKey:@"orientation"];
+    
+//    NSNumber *orientationTarget = [NSNumber numberWithInt:orientation];
+//    [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
@@ -687,6 +691,11 @@
     }
     [self.ptzControlButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateDisabled];
     EZCameraInfo *cameraInfo = [_deviceInfo.cameraInfo firstObject];
+    if (self.cameraIndex) {
+        cameraInfo = [_deviceInfo.cameraInfo dd_objectAtIndex:self.cameraIndex];
+    } else {
+        cameraInfo = [_deviceInfo.cameraInfo firstObject];
+    }
     [EZOPENSDK controlPTZ:cameraInfo.deviceSerial
                  cameraNo:cameraInfo.cameraNo
                   command:command
@@ -717,12 +726,18 @@
     }
     [self.ptzControlButton setImage:[UIImage imageNamed:@"ptz_bg"] forState:UIControlStateDisabled];
     EZCameraInfo *cameraInfo = [_deviceInfo.cameraInfo firstObject];
+    if (self.cameraIndex) {
+        cameraInfo = [_deviceInfo.cameraInfo dd_objectAtIndex:self.cameraIndex];
+    } else {
+        cameraInfo = [_deviceInfo.cameraInfo firstObject];
+    }
     [EZOPENSDK controlPTZ:cameraInfo.deviceSerial
                  cameraNo:cameraInfo.cameraNo
                   command:command
                    action:EZPTZActionStop
-                    speed:3.0
+                    speed:2.0
                    result:^(NSError *error) {
+                        NSLog(@"error is %@", error);
                    }];
 }
 
@@ -1016,14 +1031,20 @@
 
 // 这个方法返回支持的方向
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    [super supportedInterfaceOrientations];
     return UIInterfaceOrientationMaskAll;
 }
 
-- (BOOL)shouldAutorotate {
-
-return YES;
+-(BOOL)shouldAutorotate {
+    [super shouldAutorotate];
+    return YES;
 
 }
+
+//-(BOOL)shouldAutorotateToInterfaceOrientation{
+//    
+//    return YES;
+//}
 
 //- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
 //

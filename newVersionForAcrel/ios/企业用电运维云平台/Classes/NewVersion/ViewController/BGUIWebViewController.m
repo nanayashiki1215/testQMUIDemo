@@ -23,6 +23,8 @@
 #import "YYServiceManager.h"
 #import "YYServiceParam.h"
 #import <CoreLocation/CoreLocation.h>
+#import "BGQMVideoListTableVC.h"
+#import "BGQMNavigationController.h"
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -117,7 +119,7 @@
     
     //注册runtime图片加载器替换系统
     [UIImagePickerController hookDelegate];
-    
+    self.webView.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
@@ -151,12 +153,11 @@
                 [self loadLocalHtml];
             }
         }else{
-            if (self.showWebType == showWebTypeWithPush ||self.showWebType == showWebTypeWithPushNoYY) {
+            if (self.showWebType == showWebTypeWithPush || self.showWebType == showWebTypeWithPushNoYY) {
                 [self loadOnlineHtmlWithParam];
             }else{
                 [self loadOnlineHtml];
             }
-           
         }
     }
 }
@@ -395,7 +396,6 @@
     [_webView evaluateJavaScript:jsPicture completionHandler:^(id _Nullable data, NSError * _Nullable error) {
         DefLog(@"切换本地头像");
     }];
-    
 }
 
 #pragma mark -- Getter
@@ -464,6 +464,9 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"closeTrackFunc"];
         //判断是否开启轨迹
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"isStartTrackFunc"];
+        //跳转视频页面
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushVideoListVC"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushAlarmDetail"];
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         //用于进行JavaScript注入
@@ -751,6 +754,13 @@
             return;
         }
         [self didClickDownloadButton:msgDic];
+    }else if ([message.name isEqualToString:@"pushVideoListVC"]){
+        //点击视频
+        NSDictionary *msgDic = message.body;
+        if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+            return;
+        }
+        [self didClickpushVideoVC:msgDic];
     }else if ([message.name isEqualToString:@"takePhoto"]){
         //点击了拍照
         NSDictionary *imageDic = message.body;
@@ -758,7 +768,15 @@
             return;
         }
         [self openCamera:imageDic];
-    }else if([message.name isEqualToString:@"judgeNetWork"]){
+    }else if ([message.name isEqualToString:@"pushAlarmDetail"]){
+        NSDictionary *msgDic = message.body;
+        if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+            return;
+        }
+        NSString *alarmID = [msgDic objectForKeyNotNull:@"alarmId"];
+        [self pushNoYYWebview:alarmID andHtmlName:@"alarmDetailView"];
+    }
+    else if([message.name isEqualToString:@"judgeNetWork"]){
 //        NSString *dataStatus = message.body;
 //        [self networkReachability];
     }else if ([message.name isEqualToString:@"pushYYGJView"]){
@@ -801,7 +819,7 @@
          if (!taskDic || taskDic == NULL || [taskDic isEqual:[NSNull null]]) {
              return;
          }
-           NSString *taskID = [NSString changgeNonulWithString:taskDic[@"fTaskNumber"]];
+         NSString *taskID = [NSString changgeNonulWithString:taskDic[@"fTaskNumber"]];
              
           if ([YYServiceManager defaultManager].isServiceStarted) {
                   // 停止服务
@@ -958,7 +976,6 @@
         [UserManager manager].startTJtime = @"";
         [UserManager manager].taskID = @"";
     }];
-    
 }
 
 #pragma mark - 拍照功能
@@ -1149,6 +1166,57 @@
 //    [self popViewControllerAnimation:YES];
 }
 
+//跳转报警详情
+-(void)pushNoYYWebview:(NSString *)jumpid andHtmlName:(NSString *)htmlName{
+    UserManager *user = [UserManager manager];
+    NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+     for (NSDictionary *dic in uiArray) {
+            NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+            if ([fCode isEqualToString:@"alarmPage"]) {
+               BGUIWebViewController *componentViewController = [[BGUIWebViewController alloc] init];
+               NSString *fFunctionfield = [NSString changgeNonulWithString:dic[@"fFunctionfield"]];
+               if (fFunctionfield.length>0) {
+                   NSString *filePath = [[NSBundle mainBundle] pathForResource:htmlName ofType:@"html" inDirectory:@"aDevices"];
+                   componentViewController.isUseOnline = NO;
+                   componentViewController.localUrlString = filePath;
+                   componentViewController.showWebType = showWebTypeWithPushNoYY;
+                   componentViewController.pathParamStr = jumpid;
+                   [self.navigationController pushViewController:componentViewController animated:YES];
+               }else{
+                   componentViewController.isUseOnline = YES;
+                   UserManager *user = [UserManager manager];
+                   //外链H5
+                   if (user.rootMenuData) {
+                      NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+                      componentViewController.showWebType = showWebTypeWithPushNoYY;
+//                          componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
+                      NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                      NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                      NSString *urlStr = [str stringByAppendingString:[NSString stringWithFormat:@"%@.html",htmlName]];
+                      componentViewController.onlineUrlString = urlStr;
+//                           componentViewController.isFromAlarm = @"1";
+                        componentViewController.pathParamStr = jumpid;
+//                          componentViewController .hidesBottomBarWhenPushed = NO;
+                      [self.navigationController pushViewController:componentViewController animated:YES];
+                   }
+               }
+            }
+        }
+}
+#pragma mark - 跳转视频
+
+-(void)didClickpushVideoVC:(NSDictionary *)pushdic{
+    
+    BGQMVideoListTableVC *videoVC = [[BGQMVideoListTableVC alloc] init];
+    videoVC.pushTitleName = [pushdic objectForKeyNotNull:@"Subname"];
+    videoVC.pushSubid = [pushdic objectForKeyNotNull:@"Subid"];
+
+    QMUINavigationController *naVC = [[QMUINavigationController alloc] initWithRootViewController:videoVC];
+    videoVC.ownNaviController = naVC;
+    [self presentViewController:naVC animated:YES completion:nil];
+//    [self.navigationController pushViewController:videoVC animated:YES];
+}
+    
 #pragma mark - 文件下载打开
 
 -(void)didClickDownloadButton:(NSDictionary *)downDic{
@@ -1617,25 +1685,26 @@
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"goBackiOS"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsToOcWithPrams"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getiOSTime"];
-     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"needHiddenTabbar"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"needHiddenTabbar"];
 //    pushNewWebView
-     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushNewWebView"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushNewWebView"];
 //    getLocation
-     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocation"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocation"];
     
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushDownFileVC"];
 
 //    takePhoto
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"takePhoto"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"judgeNetWork"];
-    
     //
-     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushYYGJView"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushYYGJView"];
     
     //开启关闭轨迹功能
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"openTrackFunc"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"closeTrackFunc"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"isStartTrackFunc"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushVideoListVC"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushAlarmDetail"];
     
     //移除观察者
     [_webView removeObserver:self

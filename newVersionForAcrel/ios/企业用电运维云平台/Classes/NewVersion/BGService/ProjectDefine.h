@@ -56,7 +56,7 @@
 
 #define BGHeightCoefficient (SCREEN_HEIGHT == 812.0 ? 667.0/667.0 : kWJScreenHeight/667.0)
 
-#define BGSafeAreaTopHeight ((IS_IPHONE_X==YES || IS_IPHONE_Xr ==YES || IS_IPHONE_Xs== YES || IS_IPHONE_Xs_Max== YES || IsiPhone11 || IsiPhone11Pro || IsiPhone11ProMax) ? 87.0 : 64.0)
+#define BGSafeAreaTopHeight ((IS_IPHONE_X==YES || IS_IPHONE_Xr ==YES || IS_IPHONE_Xs== YES || IS_IPHONE_Xs_Max== YES || IsiPhone11 || IsiPhone11Pro || IsiPhone11ProMax) ? 83.0 : 64.0)
 
 #define BGSafeAreaBottomHeight ((IS_IPHONE_X==YES || IS_IPHONE_Xr ==YES || IS_IPHONE_Xs== YES || IS_IPHONE_Xs_Max== YES || IsiPhone11 || IsiPhone11Pro || IsiPhone11ProMax) ? 20.0 : 0.0)
 

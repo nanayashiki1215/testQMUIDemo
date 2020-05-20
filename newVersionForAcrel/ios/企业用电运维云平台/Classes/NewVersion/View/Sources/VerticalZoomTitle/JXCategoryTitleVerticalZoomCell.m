@@ -39,7 +39,6 @@
             self.maskTitleLabel.font = myCellModel.titleFont;
         }
     }
-
     [self.titleLabel sizeToFit];
 }
 @end

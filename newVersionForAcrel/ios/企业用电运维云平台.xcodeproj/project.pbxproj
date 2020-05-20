@@ -94,6 +94,7 @@
 		B622514B2420B2A30041E709 /* UIViewController+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622513C2420B2A20041E709 /* UIViewController+DDKit.m */; };
 		B622514C2420B2A30041E709 /* NSDate+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B622513E2420B2A20041E709 /* NSDate+DDKit.m */; };
 		B622514D2420B2A30041E709 /* UIButton+DDKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B62251402420B2A20041E709 /* UIButton+DDKit.m */; };
+		B62261282474C48800769416 /* BGQMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62261272474C48800769416 /* BGQMNavigationController.m */; };
 		B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */; };
 		B626289E238F656300ED4825 /* BGDistributeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B626289D238F656300ED4825 /* BGDistributeMessage.m */; };
 		B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */; };
@@ -113,7 +114,6 @@
 		B643761D22938FE200A92D74 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B657DE12229284660009BCB0 /* libc++.tbd */; };
 		B643762022938FFB00A92D74 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B643761F22938FFB00A92D74 /* AdSupport.framework */; };
 		B64376472293D25100A92D74 /* BGUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64376452293D25100A92D74 /* BGUIWebViewController.m */; };
-		B64376482293D25100A92D74 /* BGUIWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64376462293D25100A92D74 /* BGUIWebViewController.xib */; };
 		B645F2FD22AF35D200D5420A /* BGQMSubstationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F2FC22AF35D200D5420A /* BGQMSubstationModel.m */; };
 		B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F30122AF3C2B00D5420A /* NSString+PinYinConverter.m */; };
 		B645F30822AF3C2B00D5420A /* hanzi2pinyin_v2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B645F30222AF3C2B00D5420A /* hanzi2pinyin_v2.txt */; };
@@ -845,6 +845,8 @@
 		B62251402420B2A20041E709 /* UIButton+DDKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+DDKit.m"; sourceTree = "<group>"; };
 		B62251412420B2A20041E709 /* NSArray+DDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DDKit.h"; sourceTree = "<group>"; };
 		B62251422420B2A20041E709 /* DDCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCategory.h; sourceTree = "<group>"; };
+		B62261262474C48800769416 /* BGQMNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMNavigationController.h; sourceTree = "<group>"; };
+		B62261272474C48800769416 /* BGQMNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMNavigationController.m; sourceTree = "<group>"; };
 		B624D8CE2317CAEA00A16F5A /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		B626289C238F656300ED4825 /* BGDistributeMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGDistributeMessage.h; sourceTree = "<group>"; };
@@ -875,7 +877,6 @@
 		B643761F22938FFB00A92D74 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B64376442293D25100A92D74 /* BGUIWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGUIWebViewController.h; sourceTree = "<group>"; };
 		B64376452293D25100A92D74 /* BGUIWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGUIWebViewController.m; sourceTree = "<group>"; };
-		B64376462293D25100A92D74 /* BGUIWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BGUIWebViewController.xib; sourceTree = "<group>"; };
 		B645F2FB22AF35D200D5420A /* BGQMSubstationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMSubstationModel.h; sourceTree = "<group>"; };
 		B645F2FC22AF35D200D5420A /* BGQMSubstationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSubstationModel.m; sourceTree = "<group>"; };
 		B645F30122AF3C2B00D5420A /* NSString+PinYinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYinConverter.m"; sourceTree = "<group>"; };
@@ -3588,7 +3589,6 @@
 				B6B1B62F229536A700F1B5D2 /* BGLoginViewController.xib */,
 				B64376442293D25100A92D74 /* BGUIWebViewController.h */,
 				B64376452293D25100A92D74 /* BGUIWebViewController.m */,
-				B64376462293D25100A92D74 /* BGUIWebViewController.xib */,
 				B6380A9222CB2084002500E0 /* Dis-test */,
 				B6A92DFF22BA222500D16AE9 /* scroll */,
 				B6A92DFD22B9D03300D16AE9 /* assets */,
@@ -4018,6 +4018,8 @@
 		B6EB9BB622C99FDB00136A6C /* EZUVideoVC */ = {
 			isa = PBXGroup;
 			children = (
+				B62261262474C48800769416 /* BGQMNavigationController.h */,
+				B62261272474C48800769416 /* BGQMNavigationController.m */,
 				B6D321472420C3EF00A50F77 /* SDWebImageDecoder.h */,
 				B6D321482420C3EF00A50F77 /* SDWebImageDecoder.m */,
 				B6D321082420C36800A50F77 /* UITableView-FDTemplateLayoutCell */,
@@ -4164,7 +4166,6 @@
 				B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */,
 				B68D2D3722A65E2A001C00EC /* app_item_bg.png in Resources */,
 				B62250CF2420AF9A0041E709 /* EZMain.storyboard in Resources */,
-				B64376482293D25100A92D74 /* BGUIWebViewController.xib in Resources */,
 				B68D2D2622A656F1001C00EC /* placeholder.png in Resources */,
 				B6CA22A422C09F1B00AAA1CA /* BGHomeViewController.xib in Resources */,
 				B6E1560D228CF32E00CB4A5F /* NativeImg.xcassets in Resources */,
@@ -4660,6 +4661,7 @@
 				B622510F2420B0720041E709 /* EZDeviceUpgradeViewController.m in Sources */,
 				B637965B22F1732D007AC38F /* JGPredicateMethod.m in Sources */,
 				B68D2CDE22A646C1001C00EC /* JXCategoryTitleVerticalZoomCellModel.m in Sources */,
+				B62261282474C48800769416 /* BGQMNavigationController.m in Sources */,
 				B6E155B4228CEDF900CB4A5F /* UIView+ChangeCorner.m in Sources */,
 				B6B8809423B98A8B00197FF6 /* ZYLoginTableViewController.m in Sources */,
 				B637965A22F1732D007AC38F /* JGUserFeedBackViewController.m in Sources */,
@@ -4838,7 +4840,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.8;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";
@@ -4894,7 +4896,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.8;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";

@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic, strong) EZDeviceInfo *deviceInfo;
 @property (nonatomic) NSInteger cameraIndex;
+@property (nonatomic,assign) BOOL isShowLarge;
 
 - (void)imageSavedToPhotosAlbum:(UIImage *)image
        didFinishSavingWithError:(NSError *)error

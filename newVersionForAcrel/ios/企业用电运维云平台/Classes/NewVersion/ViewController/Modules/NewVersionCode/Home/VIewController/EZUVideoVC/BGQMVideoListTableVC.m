@@ -91,7 +91,12 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 
 -(void)getVideoListData{
     UserManager *user = [UserManager manager];
-    NSInteger subid = [user.fsubID integerValue];
+    NSInteger subid;
+    if (self.pushSubid) {
+        subid = [self.pushSubid integerValue];
+    } else {
+        subid = [user.fsubID integerValue];
+    }
     NSDictionary *param = @{@"fSubid":@(subid)};
     __weak __typeof(self)weakSelf = self;
     [NetService bg_getWithTokenWithPath:getVideoInfoList params:param success:^(id respObjc) {
@@ -184,12 +189,22 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 - (void)setupNavigationItems {
     [super setupNavigationItems];
     UserManager *user = [UserManager manager];
-    self.title = user.fsubName;
+    if(self.pushTitleName){
+        self.title = self.pushTitleName;
+        self.navigationItem.leftBarButtonItem = [UIBarButtonItem qmui_itemWithTitle:@"返回" target:self action:@selector(backToWebView)];
+    }else{
+        self.title = user.fsubName;
+    }
+  
 //    if (self.mutArray.count>0) {
 //        self.title = self.mutArray.firstObject;
 //    }else{
 //       self.title = self.titleFromHomepage;
 //    }
+}
+
+-(void)backToWebView{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - <QMUITableViewDataSource, QMUITableViewDelegate>
@@ -556,6 +571,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
     NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
     NSDictionary *deviceInfo = self.mutArray[indexP.row];
     NSString *deviceStr = [NSString changgeNonulWithString:deviceInfo[@"fVideokey"]];
+    
     if (!deviceStr || [deviceStr isEqualToString:@""]) {
        DefQuickAlert(@"未配置设备序列号，请前往Web端配置", nil);
        return;
@@ -578,7 +594,12 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
                      }
                  }
                 backVC.deviceInfo = deviceInfo;
-                [self.ownNaviController pushViewController:backVC animated:YES];
+                if (self.pushSubid) {
+                    
+                    [self.navigationController pushViewController:backVC animated:YES];
+                }else{
+                    [self.ownNaviController pushViewController:backVC animated:YES];
+                }
             }
             else {
                 [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];
@@ -598,6 +619,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
    
 }
 
+//跳转详情
 -(void)clickPlayDetailBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(NSDictionary *)param{
     if (self.mutArray.count>0) {
         NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
@@ -606,7 +628,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
         if (!deviceStr || [deviceStr isEqualToString:@""]) {
            
             [self.tableView makeToast:@"未配置设备序列号，请前往Web端配置" duration:2.0 position:@"center"];
-           return;
+            return;
         }
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
         NSString *deviceNo = [NSString changgeNonulWithString:deviceInfo[@"fChannelno"]];
@@ -627,8 +649,13 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
                               }
                           }
                           selfdetailVC.deviceInfo = deviceInfo;
-                          [self.ownNaviController pushViewController:selfdetailVC animated:YES];
-         //                         [self presentViewController:selfdetailVC animated:YES completion:nil];
+                         if (self.pushSubid) {
+                        
+                            [self.navigationController pushViewController:selfdetailVC animated:YES];
+                        }else{
+                              [self.ownNaviController pushViewController:selfdetailVC animated:YES];
+                          }
+                          
                       }
                       else {
                           [self.tableView makeToast:@"无此设备，请检查设备序列号" duration:2.0 position:@"center"];

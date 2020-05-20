@@ -288,6 +288,7 @@
             }
             return ;
         }else if ([respCode isEqualToString:@"5000"]){
+            Fail(nil,@"5000",@"5000");
             [self pushUpErrorMsg:responseObject];
             return ;
         }
