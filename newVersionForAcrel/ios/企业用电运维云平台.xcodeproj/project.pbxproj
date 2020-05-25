@@ -418,7 +418,6 @@
 		B6C7690822A0B8DC00DA675D /* QDConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7689C22A0B8DC00DA675D /* QDConsoleViewController.m */; };
 		B6C7690922A0B8DC00DA675D /* QDCellSizeKeyCacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7689D22A0B8DC00DA675D /* QDCellSizeKeyCacheViewController.m */; };
 		B6C7690C22A0C2E100DA675D /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7690A22A0C2E100DA675D /* UserManager.m */; };
-		B6C7691322A0F01400DA675D /* BGQMloginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7691222A0F01400DA675D /* BGQMloginViewController.m */; };
 		B6C7691622A1056D00DA675D /* BGQMUIInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7691522A1056D00DA675D /* BGQMUIInspectViewController.m */; };
 		B6CA22A422C09F1B00AAA1CA /* BGHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6CA22A222C09F1A00AAA1CA /* BGHomeViewController.xib */; };
 		B6CA22A522C09F1B00AAA1CA /* BGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CA22A322C09F1A00AAA1CA /* BGHomeViewController.m */; };
@@ -1470,8 +1469,6 @@
 		B6C7689E22A0B8DC00DA675D /* QDSingleImagePickerPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDSingleImagePickerPreviewViewController.h; sourceTree = "<group>"; };
 		B6C7690A22A0C2E100DA675D /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		B6C7690B22A0C2E100DA675D /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
-		B6C7691122A0F01400DA675D /* BGQMloginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMloginViewController.h; sourceTree = "<group>"; };
-		B6C7691222A0F01400DA675D /* BGQMloginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMloginViewController.m; sourceTree = "<group>"; };
 		B6C7691522A1056D00DA675D /* BGQMUIInspectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMUIInspectViewController.m; sourceTree = "<group>"; };
 		B6CA22A122C09F1900AAA1CA /* BGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGHomeViewController.h; sourceTree = "<group>"; };
 		B6CA22A222C09F1A00AAA1CA /* BGHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BGHomeViewController.xib; sourceTree = "<group>"; };
@@ -3181,8 +3178,6 @@
 		B6C7690D22A0CAB300DA675D /* NewVersionCode */ = {
 			isa = PBXGroup;
 			children = (
-				B6C7691122A0F01400DA675D /* BGQMloginViewController.h */,
-				B6C7691222A0F01400DA675D /* BGQMloginViewController.m */,
 				B6A8E24E22A4FEF500E36D8F /* Base */,
 				B6E2187B22A4A8DD003C2969 /* Inspect */,
 				B6E2187A22A4A8C6003C2969 /* Alarm */,
@@ -4612,7 +4607,6 @@
 				B6C7690722A0B8DC00DA675D /* QDNavigationBarScrollingSnapAnimatorViewController.m in Sources */,
 				B657DDDD22927C760009BCB0 /* UIButton+WebCache.m in Sources */,
 				B6C768FF22A0B8DC00DA675D /* QDNavigationTitleViewController.m in Sources */,
-				B6C7691322A0F01400DA675D /* BGQMloginViewController.m in Sources */,
 				B68D2C7022A63D87001C00EC /* NSString+Arc4random.m in Sources */,
 				B68D2D1722A653E6001C00EC /* MSPageControl.m in Sources */,
 				B6C768C422A0B8DC00DA675D /* QDNavigationTransitionViewController.m in Sources */,

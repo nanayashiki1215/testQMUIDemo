@@ -8,7 +8,6 @@
 
 #import "BGQMHomeViewController.h"
 #import "MSCycleScrollView.h"
-#import "BGQMloginViewController.h"
 #import "MSExampleDotView.h"
 #import "CustomGrid.h"
 #import "BGQMMoveBtnViewController.h"
@@ -1179,6 +1178,37 @@
                }
           }
        
+    }else if (codeId == 356){
+        //能耗管理
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"356"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"html" inDirectory:@"energy"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
+       
     }
     else {
         DefLog(@"点击了%@格子",title);
@@ -1189,7 +1219,7 @@
 - (void)cycleScrollView:(MSCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     DefLog(@"---点击了第%ld张图片", (long)index);
-    [self.navigationController pushViewController:[BGQMloginViewController new] animated:YES];
+//    [self.navigationController pushViewController:[BGQMloginViewController new] animated:YES];
 }
 
 //配置数据
@@ -1274,6 +1304,8 @@
                 }else if([showfCode isEqualToString:@"354"]){
                     showStrIcon = @"dsbgl10";
                 }else if([showfCode isEqualToString:@"355"]){
+                    showStrIcon = @"dsbgl11";
+                }else if([showfCode isEqualToString:@"356"]){
                     showStrIcon = @"dsbgl11";
                 }
             }

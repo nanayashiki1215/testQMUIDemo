@@ -13,7 +13,7 @@
 
 #import "BGLoginViewController.h"
 #import "CustomNavigationController.h"
-#import "BGQMloginViewController.h"
+
 #import "QDThemeViewController.h"
 #import "SDImageCache.h"
 #import "BGQMUserHeadTableViewCell.h"
@@ -403,9 +403,6 @@
 //        if (indexPath.row == 6) {
 //            QDThemeViewController *themeVC = [[QDThemeViewController alloc] init];
 //            [self.navigationController pushViewController:themeVC animated:YES];
-//        }else{
-//            BGQMloginViewController *web = [[BGQMloginViewController alloc] init];
-//            [self.navigationController pushViewController:web animated:YES];
 //        }
         if ([code isEqualToString:@"personInfo"]) {
             BGQMPersonalInfoViewController *themeVC = [[BGQMPersonalInfoViewController alloc] init];

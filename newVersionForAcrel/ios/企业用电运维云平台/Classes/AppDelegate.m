@@ -39,7 +39,6 @@
 #import "QDUIKitViewController.h"
 #import "QDComponentsViewController.h"
 #import "QDLabViewController.h"
-#import "BGQMloginViewController.h"
 #import "BGQMHomeViewController.h"
 #import "BGQMAlarmViewController.h"
 #import "BGQMElectViewController.h"
@@ -226,7 +225,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         [self createTabBarController];
         [self getAppBasicConfig];
     }else{
-//        BGQMloginViewController *loginVC = [[BGQMloginViewController alloc] init];
         //设置状态栏颜色
 //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
@@ -375,7 +373,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         if (fAlarmeventlogid) {
             [self pushNoYYWebview:@"2" andHtmlName:@"alarmsDetailNew"];
         }
-        
     }else if ([pushType isEqualToString:@"work"]){
         NSArray *homeList;
         UserManager *user = [UserManager manager];

@@ -195,7 +195,6 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
     }else{
         self.title = user.fsubName;
     }
-  
 //    if (self.mutArray.count>0) {
 //        self.title = self.mutArray.firstObject;
 //    }else{

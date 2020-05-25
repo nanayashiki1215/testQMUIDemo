@@ -337,6 +337,18 @@
             [MBProgressHUD showError:@"登录失败，未获取到版本号"];
         }
         
+        //能耗管理
+        NSDictionary *partyInfo = respObjc[kdata][@"partyUserInfo"];
+        if (partyInfo) {
+            NSDictionary *energy = partyInfo[@"energy"];
+            if (energy) {
+                NSString *dns = [energy objectForKeyNotNull:@"dns"];
+                NSString *accountNum = [energy objectForKeyNotNull:@"accountNum"];
+                NSString *password = [energy objectForKeyNotNull:@"password"];
+                
+            }
+        }
+        
         //动态配置视频
         if ([respObjc[kdata] isKindOfClass:[NSDictionary class]] && [respObjc[kdata] objectForKey:@"messagePushInfo"]) {
             NSDictionary *pushInfo = respObjc[kdata][@"messagePushInfo"];
