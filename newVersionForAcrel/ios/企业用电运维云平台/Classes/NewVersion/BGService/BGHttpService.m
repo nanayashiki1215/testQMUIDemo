@@ -515,6 +515,71 @@ static id _instance;
     }];
 }
 
++ (void)bg_httpPostWithPathWithEnergy:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
+    NSString *realURL = path;
+    NSString *upPath = [realURL lowercaseString];
+    if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
+        DefLog(@"请检查请求URL：%@",path);
+        Fail(nil,nil,nil);
+        return;
+    }
+//    NSString *jsonStr = [NSString convertToJSONData:params];
+//    AFHTTPSessionManager *manager = [BGHttpService createHTTPSessionManager];
+    
+//    [manager.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error){
+//        return params;
+//    }];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:realURL parameters:nil error:nil];
+    request.timeoutInterval= HttpTimeoutInterval;
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    // 设置body
+    [request setHTTPBody:data];
+
+    AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+    responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
+                                                                      @"text/html",
+                                                                      @"text/json",
+                                                                      @"text/javascript",
+                                                                      @"text/plain",
+                                                                      nil];
+    manager.responseSerializer = responseSerializer;
+
+    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (!error) {
+            if (!responseObject) {
+                [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+                return ;
+            }
+            NSString *result =[[ NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            Success(result);
+        } else {
+            Fail(nil,nil,nil);
+        }
+    }] resume];
+    //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
+//    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
+//    [manager POST:realURL parameters:jsonStr progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+//        if (Success) {
+//            if (Success) {
+//                if (!responseObject) {
+//                    [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+//                    return ;
+//                }
+//                Success(responseObject);
+//            }
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nError:%@\n***************   End   *************** \n\n.",realURL,params,error);
+//        if (Fail) {
+//            Fail(nil,nil,nil);
+//        }
+//    }];
+}
+
 
 
 #pragma mark - 断点续传方案一

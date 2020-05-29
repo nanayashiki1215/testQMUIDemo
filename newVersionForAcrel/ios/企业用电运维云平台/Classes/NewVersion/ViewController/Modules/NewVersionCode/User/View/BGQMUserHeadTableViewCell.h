@@ -6,12 +6,16 @@
 //
 
 #import <QMUIKit/QMUIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <BMKLocationKit/BMKLocationComponent.h>
+#import "SKControllerTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BGQMUserHeadTableViewCell : QMUITableViewCell
+@interface BGQMUserHeadTableViewCell : QMUITableViewCell<BMKLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *quitOutBtn;
 @property (weak, nonatomic) IBOutlet UILabel *signoutlabel;
+@property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
 
 
 @end

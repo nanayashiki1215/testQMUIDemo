@@ -47,10 +47,10 @@
 //        pop.selectRowAtIndex = ^(NSInteger index,NSDictionary *selectedInfo){
 //            NSString *code = selectedInfo[@"code"];
 //            if ([code isEqualToString:@"1001"]) {
-//                DefLog(@"点击了登出");
+//        
 //                //登录接口
 //                [NetService bg_postWithPath:@"http://192.168.112.212:8080/web_manage/addGoods.do?name=xuhang" params:nil success:^(id respObjc) {
-//                    //登出接口
+//
 //                    DefLog(@"%@",respObjc);
 //                } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //                    DefLog(@"%@",errorMsg);

@@ -114,6 +114,7 @@
 		B643761D22938FE200A92D74 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B657DE12229284660009BCB0 /* libc++.tbd */; };
 		B643762022938FFB00A92D74 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B643761F22938FFB00A92D74 /* AdSupport.framework */; };
 		B64376472293D25100A92D74 /* BGUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64376452293D25100A92D74 /* BGUIWebViewController.m */; };
+		B643D6F5247B52E800D455B4 /* energy in Resources */ = {isa = PBXBuildFile; fileRef = B643D6F4247B52E800D455B4 /* energy */; };
 		B645F2FD22AF35D200D5420A /* BGQMSubstationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F2FC22AF35D200D5420A /* BGQMSubstationModel.m */; };
 		B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F30122AF3C2B00D5420A /* NSString+PinYinConverter.m */; };
 		B645F30822AF3C2B00D5420A /* hanzi2pinyin_v2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B645F30222AF3C2B00D5420A /* hanzi2pinyin_v2.txt */; };
@@ -876,6 +877,7 @@
 		B643761F22938FFB00A92D74 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B64376442293D25100A92D74 /* BGUIWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGUIWebViewController.h; sourceTree = "<group>"; };
 		B64376452293D25100A92D74 /* BGUIWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGUIWebViewController.m; sourceTree = "<group>"; };
+		B643D6F4247B52E800D455B4 /* energy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = energy; sourceTree = "<group>"; };
 		B645F2FB22AF35D200D5420A /* BGQMSubstationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMSubstationModel.h; sourceTree = "<group>"; };
 		B645F2FC22AF35D200D5420A /* BGQMSubstationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSubstationModel.m; sourceTree = "<group>"; };
 		B645F30122AF3C2B00D5420A /* NSString+PinYinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYinConverter.m"; sourceTree = "<group>"; };
@@ -3584,6 +3586,7 @@
 				B6B1B62F229536A700F1B5D2 /* BGLoginViewController.xib */,
 				B64376442293D25100A92D74 /* BGUIWebViewController.h */,
 				B64376452293D25100A92D74 /* BGUIWebViewController.m */,
+				B643D6F4247B52E800D455B4 /* energy */,
 				B6380A9222CB2084002500E0 /* Dis-test */,
 				B6A92DFF22BA222500D16AE9 /* scroll */,
 				B6A92DFD22B9D03300D16AE9 /* assets */,
@@ -4175,6 +4178,7 @@
 				B68D2D2322A656F1001C00EC /* pageControlCurrentDot@2x.png in Resources */,
 				B6024AD922FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib in Resources */,
 				B6380A9322CB2085002500E0 /* Dis-test in Resources */,
+				B643D6F5247B52E800D455B4 /* energy in Resources */,
 				B616043F237E3F6C007A8C44 /* silent.caf in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
 				B6B1B62D229536A700F1B5D2 /* BGLoginViewController.xib in Resources */,
@@ -4798,7 +4802,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
@@ -4857,7 +4861,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

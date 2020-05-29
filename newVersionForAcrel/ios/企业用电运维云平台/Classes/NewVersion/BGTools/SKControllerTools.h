@@ -11,6 +11,7 @@
 @interface SKControllerTools : NSObject
 //#pragma mark --判断设备型号
 //+(NSString *)platformString;
++ (NSString *)getCurrentDeviceModel;
 #pragma mark --创建Label
 +(UILabel*)createLabelWithFrame:(CGRect)frame Font:(int)font Text:(NSString*)text;
 #pragma mark --创建View

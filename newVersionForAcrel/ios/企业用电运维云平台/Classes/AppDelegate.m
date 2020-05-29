@@ -491,6 +491,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
                if (fFunctionfield.length>0) {
                    NSString *filePath = [[NSBundle mainBundle] pathForResource:htmlName ofType:@"html" inDirectory:@"aDevices"];
                    componentViewController.isUseOnline = NO;
+                   componentViewController.menuId = @"342";
                    componentViewController.localUrlString = filePath;
                    componentViewController.showWebType = showWebTypeWithPushNoYY;
                    componentViewController.pathParamStr = jumpid;
@@ -506,6 +507,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
                       NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
                       NSString *str = [GetBaseURL stringByAppendingString:urlstring];
                       NSString *urlStr = [str stringByAppendingString:[NSString stringWithFormat:@"%@.html",htmlName]];
+                      componentViewController.menuId = @"342";
                       componentViewController.onlineUrlString = urlStr;
 //                           componentViewController.isFromAlarm = @"1";
                         componentViewController.pathParamStr = jumpid;
@@ -971,6 +973,20 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
             return ;
         }
         UserManager *user = [UserManager manager];
+        user.versionURLForEnergy = respObjc[kdata][@"versionURL3"];
+        //能耗管理
+        NSDictionary *partyInfo = respObjc[kdata][@"partyUserInfo"];
+        if (partyInfo) {
+            NSDictionary *energy = partyInfo[@"energy"];
+            if (energy) {
+                NSString *dns = [energy objectForKeyNotNull:@"dns"];
+                NSString *accountNum = [energy objectForKeyNotNull:@"accountNum"];
+                NSString *password = [energy objectForKeyNotNull:@"password"];
+                user.energyDns = dns;
+                user.energyPassword = password;
+                user.energyAccountNum = accountNum;
+            }
+        }
         //配置百度鹰眼轨迹
         NSDictionary *trajectory = respObjc[kdata][@"trajectoryConfig"];
         if (trajectory) {

@@ -113,8 +113,8 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-updateHomeData"
             landmarkType = "7">
          </BreakpointContent>
@@ -193,9 +193,249 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1163"
-            endingLineNumber = "1163"
+            startingLineNumber = "1171"
+            endingLineNumber = "1171"
             landmarkName = "-itemAction:andClickId:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8DDA25A-3753-4767-8D67-D9248082E373"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/BGService/BGHttpService.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "+bg_httpPostWithPath:params:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8CF472EF-B5EF-45A1-8269-197CDE9DE09E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/User/VIewController/BGQMUserSettingVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
+            landmarkName = "-setMessageNotification"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1650C6C5-407A-4AE2-B0A7-A4BC608B65C1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/AppDelegate.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
+            landmarkName = "-pushViewControllerWithType:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2ED7C087-8538-431A-8867-BD0965DD193C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/AppDelegate.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "-pushViewControllerWithType:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C95EAF8-4596-47A8-BEDC-8E0510E82433"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/User/View/BGQMUserHeadTableViewCell.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "-uploadLogininMsg:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7C95EAF8-4596-47A8-BEDC-8E0510E82433 - 1d41b02c96b88ea3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BGQMUserHeadTableViewCell uploadLogininMsg:]"
+                  moduleName = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E8%BF%90%E7%BB%B4%E4%BA%91%E5%B9%B3%E5%8F%B0/Classes/NewVersion/ViewController/Modules/NewVersionCode/User/View/BGQMUserHeadTableViewCell.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "7C95EAF8-4596-47A8-BEDC-8E0510E82433 - 15b18f2fe8ec0e35"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[BGQMUserHeadTableViewCell uploadLogininMsg:]_block_invoke"
+                  moduleName = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E8%BF%90%E7%BB%B4%E4%BA%91%E5%B9%B3%E5%8F%B0/Classes/NewVersion/ViewController/Modules/NewVersionCode/User/View/BGQMUserHeadTableViewCell.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "219"
+                  endingLineNumber = "219"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94F2F45F-C859-44B2-96E8-8A641F8DEF55"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1451"
+            endingLineNumber = "1451"
+            landmarkName = "-uploadLogininMsg:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94F2F45F-C859-44B2-96E8-8A641F8DEF55 - 9eb32d9039c079c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[BGQMHomeViewController uploadLogininMsg:]_block_invoke"
+                  moduleName = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E8%BF%90%E7%BB%B4%E4%BA%91%E5%B9%B3%E5%8F%B0/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1452"
+                  endingLineNumber = "1452"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "94F2F45F-C859-44B2-96E8-8A641F8DEF55 - 99e6c8171bd09d5a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[BGQMHomeViewController uploadLogininMsg:]_block_invoke_2"
+                  moduleName = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E8%BF%90%E7%BB%B4%E4%BA%91%E5%B9%B3%E5%8F%B0/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1454"
+                  endingLineNumber = "1454"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E2B76A4-9BD8-42D3-B8B5-68736C98DF74"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1453"
+            endingLineNumber = "1453"
+            landmarkName = "-uploadLogininMsg:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FE4D7F4-6C64-457A-8587-FB1FD2835C35"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1450"
+            endingLineNumber = "1450"
+            landmarkName = "-uploadLogininMsg:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1FE4D7F4-6C64-457A-8587-FB1FD2835C35 - 8879d06cb883737c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BGQMHomeViewController uploadLogininMsg:]"
+                  moduleName = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E8%BF%90%E7%BB%B4%E4%BA%91%E5%B9%B3%E5%8F%B0/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1450"
+                  endingLineNumber = "1450"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "1FE4D7F4-6C64-457A-8587-FB1FD2835C35 - 9eb32d9039c079c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[BGQMHomeViewController uploadLogininMsg:]_block_invoke"
+                  moduleName = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E8%BF%90%E7%BB%B4%E4%BA%91%E5%B9%B3%E5%8F%B0/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1452"
+                  endingLineNumber = "1452"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D498A73E-BECB-4671-B8AD-321CDE84EBBB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/BGService/NetService.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
+            landmarkName = "+bg_getWithTokenWithPath:params:success:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -44,6 +44,10 @@
     NSString *_taskID;
     NSDictionary *_loginData;
     NSString *_userIdForAlias;
+    NSString *_energyDns;
+    NSString *_energyAccountNum;
+    NSString *_energyPassword;
+    NSString *_versionURLForEnergy;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -101,8 +105,13 @@
 @property(nonatomic,copy)NSString *startTJtime;/**< 轨迹开始时间 */
 @property(nonatomic,copy)NSString *taskID;/**< 与轨迹捆绑的任务ID */
 @property(nonatomic,strong)NSDictionary *loginData;//登录全量数据
-//
+//阿里云
 @property(nonatomic,strong)NSString *userIdForAlias;//用于注册推送的别名alias
+//能耗
+@property(nonatomic,strong)NSString *energyDns;//能耗管理地址
+@property(nonatomic,strong)NSString *energyAccountNum;//登录名
+@property(nonatomic,strong)NSString *energyPassword;//密码
+@property(nonatomic,strong)NSString *versionURLForEnergy;//能耗管理拼接地址
 
 //获取单例
 +(instancetype)manager;

@@ -142,6 +142,8 @@ typedef void (^DowningProgress)(CGFloat  progress);
 /** 停止所有的下载任务*/
 - (void)stopAllDownLoadTasks;
 
+//用于能耗登录特殊接口
++ (void)bg_httpPostWithPathWithEnergy:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
 
 //+ (AFHTTPSessionManager *)createHTTPSessionManager;
 //+ (AFSecurityPolicy *)customSecurityPolicy ;

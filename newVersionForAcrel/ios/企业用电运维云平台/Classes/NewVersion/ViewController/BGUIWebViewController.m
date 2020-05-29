@@ -528,13 +528,18 @@
         }
 //       window.webkit.messageHandlers.getLocation.postMessage("");
 //       loc = localStorage.getItem("locationStrJS");
-        if (self.menuId.length>0) {
+        if ([self.isPushEnergy isEqualToString:@"1"]) {
+            if (user.energyAccountNum && user.energyDns && user.energyPassword && self.energyToken) {
+                       //能耗头energyToken
+               jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('energyToken',obj);",self.energyToken,user.energyDns,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
+            }else{
+                [MBProgressHUD showError:@"获取Token异常"];
+            }
+        }else if (self.menuId.length>0) {
            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
         }else{
            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,user.bguserId,languageType,isOpenTrack];
         }
-//        NSString *jsStartString = [NSString stringWithFormat:@"var baserUrl = %@; var token %@",baseUrl,user.token];
-        
         //用于进行JavaScript注入
         WKUserScript *wkUScript2 = [[WKUserScript alloc] initWithSource:jsStartString injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
 
@@ -1440,6 +1445,7 @@
     }
     return _locationManager;
 }
+
 - (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
     DefLog(@"定位失败");
     self.pageStillLoading = NO;

@@ -21,7 +21,10 @@
 #import "YYServiceManager.h"
 #import <CloudPushSDK/CloudPushSDK.h>
 #import "QDTabBarViewController.h"
-
+#import "NSString+BGExtension.h"
+#import <CoreLocation/CoreLocation.h>
+#import <BMKLocationKit/BMKLocationComponent.h>
+#import "SKControllerTools.h"
 /*
  监控系统 345
  设备管理 346
@@ -33,7 +36,7 @@
  设备控制 352
  */
 
-@interface BGQMHomeViewController ()<MSCycleScrollViewDelegate,CustomGridDelegate,UIScrollViewDelegate,BGQMSelectSubstationTVCDelegate>
+@interface BGQMHomeViewController ()<MSCycleScrollViewDelegate,CustomGridDelegate,UIScrollViewDelegate,BMKLocationManagerDelegate,BGQMSelectSubstationTVCDelegate>
 {
     BOOL isSelected;
     BOOL contain;
@@ -51,6 +54,9 @@
     UIImage *deleteIconImage;
     NSArray *homeList;
 }
+
+@property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
+
 @end
 
 @implementation BGQMHomeViewController{
@@ -87,7 +93,7 @@
     _homeScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     _homeScrollView.contentSize = CGSizeMake(ScreenWidth, GridHeight * PerColumGridCount + 100);
     _homeScrollView.showsVerticalScrollIndicator = NO;
-
+    
     [self.view addSubview:_homeScrollView];
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"筛选变电所" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftBtn)];
 //    [self creatView];
@@ -96,6 +102,8 @@
     [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
         
     }];
+    
+    [self getLocationWithLogin];
     //配置小红点
 //    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:@"13"];
 }
@@ -897,8 +905,8 @@
                 NSString *urlStr = [str stringByAppendingString:fAction];
                 urlWebView.onlineUrlString = urlStr;
                 urlWebView.showWebType = showWebTypeDevice;
-               [self.navigationController pushViewController:urlWebView animated:YES];
-             }
+                [self.navigationController pushViewController:urlWebView animated:YES];
+            }
         }
     }else if (codeId == 347){
         //347 待办事项
@@ -1148,7 +1156,7 @@
           }
        
     }else if (codeId == 355){
-        //发布任务
+        //抢修记录
           NSString *fAction;
           NSString *fFunctionurl;
           for (NSDictionary *nodeDic in homeList) {
@@ -1180,39 +1188,71 @@
        
     }else if (codeId == 356){
         //能耗管理
-          NSString *fAction;
-          NSString *fFunctionurl;
-          for (NSDictionary *nodeDic in homeList) {
-              if ([nodeDic[@"fCode"] isEqualToString:@"356"]) {
-                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
-                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
-              }
-          }
-          if (fFunctionurl.length>0) {
-              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"html" inDirectory:@"energy"];
-                nomWebView.isUseOnline = NO;
-                nomWebView.localUrlString = filePath;
-                nomWebView.showWebType = showWebTypeDevice;
-                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:nomWebView animated:YES];
-          }else{
-              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
-              urlWebView.isUseOnline = YES;
-              if (versionURL.length>0) {
-                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
-                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
-                  NSString *urlStr = [str stringByAppendingString:fAction];
-                  urlWebView.onlineUrlString = urlStr;
-                  urlWebView.showWebType = showWebTypeDevice;
-                 [self.navigationController pushViewController:urlWebView animated:YES];
-               }
-          }
+        [self loginInEnergyWithParam:homeList];
        
     }
     else {
         DefLog(@"点击了%@格子",title);
     }
+}
+
+-(void)loginInEnergyWithParam:(NSArray *)homeList{
+    
+    UserManager *user = [UserManager manager];
+    NSString *versionURL = [NSString changgeNonulWithString:user.versionURLForEnergy];
+    if (!user.energyDns || !user.energyPassword || !user.energyAccountNum) {
+        DefQuickAlert(@"无法访问，未配置该功能的用户登录信息", nil);
+        return;
+    }
+    
+    NSMutableDictionary *param = [NSMutableDictionary new];
+    if (user.energyPassword.length && user.energyAccountNum.length) {
+        [param setValue:user.energyPassword forKey:@"password"];
+        [param setValue:user.energyAccountNum forKey:@"name"];
+        [param setValue:@"app" forKey:@"device"];
+    }
+    
+    NSString *urlString = [user.energyDns stringByAppendingString:@"/api/Login"];
+    [NetService bg_httpPostWithPathWithEnergy:urlString params:param success:^(id respObjc) {
+        DefLog(@"%@",respObjc);
+        NSDictionary *param = [respObjc jsonObjectFromString];
+        NSString *fAction;
+        NSString *fFunctionurl;
+        for (NSDictionary *nodeDic in homeList) {
+            if ([nodeDic[@"fCode"] isEqualToString:@"356"]) {
+                fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+            }
+        }
+        if (fFunctionurl.length>0) {
+            BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+              NSString *filePath = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"html" inDirectory:@"energy"];
+              nomWebView.isPushEnergy = @"1";
+              nomWebView.energyToken =[NSString stringWithFormat:@"Bearer %@",param[@"token"]];
+              nomWebView.isUseOnline = NO;
+              nomWebView.localUrlString = filePath;
+              nomWebView.showWebType = showWebTypeDevice;
+              //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+              [self.navigationController pushViewController:nomWebView animated:YES];
+        }else{
+            BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+            urlWebView.isUseOnline = YES;
+            urlWebView.isPushEnergy = @"1";
+            urlWebView.energyToken =[NSString stringWithFormat:@"Bearer %@",param[@"token"]];
+            if (versionURL.length>0) {
+                NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                NSString *urlStr = [str stringByAppendingString:fAction];
+                urlWebView.onlineUrlString = urlStr;
+                urlWebView.showWebType = showWebTypeDevice;
+               [self.navigationController pushViewController:urlWebView animated:YES];
+             }
+        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        
+    }];
+    
+   
 }
 #pragma mark - SDCycleScrollViewDelegate
 
@@ -1306,7 +1346,7 @@
                 }else if([showfCode isEqualToString:@"355"]){
                     showStrIcon = @"dsbgl11";
                 }else if([showfCode isEqualToString:@"356"]){
-                    showStrIcon = @"dsbgl11";
+                    showStrIcon = @"dsbgl12";
                 }
             }
             [showMutaiArray addObject:showStrTitle];
@@ -1366,6 +1406,86 @@
 
 - (void)sendSubModel:(BGQMSubstationModel *)subModel{
     self.title = subModel.fSubname;
+}
+
+
+#pragma mark - 上传定位
+-(void)getLocationWithLogin{
+    if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+    //            [self performSelectorOnMainThread:@selector(getLoation) withObject:nil waitUntilDone:YES];
+                //定位功能可用
+        [self getLoation];
+
+    }else{
+        NSString *sktoolsStr = [SKControllerTools getCurrentDeviceModel];
+        NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
+        NSString *userIP = [NSString stringWithFormat:@"%@,%@",sktoolsStr,phoneVersion];
+        NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
+        [self uploadLogininMsg:param];
+    }
+}
+
+-(void)getLoation{
+//    __weak __typeof(self)weakSelf = self;
+    [self.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
+             //获取经纬度和该定位点对应的位置信息
+        DefLog(@"%@ %d",location,state);
+        NSString *sktoolsStr = [SKControllerTools getCurrentDeviceModel];
+        NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
+        NSString *userIP = [NSString stringWithFormat:@"%@,%@",sktoolsStr,phoneVersion];
+        if(location){
+            NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
+//            NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
+            NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":addressStr};
+            [self uploadLogininMsg:param];
+        }else{
+           NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
+                      [self uploadLogininMsg:param];
+        }
+        
+    }];
+}
+
+-(void)uploadLogininMsg:(NSDictionary *)param{
+    [NetService bg_getWithTokenWithPath:@"/insertUserLogin" params:param success:^(id respObjc) {
+        DefLog(@"%@",respObjc);
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        
+    }];
+}
+
+- (BMKLocationManager *)locationManager {
+    if (!_locationManager) {
+        //初始化BMKLocationManager类的实例
+        _locationManager = [[BMKLocationManager alloc] init];
+        //设置定位管理类实例的代理
+        _locationManager.delegate = self;
+        //设定定位坐标系类型，默认为 BMKLocationCoordinateTypeGCJ02
+        _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+        //设定定位精度，默认为 kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设定定位类型，默认为 CLActivityTypeAutomotiveNavigation
+        _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+        //指定定位是否会被系统自动暂停，默认为NO
+        _locationManager.pausesLocationUpdatesAutomatically = NO;
+        /**
+         是否允许后台定位，默认为NO。只在iOS 9.0及之后起作用。
+         设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
+         由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
+         */
+        _locationManager.allowsBackgroundLocationUpdates = YES;
+        /**
+         指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
+         注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)
+         后开始计算。
+         */
+        _locationManager.locationTimeout = 10;
+    }
+    return _locationManager;
+}
+
+- (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
+    DefLog(@"定位失败");
 }
 
 @end

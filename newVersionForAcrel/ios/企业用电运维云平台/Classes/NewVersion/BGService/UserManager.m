@@ -447,4 +447,53 @@ static UserManager* manager;
     return _userIdForAlias;
 }
 
+-(void)setEnergyDns:(NSString *)energyDns{
+    _energyDns = energyDns;
+    [DefNSUD setObject:_energyDns
+                forKey:@"energyDns"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)energyDns{
+    _energyDns = [DefNSUD objectForKey:@"energyDns"];
+    return _energyDns;
+}
+
+-(void)setEnergyAccountNum:(NSString *)energyAccountNum{
+    _energyAccountNum = energyAccountNum;
+    [DefNSUD setObject:_energyAccountNum
+                forKey:@"energyAccountNum"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)energyAccountNum{
+    _energyAccountNum = [DefNSUD objectForKey:@"energyAccountNum"];
+    return _energyAccountNum;
+}
+
+-(void)setEnergyPassword:(NSString *)energyPassword{
+    _energyPassword = energyPassword;
+    [DefNSUD setObject:_energyPassword
+                forKey:@"energyPassword"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)energyPassword{
+    _energyPassword = [DefNSUD objectForKey:@"energyPassword"];
+    return _energyPassword;
+}
+
+-(void)setVersionURLForEnergy:(NSString *)versionURLForEnergy{
+    _versionURLForEnergy = versionURLForEnergy;
+    [DefNSUD setObject:_versionURLForEnergy
+                forKey:@"versionURLForEnergy"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)versionURLForEnergy{
+    _versionURLForEnergy = [DefNSUD objectForKey:@"versionURLForEnergy"];
+    return _versionURLForEnergy;
+}
+
+
 @end

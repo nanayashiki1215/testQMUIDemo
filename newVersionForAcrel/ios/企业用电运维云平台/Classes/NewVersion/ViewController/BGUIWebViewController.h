@@ -47,6 +47,8 @@ typedef enum {
 //url拼接参数
 @property(nonatomic,strong)NSString *pathParamStr;//拼接url参数
 
+@property(nonatomic,strong)NSString *energyToken;
+@property(nonatomic,strong)NSString *isPushEnergy;
 @end
 
 NS_ASSUME_NONNULL_END
