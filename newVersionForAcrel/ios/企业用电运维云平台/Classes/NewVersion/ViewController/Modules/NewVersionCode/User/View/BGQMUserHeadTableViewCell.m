@@ -41,7 +41,7 @@
            //清空NSUserDefaults 退出登录
     ;
            __weak __typeof(self)weakSelf = self;
-        [weakSelf getLocationWithLogin];
+        [weakSelf getLocationWithLoginVersionNo:[UserManager manager].versionNo andToken:[UserManager manager].token];
            [weakSelf removeAlias:nil];
            NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
            NSDictionary *dictionary = [defatluts dictionaryRepresentation];
@@ -177,22 +177,22 @@
 }
 
 #pragma mark - 上传定位
--(void)getLocationWithLogin{
+-(void)getLocationWithLoginVersionNo:(NSString *)versionNo andToken:(NSString *)token{
     if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
     //            [self performSelectorOnMainThread:@selector(getLoation) withObject:nil waitUntilDone:YES];
                 //定位功能可用
-        [self getLoation];
+        [self getLoationWithversionNo:versionNo andToken:token];
 
     }else{
         NSString *sktoolsStr = [SKControllerTools getCurrentDeviceModel];
         NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
         NSString *userIP = [NSString stringWithFormat:@"%@,%@",sktoolsStr,phoneVersion];
         NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
-        [self uploadLogininMsg:param];
+        [self uploadLogininMsg:param andVersionNo:versionNo andToken:token];
     }
 }
 
--(void)getLoation{
+-(void)getLoationWithversionNo:(NSString *)versionNo andToken:(NSString *)token{
 //    __weak __typeof(self)weakSelf = self;
     [self.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
              //获取经纬度和该定位点对应的位置信息
@@ -204,18 +204,18 @@
             NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
 //            NSString *locationStr = [NSString stringWithFormat:@"%f;%f;%@",location.location.coordinate.latitude,location.location.coordinate.longitude,addressStr];
             NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":addressStr};
-            [self uploadLogininMsg:param];
+            [self uploadLogininMsg:param andVersionNo:versionNo andToken:token];
         }else{
            NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
-                      [self uploadLogininMsg:param];
+           [self uploadLogininMsg:param andVersionNo:versionNo andToken:token];
         }
         
     }];
 }
 
--(void)uploadLogininMsg:(NSDictionary *)param{
-    [NetService bg_getWithTokenWithPath:@"/logout" params:param success:^(id respObjc) {
-        DefLog(@"%@",respObjc);
+-(void)uploadLogininMsg:(NSDictionary *)param andVersionNo:(NSString *)versionNo andToken:(NSString *)token{
+    [BGHttpService bg_httpPostWithTokenWithLogout:@"/logout" withVersionNo:versionNo andToken:token params:param success:^(id respObjc) {
+         DefLog(@"%@",respObjc);
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         
     }];

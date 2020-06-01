@@ -11,14 +11,41 @@
 #import "CustomNavigationController.h"
 #import "YYServiceManager.h"
 #import <CloudPushSDK/CloudPushSDK.h>
+#import <CoreLocation/CoreLocation.h>
+#import <BMKLocationKit/BMKLocationComponent.h>
+#import "SKControllerTools.h"
 
-@interface NetService ()
+@interface NetService ()<BMKLocationManagerDelegate>
+@property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
 
 @end
 
 @implementation NetService
 
+static NetService *_instance;
+
 #pragma mark - post接口
+
++ (instancetype)shareInstance
+{
+    if (!_instance) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _instance = [[NetService alloc] init];
+        });
+    }
+    return _instance;
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [super allocWithZone:zone];
+    });
+    return _instance;
+}
+
 + (void)bg_postWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
     NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
 //    BGUserInfo *user = [BGUserInfo gettingLoginSuccessLastLogin];
@@ -77,6 +104,7 @@
     }
     NSString *baseURL = [BASE_URL stringByAppendingString:user.versionNo];
     NSString *urlString = [baseURL stringByAppendingString:path];
+    BGWeakSelf;
     [NetService bg_httpPostWithTokenWithPath:urlString params:mutParams success:^(id responseObject) {
         NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
                 if ([respCode isEqualToString:k0000]) {
@@ -84,7 +112,13 @@
                         Success(responseObject);
                     }
                 }else if ([respCode isEqualToString:@"5000"]){
-                    [self pushUpErrorMsg:responseObject];
+                    [weakSelf pushUpErrorMsg:responseObject];
+                    return ;
+                }else if([respCode isEqualToString:@"700"]){
+                    NSString *token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"token"]];
+                    if(token.length>0){
+                        [UserManager manager].token = token;
+                    }
                     return ;
                 }else{
                     //            NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
@@ -128,7 +162,7 @@
         NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
         NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
         //        k0000 成功
-        //        401 token过期
+     
         if ([respMsg isEqualToString:@"Unauthorized"] || [respCode isEqualToString:@"600"]) {
             
             [weakSelf loginOut:respCode];
@@ -275,8 +309,7 @@
     [NetService bg_httpGetWithTokenWithPath:urlString params:mutParams success:^(id responseObject) {
         NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
         NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
-//        k0000 成功
-//        401 token过期
+//
         if ([respMsg isEqualToString:@"Unauthorized"] || [respCode isEqualToString:@"600"]) {
             
             [weakSelf loginOut:respCode];
@@ -637,6 +670,10 @@
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              //确认处理
              __weak __typeof(self)weakSelf = self;
+             if ([[self findCurrentViewController] isKindOfClass:[BGLoginViewController class]]) {
+                 return ;
+             }
+             [weakSelf getLocationWithLoginVersionNo:[UserManager manager].versionNo andToken:[UserManager manager].token];
              [weakSelf removeAlias:nil];
               NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
@@ -681,6 +718,7 @@
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              //确认处理
              __weak __typeof(self)weakSelf = self;
+             [weakSelf getLocationWithLoginVersionNo:[UserManager manager].versionNo andToken:[UserManager manager].token];
              [weakSelf removeAlias:nil];
              NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
              NSDictionary *dictionary = [defatluts dictionaryRepresentation];
@@ -776,7 +814,34 @@
         if (topViewController.presentedViewController) {
             
             topViewController = topViewController.presentedViewController;
+
+        } else if ([topViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)topViewController topViewController]) {
             
+            topViewController = [(UINavigationController *)topViewController topViewController];
+            
+        } else if ([topViewController isKindOfClass:[UITabBarController class]]) {
+            
+            UITabBarController *tab = (UITabBarController *)topViewController;
+            topViewController = tab.selectedViewController;
+            
+        } else {
+            break;
+        }
+    }
+    return topViewController;
+}
+
++ (UIViewController *)findRootCurrentViewController
+{
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    UIViewController *topViewController = [window rootViewController];
+    
+    while (true) {
+        
+        if (topViewController.presentedViewController) {
+            
+            topViewController = topViewController;
+
         } else if ([topViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)topViewController topViewController]) {
             
             topViewController = [(UINavigationController *)topViewController topViewController];
@@ -1014,4 +1079,84 @@
     
 }
 
+#pragma mark - 上传定位
++(void)getLocationWithLoginVersionNo:(NSString *)versionNo andToken:(NSString *)token{
+    if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+    //            [self performSelectorOnMainThread:@selector(getLoation) withObject:nil waitUntilDone:YES];
+                //定位功能可用
+        [self getLoationWithversionNo:versionNo andToken:token];
+
+    }else{
+        NSString *sktoolsStr = [SKControllerTools getCurrentDeviceModel];
+        NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
+        NSString *userIP = [NSString stringWithFormat:@"%@,%@",sktoolsStr,phoneVersion];
+        NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
+        [self uploadLogininMsg:param andVersionNo:versionNo andToken:token];
+    }
+}
+
++(void)getLoationWithversionNo:(NSString *)versionNo andToken:(NSString *)token{
+//    __weak __typeof(self)weakSelf = self;
+    [[NetService shareInstance].locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
+             //获取经纬度和该定位点对应的位置信息
+        DefLog(@"%@ %d",location,state);
+        NSString *sktoolsStr = [SKControllerTools getCurrentDeviceModel];
+        NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
+        NSString *userIP = [NSString stringWithFormat:@"%@,%@",sktoolsStr,phoneVersion];
+        if(location){
+            NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
+            if(location.rgcData.country){
+                NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":addressStr};
+                [self uploadLogininMsg:param andVersionNo:versionNo andToken:token];
+                
+            }
+        }else{
+           NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
+           [self uploadLogininMsg:param andVersionNo:versionNo andToken:token];
+        }
+        
+    }];
+}
+
++(void)uploadLogininMsg:(NSDictionary *)param andVersionNo:(NSString *)versionNo andToken:(NSString *)token{
+    [BGHttpService bg_httpPostWithTokenWithLogout:@"/logout" withVersionNo:versionNo andToken:token params:param success:^(id respObjc) {
+         DefLog(@"%@",respObjc);
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        
+    }];
+}
+
+- (BMKLocationManager *)locationManager {
+    if (!_locationManager) {
+        //初始化BMKLocationManager类的实例
+        _locationManager = [[BMKLocationManager alloc] init];
+        //设置定位管理类实例的代理
+        _locationManager.delegate = self;
+        //设定定位坐标系类型，默认为 BMKLocationCoordinateTypeGCJ02
+        _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+        //设定定位精度，默认为 kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设定定位类型，默认为 CLActivityTypeAutomotiveNavigation
+        _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+        //指定定位是否会被系统自动暂停，默认为NO
+        _locationManager.pausesLocationUpdatesAutomatically = NO;
+        /**
+         是否允许后台定位，默认为NO。只在iOS 9.0及之后起作用。
+         设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
+         由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
+         */
+        _locationManager.allowsBackgroundLocationUpdates = YES;
+        /**
+         指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
+         注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)
+         后开始计算。
+         */
+        _locationManager.locationTimeout = 10;
+    }
+    return _locationManager;
+}
+
+- (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
+    DefLog(@"定位失败");
+}
 @end

@@ -144,7 +144,8 @@ typedef void (^DowningProgress)(CGFloat  progress);
 
 //用于能耗登录特殊接口
 + (void)bg_httpPostWithPathWithEnergy:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
-
+//用于退出登录上传私密接口
++ (void)bg_httpPostWithTokenWithLogout:(NSString *)path withVersionNo:(NSString *)version andToken:(NSString *)tokenStr params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
 //+ (AFHTTPSessionManager *)createHTTPSessionManager;
 //+ (AFSecurityPolicy *)customSecurityPolicy ;
 

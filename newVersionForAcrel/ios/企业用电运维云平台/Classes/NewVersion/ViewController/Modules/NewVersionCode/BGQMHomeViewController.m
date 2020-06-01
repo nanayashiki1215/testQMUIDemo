@@ -1440,14 +1440,14 @@
             [self uploadLogininMsg:param];
         }else{
            NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
-                      [self uploadLogininMsg:param];
+            [self uploadLogininMsg:param];
         }
         
     }];
 }
 
 -(void)uploadLogininMsg:(NSDictionary *)param{
-    [NetService bg_getWithTokenWithPath:@"/insertUserLogin" params:param success:^(id respObjc) {
+    [NetService bg_postWithTokenWithPath:@"/insertUserLogin" params:param success:^(id respObjc) {
         DefLog(@"%@",respObjc);
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         

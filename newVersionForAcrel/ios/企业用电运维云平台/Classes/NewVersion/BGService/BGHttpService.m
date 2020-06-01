@@ -148,6 +148,35 @@ static id _instance;
     return manager;
 }
 
++ (AFHTTPSessionManager *)createHTTPSessionManagerWithLogoutToken:(NSString *)token{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
+    //    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    manager.requestSerializer.timeoutInterval = HttpTimeoutInterval;//设置请求超时时
+    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    
+    manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
+    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
+    
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"image/jpeg",@"text/plain",@"text/xml", nil];
+    
+//    AFJSONResponseSerializer *responObjc = [];
+//    manager.responseSerializer.removesKeysWithNullValues = YES;
+    //    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    //    policy.allowInvalidCertificates = YES;
+    //    policy.validatesDomainName = NO;
+    //    NSString *certFilePath = [[NSBundle mainBundle] pathForResource:@"client.cer" ofType:nil];
+    //    NSData *certData = [NSData dataWithContentsOfFile:certFilePath];
+    //    NSSet *certSet = [NSSet setWithObject:certData];
+    //    policy.pinnedCertificates = certSet;
+    //    manager.securityPolicy = policy;
+    //    manager.requestSerializer.stringEncoding = NSUTF16StringEncoding;
+    //    manager.baseURL = [NSURL bg_URLWithString:BASE_URL];
+    return manager;
+}
+
 + (AFHTTPSessionManager *)createHTTPSessionUploadManagerWithToken{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
@@ -247,9 +276,9 @@ static id _instance;
         if (Success) {
             if (Success) {
                  if (!responseObject) {
-                                   [MBProgressHUD showError:@"数据请求异常，返回空数据"];
-                                   return ;
-                               }
+                    [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+                    return ;
+                }
                 Success(responseObject);
             }
         }
@@ -771,4 +800,37 @@ static id _instance;
 //
 //}
 
+//带token头的post请求
++ (void)bg_httpPostWithTokenWithLogout:(NSString *)path withVersionNo:(NSString *)version andToken:(NSString *)tokenStr params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
+    NSString *baseURL = [BASE_URL stringByAppendingString:version];
+    NSString *urlString = [baseURL stringByAppendingString:path];
+    NSString *realURL = urlString;
+    NSString *upPath = [realURL lowercaseString];
+    if (!([upPath hasPrefix:@"http://"] || [upPath hasPrefix:@"https://"])) {
+        DefLog(@"请检查请求URL：%@",path);
+         Fail(nil,nil,nil);
+        return;
+    }
+    
+    AFHTTPSessionManager *manager = [BGHttpService createHTTPSessionManagerWithLogoutToken:tokenStr];
+    //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
+//        [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
+    [manager POST:realURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nResponse:%@\n***************   End   ***************\n\n.",realURL,params,responseObject);
+        if (Success) {
+            if (Success) {
+                 if (!responseObject) {
+                                   [MBProgressHUD showError:@"数据请求异常，返回空数据"];
+                                   return ;
+                               }
+                Success(responseObject);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        DefLog(@"\n\n***************  Start  ***************\nPOST:\nURL:%@\nParams:%@\nError:%@\n***************   End   *************** \n\n.",realURL,params,error);
+        if (Fail) {
+            Fail(nil,nil,nil);
+        }
+    }];
+}
 @end
