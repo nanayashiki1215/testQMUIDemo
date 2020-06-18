@@ -48,6 +48,7 @@
     NSString *_energyAccountNum;
     NSString *_energyPassword;
     NSString *_versionURLForEnergy;
+    BOOL _isOpenBoxInApp;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -112,6 +113,8 @@
 @property(nonatomic,strong)NSString *energyAccountNum;//登录名
 @property(nonatomic,strong)NSString *energyPassword;//密码
 @property(nonatomic,strong)NSString *versionURLForEnergy;//能耗管理拼接地址
+//展示应用内收到消息
+@property(nonatomic,assign)BOOL isOpenBoxInApp;//是否展示
 
 //获取单例
 +(instancetype)manager;

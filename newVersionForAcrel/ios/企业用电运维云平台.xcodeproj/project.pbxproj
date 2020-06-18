@@ -54,6 +54,10 @@
 		B616043F237E3F6C007A8C44 /* silent.caf in Resources */ = {isa = PBXBuildFile; fileRef = B616043C237E3F6B007A8C44 /* silent.caf */; };
 		B61953F2237926DC00036E97 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B61953EF237926DB00036E97 /* libresolv.tbd */; };
 		B61953FD23792B8800036E97 /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */; };
+		B61E213F248E1DCC0008C9CA /* WPView.m in Sources */ = {isa = PBXBuildFile; fileRef = B61E213B248E1DCB0008C9CA /* WPView.m */; };
+		B61E2140248E1DCC0008C9CA /* WPAlertControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B61E213C248E1DCB0008C9CA /* WPAlertControl.m */; };
+		B61E2143248E25BD0008C9CA /* BGTopNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B61E2142248E25BC0008C9CA /* BGTopNoticeView.m */; };
+		B620CA312490C20A0048E5F9 /* BGChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B620CA2F2490C20A0048E5F9 /* BGChangePasswordVC.m */; };
 		B62250CF2420AF9A0041E709 /* EZMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B62250CE2420AF9A0041E709 /* EZMain.storyboard */; };
 		B622510C2420B0720041E709 /* EZCameraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D32420B0710041E709 /* EZCameraTableViewController.m */; };
 		B622510D2420B0720041E709 /* EZWifiConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D42420B0710041E709 /* EZWifiConfigViewController.m */; };
@@ -119,6 +123,8 @@
 		B645F30722AF3C2B00D5420A /* NSString+PinYinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F30122AF3C2B00D5420A /* NSString+PinYinConverter.m */; };
 		B645F30822AF3C2B00D5420A /* hanzi2pinyin_v2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B645F30222AF3C2B00D5420A /* hanzi2pinyin_v2.txt */; };
 		B645F30922AF3C2B00D5420A /* NSArray+PinYinSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B645F30322AF3C2B00D5420A /* NSArray+PinYinSearcher.m */; };
+		B64A4F042491C34700A5F4AF /* BGQMSafeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64A4F032491C34700A5F4AF /* BGQMSafeViewController.m */; };
+		B64A96E524985DF600A4DD88 /* BGChangePasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64A96E724985DF600A4DD88 /* BGChangePasswordVC.xib */; };
 		B64BB8BF24515F23003833F9 /* BGQMUserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B64BB8BE24515F23003833F9 /* BGQMUserSettingVC.m */; };
 		B6548A9422B32765005CCD21 /* BGQMEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6548A9322B32765005CCD21 /* BGQMEventViewController.m */; };
 		B6548A9822B33087005CCD21 /* BGQMEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6548A9622B33087005CCD21 /* BGQMEventTableViewCell.m */; };
@@ -765,6 +771,14 @@
 		B616043C237E3F6B007A8C44 /* silent.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = silent.caf; sourceTree = "<group>"; };
 		B61953EF237926DB00036E97 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AliyunEmasServices-Info.plist"; sourceTree = "<group>"; };
+		B61E213B248E1DCB0008C9CA /* WPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPView.m; sourceTree = "<group>"; };
+		B61E213C248E1DCB0008C9CA /* WPAlertControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAlertControl.m; sourceTree = "<group>"; };
+		B61E213D248E1DCB0008C9CA /* WPAlertControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAlertControl.h; sourceTree = "<group>"; };
+		B61E213E248E1DCC0008C9CA /* WPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPView.h; sourceTree = "<group>"; };
+		B61E2141248E25BC0008C9CA /* BGTopNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGTopNoticeView.h; sourceTree = "<group>"; };
+		B61E2142248E25BC0008C9CA /* BGTopNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTopNoticeView.m; sourceTree = "<group>"; };
+		B620CA2E2490C2090048E5F9 /* BGChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGChangePasswordVC.h; sourceTree = "<group>"; };
+		B620CA2F2490C20A0048E5F9 /* BGChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGChangePasswordVC.m; sourceTree = "<group>"; };
 		B62250CE2420AF9A0041E709 /* EZMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EZMain.storyboard; sourceTree = "<group>"; };
 		B62250D12420B0710041E709 /* EZWifiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWifiInfoViewController.h; sourceTree = "<group>"; };
 		B62250D22420B0710041E709 /* EZCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCalendarViewController.h; sourceTree = "<group>"; };
@@ -862,6 +876,7 @@
 		B637965822F1732C007AC38F /* JGPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		B637965922F1732C007AC38F /* JGPredicateMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPredicateMethod.h; sourceTree = "<group>"; };
 		B6380A9222CB2084002500E0 /* Dis-test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Dis-test"; sourceTree = "<group>"; };
+		B6392CB92498613E00A7DB1C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/BGChangePasswordVC.xib"; sourceTree = "<group>"; };
 		B63B00D022B0967E004E070F /* BGQMHomeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMHomeHeadView.h; sourceTree = "<group>"; };
 		B63B00D122B0967E004E070F /* BGQMHomeHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMHomeHeadView.m; sourceTree = "<group>"; };
 		B63B00D522B099C2004E070F /* BGQMNewHomeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMNewHomeTableViewController.h; sourceTree = "<group>"; };
@@ -886,6 +901,10 @@
 		B645F30422AF3C2B00D5420A /* NSArray+PinYinSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PinYinSearcher.h"; sourceTree = "<group>"; };
 		B645F30522AF3C2B00D5420A /* NSString+PinYinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYinConverter.h"; sourceTree = "<group>"; };
 		B645F30622AF3C2B00D5420A /* SWPinYinHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPinYinHeader.h; sourceTree = "<group>"; };
+		B64A4F022491C34700A5F4AF /* BGQMSafeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMSafeViewController.h; sourceTree = "<group>"; };
+		B64A4F032491C34700A5F4AF /* BGQMSafeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSafeViewController.m; sourceTree = "<group>"; };
+		B64A96E624985DF600A4DD88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BGChangePasswordVC.xib; sourceTree = "<group>"; };
+		B64A96EA24985DF900A4DD88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BGChangePasswordVC.xib; sourceTree = "<group>"; };
 		B64BB8BD24515F23003833F9 /* BGQMUserSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserSettingVC.h; sourceTree = "<group>"; };
 		B64BB8BE24515F23003833F9 /* BGQMUserSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMUserSettingVC.m; sourceTree = "<group>"; };
 		B64D3B33233B62C20016DF9F /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "QMUI_iOS-3.2.1/qmui.xcodeproj"; sourceTree = "<group>"; };
@@ -2163,6 +2182,19 @@
 			path = AliyunOneSDK;
 			sourceTree = "<group>";
 		};
+		B61E2138248E1DB30008C9CA /* WPVView */ = {
+			isa = PBXGroup;
+			children = (
+				B61E2141248E25BC0008C9CA /* BGTopNoticeView.h */,
+				B61E2142248E25BC0008C9CA /* BGTopNoticeView.m */,
+				B61E213D248E1DCB0008C9CA /* WPAlertControl.h */,
+				B61E213C248E1DCB0008C9CA /* WPAlertControl.m */,
+				B61E213E248E1DCC0008C9CA /* WPView.h */,
+				B61E213B248E1DCB0008C9CA /* WPView.m */,
+			);
+			path = WPVView;
+			sourceTree = "<group>";
+		};
 		B62250CB2420AF780041E709 /* EZTalkView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3411,6 +3443,7 @@
 			isa = PBXGroup;
 			children = (
 				B6693D9323A9B4DA006DFEF0 /* WelcomeView.h */,
+				B61E2138248E1DB30008C9CA /* WPVView */,
 				B6693D9423A9B4DA006DFEF0 /* WelcomeView.m */,
 				B68D2C4922A63D86001C00EC /* GHDropMenu */,
 				B6DBAF9722B1E17C000C9922 /* JZLocationConverter */,
@@ -3922,6 +3955,11 @@
 				B637964F22F1732C007AC38F /* UserFeedBackVC */,
 				B6E2189222A4AB93003C2969 /* BGQMUserViewController.h */,
 				B6E2189322A4AB93003C2969 /* BGQMUserViewController.m */,
+				B64A4F022491C34700A5F4AF /* BGQMSafeViewController.h */,
+				B64A4F032491C34700A5F4AF /* BGQMSafeViewController.m */,
+				B620CA2E2490C2090048E5F9 /* BGChangePasswordVC.h */,
+				B620CA2F2490C20A0048E5F9 /* BGChangePasswordVC.m */,
+				B64A96E724985DF600A4DD88 /* BGChangePasswordVC.xib */,
 				B64BB8BD24515F23003833F9 /* BGQMUserSettingVC.h */,
 				B64BB8BE24515F23003833F9 /* BGQMUserSettingVC.m */,
 				B6D7358122F81E310067F246 /* BGQMPersonalInfoViewController.h */,
@@ -4175,6 +4213,7 @@
 				B68D2D2822A656F1001C00EC /* pageControlDot@2x.png in Resources */,
 				B68D2D3622A65E2A001C00EC /* app_item_pressed_bg.png in Resources */,
 				B6FB483A22FABD86006F94CF /* BGQMUserHeadTableViewCell.xib in Resources */,
+				B64A96E524985DF600A4DD88 /* BGChangePasswordVC.xib in Resources */,
 				B68D2D2322A656F1001C00EC /* pageControlCurrentDot@2x.png in Resources */,
 				B6024AD922FA6224000A2A98 /* BGQMSettingPersonInfoViewController.xib in Resources */,
 				B6380A9322CB2085002500E0 /* Dis-test in Resources */,
@@ -4303,6 +4342,7 @@
 				B68D2C7822A63D87001C00EC /* GHDropMenuFilterTimeChoseItem.m in Sources */,
 				B62251172420B0720041E709 /* EZLocalRealPlayViewController.m in Sources */,
 				B6E15621228D2B0300CB4A5F /* CustomMainTBViewController.m in Sources */,
+				B61E2143248E25BD0008C9CA /* BGTopNoticeView.m in Sources */,
 				B6D321112420C36800A50F77 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				B622511F2420B0720041E709 /* EZCalendarViewController.m in Sources */,
 				B6AACF2A22AE383D00632304 /* BGQMSelectSubstationTVC.m in Sources */,
@@ -4319,6 +4359,7 @@
 				B6C768BE22A0B8DC00DA675D /* QDChangeNavBarStyleViewController.m in Sources */,
 				B6E155B7228CEDF900CB4A5F /* BGImageUtils.m in Sources */,
 				B6C768ED22A0B8DC00DA675D /* QDScrollAnimatorViewController.m in Sources */,
+				B620CA312490C20A0048E5F9 /* BGChangePasswordVC.m in Sources */,
 				B6E155F8228CF09C00CB4A5F /* UIImage+BGPhotoImage.m in Sources */,
 				B6E1564E228D418700CB4A5F /* ViewController+MASAdditions.m in Sources */,
 				B6D7358322F81E320067F246 /* BGQMPersonalInfoViewController.m in Sources */,
@@ -4386,6 +4427,7 @@
 				B645F30922AF3C2B00D5420A /* NSArray+PinYinSearcher.m in Sources */,
 				B6E155C6228CEDF900CB4A5F /* NSString+BGTimeString.m in Sources */,
 				B6E155F9228CF09C00CB4A5F /* NSDictionaryAdditions.m in Sources */,
+				B64A4F042491C34700A5F4AF /* BGQMSafeViewController.m in Sources */,
 				B6E2189422A4AB93003C2969 /* BGQMUserViewController.m in Sources */,
 				B68D2CFC22A646C1001C00EC /* JXCategoryFactory.m in Sources */,
 				B6C768B222A0B8DC00DA675D /* QDGhostButtonViewController.m in Sources */,
@@ -4464,6 +4506,7 @@
 				B68D2D1B22A6562E001C00EC /* MSExampleDotView.m in Sources */,
 				B6C768DA22A0B8DC00DA675D /* QDAnimationViewController.m in Sources */,
 				B68D2CF522A646C1001C00EC /* JXCategoryImageView.m in Sources */,
+				B61E213F248E1DCC0008C9CA /* WPView.m in Sources */,
 				B6B880B123B992AF00197FF6 /* YYServerFenceModificationViewController.m in Sources */,
 				B68D2CFB22A646C1001C00EC /* JXCategoryListContainerView.m in Sources */,
 				B6DBAFA222B22969000C9922 /* SectionIndicatorView.m in Sources */,
@@ -4620,6 +4663,7 @@
 				B6E15610228CF4E300CB4A5F /* BaseViewController.m in Sources */,
 				B657DDC422927C760009BCB0 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B6E155C4228CEDF900CB4A5F /* CALayer+BGExtension.m in Sources */,
+				B61E2140248E1DCC0008C9CA /* WPAlertControl.m in Sources */,
 				B657DDDE22927C760009BCB0 /* SDWebImageWebPCoder.m in Sources */,
 				B6C7690C22A0C2E100DA675D /* UserManager.m in Sources */,
 				B657DDD122927C760009BCB0 /* SDImageCache.m in Sources */,
@@ -4728,6 +4772,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B64A96E724985DF600A4DD88 /* BGChangePasswordVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B64A96E624985DF600A4DD88 /* en */,
+				B64A96EA24985DF900A4DD88 /* Base */,
+				B6392CB92498613E00A7DB1C /* zh-Hans */,
+			);
+			name = BGChangePasswordVC.xib;
+			sourceTree = "<group>";
+		};
 		B69F7E2822FBB9E5005B0B03 /* CSAboutViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4802,7 +4856,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.2;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
@@ -4838,7 +4892,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.8;
+				MARKETING_VERSION = 1.3.9;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";
@@ -4861,7 +4915,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.2;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4894,7 +4948,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.3.8;
+				MARKETING_VERSION = 1.3.9;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = "企业用电运维云平台";

@@ -6,13 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LZLPushMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 //消息推送管理类
 @interface BGDistributeMessage : NSObject
 
-+(void)distributeMessage:(id)message;
++(void)distributeMessage:(LZLPushMessage *)message;
 
 @end
 

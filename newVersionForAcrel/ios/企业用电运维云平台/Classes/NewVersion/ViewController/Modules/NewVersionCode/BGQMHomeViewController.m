@@ -1185,10 +1185,40 @@
                  [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
-       
     }else if (codeId == 356){
         //能耗管理
         [self loginInEnergyWithParam:homeList];
+       
+    }else if (codeId == 357){
+        //抢单记录
+          NSString *fAction;
+          NSString *fFunctionurl;
+          for (NSDictionary *nodeDic in homeList) {
+              if ([nodeDic[@"fCode"] isEqualToString:@"357"]) {
+                  fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                  fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+              }
+          }
+          if (fFunctionurl.length>0) {
+              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RobBillRecord" ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+                //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nomWebView animated:YES];
+          }else{
+              BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+              urlWebView.isUseOnline = YES;
+              if (versionURL.length>0) {
+                  NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                  NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                  NSString *urlStr = [str stringByAppendingString:fAction];
+                  urlWebView.onlineUrlString = urlStr;
+                  urlWebView.showWebType = showWebTypeDevice;
+                 [self.navigationController pushViewController:urlWebView animated:YES];
+               }
+          }
        
     }
     else {
@@ -1347,6 +1377,8 @@
                     showStrIcon = @"dsbgl11";
                 }else if([showfCode isEqualToString:@"356"]){
                     showStrIcon = @"dsbgl12";
+                }else if([showfCode isEqualToString:@"357"]){
+                    showStrIcon = @"dsbgl13";
                 }
             }
             [showMutaiArray addObject:showStrTitle];
@@ -1379,7 +1411,6 @@
             [BGQMSingletonManager shareInstance].showGridArray = [[NSMutableArray alloc]initWithArray:titleArray];
             [BGQMSingletonManager shareInstance].showImageGridArray = [[NSMutableArray alloc]initWithArray:imageArray];
             [BGQMSingletonManager shareInstance].showGridIDArray = [[NSMutableArray alloc]initWithArray:idArray];
-            
             [BGQMSingletonManager shareInstance].moreshowGridArray = [[NSMutableArray alloc]initWithArray:moretitleArray];
             [BGQMSingletonManager shareInstance].moreshowImageGridArray = [[NSMutableArray alloc]initWithArray:moreimageArray];
             [BGQMSingletonManager shareInstance].moreshowGridIDArray = [[NSMutableArray alloc]initWithArray:moreidArray];

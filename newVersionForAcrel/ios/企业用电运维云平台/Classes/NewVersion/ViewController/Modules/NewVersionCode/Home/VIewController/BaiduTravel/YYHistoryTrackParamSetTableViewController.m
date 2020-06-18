@@ -705,8 +705,6 @@ static NSString * const kHistoryTrackParamUISwitchCellIdentifier = @"kHistoryTra
                     processOption.denoise = TRUE;
                     processOption.vacuate = TRUE;
                     
-                  
-                     
                     //是否将轨迹点绑定至道路
                    NSString *isBindTrack =[NSString changgeNonulWithString:baiduDic[@"tjIsBindTrack"]];
                    if ([isBindTrack integerValue] == 0) {

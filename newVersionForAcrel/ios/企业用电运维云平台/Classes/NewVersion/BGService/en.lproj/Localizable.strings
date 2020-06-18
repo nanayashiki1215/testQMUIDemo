@@ -116,6 +116,7 @@
 "MsgNoticeSettings"="Notice Settings";
 "versionIntroduce"="Version Introduce";
 "Settings"="Settings";
+"accountSafe"="Account and Safe";
 
 //language
 "Chinese-simple"="Chinese-simple";
@@ -254,7 +255,7 @@
 "ui_day_ago"="day(s) ago";
 "ui_month_ago"="month(s) ago";
 "ui_year_ago"="year(s) ago";
-
+"changePwd"="Change Password";
 //新增
 "device_mine"="Me";
 "device_shared"="Share";

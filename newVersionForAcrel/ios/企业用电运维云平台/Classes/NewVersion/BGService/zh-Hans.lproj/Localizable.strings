@@ -110,7 +110,8 @@
 "MsgNoticeSettings"="消息通知设置";
 "versionIntroduce"="版本介绍";
 "Settings"="设置";
-
+"accountSafe"="账户与安全";
+"changePwd"="修改密码";
 
 //language
 "Chinese-simple"="简体中文";

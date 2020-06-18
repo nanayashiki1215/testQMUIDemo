@@ -688,8 +688,13 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 }
 
 - (void)insertPushMessage:(LZLPushMessage *)model {
+//    tempVO.messageContent
+//    {"pushType":"alarm","fAlarmeventlogid":"2020060815025061968996393"}
+//
+//    tempVO.messageTitle
+//    报警恢复
     //任务未读数
-    [BGDistributeMessage distributeMessage:model.messageContent];
+    [BGDistributeMessage distributeMessage:model];
 //    PushMessageDAO *dao = [[PushMessageDAO alloc] init];
 //    [dao insert:model];
 }

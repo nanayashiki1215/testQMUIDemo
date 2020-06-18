@@ -237,6 +237,10 @@
     if (self.fLatitude && self.fLongitude) {
         coordinate  = CLLocationCoordinate2DMake([self.fLatitude doubleValue], [self.fLongitude doubleValue]);
     }
+    NSString *addressName = @"终点";
+    if (self.addressLabel) {
+        addressName = self.addressLabel.text;
+    }
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -248,7 +252,7 @@
             
             MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
             MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:desCoordinate addressDictionary:nil]];
-            toLocation.name = @"终点";//可传入目标地点名称
+            toLocation.name = addressName;//可传入目标地点名称
             [MKMapItem openMapsWithItems:@[currentLocation, toLocation]
                            launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
         }];
@@ -263,7 +267,7 @@
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"百度地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
             //我的位置代表起点位置为当前位置，也可以输入其他位置作为起点位置，如天安门
-            NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=%f,%f&mode=driving&src=JumpMapDemo", desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=name:%@|latlng:%f,%f&mode=driving&src=JumpMapDemo", addressName,desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
             DefLog(@"%@",urlString);
             
@@ -281,7 +285,7 @@
             
             CLLocationCoordinate2D desCoordinate = coordinate;
             
-            NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=applicationName&sid=BGVIS1&sname=%@&did=BGVIS2&dlat=%f&dlon=%f&dev=0&m=0&t=0",@"我的位置",desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//@"我的位置"可替换为@"终点名称"
+            NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=applicationName&sid=BGVIS1&sname=%@&did=BGVIS2&dlat=%f&dlon=%f&dev=0&m=0&t=0",addressName,desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//@"我的位置"可替换为@"终点名称"
             
             DefLog(@"%@",urlString);
             
@@ -316,7 +320,7 @@
             
             CLLocationCoordinate2D desCoordinate = coordinate;
             
-            NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?type=drive&from=我的位置&to=%@&tocoord=%f,%f&policy=1&referer=%@", @"终点名称", desCoordinate.latitude, desCoordinate.longitude, appName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?type=drive&from=我的位置&to=%@&tocoord=%f,%f&policy=1&referer=%@", addressName, desCoordinate.latitude, desCoordinate.longitude, appName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
             DefLog(@"%@",urlString);
             

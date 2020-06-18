@@ -495,5 +495,14 @@ static UserManager* manager;
     return _versionURLForEnergy;
 }
 
+-(BOOL)isOpenBoxInApp{
+    _isOpenBoxInApp = [DefNSUD boolForKey:@"isOpenBoxInApp"];
+    return _isOpenBoxInApp;
+}
 
+-(void)setIsOpenBoxInApp:(BOOL)isOpenBoxInApp{
+    _isOpenBoxInApp = isOpenBoxInApp;
+    [DefNSUD setBool:_isOpenBoxInApp forKey:@"isOpenBoxInApp"];
+    DefNSUDSynchronize
+}
 @end

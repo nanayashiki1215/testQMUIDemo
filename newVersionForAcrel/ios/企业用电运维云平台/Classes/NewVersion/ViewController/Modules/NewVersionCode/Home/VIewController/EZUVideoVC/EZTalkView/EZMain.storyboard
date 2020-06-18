@@ -1381,7 +1381,7 @@
         <!--Setting View Controller-->
         <scene sceneID="8uc-oI-R8b">
             <objects>
-                <tableViewController id="3ZH-14-C2h" customClass="EZSettingViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EZSettingViewController" clearsSelectionOnViewWillAppear="NO" id="3ZH-14-C2h" customClass="EZSettingViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="wlo-g7-YSk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1411,8 +1411,6 @@
                         <outlet property="serialLabel" destination="9VV-np-Xv9" id="Vvo-rR-zdY"/>
                         <outlet property="updateImageView" destination="A8K-Mk-xFS" id="qqg-Hg-1rw"/>
                         <outlet property="videoSwitch" destination="eKv-yq-ycl" id="HD9-JX-sBQ"/>
-                        <segue destination="yga-gr-cbw" kind="push" identifier="go2setDeviceName" id="MqZ-43-B1F"/>
-                        <segue destination="B6I-K3-uvg" kind="push" identifier="go2Upgrade" id="iXV-Xg-6Ai"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ah-46-kfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1481,7 +1479,7 @@
                         <viewControllerLayoutGuide type="bottom" id="z34-zQ-g1R"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kWR-Bn-Cd6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入设备名称" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="r1W-d8-Rg7">
@@ -1864,7 +1862,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HbW-AF-LH2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bNO-BS-VHb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ol-dw-GX9">

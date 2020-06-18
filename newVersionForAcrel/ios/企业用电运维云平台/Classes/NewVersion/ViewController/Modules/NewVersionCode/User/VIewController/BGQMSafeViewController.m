@@ -1,11 +1,11 @@
 //
-//  BGQMUserSettingVC.m
+//  BGQMSafeViewController.m
 //  企业用电运维云平台
 //
-//  Created by Acrel on 2020/4/23.
+//  Created by Acrel on 2020/6/11.
 //
 
-#import "BGQMUserSettingVC.h"
+#import "BGQMSafeViewController.h"
 #import "BGHeadTableViewCell.h"
 #import "BGRedSpotCell.h"
 #import "BGHeadPortraitViewController.h"
@@ -23,25 +23,24 @@
 #import "BGQMChangeLanguageViewController.h"
 #import "BGUIWebViewController.h"
 #import "BGChangePasswordVC.h"
-#import "BGQMSafeViewController.h"
 
-@interface BGQMUserSettingVC ()<QMUITableViewDelegate,QMUITableViewDataSource>
+@interface BGQMSafeViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong) QMUITableView *tableview;
 @property (nonatomic,strong) NSArray *tableListArr;
 
 @end
 
-@implementation BGQMUserSettingVC
+@implementation BGQMSafeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self creatView];
+    [self getAboutNetData];
     // Do any additional setup after loading the view.
-     [self creatView];
-     [self getAboutNetData];
 }
 
 - (void)creatView{
-    self.title = DefLocalizedString(@"Settings");
+    self.title = DefLocalizedString(@"accountSafe");
 //    self.tableview = [[QMUITableView alloc] qmui_initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.tableview = [[QMUITableView alloc] initWithFrame:CGRectMake(0, NavigationContentTop, SCREEN_WIDTH, SCREEN_HEIGHT)];
   
@@ -166,6 +165,7 @@
         }];
     }
 }
+
 #pragma mark - <QMUITableViewDataSource, QMUITableViewDelegate>
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -174,14 +174,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.tableListArr.count;
+    return self.tableListArr.count+1;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
         BGRedSpotCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BGUserRedSpotCell"];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryNone;
 //        if (!cell) {
 //            cell = [[QMUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"qmuiCell"];
 //
@@ -198,43 +198,57 @@
 //        cell.accessoryEdgeInsets = UIEdgeInsetsZero;
         
         
-        NSString *textName = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fMenuname"]];
+    if(indexPath.row == 0){
+        //写死
+        cell.redSpotBTN.hidden = YES;
+        cell.iconIV.hidden = YES;
+        cell.rightLB.text = [UserManager manager].account;
+        cell.leftLB.text = @"用户名:";
+        cell.imgWidth.constant = 0.1f;
+    }else{
+        
+        NSString *textName = [NSString changgeNonulWithString:self.tableListArr[indexPath.row -1][@"fMenuname"]];
         cell.redSpotBTN.hidden = YES;
         cell.rightLB.text = @"";
+        cell.imgWidth.constant = 0.1f;
         if (textName.length>0) {
             cell.leftLB.text = textName;
         }
-        NSString *code = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fCode"]];
-        NSString *imageName;
-        if ([code isEqualToString:@"personInfo"]) {
-            imageName = @"userOwnPic0";
-        }else if ([code isEqualToString:@"feedbackLower"]){
-            imageName = @"userOwnPic1";
-        }else if ([code isEqualToString:@"clearCache"]){
-            imageName = @"userOwnPic2";
-//            NSString *sizeStr = [self folderSize];
-//            cell.rightLB.text = sizeStr;
-//            cell.rightLB.textAlignment = NSTextAlignmentRight;
-            
-        }else if ([code isEqualToString:@"versionInfoLower"]){
-            imageName = @"userOwnPic3";
-        }else if ([code isEqualToString:@"shareAppLower"]){
-            imageName = @"userOwnPic4";
-        }else if ([code isEqualToString:@"switchLanguageLower"]){
-            imageName = @"userOwnPic5";
-        }else if ([code isEqualToString:@"MsgNotificationLower"]){
-            imageName = @"userOwnPic6";
-        }else if ([code isEqualToString:@"pushRecord"]){
-            imageName = @"userOwnPic6";
-        }else if ([code isEqualToString:@"settings"]){
-            imageName = @"userOwnPic6";
-        }else if ([code isEqualToString:@"accountSecurity"]){
-            imageName = @"userOwnPic9";
-        }
-        else {
-            imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
-        }
-        cell.iconIV.image = [UIImage imageNamed:imageName];
+         NSString *code = [NSString changgeNonulWithString:self.tableListArr[indexPath.row -1][@"fCode"]];
+                NSString *imageName;
+                if ([code isEqualToString:@"personInfo"]) {
+                    imageName = @"userOwnPic0";
+                }else if ([code isEqualToString:@"feedbackLower"]){
+                    imageName = @"userOwnPic1";
+                }else if ([code isEqualToString:@"clearCache"]){
+                    imageName = @"userOwnPic2";
+        //            NSString *sizeStr = [self folderSize];
+        //            cell.rightLB.text = sizeStr;
+        //            cell.rightLB.textAlignment = NSTextAlignmentRight;
+                    
+                }else if ([code isEqualToString:@"versionInfoLower"]){
+                    imageName = @"userOwnPic3";
+                }else if ([code isEqualToString:@"shareAppLower"]){
+                    imageName = @"userOwnPic4";
+                }else if ([code isEqualToString:@"switchLanguageLower"]){
+                    imageName = @"userOwnPic5";
+                }else if ([code isEqualToString:@"MsgNotificationLower"]){
+                    imageName = @"userOwnPic6";
+                }else if ([code isEqualToString:@"pushRecord"]){
+                    imageName = @"userOwnPic6";
+                }else if ([code isEqualToString:@"settings"]){
+                    imageName = @"userOwnPic6";
+                }else if ([code isEqualToString:@"AccountSecurity"]){
+                    imageName = @"userOwnPic9";
+                }else if([code isEqualToString:@"changePWD"]){
+                    imageName = @"";
+                }
+                else {
+                    imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
+                }
+                cell.iconIV.image = [UIImage imageNamed:imageName];
+    }
+       
         
 //        switch (indexPath.row) {
 //            case 0:
@@ -264,9 +278,12 @@
 
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-
-         NSString *code = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fCode"]];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        if(indexPath.row == 0){
+            //写死
+            return;
+        }
+         NSString *code = [NSString changgeNonulWithString:self.tableListArr[indexPath.row -1][@"fCode"]];
 
         if ([code isEqualToString:@"personInfo"]) {
             BGQMPersonalInfoViewController *themeVC = [[BGQMPersonalInfoViewController alloc] init];
@@ -281,7 +298,7 @@
              [self getfolderSize];
         }else if ([code isEqualToString:@"versionInfoLower"]){
             CSAboutViewController *aboutVC = [[CSAboutViewController alloc] initWithNibName:@"CSAboutViewController" bundle:nil];
-            NSString *menuID = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fMenuid"]];
+            NSString *menuID = [NSString changgeNonulWithString:self.tableListArr[indexPath.row -1][@"fMenuid"]];
             aboutVC.aboutMenuID = menuID;
             [self.navigationController pushViewController:aboutVC animated:YES];
         }else if ([code isEqualToString:@"shareAppLower"]){
@@ -297,18 +314,19 @@
                    [self setMessageNotification];
         }else if ([code isEqualToString:@"accountSecurity"]){
             //账户与安全
-            BGQMSafeViewController *themeVC = [[BGQMSafeViewController alloc] init];
-            NSString *menuID = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fMenuid"]];
-            themeVC.aboutMenuID = menuID;
+            BGChangePasswordVC *themeVC = [[BGChangePasswordVC alloc] init];
+            [self.navigationController pushViewController:themeVC animated:YES];
+        }else if ([code isEqualToString:@"changePWD"]){
+            //账户与安全
+            BGChangePasswordVC *themeVC = [[BGChangePasswordVC alloc] init];
             [self.navigationController pushViewController:themeVC animated:YES];
         }
         //设置
         else if ([code isEqualToString:@"settings"]){
-                BGQMUserSettingVC *themeVC = [[BGQMUserSettingVC alloc] init];
-                [self.navigationController pushViewController:themeVC animated:YES];
+               
         }
+    
 }
-
 //头部间隙
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0 || section == 2) {
@@ -545,7 +563,6 @@
               }
          }
 }
-
 
 
 @end

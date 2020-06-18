@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconIV;
 @property (weak, nonatomic) IBOutlet UILabel *leftLB;
 @property (weak, nonatomic) IBOutlet UILabel *rightLB;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgWidth;
 
 @end

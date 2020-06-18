@@ -129,8 +129,8 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/Home/VIewController/EZUVideoVC/EZTalkView/UIViewControllers/EZLivePlayViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "747"
-            endingLineNumber = "747"
+            startingLineNumber = "740"
+            endingLineNumber = "740"
             landmarkName = "-ptzViewShow:"
             landmarkType = "7">
          </BreakpointContent>
@@ -145,8 +145,8 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/Home/VIewController/EZUVideoVC/EZTalkView/UIViewControllers/EZLivePlayViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "624"
-            endingLineNumber = "624"
+            startingLineNumber = "617"
+            endingLineNumber = "617"
             landmarkName = "-qualitySelectedClicked:"
             landmarkType = "7">
          </BreakpointContent>
@@ -161,8 +161,8 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/Home/VIewController/EZUVideoVC/EZTalkView/UIViewControllers/EZLivePlayViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "517"
-            endingLineNumber = "517"
+            startingLineNumber = "510"
+            endingLineNumber = "510"
             landmarkName = "-capture:"
             landmarkType = "7">
          </BreakpointContent>
@@ -177,73 +177,9 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/Home/VIewController/EZUVideoVC/EZTalkView/UIViewControllers/EZLivePlayViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "512"
-            endingLineNumber = "512"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
             landmarkName = "-largeBack:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8CBFD58A-45A9-4441-9051-6AF8D0CCCA09"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/BGQMHomeViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1171"
-            endingLineNumber = "1171"
-            landmarkName = "-itemAction:andClickId:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F8DDA25A-3753-4767-8D67-D9248082E373"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/BGService/BGHttpService.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "+bg_httpPostWithPath:params:success:failure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8CF472EF-B5EF-45A1-8269-197CDE9DE09E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/User/VIewController/BGQMUserSettingVC.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "493"
-            endingLineNumber = "493"
-            landmarkName = "-setMessageNotification"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1650C6C5-407A-4AE2-B0A7-A4BC608B65C1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/AppDelegate.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "-pushViewControllerWithType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -337,9 +273,9 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/BGService/NetService.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1160"
-            endingLineNumber = "1160"
-            landmarkName = "-BMKLocationManager:didFailWithError:"
+            startingLineNumber = "1161"
+            endingLineNumber = "1161"
+            landmarkName = "-locationManager"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -353,9 +289,41 @@
             filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/BGService/NetService.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1115"
-            endingLineNumber = "1115"
+            startingLineNumber = "1116"
+            endingLineNumber = "1116"
             landmarkName = "+getLoationWithversionNo:andToken:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "92D7FA91-1184-48DA-B06E-AE2EFE520577"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/Modules/NewVersionCode/User/VIewController/BGChangePasswordVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-changePassWord"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA89745F-B7A8-4CD5-BF94-AA1405221FA6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4f01;&#x4e1a;&#x7528;&#x7535;&#x8fd0;&#x7ef4;&#x4e91;&#x5e73;&#x53f0;/Classes/NewVersion/ViewController/BGUIWebViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1377"
+            endingLineNumber = "1377"
+            landmarkName = "-didClickDownloadButton:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

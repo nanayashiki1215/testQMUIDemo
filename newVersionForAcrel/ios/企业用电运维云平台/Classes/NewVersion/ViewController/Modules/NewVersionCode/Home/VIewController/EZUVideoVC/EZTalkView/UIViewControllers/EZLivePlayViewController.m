@@ -20,7 +20,7 @@
 #import "EZCameraInfo.h"
 #import <AVFoundation/AVFoundation.h>
 #import "Toast+UIView.h"
-
+#import "EZSettingViewController.h"
 
 @interface EZLivePlayViewController ()<EZPlayerDelegate, UIAlertViewDelegate>
 {
@@ -108,6 +108,7 @@
     self.captureButton.enabled = NO;
     self.localRecordButton.enabled = NO;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickSettingBtn)];
 //    _url = @"rtsp://183.136.184.33:8554/demo://544542032:1:1:1:0:183.136.184.7:6500";
     
 //    _url = @"ysproto://122.225.228.217:8554/live?dev=501694318&chn=1&stream=2&cln=1&isp=0&biz=3";
@@ -230,20 +231,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)clickSettingBtn{
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
+    EZSettingViewController *detailVC = [mainSB instantiateViewControllerWithIdentifier:@"EZSettingViewController"];
+    detailVC.deviceInfo = self.deviceInfo;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
-*/
-
-//- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationMaskAllButUpsideDown;
-//}
 
 //全屏切换
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

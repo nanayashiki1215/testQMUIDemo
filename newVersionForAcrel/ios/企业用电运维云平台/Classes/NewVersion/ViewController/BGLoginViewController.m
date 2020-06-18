@@ -49,7 +49,6 @@
 @property (nonatomic, strong)UIButton *checkBtn;
 @property (nonatomic, strong)UIButton *selectAddress;
 
-
 @end
 
 @implementation BGLoginViewController
@@ -140,7 +139,6 @@
             [self.selectAddress setImage:[UIImage imageNamed:@"ipdizhi"] forState:UIControlStateNormal];
 //            [self.selectAddress setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
             [self.addressTextField addSubview:self.selectAddress];
-            
     }
    
     

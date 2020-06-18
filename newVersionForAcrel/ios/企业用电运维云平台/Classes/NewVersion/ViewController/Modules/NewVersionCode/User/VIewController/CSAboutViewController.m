@@ -97,7 +97,22 @@
 -(void)getAboutNetData{
     if (self.aboutMenuID.length>0) {
 //        BGWeakSelf;
-        [NetService bg_getWithTokenWithPath:getbgSubinfoVoByPid params:@{@"pid":self.aboutMenuID} success:^(id respObjc) {
+        UserManager *user = [UserManager manager];
+        NSNumber *language = [NSNumber numberWithBool:NO];
+        NSString *languageId = @"1";
+        if (user.selectlanageArr && user.selectlanageArr.count>0) {
+            for (NSDictionary *dic in user.selectlanageArr) {
+                    if ([dic[@"click"] integerValue] == 1) {
+                        languageId = dic[@"id"];
+                    }
+                }
+                if ([languageId integerValue] == 1) {
+                    language = [NSNumber numberWithBool:NO];
+                } else {
+                    language = [NSNumber numberWithBool:YES];
+                }
+        }
+        [NetService bg_getWithTokenWithPath:getbgSubinfoVoByPid params:@{@"pid":self.aboutMenuID,@"english":language} success:^(id respObjc) {
             NSDictionary *dic = respObjc[@"data"];
             NSArray *arr = dic[@"menuList"];
             if (arr.count>0) {

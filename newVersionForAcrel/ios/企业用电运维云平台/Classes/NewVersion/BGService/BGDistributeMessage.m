@@ -7,25 +7,195 @@
 
 #import "BGDistributeMessage.h"
 #import "NSString+BGExtension.h"
+#import "BGTopNoticeView.h"
+#import "BGUIWebViewController.h"
 
 @implementation BGDistributeMessage
 
-+(void)distributeMessage:(id)message{
-       id dict = [message jsonObjectFromString];
-       if ([dict isKindOfClass:[NSDictionary class]] && [dict objectForKey:@"pushType"]) {
-           NSString *pushType = [dict bg_StringForKeyNotNull:@"pushType"];
-           if([pushType isEqualToString:@"alarm"]){
-                [self JudgeWhetherGetUnreadWarningMessage];
-             }else if ([pushType isEqualToString:@"communication"]){
-                [self JudgeWhetherGetUnreadWarningMessage];
-             }else if ([pushType isEqualToString:@"work"]){
-                NSInteger num = [[UserManager manager].privateUnreadNumStr integerValue];
-                [UserManager manager].privateUnreadNumStr = [NSString stringWithFormat:@"%ld",(long)num+1];
-                [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; //清除角标
-             }
-       }else{
-           
-       }
++(void)distributeMessage:(LZLPushMessage *)message{
+    if (message.messageContent) {
+        id dict = [message.messageContent jsonObjectFromString];
+        if ([dict isKindOfClass:[NSDictionary class]] && [dict objectForKey:@"pushType"]) {
+            NSString *pushType = [dict bg_StringForKeyNotNull:@"pushType"];
+            if([pushType isEqualToString:@"alarm"]){
+                 [self JudgeWhetherGetUnreadWarningMessage];
+                 BGWeakSelf;
+                 NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+               //调用接口查询 显示顶部推送消息
+               if (logid && [UserManager manager].isOpenBoxInApp) {
+                   [self showTopNoticeView:dict];
+//                   [NetService bg_getWithTokenWithPath:@"/getAlarmEventLogById" params:@{@"fAlarmeventlogid":logid} success:^(id respObjc) {
+//                       NSDictionary *data = [respObjc objectForKeyNotNull:kdata];
+//                       NSDictionary *alarmEventLogById = data[@"alarmEventLogById"];
+//                       if (alarmEventLogById) {
+//                           NSMutableDictionary * mutiData = [data mutableCopy];
+//                           [mutiData setValue:@"alarm" forKey:@"pushType"];
+//                           [weakSelf showTopNoticeView:mutiData];
+//                       }
+//                    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+//
+//                    }];
+               }
+              }else if ([pushType isEqualToString:@"communication"]){
+                 [self JudgeWhetherGetUnreadWarningMessage];
+                  BGWeakSelf;
+                    NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+                  //调用接口查询 显示顶部推送消息
+                  if (logid && [UserManager manager].isOpenBoxInApp) {
+                      [self showTopNoticeView:dict];
+//                      [NetService bg_getWithTokenWithPath:@"/getAlarmEventLogById" params:@{@"fAlarmeventlogid":logid} success:^(id respObjc) {
+//                          NSDictionary *data = [respObjc objectForKeyNotNull:kdata];
+//                          NSDictionary *alarmEventLogById = data[@"alarmEventLogById"];
+//                          if (alarmEventLogById) {
+//                              NSMutableDictionary * mutiData = [data mutableCopy];
+//                              [mutiData setValue:@"communication" forKey:@"pushType"];
+//                              [weakSelf showTopNoticeView:mutiData];
+//                          }
+//                       } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+//
+//                       }];
+                  }
+              }else if ([pushType isEqualToString:@"work"]){
+                 NSInteger num = [[UserManager manager].privateUnreadNumStr integerValue];
+                 [UserManager manager].privateUnreadNumStr = [NSString stringWithFormat:@"%ld",(long)num+1];
+                 [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; //清除角标
+                BGWeakSelf;
+                NSString *taskID = [dict bg_StringForKeyNotNull:@"fTaskid"];
+                if (taskID && [UserManager manager].isOpenBoxInApp) {
+                     [self showTopNoticeView:dict];
+//                       [NetService bg_getWithTokenWithPath:@"/selectTaskByTaskId" params:@{@"taskId":taskID} success:^(id respObjc) {
+//                           NSDictionary *data = [respObjc objectForKeyNotNull:kdata];
+////                           NSDictionary *alarmEventLogById = data[@"alarmEventLogById"];
+//                           if (data) {
+//                               NSMutableDictionary * mutiData = [data mutableCopy];
+//                               [mutiData setValue:@"work" forKey:@"pushType"];
+//                               [weakSelf showTopNoticeView:mutiData];
+//                           }
+//                        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+//
+//                        }];
+                   }
+              }
+        }else{
+            
+        }
+       
+    }
+       
+        
+       
+ 
+}
+
++(void)showTopNoticeView:(NSDictionary *)data{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [BGTopNoticeView share].data =data;
+        [[BGTopNoticeView share].dataArray addObject:data];
+        [[BGTopNoticeView share] show];
+        [[BGTopNoticeView share] didConfirm:^(UIButton *button,NSDictionary *data) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (data) {
+                     //现场报警
+                         NSString *pushType = [data bg_StringForKeyNotNull:@"pushType"];
+                        if([pushType isEqualToString:@"alarm"]){
+                             NSString *fAlarmeventlogid = [data bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+                            //
+//                            NSDictionary *alarmEvent = data[@"alarmEventLogById"];
+//                            NSString *fAlarmeventlogid = [alarmEvent bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+                            if (fAlarmeventlogid) {
+                                
+                                [self pushNoYYWebview:fAlarmeventlogid andHtmlName:@"alarmDetailView"];
+                            }
+                   
+                        }else if ([pushType isEqualToString:@"communication"]){
+                            //通讯状态
+                            NSString *fAlarmeventlogid = [data bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+//                            NSDictionary *alarmEvent = data[@"alarmEventLogById"];
+//                            NSString *fAlarmeventlogid = [alarmEvent bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+                            if (fAlarmeventlogid) {
+                                [self pushNoYYWebview:@"2" andHtmlName:@"alarmsDetailNew"];
+                            }
+                        }else if ([pushType isEqualToString:@"work"]){
+                            NSArray *homeList;
+                            UserManager *user = [UserManager manager];
+                            NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+                            NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+                            for (NSDictionary *homeDic in uiArray) {
+                                NSString *fCode = [NSString changgeNonulWithString:homeDic[@"fCode"]];
+                                if ([fCode isEqualToString:@"homePage"]) {
+                                    homeList = homeDic[@"nodes"];
+                                }
+                            }
+                            if (homeList.count>0) {
+                                //347 待办事项
+                                NSString *taskid = [data bg_StringForKeyNotNull:@"fTaskid"];
+                                if(taskid){
+                                   NSString *fAction;
+                                   NSString *fFunctionurl;
+                                   for (NSDictionary *nodeDic in homeList) {
+                                       if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                                           fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                                           fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                       }
+                                   }
+                                   if (fFunctionurl.length>0) {
+                                      BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                                              NSString *filePath = [[NSBundle mainBundle] pathForResource:@"missionDetail" ofType:@"html" inDirectory:@"aDevices"];
+                                      nomWebView.isUseOnline = NO;
+                                      nomWebView.localUrlString = filePath;
+                                      nomWebView.showWebType = showWebTypeWithPush;
+                                      nomWebView.pathParamStr = taskid;
+                                      [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                                   }else{
+                                       BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                                       urlWebView.isUseOnline = YES;
+                                       if (versionURL.length>0) {
+                                           NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                                           NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                                           NSString *urlStr = [str stringByAppendingString:@"missionDetail.html"];
+                                           urlWebView.onlineUrlString = urlStr;
+                                           urlWebView.showWebType = showWebTypeWithPush;
+                                           urlWebView.pathParamStr = taskid;
+                                          [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                                        }
+                                   }
+                                }else{
+                                    NSString *fAction;
+                                                NSString *fFunctionurl;
+                                                for (NSDictionary *nodeDic in homeList) {
+                                                    if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                                                        fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                                                        fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                                    }
+                                                }
+                                                if (fFunctionurl.length>0) {
+                                                   BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                                                           NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
+                                                   nomWebView.isUseOnline = NO;
+                                                   nomWebView.localUrlString = filePath;
+                                                   nomWebView.showWebType = showWebTypeDevice;
+                                                   //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                                    //               [self.navigationController pushViewController:nomWebView animated:YES];
+                                                     [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                                                }else{
+                                                    BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                                                    urlWebView.isUseOnline = YES;
+                                                    if (versionURL.length>0) {
+                                                        NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                                                        NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                                                        NSString *urlStr = [str stringByAppendingString:fAction];
+                                                        urlWebView.onlineUrlString = urlStr;
+                                                        urlWebView.showWebType = showWebTypeDevice;
+                                                       [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                                                     }
+                                                }
+                                }
+                            }
+                        }
+                }
+            });
+        }];
+    });
 }
 
 +(UIViewController *)findCurrentViewController
@@ -62,6 +232,7 @@
     }
     if ([user.versionNo isEqualToString:ISVersionNo]) {
         [NetService bg_getWithTokenWithPath:@"/getUnConfirmedEventsNum" params:@{} success:^(id respObjc) {
+            
                DefLog(@"%@",respObjc);
             NSDictionary *dict = [respObjc objectForKeyNotNull:kdata];
             NSArray *array = [dict objectForKeyNotNull:@"unConfirmedEventsNum"];
@@ -98,6 +269,7 @@
            } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
                
            }];
+        
     }else{
         [NetService bg_getWithTokenWithPath:@"/getUnreadWarningMessage" params:@{} success:^(id respObjc) {
             DefLog(@"%@",respObjc);
@@ -131,6 +303,48 @@
         }];
     }
 }
+
+#pragma mark - pushNoYYWebView
++(void)pushNoYYWebview:(NSString *)jumpid andHtmlName:(NSString *)htmlName{
+    UserManager *user = [UserManager manager];
+    NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+     for (NSDictionary *dic in uiArray) {
+            NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+            if ([fCode isEqualToString:@"alarmPage"]) {
+               BGUIWebViewController *componentViewController = [[BGUIWebViewController alloc] init];
+               NSString *fFunctionfield = [NSString changgeNonulWithString:dic[@"fFunctionfield"]];
+               if (fFunctionfield.length>0) {
+                   NSString *filePath = [[NSBundle mainBundle] pathForResource:htmlName ofType:@"html" inDirectory:@"aDevices"];
+                   componentViewController.isUseOnline = NO;
+                   componentViewController.menuId = @"342";
+                   componentViewController.localUrlString = filePath;
+                   componentViewController.showWebType = showWebTypeWithPushNoYY;
+                   componentViewController.pathParamStr = jumpid;
+                   [[self findCurrentViewController].navigationController pushViewController:componentViewController animated:YES];
+               }else{
+                   componentViewController.isUseOnline = YES;
+                   UserManager *user = [UserManager manager];
+                   //外链H5
+                   if (user.rootMenuData) {
+                      NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+                      componentViewController.showWebType = showWebTypeWithPushNoYY;
+//                          componentViewController.menuId = [NSString changgeNonulWithString:dic[@"fMenuid"]];
+                      NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                      NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                      NSString *urlStr = [str stringByAppendingString:[NSString stringWithFormat:@"%@.html",htmlName]];
+                      componentViewController.menuId = @"342";
+                      componentViewController.onlineUrlString = urlStr;
+//                           componentViewController.isFromAlarm = @"1";
+                        componentViewController.pathParamStr = jumpid;
+//                          componentViewController .hidesBottomBarWhenPushed = NO;
+                      [[self findCurrentViewController].navigationController pushViewController:componentViewController animated:YES];
+                   }
+               }
+            }
+        }
+}
+
+
 
 + (UIViewController *)jsd_findVisibleViewController {
     

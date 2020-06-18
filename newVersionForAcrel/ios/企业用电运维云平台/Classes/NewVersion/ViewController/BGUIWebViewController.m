@@ -25,6 +25,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "BGQMVideoListTableVC.h"
 #import "BGQMNavigationController.h"
+#import "JZLocationConverter.h"
+
+@import MapKit;//ios7 使用苹果自带的框架使用@import导入则不用在Build Phases 导入框架了
+@import CoreLocation;
 
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
@@ -467,6 +471,14 @@
         //跳转视频页面
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushVideoListVC"];
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushAlarmDetail"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushMapSelect"];
+        //打电话
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"takePhone"];
+        //是否展示顶部弹框
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"showBoxInApp"];
+        //getLocForRob 抢单定位
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"getLocForRob"];
+        
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         //用于进行JavaScript注入
@@ -531,9 +543,10 @@
         if ([self.isPushEnergy isEqualToString:@"1"]) {
             if (user.energyAccountNum && user.energyDns && user.energyPassword && self.energyToken) {
                        //能耗头energyToken
-               jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('energyToken',obj);",self.energyToken,user.energyDns,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
+//               jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('energyToken',obj);",self.energyToken,user.energyDns,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
+                jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@','energyToken':'%@','energyBaseurl':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack,self.energyToken,user.energyDns];
             }else{
-                [MBProgressHUD showError:@"获取Token异常"];
+                [MBProgressHUD showError:@"获取能耗Token异常"];
             }
         }else if (self.menuId.length>0) {
            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
@@ -652,20 +665,47 @@
     if ([message.name isEqualToString:@"getiOSTime"]) {
         //获取原生时间控件
         __weak __typeof(self)weakSelf = self;
-        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
-            NSString *showString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
-            NSString *dateString = [selectDate stringWithFormat:@"yyyyMMdd"];
-            DefLog(@"选择的日期：%@",dateString);
-//            DefLog(@"timeStr:%@",timerStr);
-            NSString *timeStrJS = [NSString stringWithFormat:@"alertAction('%@')",showString];
-            [weakSelf.webView evaluateJavaScript:timeStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-                DefLog(@"alert");
+        NSDictionary *msgDic = message.body;
+        if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+            return;
+        }
+        NSString *dateStr = [NSString changgeNonulWithString:msgDic[@"date"]];
+        NSString *format = [NSString changgeNonulWithString:msgDic[@"style"]];
+        NSString *htmlId = [NSString changgeNonulWithString:msgDic[@"htmlId"]];
+        if (dateStr.length) {
+            NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];//创建一个日期格式化器
+            dateFormatter.dateFormat= format;
+            NSDate *date = [dateFormatter dateFromString:dateStr];
+            WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay scrollToDate:date CompleteBlock:^(NSDate *selectDate) {
+                NSString *dateString = [selectDate stringWithFormat:format];
+                              DefLog(@"选择的日期：%@",dateString);
+                 
+                  NSString *timeStrJS = [NSString stringWithFormat:@"changeShowTime('%@','%@')",htmlId,dateString];
+                  [weakSelf.webView evaluateJavaScript:timeStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                      DefLog(@"alert");
+                  }];
             }];
-        }];
-        datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
-        datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
-        datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
-        [datepicker show];
+            datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
+              datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+              datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
+              [datepicker show];
+        }else{
+            WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+//                NSString *showString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
+                NSString *dateString = [selectDate stringWithFormat:format];
+                DefLog(@"选择的日期：%@",dateString);
+   
+                NSString *timeStrJS = [NSString stringWithFormat:@"changeShowTime('%@','%@')",htmlId,dateString];
+                [weakSelf.webView evaluateJavaScript:timeStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                    DefLog(@"alert");
+                }];
+            }];
+            datepicker.dateLabelColor = COLOR_NAVBAR;//年-月-日-时-分 颜色
+            datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+            datepicker.doneButtonColor = COLOR_NAVBAR;//确定按钮的颜色
+            [datepicker show];
+            
+        }
     }else if([message.name isEqualToString:@"goBackiOS"]){
         //返回到原生页面
         [self.navigationController popViewControllerAnimated:YES];
@@ -814,19 +854,18 @@
         historyVC.title = DefLocalizedString(@"TrackRecord");
         historyVC.startTime = startTime;
         historyVC.endTime = endTime;
-        
         [self.susView removeFromScreen];
         [self.navigationController pushViewController:historyVC animated:YES];
     }else if ([message.name isEqualToString:@"openTrackFunc"]){
          if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
-
-           NSDictionary *taskDic = message.body;
+             
+         NSDictionary *taskDic = message.body;
          if (!taskDic || taskDic == NULL || [taskDic isEqual:[NSNull null]]) {
              return;
          }
          NSString *taskID = [NSString changgeNonulWithString:taskDic[@"fTaskNumber"]];
              
-          if ([YYServiceManager defaultManager].isServiceStarted) {
+         if ([YYServiceManager defaultManager].isServiceStarted) {
                   // 停止服务
           //        [[YYServiceManager defaultManager] stopService];
               } else {
@@ -910,7 +949,86 @@
                 DefLog(@"item%@",item);
             }];
         }
+    }else if([message.name isEqualToString:@"pushMapSelect"]){
+        //弹出导航
+       NSDictionary *msgDic = message.body;
+       if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+           return;
+       }
+       NSString *Longitude = [msgDic objectForKeyNotNull:@"Longitude"];
+       NSString *Latitude = [msgDic objectForKeyNotNull:@"Latitude"];
+       NSString *locName = [msgDic objectForKeyNotNull:@"locName"];
+       [self pushAddressMapSelectWithLatitude:Latitude andLongitude:Longitude andLocName:locName];
+    }else if([message.name isEqualToString:@"takePhone"]){
+        //打电话
+       NSDictionary *msgDic = message.body;
+       if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+           return;
+       }
+       NSString *string = [msgDic objectForKeyNotNull:@"phone"];
+        if (string) {
+            if(string.length){
+            NSMutableString *str = [[NSMutableString alloc] initWithFormat:@"telprompt://%@",string];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            }else{
+                DefQuickAlert(@"未配置电话", nil);
+
+            }
+        }else{
+             DefQuickAlert(@"未配置电话", nil);
+            
+        }
+      
+    }else if([message.name isEqualToString:@"showBoxInApp"]){
+        //是否展示内弹框
+       NSDictionary *msgDic = message.body;
+       if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+           return;
+       }
+       NSString *string = [msgDic objectForKeyNotNull:@"showBoxInApp"];
+        if (string) {
+            if ([string isEqualToString:@"1"]) {
+                [UserManager manager].isOpenBoxInApp = YES;
+                NSString *isOpenBoxInApp = [NSString stringWithFormat:@"localStorage.setItem(\"isOpenBoxInApp\",'true');"];
+                [self.webView evaluateJavaScript:isOpenBoxInApp completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                    DefLog(@"item%@",item);
+                }];
+            }else{
+               [UserManager manager].isOpenBoxInApp = NO;
+               NSString *isOpenBoxInApp = [NSString stringWithFormat:@"localStorage.setItem(\"isOpenBoxInApp\",'false');"];
+               [self.webView evaluateJavaScript:isOpenBoxInApp completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                    DefLog(@"item%@",item);
+               }];
+            }
+        }
     }
+    else if ([message.name isEqualToString:@"getLocForRob"]){
+            //getLocForRob 抢单
+            __weak __typeof(self)weakSelf = self;
+            self.pageStillLoading = YES;
+            if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+               
+    //            [self performSelectorOnMainThread:@selector(getLoation) withObject:nil waitUntilDone:YES];
+                //定位功能可用
+                [self getLoation];
+
+            }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
+                //定位不能用
+                NSString *locationStr = @"";
+                NSString *locationStrJS = @"";
+                UserManager *user = [UserManager manager];
+                if ([user.versionNo isEqualToString:ISVersionNo]) {
+                     locationStrJS = [NSString stringWithFormat:@"getLocAndCheckIn('%@');",locationStr];
+                }else{
+                     locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
+                }
+    //
+                [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                    DefLog(@"item%@",item);
+                    weakSelf.pageStillLoading = NO;
+                }];
+            }
+        }
 }
 
 #pragma mark - 轨迹记录功能
@@ -1006,7 +1124,6 @@
     }
     else
     {
-        
         NSLog(@"没有摄像头");
     }
 }
@@ -1711,6 +1828,10 @@
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"isStartTrackFunc"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushVideoListVC"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushAlarmDetail"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushMapSelect"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"takePhone"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"showBoxInApp"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocForRob"];
     
     //移除观察者
     [_webView removeObserver:self
@@ -1779,6 +1900,120 @@
     [self.susView removeFromScreen];
     [self.navigationController pushViewController:subVC animated:NO];
 
+}
+
+#pragma mark - 导航第三方地图
+-(void)pushAddressMapSelectWithLatitude:(NSString *)fLatitude andLongitude:(NSString *)fLongitude andLocName:(NSString *)locName{
+    NSString *urlScheme = @"MapJump://";
+    NSString *appName = @"MapJump";
+    CLLocationCoordinate2D coordinate;
+    if (fLatitude && fLongitude) {
+        coordinate  = CLLocationCoordinate2DMake([fLatitude doubleValue], [fLongitude doubleValue]);
+    }else{
+        [MBProgressHUD showError:@"变电所位置为空"];
+    }
+    NSString *addressName = @"终点";
+    if(locName){
+        addressName = locName;
+    }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    //这个判断其实是不需要的
+    if ( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"http://maps.apple.com/"]]) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"苹果地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            CLLocationCoordinate2D desCoordinate = coordinate;
+            
+            MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+            MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:desCoordinate addressDictionary:nil]];
+            toLocation.name = addressName;//可传入目标地点名称
+            [MKMapItem openMapsWithItems:@[currentLocation, toLocation]
+                           launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
+        }];
+        
+        [alert addAction:action];
+    }
+    
+    if ( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
+        
+            CLLocationCoordinate2D desCoordinate = [JZLocationConverter gcj02ToBd09:coordinate];//火星坐标转化为百度坐标
+        
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"百度地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            //我的位置代表起点位置为当前位置，也可以输入其他位置作为起点位置，如天安门
+            NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=name:%@|latlng:%f,%f&mode=driving&src=JumpMapDemo",addressName,desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            
+            DefLog(@"%@",urlString);
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            
+        }];
+        
+        [alert addAction:action];
+    }
+    
+    
+    if ( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
+        //coordinate = CLLocationCoordinate2DMake(40.057023, 116.307852);
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"高德地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            CLLocationCoordinate2D desCoordinate = coordinate;
+            
+            NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=applicationName&sid=BGVIS1&sname=%@&did=BGVIS2&dlat=%f&dlon=%f&dev=0&m=0&t=0",@"我的位置",desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//@"我的位置"可替换为@"终点名称"
+            
+            DefLog(@"%@",urlString);
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            
+        }];
+        
+        [alert addAction:action];
+    }
+    
+    
+    if ( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"谷歌地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            CLLocationCoordinate2D desCoordinate = coordinate;
+            
+            NSString *urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%f,%f&directionsmode=driving",appName,urlScheme,desCoordinate.latitude, desCoordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            
+            DefLog(@"%@",urlString);
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            
+        }];
+        
+        [alert addAction:action];
+    }
+    
+    
+    if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]])    {
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"腾讯地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            CLLocationCoordinate2D desCoordinate = coordinate;
+            
+            NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?type=drive&from=我的位置&to=%@&tocoord=%f,%f&policy=1&referer=%@", addressName, desCoordinate.latitude, desCoordinate.longitude, appName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            
+            DefLog(@"%@",urlString);
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            
+        }];
+        
+        [alert addAction:action];
+    }
+    
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:action];
+    
+//    [[self getCurrentVC] presentViewController:alert animated:YES completion:^{
+//
+//    }];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 //左滑页面
