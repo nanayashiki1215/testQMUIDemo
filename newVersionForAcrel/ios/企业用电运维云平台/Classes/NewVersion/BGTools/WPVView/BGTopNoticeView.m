@@ -283,7 +283,7 @@ static BGTopNoticeView * window;
 //    NSString *taskStr;
     
 //     NSString *pushType = [dict bg_StringForKeyNotNull:@"pushType"];
-//    if ([pushType isEqualToString:@"alarm"] || [pushType isEqualToString:<#(nonnull NSString *)#>]) {
+//    if ([pushType isEqualToString:@"alarm"] || [pushType isEqualToString:]) {
 //
 //    }
     self.titleText = [NSString changgeNonulWithString:dict[@"title"]];

@@ -33,9 +33,6 @@ typedef void (^didConfirm)(UIButton * button,NSDictionary *data);
 /**内容Label*/
 @property (nonatomic, strong) UILabel * messageTextLabel;
 
-
-
-
 /**确认按钮*/
 @property (nonatomic, strong) UIButton * confirmBtn;
 /**确认按钮文字*/
@@ -45,11 +42,11 @@ typedef void (^didConfirm)(UIButton * button,NSDictionary *data);
 /**取消按钮文字*/
 @property (nonatomic, copy) NSString * cancelBtnTitle;
 
-
 @property (nonatomic, copy) NSMutableArray * dataArray;
 
 @property (nonatomic, copy) NSDictionary * data;
 
+@property (nonatomic, assign)BOOL isShowing;
 
 + (instancetype)share;
 

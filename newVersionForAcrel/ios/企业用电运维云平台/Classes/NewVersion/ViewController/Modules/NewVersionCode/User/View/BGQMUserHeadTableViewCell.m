@@ -60,6 +60,8 @@
                    continue;
                }else if ([key isEqualToString:@"myLanguage"]){
                    continue;
+               }else if ([key isEqualToString:@"isOpenBoxInApp"]){
+                   continue;
                }
                else{
                    [defatluts removeObjectForKey:key];

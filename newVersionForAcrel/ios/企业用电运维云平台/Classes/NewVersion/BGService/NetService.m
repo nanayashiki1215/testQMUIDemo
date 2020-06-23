@@ -692,6 +692,8 @@ static NetService *_instance;
                      continue;
                  }else if ([key isEqualToString:@"myLanguage"]){
                      continue;
+                 }else if ([key isEqualToString:@"isOpenBoxInApp"]){
+                     continue;
                  }
                  else{
                      [defatluts removeObjectForKey:key];
@@ -736,6 +738,8 @@ static NetService *_instance;
                  }else if ([key isEqualToString:@"selectlanageArr"]){
                      continue;
                  }else if ([key isEqualToString:@"myLanguage"]){
+                     continue;
+                 }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                      continue;
                  }else{
                      [defatluts removeObjectForKey:key];

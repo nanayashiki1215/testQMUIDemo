@@ -57,11 +57,12 @@
             if ([self isValidPasswordString:self.confirmPassWord.text]) {
                 [self changePassWord];
             }else{
-                DefQuickAlert(@"密码必须是8-16位英文字母、数字、字符组合（不能是纯数字）", self);
+             DefQuickAlert(@"密码必须是8-16位英文字母、数字、字符组合（不能是纯数字）", self);
             }
         }
     }
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -199,6 +200,8 @@
                             }else if ([key isEqualToString:@"selectlanageArr"]){
                                 continue;
                             }else if ([key isEqualToString:@"myLanguage"]){
+                                continue;
+                            }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                                 continue;
                             }
                             else{

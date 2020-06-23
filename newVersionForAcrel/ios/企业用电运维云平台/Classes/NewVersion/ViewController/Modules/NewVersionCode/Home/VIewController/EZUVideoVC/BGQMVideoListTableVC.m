@@ -107,13 +107,16 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
             NSString *ysAppKey = [NSString changgeNonulWithString:platformdic[@"ysAppKey"]];
             NSString *ysToken = [NSString changgeNonulWithString:platformdic[@"ysToken"]];
             if (!ysAppKey && !ysToken) {
-                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+//                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
                 return ;
             }else if(!ysAppKey){
-                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+//                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
                 return ;
             }else if(!ysToken){
-                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+//                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
                 return ;
             }else{
                 //初始化
@@ -136,7 +139,8 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
         }
         weakSelf.allDataArray = [NSMutableArray arrayWithArray:[weakSelf.mutArray copy]];
         if (!weakSelf.mutArray.count) {
-            [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+             [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+//            [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
         }else{
             [weakSelf.tableView reloadData];
         }
@@ -635,6 +639,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 //跳转详情
 -(void)clickPlayDetailBtnInCell:(BGQMVideoTableViewCell *)cell withPushData:(NSDictionary *)param{
     if (self.mutArray.count>0) {
+        //点击了详情
         NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
         NSDictionary *deviceInfo = self.mutArray[indexP.row];
         NSString *deviceStr = [NSString changgeNonulWithString:deviceInfo[@"fVideokey"]];

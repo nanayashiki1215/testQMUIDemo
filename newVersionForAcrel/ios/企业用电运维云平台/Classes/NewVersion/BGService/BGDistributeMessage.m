@@ -126,69 +126,139 @@
                                     homeList = homeDic[@"nodes"];
                                 }
                             }
-                            if (homeList.count>0) {
-                                //347 待办事项
-                                NSString *taskid = [data bg_StringForKeyNotNull:@"fTaskid"];
-                                if(taskid){
-                                   NSString *fAction;
-                                   NSString *fFunctionurl;
-                                   for (NSDictionary *nodeDic in homeList) {
-                                       if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
-                                           fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
-                                           fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
-                                       }
-                                   }
-                                   if (fFunctionurl.length>0) {
-                                      BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-                                              NSString *filePath = [[NSBundle mainBundle] pathForResource:@"missionDetail" ofType:@"html" inDirectory:@"aDevices"];
-                                      nomWebView.isUseOnline = NO;
-                                      nomWebView.localUrlString = filePath;
-                                      nomWebView.showWebType = showWebTypeWithPush;
-                                      nomWebView.pathParamStr = taskid;
-                                      [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
-                                   }else{
-                                       BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
-                                       urlWebView.isUseOnline = YES;
-                                       if (versionURL.length>0) {
-                                           NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
-                                           NSString *str = [GetBaseURL stringByAppendingString:urlstring];
-                                           NSString *urlStr = [str stringByAppendingString:@"missionDetail.html"];
-                                           urlWebView.onlineUrlString = urlStr;
-                                           urlWebView.showWebType = showWebTypeWithPush;
-                                           urlWebView.pathParamStr = taskid;
-                                          [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                            NSString *isOrder = [NSString changgeNonulWithString:data[@"isOrder"]];
+                            if (isOrder && [isOrder isEqualToString:@"1"]) {
+                                DefLog(@"heiheihei");
+                                if (homeList.count>0) {
+                                        //357 抢单
+                                        NSString *taskid = [data bg_StringForKeyNotNull:@"fTaskid"];
+                                        if(taskid){
+                                           NSString *fAction;
+                                           NSString *fFunctionurl;
+                                           for (NSDictionary *nodeDic in homeList) {
+                                               if ([nodeDic[@"fCode"] isEqualToString:@"357"]) {
+                                                   fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                                                   fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                               }
+                                           }
+                                           if (fFunctionurl.length>0) {
+                                              BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                                                      NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RobBillLocation" ofType:@"html" inDirectory:@"aDevices"];
+                                              nomWebView.isUseOnline = NO;
+                                              nomWebView.localUrlString = filePath;
+                                              nomWebView.showWebType = showWebTypeWithPush;
+                                              nomWebView.pathParamStr = taskid;
+                                              [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                                           }else{
+                                               BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                                               urlWebView.isUseOnline = YES;
+                                               if (versionURL.length>0) {
+                                                   NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                                                   NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                                                   NSString *urlStr = [str stringByAppendingString:@"RobBillLocation.html"];
+                                                   urlWebView.onlineUrlString = urlStr;
+                                                   urlWebView.showWebType = showWebTypeWithPush;
+                                                   urlWebView.pathParamStr = taskid;
+                                                  [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                                                }
+                                           }
+                                        }else{
+                                            NSString *fAction;
+                                                        NSString *fFunctionurl;
+                                                        for (NSDictionary *nodeDic in homeList) {
+                                                            if ([nodeDic[@"fCode"] isEqualToString:@"357"]) {
+                                                                fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                                                                fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                                            }
+                                                        }
+                                                        if (fFunctionurl.length>0) {
+                                                           BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                                                                   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RobBillRecord" ofType:@"html" inDirectory:@"aDevices"];
+                                                           nomWebView.isUseOnline = NO;
+                                                           nomWebView.localUrlString = filePath;
+                                                           nomWebView.showWebType = showWebTypeDevice;
+                                                           //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                                            //               [self.navigationController pushViewController:nomWebView animated:YES];
+                                                             [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                                                        }else{
+                                                            BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                                                            urlWebView.isUseOnline = YES;
+                                                            if (versionURL.length>0) {
+                                                                NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                                                                NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                                                                NSString *urlStr = [str stringByAppendingString:fAction];
+                                                                urlWebView.onlineUrlString = urlStr;
+                                                                urlWebView.showWebType = showWebTypeDevice;
+                                                               [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                                                             }
+                                                        }
                                         }
-                                   }
-                                }else{
-                                    NSString *fAction;
-                                                NSString *fFunctionurl;
-                                                for (NSDictionary *nodeDic in homeList) {
-                                                    if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
-                                                        fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
-                                                        fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                    }
+                            }else{
+                                if (homeList.count>0) {
+                                    //347 待办事项
+                                    NSString *taskid = [data bg_StringForKeyNotNull:@"fTaskid"];
+                                    if(taskid){
+                                       NSString *fAction;
+                                       NSString *fFunctionurl;
+                                       for (NSDictionary *nodeDic in homeList) {
+                                           if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                                               fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                                               fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                           }
+                                       }
+                                       if (fFunctionurl.length>0) {
+                                          BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                                                  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"missionDetail" ofType:@"html" inDirectory:@"aDevices"];
+                                          nomWebView.isUseOnline = NO;
+                                          nomWebView.localUrlString = filePath;
+                                          nomWebView.showWebType = showWebTypeWithPush;
+                                          nomWebView.pathParamStr = taskid;
+                                          [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                                       }else{
+                                           BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                                           urlWebView.isUseOnline = YES;
+                                           if (versionURL.length>0) {
+                                               NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                                               NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                                               NSString *urlStr = [str stringByAppendingString:@"missionDetail.html"];
+                                               urlWebView.onlineUrlString = urlStr;
+                                               urlWebView.showWebType = showWebTypeWithPush;
+                                               urlWebView.pathParamStr = taskid;
+                                              [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                                            }
+                                       }
+                                    }else{
+                                        NSString *fAction;
+                                                    NSString *fFunctionurl;
+                                                    for (NSDictionary *nodeDic in homeList) {
+                                                        if ([nodeDic[@"fCode"] isEqualToString:@"347"]) {
+                                                            fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                                                            fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                                                        }
                                                     }
-                                                }
-                                                if (fFunctionurl.length>0) {
-                                                   BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-                                                           NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
-                                                   nomWebView.isUseOnline = NO;
-                                                   nomWebView.localUrlString = filePath;
-                                                   nomWebView.showWebType = showWebTypeDevice;
-                                                   //        self.tabBarController.hidesBottomBarWhenPushed = YES;
-                                    //               [self.navigationController pushViewController:nomWebView animated:YES];
-                                                     [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
-                                                }else{
-                                                    BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
-                                                    urlWebView.isUseOnline = YES;
-                                                    if (versionURL.length>0) {
-                                                        NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
-                                                        NSString *str = [GetBaseURL stringByAppendingString:urlstring];
-                                                        NSString *urlStr = [str stringByAppendingString:fAction];
-                                                        urlWebView.onlineUrlString = urlStr;
-                                                        urlWebView.showWebType = showWebTypeDevice;
-                                                       [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
-                                                     }
-                                                }
+                                                    if (fFunctionurl.length>0) {
+                                                       BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                                                               NSString *filePath = [[NSBundle mainBundle] pathForResource:@"todoItems" ofType:@"html" inDirectory:@"aDevices"];
+                                                       nomWebView.isUseOnline = NO;
+                                                       nomWebView.localUrlString = filePath;
+                                                       nomWebView.showWebType = showWebTypeDevice;
+                                                       //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+                                        //               [self.navigationController pushViewController:nomWebView animated:YES];
+                                                         [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                                                    }else{
+                                                        BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                                                        urlWebView.isUseOnline = YES;
+                                                        if (versionURL.length>0) {
+                                                            NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                                                            NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                                                            NSString *urlStr = [str stringByAppendingString:fAction];
+                                                            urlWebView.onlineUrlString = urlStr;
+                                                            urlWebView.showWebType = showWebTypeDevice;
+                                                           [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                                                         }
+                                                    }
+                                    }
                                 }
                             }
                         }

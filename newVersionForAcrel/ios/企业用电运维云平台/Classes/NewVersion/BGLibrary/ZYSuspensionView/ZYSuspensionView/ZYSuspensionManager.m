@@ -80,7 +80,7 @@ static ZYSuspensionManager *_instance;
 + (void)destroyWindowForKey:(NSString *)key
 {
     if (!key.length) {
-        NSAssert(0, @"ZYSuspensionManager: 传入的 key 值不对");
+//        NSAssert(0, @"ZYSuspensionManager: 传入的 key 值不对");
         return;
     }
 
