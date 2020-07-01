@@ -12,6 +12,7 @@
 #import "BGQMElectViewController.h"
 #import "BGUIWebViewController.h"
 #import "BGQMVideoListTableVC.h"
+#import "BGQMTrusteeshipViewController.h"
 
 @interface BGQMCategoryListConViewController ()< JXCategoryListCollectionContainerViewDataSource>
 @property (nonatomic, strong) JXCategoryTitleView *categoryView;
@@ -114,6 +115,11 @@
             videoListVC.ownNaviController = self.navigationController;
             return videoListVC;
         }
+    if (videoStr.length>0 && [videoStr isEqualToString:@"authVideoPlay"]) {
+        BGQMTrusteeshipViewController *videoListVC = [[BGQMTrusteeshipViewController alloc] init];
+       videoListVC.ownNaviController = self.navigationController;
+       return videoListVC;
+    }
 //    }
     NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
     NSString *iOSUrl = [NSString changgeNonulWithString:self.allDataArr[index][@"fFunctionfield"]];

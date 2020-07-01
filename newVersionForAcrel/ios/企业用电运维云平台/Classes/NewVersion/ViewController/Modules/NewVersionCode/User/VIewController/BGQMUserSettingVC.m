@@ -22,6 +22,7 @@
 //#import "WXApi.h"
 #import "BGQMChangeLanguageViewController.h"
 #import "BGUIWebViewController.h"
+#import "BGOnlyAuthWkViewController.h"
 #import "BGChangePasswordVC.h"
 #import "BGQMSafeViewController.h"
 
@@ -230,6 +231,8 @@
             imageName = @"userOwnPic6";
         }else if ([code isEqualToString:@"accountSecurity"]){
             imageName = @"userOwnPic9";
+        }else if ([code isEqualToString:@"EZAuth"]){
+            imageName = @"userOwnPic10";
         }
         else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
@@ -306,7 +309,27 @@
         else if ([code isEqualToString:@"settings"]){
                 BGQMUserSettingVC *themeVC = [[BGQMUserSettingVC alloc] init];
                 [self.navigationController pushViewController:themeVC animated:YES];
+        }else if ([code isEqualToString:@"EZAuth"]){
+            [self pushAuthorization];
         }
+}
+
+//跳转萤石云授权
+-(void)pushAuthorization{
+//    NSInteger subid;
+//    if (self.pushSubid) {
+//        subid = [self.pushSubid integerValue];
+//    } else {
+//        subid = [[UserManager manager].fsubID integerValue];
+//    }
+    BGOnlyAuthWkViewController *webview = [[BGOnlyAuthWkViewController alloc] init];
+    webview.isUseOnline = YES;
+    webview.onlineUrlString =   [NSString stringWithFormat:@"https://openauth.ys7.com/trust/device?client_id=cec0dca73dfc4782bc84375a57cd8170&response_type=code&state=test"];
+//    if (self.pushSubid) {
+        [self.navigationController pushViewController:webview animated:YES];
+//    }else{
+//        [self.ownNaviController pushViewController:webview animated:YES];
+//    }
 }
 
 //头部间隙

@@ -101,6 +101,7 @@
 		B62261282474C48800769416 /* BGQMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62261272474C48800769416 /* BGQMNavigationController.m */; };
 		B624D8D02317CAEA00A16F5A /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */; };
 		B626289E238F656300ED4825 /* BGDistributeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B626289D238F656300ED4825 /* BGDistributeMessage.m */; };
+		B6358CFE24A9CF1B00F480BD /* BGQMTrusteeshipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6358CFD24A9CF1B00F480BD /* BGQMTrusteeshipViewController.m */; };
 		B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */; };
 		B637965A22F1732D007AC38F /* JGUserFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */; };
 		B637965B22F1732D007AC38F /* JGPredicateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B637965622F1732C007AC38F /* JGPredicateMethod.m */; };
@@ -194,6 +195,7 @@
 		B66BA71222F27EE80027EE05 /* BGShowUrlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */; };
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
+		B676927A24AC1C03009A654E /* BGOnlyAuthWkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */; };
 		B679E327238FA828004818E6 /* QLPreviewController+autoTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B679E326238FA828004818E6 /* QLPreviewController+autoTitle.m */; };
 		B68AF11D237BD75800F51D0E /* BGQMMsgNotifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */; };
 		B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */; };
@@ -865,6 +867,8 @@
 		B624D8CF2317CAEA00A16F5A /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		B626289C238F656300ED4825 /* BGDistributeMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGDistributeMessage.h; sourceTree = "<group>"; };
 		B626289D238F656300ED4825 /* BGDistributeMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGDistributeMessage.m; sourceTree = "<group>"; };
+		B6358CFC24A9CF1B00F480BD /* BGQMTrusteeshipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMTrusteeshipViewController.h; sourceTree = "<group>"; };
+		B6358CFD24A9CF1B00F480BD /* BGQMTrusteeshipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMTrusteeshipViewController.m; sourceTree = "<group>"; };
 		B637964722F1251D007AC38F /* BGQMUserHeadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserHeadTableViewCell.h; sourceTree = "<group>"; };
 		B637964822F1251D007AC38F /* BGQMUserHeadTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMUserHeadTableViewCell.m; sourceTree = "<group>"; };
 		B637965122F1732C007AC38F /* JGUserFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGUserFeedBackViewController.m; sourceTree = "<group>"; };
@@ -1039,6 +1043,8 @@
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
 		B6760457239E1FC700AA8C1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B6760458239E1FC900AA8C1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B676927824AC1C03009A654E /* BGOnlyAuthWkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGOnlyAuthWkViewController.h; sourceTree = "<group>"; };
+		B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGOnlyAuthWkViewController.m; sourceTree = "<group>"; };
 		B679E325238FA828004818E6 /* QLPreviewController+autoTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QLPreviewController+autoTitle.h"; sourceTree = "<group>"; };
 		B679E326238FA828004818E6 /* QLPreviewController+autoTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "QLPreviewController+autoTitle.m"; sourceTree = "<group>"; };
 		B68AF11B237BD75800F51D0E /* BGQMMsgNotifViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMMsgNotifViewController.h; sourceTree = "<group>"; };
@@ -3619,6 +3625,8 @@
 				B6B1B62F229536A700F1B5D2 /* BGLoginViewController.xib */,
 				B64376442293D25100A92D74 /* BGUIWebViewController.h */,
 				B64376452293D25100A92D74 /* BGUIWebViewController.m */,
+				B676927824AC1C03009A654E /* BGOnlyAuthWkViewController.h */,
+				B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */,
 				B643D6F4247B52E800D455B4 /* energy */,
 				B6380A9222CB2084002500E0 /* Dis-test */,
 				B6A92DFF22BA222500D16AE9 /* scroll */,
@@ -4074,6 +4082,8 @@
 				B6EB9BBA22C99FDB00136A6C /* EZUIKitViewController.xib */,
 				B6EB9BBD22C99FDB00136A6C /* BGQMVideoListTableVC.h */,
 				B6EB9BC722C99FDB00136A6C /* BGQMVideoListTableVC.m */,
+				B6358CFC24A9CF1B00F480BD /* BGQMTrusteeshipViewController.h */,
+				B6358CFD24A9CF1B00F480BD /* BGQMTrusteeshipViewController.m */,
 				B6EB9BC022C99FDB00136A6C /* BGVideoStartViewController.h */,
 				B6EB9BB922C99FDB00136A6C /* BGVideoStartViewController.m */,
 				B6EB9BC922C99FDB00136A6C /* BGVideoStartViewController.xib */,
@@ -4303,6 +4313,7 @@
 				B6C768DE22A0B8DC00DA675D /* QDFontPointSizeAndLineHeightViewController.m in Sources */,
 				B6E15694228D419800CB4A5F /* MJRefreshGifHeader.m in Sources */,
 				1449480E1EE10CB70026AA73 /* JustepURLProtocol.m in Sources */,
+				B6358CFE24A9CF1B00F480BD /* BGQMTrusteeshipViewController.m in Sources */,
 				1449480F1EE10CB70026AA73 /* NSData+AES128.m in Sources */,
 				B62251182420B0720041E709 /* EZInputSerialViewController.m in Sources */,
 				B6E15697228D419800CB4A5F /* MJRefreshBackFooter.m in Sources */,
@@ -4609,6 +4620,7 @@
 				B62251462420B2A30041E709 /* UILabel+DDKit.m in Sources */,
 				B657DD7422927AEC0009BCB0 /* UIView+Layout.m in Sources */,
 				B6E155F2228CF09C00CB4A5F /* UIButton+BGExtension.m in Sources */,
+				B676927A24AC1C03009A654E /* BGOnlyAuthWkViewController.m in Sources */,
 				B68D2CFA22A646C1001C00EC /* JXCategoryNumberCellModel.m in Sources */,
 				B6E15696228D419800CB4A5F /* MJRefreshHeader.m in Sources */,
 				B6E1568E228D419800CB4A5F /* MJRefreshBackNormalFooter.m in Sources */,
@@ -4876,6 +4888,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "企业用电运维云平台/企业用电运维云平台-Prefix.pch";
@@ -4933,6 +4946,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/RealmSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "企业用电运维云平台/企业用电运维云平台-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;

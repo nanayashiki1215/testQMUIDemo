@@ -12,7 +12,7 @@
 #define kLeanProportion (8/55.0)
 #define kVerticalMargin 15.0
 
-
+static ZYSuspensionView *_instance;
 //static ZYSuspensionView *_susView = nil;
 
 @implementation ZYSuspensionView
@@ -66,6 +66,27 @@
 //
 //    return _susView;
 //}
+
++ (instancetype)shareInstance
+{
+    if (!_instance) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _instance = [[ZYSuspensionView alloc] init];
+        });
+    }
+    return _instance;
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [super allocWithZone:zone];
+    });
+    return _instance;
+}
+
 
 - (instancetype)initWithFrame:(CGRect)frame color:(UIColor*)color delegate:(id<ZYSuspensionViewDelegate>)delegate
 {

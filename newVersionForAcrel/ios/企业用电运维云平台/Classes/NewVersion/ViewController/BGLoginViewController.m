@@ -275,6 +275,10 @@
     }else{
         orderListUrl = self.addressTextField.text;
     }
+    NSString *lastString = [orderListUrl substringFromIndex:orderListUrl.length-1];
+   if([lastString isEqualToString:@"/"] || [lastString isEqualToString:@"、"] ){
+       orderListUrl = [orderListUrl substringToIndex:[orderListUrl length]-1];
+   }
    
     [DefNSUD setObject:orderListUrl forKey:kBaseUrlString];
     DefNSUDSynchronize
@@ -286,6 +290,7 @@
     }else{
         user.password = @"";
     }
+   
     user.orderListUrl = orderListUrl;
     NSString *uniqueProjectip = orderListUrl;
     if (uniqueProjectip) {
@@ -299,13 +304,13 @@
             uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
         }
     }
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"fLoginname":self.usenameTextField.text,
                             @"fPassword":self.pwdTextField.text,
                             @"deviceType":@"IOS",
                             @"uniqueProjectip":uniqueProjectip
-                            
-                        };
+                          };
     [NetService bg_postWithPath:BGUserLoginAddress params:param success:^(id respObjc) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
@@ -403,7 +408,6 @@
             [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址" toView:self.view withAfterDelay:2.0f];
         }
     }];
-//    [NetService bg_postWithPath:@"http://192.168.112.210:8080/web_manage/login.do" params:@{@"":@""}
 }
 
 //- (void)setDefaultRealmForUser:(NSString *)username {

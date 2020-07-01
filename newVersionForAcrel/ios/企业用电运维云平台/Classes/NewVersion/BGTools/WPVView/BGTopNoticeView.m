@@ -28,7 +28,28 @@ static BGTopNoticeView * window;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        window  =  [[BGTopNoticeView alloc] init];
+        if(window == nil){
+            window  =  [[BGTopNoticeView alloc] init];
+        }
+    });
+    return window;
+}
+
++(instancetype)allocWithZone:(struct _NSZone *)zone
+{
+//    @synchronized (self) {
+//        // 为了防止多线程同时访问对象，造成多次分配内存空间，所以要加上线程锁
+//        if (_instance == nil) {
+//            _instance = [super allocWithZone:zone];
+//        }
+//        return _instance;
+//    }
+    // 也可以使用一次性代码
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (window == nil) {
+            window = [super allocWithZone:zone];
+        }
     });
     return window;
 }
@@ -38,6 +59,7 @@ static BGTopNoticeView * window;
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.frame = [UIScreen mainScreen].bounds;
+        
     }
     return self;
 }
@@ -47,6 +69,7 @@ static BGTopNoticeView * window;
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.windowLevel = UIWindowLevelAlert + 10000;
+        
     }
     return self;
 }
@@ -211,6 +234,7 @@ static BGTopNoticeView * window;
 }
 #pragma mark - 公共方法
 - (void)show {
+    
     [self disposeData];
     [self createView];
     
@@ -223,13 +247,13 @@ static BGTopNoticeView * window;
     
     [self.dataArray removeObject:self.data];
     
-    if (self.dataArray.count>0) {
-        self.data = self.dataArray.lastObject;
-        [self show];
-    }else{
+//    if (self.dataArray.count>0) {
+//        self.data = self.dataArray.lastObject;
+//        [self show];
+//    }else{
         [self resignKeyWindow];
         self.hidden = YES;
-    }
+//    }
     
 }
 

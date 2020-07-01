@@ -8,7 +8,7 @@
 #import <QMUIKit/QMUIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+//设置页面
 @interface BGQMUserSettingVC : QMUICommonViewController
 @property(nonatomic,strong)NSString *aboutMenuID;
 @end

@@ -1,12 +1,11 @@
 //
-//  BGQMVideoListTableVC.m
-//  变电所运维
+//  BGQMTrusteeshipViewController.m
+//  企业用电运维云平台
 //
-//  Created by Acrel on 2019/6/6.
-//  
+//  Created by Acrel on 2020/6/29.
 //
 
-#import "BGQMVideoListTableVC.h"
+#import "BGQMTrusteeshipViewController.h"
 #import "BGQMVideoTableViewCell.h"
 #import "EZUIKitViewController.h"
 #import "Toast+UIView.h"
@@ -20,7 +19,7 @@
 #import "EZPlaybackViewController.h"
 #import "BGUIWebViewController.h"
 
-@interface BGQMVideoListTableVC ()<BGQMVideoTableViewCellDelegate,QMUISearchControllerDelegate,QMUINavigationTitleViewDelegate,UISearchBarDelegate>
+@interface BGQMTrusteeshipViewController ()<BGQMVideoTableViewCellDelegate,QMUISearchControllerDelegate,QMUINavigationTitleViewDelegate,UISearchBarDelegate>
 @property(nonatomic, strong) QMUIPopupMenuView *popupMenuView;
 @property(nonatomic, strong) NSMutableArray *mutArray;//需要展示的数据
 @property(nonatomic, strong) NSMutableArray *searchArray;//搜索后的数据
@@ -33,9 +32,10 @@
 
 @end
 
+
 static NSString *videoCellIdentifier = @"ezvideoCell";
 
-@implementation BGQMVideoListTableVC
+@implementation BGQMTrusteeshipViewController
 
 - (void)didInitializeWithStyle:(UITableViewStyle)style {
     [super didInitializeWithStyle:style];
@@ -100,29 +100,25 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
     }
     NSDictionary *param = @{@"fSubid":@(subid)};
     __weak __typeof(self)weakSelf = self;
-    [NetService bg_getWithTokenWithPath:getVideoInfoList params:param success:^(id respObjc) {
+    [NetService bg_getWithTokenWithPath:getAuthVideoInfoList params:param success:^(id respObjc) {
         DefLog(@"respObjc:%@",respObjc);
         NSDictionary *platformdic = respObjc[@"data"][@"platformSetList"];
         if (platformdic) {
-            NSString *ysAppKey = [NSString changgeNonulWithString:platformdic[@"ysAppKey"]];
+//            NSString *ysAppKey = [NSString changgeNonulWithString:platformdic[@"ysAppKey"]];
             NSString *ysToken = [NSString changgeNonulWithString:platformdic[@"ysToken"]];
-            if (!ysAppKey && !ysToken) {
-                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
-//                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
-                return ;
-            }else if(!ysAppKey){
-                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
-//                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+            if (!ysToken) {
+//                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
                 return ;
             }else if(!ysToken){
-                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
-//                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+//                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
                 return ;
             }else{
                 //初始化
-                [EZUIKit initWithAppKey:ysAppKey];
-                [EZUIKit setAccessToken:@"da.93boa3th4km39wbj2xul8vrh4ph84di6-1e6vdy7mcu-0qfzfsg-kv52kvpsx"];
-//                [EZUIKit setAccessToken:ysToken];
+                [EZUIKit initWithAppKey:@"cec0dca73dfc4782bc84375a57cd8170"];
+                [EZUIKit setAccessToken:ysToken];
+
             }
             NSArray *VideoinfoList = respObjc[@"data"][@"VideoinfoList"];
             if (VideoinfoList.count>0) {
@@ -140,8 +136,8 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
         }
         weakSelf.allDataArray = [NSMutableArray arrayWithArray:[weakSelf.mutArray copy]];
         if (!weakSelf.mutArray.count) {
-             [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
-//            [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+//             [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+            [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
         }else{
             [weakSelf.tableView reloadData];
         }
@@ -618,7 +614,6 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
                  }
                 backVC.deviceInfo = deviceInfo;
                 if (self.pushSubid) {
-                    
                     [self.navigationController pushViewController:backVC animated:YES];
                 }else{
                     [self.ownNaviController pushViewController:backVC animated:YES];
@@ -709,8 +704,5 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
 //    [self.tableView beginUpdates];
 //    [self.tableView endUpdates];
 }
-
-
-
 
 @end

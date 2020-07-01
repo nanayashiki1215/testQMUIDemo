@@ -109,7 +109,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }
 
     // QMUIConsole 默认只在 DEBUG 下会显示，作为 Demo，改为不管什么环境都允许显示
-    [QMUIConsole sharedInstance].canShow = NO;
+//    [QMUIConsole sharedInstance].canShow = NO;
     
     // QD自定义的全局样式渲染
 //    [QDCommonUI renderGlobalAppearances];
