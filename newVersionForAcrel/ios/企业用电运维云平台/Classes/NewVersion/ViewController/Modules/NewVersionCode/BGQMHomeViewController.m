@@ -495,6 +495,9 @@
         NSString *number;
         if (gridID == 347) {
             number = [UserManager manager].privateUnreadNumStr;
+            if (number && [number integerValue]>0) {
+               [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:0 withShowText:number];
+            }
         }else{
             number = @"0";
         }
@@ -543,6 +546,7 @@
     isSkip = YES;
     if (gridItem.gridId == 347) {
         [UserManager manager].privateUnreadNumStr = @"0";
+        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:@""];
     }
     //查看是否有选中的格子，并且比较点击的格子是否就是选中的格子
     for (NSInteger i = 0; i < [_gridListArray count]; i++) {

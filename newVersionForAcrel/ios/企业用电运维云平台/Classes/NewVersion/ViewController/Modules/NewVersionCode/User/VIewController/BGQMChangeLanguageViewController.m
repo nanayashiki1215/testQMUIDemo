@@ -122,7 +122,7 @@
                     [weakSelf changeLanguageTo:@"zh-Hans"];
                 } else {
                     [weakSelf changeLanguageTo:@"en"];
-            //        [self changeLanguageTo:@"English"];
+//                    [weakSelf changeLanguageTo:@"English"];
                 }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {

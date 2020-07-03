@@ -538,6 +538,13 @@
         }else{
             isOpenTrack = @"0";
         }
+        //应用内展示
+        bool openBoxInApp;
+        if (user.isOpenBoxInApp && user.isOpenBoxInApp == YES) {
+            openBoxInApp = true;
+        }else{
+            openBoxInApp = false;
+        }
 //       window.webkit.messageHandlers.getLocation.postMessage("");
 //       loc = localStorage.getItem("locationStrJS");
         if ([self.isPushEnergy isEqualToString:@"1"]) {
@@ -551,7 +558,7 @@
         }else if (self.menuId.length>0) {
            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
         }else{
-           jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,user.bguserId,languageType,isOpenTrack];
+            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@','isOpenBoxInApp':'%d'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,user.bguserId,languageType,isOpenTrack,openBoxInApp];
         }
         //用于进行JavaScript注入
         WKUserScript *wkUScript2 = [[WKUserScript alloc] initWithSource:jsStartString injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];

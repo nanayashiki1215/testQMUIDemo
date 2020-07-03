@@ -58,7 +58,6 @@
 		B61E2140248E1DCC0008C9CA /* WPAlertControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B61E213C248E1DCB0008C9CA /* WPAlertControl.m */; };
 		B61E2143248E25BD0008C9CA /* BGTopNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B61E2142248E25BC0008C9CA /* BGTopNoticeView.m */; };
 		B620CA312490C20A0048E5F9 /* BGChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B620CA2F2490C20A0048E5F9 /* BGChangePasswordVC.m */; };
-		B62250CF2420AF9A0041E709 /* EZMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B62250CE2420AF9A0041E709 /* EZMain.storyboard */; };
 		B622510C2420B0720041E709 /* EZCameraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D32420B0710041E709 /* EZCameraTableViewController.m */; };
 		B622510D2420B0720041E709 /* EZWifiConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D42420B0710041E709 /* EZWifiConfigViewController.m */; };
 		B622510E2420B0720041E709 /* EZMessagePlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62250D52420B0710041E709 /* EZMessagePlaybackViewController.m */; };
@@ -193,6 +192,9 @@
 		B66BA70C22F275270027EE05 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA70622F275270027EE05 /* SDBrowserImageView.m */; };
 		B66BA70F22F27D400027EE05 /* BGCreatTrendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA70D22F27D400027EE05 /* BGCreatTrendsModel.m */; };
 		B66BA71222F27EE80027EE05 /* BGShowUrlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */; };
+		B672372624AD6D8B00EFE5C9 /* EZMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B672372824AD6D8B00EFE5C9 /* EZMain.storyboard */; };
+		B672373424AD835A00EFE5C9 /* BGLogFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B672373324AD835A00EFE5C9 /* BGLogFirstViewController.m */; };
+		B672373724AD83E000EFE5C9 /* BGLogSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */; };
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
 		B676927A24AC1C03009A654E /* BGOnlyAuthWkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */; };
@@ -781,7 +783,6 @@
 		B61E2142248E25BC0008C9CA /* BGTopNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTopNoticeView.m; sourceTree = "<group>"; };
 		B620CA2E2490C2090048E5F9 /* BGChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGChangePasswordVC.h; sourceTree = "<group>"; };
 		B620CA2F2490C20A0048E5F9 /* BGChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGChangePasswordVC.m; sourceTree = "<group>"; };
-		B62250CE2420AF9A0041E709 /* EZMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EZMain.storyboard; sourceTree = "<group>"; };
 		B62250D12420B0710041E709 /* EZWifiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWifiInfoViewController.h; sourceTree = "<group>"; };
 		B62250D22420B0710041E709 /* EZCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZCalendarViewController.h; sourceTree = "<group>"; };
 		B62250D32420B0710041E709 /* EZCameraTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZCameraTableViewController.m; sourceTree = "<group>"; };
@@ -880,7 +881,6 @@
 		B637965822F1732C007AC38F /* JGPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		B637965922F1732C007AC38F /* JGPredicateMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPredicateMethod.h; sourceTree = "<group>"; };
 		B6380A9222CB2084002500E0 /* Dis-test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Dis-test"; sourceTree = "<group>"; };
-		B6392CB92498613E00A7DB1C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/BGChangePasswordVC.xib"; sourceTree = "<group>"; };
 		B63B00D022B0967E004E070F /* BGQMHomeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMHomeHeadView.h; sourceTree = "<group>"; };
 		B63B00D122B0967E004E070F /* BGQMHomeHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMHomeHeadView.m; sourceTree = "<group>"; };
 		B63B00D522B099C2004E070F /* BGQMNewHomeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMNewHomeTableViewController.h; sourceTree = "<group>"; };
@@ -907,7 +907,6 @@
 		B645F30622AF3C2B00D5420A /* SWPinYinHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPinYinHeader.h; sourceTree = "<group>"; };
 		B64A4F022491C34700A5F4AF /* BGQMSafeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMSafeViewController.h; sourceTree = "<group>"; };
 		B64A4F032491C34700A5F4AF /* BGQMSafeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSafeViewController.m; sourceTree = "<group>"; };
-		B64A96E624985DF600A4DD88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BGChangePasswordVC.xib; sourceTree = "<group>"; };
 		B64A96EA24985DF900A4DD88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BGChangePasswordVC.xib; sourceTree = "<group>"; };
 		B64BB8BD24515F23003833F9 /* BGQMUserSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMUserSettingVC.h; sourceTree = "<group>"; };
 		B64BB8BE24515F23003833F9 /* BGQMUserSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMUserSettingVC.m; sourceTree = "<group>"; };
@@ -1039,6 +1038,15 @@
 		B66BA70E22F27D400027EE05 /* BGCreatTrendsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGCreatTrendsModel.h; sourceTree = "<group>"; };
 		B66BA71022F27EE80027EE05 /* BGShowUrlModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGShowUrlModel.h; sourceTree = "<group>"; };
 		B66BA71122F27EE80027EE05 /* BGShowUrlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGShowUrlModel.m; sourceTree = "<group>"; };
+		B672372724AD6D8B00EFE5C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EZMain.storyboard; sourceTree = "<group>"; };
+		B672372C24AD6D9000EFE5C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EZMain.strings; sourceTree = "<group>"; };
+		B672372E24AD6DAC00EFE5C9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EZMain.strings"; sourceTree = "<group>"; };
+		B672372F24AD73CD00EFE5C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BGChangePasswordVC.strings; sourceTree = "<group>"; };
+		B672373024AD741700EFE5C9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/BGChangePasswordVC.strings"; sourceTree = "<group>"; };
+		B672373224AD835A00EFE5C9 /* BGLogFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGLogFirstViewController.h; sourceTree = "<group>"; };
+		B672373324AD835A00EFE5C9 /* BGLogFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGLogFirstViewController.m; sourceTree = "<group>"; };
+		B672373524AD83E000EFE5C9 /* BGLogSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGLogSecondViewController.h; sourceTree = "<group>"; };
+		B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGLogSecondViewController.m; sourceTree = "<group>"; };
 		B6733F3E22B8D77A005B1DDE /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
 		B6760457239E1FC700AA8C1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -2205,7 +2213,7 @@
 			isa = PBXGroup;
 			children = (
 				B62250D02420B0710041E709 /* UIViewControllers */,
-				B62250CE2420AF9A0041E709 /* EZMain.storyboard */,
+				B672372824AD6D8B00EFE5C9 /* EZMain.storyboard */,
 			);
 			path = EZTalkView;
 			sourceTree = "<group>";
@@ -3623,6 +3631,10 @@
 				B6E1557D228CED3A00CB4A5F /* BGLoginViewController.h */,
 				B6E1557E228CED3A00CB4A5F /* BGLoginViewController.m */,
 				B6B1B62F229536A700F1B5D2 /* BGLoginViewController.xib */,
+				B672373224AD835A00EFE5C9 /* BGLogFirstViewController.h */,
+				B672373324AD835A00EFE5C9 /* BGLogFirstViewController.m */,
+				B672373524AD83E000EFE5C9 /* BGLogSecondViewController.h */,
+				B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */,
 				B64376442293D25100A92D74 /* BGUIWebViewController.h */,
 				B64376452293D25100A92D74 /* BGUIWebViewController.m */,
 				B676927824AC1C03009A654E /* BGOnlyAuthWkViewController.h */,
@@ -4211,7 +4223,7 @@
 				B6A92DFE22B9D03300D16AE9 /* assets in Resources */,
 				B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */,
 				B68D2D3722A65E2A001C00EC /* app_item_bg.png in Resources */,
-				B62250CF2420AF9A0041E709 /* EZMain.storyboard in Resources */,
+				B672372624AD6D8B00EFE5C9 /* EZMain.storyboard in Resources */,
 				B68D2D2622A656F1001C00EC /* placeholder.png in Resources */,
 				B6CA22A422C09F1B00AAA1CA /* BGHomeViewController.xib in Resources */,
 				B6E1560D228CF32E00CB4A5F /* NativeImg.xcassets in Resources */,
@@ -4650,6 +4662,7 @@
 				B626289E238F656300ED4825 /* BGDistributeMessage.m in Sources */,
 				B6E155C7228CEDF900CB4A5F /* SKControllerTools.m in Sources */,
 				B6C768C722A0B8DC00DA675D /* QDOrientationViewController.m in Sources */,
+				B672373424AD835A00EFE5C9 /* BGLogFirstViewController.m in Sources */,
 				B6C768A822A0B8DC00DA675D /* QDCommonViewController.m in Sources */,
 				B6E15652228D418700CB4A5F /* NSArray+MASAdditions.m in Sources */,
 				B657DDDC22927C760009BCB0 /* SDWebImageImageIOCoder.m in Sources */,
@@ -4709,6 +4722,7 @@
 				B622510D2420B0720041E709 /* EZWifiConfigViewController.m in Sources */,
 				B6E155B8228CEDF900CB4A5F /* CompputeTools.m in Sources */,
 				B622511C2420B0720041E709 /* EZWifiTipsViewController.m in Sources */,
+				B672373724AD83E000EFE5C9 /* BGLogSecondViewController.m in Sources */,
 				B6B8809723B98A8B00197FF6 /* ZYSuspensionManager.m in Sources */,
 				B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */,
 				B6C768F522A0B8DC00DA675D /* QDImagePreviewExampleViewController.m in Sources */,
@@ -4787,11 +4801,21 @@
 		B64A96E724985DF600A4DD88 /* BGChangePasswordVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B64A96E624985DF600A4DD88 /* en */,
 				B64A96EA24985DF900A4DD88 /* Base */,
-				B6392CB92498613E00A7DB1C /* zh-Hans */,
+				B672372F24AD73CD00EFE5C9 /* en */,
+				B672373024AD741700EFE5C9 /* zh-Hans */,
 			);
 			name = BGChangePasswordVC.xib;
+			sourceTree = "<group>";
+		};
+		B672372824AD6D8B00EFE5C9 /* EZMain.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B672372724AD6D8B00EFE5C9 /* Base */,
+				B672372C24AD6D9000EFE5C9 /* en */,
+				B672372E24AD6DAC00EFE5C9 /* zh-Hans */,
+			);
+			name = EZMain.storyboard;
 			sourceTree = "<group>";
 		};
 		B69F7E2822FBB9E5005B0B03 /* CSAboutViewController.xib */ = {

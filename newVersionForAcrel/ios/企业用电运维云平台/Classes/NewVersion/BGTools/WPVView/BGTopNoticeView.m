@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIButton * okBtn;
 @property (nonatomic, strong) UIButton * bacBtn;
+@property (nonatomic, strong) UIButton * settingBtn;
 
 @property (nonatomic, strong) UIView * bgView;
 
@@ -107,6 +108,17 @@ static BGTopNoticeView * window;
     return _titleTextLabel;
 }
 
+- (UIButton *)settingBtn{
+    if (!_settingBtn) {
+        _settingBtn = [[UIButton alloc] init];
+        [_settingBtn setImage:[UIImage imageNamed:@"closeBtn"] forState:UIControlStateNormal];
+        [_settingBtn addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
+        _settingBtn.layer.cornerRadius = 5;
+        [self.bgView addSubview:_settingBtn];
+    }
+    return _settingBtn;
+}
+
 -(UIView *)line{
     if (!_line) {
         _line = [[UIView alloc] init];
@@ -186,8 +198,15 @@ static BGTopNoticeView * window;
     [self.titleTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(8);
         make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-10);
+        make.right.mas_equalTo(-22);
         make.height.mas_equalTo(24);
+    }];
+    
+    [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(10);
+        make.left.mas_equalTo(self.titleTextLabel.mas_right).with.offset(0);
+        make.height.mas_equalTo(20);
+        make.width.mas_equalTo(20);
     }];
     
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -227,11 +246,45 @@ static BGTopNoticeView * window;
         make.height.mas_equalTo(32);
         make.bottom.mas_equalTo(-29);
     }];
+    
+    
 }
 - (void)backClick
 {
     [self dismiss];
 }
+
+-(void)settingClick{
+        
+//        __weak __typeof(self)weakSelf = self;
+//        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+                    [UserManager manager].isOpenBoxInApp = NO;
+                    [self dismiss];
+                    [QMUITips showInfo:DefLocalizedString(@"closeTopNotice") detailText:DefLocalizedString(@"closeTopNoticeDetail") inView:[UIApplication sharedApplication].keyWindow hideAfterDelay:3];
+    
+//    MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+//    progressHUD.label.text = @"你已关闭应用内消息展示的功能，如需开启可前往\"用户\"->\"设置\"->\"消息通知\"，自行开启。";
+//
+                    
+//    [MBProgressHUD showSuccess:@"你已关闭应用内消息展示的功能，如需开启可前往\"用户\"->\"设置\"->\"消息通知\"，自行开启。"];
+    
+    
+//        }];
+//
+//        QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Cancel") style:QMUIAlertActionStyleCancel handler:nil];
+//
+//       QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"关闭应用内消息展示" message:@"是否在应用打开时，关闭应用内消息展示？" preferredStyle:QMUIAlertControllerStyleAlert];
+//       [alertController addAction:action];
+//       [alertController addAction:action2];
+//
+//       QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+//       visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
+//       alertController.mainVisualEffectView = visualEffectView;
+//       alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
+//       alertController.alertButtonBackgroundColor = nil;
+//       [alertController showWithAnimated:YES];
+}
+
 #pragma mark - 公共方法
 - (void)show {
     

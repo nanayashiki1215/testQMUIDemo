@@ -19,11 +19,14 @@
             NSString *pushType = [dict bg_StringForKeyNotNull:@"pushType"];
             if([pushType isEqualToString:@"alarm"]){
                  [self JudgeWhetherGetUnreadWarningMessage];
-                 BGWeakSelf;
-                 NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
-               //调用接口查询 显示顶部推送消息
-               if (logid && [UserManager manager].isOpenBoxInApp) {
-                   [self showTopNoticeView:dict];
+
+//                 NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+//               //调用接口查询 显示顶部推送消息
+//               if (logid && [UserManager manager].isOpenBoxInApp) {
+//                   [self showTopNoticeView:dict];
+//                   }
+                   
+                   //                 BGWeakSelf;
 //                   [NetService bg_getWithTokenWithPath:@"/getAlarmEventLogById" params:@{@"fAlarmeventlogid":logid} success:^(id respObjc) {
 //                       NSDictionary *data = [respObjc objectForKeyNotNull:kdata];
 //                       NSDictionary *alarmEventLogById = data[@"alarmEventLogById"];
@@ -35,45 +38,27 @@
 //                    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //
 //                    }];
-               }
+               
               }else if ([pushType isEqualToString:@"communication"]){
                  [self JudgeWhetherGetUnreadWarningMessage];
-                  BGWeakSelf;
-                    NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
+//                  BGWeakSelf;
+//                  NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
                   //调用接口查询 显示顶部推送消息
-                  if (logid && [UserManager manager].isOpenBoxInApp) {
-                      [self showTopNoticeView:dict];
-//                      [NetService bg_getWithTokenWithPath:@"/getAlarmEventLogById" params:@{@"fAlarmeventlogid":logid} success:^(id respObjc) {
-//                          NSDictionary *data = [respObjc objectForKeyNotNull:kdata];
-//                          NSDictionary *alarmEventLogById = data[@"alarmEventLogById"];
-//                          if (alarmEventLogById) {
-//                              NSMutableDictionary * mutiData = [data mutableCopy];
-//                              [mutiData setValue:@"communication" forKey:@"pushType"];
-//                              [weakSelf showTopNoticeView:mutiData];
-//                          }
-//                       } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-//
-//                       }];
-                  }
+//                  if (logid && [UserManager manager].isOpenBoxInApp) {
+//                      [self showTopNoticeView:dict];
+//                  }
               }else if ([pushType isEqualToString:@"work"]){
                  NSInteger num = [[UserManager manager].privateUnreadNumStr integerValue];
-                 [UserManager manager].privateUnreadNumStr = [NSString stringWithFormat:@"%ld",(long)num+1];
+                  NSString *workNum = [NSString stringWithFormat:@"%ld",(long)num+1];
+                 [UserManager manager].privateUnreadNumStr = workNum;
+                 [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:0 withShowText:workNum];
+                  
                  [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; //清除角标
-                BGWeakSelf;
+//                BGWeakSelf;
                 NSString *taskID = [dict bg_StringForKeyNotNull:@"fTaskid"];
                 if (taskID && [UserManager manager].isOpenBoxInApp) {
                      [self showTopNoticeView:dict];
-//                       [NetService bg_getWithTokenWithPath:@"/selectTaskByTaskId" params:@{@"taskId":taskID} success:^(id respObjc) {
-//                           NSDictionary *data = [respObjc objectForKeyNotNull:kdata];
-////                           NSDictionary *alarmEventLogById = data[@"alarmEventLogById"];
-//                           if (data) {
-//                               NSMutableDictionary * mutiData = [data mutableCopy];
-//                               [mutiData setValue:@"work" forKey:@"pushType"];
-//                               [weakSelf showTopNoticeView:mutiData];
-//                           }
-//                        } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-//
-//                        }];
+
                    }
               }
         }else{
@@ -319,6 +304,7 @@
                        }
                    }
                 if (sum>0) {
+                    
                      UserManager *user = [UserManager manager];
                      NSArray *uiArray = user.rootMenuData[@"rootMenu"];
                      if (uiArray.count>0) {

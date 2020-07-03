@@ -416,11 +416,11 @@
         
             case 1:
                 self.currentHDStatus.hidden = NO;
-                self.currentHDStatus.text = @"当前解码状态: 软解码";
+                self.currentHDStatus.text = DefLocalizedString(@"Softdecoding");
                 break;
             case 2:
                 self.currentHDStatus.hidden = NO;
-                self.currentHDStatus.text = @"当前解码状态: 硬解码";
+                self.currentHDStatus.text = DefLocalizedString(@"Harddecoding");
                 break;
             default:
                 break;

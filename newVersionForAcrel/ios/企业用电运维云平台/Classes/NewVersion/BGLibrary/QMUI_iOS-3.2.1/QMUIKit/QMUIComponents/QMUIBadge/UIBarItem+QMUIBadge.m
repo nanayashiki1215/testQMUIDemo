@@ -100,7 +100,16 @@
 static char kAssociatedObjectKey_badgeInteger;
 - (void)setQmui_badgeInteger:(NSUInteger)qmui_badgeInteger {
     objc_setAssociatedObject(self, &kAssociatedObjectKey_badgeInteger, @(qmui_badgeInteger), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.qmui_badgeString = qmui_badgeInteger > 0 ? [NSString stringWithFormat:@"%@", @(qmui_badgeInteger)] : nil;
+    NSString *badgeStr = nil;
+    if (qmui_badgeInteger>0) {
+        if (qmui_badgeInteger>99) {
+            badgeStr = [NSString stringWithFormat:@"%@", @"99+"];
+        }else{
+            badgeStr = [NSString stringWithFormat:@"%@", @(qmui_badgeInteger)];
+        }
+    }
+    self.qmui_badgeString = badgeStr;
+//    self.qmui_badgeString = qmui_badgeInteger > 0 ? [NSString stringWithFormat:@"%@", @(qmui_badgeInteger)] : nil;
 }
 
 - (NSUInteger)qmui_badgeInteger {

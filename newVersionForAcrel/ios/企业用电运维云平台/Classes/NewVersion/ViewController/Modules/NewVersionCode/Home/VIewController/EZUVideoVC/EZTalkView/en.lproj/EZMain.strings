@@ -1,0 +1,135 @@
+
+/* Class = "UILabel"; text = "9:00"; ObjectID = "0SD-HE-m6y"; */
+"0SD-HE-m6y.text" = "9:00";
+
+/* Class = "UIButton"; normalTitle = "对讲"; ObjectID = "4Eh-hh-84T"; */
+"4Eh-hh-84T.normalTitle" = "Intercom";
+
+/* Class = "UIButton"; normalTitle = "更新"; ObjectID = "4ol-dw-GX9"; */
+"4ol-dw-GX9.normalTitle" = "Update";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "68c-It-TWh"; */
+"68c-It-TWh.text" = "00:00";
+
+/* Class = "UIBarButtonItem"; title = "取消"; ObjectID = "6Za-cr-nzm"; */
+"6Za-cr-nzm.title" = "Cancel";
+
+/* Class = "UIBarButtonItem"; title = "删除"; ObjectID = "6yZ-4A-Vvl"; */
+"6yZ-4A-Vvl.title" = "Delete";
+
+/* Class = "UILabel"; text = "设备名"; ObjectID = "8Y3-zX-Cnw"; */
+"8Y3-zX-Cnw.text" = "DeviceName";
+
+/* Class = "UILabel"; text = "123456789"; ObjectID = "9VV-np-Xv9"; */
+"9VV-np-Xv9.text" = "123456789";
+
+/* Class = "UILabel"; text = "发生人体感应事件"; ObjectID = "AUI-sk-GM6"; */
+"AUI-sk-GM6.text" = "Human sensory events occur";
+
+/* Class = "UIButton"; normalTitle = "SD卡录像"; ObjectID = "Bu9-Qz-3Ij"; */
+"Bu9-Qz-3Ij.normalTitle" = "SD Card";
+
+/* Class = "UIButton"; normalTitle = "云存储"; ObjectID = "E3a-LC-jG1"; */
+"E3a-LC-jG1.normalTitle" = "Cloud";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "EOh-Lf-fJU"; */
+"EOh-Lf-fJU.title" = "Item";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "ESG-x4-J8R"; */
+"ESG-x4-J8R.text" = "00:00";
+
+/* Class = "UISegmentedControl"; F62-D9-UTh.segmentTitles[0] = "我的"; ObjectID = "F62-D9-UTh"; */
+"F62-D9-UTh.segmentTitles[0]" = "My";
+
+/* Class = "UISegmentedControl"; F62-D9-UTh.segmentTitles[1] = "分享"; ObjectID = "F62-D9-UTh"; */
+"F62-D9-UTh.segmentTitles[1]" = "Share";
+
+/* Class = "UILabel"; text = "  00:00"; ObjectID = "IqR-oy-XmU"; */
+"IqR-oy-XmU.text" = "  00:00";
+
+/* Class = "UIButton"; normalTitle = "高清"; ObjectID = "JEB-Q6-XNh"; */
+"JEB-Q6-XNh.normalTitle" = "HD";
+
+/* Class = "UIButton"; normalTitle = "消息录像"; ObjectID = "MZk-cJ-Fkp"; */
+"MZk-cJ-Fkp.normalTitle" = "News video";
+
+/* Class = "UILabel"; text = "2015/11/18 19:12:22"; ObjectID = "QVM-WI-RUj"; */
+"QVM-WI-RUj.text" = "2015/11/18 19:12:22";
+
+/* Class = "UILabel"; text = "来自:123456789"; ObjectID = "SpQ-pQ-wyI"; */
+"SpQ-pQ-wyI.text" = "From:123456789";
+
+/* Class = "UILabel"; text = "9:00"; ObjectID = "UHi-Q3-DiS"; */
+"UHi-Q3-DiS.text" = "9:00";
+
+/* Class = "UIButton"; normalTitle = "流畅"; ObjectID = "UlQ-aK-1VP"; */
+"UlQ-aK-1VP.normalTitle" = "Pace";
+
+/* Class = "UIButton"; normalTitle = "均衡"; ObjectID = "WSh-Ao-McO"; */
+"WSh-Ao-McO.normalTitle" = "Equi";
+
+/* Class = "UILabel"; text = "  00:00"; ObjectID = "Yrc-c9-rvb"; */
+"Yrc-c9-rvb.text" = "  00:00";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "arc-1g-3CP"; */
+"arc-1g-3CP.text" = "00:00";
+
+/* Class = "UIBarButtonItem"; title = "确定"; ObjectID = "cQF-0W-PL0"; */
+"cQF-0W-PL0.title" = "Sure";
+
+/* Class = "UILabel"; text = "正在更新..."; ObjectID = "ckd-hd-wtP"; */
+"ckd-hd-wtP.text" = "Updating...";
+
+/* Class = "UIButton"; normalTitle = "录像"; ObjectID = "es2-2O-C6T"; */
+"es2-2O-C6T.normalTitle" = "videotape";
+
+/* Class = "UIButton"; normalTitle = "云台"; ObjectID = "fUI-tR-jyG"; */
+"fUI-tR-jyG.normalTitle" = "Yuntai";
+
+/* Class = "UILabel"; text = "硬解码"; ObjectID = "oNR-gT-NPm"; */
+"oNR-gT-NPm.text" = "DXVA";
+
+/* Class = "UILabel"; text = "人体感应事件"; ObjectID = "oq1-TQ-afe"; */
+"oq1-TQ-afe.text" = "人体感应事件";
+
+/* Class = "UILabel"; text = "空空如也"; ObjectID = "pg3-8C-ucI"; */
+"pg3-8C-ucI.text" = "Empty";
+
+/* Class = "UITextField"; placeholder = "请输入设备名称"; ObjectID = "r1W-d8-Rg7"; */
+"r1W-d8-Rg7.placeholder" = "请输入设备名称";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "ruu-Hg-3Tx"; */
+"ruu-Hg-3Tx.text" = "00:00";
+
+/* Class = "UIButton"; normalTitle = "高清"; ObjectID = "skK-Ar-y6h"; */
+"skK-Ar-y6h.normalTitle" = "HD";
+
+/* Class = "UIBarButtonItem"; title = "标记已读"; ObjectID = "tHi-Fa-i4d"; */
+"tHi-Fa-i4d.title" = "标记已读";
+
+/* Class = "UILabel"; text = "暂无消息"; ObjectID = "u19-7q-vxu"; */
+"u19-7q-vxu.text" = "暂无消息";
+
+/* Class = "UIButton"; normalTitle = "截图"; ObjectID = "uxM-3S-gu1"; */
+"uxM-3S-gu1.normalTitle" = "screenshot";
+
+/* Class = "UIButton"; normalTitle = "截图"; ObjectID = "wEO-O3-gSJ"; */
+"wEO-O3-gSJ.normalTitle" = "screenshot";
+
+/* Class = "UILabel"; text = "云存储"; ObjectID = "wXb-RI-dLd"; */
+"wXb-RI-dLd.text" = "Cloud";
+
+/* Class = "UIButton"; normalTitle = "录像"; ObjectID = "xQS-rQ-Xez"; */
+"xQS-rQ-Xez.normalTitle" = "videotape";
+
+/* Class = "UIButton"; normalTitle = "保存"; ObjectID = "xdQ-Ec-12V"; */
+"xdQ-Ec-12V.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "不超过50个字符"; ObjectID = "xj6-wT-AiB"; */
+"xj6-wT-AiB.text" = "不超过50个字符";
+
+/* Class = "UILabel"; text = "来自：C2mini"; ObjectID = "xta-Lo-bjB"; */
+"xta-Lo-bjB.text" = "来自：C2mini";
+
+/* Class = "UILabel"; text = "C2S"; ObjectID = "yuu-Ju-MKr"; */
+"yuu-Ju-MKr.text" = "C2S";

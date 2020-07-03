@@ -275,6 +275,12 @@
 "wifi_ap_add_device_title"="adding device";
 "wifi_mode_sound"="sound config(blue red shining)";
 "wifi_mode_line"="line connect";
+"Softdecoding"="Current decoding status: Soft decoding";
+"Harddecoding"="Current decoding status: Hard decoding";
+"username:"="Account:";
+
+"closeTopNotice"="Turn off in app message display";
+"closeTopNoticeDetail"="You have turned off the in-app message display function. If you want to turn it on, go to \"Users\"->\"Settings\"->\"Message Notification\".";
 
 "请开启定位服务"="Please turn on Location.";
 "定位服务未开启，请进入系统［设置］> [隐私] > [定位服务]中打开开关，并允许使用定位服务"="Location is off. Please go to [Settings]> [Privacy] > [Location Services] to enable it.";

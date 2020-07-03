@@ -23,6 +23,8 @@
 #import "QMUIConfigurationTemplate.h"
 #import <CloudPushSDK/CloudPushSDK.h>
 
+#import "BGLogFirstViewController.h"
+
 //首先导入头文件信息
 //#include <ifaddrs.h>
 //#include <arpa/inet.h>
@@ -114,6 +116,14 @@
     [label12 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [label12 addTarget:self action:@selector(labelClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:label12];
+    
+    
+    UIButton *label13 = [[UIButton alloc]initWithFrame:CGRectMake(self.checkBtn.frame.size.width+5+132, self.signInBtn.frame.origin.y-47, 70, 30)];
+       [label13 setTitle:@"跳转" forState:UIControlStateNormal];
+       label13.titleLabel.font = [UIFont systemFontOfSize:15.f];
+       [label13 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+       [label13 addTarget:self action:@selector(labelClick2:) forControlEvents:UIControlEventTouchUpInside];
+       [self.view addSubview:label13];
     
     if (user.account.length) {
        self.usenameTextField.text = user.account;
@@ -211,6 +221,12 @@
         btn12.layer.borderWidth = 1;
         user.isSavePwd = NO;
     }
+}
+
+-(void)labelClick2:(UIButton *)label{
+    BGLogFirstViewController *firstVC = [[BGLogFirstViewController alloc] init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = firstVC;
+//    [self pushViewController:firstVC animation:YES];
 }
 
 -(void)labelClick:(UIButton *)label{

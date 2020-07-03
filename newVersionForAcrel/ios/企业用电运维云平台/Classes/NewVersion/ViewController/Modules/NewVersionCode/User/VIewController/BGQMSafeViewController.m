@@ -203,10 +203,9 @@
         cell.redSpotBTN.hidden = YES;
         cell.iconIV.hidden = YES;
         cell.rightLB.text = [UserManager manager].account;
-        cell.leftLB.text = @"用户名:";
+        cell.leftLB.text = DefLocalizedString(@"username:");
         cell.imgWidth.constant = 0.1f;
     }else{
-        
         NSString *textName = [NSString changgeNonulWithString:self.tableListArr[indexPath.row -1][@"fMenuname"]];
         cell.redSpotBTN.hidden = YES;
         cell.rightLB.text = @"";
