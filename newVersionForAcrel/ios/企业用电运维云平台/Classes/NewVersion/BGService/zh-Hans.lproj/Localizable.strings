@@ -81,6 +81,8 @@
 "nownoClearCache"="当前无缓存，无需清理。";
 "Sure"="确定";
 "Save"="保存";
+"SaveTwo"="保 存";
+"IPAddress"="域名地址";
 "ChangeLanguage"="切换语言";
 "Delete"="删除";
 "Thecachesizeis"="缓存大小为";

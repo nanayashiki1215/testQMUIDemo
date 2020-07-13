@@ -17,6 +17,7 @@
 
 #define COLOR_NAVBAR DefColorFromRGB(80,172,172, 1)
 #define COLOR_WEBNAVBAR DefColorFromRGB(2,168,166, 1)
+#define COLOR_TEXT DefColorFromRGB(82,195,120,1)
 // 83, 187, 226
 #define COLOR_BACKGROUND DefColorFromRGB(244, 244, 244, 1)
 #define COLOR_LightLWithChange DefColorFromRGB(86, 198, 118, 1)

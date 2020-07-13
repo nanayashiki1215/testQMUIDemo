@@ -155,7 +155,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 //    [self.pwdTextField addTarget:self action:@selector(keyboardWillChangeFrame:) forControlEvents:UIControlEventEditingDidBegin];
     //输入结束
-    [self.pwdTextField addTarget:self action:@selector(textFieldEditEnd) forControlEvents:UIControlEventEditingDidEnd];
+//    [self.pwdTextField addTarget:self action:@selector(textFieldEditEnd) forControlEvents:UIControlEventEditingDidEnd];
 
     
     //检查版本升级 迭代更新
@@ -179,7 +179,6 @@
 //           aItem.button.highlightedBackgroundColor = [UIColor.qd_tintColor colorWithAlphaComponent:.2];
        };
     
-
 //    NSMutableSet *orderUrlMutArr = [user.orderUrlArray mutableCopy];
 //    [orderUrlMutArr addObject:orderListUrl];
     NSMutableArray *orderMutArr = [NSMutableArray new];
@@ -224,7 +223,10 @@
 }
 
 -(void)labelClick2:(UIButton *)label{
+    
     BGLogFirstViewController *firstVC = [[BGLogFirstViewController alloc] init];
+//    QMUINavigationController *navi = [[QMUINavigationController alloc] initWithRootViewController:firstVC];
+    
     [UIApplication sharedApplication].keyWindow.rootViewController = firstVC;
 //    [self pushViewController:firstVC animation:YES];
 }

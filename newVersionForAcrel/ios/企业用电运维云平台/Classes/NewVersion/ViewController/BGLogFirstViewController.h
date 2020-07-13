@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //先输ip页面
 @interface BGLogFirstViewController : QMUICommonViewController
-
+@property(nonatomic,assign)BOOL isPush;
 @end
 
 NS_ASSUME_NONNULL_END

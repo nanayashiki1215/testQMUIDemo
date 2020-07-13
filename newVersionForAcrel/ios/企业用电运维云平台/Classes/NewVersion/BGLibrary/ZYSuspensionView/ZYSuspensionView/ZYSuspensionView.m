@@ -67,25 +67,25 @@ static ZYSuspensionView *_instance;
 //    return _susView;
 //}
 
-+ (instancetype)shareInstance
-{
-    if (!_instance) {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            _instance = [[ZYSuspensionView alloc] init];
-        });
-    }
-    return _instance;
-}
-
-+ (instancetype)allocWithZone:(struct _NSZone *)zone
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [super allocWithZone:zone];
-    });
-    return _instance;
-}
+//+ (instancetype)shareInstance
+//{
+//    if (!_instance) {
+//        static dispatch_once_t onceToken;
+//        dispatch_once(&onceToken, ^{
+//            _instance = [[ZYSuspensionView alloc] init];
+//        });
+//    }
+//    return _instance;
+//}
+//
+//+ (instancetype)allocWithZone:(struct _NSZone *)zone
+//{
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        _instance = [super allocWithZone:zone];
+//    });
+//    return _instance;
+//}
 
 
 - (instancetype)initWithFrame:(CGRect)frame color:(UIColor*)color delegate:(id<ZYSuspensionViewDelegate>)delegate
@@ -132,7 +132,8 @@ static ZYSuspensionView *_instance;
 
 - (NSString *)memoryAddressKey
 {
-    return [NSString stringWithFormat:@"%p", self];
+    return @"ZYSuspensionView";
+//    return [NSString stringWithFormat:@"%p", self];
 }
 
 #pragma mark - event response
