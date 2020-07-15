@@ -159,9 +159,9 @@
 
     
     //检查版本升级 迭代更新
-    [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
-        
-    }];
+//    [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
+//
+//    }];
     [self setTheme];
 }
 

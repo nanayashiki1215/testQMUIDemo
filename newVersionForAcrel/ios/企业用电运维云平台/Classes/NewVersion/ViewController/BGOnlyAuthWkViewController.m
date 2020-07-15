@@ -428,7 +428,7 @@
         //用于进行JavaScript注入
        
        
-        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-BGSafeAreaTopHeight-BGTopBarHeight-BGSafeAreaBottomHeight) configuration:config];
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-BGSafeAreaTopHeight-BGSafeAreaBottomHeight) configuration:config];
     
         // UI代理
         _webView.UIDelegate = self;

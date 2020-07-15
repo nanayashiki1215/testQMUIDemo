@@ -7,7 +7,8 @@
 //
 
 #import "NetService.h"
-#import "BGLoginViewController.h"
+#import "BGLogSecondViewController.h"
+#import "BGLogFirstViewController.h"
 #import "CustomNavigationController.h"
 #import "YYServiceManager.h"
 #import <CloudPushSDK/CloudPushSDK.h>
@@ -181,7 +182,15 @@ static NetService *_instance;
             if (Success) {
                 Success(responseObject);
             }
-        }else{
+        }else if ([respCode isEqualToString:@"410"]){
+            if (Fail) {
+                if (respMsg) {
+                   [MBProgressHUD showError:respMsg];
+                }
+                Fail(responseObject,respCode,respMsg);
+            }
+        }
+        else{
 //            NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
             respMsg = [NSString stringWithFormat:@"%@",[NetService failCodeDic][respCode]];
             if (!respMsg || [respMsg isEqualToString:@"(null)"] || [respMsg isEqualToString:@"null"]) {
@@ -670,7 +679,7 @@ static NetService *_instance;
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              //确认处理
              __weak __typeof(self)weakSelf = self;
-             if ([[self findCurrentViewController] isKindOfClass:[BGLoginViewController class]]) {
+             if ([[self findCurrentViewController] isKindOfClass:[BGLogSecondViewController class]] || [[self findCurrentViewController] isKindOfClass:[BGLogFirstViewController class]]) {
                  return ;
              }
              [weakSelf getLocationWithLoginVersionNo:[UserManager manager].versionNo andToken:[UserManager manager].token];
@@ -694,6 +703,8 @@ static NetService *_instance;
                      continue;
                  }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                      continue;
+                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                     continue;
                  }
                  else{
                      [defatluts removeObjectForKey:key];
@@ -708,7 +719,7 @@ static NetService *_instance;
                 //传给后台
                 [self generateTrackRecords];
             }
-             BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+             BGLogSecondViewController *loginVC = [[BGLogSecondViewController alloc] init];
              UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
              [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
          }];
@@ -741,6 +752,8 @@ static NetService *_instance;
                      continue;
                  }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                      continue;
+                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                     continue;
                  }else{
                      [defatluts removeObjectForKey:key];
                      [defatluts synchronize];
@@ -754,7 +767,7 @@ static NetService *_instance;
                             //传给后台
                             [self generateTrackRecords];
                         }
-             BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+             BGLogSecondViewController *loginVC = [[BGLogSecondViewController alloc] init];
              UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
              [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
          }];
@@ -783,7 +796,7 @@ static NetService *_instance;
 //                [defatluts synchronize];
 //            }
 //        }
-//        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+//        BGLogSecondViewController *loginVC = [[BGLogSecondViewController alloc] initWithNibName:@"BGLogSecondViewController" bundle:nil];
 //        UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
 //        [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
 //
@@ -1117,6 +1130,9 @@ static NetService *_instance;
         NSString *sktoolsStr = [SKControllerTools getCurrentDeviceModel];
         NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
         NSString *userIP = [NSString stringWithFormat:@"%@,%@",sktoolsStr,phoneVersion];
+        if (!versionNo) {
+            return;
+        }
         if(location){
             NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
             if(location.rgcData.country){

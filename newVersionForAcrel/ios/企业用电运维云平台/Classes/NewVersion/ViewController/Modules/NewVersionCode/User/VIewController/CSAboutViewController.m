@@ -68,19 +68,19 @@
             //其他均用url加载 通用方法
     //        fFunctionfield
     //        NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
-                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
-                urlWebView.isUseOnline = YES;
-                UserManager *user = [UserManager manager];
-                //list
-                if (user.singleSubFullData) {
-                    NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
-                    NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
-                    NSString *str = [GetBaseURL stringByAppendingString:urlstring];
-                    NSString *urlStr = [str stringByAppendingString:url];
-                    urlWebView.onlineUrlString = urlStr;
-                    urlWebView.showWebType = showWebTypeDevice;
-                    [self.navigationController pushViewController:urlWebView animated:YES];
-                }
+            BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+            urlWebView.isUseOnline = YES;
+            UserManager *user = [UserManager manager];
+            //list
+            if (user.singleSubFullData) {
+                NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
+                NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                NSString *urlStr = [str stringByAppendingString:url];
+                urlWebView.onlineUrlString = urlStr;
+                urlWebView.showWebType = showWebTypeDevice;
+                [self.navigationController pushViewController:urlWebView animated:YES];
+            }
         }else{
             //其他均用url加载 通用方法
             NSString *url = [NSString changgeNonulWithString:@""];

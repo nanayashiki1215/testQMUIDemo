@@ -21,6 +21,7 @@
 @property(nonatomic,strong)UIImageView *imageViewFbg;
 @property (nonatomic, strong)UIButton *selectAddress;
 @property (nonatomic, strong) QMUIPopupMenuView *popupByWindow;
+@property (nonatomic, assign) BOOL isSelected;
 
 @end
 
@@ -30,12 +31,19 @@
     [super viewDidLoad];
     [self createView];
     self.title = DefLocalizedString(@"IPAddress");
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+       
+   //增加监听，当键退出时收出消息
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (self.isPush) {
         self.navigationController.navigationBarHidden = NO;
+    }else{
+        self.navigationController.navigationBarHidden = YES;
     }
 //    UserManager *user = [UserManager manager];
   //添加多选按钮 ip地址保存
@@ -125,10 +133,10 @@
     if (user.orderUrlArray.count>1) {
       //          self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.addressTextField.frame.size.width-30,(self.ipAddressView.frame.size.height+20)/2 + 1, 20, 20)];
     //          self.selectAddress = [[UIButton alloc] initWithFrame:CGRectMake(self.IPTextField.frame.size.width-30,0,self.IPTextField.frame.size.height,self.IPTextField.frame.size.height)];
-              
+              [self.ipBgView addSubview:self.selectAddress];
               [self.selectAddress mas_makeConstraints:^(MASConstraintMaker *make) {
                   make.centerY.equalTo(self.imageV);
-                  make.right.equalTo(self.IPTextField.mas_right).offset(-25);
+                  make.right.equalTo(self.IPTextField.mas_right).offset(0);
                   make.height.mas_offset(20);
                   make.width.mas_offset(20);
               }];
@@ -137,7 +145,7 @@
               //    self.selectAddress.layer.cornerRadius = 2;
                   
       //            [self.selectAddress setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-              [self.ipBgView addSubview:self.selectAddress];
+         
           }
     
 }
@@ -152,18 +160,115 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - 点击保存事件
 -(void)pushLoginViewC{
-    if (self.isPush) {
-         [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        if (self.IPTextField.text && self.IPTextField.text.length>0) {
-            BGLogSecondViewController *secVC = [[BGLogSecondViewController alloc] init];
-            QMUINavigationController *navi = [[QMUINavigationController alloc] initWithRootViewController:secVC];
-            [UIApplication sharedApplication].keyWindow.rootViewController = navi;
-        } else {
-            DefQuickAlert(@"域名地址不能为空", nil);
-        }
+    if (!self.IPTextField.text) {
+        [MBProgressHUD showError:DefLocalizedString(@"Domain name filling out is not standard")];
+        return;
     }
+    NSString *regex = @"((https?)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]";
+       NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+       if (![pred evaluateWithObject:self.IPTextField.text]) {
+           [MBProgressHUD showError:DefLocalizedString(@"Domain name filling out is not standard")];
+           return;
+       }
+       if ([self.IPTextField.text containsString:@"："] || [self.IPTextField.text containsString:@" "] || [self.IPTextField.text containsString:@"。"]) {
+              NSString *newStr = self.IPTextField.text;
+              newStr = [newStr stringByReplacingOccurrencesOfString:@"：" withString:@":"];
+              newStr = [newStr stringByReplacingOccurrencesOfString:@"。" withString:@"."];
+              newStr = [newStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+              self.IPTextField.text = newStr;
+       }
+       NSString *orderListUrl;
+       if (![self.IPTextField.text hasPrefix:@"http"]) {
+           orderListUrl = [NSString stringWithFormat:@"http://%@",self.IPTextField.text];
+       }else{
+           orderListUrl = self.IPTextField.text;
+       }
+       NSString *lastString = [orderListUrl substringFromIndex:orderListUrl.length-1];
+      if([lastString isEqualToString:@"/"] || [lastString isEqualToString:@"、"] ){
+          orderListUrl = [orderListUrl substringToIndex:[orderListUrl length]-1];
+      }
+   
+     UserManager *user = [UserManager manager];
+    if(self.IPTextField.text.length>0 && [user.orderListUrl isEqualToString:orderListUrl]){
+        user.orderListUrl = orderListUrl;
+        //保存域名
+        [DefNSUD setObject:orderListUrl forKey:kBaseUrlString];
+        DefNSUDSynchronize
+    }else if (self.isSelected){
+        user.orderListUrl = orderListUrl;
+        //保存域名
+        [DefNSUD setObject:orderListUrl forKey:kBaseUrlString];
+        DefNSUDSynchronize
+    }else{
+        user.orderListUrl = orderListUrl;
+        //保存域名
+        [DefNSUD setObject:orderListUrl forKey:kBaseUrlString];
+         DefNSUDSynchronize
+        user.account = @"";
+        user.password = @"";
+    }
+    
+    if (!user.orderListUrl) {
+        [MBProgressHUD showError:DefLocalizedString(@"Domain name filling out is not standard")];
+        return;
+    }
+    
+    NSString *uniqueProjectip = orderListUrl;
+    if (uniqueProjectip) {
+        if([uniqueProjectip containsString:@"https:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+        }else if ([uniqueProjectip containsString:@"http:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        }
+//        if ([uniqueProjectip containsString:@":"]) {
+//            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+//            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+//        }
+    }
+    //获取登录页配置
+    BGWeakSelf;
+    [NetService bg_getWithPath:@"main/getAppIndexSets" params:@{@"ip":uniqueProjectip} success:^(id respObjc) {
+        DefLog(@"respObj");
+        NSDictionary *dataDic = respObjc[@"data"];
+        if (dataDic) {
+            NSString *appIndexsset = [NSString changgeNonulWithString:dataDic[@"appIndexSets"]];
+           NSString *imageUrl = [NSString changgeNonulWithString:dataDic[@"imgURL"]];
+           if(appIndexsset){
+               UserManager *user = [UserManager manager];
+               user.appIndexSet = appIndexsset;
+           }
+           if (imageUrl) {
+               [DefNSUD setObject:imageUrl forKey:@"APPLoginImageUrl"];
+               DefNSUDSynchronize
+           }
+        }
+       
+        if (weakSelf.isPush) {
+             [weakSelf.navigationController popViewControllerAnimated:YES];
+        } else {
+            if (weakSelf.IPTextField.text && weakSelf.IPTextField.text.length>0) {
+                BGLogSecondViewController *secVC = [[BGLogSecondViewController alloc] init];
+                QMUINavigationController *navi = [[QMUINavigationController alloc] initWithRootViewController:secVC];
+                [UIApplication sharedApplication].keyWindow.rootViewController = navi;
+            } else {
+                [MBProgressHUD showError:DefLocalizedString(@"Domain name filling out is not standard")];
+            }
+        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (weakSelf.isPush) {
+             [weakSelf.navigationController popViewControllerAnimated:YES];
+        } else {
+            if (weakSelf.IPTextField.text && weakSelf.IPTextField.text.length>0) {
+                BGLogSecondViewController *secVC = [[BGLogSecondViewController alloc] init];
+                QMUINavigationController *navi = [[QMUINavigationController alloc] initWithRootViewController:secVC];
+                [UIApplication sharedApplication].keyWindow.rootViewController = navi;
+            } else {
+                [MBProgressHUD showError:DefLocalizedString(@"Domain name filling out is not standard")];
+            }
+        }
+    }];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -194,6 +299,15 @@
             NSString *showIpAddress = [NSString changgeNonulWithString:orderObject[@"ipAddress"]];
             QMUIPopupMenuButtonItem *item = [QMUIPopupMenuButtonItem itemWithImage:[UIImageMake(@"icon_tabbar_component") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] title:showIpAddress handler:^(QMUIPopupMenuButtonItem *aItem) {
                 weakSelf.IPTextField.text = aItem.title;
+                UserManager *user = [UserManager manager];
+                user.account = [NSString changgeNonulWithString:orderObject[@"account"]];
+                NSString *issave = [NSString changgeNonulWithString:orderObject[@"isSavePwd"]];
+                if ([issave isEqualToString:@"YES"]) {
+                    user.password = [NSString changgeNonulWithString:orderObject[@"pwd"]];
+                }else{
+                    user.password = @"";
+                }
+                weakSelf.isSelected = YES;
 //                weakSelf.usenameTextField.text = [NSString changgeNonulWithString:orderObject[@"account"]];
 //                NSString *issave = [NSString changgeNonulWithString:orderObject[@"isSavePwd"]];
 //                if ([issave isEqualToString:@"YES"]) {
@@ -216,6 +330,59 @@
     [self.popupByWindow showWithAnimated:YES];
 }
 
+#pragma mark - 键盘处理
+- (void)keyboardWillShow:(NSNotification *)aNotification{
+    
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;
+    
+    // 设置动画的名字
+    [UIView beginAnimations:@"Animation" context:nil];
+    // 设置动画的间隔时间
+    double duration = [aNotification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView setAnimationDuration:duration];
+    // 使用当前正在运行的状态开始下一段动画
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    // 获取到textfiled 距底部距离
+    CGRect rect2 = [self.IPTextField convertRect:self.IPTextField.frame toView:self.view];
+//    int textToTop = self.view.frame.size.height - rect2.origin.y - self.pwdTextField.frame.size.height;
+    int textToTop = self.view.frame.size.height - rect2.origin.y - self.IPTextField.frame.size.height;
+    
+    if (textToTop > height) {
+        // 如果键盘高度小于textfiled距底部的距离 则不需要任何操作
+    }else{
+        // 当textToTop 小于 height 时
+        // 获取到键盘高度和控件底部距离的差值
+        int scrolldistance = height - textToTop;
+        // 移动视图y 差值距离
+        self.view.frame = CGRectMake(0, -scrolldistance, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }
+    //设置动画结束
+    
+    [UIView commitAnimations];
+}
+
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification{
+    // 设置动画的名字
+    [UIView beginAnimations:@"Animation" context:nil];
+    // 设置动画的间隔时间
+    double duration = [aNotification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView setAnimationDuration:duration];
+    // 使用当前正在运行的状态开始下一段动画
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    // 设置视图移动的位移至原来的y值
+    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    //设置动画结束
+    [UIView commitAnimations];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Lazy
 -(QMUITextField *)IPTextField{
     if (!_IPTextField) {
@@ -224,6 +391,9 @@
         _IPTextField.placeholderColor = COLOR_TEXT;
         _IPTextField.keyboardType = UIKeyboardTypeASCIICapable;
         _IPTextField.returnKeyType = UIReturnKeyDone;
+        if ([UserManager manager].orderListUrl) {
+            _IPTextField.text = [UserManager manager].orderListUrl;
+        }
     }
     return _IPTextField;
 }

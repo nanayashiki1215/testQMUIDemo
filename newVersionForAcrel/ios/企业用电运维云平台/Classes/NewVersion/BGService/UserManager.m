@@ -505,4 +505,29 @@ static UserManager* manager;
     [DefNSUD setBool:_isOpenBoxInApp forKey:@"isOpenBoxInApp"];
     DefNSUDSynchronize
 }
+
+//isShowNewVersion
+-(BOOL)isShowNewVersion{
+    _isShowNewVersion = [DefNSUD boolForKey:@"isShowNewVersion"];
+    return _isShowNewVersion;
+}
+
+-(void)setIsShowNewVersion:(BOOL)isShowNewVersion{
+    _isShowNewVersion = isShowNewVersion;
+    [DefNSUD setBool:_isShowNewVersion forKey:@"isShowNewVersion"];
+    DefNSUDSynchronize
+}
+
+
+-(NSString *)appIndexSet{
+    _appIndexSet = [DefNSUD objectForKey:@"appIndexSet"];
+    return _appIndexSet;
+}
+
+-(void)setAppIndexSet:(NSString *)appIndexSet{
+    _appIndexSet = appIndexSet;
+    [DefNSUD setObject:_appIndexSet
+                forKey:@"appIndexSet"];
+    DefNSUDSynchronize
+}
 @end

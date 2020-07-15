@@ -802,6 +802,7 @@ static id _instance;
 
 //带token头的post请求
 + (void)bg_httpPostWithTokenWithLogout:(NSString *)path withVersionNo:(NSString *)version andToken:(NSString *)tokenStr params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
+    
     NSString *baseURL = [BASE_URL stringByAppendingString:version];
     NSString *urlString = [baseURL stringByAppendingString:path];
     NSString *realURL = urlString;

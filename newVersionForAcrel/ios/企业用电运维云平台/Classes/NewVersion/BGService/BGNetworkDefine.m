@@ -24,4 +24,11 @@
     NSString *urlString = [[NSUserDefaults standardUserDefaults] objectForKey:@"systemImageUrlstr"];
     return urlString?urlString:SystemImageIconADS;
 }
+
++(NSString *)getAPPLoginImageUrlstr{
+    NSString *urlString = [[NSUserDefaults standardUserDefaults] objectForKey:@"APPLoginImageUrl"];
+    return urlString?urlString:appLoginImageIconADS;
+}
+
+
 @end

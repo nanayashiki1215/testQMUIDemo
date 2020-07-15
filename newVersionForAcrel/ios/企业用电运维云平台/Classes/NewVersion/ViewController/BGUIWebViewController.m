@@ -583,7 +583,7 @@
 //            }
             _webView.scrollView.bounces = false;
         }else if(self.showWebType == showWebTypeAlarmWithTab || self.showWebType == showWebTypeAlarm|| self.showWebType == showWebFromMsgNotif){
-            _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-BGSafeAreaTopHeight) configuration:config];
+            _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-BGTopBarHeight) configuration:config];
         }else{
             _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-BGSafeAreaTopHeight-BGTopBarHeight-BGSafeAreaBottomHeight) configuration:config];
     }

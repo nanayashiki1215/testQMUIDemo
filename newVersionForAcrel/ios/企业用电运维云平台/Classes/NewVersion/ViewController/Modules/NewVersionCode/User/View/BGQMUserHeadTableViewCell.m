@@ -6,7 +6,7 @@
 //
 
 #import "BGQMUserHeadTableViewCell.h"
-#import "BGLoginViewController.h"
+#import "BGLogSecondViewController.h"
 #import "CustomNavigationController.h"
 #import "UIColor+BGExtension.h"
 #import "YYServiceManager.h"
@@ -36,6 +36,7 @@
     // Configure the view for the selected state
 }
 
+//退出登录 登出
 - (IBAction)loginOutClickEvent:(UIButton *)sender {
     QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
            //清空NSUserDefaults 退出登录
@@ -62,6 +63,8 @@
                    continue;
                }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                    continue;
+               }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                   continue;
                }
                else{
                    [defatluts removeObjectForKey:key];
@@ -76,7 +79,7 @@
                 [weakSelf generateTrackRecords];
             }
         
-           BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+           BGLogSecondViewController *loginVC = [[BGLogSecondViewController alloc] init];
            UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
            [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
        }];

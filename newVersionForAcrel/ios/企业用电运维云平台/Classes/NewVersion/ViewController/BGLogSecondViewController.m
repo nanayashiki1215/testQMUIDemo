@@ -13,6 +13,7 @@
 #import "UIColor+BGExtension.h"
 #import "BGCheckAppVersionMgr.h"
 #import "QDTabBarViewController.h"
+#import "NSString+BGExtension.h"
 
 @interface BGLogSecondViewController ()<QMUITextFieldDelegate>
 @property (nonatomic, strong) QMUITextField * usenameTextField;//账户
@@ -38,7 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createView];
 //     [self addDynamicView];
 //     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     //    [self.pwdTextField addTarget:self action:@selector(keyboardWillChangeFrame:) forControlEvents:UIControlEventEditingDidBegin];
@@ -46,25 +46,26 @@
 //        [self.pwdTextField addTarget:self action:@selector(textFieldEditEnd) forControlEvents:UIControlEventEditingDidEnd];
 
    //检查版本升级 迭代更新
-      [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
-          
-      }];
-      [self setTheme];
+//      [[BGCheckAppVersionMgr sharedInstance] isUpdataApp:kAppleId andCompelete:^(NSString * _Nonnull respObjc) {
+//          
+//      }];
+    [self createView];
+    [self setTheme];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    
+//    [self createView];
     UserManager *user = [UserManager manager];
        self.usenameTextField.delegate = self;
        self.pwdTextField.delegate = self;
      if (user.account.length) {
         self.usenameTextField.text = user.account;
+     }else{
+        self.usenameTextField.text = @"";
      }
-//     if (user.orderListUrl.length) {
-//         self.addressTextField.text = user.orderListUrl;
-//     }
+
      if (user.password.length && user.isSavePwd) {
          self.pwdTextField.text = user.password;
      }else{
@@ -72,7 +73,46 @@
      }
      self.pwdTextField.secureTextEntry = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    //根据用户配置
+    if (user.appIndexSet && user.appIndexSet.length) {
+        NSArray *appIndexSetArr = [user.appIndexSet jsonObjectFromString];
+        NSDictionary *dict = appIndexSetArr.firstObject;
+//        [{"ip":"116.236.149.165:8090","platformNameEN":"TEst","platformName":"测试平台2"}]
+        if ([dict isKindOfClass:[NSDictionary class]]){
+            NSString *loginBgImg = [NSString changgeNonulWithString:dict[@"backgroundImg"]];
+            NSString *loginImg = [NSString changgeNonulWithString:dict[@"icon"]];
+            NSString *loginText = [NSString changgeNonulWithString:dict[@"platformName"]];
+            NSString *loginEnText = [NSString changgeNonulWithString:dict[@"platformNameEN"]];
+            //背景图
+            if (loginBgImg && loginBgImg.length) {
+                 [self.bglogoPic sd_setImageWithURL:[NSURL URLWithString:[getAppLoginIconADS stringByAppendingString:loginBgImg]] placeholderImage:[UIImage imageNamed:@"loginBgImage"]];
+            }
+            
+            //logoImage
+            if (loginImg && loginImg.length) {
+                [self.logoImageV sd_setImageWithURL:[NSURL URLWithString:[getAppLoginIconADS stringByAppendingString:loginImg]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
+            }
+            //name
+            if (loginText && loginText.length) {
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"]  && [[[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"] isEqualToString:@"en"]) {
+                    self.logoLabel.text = loginEnText;
+                }else{
+                    self.logoLabel.text = loginText;
+                }
+                
+            }
+        }
+    }
+     
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillShowNotification object:nil];
+    
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    //增加监听，当键退出时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
     //    [self.pwdTextField addTarget:self action:@selector(keyboardWillChangeFrame:) forControlEvents:UIControlEventEditingDidBegin];
         //输入结束
 //    [self.pwdTextField addTarget:self action:@selector(textFieldEditEnd) forControlEvents:UIControlEventEditingDidEnd];
@@ -100,10 +140,12 @@
     label12.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [label12 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [label12 addTarget:self action:@selector(labelClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     self.bglogoPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loginBgImage"]];
     self.bglogoPic.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*4/5);
     [self.view addSubview:self.bglogoPic];
     
+//    [self.bglogoPic sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:@"login.png"]] placeholderImage:[UIImage imageNamed:@"bghomeheadpic"]];
     
     //配置内画面 loginTest loginLogo
     self.logoImageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loginLogo"]];
@@ -229,7 +271,7 @@
     
     [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_offset(15);
-        make.right.mas_offset(-5);
+        make.right.mas_offset(-3);
         make.width.mas_offset(80);
         make.height.mas_offset(30);
     }];
@@ -295,12 +337,10 @@
     [self.navigationController pushViewController:logFirstVC animated:YES];
 }
 
+//登录按钮事件
 -(void)signInClickEvent:(UIButton *)sender{
     __weak __typeof(self)weakSelf = self;
-//    if (!self.addressTextField.text.length) {
-//        [MBProgressHUD showError:DefLocalizedString(@"Domain name cannot be empty")];
-//        return;
-//    }
+
     if (!self.usenameTextField.text.length) {
         [MBProgressHUD showError:DefLocalizedString(@"User name cannot be empty")];
         return;
@@ -343,20 +383,21 @@
     }else{
         user.password = @"";
     }
+    //注：带http地址
     NSString *orderListUrl = user.orderListUrl;
-//    user.orderListUrl = orderListUrl;
+    //注：不带http需要传后台地址
     NSString *uniqueProjectip = user.orderListUrl;
-//    if (uniqueProjectip) {
-//        if([uniqueProjectip containsString:@"https:"]){
-//            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
-//        }else if ([uniqueProjectip containsString:@"http:"]){
-//            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-//        }
-//        if ([uniqueProjectip containsString:@":"]) {
-//            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
-//            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
-//        }
-//    }
+    if (uniqueProjectip) {
+        if([uniqueProjectip containsString:@"https:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+        }else if ([uniqueProjectip containsString:@"http:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        }
+        if ([uniqueProjectip containsString:@":"]) {
+            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+        }
+    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"fLoginname":self.usenameTextField.text,
@@ -379,7 +420,8 @@
             for (NSDictionary *ipdic in user.orderUrlArray) {
                 NSString *url = [NSString changgeNonulWithString:ipdic[@"ipAddress"]];
                 if ([url isEqualToString:orderListUrl]) {
-                    isNeedAdd = NO;
+//                    isNeedAdd = NO;
+                    [orderUrlMutArr removeObject:ipdic];
                 }
             }
             if (isNeedAdd) {
@@ -602,27 +644,83 @@
 }
 
 #pragma mark 键盘处理
-- (void)keyboardWillChangeFrame:(NSNotification *)note{
-    UIWindow *keywindow = [[UIApplication sharedApplication] keyWindow];
-    if ([keywindow performSelector:@selector(firstResponder)] == self.pwdTextField ) {
-        if (SCREEN_HEIGHT < 700) {
-            // 取出键盘最终的frame
-           CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-           // 取出键盘弹出需要花费的时间
-           double duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-           // 修改transform
-           [UIView animateWithDuration:duration animations:^{
-               CGFloat ty = [UIScreen mainScreen].bounds.size.height - rect.origin.y;
-               self.view.transform = CGAffineTransformMakeTranslation(0, - ty);
-           }];
-        }
+//- (void)keyboardWillChangeFrame:(NSNotification *)note{
+//    UIWindow *keywindow = [[UIApplication sharedApplication] keyWindow];
+//    if ([keywindow performSelector:@selector(firstResponder)] == self.pwdTextField ) {
+////        if (SCREEN_HEIGHT < 700) {
+//            // 取出键盘最终的frame
+//        // 595 414 301
+//           CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//           // 取出键盘弹出需要花费的时间
+//           double duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//           // 修改transform
+//            CGRect rect2 = [self.pwdTextField convertRect:self.pwdTextField.frame toView:self.view];
+//            CGFloat value = SCREEN_HEIGHT - rect2.origin.y;
+//        //773
+//           [UIView animateWithDuration:duration animations:^{
+//               CGFloat ty = [UIScreen mainScreen].bounds.size.height - rect.origin.y - value;
+//               self.view.transform = CGAffineTransformMakeTranslation(0, - ty);
+////               CGFloat ty = rect.origin.y - value;
+////               self.loginBgView.transform = CGAffineTransformMakeTranslation(0, - ty);
+//           }];
+////        }
+//    }else{
+//        self.view.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    }
+//}
+
+- (void)keyboardWillShow:(NSNotification *)aNotification{
+    
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;
+    
+    // 设置动画的名字
+    [UIView beginAnimations:@"Animation" context:nil];
+    // 设置动画的间隔时间
+    double duration = [aNotification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView setAnimationDuration:duration];
+    // 使用当前正在运行的状态开始下一段动画
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    // 获取到textfiled 距底部距离
+    CGRect rect2 = [self.pwdTextField convertRect:self.pwdTextField.frame toView:self.view];
+//    int textToTop = self.view.frame.size.height - rect2.origin.y - self.pwdTextField.frame.size.height;
+    int textToTop = self.view.frame.size.height - rect2.origin.y;
+    
+    if (textToTop > height) {
+        // 如果键盘高度小于textfiled距底部的距离 则不需要任何操作
+    }else{
+        // 当textToTop 小于 height 时
+        // 获取到键盘高度和控件底部距离的差值
+        int scrolldistance = height - textToTop;
+        // 移动视图y 差值距离
+        self.view.frame = CGRectMake(0, -scrolldistance, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
+    //设置动画结束
+    
+    [UIView commitAnimations];
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    self.view.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification{
+    // 设置动画的名字
+    [UIView beginAnimations:@"Animation" context:nil];
+    // 设置动画的间隔时间
+    double duration = [aNotification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView setAnimationDuration:duration];
+    // 使用当前正在运行的状态开始下一段动画
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    // 设置视图移动的位移至原来的y值
+    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    //设置动画结束
+    [UIView commitAnimations];
 }
+
+//-(void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//    self.view.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -718,7 +816,6 @@
         [_loginInBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginInBtn.layer setMasksToBounds:YES];
         [_loginInBtn.layer setCornerRadius:25.0];
-//        [_loginInBtn.layer setBorderWidth:1.0];
     }
     return _loginInBtn;
 }

@@ -281,6 +281,9 @@
 "Harddecoding"="Current decoding status: Hard decoding";
 "username:"="Account:";
 
+"updateExplain"="Updated Latest Version";
+"updateConsult"="Do you want to view the latest version upgrade content?";
+
 "closeTopNotice"="Turn off in app message display";
 "closeTopNoticeDetail"="You have turned off the in-app message display function. If you want to turn it on, go to \"Users\"->\"Settings\"->\"Message Notification\".";
 

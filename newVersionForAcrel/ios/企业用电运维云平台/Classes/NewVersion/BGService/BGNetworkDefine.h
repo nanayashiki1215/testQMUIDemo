@@ -70,6 +70,12 @@
 #define GetSystemImageBaseURL [NSString stringWithFormat:@"/%@/",[BGNetworkDefine getSystemImageUrlstr]]
 #define getSystemIconADS [GetBaseURL stringByAppendingString:GetSystemImageBaseURL]
 
+//获取登录配置的图片
+#define appLoginImageIconADS @"/fileSystem/sysIndexConfie/"
+#define GetAppLoginImageBaseURL [NSString stringWithFormat:@"/%@/",[BGNetworkDefine getAPPLoginImageUrlstr]]
+#define getAppLoginIconADS [GetBaseURL stringByAppendingString:GetAppLoginImageBaseURL]
+
+
 //获取设备管理的图片
 
 
@@ -80,5 +86,6 @@
 +(NSString *)getBaseUslString;
 +(NSString *)getAppImageUrlstr;
 +(NSString *)getSystemImageUrlstr;
++(NSString *)getAPPLoginImageUrlstr;
 
 @end

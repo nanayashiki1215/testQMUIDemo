@@ -58,6 +58,9 @@
 #import <UserNotifications/UserNotifications.h>
 #import "LZLPushMessage.h"
 #import "YYServiceManager.h"
+#import "BGLogFirstViewController.h"
+#import "BGLogSecondViewController.h"
+
 
 #define CLIENT_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define WXAppId @"wx3e0b2d7e2d2bbc62"
@@ -227,10 +230,20 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     }else{
         //设置状态栏颜色
 //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+//        BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
 //           UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-        self.window.rootViewController = loginVC;
-        [self.window makeKeyAndVisible];
+        UserManager *user = [UserManager manager];
+        if (user.orderListUrl) {
+           BGLogSecondViewController *loginSVC = [[BGLogSecondViewController alloc] init];
+           UINavigationController *navi = [[CustomNavigationController alloc] initWithRootViewController:loginSVC];
+           self.window.rootViewController = navi;
+           [self.window makeKeyAndVisible];
+        }else{
+            BGLogFirstViewController *loginFVC = [[BGLogFirstViewController alloc] init];
+            QMUINavigationController *navi = [[QMUINavigationController alloc] initWithRootViewController:loginFVC];
+            self.window.rootViewController = navi;
+            [self.window makeKeyAndVisible];
+        }
     }
     // 启动动画
 //    [self startLaunchingAnimation];

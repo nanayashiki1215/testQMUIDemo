@@ -17,7 +17,7 @@
 #import "BGQMCategoryListConViewController.h"
 #import "BGQMNewHomeTableViewController.h"
 #import "BGUIWebViewController.h"
-#import "BGLoginViewController.h"
+#import "BGLogSecondViewController.h"
 #import "CustomNavigationController.h"
 #import "YYServiceManager.h"
 #import "EZLivePlayViewController.h"
@@ -98,6 +98,8 @@
                         continue;
                     }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                         continue;
+                    }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                        continue;
                     }
                     else{
                         [defatluts removeObjectForKey:key];
@@ -109,7 +111,7 @@
                    [YYServiceManager defaultManager].isGatherStarted = NO;
                    [[YYServiceManager defaultManager] stopGather];
                }
-                BGLoginViewController *loginVC = [[BGLoginViewController alloc] initWithNibName:@"BGLoginViewController" bundle:nil];
+                BGLogSecondViewController *loginVC = [[BGLogSecondViewController alloc] init];
                 UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
                 [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
                 return ;

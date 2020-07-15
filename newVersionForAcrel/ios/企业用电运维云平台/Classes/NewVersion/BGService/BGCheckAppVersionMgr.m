@@ -6,12 +6,14 @@
 //
 
 #import "BGCheckAppVersionMgr.h"
+#import "BGUIWebViewController.h"
 
 @interface BGCheckAppVersionMgr ()<UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSString *appId;
 @property (nonatomic, strong) NSString *isConstraints;
 @property (nonatomic, strong) NSString *fVersion;
+
 @end
 
 @implementation BGCheckAppVersionMgr
@@ -37,7 +39,12 @@
     [NetService bg_getWithUpdatePath:@"sys/getAndroidVersion" params:@{@"fId":@"iose70eeb320a58230925c02e7",@"version":currentVersion} success:^(id respObjc) {
         weakSelf.isConstraints = [NSString changgeNonulWithString:respObjc[@"fConstraints"]];
         weakSelf.fVersion = [NSString changgeNonulWithString:respObjc[@"fVersion"]];
-        [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
+        NSString *updateNo = [NSString changgeNonulWithString:respObjc[@"update"]];
+        if (weakSelf.fVersion) {
+             [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
+        }else if ([updateNo isEqualToString:@"No"] && [UserManager manager].isShowNewVersion){
+            [weakSelf showNewVersionExplian];
+        }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
     }];
@@ -76,6 +83,7 @@
         currentVersion = [currentVersion stringByReplacingOccurrencesOfString:@"."withString:@""];
         if([currentVersion floatValue] < [self.fVersion floatValue]) {
             self.appId = appId;
+            [UserManager manager].isShowNewVersion = YES;
             if ([self.isConstraints isEqualToString:@"true"]) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:DefLocalizedString(@"Tip") message:DefLocalizedString(@"Newversion") delegate:self cancelButtonTitle:DefLocalizedString(@"ToUpdate") otherButtonTitles:nil];
                 [alertView show];
@@ -90,6 +98,37 @@
 //    }];
     
 }
+
+-(void)showNewVersionExplian{
+    //一次设置
+    [UserManager manager].isShowNewVersion = NO;
+    QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+      
+         NSString *urlStr = @"versionHistoryView";
+         BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+         NSString *filePath = [[NSBundle mainBundle] pathForResource:urlStr ofType:@"html" inDirectory:@"aDevices"];
+         nomWebView.isUseOnline = NO;
+         nomWebView.localUrlString = filePath;
+         nomWebView.pathParamStr = @"1";
+         nomWebView.showWebType = showWebTypeWithPush;
+//                nomWebView.titleName = DefLocalizedString(@"versionIntroduce");
+        [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+    }];
+    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Cancel") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
+       
+    }];
+    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"updateExplain")  message:DefLocalizedString(@"updateConsult") preferredStyle:QMUIAlertControllerStyleAlert];
+    [alertController addAction:action];
+    [alertController addAction:action2];
+    
+    QMUIVisualEffectView *visualEffectView = [[QMUIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    visualEffectView.foregroundColor = UIColorMakeWithRGBA(255, 255, 255, .7);// 一般用默认值就行，不用主动去改，这里只是为了展示用法
+    alertController.mainVisualEffectView = visualEffectView;
+    alertController.alertHeaderBackgroundColor = nil;// 当你需要磨砂的时候请自行去掉这几个背景色，不然这些背景色会盖住磨砂
+    alertController.alertButtonBackgroundColor = nil;
+    [alertController showWithAnimated:YES];
+}
+
 
 - (NSDictionary *)jsonStringToDictionary:(NSString *)jsonStr
 {
@@ -112,7 +151,32 @@
     return dict;
 }
 
-
+-(UIViewController *)findCurrentViewController
+{
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    UIViewController *topViewController = [window rootViewController];
+    
+    while (true) {
+        
+        if (topViewController.presentedViewController) {
+            
+            topViewController = topViewController.presentedViewController;
+            
+        } else if ([topViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)topViewController topViewController]) {
+            
+            topViewController = [(UINavigationController *)topViewController topViewController];
+            
+        } else if ([topViewController isKindOfClass:[UITabBarController class]]) {
+            
+            UITabBarController *tab = (UITabBarController *)topViewController;
+            topViewController = tab.selectedViewController;
+            
+        } else {
+            break;
+        }
+    }
+    return topViewController;
+}
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
