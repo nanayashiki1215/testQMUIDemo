@@ -229,7 +229,9 @@
     }
     //获取登录页配置
     BGWeakSelf;
-    [NetService bg_getWithPath:@"main/getAppIndexSets" params:@{@"ip":uniqueProjectip} success:^(id respObjc) {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NetService bg_getIPAddressWithPath:@"main/getAppIndexSets" params:@{@"ip":uniqueProjectip} success:^(id respObjc) {
+         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         DefLog(@"respObj");
         NSDictionary *dataDic = respObjc[@"data"];
         if (dataDic) {
@@ -257,6 +259,7 @@
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         if (weakSelf.isPush) {
              [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
@@ -420,7 +423,6 @@
 -(UIImageView *)imageV{
     if (!_imageV) {
         _imageV =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipaddress2"]];
-        
     }
     return _imageV;
 }

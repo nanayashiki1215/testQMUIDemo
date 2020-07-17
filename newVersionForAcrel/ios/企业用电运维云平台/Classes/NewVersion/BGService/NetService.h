@@ -42,6 +42,8 @@
 
 // get带token兼容老版本无任何报错方法
 + (void)bg_getWithTokenWithPathAndNoTips:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
+//get域名配置方法
++ (void)bg_getIPAddressWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
 
 #pragma mark - 纯净版PUT接口，不允许出现提示框,判断返回码，拼接URL地址等业务逻辑！！！
 /**

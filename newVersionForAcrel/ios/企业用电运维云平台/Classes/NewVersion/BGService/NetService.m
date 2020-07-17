@@ -418,6 +418,74 @@ static NetService *_instance;
             
         }];
 }
+
+
+// get域名配置方法
++ (void)bg_getIPAddressWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail {
+    NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
+//    BGUserInfo *user = [BGUserInfo gettingLoginSuccessLastLogin];
+//    NSString *tenantId = user.tenantId;
+//    if ([tenantId notEmptyOrNull]) {
+//        [mutParams setNotNullObject:tenantId ForKey:ktenantId];
+//    }
+    __weak __typeof(self)weakSelf = self;
+    NSString *urlString = [BASE_URL stringByAppendingString:path];
+    [NetService bg_httpGetWithPath:urlString params:mutParams success:^(id responseObject) {
+        NSString *respCode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespCode]];
+        NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+        //        k0000 成功
+        if ([respMsg isEqualToString:@"Unauthorized"] || [respCode isEqualToString:@"600"] || [respCode isEqualToString:@"700"] || [respCode isEqualToString:@"5000"]) {
+            if (Fail) {
+                if (respMsg) {
+                    UserManager *user = [UserManager manager];
+                     user.appIndexSet = @"";
+//                   [MBProgressHUD showError:@"服务器升至最新版本可动态配置登录页"];
+                }
+                Fail(responseObject,respCode,respMsg);
+            }
+            return ;
+        }
+        if ([respCode isEqualToString:k0000]) {
+            if (Success) {
+                Success(responseObject);
+            }
+        }else if ([respCode isEqualToString:@"410"]){
+            if (Fail) {
+                if (respMsg) {
+                    UserManager *user = [UserManager manager];
+                    user.appIndexSet = @"";
+                   [MBProgressHUD showError:respMsg];
+                }
+                Fail(responseObject,respCode,respMsg);
+            }
+        }
+        else{
+//            NSString *respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+            respMsg = [NSString stringWithFormat:@"%@",[NetService failCodeDic][respCode]];
+            if (!respMsg || [respMsg isEqualToString:@"(null)"] || [respMsg isEqualToString:@"null"]) {
+                respMsg = [NSString stringWithFormat:@"%@",[responseObject objectForKey:krespMsg]];
+                if (!respMsg) {
+                    respMsg = @"未知错误";
+                }
+            }
+            if (Fail) {
+                if (respMsg) {
+                   [MBProgressHUD showError:respMsg];
+                }
+                Fail(responseObject,respCode,respMsg);
+            }
+        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        if (errorMsg) {
+            [MBProgressHUD showError:errorMsg];
+        }else{
+            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
+        }
+        if (Fail) {
+            Fail(nil,nil,nil);
+        }
+    }];
+}
 #pragma mark - 纯净版PUT接口，不允许出现提示框,判断返回码，拼接URL地址等业务逻辑！！！
 + (void)bg_putWithPath:(NSString *)path params:(NSDictionary *)params success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
     NSMutableDictionary * mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
@@ -703,7 +771,7 @@ static NetService *_instance;
                      continue;
                  }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                      continue;
-                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
                      continue;
                  }
                  else{
@@ -752,7 +820,7 @@ static NetService *_instance;
                      continue;
                  }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                      continue;
-                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
                      continue;
                  }else{
                      [defatluts removeObjectForKey:key];

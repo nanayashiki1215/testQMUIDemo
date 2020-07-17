@@ -267,7 +267,7 @@
                      continue;
                  }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                      continue;
-                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
                      continue;
                  }
                  else{
@@ -355,7 +355,7 @@
                        continue;
                    }else if ([key isEqualToString:@"isOpenBoxInApp"]){
                        continue;
-                   }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"]){
+                   }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
                        continue;
                    }
                    else{

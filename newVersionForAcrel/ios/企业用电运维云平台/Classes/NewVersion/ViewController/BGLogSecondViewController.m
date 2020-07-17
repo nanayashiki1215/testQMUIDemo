@@ -56,7 +56,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-//    [self createView];
     UserManager *user = [UserManager manager];
        self.usenameTextField.delegate = self;
        self.pwdTextField.delegate = self;
@@ -86,22 +85,35 @@
             //背景图
             if (loginBgImg && loginBgImg.length) {
                  [self.bglogoPic sd_setImageWithURL:[NSURL URLWithString:[getAppLoginIconADS stringByAppendingString:loginBgImg]] placeholderImage:[UIImage imageNamed:@"loginBgImage"]];
+            }else{
+                self.bglogoPic.image = [UIImage imageNamed:@"loginBgImage"];
             }
             
             //logoImage
             if (loginImg && loginImg.length) {
                 [self.logoImageV sd_setImageWithURL:[NSURL URLWithString:[getAppLoginIconADS stringByAppendingString:loginImg]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
+            }else{
+                self.logoImageV.image = [UIImage imageNamed:@"loginLogo"];
             }
             //name
-            if (loginText && loginText.length) {
+            if (loginText) {
                 if ([[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"]  && [[[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"] isEqualToString:@"en"]) {
-                    self.logoLabel.text = loginEnText;
+                    if (loginEnText) {
+                        self.logoLabel.text = loginEnText;
+                    }else{
+                        self.logoLabel.text = NSLocalizedString(@"LoginText",nil);
+                    }
                 }else{
                     self.logoLabel.text = loginText;
                 }
-                
+            }else{
+               self.logoLabel.text = NSLocalizedString(@"LoginText",nil);
             }
         }
+    }else{
+        self.logoLabel.text = NSLocalizedString(@"LoginText",nil);
+        self.bglogoPic.image = [UIImage imageNamed:@"loginBgImage"];
+        self.logoImageV.image = [UIImage imageNamed:@"loginLogo"];
     }
      
     
@@ -792,7 +804,7 @@
 -(QMUIButton *)settingBtn{
     if (!_settingBtn) {
             _settingBtn = [[QMUIButton alloc] init];
-            _settingBtn.backgroundColor = UIColorWhite;
+            _settingBtn.backgroundColor = [UIColor clearColor];
             [_settingBtn setImage:[UIImage imageNamed:@"settingIP"] forState:UIControlStateNormal];
             [_settingBtn setTitle:@"IP配置" forState:UIControlStateNormal];
             [_settingBtn setTitleColor:COLOR_TEXT forState:UIControlStateNormal];

@@ -708,6 +708,7 @@
 
 #pragma mark - 设置消息通知开关
 -(void)setMessageNotification{
+    
     BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"notifySetting" ofType:@"html" inDirectory:@"aDevices"];
 //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"APPDownloadPage" ofType:@"html" inDirectory:@"aDevices"];
