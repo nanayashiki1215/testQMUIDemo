@@ -275,8 +275,8 @@
 "Harddecoding"="当前解码状态: 硬解码";
 "username:"="用户名:";
 
-"updateExplain"="已更新至最新版本";
-"updateConsult"="是否查阅最新版本升级内容？";
+"updateExplain"="当前版本";
+"updateConsult"="是否查阅当前版本升级内容？";
 
 "closeTopNotice"="关闭应用内消息展示";
 "closeTopNoticeDetail"="已关闭应用内消息展示的功能，如需开启可前往\"用户\"->\"设置\"->\"消息通知\"，自行开启";

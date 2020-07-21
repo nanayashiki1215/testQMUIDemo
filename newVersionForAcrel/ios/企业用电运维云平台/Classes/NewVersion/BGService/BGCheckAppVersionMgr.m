@@ -34,6 +34,7 @@
 
 - (void)isUpdataApp:(NSString *)appId andCompelete:(BGCheckAppVersionBlock)checkSuccess
 {
+    
     NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     BGWeakSelf;
     [NetService bg_getWithUpdatePath:@"sys/getAndroidVersion" params:@{@"fId":@"iose70eeb320a58230925c02e7",@"version":currentVersion} success:^(id respObjc) {
@@ -42,7 +43,7 @@
         NSString *updateNo = [NSString changgeNonulWithString:respObjc[@"update"]];
         if (weakSelf.fVersion) {
              [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
-        }else if ([updateNo isEqualToString:@"No"] && [UserManager manager].isShowNewVersion){
+        }else if ([updateNo isEqualToString:@"No"] && ![UserManager manager].isShowNewVersion){
             [weakSelf showNewVersionExplian];
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
@@ -83,7 +84,7 @@
         currentVersion = [currentVersion stringByReplacingOccurrencesOfString:@"."withString:@""];
         if([currentVersion floatValue] < [self.fVersion floatValue]) {
             self.appId = appId;
-            [UserManager manager].isShowNewVersion = YES;
+            [UserManager manager].isShowNewVersion = NO;
             if ([self.isConstraints isEqualToString:@"true"]) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:DefLocalizedString(@"Tip") message:DefLocalizedString(@"Newversion") delegate:self cancelButtonTitle:DefLocalizedString(@"ToUpdate") otherButtonTitles:nil];
                 [alertView show];
@@ -101,7 +102,8 @@
 
 -(void)showNewVersionExplian{
     //一次设置
-    [UserManager manager].isShowNewVersion = NO;
+    [UserManager manager].isShowNewVersion = YES;
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
       
          NSString *urlStr = @"versionHistoryView";
@@ -117,7 +119,7 @@
     QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Cancel") style:QMUIAlertActionStyleCancel handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
        
     }];
-    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:DefLocalizedString(@"updateExplain")  message:DefLocalizedString(@"updateConsult") preferredStyle:QMUIAlertControllerStyleAlert];
+    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@%@",DefLocalizedString(@"updateExplain"),currentVersion]  message:DefLocalizedString(@"updateConsult") preferredStyle:QMUIAlertControllerStyleAlert];
     [alertController addAction:action];
     [alertController addAction:action2];
     
