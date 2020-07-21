@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/MobileMonitor/!svn/ver/162990/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager
+END
+SoftAPConnectViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/MobileMonitor/!svn/ver/151735/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/SoftAPConnectViewController.h
+END
+AddDeviceViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/MobileMonitor/!svn/ver/144282/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/AddDeviceViewController.h
+END
+SoftAPConnectViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/MobileMonitor/!svn/ver/162990/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/SoftAPConnectViewController.m
+END
+UIAlertController+supportedInterfaceOrientations.h
+K 25
+svn:wc:ra_dav:version-url
+V 194
+/svn/MobileMonitor/!svn/ver/126044/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/UIAlertController+supportedInterfaceOrientations.h
+END
+AddDeviceViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/MobileMonitor/!svn/ver/159578/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/AddDeviceViewController.m
+END
+DeviceViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/MobileMonitor/!svn/ver/156466/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/DeviceViewController.h
+END
+UIAlertController+supportedInterfaceOrientations.m
+K 25
+svn:wc:ra_dav:version-url
+V 194
+/svn/MobileMonitor/!svn/ver/126044/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/UIAlertController+supportedInterfaceOrientations.m
+END
+DeviceOperationViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/svn/MobileMonitor/!svn/ver/126044/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/DeviceOperationViewController.h
+END
+DeviceViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/MobileMonitor/!svn/ver/162661/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/DeviceViewController.m
+END
+DeviceOperationViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/svn/MobileMonitor/!svn/ver/157068/Components/LCOpenSDK/Branches/P_2019.02.20_LCOpenSDK_V3.X/Demo/Ios/LCOpenSDKDemo/LCOpenSDKDemo/DeviceManager/DeviceOperationViewController.m
+END

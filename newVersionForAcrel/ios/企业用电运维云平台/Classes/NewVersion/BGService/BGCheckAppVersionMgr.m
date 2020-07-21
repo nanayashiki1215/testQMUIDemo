@@ -42,7 +42,7 @@
         weakSelf.fVersion = [NSString changgeNonulWithString:respObjc[@"fVersion"]];
         NSString *updateNo = [NSString changgeNonulWithString:respObjc[@"update"]];
         if (weakSelf.fVersion) {
-             [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
+            [weakSelf getAndroidVersionData:appId withCheckSuccess:checkSuccess];
         }else if ([updateNo isEqualToString:@"No"] && ![UserManager manager].isShowNewVersion){
             [weakSelf showNewVersionExplian];
         }
