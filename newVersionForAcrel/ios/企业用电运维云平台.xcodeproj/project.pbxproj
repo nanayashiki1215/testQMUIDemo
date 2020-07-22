@@ -199,6 +199,8 @@
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
 		B676927A24AC1C03009A654E /* BGOnlyAuthWkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */; };
+		B677494D24C7FFF2009AAA68 /* RestApiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B677494924C7FFF2009AAA68 /* RestApiInfo.m */; };
+		B677494E24C7FFF2009AAA68 /* RestApiService.mm in Sources */ = {isa = PBXBuildFile; fileRef = B677494B24C7FFF2009AAA68 /* RestApiService.mm */; };
 		B679E327238FA828004818E6 /* QLPreviewController+autoTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B679E326238FA828004818E6 /* QLPreviewController+autoTitle.m */; };
 		B681D44E24C6954500723100 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B681D44D24C6954500723100 /* CoreAudio.framework */; };
 		B681D45024C6957800723100 /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B681D44F24C6957800723100 /* MediaAccessibility.framework */; };
@@ -212,8 +214,6 @@
 		B683EDE424C6BB9900DF42D1 /* UIAlertController+supportedInterfaceOrientations.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EDDD24C6BB9900DF42D1 /* UIAlertController+supportedInterfaceOrientations.m */; };
 		B683EDE724C6BF5B00DF42D1 /* DownloadPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EDE524C6BF5B00DF42D1 /* DownloadPicture.m */; };
 		B683EDEA24C6BF8100DF42D1 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EDE824C6BF8100DF42D1 /* MyViewController.m */; };
-		B683EDF024C6C6E200DF42D1 /* RestApiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EDEC24C6C6E200DF42D1 /* RestApiInfo.m */; };
-		B683EDF124C6C6E200DF42D1 /* RestApiService.mm in Sources */ = {isa = PBXBuildFile; fileRef = B683EDEE24C6C6E200DF42D1 /* RestApiService.mm */; };
 		B683EDF824C6C73B00DF42D1 /* UIImage+LeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EDF424C6C73A00DF42D1 /* UIImage+LeChange.m */; };
 		B683EDF924C6C73B00DF42D1 /* PHAsset+Lechange.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EDF624C6C73B00DF42D1 /* PHAsset+Lechange.m */; };
 		B683EDFA24C6C73B00DF42D1 /* UIDevice+LeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EDF724C6C73B00DF42D1 /* UIDevice+LeChange.m */; };
@@ -222,8 +222,6 @@
 		B683EE0924C6CDA000DF42D1 /* UserModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE0224C6CDA000DF42D1 /* UserModeViewController.m */; };
 		B683EE0A24C6CDA000DF42D1 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE0524C6CDA000DF42D1 /* StartViewController.m */; };
 		B683EE0B24C6CDA000DF42D1 /* UserBindModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE0624C6CDA000DF42D1 /* UserBindModeViewController.m */; };
-		B683EE1624C6CDCA00DF42D1 /* RestApiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE0D24C6CDCA00DF42D1 /* RestApiInfo.m */; };
-		B683EE1724C6CDCA00DF42D1 /* RestApiService.mm in Sources */ = {isa = PBXBuildFile; fileRef = B683EE0F24C6CDCA00DF42D1 /* RestApiService.mm */; };
 		B683EE1824C6CDCA00DF42D1 /* RecordPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE1224C6CDCA00DF42D1 /* RecordPlayViewController.m */; };
 		B683EE1924C6CDCA00DF42D1 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE1324C6CDCA00DF42D1 /* RecordViewController.m */; };
 		B683EE2524C6CE3E00DF42D1 /* OpenApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE1F24C6CE3D00DF42D1 /* OpenApiClient.m */; };
@@ -1087,6 +1085,10 @@
 		B6760458239E1FC900AA8C1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B676927824AC1C03009A654E /* BGOnlyAuthWkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGOnlyAuthWkViewController.h; sourceTree = "<group>"; };
 		B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGOnlyAuthWkViewController.m; sourceTree = "<group>"; };
+		B677494924C7FFF2009AAA68 /* RestApiInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestApiInfo.m; sourceTree = "<group>"; };
+		B677494A24C7FFF2009AAA68 /* RestApiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestApiService.h; sourceTree = "<group>"; };
+		B677494B24C7FFF2009AAA68 /* RestApiService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RestApiService.mm; sourceTree = "<group>"; };
+		B677494C24C7FFF2009AAA68 /* RestApiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestApiInfo.h; sourceTree = "<group>"; };
 		B679E325238FA828004818E6 /* QLPreviewController+autoTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QLPreviewController+autoTitle.h"; sourceTree = "<group>"; };
 		B679E326238FA828004818E6 /* QLPreviewController+autoTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "QLPreviewController+autoTitle.m"; sourceTree = "<group>"; };
 		B681D44D24C6954500723100 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -1197,10 +1199,6 @@
 		B683EDE624C6BF5B00DF42D1 /* DownloadPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadPicture.h; sourceTree = "<group>"; };
 		B683EDE824C6BF8100DF42D1 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		B683EDE924C6BF8100DF42D1 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
-		B683EDEC24C6C6E200DF42D1 /* RestApiInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestApiInfo.m; sourceTree = "<group>"; };
-		B683EDED24C6C6E200DF42D1 /* RestApiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestApiService.h; sourceTree = "<group>"; };
-		B683EDEE24C6C6E200DF42D1 /* RestApiService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RestApiService.mm; sourceTree = "<group>"; };
-		B683EDEF24C6C6E200DF42D1 /* RestApiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestApiInfo.h; sourceTree = "<group>"; };
 		B683EDF224C6C73A00DF42D1 /* UIDevice+LeChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LeChange.h"; sourceTree = "<group>"; };
 		B683EDF324C6C73A00DF42D1 /* UIImage+LeChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LeChange.h"; sourceTree = "<group>"; };
 		B683EDF424C6C73A00DF42D1 /* UIImage+LeChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LeChange.m"; sourceTree = "<group>"; };
@@ -1217,10 +1215,6 @@
 		B683EE0524C6CDA000DF42D1 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		B683EE0624C6CDA000DF42D1 /* UserBindModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBindModeViewController.m; sourceTree = "<group>"; };
 		B683EE0724C6CDA000DF42D1 /* UserModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModeViewController.h; sourceTree = "<group>"; };
-		B683EE0D24C6CDCA00DF42D1 /* RestApiInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestApiInfo.m; sourceTree = "<group>"; };
-		B683EE0E24C6CDCA00DF42D1 /* RestApiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestApiService.h; sourceTree = "<group>"; };
-		B683EE0F24C6CDCA00DF42D1 /* RestApiService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RestApiService.mm; sourceTree = "<group>"; };
-		B683EE1024C6CDCA00DF42D1 /* RestApiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestApiInfo.h; sourceTree = "<group>"; };
 		B683EE1224C6CDCA00DF42D1 /* RecordPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordPlayViewController.m; sourceTree = "<group>"; };
 		B683EE1324C6CDCA00DF42D1 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		B683EE1424C6CDCA00DF42D1 /* RecordPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordPlayViewController.h; sourceTree = "<group>"; };
@@ -2719,15 +2713,25 @@
 			path = SDPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		B677494824C7FFF2009AAA68 /* RestApiService */ = {
+			isa = PBXGroup;
+			children = (
+				B677494924C7FFF2009AAA68 /* RestApiInfo.m */,
+				B677494A24C7FFF2009AAA68 /* RestApiService.h */,
+				B677494B24C7FFF2009AAA68 /* RestApiService.mm */,
+				B677494C24C7FFF2009AAA68 /* RestApiInfo.h */,
+			);
+			path = RestApiService;
+			sourceTree = "<group>";
+		};
 		B681D45724C697E900723100 /* Depend */ = {
 			isa = PBXGroup;
 			children = (
+				B677494824C7FFF2009AAA68 /* RestApiService */,
 				B683EE1A24C6CE3D00DF42D1 /* OpenApi */,
 				B683EE1124C6CDCA00DF42D1 /* Record */,
-				B683EE0C24C6CDCA00DF42D1 /* RestApiService */,
 				B683EDFF24C6CDA000DF42D1 /* UserManager */,
 				B683EDFB24C6CD9000DF42D1 /* MessageManager */,
-				B683EDEB24C6C6E200DF42D1 /* RestApiService */,
 				B683EDD524C6BB9900DF42D1 /* DeviceManager */,
 				B683EDD124C6BA6800DF42D1 /* LiveVideo */,
 				B683ED7824C6B3E100DF42D1 /* LCOpenApiClientSDK */,
@@ -2891,17 +2895,6 @@
 			path = DeviceManager;
 			sourceTree = "<group>";
 		};
-		B683EDEB24C6C6E200DF42D1 /* RestApiService */ = {
-			isa = PBXGroup;
-			children = (
-				B683EDEC24C6C6E200DF42D1 /* RestApiInfo.m */,
-				B683EDED24C6C6E200DF42D1 /* RestApiService.h */,
-				B683EDEE24C6C6E200DF42D1 /* RestApiService.mm */,
-				B683EDEF24C6C6E200DF42D1 /* RestApiInfo.h */,
-			);
-			path = RestApiService;
-			sourceTree = "<group>";
-		};
 		B683EDFB24C6CD9000DF42D1 /* MessageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2924,18 +2917,6 @@
 				B683EE0724C6CDA000DF42D1 /* UserModeViewController.h */,
 			);
 			path = UserManager;
-			sourceTree = "<group>";
-		};
-		B683EE0C24C6CDCA00DF42D1 /* RestApiService */ = {
-			isa = PBXGroup;
-			children = (
-				B683EE0D24C6CDCA00DF42D1 /* RestApiInfo.m */,
-				B683EE0E24C6CDCA00DF42D1 /* RestApiService.h */,
-				B683EE0F24C6CDCA00DF42D1 /* RestApiService.mm */,
-				B683EE1024C6CDCA00DF42D1 /* RestApiInfo.h */,
-			);
-			name = RestApiService;
-			path = "../../../../7月/IOS_SDK_DEMO/LCOpenSDKDemo/LCOpenSDKDemo/RestApiService";
 			sourceTree = "<group>";
 		};
 		B683EE1124C6CDCA00DF42D1 /* Record */ = {
@@ -4794,7 +4775,6 @@
 				B657DD4E22927AB10009BCB0 /* BGHeadPortraitViewController.m in Sources */,
 				B6D3B18E23861F41005CAF90 /* BGFileDownModel.m in Sources */,
 				B6C768E822A0B8DC00DA675D /* QDFloatLayoutViewController.m in Sources */,
-				B683EE1724C6CDCA00DF42D1 /* RestApiService.mm in Sources */,
 				B68D2CF422A646C1001C00EC /* JXCategoryTitleView.m in Sources */,
 				B68D2CEA22A646C1001C00EC /* JXCategoryIndicatorCell.m in Sources */,
 				B683EDE024C6BB9900DF42D1 /* SoftAPConnectViewController.m in Sources */,
@@ -4818,6 +4798,7 @@
 				B6C768DD22A0B8DC00DA675D /* QDLabViewController.m in Sources */,
 				B6B880AC23B992AF00197FF6 /* YYServiceParamSetViewController.m in Sources */,
 				B6A8E24D22A4FDD900E36D8F /* BGQMToolHelper.m in Sources */,
+				B677494D24C7FFF2009AAA68 /* RestApiInfo.m in Sources */,
 				B6C768BE22A0B8DC00DA675D /* QDChangeNavBarStyleViewController.m in Sources */,
 				B6E155B7228CEDF900CB4A5F /* BGImageUtils.m in Sources */,
 				B6C768ED22A0B8DC00DA675D /* QDScrollAnimatorViewController.m in Sources */,
@@ -5053,11 +5034,11 @@
 				B6693D9523A9B4DA006DFEF0 /* WelcomeView.m in Sources */,
 				B6C768F422A0B8DC00DA675D /* QDCustomToastAnimator.m in Sources */,
 				B68D2C7A22A63D87001C00EC /* GHDropMenuFilterInputItem.m in Sources */,
+				B677494E24C7FFF2009AAA68 /* RestApiService.mm in Sources */,
 				B683EDEA24C6BF8100DF42D1 /* MyViewController.m in Sources */,
 				B6C768F722A0B8DC00DA675D /* QDImagePreviewViewController1.m in Sources */,
 				B6D320FA2420C34C00A50F77 /* MWZoomingScrollView.m in Sources */,
 				B683EDFA24C6C73B00DF42D1 /* UIDevice+LeChange.m in Sources */,
-				B683EE1624C6CDCA00DF42D1 /* RestApiInfo.m in Sources */,
 				B6C768B322A0B8DC00DA675D /* QDSearchViewController.m in Sources */,
 				B679E327238FA828004818E6 /* QLPreviewController+autoTitle.m in Sources */,
 				B6B880BE23B9A3FC00197FF6 /* YYHistoryViewModel.m in Sources */,
@@ -5118,7 +5099,6 @@
 				B6C768A822A0B8DC00DA675D /* QDCommonViewController.m in Sources */,
 				B683EE0B24C6CDA000DF42D1 /* UserBindModeViewController.m in Sources */,
 				B6E15652228D418700CB4A5F /* NSArray+MASAdditions.m in Sources */,
-				B683EDF024C6C6E200DF42D1 /* RestApiInfo.m in Sources */,
 				B657DDDC22927C760009BCB0 /* SDWebImageImageIOCoder.m in Sources */,
 				B68D2CE222A646C1001C00EC /* JXCategoryIndicatorTriangleView.m in Sources */,
 				B6C768BD22A0B8DC00DA675D /* QDImageViewController.m in Sources */,
@@ -5141,7 +5121,6 @@
 				B6E2189A22A4ACA7003C2969 /* BGQMElectViewController.m in Sources */,
 				B637964A22F1251D007AC38F /* BGQMUserHeadTableViewCell.m in Sources */,
 				B6E15610228CF4E300CB4A5F /* BaseViewController.m in Sources */,
-				B683EDF124C6C6E200DF42D1 /* RestApiService.mm in Sources */,
 				B657DDC422927C760009BCB0 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B6E155C4228CEDF900CB4A5F /* CALayer+BGExtension.m in Sources */,
 				B61E2140248E1DCC0008C9CA /* WPAlertControl.m in Sources */,
