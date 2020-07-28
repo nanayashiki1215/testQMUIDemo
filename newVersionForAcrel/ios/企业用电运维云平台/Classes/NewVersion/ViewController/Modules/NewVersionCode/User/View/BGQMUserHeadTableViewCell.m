@@ -61,7 +61,7 @@
                    continue;
                }else if ([key isEqualToString:@"myLanguage"]){
                    continue;
-               }else if ([key isEqualToString:@"isOpenBoxInApp"]){
+               }else if ([key isEqualToString:@"isOpenBoxInApp"] || [key isEqualToString:@"isAlwaysUploadPosition"]){
                    continue;
                }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
                    continue;

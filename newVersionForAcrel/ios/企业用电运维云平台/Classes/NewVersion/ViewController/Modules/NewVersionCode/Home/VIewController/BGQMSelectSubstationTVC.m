@@ -12,6 +12,7 @@
 #import "QDSearchViewController.h"
 #import "IndexView.h"
 #import "UIViewController+BackButtonHandler.h"
+#import "BGUIWebViewController.h"
 
 @interface BGQMSelectSubstationTVC ()<UISearchBarDelegate,IndexViewDelegate, IndexViewDataSource>
 
@@ -45,6 +46,7 @@
 //    self.tableView.sectionHeaderHeight = 30.f;
 //    [self hideTableHeaderViewInitialIfCanWithAnimated:NO force:NO];
     // 对 self.view 的操作写在这里
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(changeShowMap)];
 }
 
 - (void)creatView{
@@ -55,6 +57,39 @@
 //    self.searchController.launchView = [[QDRecentSearchView alloc] init];// launchView 会自动布局，无需处理 frame
 //    self.searchController.searchBar.qmui_usedAsTableHeaderView = YES;// 以 tableHeaderView 的方式使用 searchBar 的话，将其置为 YES，以辅助兼容一些系统 bug
 //    self.tableView.tableHeaderView = self.searchController.searchBar;
+}
+
+-(void)changeShowMap{
+    UserManager *user = [UserManager manager];
+//    NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+//    NSString *fAction;
+//         NSString *fFunctionurl;
+//         for (NSDictionary *nodeDic in self.tableListArr) {
+//             if ([nodeDic[@"fCode"] isEqualToString:@"MsgNotificationLower"]) {
+//                 fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+//                 fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+//             }
+//         }
+//         if (fFunctionurl.length>0) {
+            BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"monitorSubstation" ofType:@"html" inDirectory:@"aDevices"];
+            nomWebView.isUseOnline = NO;
+            nomWebView.localUrlString = filePath;
+            nomWebView.showWebType = showWebTypeDevice;
+            //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nomWebView animated:YES];
+//         }else{
+//             BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+//             urlWebView.isUseOnline = YES;
+//             if (versionURL.length>0) {
+//                 NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+//                 NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+//                 NSString *urlStr = [str stringByAppendingString:fAction];
+//                 urlWebView.onlineUrlString = urlStr;
+//                 urlWebView.showWebType = showWebTypeDevice;
+//                [self.navigationController pushViewController:urlWebView animated:YES];
+//              }
+//         }
 }
 
 - (void)initDataArray{

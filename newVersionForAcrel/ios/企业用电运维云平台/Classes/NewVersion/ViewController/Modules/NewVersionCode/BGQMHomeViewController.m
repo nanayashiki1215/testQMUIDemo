@@ -25,6 +25,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <BMKLocationKit/BMKLocationComponent.h>
 #import "SKControllerTools.h"
+#import "LocationTool.h"
+
 /*
  监控系统 345
  设备管理 346
@@ -64,7 +66,6 @@
     MSCycleScrollView *_customCellScrollViewDemo;
     UIScrollView *_homeScrollView;
     MSCycleScrollView *_cycleScrollView2;
-    
 }
 
 - (void)didInitialize {
@@ -104,6 +105,15 @@
     }];
     
     [self getLocationWithLogin];
+    
+    //判断是否开启实时定位持续定位并上传
+    if([UserManager manager].isAlwaysUploadPosition){
+        [[LocationTool shareInstance] setUploadInterval:60];
+        [[LocationTool shareInstance] startLocation];
+    }else{
+        [[LocationTool shareInstance] stopLocation];
+    }
+    
     //配置小红点
 //    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:@"13"];
 }
@@ -265,7 +275,7 @@
                      continue;
                  }else if ([key isEqualToString:@"myLanguage"]){
                      continue;
-                 }else if ([key isEqualToString:@"isOpenBoxInApp"]){
+                 }else if ([key isEqualToString:@"isOpenBoxInApp"] || [key isEqualToString:@"isAlwaysUploadPosition"]){
                      continue;
                  }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
                      continue;
@@ -353,7 +363,7 @@
                        continue;
                    }else if ([key isEqualToString:@"myLanguage"]){
                        continue;
-                   }else if ([key isEqualToString:@"isOpenBoxInApp"]){
+                   }else if ([key isEqualToString:@"isOpenBoxInApp"] || [key isEqualToString:@"isAlwaysUploadPosition"]){
                        continue;
                    }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
                        continue;
@@ -1465,6 +1475,7 @@
         NSString *userIP = [NSString stringWithFormat:@"%@,%@",sktoolsStr,phoneVersion];
         NSDictionary *param = @{@"deviceType":@"IOS",@"userIp":userIP,@"userAddress":@""};
         [self uploadLogininMsg:param];
+
     }
 }
 

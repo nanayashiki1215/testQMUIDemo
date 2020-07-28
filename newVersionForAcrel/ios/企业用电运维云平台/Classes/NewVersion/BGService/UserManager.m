@@ -505,6 +505,17 @@ static UserManager* manager;
     [DefNSUD setBool:_isOpenBoxInApp forKey:@"isOpenBoxInApp"];
     DefNSUDSynchronize
 }
+//
+-(BOOL)isAlwaysUploadPosition{
+    _isAlwaysUploadPosition = [DefNSUD boolForKey:@"isAlwaysUploadPosition"];
+    return _isAlwaysUploadPosition;
+}
+
+-(void)setIsAlwaysUploadPosition:(BOOL)isAlwaysUploadPosition{
+    _isAlwaysUploadPosition = isAlwaysUploadPosition;
+    [DefNSUD setBool:_isAlwaysUploadPosition forKey:@"isAlwaysUploadPosition"];
+    DefNSUDSynchronize
+}
 
 //isShowNewVersion
 -(BOOL)isShowNewVersion{

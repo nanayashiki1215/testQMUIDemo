@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     [self initWindowView];
-
+    self.title = @"乐橙视频";
     dispatch_queue_t playLive = dispatch_queue_create("playLive", nil);
     dispatch_async(playLive, ^{
         [self Play];
@@ -123,18 +123,18 @@
 
     [self enableAllBtn:NO];
 
-    UINavigationItem* item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(LIVE_VIDEO_TITLE_TXT, nil)];
+//    UINavigationItem* item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(LIVE_VIDEO_TITLE_TXT, nil)];
+//
+//    UIButton* left = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [left setFrame:CGRectMake(0, 0, 50, 30)];
+//    UIImage* img = [UIImage leChangeImageNamed:Back_Btn_Png];
 
-    UIButton* left = [UIButton buttonWithType:UIButtonTypeCustom];
-    [left setFrame:CGRectMake(0, 0, 50, 30)];
-    UIImage* img = [UIImage leChangeImageNamed:Back_Btn_Png];
-
-    [left setBackgroundImage:img forState:UIControlStateNormal];
-    [left addTarget:self action:@selector(onBack) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:left];
-    [item setLeftBarButtonItem:leftBtn animated:NO];
-    [super.m_navigationBar pushNavigationItem:item animated:NO];
-    [self.view addSubview:super.m_navigationBar];
+//    [left setBackgroundImage:img forState:UIControlStateNormal];
+//    [left addTarget:self action:@selector(onBack) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:left];
+//    [item setLeftBarButtonItem:leftBtn animated:NO];
+//    [super.m_navigationBar pushNavigationItem:item animated:NO];
+//    [self.view addSubview:super.m_navigationBar];
 
     m_talker = [[LCOpenSDK_AudioTalk alloc] init];
     m_play = [[LCOpenSDK_PlayWindow alloc] initPlayWindow:CGRectMake(0, super.m_yOffset, m_screenFrame.size.width,m_screenFrame.size.width * 9 / 16) Index:0];
@@ -261,12 +261,13 @@
 - (void)Play
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [m_tipLab setText:@"Ready Play"];
+        [self->m_tipLab setText:@"Ready Play"];
     });
     [self showLoading:VIDEO_PROGRESS_IND];
     [m_play stopRtspReal];
     [m_play playRtspReal:m_accessToken devID:m_strDevSelected psk:m_encryptKey channel:m_devChnSelected definition:0 optimize:YES];
 }
+
 #pragma mark - 刷新播放
 - (void)onReplay
 {
@@ -276,7 +277,7 @@
 #pragma mark - 播放状态回调
 - (void)onPlayerResult:(NSString*)code Type:(NSInteger)type Index:(NSInteger)index
 {
-    // play
+    // play 基于503错误码的连接最大数错误，错误状态  code-1000;  // HTTP交互出错或超时
     NSLog(@"code = %@, type = %ld", code, (long)type);
     NSString* displayLab;
     if (99 == type) {

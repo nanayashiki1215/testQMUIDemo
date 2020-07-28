@@ -11,3 +11,4 @@
 @interface UIImage(LeChange)
 + (UIImage *)leChangeImageNamed:(NSString *)name;
 @end
+

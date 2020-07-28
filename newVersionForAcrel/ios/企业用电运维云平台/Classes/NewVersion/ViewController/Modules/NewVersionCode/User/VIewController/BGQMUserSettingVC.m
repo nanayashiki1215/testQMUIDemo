@@ -233,6 +233,8 @@
             imageName = @"userOwnPic9";
         }else if ([code isEqualToString:@"EZAuth"]){
             imageName = @"userOwnPic10";
+        }else if ([code isEqualToString:@"UploadPosition"]){
+            imageName = @"userOwnPic10";
         }
         else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
@@ -311,8 +313,11 @@
                 [self.navigationController pushViewController:themeVC animated:YES];
         }else if ([code isEqualToString:@"EZAuth"]){
             [self pushAuthorization];
+        }else if ([code isEqualToString:@"UploadPosition"]){
+            [self uploadPositioning];
         }
 }
+
 
 //跳转萤石云授权
 -(void)pushAuthorization{
@@ -524,6 +529,41 @@
 -(void)changeLanguage{
     BGQMChangeLanguageViewController *changeLVC = [[BGQMChangeLanguageViewController alloc] init];
     [self.navigationController pushViewController:changeLVC animated:YES];
+}
+
+#pragma mark - 上传定位
+//上传定位
+-(void)uploadPositioning{
+    UserManager *user = [UserManager manager];
+    NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+    NSString *fAction;
+         NSString *fFunctionurl;
+         for (NSDictionary *nodeDic in self.tableListArr) {
+             if ([nodeDic[@"fCode"] isEqualToString:@"MsgNotificationLower"]) {
+                 fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                 fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+             }
+         }
+         if (fFunctionurl.length>0) {
+            BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"UploadPosition" ofType:@"html" inDirectory:@"aDevices"];
+            nomWebView.isUseOnline = NO;
+            nomWebView.localUrlString = filePath;
+            nomWebView.showWebType = showWebTypeDevice;
+            //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nomWebView animated:YES];
+         }else{
+             BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+             urlWebView.isUseOnline = YES;
+             if (versionURL.length>0) {
+                 NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                 NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                 NSString *urlStr = [str stringByAppendingString:fAction];
+                 urlWebView.onlineUrlString = urlStr;
+                 urlWebView.showWebType = showWebTypeDevice;
+                [self.navigationController pushViewController:urlWebView animated:YES];
+              }
+         }
 }
 
 #pragma mark - 设置消息通知开关

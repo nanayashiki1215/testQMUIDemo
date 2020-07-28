@@ -671,7 +671,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
                                   }
                               }
                           }
-                          selfdetailVC.deviceInfo = deviceInfo;
+                         selfdetailVC.deviceInfo = deviceInfo;
                          if (self.pushSubid) {
                         
                             [self.navigationController pushViewController:selfdetailVC animated:YES];

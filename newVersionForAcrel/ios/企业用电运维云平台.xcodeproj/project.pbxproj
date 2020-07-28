@@ -198,6 +198,8 @@
 		B672373724AD83E000EFE5C9 /* BGLogSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */; };
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
+		B674388324C91A5C00701BB2 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60578F924C6AF7C0052EB50 /* LCOpenSDKDynamic.framework */; };
+		B674388724C91ECB00701BB2 /* LCMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B674388624C91ECA00701BB2 /* LCMain.storyboard */; };
 		B676927A24AC1C03009A654E /* BGOnlyAuthWkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */; };
 		B677494D24C7FFF2009AAA68 /* RestApiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B677494924C7FFF2009AAA68 /* RestApiInfo.m */; };
 		B677494E24C7FFF2009AAA68 /* RestApiService.mm in Sources */ = {isa = PBXBuildFile; fileRef = B677494B24C7FFF2009AAA68 /* RestApiService.mm */; };
@@ -306,6 +308,9 @@
 		B68D2D3822A65E2A001C00EC /* CustomGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2D3322A65E2A001C00EC /* CustomGrid.m */; };
 		B68D2D3B22A65FBC001C00EC /* BGQMMoveBtnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2D3A22A65FBC001C00EC /* BGQMMoveBtnViewController.m */; };
 		B68D2D3E22A660C3001C00EC /* BGQMSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2D3D22A660C3001C00EC /* BGQMSingletonManager.m */; };
+		B68E61F824CA82E500FAC9A2 /* BGImouVideoListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B68E61F724CA82E500FAC9A2 /* BGImouVideoListVC.m */; };
+		B68E61FD24CAB0F500FAC9A2 /* BGQMImouVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B68E61FC24CAB0F500FAC9A2 /* BGQMImouVideoCell.m */; };
+		B691C12124CFC89000B07E0F /* LocationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B691C12024CFC89000B07E0F /* LocationTool.m */; };
 		B695823A22A7633500D12CA4 /* BGNetworkDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = B695823922A7633500D12CA4 /* BGNetworkDefine.m */; };
 		B69CF25F244D689900C50A36 /* AlicloudUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69CF25B244D689800C50A36 /* AlicloudUtils.framework */; };
 		B69CF260244D689900C50A36 /* CloudPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69CF25C244D689800C50A36 /* CloudPushSDK.framework */; };
@@ -1081,6 +1086,7 @@
 		B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGLogSecondViewController.m; sourceTree = "<group>"; };
 		B6733F3E22B8D77A005B1DDE /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
+		B674388624C91ECA00701BB2 /* LCMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LCMain.storyboard; sourceTree = "<group>"; };
 		B6760457239E1FC700AA8C1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B6760458239E1FC900AA8C1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B676927824AC1C03009A654E /* BGOnlyAuthWkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGOnlyAuthWkViewController.h; sourceTree = "<group>"; };
@@ -1377,6 +1383,12 @@
 		B68D2D3A22A65FBC001C00EC /* BGQMMoveBtnViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMMoveBtnViewController.m; sourceTree = "<group>"; };
 		B68D2D3C22A660C3001C00EC /* BGQMSingletonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMSingletonManager.h; sourceTree = "<group>"; };
 		B68D2D3D22A660C3001C00EC /* BGQMSingletonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMSingletonManager.m; sourceTree = "<group>"; };
+		B68E61F624CA82E500FAC9A2 /* BGImouVideoListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGImouVideoListVC.h; sourceTree = "<group>"; };
+		B68E61F724CA82E500FAC9A2 /* BGImouVideoListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGImouVideoListVC.m; sourceTree = "<group>"; };
+		B68E61FB24CAB0F500FAC9A2 /* BGQMImouVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMImouVideoCell.h; sourceTree = "<group>"; };
+		B68E61FC24CAB0F500FAC9A2 /* BGQMImouVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMImouVideoCell.m; sourceTree = "<group>"; };
+		B691C11D24CFC89000B07E0F /* LocationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTool.h; sourceTree = "<group>"; };
+		B691C12024CFC89000B07E0F /* LocationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTool.m; sourceTree = "<group>"; };
 		B695823622A75CC900D12CA4 /* BGNetworkDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGNetworkDefine.h; sourceTree = "<group>"; };
 		B695823922A7633500D12CA4 /* BGNetworkDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGNetworkDefine.m; sourceTree = "<group>"; };
 		B69CF25B244D689800C50A36 /* AlicloudUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudUtils.framework; sourceTree = "<group>"; };
@@ -2088,6 +2100,7 @@
 				72A3A93A1D824587B174FAF0 /* CoreData.framework in Frameworks */,
 				B63BFF65234DBFDD009C70BC /* BaiduMapAPI_Base.framework in Frameworks */,
 				1BA65013D26F48C7859BD8E8 /* libz.dylib in Frameworks */,
+				B674388324C91A5C00701BB2 /* LCOpenSDKDynamic.framework in Frameworks */,
 				56C538D56E35D90C8B5CCBAE /* libPods-企业用电运维云平台.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2727,6 +2740,7 @@
 		B681D45724C697E900723100 /* Depend */ = {
 			isa = PBXGroup;
 			children = (
+				B674388624C91ECA00701BB2 /* LCMain.storyboard */,
 				B677494824C7FFF2009AAA68 /* RestApiService */,
 				B683EE1A24C6CE3D00DF42D1 /* OpenApi */,
 				B683EE1124C6CDCA00DF42D1 /* Record */,
@@ -2862,6 +2876,10 @@
 		B683EDD124C6BA6800DF42D1 /* LiveVideo */ = {
 			isa = PBXGroup;
 			children = (
+				B68E61F624CA82E500FAC9A2 /* BGImouVideoListVC.h */,
+				B68E61F724CA82E500FAC9A2 /* BGImouVideoListVC.m */,
+				B68E61FB24CAB0F500FAC9A2 /* BGQMImouVideoCell.h */,
+				B68E61FC24CAB0F500FAC9A2 /* BGQMImouVideoCell.m */,
 				B683EDF524C6C73A00DF42D1 /* PHAsset+Lechange.h */,
 				B683EDF624C6C73B00DF42D1 /* PHAsset+Lechange.m */,
 				B683EDF224C6C73A00DF42D1 /* UIDevice+LeChange.h */,
@@ -2922,10 +2940,10 @@
 		B683EE1124C6CDCA00DF42D1 /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				B683EE1224C6CDCA00DF42D1 /* RecordPlayViewController.m */,
+				B683EE1524C6CDCA00DF42D1 /* RecordViewController.h */,
 				B683EE1324C6CDCA00DF42D1 /* RecordViewController.m */,
 				B683EE1424C6CDCA00DF42D1 /* RecordPlayViewController.h */,
-				B683EE1524C6CDCA00DF42D1 /* RecordViewController.h */,
+				B683EE1224C6CDCA00DF42D1 /* RecordPlayViewController.m */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -4053,6 +4071,8 @@
 				B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */,
 				B64376442293D25100A92D74 /* BGUIWebViewController.h */,
 				B64376452293D25100A92D74 /* BGUIWebViewController.m */,
+				B691C11D24CFC89000B07E0F /* LocationTool.h */,
+				B691C12024CFC89000B07E0F /* LocationTool.m */,
 				B676927824AC1C03009A654E /* BGOnlyAuthWkViewController.h */,
 				B676927924AC1C03009A654E /* BGOnlyAuthWkViewController.m */,
 				B643D6F4247B52E800D455B4 /* energy */,
@@ -4509,8 +4529,6 @@
 				B6EB9BBF22C99FDB00136A6C /* EZUIKitViewController.h */,
 				B6EB9BB722C99FDB00136A6C /* EZUIKitViewController.m */,
 				B6EB9BBA22C99FDB00136A6C /* EZUIKitViewController.xib */,
-				B6EB9BBD22C99FDB00136A6C /* BGQMVideoListTableVC.h */,
-				B6EB9BC722C99FDB00136A6C /* BGQMVideoListTableVC.m */,
 				B6358CFC24A9CF1B00F480BD /* BGQMTrusteeshipViewController.h */,
 				B6358CFD24A9CF1B00F480BD /* BGQMTrusteeshipViewController.m */,
 				B6EB9BC022C99FDB00136A6C /* BGVideoStartViewController.h */,
@@ -4521,6 +4539,8 @@
 				B6EB9BCA22C99FDB00136A6C /* EZUISelectViewController.xib */,
 				B6EB9BCB22C99FDB00136A6C /* EZUIPlayBaseViewController.h */,
 				B6EB9BBE22C99FDB00136A6C /* EZUIPlayBaseViewController.m */,
+				B6EB9BBD22C99FDB00136A6C /* BGQMVideoListTableVC.h */,
+				B6EB9BC722C99FDB00136A6C /* BGQMVideoListTableVC.m */,
 			);
 			path = EZUVideoVC;
 			sourceTree = "<group>";
@@ -4624,6 +4644,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B645F30822AF3C2B00D5420A /* hanzi2pinyin_v2.txt in Resources */,
+				B674388724C91ECB00701BB2 /* LCMain.storyboard in Resources */,
 				B6A8E24522A4E51400E36D8F /* BGRedSpotCell.xib in Resources */,
 				B657DD4D22927AB10009BCB0 /* BGHeadPortraitViewController.xib in Resources */,
 				B6EB9BD122C99FDB00136A6C /* EZUIKitPlaybackViewController.xib in Resources */,
@@ -4746,6 +4767,7 @@
 				B6358CFE24A9CF1B00F480BD /* BGQMTrusteeshipViewController.m in Sources */,
 				1449480F1EE10CB70026AA73 /* NSData+AES128.m in Sources */,
 				B62251182420B0720041E709 /* EZInputSerialViewController.m in Sources */,
+				B691C12124CFC89000B07E0F /* LocationTool.m in Sources */,
 				B6E15697228D419800CB4A5F /* MJRefreshBackFooter.m in Sources */,
 				B657DD7C22927AEC0009BCB0 /* TZLocationManager.m in Sources */,
 				B68D2CE322A646C1001C00EC /* JXCategoryIndicatorRainbowLineView.m in Sources */,
@@ -4954,6 +4976,7 @@
 				B657DDC122927C760009BCB0 /* UIImage+WebP.m in Sources */,
 				B68D2D1B22A6562E001C00EC /* MSExampleDotView.m in Sources */,
 				B6C768DA22A0B8DC00DA675D /* QDAnimationViewController.m in Sources */,
+				B68E61FD24CAB0F500FAC9A2 /* BGQMImouVideoCell.m in Sources */,
 				B68D2CF522A646C1001C00EC /* JXCategoryImageView.m in Sources */,
 				B61E213F248E1DCC0008C9CA /* WPView.m in Sources */,
 				B6B880B123B992AF00197FF6 /* YYServerFenceModificationViewController.m in Sources */,
@@ -5221,6 +5244,7 @@
 				B683EE2624C6CE3E00DF42D1 /* NSDictionary+LCOpenSDK.m in Sources */,
 				B657DDC822927C760009BCB0 /* SDWebImageDownloader.m in Sources */,
 				B68D2CF822A646C1001C00EC /* JXCategoryNumberView.m in Sources */,
+				B68E61F824CA82E500FAC9A2 /* BGImouVideoListVC.m in Sources */,
 				B62251202420B0720041E709 /* EZWifiInfoViewController.m in Sources */,
 				B6D320C22420BDA200A50F77 /* NSDate-Utilities.m in Sources */,
 				B657DDD022927C760009BCB0 /* SDAnimatedImageRep.m in Sources */,
@@ -5372,7 +5396,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.4.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = OperationMaintenance;
@@ -5430,7 +5454,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.4.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = OperationMaintenance;

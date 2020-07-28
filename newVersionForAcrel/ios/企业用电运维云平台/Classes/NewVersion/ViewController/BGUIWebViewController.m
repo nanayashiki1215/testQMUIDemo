@@ -26,6 +26,7 @@
 #import "BGQMVideoListTableVC.h"
 #import "BGQMNavigationController.h"
 #import "JZLocationConverter.h"
+#import "LocationTool.h"
 
 @import MapKit;//ios7 使用苹果自带的框架使用@import导入则不用在Build Phases 导入框架了
 @import CoreLocation;
@@ -89,6 +90,7 @@
 
 @property (nonatomic, weak) ZYSuspensionView *susView;
 
+@property (nonatomic,strong)NSTimer *timer;
 @end
 
 @implementation BGUIWebViewController
@@ -478,6 +480,8 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"showBoxInApp"];
         //getLocForRob 抢单定位
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"getLocForRob"];
+        //是否持续定位
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"alwaysUploadPosition"];
         
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
@@ -545,6 +549,13 @@
         }else{
             openBoxInApp = false;
         }
+        //持续定位
+        bool alwaysUploadPosition;
+        if (user.isAlwaysUploadPosition && user.isAlwaysUploadPosition == YES) {
+            alwaysUploadPosition = true;
+        }else{
+            alwaysUploadPosition = false;
+        }
 //       window.webkit.messageHandlers.getLocation.postMessage("");
 //       loc = localStorage.getItem("locationStrJS");
         if ([self.isPushEnergy isEqualToString:@"1"]) {
@@ -558,7 +569,7 @@
         }else if (self.menuId.length>0) {
            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','fmenuId':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,self.menuId,user.bguserId,languageType,isOpenTrack];
         }else{
-            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@','isOpenBoxInApp':'%d'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,user.bguserId,languageType,isOpenTrack,openBoxInApp];
+            jsStartString = [NSString stringWithFormat:@"var obj = {'token': '%@','baseurl':'%@','fsubID':'%@','ipAddress':'%@','userID':'%@','languageType':'%@','isOpenTrack':'%@','isOpenBoxInApp':'%d','alwaysUploadPosition':'%d'}; obj = JSON.stringify(obj); localStorage.setItem('accessToken',obj);",user.token,baseUrl,user.fsubID,ipAddress,user.bguserId,languageType,isOpenTrack,openBoxInApp,alwaysUploadPosition];
         }
         //用于进行JavaScript注入
         WKUserScript *wkUScript2 = [[WKUserScript alloc] initWithSource:jsStartString injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
@@ -1008,6 +1019,42 @@
                }];
             }
         }
+    }
+    else if ([message.name isEqualToString:@"alwaysUploadPosition"]){
+        NSDictionary *msgDic = message.body;
+        if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+            return;
+        }
+        //是否开启持续定位
+        NSString *string = [msgDic objectForKeyNotNull:@"alwaysUploadPosition"];
+           if (string) {
+               if ([string isEqualToString:@"1"]) {
+                   [UserManager manager].isAlwaysUploadPosition = YES;
+                   NSString *isOpenBoxInApp = [NSString stringWithFormat:@"localStorage.setItem(\"alwaysUploadPosition\",'true');"];
+//                   __weak __typeof(self)weakSelf = self;
+                   [[LocationTool shareInstance] setUploadInterval:60];
+                   [[LocationTool shareInstance] startLocation];
+                   [self.webView evaluateJavaScript:isOpenBoxInApp completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+//                       如果需要持续定位返回地址信息（需要联网）
+//                       [self.locationManager setLocatingWithReGeocode:YES];
+//                       dispatch_sync(dispatch_get_main_queue(), ^{
+                           
+//                       });
+                        
+                       DefLog(@"item%@",item);
+                   }];
+               }else{
+                  [UserManager manager].isAlwaysUploadPosition = NO;
+                  [[LocationTool shareInstance] stopLocation];
+                  NSString *isOpenBoxInApp = [NSString stringWithFormat:@"localStorage.setItem(\"alwaysUploadPosition\",'false');"];
+//                  __weak __typeof(self)weakSelf = self;
+                  [self.webView evaluateJavaScript:isOpenBoxInApp completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                      
+                    
+                       DefLog(@"item%@",item);
+                  }];
+               }
+           }
     }
     else if ([message.name isEqualToString:@"getLocForRob"]){
             //getLocForRob 抢单
@@ -1850,7 +1897,7 @@
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"takePhone"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"showBoxInApp"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocForRob"];
-    
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"alwaysUploadPosition"];
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];

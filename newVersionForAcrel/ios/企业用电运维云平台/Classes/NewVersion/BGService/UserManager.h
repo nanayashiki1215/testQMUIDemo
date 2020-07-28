@@ -49,6 +49,7 @@
     NSString *_energyPassword;
     NSString *_versionURLForEnergy;
     BOOL _isOpenBoxInApp;
+    BOOL _isAlwaysUploadPosition;
     BOOL _isShowNewVersion;
     NSString *_appIndexSet;
 }
@@ -117,6 +118,8 @@
 @property(nonatomic,strong)NSString *versionURLForEnergy;//能耗管理拼接地址
 //展示应用内收到消息
 @property(nonatomic,assign)BOOL isOpenBoxInApp;//是否展示
+//是否持续定位
+@property(nonatomic,assign)BOOL isAlwaysUploadPosition;
 //展示最新版本更新内容
 @property(nonatomic,assign)BOOL isShowNewVersion;
 //首页展示管理

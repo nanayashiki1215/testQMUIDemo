@@ -64,42 +64,44 @@
     [self initWindow];
     [self initDatePicker];
 
-    UINavigationItem* item;
-    if (m_recordType == DeviceRecord) {
-        item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(LOCAL_RECORD_TITLE_TXT, nil)];
-    }
-    else if (m_recordType == CloudRecord) {
-        item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(NET_RECORD_TITLE_TXT, nil)];
-    }
+//    UINavigationItem* item;
+//    if (m_recordType == DeviceRecord) {
+//        item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(LOCAL_RECORD_TITLE_TXT, nil)];
+//    }
+//    else if (m_recordType == CloudRecord) {
+//        item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(NET_RECORD_TITLE_TXT, nil)];
+//    }
 
-    UIButton* left = [UIButton buttonWithType:UIButtonTypeCustom];
-    [left setFrame:CGRectMake(0, 0, 50, 30)];
+//    UIButton* left = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [left setFrame:CGRectMake(0, 0, 50, 30)];
+//
+//    [left setBackgroundImage:[UIImage leChangeImageNamed:Back_Btn_Png] forState:UIControlStateNormal];
+//    [left addTarget:self action:@selector(onBack) forControlEvents:UIControlEventTouchUpInside];
+//
+//    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:left];
+//    [item setLeftBarButtonItem:leftBtn animated:NO];
 
-    [left setBackgroundImage:[UIImage leChangeImageNamed:Back_Btn_Png] forState:UIControlStateNormal];
-    [left addTarget:self action:@selector(onBack) forControlEvents:UIControlEventTouchUpInside];
-
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:left];
-    [item setLeftBarButtonItem:leftBtn animated:NO];
-
-    m_right = [UIButton buttonWithType:UIButtonTypeCustom];
-    [m_right setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 5 - 40, 0, 50, 30)];
-
-    [m_right setBackgroundImage:[UIImage leChangeImageNamed:Search_Icon_Png] forState:UIControlStateNormal];
-    [m_right addTarget:self action:@selector(onSearch) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:m_right];
-    [item setRightBarButtonItem:rightBtn animated:NO];
-
-    [super.m_navigationBar pushNavigationItem:item animated:NO];
-
-    [self.view addSubview:super.m_navigationBar];
+    self.title = @"视频回放";
+    
+//    m_right = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [m_right setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 5 - 40, 0, 50, 30)];
+//
+//    [m_right setBackgroundImage:[UIImage leChangeImageNamed:Search_Icon_Png] forState:UIControlStateNormal];
+//    [m_right addTarget:self action:@selector(onSearch) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:m_right];
+//    [item setRightBarButtonItem:rightBtn animated:NO];
+//
+//    [super.m_navigationBar pushNavigationItem:item animated:NO];
+//
+//    [self.view addSubview:super.m_navigationBar];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage leChangeImageNamed:Search_Icon_Png] style:UIBarButtonItemStylePlain target:self action:@selector(onSearch)];
     
     [self.m_dateCancelBtn setTitle:NSLocalizedString(DATE_CANCEL_TXT, nil) forState:UIControlStateNormal];
     [self.m_dateSelectBtn setTitle:NSLocalizedString(DATE_QUERY_TXT, nil) forState:UIControlStateNormal];
     [self.m_dateLab setText:NSLocalizedString(DATE_TIP_TXT, nil)];
     // Do any additional setup after loading the view.
 
-    m_listView = [[UITableView alloc] initWithFrame:CGRectMake(0, super.m_yOffset, self.view.frame.size.width,
-                                                        self.view.frame.size.height - super.m_yOffset)];
+    m_listView = [[UITableView alloc] initWithFrame:CGRectMake(0, super.m_yOffset, self.view.frame.size.width,self.view.frame.size.height - super.m_yOffset)];
     m_listView.delegate = (id<UITableViewDelegate>)self;
     m_listView.dataSource = (id<UITableViewDataSource>)self;
     m_listView.backgroundColor = [UIColor clearColor];
