@@ -1055,7 +1055,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 
 
 -(void)getAppBasicConfig{
-//    __weak __typeof(self)weakSelf = self;
+    __weak __typeof(self)weakSelf = self;
     [NetService bg_getWithTokenWithPathAndNoTips:@"/getAppBasicConfig" params:@{} success:^(id respObjc) {
         if(!respObjc){
             return ;
@@ -1090,10 +1090,81 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
        if (verStr && verStr.length) {
            user.versionNo = verStr;
        }
-       
+         NSString *sizeStr = [weakSelf folderSize];
+        if (![sizeStr isEqualToString:@"0.0KB"]) {
+             [weakSelf clearCache];
+         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         
     }];
+}
+-(void)clearCache{
+    //===============清除缓存==============
+    //获取路径
+    NSString*cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)objectAtIndex:0];
+    
+    //返回路径中的文件数组
+    NSArray*files = [[NSFileManager defaultManager]subpathsAtPath:cachePath];
+    
+    DefLog(@"文件数：%ld",[files count]);
+    for(NSString *p in files){
+        NSError*error;
+        
+        NSString*path = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",p]];
+        
+        if([[NSFileManager defaultManager]fileExistsAtPath:path])
+        {
+            BOOL isRemove = [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+            if(isRemove) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"postSucceed" object:nil userInfo:nil];
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    // 需要在主线程执行的代码
+//                    [MBProgressHUD showSuccess:@"清除成功"];
+//                });
+                
+                //这里发送一个通知给外界，外界接收通知，可以做一些操作（比如UIAlertViewController）
+            }else{
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    // 需要在主线程执行的代码
+//                    [MBProgressHUD showError:@"清除失败"];
+//                });
+               
+            }
+        }
+    }
+}
+
+// 缓存大小
+- (NSString *)folderSize{
+    CGFloat folderSize = 0.0;
+    //获取路径
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)firstObject];
+    
+    //获取所有文件的数组
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
+    
+    DefLog(@"文件数：%ld",files.count);
+    
+    for(NSString *path in files) {
+        
+        NSString*filePath = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",path]];
+        
+        //累加
+        folderSize += [[NSFileManager defaultManager]attributesOfItemAtPath:filePath error:nil].fileSize;
+    }
+    NSString *sizeStr;
+    CGFloat size = folderSize / (1024 *1024);
+    if (size<1) {
+        CGFloat kbSize = folderSize/1024;
+        if (kbSize < 0.2) {
+            sizeStr = @"0.0KB";
+        }else{
+            sizeStr = [NSString stringWithFormat:@"%.1fKB",kbSize];
+        }
+    }else{
+        sizeStr = [NSString stringWithFormat:@"%.1fMB",size];
+    }
+    return sizeStr;
 }
 
 - (void)initCLLocationManager

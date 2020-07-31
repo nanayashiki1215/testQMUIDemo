@@ -42,7 +42,7 @@
     
 //    if (menuArray && menuArray.count && [menuArray isKindOfClass:[NSArray class]] ) {
 //        CGPoint startPoint = CGPointMake(self.view.bounds.size.width -37, BGSafeAreaTopHeight-6);
-//    PopoverView *pop = [[PopoverView alloc] initWithPoint:startPoint titleAndImageInfoArray:@[@{@"title":@"退出登录",@"image":@"fstz",@"code":@"1001"},@{@"title":@"上传图片",@"image":@"fqdb",@"code":@"1002"},@{@"title":@"跳转Web",@"image":@"fqlt",@"code":@"1003"},@{@"title":@"上传位置",@"image":@"fstz",@"code":@"1004"}]];
+//    PopoverView *pop = [[PopoverView alloc] initWithPoint:startPoint titleAndImageInfoArray:@[@{@"title":@"",@"image":@"fstz",@"code":@"1001"},@{@"title":@"上传图片",@"image":@"fqdb",@"code":@"1002"},@{@"title":@"跳转Web",@"image":@"fqlt",@"code":@"1003"},@{@"title":@"上传位置",@"image":@"fstz",@"code":@"1004"}]];
 //        __weak typeof(self) weakSelf = self;
 //        pop.selectRowAtIndex = ^(NSInteger index,NSDictionary *selectedInfo){
 //            NSString *code = selectedInfo[@"code"];

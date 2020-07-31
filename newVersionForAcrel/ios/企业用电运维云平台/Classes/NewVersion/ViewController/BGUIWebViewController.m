@@ -27,6 +27,7 @@
 #import "BGQMNavigationController.h"
 #import "JZLocationConverter.h"
 #import "LocationTool.h"
+#import "BGQMSelectSubstationTVC.h"
 
 @import MapKit;//ios7 使用苹果自带的框架使用@import导入则不用在Build Phases 导入框架了
 @import CoreLocation;
@@ -482,6 +483,8 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"getLocForRob"];
         //是否持续定位
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"alwaysUploadPosition"];
+        //返回变电所页面
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goBackSubPage"];
         
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
@@ -1055,6 +1058,30 @@
                   }];
                }
            }
+    }
+    else if ([message.name isEqualToString:@"goBackSubPage"]){
+        NSDictionary *msgDic = message.body;
+       if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
+           return;
+       }
+        BGQMSubstationModel *subModel = [[BGQMSubstationModel alloc] initWithupdateUserInfo:msgDic];
+        UserManager *user = [UserManager manager];
+        if (subModel) {
+            user.fsubID = subModel.fSubid;
+            user.fsubName = subModel.fSubname;
+        }
+       //删除中间层
+        NSMutableArray *marr = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+        for (UIViewController *vc in marr) {
+            if ([vc isKindOfClass:[BGQMSelectSubstationTVC class]]) {
+                [marr removeObject:vc];
+                break;
+            }
+        }
+        self.navigationController.viewControllers = marr;
+        //返回原生变电所页面
+        [self.navigationController popViewControllerAnimated:YES];
+               
     }
     else if ([message.name isEqualToString:@"getLocForRob"]){
             //getLocForRob 抢单
@@ -1898,6 +1925,7 @@
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"showBoxInApp"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocForRob"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"alwaysUploadPosition"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"goBackSubPage"];
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];

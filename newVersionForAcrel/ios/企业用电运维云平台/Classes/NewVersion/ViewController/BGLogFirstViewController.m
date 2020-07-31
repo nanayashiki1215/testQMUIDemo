@@ -20,7 +20,9 @@
 @property(nonatomic,strong)QMUIButton *saveIpBtn;
 @property(nonatomic,strong)UIImageView *imageViewFbg;
 @property (nonatomic, strong)UIButton *selectAddress;
+@property (nonatomic,strong)UIButton *promptBtn;
 @property (nonatomic, strong) QMUIPopupMenuView *popupByWindow;
+@property (nonatomic, strong) QMUIPopupMenuView *popupPrompt;
 @property (nonatomic, assign) BOOL isSelected;
 
 @end
@@ -145,8 +147,15 @@
               //    self.selectAddress.layer.cornerRadius = 2;
                   
       //            [self.selectAddress setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-         
-          }
+    }else{
+        [self.ipBgView addSubview:self.promptBtn];
+        [self.promptBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.imageV);
+            make.right.equalTo(self.IPTextField.mas_right).offset(0);
+            make.height.mas_offset(20);
+            make.width.mas_offset(20);
+        }];
+    }
     
 }
 
@@ -278,6 +287,37 @@
     [super viewDidLayoutSubviews];
 }
 
+-(void)showPopupPbtn:(UIButton *)showMoreBtn{
+  
+    // 使用方法 2，以 UIWindow 的形式显示到界面上，这种无需默认隐藏，也无需 add 到某个 UIView 上
+    __weak __typeof(self)weakSelf = self;
+       self.popupByWindow = [[QMUIPopupMenuView alloc] init];
+       self.popupByWindow.automaticallyHidesWhenUserTap = YES;// 点击空白地方消失浮层
+       self.popupByWindow.maskViewBackgroundColor = UIColorMaskWhite;// 使用方法 2 并且打开了 automaticallyHidesWhenUserTap 的情况下，可以修改背景遮罩的颜色
+       self.popupByWindow.shouldShowItemSeparator = YES;
+       self.popupByWindow.preferLayoutDirection = QMUIPopupContainerViewLayoutDirectionAbove;
+       self.popupByWindow.itemConfigurationHandler = ^(QMUIPopupMenuView *aMenuView, QMUIPopupMenuButtonItem *aItem, NSInteger section, NSInteger index) {
+           // 利用 itemConfigurationHandler 批量设置所有 item 的样式
+//           aItem.button.highlightedBackgroundColor = [UIColor.qd_tintColor colorWithAlphaComponent:.2];
+       };
+    
+//    NSMutableArray *orderMutArr = [NSMutableArray new];
+   
+    QMUIPopupMenuButtonItem *item = [QMUIPopupMenuButtonItem itemWithImage:nil title:@"域名示例：www.xxxxx.cn" handler:^(QMUIPopupMenuButtonItem *aItem) {
+        [aItem.menuView hideWithAnimated:YES];
+    }];
+    QMUIPopupMenuButtonItem *item2 = [QMUIPopupMenuButtonItem itemWithImage:nil title:@"IP示例：116.216.149.164:8090" handler:^(QMUIPopupMenuButtonItem *aItem) {
+        [aItem.menuView hideWithAnimated:YES];
+    }];
+    self.popupByWindow.items = @[item,item2];
+    
+       self.popupByWindow.didHideBlock = ^(BOOL hidesByUserTap) {
+//           [weakSelf.button2 setTitle:@"显示菜单浮层" forState:UIControlStateNormal];
+       };
+       self.popupByWindow.sourceView = self.promptBtn;// 相对于 button2 布局
+    
+    [self.popupByWindow showWithAnimated:YES];
+}
 
 -(void)showMoreIPAddress:(UIButton *)showMoreBtn{
     UserManager *user = [UserManager manager];
@@ -287,7 +327,7 @@
        self.popupByWindow.automaticallyHidesWhenUserTap = YES;// 点击空白地方消失浮层
        self.popupByWindow.maskViewBackgroundColor = UIColorMaskWhite;// 使用方法 2 并且打开了 automaticallyHidesWhenUserTap 的情况下，可以修改背景遮罩的颜色
        self.popupByWindow.shouldShowItemSeparator = YES;
-       self.popupByWindow.preferLayoutDirection = QMUIPopupContainerViewLayoutDirectionBelow;
+       self.popupByWindow.preferLayoutDirection = QMUIPopupContainerViewLayoutDirectionAbove;
        self.popupByWindow.itemConfigurationHandler = ^(QMUIPopupMenuView *aMenuView, QMUIPopupMenuButtonItem *aItem, NSInteger section, NSInteger index) {
            // 利用 itemConfigurationHandler 批量设置所有 item 的样式
 //           aItem.button.highlightedBackgroundColor = [UIColor.qd_tintColor colorWithAlphaComponent:.2];
@@ -457,6 +497,16 @@
         [_selectAddress setImage:[UIImage imageNamed:@"ipdizhi"] forState:UIControlStateNormal];
     }
     return _selectAddress;
+}
+
+-(UIButton *)promptBtn{
+    if (!_promptBtn) {
+        _promptBtn = [[UIButton alloc] init];
+        [_promptBtn addTarget:self action:@selector(showPopupPbtn:) forControlEvents:UIControlEventTouchUpInside];
+               //            [self.selectAddress setBackgroundImage:[UIImage imageNamed:@"ipdizhi"] forState:UIControlStateNormal];
+        [_promptBtn setImage:[UIImage imageNamed:@"wenhao-2"] forState:UIControlStateNormal];
+    }
+    return _promptBtn;
 }
 
 @end

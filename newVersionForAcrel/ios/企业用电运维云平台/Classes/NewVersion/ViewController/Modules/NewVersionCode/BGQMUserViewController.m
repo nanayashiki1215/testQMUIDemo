@@ -385,7 +385,7 @@
 ////            cell.textLabelEdgeInsets = UIEdgeInsetsZero;
 ////            cell.detailTextLabelEdgeInsets = UIEdgeInsetsZero;
 ////            cell.accessoryEdgeInsets = UIEdgeInsetsZero;
-////            cell.textLabel.text = @"退出登录";
+////        
 ////            cell.textLabel.textColor = [UIColor redColor];
 //        }
         return cell;

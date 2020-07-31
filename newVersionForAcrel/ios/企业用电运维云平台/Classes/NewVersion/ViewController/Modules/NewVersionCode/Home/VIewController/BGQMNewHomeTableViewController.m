@@ -73,6 +73,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     UserManager *user = [UserManager manager];
+    if (user.fsubID) {
+        self.titleView.title = user.fsubName;
+    }
     if (user.singleSubFullData) {
         [self getNetDataWithModel:nil];
     }

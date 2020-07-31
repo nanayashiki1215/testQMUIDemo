@@ -46,7 +46,7 @@
 //    self.tableView.sectionHeaderHeight = 30.f;
 //    [self hideTableHeaderViewInitialIfCanWithAnimated:NO force:NO];
     // 对 self.view 的操作写在这里
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(changeShowMap)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ditu"] style:UIBarButtonItemStylePlain target:self action:@selector(changeShowMap)];
 }
 
 - (void)creatView{
@@ -131,6 +131,9 @@
         [weakSelf.indexView reload];
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if([errorCode isEqualToString:@"5000"]){
+            [MBProgressHUD showError:@"请求失败，服务器异常"];
+        }
     }];
 }
 
