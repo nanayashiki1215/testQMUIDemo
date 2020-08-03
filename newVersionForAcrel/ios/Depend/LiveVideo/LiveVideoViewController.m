@@ -8,7 +8,7 @@
 
 //#import "LCOpenSDK_Prefix.h"
 #import "LiveVideoViewController.h"
-#import "UIDevice+Lechange.h"
+#import "UIDevice+LeChange.h"
 #import "PHAsset+Lechange.h"
 
 #define LIVE_BAR_HEIGHT 40.0
@@ -361,8 +361,8 @@
 #pragma mark - 播放数据回调
 - (void)onReceiveData:(NSInteger)len Index:(NSInteger)index
 {
-    //    NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge
-    //    CFTypeRef)(self)));
+        NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge
+        CFTypeRef)(self)));
 }
 
 #pragma mark - TS/PS标准流数据回调
@@ -987,6 +987,8 @@
     }
 }
 #pragma mark - 屏幕旋转
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+//duration:(NSTimeInterval)duration
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                          duration:(NSTimeInterval)duration
 {
@@ -1016,7 +1018,8 @@
         [self refreshSubView];
         [m_fullScreenBtn setBackgroundImage:[UIImage leChangeImageNamed:VideoPlay_FullScreen_Png]
                                    forState:UIControlStateNormal];
-        super.m_navigationBar.hidden = NO;
+//        super.m_navigationBar.hidden = NO;
+        self.navigationController.navigationBar.hidden = NO;
     } else {
         [m_fullScreenBtn setBackgroundImage:[UIImage leChangeImageNamed:Video_Smallscreen]
                                    forState:UIControlStateNormal];
@@ -1031,13 +1034,10 @@
         [self refreshSubView];
         [self.view bringSubviewToFront:livePlayBarView];
         super.m_navigationBar.hidden = YES;
+        self.navigationController.navigationBar.hidden = YES;
     }
 }
 
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
 #pragma mark - 滑动轮指示器
 // 显示滚动轮指示器
 - (void)showLoading:(ProgressIndType)type
@@ -1059,6 +1059,19 @@
     } else if (TALK_PROGRESS_IND == type && [m_talkProgressInd isAnimating]) {
         [m_talkProgressInd stopAnimating];
     }
+}
+#pragma mark - 屏幕旋转
+
+// 这个方法返回支持的方向
+//-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+//    [super supportedInterfaceOrientations];
+//    return UIInterfaceOrientationMaskAll;
+//}
+
+-(BOOL)shouldAutorotate {
+    [super shouldAutorotate];
+    return YES;
+
 }
 #pragma mark - 从后台返回
 - (void)onActive:(id)sender

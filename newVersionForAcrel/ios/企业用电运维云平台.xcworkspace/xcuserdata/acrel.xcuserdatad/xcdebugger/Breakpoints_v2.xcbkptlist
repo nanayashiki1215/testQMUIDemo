@@ -263,5 +263,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "49A36DE8-5732-4448-BDD8-AF6516F80A23"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Depend/LiveVideo/LiveVideoViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "834"
+            endingLineNumber = "834"
+            landmarkName = "-onWindowLongPressBegin:dx:dy:Index:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1A61D1DA-DAB0-4CEC-83C6-17665BC9070C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Depend/LiveVideo/LiveVideoViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "831"
+            endingLineNumber = "831"
+            landmarkName = "-onWindowLongPressBegin:dx:dy:Index:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1A61D1DA-DAB0-4CEC-83C6-17665BC9070C - 4b1f17b4766f3c6c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LiveVideoViewController onWindowLongPressBegin:dx:dy:Index:]"
+                  moduleName = "OperationMaintenance"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/Depend/LiveVideo/LiveVideoViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "831"
+                  endingLineNumber = "831"
+                  offsetFromSymbolStart = "340">
+               </Location>
+               <Location
+                  uuid = "1A61D1DA-DAB0-4CEC-83C6-17665BC9070C - 1acb4c5beb660e10"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__62-[LiveVideoViewController onWindowLongPressBegin:dx:dy:Index:]_block_invoke"
+                  moduleName = "OperationMaintenance"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/acrel/Desktop/testdemo/newVersionForAcrel/ios/Depend/LiveVideo/LiveVideoViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "831"
+                  endingLineNumber = "831"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D1741DD0-CE07-41D7-BA55-18B378F29416"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Depend/LiveVideo/LiveVideoViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
+            landmarkName = "-onStreamCallback:Index:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

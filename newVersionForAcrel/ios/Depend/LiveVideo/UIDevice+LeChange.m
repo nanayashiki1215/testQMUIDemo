@@ -33,7 +33,6 @@
         if (statusBarOri != deviceOri) {
             [self lc_setOrientation:[UIApplication sharedApplication].statusBarOrientation];
         }
-
         [self lc_setOrientation:UIInterfaceOrientationPortrait];
     }
     else {

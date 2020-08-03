@@ -587,6 +587,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
         NSString* errMsg;
         OpenApiService* openApi = [[OpenApiService alloc] init];
 //        NSInteger ret = [openApi getAccessToken:@"openapi.lechange.cn" port:443 appId:@"lc56f269661eaa484f" appSecret:@"35a7e64cff5544e291725475f7ca33" token:&accessTok errcode:&errCode errmsg:&errMsg];
+            //配置服务器地址
         LCOpenSDK_Api *m_hc = [[LCOpenSDK_Api shareMyInstance] initOpenApi:PROCOTOL_TYPE_HTTPS addr:@"openapi.lechange.cn" port:443 CA_PATH:@""];
             RestApiService* restApiService = [RestApiService shareMyInstance];
 //            m_devList = [[NSMutableArray alloc] init];
@@ -601,7 +602,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
                 }else{
                     [self.ownNaviController pushViewController:liveVideoView animated:YES];
                 }
-                [liveVideoView setInfo:@"At_000059b48b59647f4c25b19f40eb442b" Dev:@"5L02496PAU2B9FF" Key:@"" Chn:NULL Img:nil Abl:@"WLAN,MT,HSEncrypt,CloudStorage,LocalStorage,PlaybackByFilename,BreathingLight,RD,CK,LocalRecord,XUpgrade,Auth,ModifyPassword,LocalStorageEnable,RTSV1,PBSV1,ESV1,PlaySound,Reboot,InfraredLight,LinkDevAlarm,AbAlarmSound,SCCode,AlarmMD,PT,AudioEncodeControlV2,FrameReverse,MDW,MDS,HeaderDetect,SmartTrack,CloseCamera,CheckAbDecible,PT1,AudioTalk,WLAN,MT,HSEncrypt,CloudStorage,LocalStorage,PlaybackByFilename,BreathingLight,RD,CK,LocalRecord,XUpgrade,Auth,ModifyPassword,LocalStorageEnable,RTSV1,PBSV1,ESV1,PlaySound,Reboot,InfraredLight,LinkDevAlarm,AbAlarmSound,SCCode,AlarmMD,PT,AudioEncodeControlV2,FrameReverse,MDW,MDS,HeaderDetect,SmartTrack,CloseCamera,CheckAbDecible,PT1,AudioTalk"];
+                [liveVideoView setInfo:@"At_000083e7d36d4ee040b396d4c69d3134" Dev:@"5L02496PAU2B9FF" Key:@"" Chn:NULL Img:nil Abl:@"WLAN,MT,HSEncrypt,CloudStorage,LocalStorage,PlaybackByFilename,BreathingLight,RD,CK,LocalRecord,XUpgrade,Auth,ModifyPassword,LocalStorageEnable,RTSV1,PBSV1,ESV1,PlaySound,Reboot,InfraredLight,LinkDevAlarm,AbAlarmSound,SCCode,AlarmMD,PT,AudioEncodeControlV2,FrameReverse,MDW,MDS,HeaderDetect,SmartTrack,CloseCamera,CheckAbDecible,PT1,AudioTalk,WLAN,MT,HSEncrypt,CloudStorage,LocalStorage,PlaybackByFilename,BreathingLight,RD,CK,LocalRecord,XUpgrade,Auth,ModifyPassword,LocalStorageEnable,RTSV1,PBSV1,ESV1,PlaySound,Reboot,InfraredLight,LinkDevAlarm,AbAlarmSound,SCCode,AlarmMD,PT,AudioEncodeControlV2,FrameReverse,MDW,MDS,HeaderDetect,SmartTrack,CloseCamera,CheckAbDecible,PT1,AudioTalk"];
         
         
           });
