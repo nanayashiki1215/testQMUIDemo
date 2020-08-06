@@ -564,7 +564,7 @@ static RestApiService* _instance = nil;
     
     QueryLocalRecordNumRequest req;
     QueryLocalRecordNumResponse resp;
-    req.data.token = m_accessToken;
+    req.data.token = m_accessToken;//At_0000f1c23b60ee46453294b115c369e5
     req.data.deviceId = [devID_In UTF8String];
     req.data.channelId = strCh;
     req.data.beginTime = [beginTime_In UTF8String];
@@ -573,7 +573,7 @@ static RestApiService* _instance = nil;
     NSInteger ret = [m_hc request:&req resp:&resp timeout:10];
     if (0 == ret) {
         if (HTTP_OK == resp.code) {
-            NSString* ret_code = [self stringWithStdString:resp.ret_code];
+            NSString* ret_code = [self stringWithStdString:resp.ret_code];//0
             if ([ret_code isEqualToString:@"0"]) {
                 NSLog(@"getRecordNum num[%d]", resp.data.recordNum);
                 *errMsg_Out = [MSG_SUCCESS mutableCopy];

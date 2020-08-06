@@ -101,7 +101,7 @@
     [self.m_dateLab setText:NSLocalizedString(DATE_TIP_TXT, nil)];
     // Do any additional setup after loading the view.
 
-    m_listView = [[UITableView alloc] initWithFrame:CGRectMake(0, super.m_yOffset, self.view.frame.size.width,self.view.frame.size.height - super.m_yOffset)];
+    m_listView = [[UITableView alloc] initWithFrame:CGRectMake(0, super.m_yOffset, SCREEN_WIDTH,SCREEN_HEIGHT - super.m_yOffset - NavigationBarHeight)];
     m_listView.delegate = (id<UITableViewDelegate>)self;
     m_listView.dataSource = (id<UITableViewDataSource>)self;
     m_listView.backgroundColor = [UIColor clearColor];
@@ -204,6 +204,10 @@
     return iCount;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.1f;
+}
+
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return m_cellHeight;
@@ -267,17 +271,17 @@
             label.backgroundColor = [UIColor greenColor];
             [cell addSubview:label];
         }
-        UIButton* downloadBtn = [[UIButton alloc] initWithFrame:CGRectMake(m_cellWidth - 60, m_cellHeight - m_separatorHeight - 30 + 2.5, 2 * (30 - 5), 30 - 5)];
-        if (m_isCloudDownload[[indexPath row]]) {
-            [downloadBtn setBackgroundImage:[UIImage leChangeImageNamed:Video_Download_Cancel_Png] forState:UIControlStateNormal];
-        }
-        else {
-            [downloadBtn setBackgroundImage:[UIImage leChangeImageNamed:Video_Download_Png] forState:UIControlStateNormal];
-        }
-        downloadBtn.tag = [indexPath row];
-        [downloadBtn addTarget:self action:@selector(onDownload:) forControlEvents:UIControlEventTouchUpInside];
-        [cell addSubview:downloadBtn];
-        [cell bringSubviewToFront:downloadBtn];
+//        UIButton* downloadBtn = [[UIButton alloc] initWithFrame:CGRectMake(m_cellWidth - 60, m_cellHeight - m_separatorHeight - 30 + 2.5, 2 * (30 - 5), 30 - 5)];
+//        if (m_isCloudDownload[[indexPath row]]) {
+//            [downloadBtn setBackgroundImage:[UIImage leChangeImageNamed:Video_Download_Cancel_Png] forState:UIControlStateNormal];
+//        }
+//        else {
+//            [downloadBtn setBackgroundImage:[UIImage leChangeImageNamed:Video_Download_Png] forState:UIControlStateNormal];
+//        }
+//        downloadBtn.tag = [indexPath row];
+//        [downloadBtn addTarget:self action:@selector(onDownload:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell addSubview:downloadBtn];
+//        [cell bringSubviewToFront:downloadBtn];
 //    }
     
     return cell;
@@ -310,7 +314,7 @@
     m_imgPicSelected = [UIImage imageWithData:m_downloadPicture[[indexPath row]].picData];
 
     [m_recInfoLock unlock];
-    UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
     RecordPlayViewController* recordPlayView = [currentBoard instantiateViewControllerWithIdentifier:@"RecordPlay"];
     [recordPlayView setInfo:m_accessToken Dev:m_strDevSelected Key:m_encryptKey Chn:m_devChnSelected Type:m_recordType];
     [recordPlayView setRecInfo:m_strRecSelected RecReg:m_strRecRegSelected Begin:m_beginTimeSelected End:m_endTimeSelected Img:m_imgPicSelected];
@@ -737,6 +741,7 @@
         NSString* errMsg;
         NSInteger iNum;
         RestApiService* restApiService = [RestApiService shareMyInstance];
+        //5L02496PAU2B9FF 0
         [restApiService getRecordNum:m_strDevSelected Chnl:m_devChnSelected Begin:sBeginTime End:sEndTime Num:&iNum Msg:&errMsg];
         if (![errMsg isEqualToString:[MSG_SUCCESS mutableCopy]]) {
             if (YES == m_isStarting) {

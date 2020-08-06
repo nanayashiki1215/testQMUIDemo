@@ -242,9 +242,9 @@
     }
     if(location.rgcData){
         NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@%@%@",location.rgcData.country,location.rgcData.province,location.rgcData.city,location.rgcData.district,location.rgcData.street,location.rgcData.streetNumber];
-        [locParam setObject:addressStr forKey:@"address"];
+        [locParam setObject:addressStr forKey:@"fAddress"];
     }
-    [NetService bg_getWithTokenWithPathAndNoTips:@"/v5/updateUserLocation" params:locParam success:^(id respObjc) {
+    [NetService bg_getWithTokenWithPathAndNoTips:@"/updateUserLocation" params:locParam success:^(id respObjc) {
         
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         
