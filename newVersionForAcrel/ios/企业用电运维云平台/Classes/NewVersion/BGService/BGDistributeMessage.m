@@ -19,7 +19,8 @@
             NSString *pushType = [dict bg_StringForKeyNotNull:@"pushType"];
             if([pushType isEqualToString:@"alarm"]){
                  [self JudgeWhetherGetUnreadWarningMessage];
-
+                NSNotification *notification = [NSNotification notificationWithName:@"RefreshWebData" object:nil userInfo:dict];
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
 //                 NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
 //               //调用接口查询 显示顶部推送消息
 //               if (logid && [UserManager manager].isOpenBoxInApp) {

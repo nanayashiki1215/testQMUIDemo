@@ -1062,6 +1062,11 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         }
         UserManager *user = [UserManager manager];
         user.versionURLForEnergy = respObjc[kdata][@"versionURL3"];
+        NSDictionary *datadic = respObjc[kdata];
+        NSString *newToken = [NSString changgeNonulWithString:datadic[@"newToken"]];
+        if (newToken && newToken.length>0) {
+            user.token = newToken;
+        }
         //能耗管理
         NSDictionary *partyInfo = respObjc[kdata][@"partyUserInfo"];
         if (partyInfo) {

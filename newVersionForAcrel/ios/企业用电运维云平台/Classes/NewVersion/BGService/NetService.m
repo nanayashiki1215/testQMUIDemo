@@ -119,6 +119,7 @@ static NetService *_instance;
                     NSString *token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"token"]];
                     if(token.length>0){
                         [UserManager manager].token = token;
+                        
                     }
                     return ;
                 }else{

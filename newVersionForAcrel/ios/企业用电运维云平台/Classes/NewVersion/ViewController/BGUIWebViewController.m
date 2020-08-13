@@ -171,6 +171,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    //注册刷新通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshWebDataMethod:) name:@"RefreshWebData" object:nil];
+      
     if(self.showWebType == showWebTypeDevice || self.showWebType == showWebTypeReport || self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeWithPush || self.showWebType == showWebTypeWithPushNoYY){
         self.navigationController.navigationBarHidden = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -215,7 +218,7 @@
            }
         }
     }
-    
+
      if ((self.showWebType == showWebTypeDeviceForYY || self.showWebType == showWebTypeWithPush) && [UserManager manager].isOpenTjBaidu && [UserManager manager].isContinueShowTJ) {
         //显示轨迹
             UIColor *color = COLOR_NAVBAR;
@@ -1103,7 +1106,6 @@
                 }else{
                      locationStrJS = [NSString stringWithFormat:@"localStorage.setItem(\"locationStrJS\",'%@');",locationStr];
                 }
-    //
                 [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                     DefLog(@"item%@",item);
                     weakSelf.pageStillLoading = NO;
@@ -1931,13 +1933,58 @@
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(title))];
-    
+    //移除刷新通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"RefreshWebData" object:self];
     [UIImagePickerController unHookDelegate];
     //移除注册的js方法
     
      [self.susView removeFromScreen];
 }
 
+#pragma mark - 解析网页刷新通知
+-(void)refreshWebDataMethod:(NSNotification *)notification{
+    NSDictionary *dict = notification.userInfo;
+    if ([dict isKindOfClass:[NSDictionary class]] && [dict objectForKey:@"SpecificType"]) {
+        NSString *specificType = [dict bg_StringForKeyNotNull:@"SpecificType"];
+//        subId
+        NSString *subId = [dict bg_StringForKeyNotNull:@"subId"];
+        if (![subId isEqualToString:[UserManager manager].fsubID]) {
+            return;
+        }
+        if ([specificType containsString:@"water"] || [specificType containsString:@"Water"] || [specificType containsString:@"水"]) {
+            //刷新水浸
+            NSString *locationStrJS = [NSString stringWithFormat:@"refreshWaterData()"];
+            [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                DefLog(@"item%@",item);
+            }];
+        }else if ([specificType containsString:@"Smog"] || [specificType containsString:@"smog"] || [specificType containsString:@"烟"]){
+            //刷新烟雾
+            NSString *locationStrJS = [NSString stringWithFormat:@"refreshSmogData()"];
+            [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                DefLog(@"item%@",item);
+            }];
+        }else if ([specificType containsString:@"Door"] || [specificType containsString:@"door"] || [specificType containsString:@"门"]){
+            //刷新门状态
+            NSString *locationStrJS = [NSString stringWithFormat:@"refreshDoorData()"];
+            [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                DefLog(@"item%@",item);
+            }];
+        }else if ([specificType containsString:@"Noise"] || [specificType containsString:@"noise"] || [specificType containsString:@"噪"]){
+            //刷新噪声
+            NSString *locationStrJS = [NSString stringWithFormat:@"refreshNoiseData()"];
+            [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                DefLog(@"item%@",item);
+            }];
+        }
+        //刷新配电图
+        NSString *refreshStrJS = [NSString stringWithFormat:@"refreshDiagramData()"];
+        [self.webView evaluateJavaScript:refreshStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+            DefLog(@"item%@",item);
+        }];
+        
+    }
+     
+}
 
 #pragma mark - JXCategoryListCollectionContentViewDelegate
 
