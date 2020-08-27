@@ -21,6 +21,7 @@
 @property(nonatomic, strong) NSString *ezappkeystr;//临时AppKey
 @property(nonatomic, strong) NSString *ezappTokenstr;//临时Apptoken
 @property(nonatomic, assign) CGFloat cellChangeHeight;//改变高度
+@property(nonatomic, strong) NSString *accessTok;
 
 @end
 
@@ -50,7 +51,94 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
 
     self.mutArray = [NSMutableArray new];
     self.searchArray = [NSMutableArray new];
+//    [self creatLeCheng];
     [self getVideoListData];
+}
+
+- (void)creatLeCheng{
+    m_devList = [[NSMutableArray alloc] init];
+    OpenApiService* openApi = [[OpenApiService alloc] init];
+     //        NSInteger ret = [openApi getAccessToken:@"openapi.lechange.cn" port:443 appId:@"lc56f269661eaa484f" appSecret:@"35a7e64cff5544e291725475f7ca33" token:&accessTok errcode:&errCode errmsg:&errMsg];
+//    self.accessTok = @"At_0000edcf8a18d30049da83b7f38f33ab";
+     LCOpenSDK_Api *m_hc = [[LCOpenSDK_Api shareMyInstance] initOpenApi:PROCOTOL_TYPE_HTTPS addr:@"openapi.lechange.cn" port:443 CA_PATH:@""];
+         RestApiService* restApiService = [RestApiService shareMyInstance];
+    //            m_devList = [[NSMutableArray alloc] init];
+         if (nil != m_hc && nil != self.accessTok) {
+             [restApiService initComponent:m_hc Token:self.accessTok];
+         }
+    
+    dispatch_queue_t get_devlist = dispatch_queue_create("get_devlist", nil);
+       dispatch_async(get_devlist, ^{
+           NSString* errMsg;
+           NSString* errMsgB, *errMsgS, *errMsgG;
+           if ([NSLocalizedString(LANGUAGE_TXT, nil) isEqualToString:@"zh"]) {
+               [restApiService beAuthDeviceList:m_devList Begin:DEV_BEGIN End:DEV_END Msg:&errMsgB];
+               if (![errMsgB isEqualToString:[MSG_SUCCESS mutableCopy]]) {
+                   errMsg = @"get auth";
+               }
+               [restApiService shareDeviceList:m_devList Begin:DEV_BEGIN End:DEV_END Msg:&errMsgS];
+               if (![errMsgS isEqualToString:[MSG_SUCCESS mutableCopy]]) {
+                   if (errMsg) {
+                       errMsg = [errMsg stringByAppendingString:@",shared"];
+                   }else{
+                       errMsg = @"get shared";
+                   }
+               }
+           }
+           
+           [restApiService getDevList:m_devList Begin:DEV_BEGIN End:DEV_END Msg:&errMsgG];
+           
+           if(m_devList.count==0)
+           {
+               dispatch_async(dispatch_get_main_queue(), ^{
+//                   m_toastLab.text = @"NO DEVICES";
+//                   m_toastLab.hidden = NO;
+//                   m_progressInd.hidden = YES;
+                   [MBProgressHUD showError:@"暂无设备"];
+               });
+
+               return;
+           }
+           
+           if (![errMsgG isEqualToString:[MSG_SUCCESS mutableCopy]]) {
+               if (errMsg) {
+                   errMsg = [errMsg stringByAppendingString:@",own"];
+               }else{
+                   errMsg = @"get own";
+               }
+           }
+           if ([errMsg isEqualToString:@"get auth,shared,own"]) {
+               dispatch_async(dispatch_get_main_queue(), ^{
+//                   [self hideLoading];
+//                   m_toastLab.text = [errMsg stringByAppendingString:@" device failed"];
+//                   m_toastLab.hidden = NO;
+                    [MBProgressHUD showError:errMsg];
+               });
+               return;
+           }
+           if (errMsg) {
+               dispatch_async(dispatch_get_main_queue(), ^{
+//                   m_toastLab.text = [errMsg stringByAppendingString:@" device failed"];
+//                   m_toastLab.hidden = NO;
+                   [MBProgressHUD showError:errMsg];
+               });
+           }
+           
+           dispatch_async(dispatch_get_main_queue(), ^{
+//               [self hideLoading];
+               
+               if (0 == m_devList.count) {
+                   NSLog(@"DeviceViewController getDevList NULL");
+//                   m_toastLab.hidden = YES;
+//                   self.m_imgDeviceNULL.hidden = NO;
+               }
+               else {
+//                   [self performSelector:@selector(hideToastDelay) withObject:nil afterDelay:2.0f];
+                   [self.tableView reloadData];
+//                   [self.view bringSubviewToFront:m_progressInd];
+               }
+           });
+       });
 }
 
 -(void)getVideoListData{
@@ -63,47 +151,41 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
     }
     NSDictionary *param = @{@"fSubid":@(subid)};
     __weak __typeof(self)weakSelf = self;
-    [NetService bg_getWithTokenWithPath:getVideoInfoList params:param success:^(id respObjc) {
+    [NetService bg_getWithTokenWithPath:getLcVideoConfig params:param success:^(id respObjc) {
         DefLog(@"respObjc:%@",respObjc);
         NSDictionary *platformdic = respObjc[@"data"][@"platformSetList"];
         if (platformdic) {
-            NSString *ysAppKey = [NSString changgeNonulWithString:platformdic[@"ysAppKey"]];
-            NSString *ysToken = [NSString changgeNonulWithString:platformdic[@"ysToken"]];
-            if (!ysAppKey && !ysToken) {
+            NSString *lcAppID = [NSString changgeNonulWithString:platformdic[@"lcAppID"]];
+            NSString *accessToken = [NSString changgeNonulWithString:platformdic[@"accessToken"]];
+            if (!lcAppID || !accessToken) {
                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:nil];
 //                [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
                 return ;
-            }else if(!ysAppKey){
-                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:nil];
-//                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
-                return ;
-            }else if(!ysToken){
-                 [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:nil];
-//                [weakSelf showEmptyViewWithText:@"萤石云Appkey或Secret为空" detailText:@"可前往网页端系统设置->组织机构管理->修改对应变电所->附加信息中添加萤石云Appkey与Secret。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
-                return ;
-            }else{
-               
             }
-            NSArray *VideoinfoList = respObjc[@"data"][@"VideoinfoList"];
-            if (VideoinfoList.count>0) {
-                for (NSDictionary *videoDic in VideoinfoList) {
-                    NSString *playbackurl = [NSString changgeNonulWithString:videoDic[@"fPlaybackurl"]];
-                    NSString *highurl = [NSString changgeNonulWithString:videoDic[@"fHighurl"]];
-                    if (!playbackurl.length || !highurl.length) {
-                        [MBProgressHUD showError:@"视频相关信息不全，需补全视频信息。"];
-                        continue;
-                    }else{
-                        [weakSelf.mutArray addObject:videoDic];
-                    }
-                }
+            if(accessToken.length>0){
+                weakSelf.accessTok = accessToken;
+                [weakSelf creatLeCheng];
             }
-        }
-        weakSelf.allDataArray = [NSMutableArray arrayWithArray:[weakSelf.mutArray copy]];
-        if (!weakSelf.mutArray.count) {
-             [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
-//            [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
-        }else{
-            [weakSelf.tableView reloadData];
+//            NSArray *VideoinfoList = respObjc[@"data"][@"VideoinfoList"];
+//            if (VideoinfoList.count>0) {
+//                for (NSDictionary *videoDic in VideoinfoList) {
+//                    NSString *playbackurl = [NSString changgeNonulWithString:videoDic[@"fPlaybackurl"]];
+//                    NSString *highurl = [NSString changgeNonulWithString:videoDic[@"fHighurl"]];
+//                    if (!playbackurl.length || !highurl.length) {
+//                        [MBProgressHUD showError:@"视频相关信息不全，需补全视频信息。"];
+//                        continue;
+//                    }else{
+//                        [weakSelf.mutArray addObject:videoDic];
+//                    }
+//                }
+//            }
+//        }
+//        weakSelf.allDataArray = [NSMutableArray arrayWithArray:[weakSelf.mutArray copy]];
+//        if (!weakSelf.mutArray.count) {
+//             [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:@selector(pushAuthorization)];
+////            [weakSelf showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"萤石云授权" buttonAction:@selector(pushAuthorization)];
+//        }else{
+//            [weakSelf.tableView reloadData];
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
             [weakSelf showEmptyViewWithText:@"请求失败" detailText:@"请检查网络连接后点击重试" buttonTitle:@"重试" buttonAction:@selector(reload:)];
@@ -125,20 +207,20 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSInteger sections = self.tableView.numberOfSections;
-    if (sections>0) {
-         for (int section = 0; section < sections; section++) {
-            NSInteger rows = [self.tableView numberOfRowsInSection:section];
-            for (int row = 0; row < rows; row++) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-                BGQMImouVideoCell *videoCell = [self.tableView cellForRowAtIndexPath:indexPath];
-                if (videoCell.isPLaying) {
-                     [videoCell playBtnClick:videoCell.playBtn];
-                }
-//                [videoCell stop];
-            }
-        }
-    }
+//    NSInteger sections = self.tableView.numberOfSections;
+//    if (sections>0) {
+//         for (int section = 0; section < sections; section++) {
+//            NSInteger rows = [self.tableView numberOfRowsInSection:section];
+//            for (int row = 0; row < rows; row++) {
+//                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+//                BGQMImouVideoCell *videoCell = [self.tableView cellForRowAtIndexPath:indexPath];
+//                if (videoCell.isPLaying) {
+//                     [videoCell playBtnClick:videoCell.playBtn];
+//                }
+////                [videoCell stop];
+//            }
+//        }
+//    }
        
 //    }
 //    [self.searchBar resignFirstResponder];
@@ -197,7 +279,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
     if(self.searchController.active){
          return self.searchArray.count;
     }else{
-         return self.mutArray.count;
+         return m_devList.count;
     }
 }
 
@@ -220,20 +302,22 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
         }
     }else{
         if (!videoCell) {
-            videoCell = [[BGQMImouVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withPlayerData:self.mutArray[indexPath.row]];
+            videoCell = [[BGQMImouVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withPlayerData:nil];
             //        videoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 //        videoCell.iconCameraImage.image = [UIImage imageNamed:@"app-vision"];
-        NSString *namestr = [NSString changgeNonulWithString:self.mutArray[indexPath.row][@"fVideoname"]];
+        NSInteger devKeyIndex = [self locateDevKeyIndex:[indexPath row]];
+        NSInteger chnKeyIndex = [self locateDevChannelKeyIndex:[indexPath row]];
+        NSString *namestr = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelName[chnKeyIndex];;
         if (namestr.length) {
             videoCell.nameLab.text = namestr;
         }
-        NSString *URLStr= [NSString changgeNonulWithString:self.mutArray[indexPath.row][@"fHighurl"]];
-        if (URLStr.length) {
-            videoCell.urlStr = URLStr;
-        }else{
-            videoCell.urlStr = @"";
-        }
+//        NSString *URLStr= [NSString changgeNonulWithString:self.mutArray[indexPath.row][@"fHighurl"]];
+//        if (URLStr.length) {
+//            videoCell.urlStr = URLStr;
+//        }else{
+//            videoCell.urlStr = @"";
+//        }
         //    NSString *urlStr = @"ezopen://open.ys7.com/183414608/1.hd.live";
         videoCell.videoPlayBackdelegate = self;
     }
@@ -505,6 +589,44 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
     }
 }
 
+#pragma mark - 定位设备通道
+- (NSInteger)locateDevKeyIndex:(NSInteger)index
+{
+    int iChCount = 0;
+    int i = 0;
+    for (DeviceInfo* dev in m_devList) {
+        if (nil == dev->ID) {
+            break;
+        }
+        iChCount += dev->channelSize;
+        if (iChCount >= index + 1) {
+            break;
+        }
+        i++;
+    }
+     /* 返回当前的通道所在的NVR是第几个设备 */
+    return (iChCount >= index + 1) ? i : -1;
+}
+
+- (NSInteger)locateDevChannelKeyIndex:(NSInteger)index
+{
+    int iChCount = 0;
+    int i = 0;
+    for (DeviceInfo* dev in m_devList) {
+
+        if (nil == dev->ID) {
+            break;
+        }
+        iChCount += dev->channelSize;
+        if (iChCount >= index + 1) {
+            break;
+        }
+        i++;
+    }
+    
+    /* 返回当前的通道是NVR内的第几个通道 */
+    return (iChCount >= index + 1) ? (index - iChCount + ((DeviceInfo*)[m_devList objectAtIndex:i])->channelSize) : -1;
+}
 
 #pragma mark - JXCategoryListCollectionContentViewDelegate
 
@@ -530,46 +652,97 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
     //点击了回放
 
     NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
-    NSDictionary *deviceInfo = self.mutArray[indexP.row];
-    NSString *deviceStr = [NSString changgeNonulWithString:deviceInfo[@"fVideokey"]];
+    NSInteger devKeyIndex = [self locateDevKeyIndex:indexP.row];
+    NSInteger chnKeyIndex = [self locateDevChannelKeyIndex:indexP.row];
     
-    if (!deviceStr || [deviceStr isEqualToString:@""]) {
-       DefQuickAlert(@"未配置设备序列号，请前往Web端配置", nil);
-       return;
-    }
-    dispatch_queue_t enter_device = dispatch_queue_create("enter_device", nil);
-           dispatch_async(enter_device, ^{
-           NSString* accessTok;
-           NSString* errCode;
-           NSString* errMsg;
-           OpenApiService* openApi = [[OpenApiService alloc] init];
-   //        NSInteger ret = [openApi getAccessToken:@"openapi.lechange.cn" port:443 appId:@"lc56f269661eaa484f" appSecret:@"35a7e64cff5544e291725475f7ca33" token:&accessTok errcode:&errCode errmsg:&errMsg];
-               accessTok = @"At_0000f1c23b60ee46453294b115c369e5";
-           LCOpenSDK_Api *m_hc = [[LCOpenSDK_Api shareMyInstance] initOpenApi:PROCOTOL_TYPE_HTTPS addr:@"openapi.lechange.cn" port:443 CA_PATH:@""];
-               RestApiService* restApiService = [RestApiService shareMyInstance];
-   //            m_devList = [[NSMutableArray alloc] init];
-               if (nil != m_hc && nil != accessTok) {
-                   [restApiService initComponent:m_hc Token:accessTok];
-               }
-             dispatch_async(dispatch_get_main_queue(), ^{
-                   UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
-                   RecordViewController* liveVideoView = [currentBoard instantiateViewControllerWithIdentifier:@"Record"];
-                   if (self.pushSubid) {
-                       [self.navigationController pushViewController:liveVideoView animated:YES];
-                   }else{
-                       [self.ownNaviController pushViewController:liveVideoView animated:YES];
-                   }
-                   [liveVideoView setInfo:@"At_0000f1c23b60ee46453294b115c369e5" Dev:@"5L02496PAU2B9FF" Key:@"" Chn:NULL Type:DeviceRecord];
-           
-             });
-           });
+    NSString * m_strDevSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ID;
+       // TODO
+    NSInteger m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
+    NSString * m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
+       NSLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
+
+    UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
+      RecordViewController* liveVideoView = [currentBoard instantiateViewControllerWithIdentifier:@"Record"];
+      if (self.pushSubid) {
+          [self.navigationController pushViewController:liveVideoView animated:YES];
+      }else{
+          [self.ownNaviController pushViewController:liveVideoView animated:YES];
+      }
+    [liveVideoView setInfo:self.accessTok Dev:m_strDevSelected Key:m_encryptKey Chn:m_devChnSelected Type:DeviceRecord];
+//    NSDictionary *deviceInfo = self.mutArray[indexP.row];
+//    NSString *deviceStr = [NSString changgeNonulWithString:deviceInfo[@"fVideokey"]];
+    
+//    if (!deviceStr || [deviceStr isEqualToString:@""]) {
+//       DefQuickAlert(@"未配置设备序列号，请前往Web端配置", nil);
+//       return;
+//    }
+//    dispatch_queue_t enter_device = dispatch_queue_create("enter_device", nil);
+//           dispatch_async(enter_device, ^{
+//           NSString* accessTok;
+//           NSString* errCode;
+//           NSString* errMsg;
+////           OpenApiService* openApi = [[OpenApiService alloc] init];
+////   //        NSInteger ret = [openApi getAccessToken:@"openapi.lechange.cn" port:443 appId:@"lc56f269661eaa484f" appSecret:@"35a7e64cff5544e291725475f7ca33" token:&accessTok errcode:&errCode errmsg:&errMsg];
+////               accessTok = @"At_0000f1c23b60ee46453294b115c369e5";
+////           LCOpenSDK_Api *m_hc = [[LCOpenSDK_Api shareMyInstance] initOpenApi:PROCOTOL_TYPE_HTTPS addr:@"openapi.lechange.cn" port:443 CA_PATH:@""];
+////               RestApiService* restApiService = [RestApiService shareMyInstance];
+////   //            m_devList = [[NSMutableArray alloc] init];
+////               if (nil != m_hc && nil != accessTok) {
+////                   [restApiService initComponent:m_hc Token:accessTok];
+////               }
+//             dispatch_async(dispatch_get_main_queue(), ^{
+//
+//
+//             });
+//           });
     
    
 }
 
+- (void)clickPlayBtnInCell:(BGQMImouVideoCell *)cell withPushData:(NSDictionary *)param{
+       NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+       NSInteger devKeyIndex = [self locateDevKeyIndex:indexP.row];
+       NSInteger chnKeyIndex = [self locateDevChannelKeyIndex:indexP.row];
+       
+       NSString * m_strDevSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ID;
+          // TODO
+       NSInteger m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
+       NSString * m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
+          NSLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
+       NSString *m_devAbilitySelected = [NSString stringWithFormat:@"%@,%@", ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ability, ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelAbility[chnKeyIndex]];
+    
+       UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
+       LiveVideoViewController* liveVideoView = [currentBoard instantiateViewControllerWithIdentifier:@"LiveVideo"];
+       if (self.pushSubid) {
+           [self.navigationController pushViewController:liveVideoView animated:YES];
+       }else{
+           [self.ownNaviController pushViewController:liveVideoView animated:YES];
+       }
+       [liveVideoView setInfo:self.accessTok Dev:m_strDevSelected Key:m_encryptKey Chn:m_devChnSelected Img:nil Abl:m_devAbilitySelected];
+}
+
 //跳转详情 点击了播放详情
 -(void)clickPlayDetailBtnInCell:(BGQMImouVideoCell *)cell withPushData:(NSDictionary *)param{
-    if (self.mutArray.count>0) {
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+       NSInteger devKeyIndex = [self locateDevKeyIndex:indexP.row];
+       NSInteger chnKeyIndex = [self locateDevChannelKeyIndex:indexP.row];
+       
+       NSString * m_strDevSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ID;
+          // TODO
+       NSInteger m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
+       NSString * m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
+          NSLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
+       NSString *m_devAbilitySelected = [NSString stringWithFormat:@"%@,%@", ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ability, ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelAbility[chnKeyIndex]];
+    
+       UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
+       LiveVideoViewController* liveVideoView = [currentBoard instantiateViewControllerWithIdentifier:@"LiveVideo"];
+       if (self.pushSubid) {
+           [self.navigationController pushViewController:liveVideoView animated:YES];
+       }else{
+           [self.ownNaviController pushViewController:liveVideoView animated:YES];
+       }
+       [liveVideoView setInfo:self.accessTok Dev:m_strDevSelected Key:m_encryptKey Chn:m_devChnSelected Img:nil Abl:m_devAbilitySelected];
+//    if (self.mutArray.count>0) {
         //点击了详情
 //        NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
 //        NSDictionary *deviceInfo = self.mutArray[indexP.row];
@@ -581,35 +754,28 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
 //        }
 //        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"EZMain" bundle:[NSBundle mainBundle]];
 //        NSString *deviceNo = [NSString changgeNonulWithString:deviceInfo[@"fChannelno"]];
-        dispatch_queue_t enter_device = dispatch_queue_create("enter_device", nil);
-        dispatch_async(enter_device, ^{
-        NSString* accessTok;
-        NSString* errCode;
-        NSString* errMsg;
-        OpenApiService* openApi = [[OpenApiService alloc] init];
-//        NSInteger ret = [openApi getAccessToken:@"openapi.lechange.cn" port:443 appId:@"lc56f269661eaa484f" appSecret:@"35a7e64cff5544e291725475f7ca33" token:&accessTok errcode:&errCode errmsg:&errMsg];
-              accessTok = @"At_0000f1c23b60ee46453294b115c369e5";
-            //配置服务器地址
-        LCOpenSDK_Api *m_hc = [[LCOpenSDK_Api shareMyInstance] initOpenApi:PROCOTOL_TYPE_HTTPS addr:@"openapi.lechange.cn" port:443 CA_PATH:@""];
-            RestApiService* restApiService = [RestApiService shareMyInstance];
-//            m_devList = [[NSMutableArray alloc] init];
-            if (nil != m_hc && nil != accessTok) {
-                [restApiService initComponent:m_hc Token:accessTok];
-            }
-          dispatch_async(dispatch_get_main_queue(), ^{
-                UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
-                LiveVideoViewController* liveVideoView = [currentBoard instantiateViewControllerWithIdentifier:@"LiveVideo"];
-                if (self.pushSubid) {
-                    [self.navigationController pushViewController:liveVideoView animated:YES];
-                }else{
-                    [self.ownNaviController pushViewController:liveVideoView animated:YES];
-                }
-                [liveVideoView setInfo:@"At_0000f1c23b60ee46453294b115c369e5" Dev:@"5L02496PAU2B9FF" Key:@"" Chn:NULL Img:nil Abl:@"WLAN,MT,HSEncrypt,CloudStorage,LocalStorage,PlaybackByFilename,BreathingLight,RD,CK,LocalRecord,XUpgrade,Auth,ModifyPassword,LocalStorageEnable,RTSV1,PBSV1,ESV1,PlaySound,Reboot,InfraredLight,LinkDevAlarm,AbAlarmSound,SCCode,AlarmMD,PT,AudioEncodeControlV2,FrameReverse,MDW,MDS,HeaderDetect,SmartTrack,CloseCamera,CheckAbDecible,PT1,AudioTalk,WLAN,MT,HSEncrypt,CloudStorage,LocalStorage,PlaybackByFilename,BreathingLight,RD,CK,LocalRecord,XUpgrade,Auth,ModifyPassword,LocalStorageEnable,RTSV1,PBSV1,ESV1,PlaySound,Reboot,InfraredLight,LinkDevAlarm,AbAlarmSound,SCCode,AlarmMD,PT,AudioEncodeControlV2,FrameReverse,MDW,MDS,HeaderDetect,SmartTrack,CloseCamera,CheckAbDecible,PT1,AudioTalk"];
+//        dispatch_queue_t enter_device = dispatch_queue_create("enter_device", nil);
+//        dispatch_async(enter_device, ^{
+//        NSString* accessTok;
+//        NSString* errCode;
+//        NSString* errMsg;
+//        OpenApiService* openApi = [[OpenApiService alloc] init];
+////        NSInteger ret = [openApi getAccessToken:@"openapi.lechange.cn" port:443 appId:@"lc56f269661eaa484f" appSecret:@"35a7e64cff5544e291725475f7ca33" token:&accessTok errcode:&errCode errmsg:&errMsg];
+//              accessTok = @"At_0000f1c23b60ee46453294b115c369e5";
+//            //配置服务器地址
+//        LCOpenSDK_Api *m_hc = [[LCOpenSDK_Api shareMyInstance] initOpenApi:PROCOTOL_TYPE_HTTPS addr:@"openapi.lechange.cn" port:443 CA_PATH:@""];
+//            RestApiService* restApiService = [RestApiService shareMyInstance];
+////            m_devList = [[NSMutableArray alloc] init];
+//            if (nil != m_hc && nil != accessTok) {
+//                [restApiService initComponent:m_hc Token:accessTok];
+//            }
+//          dispatch_async(dispatch_get_main_queue(), ^{
+               
         
-        
-          });
-        });
-    }
+//
+//          });
+//        });
+//    }
 }
 
 //-(void)clickPlayBtnInCell:(BGQMImouVideoCell *)cell withPushData:(CGFloat)param{

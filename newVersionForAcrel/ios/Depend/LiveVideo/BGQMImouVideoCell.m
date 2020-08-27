@@ -16,8 +16,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withPlayerData:(NSDictionary *)playData{
     
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
-        self.urlStr = [NSString changgeNonulWithString:playData[@"fHighurl"]];
-        if (self.urlStr) {
+//        self.urlStr = [NSString changgeNonulWithString:playData[@"fHighurl"]];
+//        if (self.urlStr) {
 //            self.mPlayer = [EZUIPlayer createPlayerWithUrl:self.urlStr];
 //            self.mPlayer.mDelegate = self;
 //            self.isPLaying = NO;
@@ -25,7 +25,7 @@
 //            self.cellheight = CGRectGetHeight(self.mPlayer.previewView.frame);
 //            [self.bgVideoView addSubview:self.mPlayer.previewView];
             //        [self.mPlayer startPlay];
-        }
+//        }
     }
     return self;
 }
@@ -36,14 +36,14 @@
     self.backgroundColor = COLOR_BACKGROUND;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self addSubview:self.bgView];
-    self.playBtn.selected = NO;
+//    self.playBtn.selected = NO;
     
     [self.bgView addSubview:self.secView];
     [self.secView addSubview:self.bgVideoView];
     [self.bgView addSubview:self.nameLab];
     [self.bgView addSubview:self.iconCameraImage];
     [self.bgView addSubview:self.iconMoreImage];
-    [self.bgView addSubview:self.playBtn];
+//    [self.bgView addSubview:self.playBtn];
     [self.bgView addSubview:self.playBackBtn];
     [self.bgView addSubview:self.playDetailBtn];
 }
@@ -115,11 +115,11 @@
         make.centerY.equalTo(self.iconCameraImage.mas_centerY);
     }];
     
-    [_playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.playBackBtn.mas_left).offset(5);
-        make.width.mas_offset(60);
-        make.centerY.equalTo(self.iconCameraImage.mas_centerY);
-    }];
+//    [_playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.playBackBtn.mas_left).offset(5);
+//        make.width.mas_offset(60);
+//        make.centerY.equalTo(self.iconCameraImage.mas_centerY);
+//    }];
     
 }
 
@@ -142,10 +142,16 @@
     return _secView;
 }
 
--(UIView *)bgVideoView{
+-(UIImageView *)bgVideoView{
     if (!_bgVideoView) {
-        _bgVideoView  = [[UIView alloc] init];
-        _bgVideoView.backgroundColor = [UIColor blackColor];
+        _bgVideoView  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_defaultcover.png"]];
+        _bgVideoView.contentMode = UIViewContentModeScaleAspectFill;
+        _bgVideoView.clipsToBounds=YES;
+        [_bgVideoView setUserInteractionEnabled:YES];
+        [_bgVideoView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];
+//        [_bgVideoView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"localvideo_defaultpage.png"]]];
+//        localvideo_defaultpage
+//        _bgVideoView.backgroundColor = [UIColor blackColor];
     }
     return _bgVideoView;
 }
@@ -179,23 +185,23 @@
     return _iconMoreImage;
 }
 
--(UIButton *)playBtn{
-    if (!_playBtn) {
-        _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playBtn setTitle:DefLocalizedString(@"play") forState:UIControlStateNormal];
-        _playBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-        _playBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
-        [_playBtn setTitleColor:COLOR_NAVBAR forState:UIControlStateNormal];
-        [_playBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
-        [_playBtn setTitle:DefLocalizedString(@"stop") forState:UIControlStateSelected];
-        [_playBtn setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateSelected];
-        [_playBtn setTitleColor:COLOR_NAVBAR forState:UIControlStateSelected];
-        //    self.playBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-80)/2, [UIScreen mainScreen].bounds.size.height - 100, 80, 40);
-        //    self.playBtn.frame = CGRectMake(100,0 , 40, 40);
-        [_playBtn addTarget:self action:@selector(playBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _playBtn;
-}
+//-(UIButton *)playBtn{
+//    if (!_playBtn) {
+//        _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_playBtn setTitle:DefLocalizedString(@"play") forState:UIControlStateNormal];
+//        _playBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+//        _playBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
+//        [_playBtn setTitleColor:COLOR_NAVBAR forState:UIControlStateNormal];
+//        [_playBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+//        [_playBtn setTitle:DefLocalizedString(@"stop") forState:UIControlStateSelected];
+//        [_playBtn setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateSelected];
+//        [_playBtn setTitleColor:COLOR_NAVBAR forState:UIControlStateSelected];
+//        //    self.playBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-80)/2, [UIScreen mainScreen].bounds.size.height - 100, 80, 40);
+//        //    self.playBtn.frame = CGRectMake(100,0 , 40, 40);
+//        [_playBtn addTarget:self action:@selector(playBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _playBtn;
+//}
 
 -(UIButton *)playBackBtn{
     if (!_playBackBtn) {
@@ -216,11 +222,11 @@
 -(UIButton *)playDetailBtn{
     if (!_playDetailBtn) {
         _playDetailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playDetailBtn setTitle:DefLocalizedString(@"playDetail") forState:UIControlStateNormal];
+        [_playDetailBtn setTitle:DefLocalizedString(@"play") forState:UIControlStateNormal];
         _playDetailBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
         _playDetailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
         [_playDetailBtn setTitleColor:COLOR_NAVBAR forState:UIControlStateNormal];
-        [_playDetailBtn setImage:[UIImage imageNamed:@"playDetail"] forState:UIControlStateNormal];
+        [_playDetailBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
 //        [_playBackBtn setTitle:DefLocalizedString(@"stop") forState:UIControlStateSelected];
         //    self.playBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-80)/2, [UIScreen mainScreen].bounds.size.height - 100, 80, 40);
         //    self.playBtn.frame = CGRectMake(100,0 , 40, 40);
@@ -246,21 +252,22 @@
 //}
 #pragma mark --- playEZUKit
 
-- (void) playBtnClick:(UIButton *) btn
-{
-    if(btn.selected)
-    {
-        [self stop];
-        self.isChangeHeight = NO;
-        self.isPLaying = NO;
-    }
-    else
-    {
-//        [self play];
-        self.isPLaying =YES;
-    }
-    btn.selected = !btn.selected;
-}
+//- (void) playBtnClick:(UIButton *) btn
+//{
+//
+//    if(btn.selected)
+//    {
+//        [self stop];
+//        self.isChangeHeight = NO;
+//        self.isPLaying = NO;
+//    }
+//    else
+//    {
+////        [self play];
+//        self.isPLaying =YES;
+//    }
+//    btn.selected = !btn.selected;
+//}
 
 //- (void) play
 //{
@@ -312,6 +319,10 @@
 //    }
 //
 //}
+
+-(void)clickCategory:(UITapGestureRecognizer *)gestureRecognizer{
+    [self.videoPlayBackdelegate clickPlayBtnInCell:self withPushData:nil];
+}
 
 - (void)playBackBtnClick:(UIButton *)btn
 {

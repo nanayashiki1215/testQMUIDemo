@@ -24,6 +24,7 @@
 #import "EZPlaybackViewController.h"
 #import <CloudPushSDK/CloudPushSDK.h>
 #import "LiveVideoViewController.h"
+#import "RecordPlayViewController.h"
 
 //#import "JXCategoryTitleView.h"
 //#import "JXCategoryIndicatorLineView.h"
@@ -282,7 +283,9 @@
 
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations{
     UINavigationController *navCtl = self.viewControllers[0];
-    if ([navCtl.topViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.topViewController isKindOfClass:[EZPlaybackViewController class]] || [navCtl.visibleViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.visibleViewController isKindOfClass:[EZPlaybackViewController class]] || [navCtl.topViewController isKindOfClass:[LiveVideoViewController class]] || [navCtl.visibleViewController isKindOfClass:[LiveVideoViewController class]]) {
+    if ([navCtl.topViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.topViewController isKindOfClass:[EZPlaybackViewController class]] || [navCtl.visibleViewController isKindOfClass:[EZLivePlayViewController class]] || [navCtl.visibleViewController isKindOfClass:[EZPlaybackViewController class]] || [navCtl.topViewController isKindOfClass:[LiveVideoViewController class]] || [navCtl.visibleViewController isKindOfClass:[LiveVideoViewController class]] ||
+        [navCtl.topViewController isKindOfClass:[RecordPlayViewController class]] ||
+        [navCtl.visibleViewController isKindOfClass:[RecordPlayViewController class]]) {
         return UIInterfaceOrientationMaskAll;
     }else{
         return UIInterfaceOrientationMaskPortrait;

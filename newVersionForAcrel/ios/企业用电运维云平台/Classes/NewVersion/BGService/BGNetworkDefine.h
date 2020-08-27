@@ -59,6 +59,8 @@
 #define getVideoInfoList @"/getVideoInfoList"
 //托管视频地址
 #define getAuthVideoInfoList @"/getAuthVideoInfoList"
+//获取乐橙视频列表地址
+#define getLcVideoConfig @"/getLcVideoConfig"
 
 //获取头像图片地址
 #define APPImageIconADS @"/fileSystem/app/icon/"

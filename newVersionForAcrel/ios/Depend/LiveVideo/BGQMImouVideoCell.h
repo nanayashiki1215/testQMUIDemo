@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)clickPlayBackBtnInCell:(BGQMImouVideoCell *)cell withPushData:(NSDictionary *)param;
 
 //点击播放
-- (void)clickPlayBtnInCell:(BGQMImouVideoCell *)cell withPushData:(CGFloat)param;
+- (void)clickPlayBtnInCell:(BGQMImouVideoCell *)cell withPushData:(NSDictionary *)param;
 
 //点击播放详情
 - (void)clickPlayDetailBtnInCell:(BGQMImouVideoCell *)cell withPushData:(NSDictionary *)param;
@@ -28,11 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong)UIView *bgView;
 @property (nonatomic,strong)UIView *secView;
-@property (nonatomic,strong)UIView *bgVideoView;
+@property (nonatomic,strong)UIImageView *bgVideoView;
 @property (nonatomic,strong)UILabel *nameLab;
 @property (nonatomic,strong)UIImageView *iconCameraImage;
 @property (nonatomic,strong)UIImageView *iconMoreImage;
-@property (nonatomic,strong) UIButton *playBtn;
+//@property (nonatomic,strong) UIButton *playBtn;
 @property (nonatomic,strong) UIButton *playBackBtn;
 @property (nonatomic,strong) UIButton *playDetailBtn;
 //@property (nonatomic,strong) EZUIPlayer *mPlayer;

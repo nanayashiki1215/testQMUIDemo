@@ -1098,6 +1098,23 @@
     NSLog(@"onResignActive motivated");
 }
 
+//页面将要消失时释放
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (m_play) {
+        [m_play stopRtspReal];
+        [m_play stopAudio];
+    }
+    if (m_talker) {
+        [m_talker stopTalk];
+    }
+
+    [self hideLoading:VIDEO_PROGRESS_IND];
+    [self hideLoading:TALK_PROGRESS_IND];
+    [self enableAllBtn:NO];
+    m_replayBtn.hidden = NO;
+}
+
 - (void)dealloc
 {
     NSLog(@"dealloc LiveVideoController");

@@ -321,6 +321,7 @@
             cell.leftLB.text = textName;
         }
         NSString *code = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fCode"]];
+        NSString *iconUrl = [NSString changgeNonulWithString:self.tableListArr[indexPath.row][@"fIconurl"]];
         NSString *imageName;
         if ([code isEqualToString:@"personInfo"]) {
             imageName = @"userOwnPic0";
@@ -328,10 +329,6 @@
             imageName = @"userOwnPic1";
         }else if ([code isEqualToString:@"clearCache"]){
             imageName = @"userOwnPic2";
-//            NSString *sizeStr = [self folderSize];
-//            cell.rightLB.text = sizeStr;
-//            cell.rightLB.textAlignment = NSTextAlignmentRight;
-            
         }else if ([code isEqualToString:@"versionInfo"]){
             imageName = @"userOwnPic3";
         }else if ([code isEqualToString:@"shareApp"]){
@@ -348,7 +345,11 @@
         else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
         }
-        cell.iconIV.image = [UIImage imageNamed:imageName];
+        if (iconUrl && iconUrl.length>0) {
+            [cell.iconIV sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:iconUrl]] placeholderImage:[UIImage imageNamed:@"imageName"]];
+        }else{
+            cell.iconIV.image = [UIImage imageNamed:imageName];
+        }
         
 //        switch (indexPath.row) {
 //            case 0:

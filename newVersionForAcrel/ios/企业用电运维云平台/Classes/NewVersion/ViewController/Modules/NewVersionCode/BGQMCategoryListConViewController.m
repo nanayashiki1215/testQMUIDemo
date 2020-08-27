@@ -116,7 +116,7 @@
             videoListVC.ownNaviController = self.navigationController;
             return videoListVC;
         }
-    if (videoStr.length>0 && [videoStr isEqualToString:@"13d701a7ede143d1b529b10df5adf35e"]) {
+    if (videoStr.length>0 && [videoStr isEqualToString:@"lcVideo"]) {
         //乐橙云视频单独拉出来
         BGImouVideoListVC *videoListVC = [[BGImouVideoListVC alloc] init];
         videoListVC.ownNaviController = self.navigationController;

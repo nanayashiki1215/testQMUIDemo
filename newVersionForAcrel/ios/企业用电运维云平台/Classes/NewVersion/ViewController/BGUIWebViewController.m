@@ -91,7 +91,6 @@
 
 @property (nonatomic, weak) ZYSuspensionView *susView;
 
-@property (nonatomic,strong)NSTimer *timer;
 @end
 
 @implementation BGUIWebViewController
@@ -1609,9 +1608,9 @@
         
     }];
     
-    while (self.pageStillLoading) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
+//    while (self.pageStillLoading) {
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+//    }
     //开启定位服务
 }
 

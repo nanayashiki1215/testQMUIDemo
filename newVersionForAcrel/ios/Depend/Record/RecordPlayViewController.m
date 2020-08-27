@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     [super viewDidLoad];
     [self initWindowView];
     [self.view bringSubviewToFront:m_playBarView];
-
+    self.title = @"乐橙回放";
     dispatch_queue_t playRecord = dispatch_queue_create("playRecord", nil);
     dispatch_async(playRecord, ^{
         [self onPlay];
@@ -710,7 +710,8 @@ typedef NS_ENUM(NSInteger, PlayState) {
         m_progressInd.center = m_playImg.center;
         m_playBarView.frame = CGRectMake(0, super.m_yOffset + m_playImg.frame.size.height - RECORD_BAR_HEIGHT, m_playImg.frame.size.width, RECORD_BAR_HEIGHT);
         [self refreshSubView];
-        super.m_navigationBar.hidden = NO;
+//        super.m_navigationBar.hidden = NO;
+        self.navigationController.navigationBar.hidden = NO;
     } else {
         [m_scalBtn setBackgroundImage:[UIImage leChangeImageNamed:VideoPlay_SmallScreen_Png] forState:UIControlStateNormal];
         [m_play setWindowFrame:CGRectMake(0, 0, m_screenFrame.size.height, width)];
@@ -720,6 +721,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
         [self refreshSubView];
         [self.view bringSubviewToFront:m_playBarView];
         super.m_navigationBar.hidden = YES;
+        self.navigationController.navigationBar.hidden = YES;
     }
 }
 
@@ -770,4 +772,24 @@ typedef NS_ENUM(NSInteger, PlayState) {
     });
 }
 
+//页面将要消失时释放
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (m_play) {
+       [m_play stopCloud];
+        [m_play stopDeviceRecord];
+        [m_play stopAudio];
+        m_playState = Stop;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+           //        m_tipLab.text = @"rtsp connection closed";
+           [self hideLoading];
+           m_playImg.hidden = NO;
+           [m_playBtn setBackgroundImage:[UIImage leChangeImageNamed:VideoPlay_Play_Png] forState:UIControlStateNormal];
+           [self enableOtherBtn:NO];
+
+           m_startTimeLab.text = [self transformToShortTime:m_beginTimeSelected];
+           [m_playSlider setValue:0];
+    });
+}
 @end

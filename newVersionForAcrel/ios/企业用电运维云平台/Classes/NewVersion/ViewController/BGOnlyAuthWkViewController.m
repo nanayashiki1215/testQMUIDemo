@@ -30,6 +30,7 @@
 @import MapKit;//ios7 使用苹果自带的框架使用@import导入则不用在Build Phases 导入框架了
 @import CoreLocation;
 
+//轨迹持续上传
 @interface BGOnlyAuthWkViewController ()<WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate,BMKLocationManagerDelegate,QLPreviewControllerDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZYSuspensionViewDelegate>
 
 @property (strong,nonatomic) WKWebView *webView;

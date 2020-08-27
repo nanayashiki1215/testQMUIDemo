@@ -7,10 +7,13 @@
 
 #import <QMUIKit/QMUIKit.h>
 #import "JXCategoryListCollectionContainerView.h"
+#import "RestApiInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BGImouVideoListVC : QMUICommonTableViewController<JXCategoryListCollectionContentViewDelegate>
+@interface BGImouVideoListVC : QMUICommonTableViewController<JXCategoryListCollectionContentViewDelegate>{
+      NSMutableArray* m_devList;
+}
 
 @property(nonatomic, strong)NSString *titleFromHomepage;
 //透传navi
@@ -19,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *pushTitleName;
 
 @property(nonatomic,strong)NSString *pushSubid;
+
 
 @end
 
