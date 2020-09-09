@@ -114,7 +114,7 @@
 "Settings"="设置";
 "accountSafe"="账户与安全";
 "changePwd"="修改密码";
-
+"changeSecPwd"="修改二级密码";
 //language
 "Chinese-simple"="简体中文";
 //网络模块

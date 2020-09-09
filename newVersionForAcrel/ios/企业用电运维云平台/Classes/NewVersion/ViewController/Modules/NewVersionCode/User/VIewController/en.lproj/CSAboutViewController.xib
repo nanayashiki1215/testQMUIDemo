@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSAboutViewController">
             <connections>
+                <outlet property="FunctionIntroBtn" destination="qhu-Lo-3Kk" id="wjQ-ZC-zOp"/>
                 <outlet property="currentVersonLB" destination="VLb-FV-gPl" id="WFI-WN-Nfx"/>
                 <outlet property="iconIV" destination="tfZ-Me-inf" id="AMQ-VY-Wjt"/>
                 <outlet property="logoToTop" destination="wSM-Up-0Cy" id="bgs-IW-AjH"/>
                 <outlet property="nameLB" destination="oZw-KE-dVz" id="gIJ-2H-N0N"/>
+                <outlet property="upgradeRecordBtn" destination="cJT-MI-EEw" id="ZF6-9r-XNa"/>
                 <outlet property="versonUpdateBTN" destination="pXQ-Ev-30b" id="7mv-Sf-zfU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -68,13 +68,7 @@
                                 </mask>
                             </variation>
                         </label>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        变电所运维平台配套APP，为用户提供数据及运维服务，时时显示当前用电状态，当前变电所运行情况。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="306" translatesAutoresizingMaskIntoConstraints="NO" id="iFH-Id-yRy">
-                            <rect key="frame" x="20" y="352" width="335" height="57.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务咨询" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="68" translatesAutoresizingMaskIntoConstraints="NO" id="TQg-fS-qYE">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="68" translatesAutoresizingMaskIntoConstraints="NO" id="TQg-fS-qYE">
                             <rect key="frame" x="0.0" y="419.5" width="375" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="X8e-th-UbC"/>
@@ -89,13 +83,13 @@
                             </variation>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-Ev-30b">
-                            <rect key="frame" x="40" y="509.5" width="295" height="45"/>
-                            <color key="backgroundColor" red="0.31372549019607843" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="40" y="525.5" width="295" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="N31-i8-woV"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="nxA-3J-vHJ"/>
                             </constraints>
                             <state key="normal" title="Version Update">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
@@ -114,12 +108,49 @@
                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJT-MI-EEw">
+                            <rect key="frame" x="40" y="460.5" width="295" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="OD3-pV-U21"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="cGk-kG-rj9"/>
+                            </constraints>
+                            <state key="normal" title="Upgrade record">
+                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="updateRecord:" destination="-1" eventType="touchUpInside" id="yrr-Dt-OIx"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhu-Lo-3Kk">
+                            <rect key="frame" x="40" y="395.5" width="295" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="BIc-lE-BIb"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="dLF-fU-KKH"/>
+                            </constraints>
+                            <state key="normal" title="Function introduction">
+                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="introductVideo:" destination="-1" eventType="touchUpInside" id="wCc-eu-DtX"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="oZw-KE-dVz" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" id="1OM-JL-CrL"/>
+                        <constraint firstItem="TQg-fS-qYE" firstAttribute="top" secondItem="VLb-FV-gPl" secondAttribute="bottom" constant="92.5" id="244-K6-ems"/>
+                        <constraint firstItem="pXQ-Ev-30b" firstAttribute="trailing" secondItem="cJT-MI-EEw" secondAttribute="trailing" id="4Ff-xW-aGM"/>
                         <constraint firstItem="VLb-FV-gPl" firstAttribute="top" secondItem="oZw-KE-dVz" secondAttribute="bottom" constant="12" id="7Xh-wP-3Y1"/>
-                        <constraint firstItem="iFH-Id-yRy" firstAttribute="top" secondItem="VLb-FV-gPl" secondAttribute="bottom" constant="25" id="9a9-mz-Hab"/>
+                        <constraint firstItem="cJT-MI-EEw" firstAttribute="trailing" secondItem="qhu-Lo-3Kk" secondAttribute="trailing" id="87Z-sL-zxa"/>
+                        <constraint firstItem="pXQ-Ev-30b" firstAttribute="leading" secondItem="cJT-MI-EEw" secondAttribute="leading" id="CNO-tp-9Dj"/>
                         <constraint firstAttribute="trailing" secondItem="oZw-KE-dVz" secondAttribute="trailing" id="Cgv-1z-Hxa"/>
                         <constraint firstAttribute="bottom" secondItem="ajO-vv-KyG" secondAttribute="bottom" constant="1" id="R0f-OK-kQd"/>
                         <constraint firstItem="VLb-FV-gPl" firstAttribute="centerX" secondItem="tfZ-Me-inf" secondAttribute="centerX" id="SJC-gR-Pwd"/>
@@ -127,15 +158,15 @@
                         <constraint firstItem="oZw-KE-dVz" firstAttribute="centerX" secondItem="tfZ-Me-inf" secondAttribute="centerX" id="YRh-3Q-aui"/>
                         <constraint firstAttribute="trailing" secondItem="ajO-vv-KyG" secondAttribute="trailing" id="YsE-hJ-iyF"/>
                         <constraint firstItem="TQg-fS-qYE" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" id="ZPH-46-ypF"/>
-                        <constraint firstItem="iFH-Id-yRy" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" constant="20" id="aAj-7H-JQT"/>
                         <constraint firstItem="oZw-KE-dVz" firstAttribute="top" secondItem="tfZ-Me-inf" secondAttribute="bottom" constant="13" id="aI3-Nk-FfI"/>
+                        <constraint firstItem="cJT-MI-EEw" firstAttribute="top" secondItem="qhu-Lo-3Kk" secondAttribute="bottom" constant="20" id="cSE-vZ-4i8"/>
+                        <constraint firstItem="cJT-MI-EEw" firstAttribute="leading" secondItem="qhu-Lo-3Kk" secondAttribute="leading" id="cm5-nP-ucn"/>
                         <constraint firstItem="TQg-fS-qYE" firstAttribute="centerX" secondItem="tfZ-Me-inf" secondAttribute="centerX" id="d3x-po-YN9"/>
                         <constraint firstItem="pXQ-Ev-30b" firstAttribute="centerX" secondItem="GMq-Vk-daJ" secondAttribute="centerX" id="eG4-Cm-8jH"/>
+                        <constraint firstItem="pXQ-Ev-30b" firstAttribute="top" secondItem="cJT-MI-EEw" secondAttribute="bottom" constant="20" id="hpL-9i-xHV"/>
                         <constraint firstItem="pXQ-Ev-30b" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" constant="40" id="orX-VF-LTj"/>
-                        <constraint firstAttribute="trailing" secondItem="iFH-Id-yRy" secondAttribute="trailing" constant="20" id="riR-uJ-RR8"/>
-                        <constraint firstItem="pXQ-Ev-30b" firstAttribute="top" secondItem="iFH-Id-yRy" secondAttribute="bottom" constant="100" id="scs-FT-3fU"/>
                         <constraint firstAttribute="trailing" secondItem="pXQ-Ev-30b" secondAttribute="trailing" constant="40" id="sd2-XR-AfI"/>
-                        <constraint firstItem="TQg-fS-qYE" firstAttribute="top" secondItem="iFH-Id-yRy" secondAttribute="bottom" constant="10" id="t6E-SW-eSI"/>
+                        <constraint firstItem="cJT-MI-EEw" firstAttribute="top" secondItem="TQg-fS-qYE" secondAttribute="bottom" constant="20" id="sec-ZH-OqI"/>
                         <constraint firstItem="tfZ-Me-inf" firstAttribute="top" secondItem="GMq-Vk-daJ" secondAttribute="top" constant="180" id="wSM-Up-0Cy"/>
                         <constraint firstItem="ajO-vv-KyG" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" id="xGh-Iz-hCi"/>
                         <constraint firstItem="tfZ-Me-inf" firstAttribute="centerX" secondItem="GMq-Vk-daJ" secondAttribute="centerX" id="z9o-OD-xvS"/>
@@ -145,7 +176,6 @@
                             <include reference="tfZ-Me-inf"/>
                             <include reference="oZw-KE-dVz"/>
                             <include reference="VLb-FV-gPl"/>
-                            <include reference="iFH-Id-yRy"/>
                             <include reference="TQg-fS-qYE"/>
                         </mask>
                         <mask key="constraints">
@@ -157,11 +187,9 @@
                             <include reference="aI3-Nk-FfI"/>
                             <include reference="7Xh-wP-3Y1"/>
                             <include reference="SJC-gR-Pwd"/>
-                            <include reference="9a9-mz-Hab"/>
                             <include reference="T9u-Ea-SSk"/>
                             <include reference="ZPH-46-ypF"/>
                             <include reference="d3x-po-YN9"/>
-                            <include reference="t6E-SW-eSI"/>
                         </mask>
                     </variation>
                 </view>

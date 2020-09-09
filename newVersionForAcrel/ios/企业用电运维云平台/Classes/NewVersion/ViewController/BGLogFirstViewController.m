@@ -53,8 +53,10 @@
 }
 
 -(void)createView{
-   self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//   [self.bgView.layer addSublayer:[UIColor setGradualChangingColor:self.bgView fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
+    
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    
+  //   [self.bgView.layer addSublayer:[UIColor setGradualChangingColor:self.bgView fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
 //   UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-p"]];
 //   imageV.frame = CGRectMake((SCREEN_WIDTH-imageV.frame.size.width)/2, 80, imageV.frame.size.width, imageV.frame.size.height);
 //   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageV.frame.size.height+95, SCREEN_WIDTH, 50)];
@@ -88,7 +90,12 @@
 //        }else{
              make.top.mas_equalTo(@0);
 //        }
-        make.height.mas_offset(SCREEN_WIDTH);
+        if (isPad) {
+            make.height.mas_offset(@667);
+        }else{
+            make.height.mas_offset(SCREEN_WIDTH);
+        }
+        
     }];
     
     [self.ipBgView mas_makeConstraints:^(MASConstraintMaker *make) {

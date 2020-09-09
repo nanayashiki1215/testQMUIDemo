@@ -234,13 +234,14 @@
         }else if ([code isEqualToString:@"EZAuth"]){
             imageName = @"userOwnPic10";
         }else if ([code isEqualToString:@"UploadPosition"]){
-            imageName = @"userOwnPic10";
+            imageName = @"userOwnPic11";
         }
         else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
         }
         if (iconUrl && iconUrl.length>0) {
-            [cell.iconIV sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:iconUrl]] placeholderImage:[UIImage imageNamed:@"imageName"]];
+             cell.iconIV.image = [UIImage imageNamed:imageName];
+//            [cell.iconIV sd_setImageWithURL:[NSURL URLWithString:[getSystemIconADS stringByAppendingString:iconUrl]] placeholderImage:[UIImage imageNamed:imageName]];
         }else{
             cell.iconIV.image = [UIImage imageNamed:imageName];
         }

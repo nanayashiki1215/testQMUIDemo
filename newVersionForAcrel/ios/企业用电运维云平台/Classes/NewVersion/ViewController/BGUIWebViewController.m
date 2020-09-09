@@ -1943,7 +1943,7 @@
 #pragma mark - 解析网页刷新通知
 -(void)refreshWebDataMethod:(NSNotification *)notification{
     NSDictionary *dict = notification.userInfo;
-    if ([dict isKindOfClass:[NSDictionary class]] && [dict objectForKey:@"SpecificType"]) {
+    if ([dict isKindOfClass:[NSDictionary class]]) {
         NSString *specificType = [dict bg_StringForKeyNotNull:@"SpecificType"];
 //        subId
         NSString *subId = [dict bg_StringForKeyNotNull:@"subId"];
@@ -1980,7 +1980,6 @@
         [self.webView evaluateJavaScript:refreshStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
             DefLog(@"item%@",item);
         }];
-        
     }
      
 }

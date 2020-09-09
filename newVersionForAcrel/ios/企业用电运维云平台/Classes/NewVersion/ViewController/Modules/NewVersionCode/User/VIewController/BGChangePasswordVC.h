@@ -12,8 +12,15 @@
 #import <BMKLocationKit/BMKLocationComponent.h>
 #import "SKControllerTools.h"
 
+//定义枚举类型
+typedef enum {
+    showChangePwdType= 0,
+    showChangeSecPwdType
+} changePwdType;
 
 @interface BGChangePasswordVC : BaseViewController
+
 @property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
+@property (nonatomic,assign) NSInteger changePwdType; //展示类型
 
 @end

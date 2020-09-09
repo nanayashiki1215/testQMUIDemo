@@ -31,7 +31,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = DefLocalizedString(@"changePwd");
+    if(self.changePwdType == showChangeSecPwdType){
+         self.title = DefLocalizedString(@"changeSecPwd");
+    }else{
+         self.title = DefLocalizedString(@"changePwd");
+    }
     self.accountName.text = [UserManager manager].account;
 //    self.topLabelText.text =[NSString stringWithFormat:@"设置账号密码后可以通过账号+密码登录 %@",[BGFWGlobal bg_sharedInstance].appDisplayName];
 }
@@ -88,6 +92,7 @@
         self.rightItemButton.selected = NO;
     }
 }
+
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     if ([textField isEqual:self.nowPassWord]) {
         if (textField.text.length &&[self equalToOldPassWord]) {
@@ -178,55 +183,67 @@
           NSString *nowNewPwd = [nowPassWord qmui_md5];
           DefLog(@"nowNewPwd");
           NSDictionary *params = @{@"oldPwd":oldNewPwd,@"newPwd":nowNewPwd};
-          [NetService bg_postWithTokenWithPath:@"/modifyUserPwd" params:params success:^(id respObjc) {
-              DefLog(@"respObjc:%@",%@);
-            
-                        __weak __typeof(self)weakSelf = self;
-                     [weakSelf getLocationWithLoginVersionNo:[UserManager manager].versionNo andToken:[UserManager manager].token];
-                        [weakSelf removeAlias:nil];
-                        NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
-                        NSDictionary *dictionary = [defatluts dictionaryRepresentation];
-                        for(NSString *key in [dictionary allKeys]){
-                            if ([key isEqualToString:@"orderListUrl"]) {
-                                continue;
-                            }else if ([key isEqualToString:kaccount]) {
-                                continue;
-                            }else if ([key isEqualToString:kpassword]) {
-                                continue;
-                            }else if ([key isEqualToString:@"isSavePwd"]){
-                                continue;
-                            }else if ([key isEqualToString:@"orderUrlArray"]){
-                                continue;
-                            }else if ([key isEqualToString:@"selectlanageArr"]){
-                                continue;
-                            }else if ([key isEqualToString:@"myLanguage"]){
-                                continue;
-                            }else if ([key isEqualToString:@"isOpenBoxInApp"] || [key isEqualToString:@"isAlwaysUploadPosition"]){
-                                continue;
-                            }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
-                                continue;
-                            }
-                            else{
-                                [defatluts removeObjectForKey:key];
-                                [defatluts synchronize];
-                            }
-                        }
-                          // 停止采集轨迹
-                         if ([YYServiceManager defaultManager].isGatherStarted) {
-                             [YYServiceManager defaultManager].isGatherStarted = NO;
-                            
-                             [[YYServiceManager defaultManager] stopGather];
-                             [weakSelf generateTrackRecords];
-                         }
+        
+        if(self.changePwdType == showChangeSecPwdType){
+                [NetService bg_postWithTokenWithPath:@"/modifyUserSePwd" params:params success:^(id respObjc) {
+                     DefLog(@"respObjc:%@",%@);
+                    [MBProgressHUD showSuccess:@"修改成功"];
+                 } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+                     DefLog(@"errorCode:%@",errorCode);
                      
-                        BGLogSecondViewController *loginVC = [[BGLogSecondViewController alloc] init];
-                        UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-                        [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
-                  
-          } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-              DefLog(@"errorCode:%@",errorCode);
-              
-          }];
+                 }];
+           }else{
+         [NetService bg_postWithTokenWithPath:@"/modifyUserPwd" params:params success:^(id respObjc) {
+                     DefLog(@"respObjc:%@",%@);
+                   
+                               __weak __typeof(self)weakSelf = self;
+                            [weakSelf getLocationWithLoginVersionNo:[UserManager manager].versionNo andToken:[UserManager manager].token];
+                               [weakSelf removeAlias:nil];
+                               NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+                               NSDictionary *dictionary = [defatluts dictionaryRepresentation];
+                               for(NSString *key in [dictionary allKeys]){
+                                   if ([key isEqualToString:@"orderListUrl"]) {
+                                       continue;
+                                   }else if ([key isEqualToString:kaccount]) {
+                                       continue;
+                                   }else if ([key isEqualToString:kpassword]) {
+                                       continue;
+                                   }else if ([key isEqualToString:@"isSavePwd"]){
+                                       continue;
+                                   }else if ([key isEqualToString:@"orderUrlArray"]){
+                                       continue;
+                                   }else if ([key isEqualToString:@"selectlanageArr"]){
+                                       continue;
+                                   }else if ([key isEqualToString:@"myLanguage"]){
+                                       continue;
+                                   }else if ([key isEqualToString:@"isOpenBoxInApp"] || [key isEqualToString:@"isAlwaysUploadPosition"]){
+                                       continue;
+                                   }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
+                                       continue;
+                                   }
+                                   else{
+                                       [defatluts removeObjectForKey:key];
+                                       [defatluts synchronize];
+                                   }
+                               }
+                                 // 停止采集轨迹
+                                if ([YYServiceManager defaultManager].isGatherStarted) {
+                                    [YYServiceManager defaultManager].isGatherStarted = NO;
+                                   
+                                    [[YYServiceManager defaultManager] stopGather];
+                                    [weakSelf generateTrackRecords];
+                                }
+                            
+                               BGLogSecondViewController *loginVC = [[BGLogSecondViewController alloc] init];
+                               UINavigationController *naVC = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+                               [UIApplication sharedApplication].keyWindow.rootViewController = naVC;
+                         
+                 } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+                     DefLog(@"errorCode:%@",errorCode);
+                     
+                 }];
+           }
+         
     }
   
     

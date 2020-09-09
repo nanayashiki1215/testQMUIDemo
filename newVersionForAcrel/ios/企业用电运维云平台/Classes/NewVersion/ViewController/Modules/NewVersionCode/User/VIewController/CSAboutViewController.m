@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentVersonLB;
 @property (weak, nonatomic) IBOutlet UIButton *versonUpdateBTN;
 @property (weak, nonatomic) IBOutlet UIImageView *iconIV;
+@property (weak, nonatomic) IBOutlet UIButton *FunctionIntroBtn;//功能介绍
+@property (weak, nonatomic) IBOutlet UIButton *upgradeRecordBtn;//升级记录
 //@property (weak, nonatomic) IBOutlet UILabel *detailtext;
 //@property (weak, nonatomic) IBOutlet UILabel *banquanBottom;
 
@@ -42,7 +44,16 @@
 //    [self checkVersonFromServer];
     //设置iPhone X导航栏88状况
     self.logoToTop.constant = BGSafeAreaTopHeight + 16 + 100;
-    [self.versonUpdateBTN.layer addSublayer:[UIColor setGradualChangingColor:self.versonUpdateBTN fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
+//    [self.versonUpdateBTN.layer addSublayer:[UIColor setGradualChangingColor:self.versonUpdateBTN fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
+    
+    //设置边框的粗细
+    [self.versonUpdateBTN.layer setBorderColor:COLOR_NAVBAR.CGColor];
+    [self.versonUpdateBTN.layer setBorderWidth:1.0];
+    [self.FunctionIntroBtn.layer setBorderColor:COLOR_NAVBAR.CGColor];
+    [self.FunctionIntroBtn.layer setBorderWidth:1.0];
+    [self.upgradeRecordBtn.layer setBorderColor:COLOR_NAVBAR.CGColor];
+    [self.upgradeRecordBtn.layer setBorderWidth:1.0];
+    
     
     //右上角版本功能介绍 列表
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
@@ -143,6 +154,58 @@
 //-(void)backButtonAction:(UIButton *)backBtn{
 //    [self popViewControllerAnimation:YES];
 //}
+
+//升级记录
+- (IBAction)updateRecord:(UIButton *)sender {
+    [self clickRightBtn];
+}
+
+
+//介绍视频
+- (IBAction)introductVideo:(UIButton *)sender {
+    //     NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
+    //     NSString *iOSUrl = [NSString changgeNonulWithString:self.allDataArr[index][@"fFunctionfield"]];
+        NSString *url = [NSString changgeNonulWithString:@""];
+        NSString *iOSUrl = [NSString changgeNonulWithString:@"versionFunctionIntro"];
+        if(iOSUrl.length){
+                    NSArray * strarr = [iOSUrl componentsSeparatedByString:@"."];
+                    NSString *urlStr= strarr.firstObject;
+                    BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                    NSString *filePath = [[NSBundle mainBundle] pathForResource:urlStr ofType:@"html" inDirectory:@"aDevices"];
+                    nomWebView.isUseOnline = NO;
+                    nomWebView.localUrlString = filePath;
+                    nomWebView.showWebType = showWebTypeDevice;
+    //                nomWebView.titleName = DefLocalizedString(@"versionIntroduce");
+                    [self.navigationController pushViewController:nomWebView animated:YES];
+        }else if(url.length){
+                //其他均用url加载 通用方法
+        //        fFunctionfield
+        //        NSString *url = [NSString changgeNonulWithString:self.allDataArr[index][@"fActionurl"]];
+                BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                urlWebView.isUseOnline = YES;
+                UserManager *user = [UserManager manager];
+                //list
+                if (user.singleSubFullData) {
+                    NSString *versionURL = [user.singleSubFullData objectForKeyNotNull:@"versionURL"];
+                    NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                    NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                    NSString *urlStr = [str stringByAppendingString:url];
+                    urlWebView.onlineUrlString = urlStr;
+                    urlWebView.showWebType = showWebTypeDevice;
+                    [self.navigationController pushViewController:urlWebView animated:YES];
+                }
+            }else{
+                //其他均用url加载 通用方法
+                NSString *url = [NSString changgeNonulWithString:@""];
+                if (url.length) {
+                    BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                    urlWebView.isUseOnline = YES;
+                    urlWebView.onlineUrlString = url;
+                    urlWebView.showWebType = showWebTypeDevice;
+                    [self.navigationController pushViewController:urlWebView animated:YES];
+                }
+            }
+}
 
 -(void)checkVersonFromLocal{
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];

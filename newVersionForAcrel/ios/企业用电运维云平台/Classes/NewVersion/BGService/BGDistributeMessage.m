@@ -288,8 +288,7 @@
     }
     if ([user.versionNo isEqualToString:ISVersionNo]) {
         [NetService bg_getWithTokenWithPath:@"/getUnConfirmedEventsNum" params:@{} success:^(id respObjc) {
-            
-               DefLog(@"%@",respObjc);
+            DefLog(@"%@",respObjc);
             NSDictionary *dict = [respObjc objectForKeyNotNull:kdata];
             NSArray *array = [dict objectForKeyNotNull:@"unConfirmedEventsNum"];
                if (array) {
@@ -305,7 +304,6 @@
                        }
                    }
                 if (sum>0) {
-                    
                      UserManager *user = [UserManager manager];
                      NSArray *uiArray = user.rootMenuData[@"rootMenu"];
                      if (uiArray.count>0) {

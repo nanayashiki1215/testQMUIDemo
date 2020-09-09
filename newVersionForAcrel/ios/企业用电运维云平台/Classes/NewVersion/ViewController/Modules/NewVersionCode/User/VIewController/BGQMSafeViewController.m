@@ -241,6 +241,8 @@
                     imageName = @"userOwnPic9";
                 }else if([code isEqualToString:@"changePWD"]){
                     imageName = @"";
+                }else if([code isEqualToString:@"changeSecPwd"]){
+                    imageName = @"";
                 }
                 else {
                     imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
@@ -318,6 +320,12 @@
         }else if ([code isEqualToString:@"changePWD"]){
             //账户与安全
             BGChangePasswordVC *themeVC = [[BGChangePasswordVC alloc] init];
+            themeVC.changePwdType = showChangePwdType;
+            [self.navigationController pushViewController:themeVC animated:YES];
+        }else if ([code isEqualToString:@"changeSecPwd"]){
+            //修改二级密码 账户与安全
+            BGChangePasswordVC *themeVC = [[BGChangePasswordVC alloc] init];
+             themeVC.changePwdType = showChangeSecPwdType;
             [self.navigationController pushViewController:themeVC animated:YES];
         }
         //设置

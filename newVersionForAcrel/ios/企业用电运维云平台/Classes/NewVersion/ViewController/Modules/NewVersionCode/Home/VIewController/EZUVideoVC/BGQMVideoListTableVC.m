@@ -121,7 +121,7 @@ static NSString *videoCellIdentifier = @"ezvideoCell";
             }else{
                 //初始化
                 [EZUIKit initWithAppKey:ysAppKey];
-                [EZUIKit setAccessToken:    ysToken];
+                [EZUIKit setAccessToken:ysToken];
             }
             NSArray *VideoinfoList = respObjc[@"data"][@"VideoinfoList"];
             if (VideoinfoList.count>0) {

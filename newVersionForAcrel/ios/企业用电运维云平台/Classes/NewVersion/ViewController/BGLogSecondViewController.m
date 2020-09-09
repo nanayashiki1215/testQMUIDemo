@@ -169,7 +169,6 @@
     [self.logoLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:23]];
 //    self.logoLabel.textColor = COLOR_TEXT;
 
-   
     [self.view addSubview:self.loginBgView];
     [self.loginBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         //卡片位置判断
