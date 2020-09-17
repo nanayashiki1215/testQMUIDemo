@@ -77,9 +77,7 @@
 #define GetAppLoginImageBaseURL [NSString stringWithFormat:@"/%@/",[BGNetworkDefine getAPPLoginImageUrlstr]]
 #define getAppLoginIconADS [GetBaseURL stringByAppendingString:GetAppLoginImageBaseURL]
 
-
 //获取设备管理的图片
-
 
 #endif /* BGNetworkDefine_h */
 

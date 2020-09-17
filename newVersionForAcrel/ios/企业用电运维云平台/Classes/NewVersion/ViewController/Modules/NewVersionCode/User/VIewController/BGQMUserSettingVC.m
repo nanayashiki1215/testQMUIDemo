@@ -235,8 +235,7 @@
             imageName = @"userOwnPic10";
         }else if ([code isEqualToString:@"UploadPosition"]){
             imageName = @"userOwnPic11";
-        }
-        else {
+        }else {
             imageName = [NSString stringWithFormat:@"userOwnPic%ld",(long)indexPath.row];
         }
         if (iconUrl && iconUrl.length>0) {
