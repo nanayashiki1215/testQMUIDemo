@@ -17,6 +17,7 @@
 @property(nonatomic, strong) NSMutableArray *searchArray;//搜索后的数据
 @property(nonatomic, strong) NSMutableArray *allDataArray;//原始全数据
 @property(nonatomic, strong) NSMutableArray *cellNameArray;//保存cell
+@property(nonatomic, strong) NSArray *transitionArr;//绑定的设备列表 过渡
 
 @property(nonatomic, strong) NSString *ezappkeystr;//临时AppKey
 @property(nonatomic, strong) NSString *ezappTokenstr;//临时Apptoken
@@ -51,6 +52,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
 
     self.mutArray = [NSMutableArray new];
     self.searchArray = [NSMutableArray new];
+  
 //    [self creatLeCheng];
     [self getVideoListData];
 }
@@ -128,11 +130,48 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
 //               [self hideLoading];
                
                if (0 == m_devList.count) {
+                   
                    NSLog(@"DeviceViewController getDevList NULL");
 //                   m_toastLab.hidden = YES;
 //                   self.m_imgDeviceNULL.hidden = NO;
                }
                else {
+//                   {
+//                       fAddtime = "2020-09-15"
+//                       fChannelno = 1;
+//                       fIslc = 1;
+//                       fLastupdatetime = "2020-09-22";
+//                       fLcchannelno = 0;
+//                       fLcvideokey = "5L02496PAU2B9FF";
+//                       fSubid = 10100001;
+//                       fVideoid = 328;
+//                       fVideoname = "乐橙摄像头";
+//                   }
+                   //遍历设备，只留下
+                if (self.transitionArr.count>0) {
+                    NSMutableArray * newDevList = [NSMutableArray new];
+                    for (int realIndex = 0; realIndex < self.transitionArr.count; realIndex++) {
+                        NSString *videokey = self.transitionArr[realIndex][@"fLcvideokey"];
+                        NSInteger channelno = [self.transitionArr[realIndex][@"fLcchannelno"] integerValue];
+                         for (int index = 0; index< m_devList.count; index++) {
+                             DeviceInfo* dev = m_devList[index];
+                             if (nil == dev->ID) {
+                                  break;
+                              }
+    //                        NSInteger devKeyIndex = [self locateDevKeyIndex:index];
+                            NSInteger chnKeyIndex = [self locateDevChannelKeyIndex:index];
+                             if ([videokey isEqualToString:dev->ID] && channelno == chnKeyIndex) {
+                                 [newDevList addObject:dev];
+                             }
+                         }
+                    }
+                    m_devList = newDevList;
+                 }else{
+                     m_devList = [NSMutableArray new];
+                     [self showEmptyViewWithText:@"未获取到任何设备" detailText:@"可前往网页端系统设置->视频设置->修改对应变电所中添加视频监控地址信息。" buttonTitle:@"" buttonAction:nil];
+                 }
+                  
+                   
 //                   [self performSelector:@selector(hideToastDelay) withObject:nil afterDelay:2.0f];
                    [self.tableView reloadData];
 //                   [self.view bringSubviewToFront:m_progressInd];
@@ -154,6 +193,8 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
     [NetService bg_getWithTokenWithPath:getLcVideoConfig params:param success:^(id respObjc) {
         DefLog(@"respObjc:%@",respObjc);
         NSDictionary *platformdic = respObjc[@"data"][@"platformSetList"];
+        NSDictionary *dic = respObjc[@"data"];
+        weakSelf.transitionArr = dic[@"VideoinfoList"];
         if (platformdic) {
             NSString *lcAppID = [NSString changgeNonulWithString:platformdic[@"lcAppID"]];
             NSString *accessToken = [NSString changgeNonulWithString:platformdic[@"accessToken"]];

@@ -1191,4 +1191,27 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 }
 
 
+- (BOOL)shouldAutorotate{
+    if(isPad){
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    if(isPad){
+        return UIInterfaceOrientationMaskPortrait;
+    }else{
+        return UIInterfaceOrientationMaskAll;
+    }
+}
+ 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)nowWindow {
+    if(isPad){
+           return UIInterfaceOrientationMaskPortrait;
+       }else{
+           return UIInterfaceOrientationMaskAll;
+       }
+}
 @end

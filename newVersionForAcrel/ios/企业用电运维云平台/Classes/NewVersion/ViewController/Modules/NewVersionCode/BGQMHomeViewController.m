@@ -1254,7 +1254,7 @@
           }
           if (fFunctionurl.length>0) {
               BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"personLocations" ofType:@"html" inDirectory:@"aDevices"];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"personLocationsOne" ofType:@"html" inDirectory:@"aDevices"];
                 nomWebView.isUseOnline = NO;
                 nomWebView.localUrlString = filePath;
                 nomWebView.showWebType = showWebTypeDevice;
@@ -1272,7 +1272,6 @@
                  [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
-       
     }
     else {
         DefLog(@"点击了%@格子",title);
@@ -1329,7 +1328,7 @@
                 urlWebView.onlineUrlString = urlStr;
                 urlWebView.showWebType = showWebTypeDevice;
                [self.navigationController pushViewController:urlWebView animated:YES];
-             }
+            }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         

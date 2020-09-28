@@ -40,6 +40,8 @@ typedef NS_ENUM(NSInteger, CloudStorageStatus) {
 
 @interface DeviceInfo : NSObject {
 @public
+//    fLcchannelno = 0;
+//    fLcvideokey = "5L02496PAU2B9FF";
     NSString* ID;
     NSInteger devOnline; // device status,0-offline,1-online,3-upgrade
     NSString* ability; // device ability

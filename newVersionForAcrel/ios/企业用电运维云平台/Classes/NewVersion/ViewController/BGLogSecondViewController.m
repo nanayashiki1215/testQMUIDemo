@@ -95,8 +95,9 @@
             }else{
                 self.logoImageV.image = [UIImage imageNamed:@"loginLogo"];
             }
+            
             //name
-            if (loginText) {
+            if (loginText && loginText.length>0) {
                 if ([[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"]  && [[[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"] isEqualToString:@"en"]) {
                     if (loginEnText) {
                         self.logoLabel.text = loginEnText;

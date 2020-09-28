@@ -49,7 +49,6 @@
     }
 //    UserManager *user = [UserManager manager];
   //添加多选按钮 ip地址保存
-      
 }
 
 -(void)createView{
@@ -95,7 +94,6 @@
         }else{
             make.height.mas_offset(SCREEN_WIDTH);
         }
-        
     }];
     
     [self.ipBgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -163,7 +161,6 @@
             make.width.mas_offset(20);
         }];
     }
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -246,6 +243,8 @@
     //获取登录页配置
     BGWeakSelf;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //监测域名地址是否可以访问
+//    [self urliSAvailable:uniqueProjectip];
     [NetService bg_getIPAddressWithPath:@"main/getAppIndexSets" params:@{@"ip":uniqueProjectip} success:^(id respObjc) {
          [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         DefLog(@"respObj");
@@ -325,6 +324,23 @@
     
     [self.popupByWindow showWithAnimated:YES];
 }
+
+//判断此路径是否能够请求成功,直接进行HTTP请求
+- (void)urliSAvailable:(NSString *)urlStr{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setHTTPMethod:@"HEAD"];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"不可用");
+        }else{
+            NSLog(@"可用");
+        }
+    }];
+    [task resume];
+}
+
+
 
 -(void)showMoreIPAddress:(UIButton *)showMoreBtn{
     UserManager *user = [UserManager manager];

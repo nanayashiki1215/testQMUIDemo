@@ -66,7 +66,7 @@ static NSInteger const rightRange = pointWidth/2; //距离控件右边的距离
             title_label.font = [UIFont systemFontOfSize:18];
             title_label.backgroundColor = [UIColor clearColor];
             title_label.textColor = UIColorFromRGB(0x3c454c);
-            [imageIcon addSubview:title_label];
+            [self addSubview:title_label];
             //小红点
            if ([number integerValue]>0) {
                CGRect frame = CGRectMake(GridHeight - 85 + self.frame.size.width/2-(GridHeight - 85)/2 - rightRange, GridHeight/4-10-rightRange, pointWidth, pointWidth);
