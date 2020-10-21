@@ -21,6 +21,7 @@
                  [self JudgeWhetherGetUnreadWarningMessage];
                 NSNotification *notification = [NSNotification notificationWithName:@"RefreshWebData" object:nil userInfo:dict];
                 [[NSNotificationCenter defaultCenter] postNotification:notification];
+//                "pushType":"alarm","fAlarmeventlogid":"2020092814372751671281900","SpecificType":"light","subId":"10100389"}
 //                 NSString *logid = [dict bg_StringForKeyNotNull:@"fAlarmeventlogid"];
 //               //调用接口查询 显示顶部推送消息
 //               if (logid && [UserManager manager].isOpenBoxInApp) {

@@ -68,14 +68,15 @@
                                 </mask>
                             </variation>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-Ev-30b">
-                            <rect key="frame" x="40" y="537" width="295" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-Ev-30b">
+                            <rect key="frame" x="37.5" y="487" width="300" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="N31-i8-woV"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="ric-D0-W95"/>
                             </constraints>
-                            <state key="normal" title="Version Update">
-                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="imageEdgeInsets" minX="280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Version Update" image="dibudaohanglan">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -102,14 +103,15 @@
                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-OA-3gv">
-                            <rect key="frame" x="40" y="472" width="295" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-OA-3gv">
+                            <rect key="frame" x="37.5" y="422" width="300" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="uUx-z1-O95"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="xv3-7U-v6H"/>
                             </constraints>
-                            <state key="normal" title="Upgrade record">
-                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="imageEdgeInsets" minX="280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Upgrade record" image="dibudaohanglan">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -127,14 +129,16 @@
                                 <action selector="updateRecord:" destination="-1" eventType="touchUpInside" id="ubR-E7-RQp"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Or-RN-3sZ">
-                            <rect key="frame" x="40" y="407" width="295" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Or-RN-3sZ">
+                            <rect key="frame" x="37.5" y="357" width="300" height="45"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="300" id="TU4-60-c3N"/>
                                 <constraint firstAttribute="height" constant="45" id="aho-xe-pFJ"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="hsC-lp-5pS"/>
                             </constraints>
-                            <state key="normal" title="Function introduction">
-                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="imageEdgeInsets" minX="280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Function introduction" image="dibudaohanglan">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -167,8 +171,7 @@
                         <constraint firstItem="oZw-KE-dVz" firstAttribute="top" secondItem="tfZ-Me-inf" secondAttribute="bottom" constant="13" id="aI3-Nk-FfI"/>
                         <constraint firstItem="pXQ-Ev-30b" firstAttribute="centerX" secondItem="GMq-Vk-daJ" secondAttribute="centerX" id="eG4-Cm-8jH"/>
                         <constraint firstItem="GPO-OA-3gv" firstAttribute="leading" secondItem="1Or-RN-3sZ" secondAttribute="leading" id="mC3-WK-6ju"/>
-                        <constraint firstItem="1Or-RN-3sZ" firstAttribute="top" secondItem="VLb-FV-gPl" secondAttribute="bottom" constant="80" id="qzK-tM-KKb"/>
-                        <constraint firstAttribute="trailing" secondItem="pXQ-Ev-30b" secondAttribute="trailing" constant="40" id="sd2-XR-AfI"/>
+                        <constraint firstItem="1Or-RN-3sZ" firstAttribute="top" secondItem="VLb-FV-gPl" secondAttribute="bottom" constant="30" id="qzK-tM-KKb"/>
                         <constraint firstItem="pXQ-Ev-30b" firstAttribute="trailing" secondItem="1Or-RN-3sZ" secondAttribute="trailing" id="sme-3a-vto"/>
                         <constraint firstItem="tfZ-Me-inf" firstAttribute="top" secondItem="GMq-Vk-daJ" secondAttribute="top" constant="180" id="wSM-Up-0Cy"/>
                         <constraint firstItem="ajO-vv-KyG" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" id="xGh-Iz-hCi"/>
@@ -214,5 +217,6 @@
     </objects>
     <resources>
         <image name="app-vision" width="341.66665649414062" height="341.66665649414062"/>
+        <image name="dibudaohanglan" width="16" height="16"/>
     </resources>
 </document>

@@ -1974,7 +1974,17 @@
             [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
                 DefLog(@"item%@",item);
             }];
+        }else if([specificType containsString:@"light"] || [specificType containsString:@"Light"] || [specificType containsString:@"灯"]){
+            //刷新控制灯光
+           NSString *locationStrJS = [NSString stringWithFormat:@"refreshLightData()"];
+           [self.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+               DefLog(@"item%@",item);
+           }];
+        }else{
+//           网关 content":"300T 发生了 网关离线","pushType":"communication","fAlarmeventlogid":"2020092814422065543487160","SpecificType":"1","subId":
         }
+        
+        
         //刷新配电图
         NSString *refreshStrJS = [NSString stringWithFormat:@"refreshDiagramData()"];
         [self.webView evaluateJavaScript:refreshStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {

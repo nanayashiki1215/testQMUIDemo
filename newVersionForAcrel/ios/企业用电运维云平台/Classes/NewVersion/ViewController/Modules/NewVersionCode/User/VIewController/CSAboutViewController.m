@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //版本信息页面
     self.title = DefLocalizedString(@"VersionInfo");
     [self getAboutNetData];
     // Do any additional setup after loading the view from its nib.
@@ -47,13 +48,34 @@
 //    [self.versonUpdateBTN.layer addSublayer:[UIColor setGradualChangingColor:self.versonUpdateBTN fromColor:COLOR_LightLWithChangeIn16 toColor:COLOR_DeepLWithChangeIn16]];
     
     //设置边框的粗细
-    [self.versonUpdateBTN.layer setBorderColor:COLOR_NAVBAR.CGColor];
-    [self.versonUpdateBTN.layer setBorderWidth:1.0];
-    [self.FunctionIntroBtn.layer setBorderColor:COLOR_NAVBAR.CGColor];
-    [self.FunctionIntroBtn.layer setBorderWidth:1.0];
-    [self.upgradeRecordBtn.layer setBorderColor:COLOR_NAVBAR.CGColor];
-    [self.upgradeRecordBtn.layer setBorderWidth:1.0];
+//    [self.versonUpdateBTN.layer setBorderColor:COLOR_NAVBAR.CGColor];
+//    [self.versonUpdateBTN.layer setBorderWidth:1.0];
+//    [self.FunctionIntroBtn.layer setBorderColor:COLOR_NAVBAR.CGColor];
+//    [self.FunctionIntroBtn.layer setBorderWidth:1.0];
+//    [self.upgradeRecordBtn.layer setBorderColor:COLOR_NAVBAR.CGColor];
+//    [self.upgradeRecordBtn.layer setBorderWidth:1.0];
     
+    CALayer *deleteBtnBorder = [CALayer layer];
+    float height = self.versonUpdateBTN.frame.size.height;
+//    float width = self.versonUpdateBTN.frame.size.width;
+    deleteBtnBorder.frame = CGRectMake(0, height-1, SCREEN_WIDTH, 1);
+    deleteBtnBorder.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [self.versonUpdateBTN.layer addSublayer:deleteBtnBorder];
+    self.versonUpdateBTN.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+    CALayer *deleteBtnBorder2 = [CALayer layer];
+    deleteBtnBorder2.frame = CGRectMake(0, height-1, SCREEN_WIDTH, 1);
+    deleteBtnBorder2.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [self.FunctionIntroBtn.layer addSublayer:deleteBtnBorder2];
+    self.FunctionIntroBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+    CALayer *deleteBtnBorder3 = [CALayer layer];
+    deleteBtnBorder3.frame = CGRectMake(0, height-1, SCREEN_WIDTH, 1);
+    deleteBtnBorder3.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [self.upgradeRecordBtn.layer addSublayer:deleteBtnBorder3];
+    self.upgradeRecordBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+//    dibudaohanglan
     
     //右上角版本功能介绍 列表
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"select"] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
@@ -168,15 +190,15 @@
         NSString *url = [NSString changgeNonulWithString:@""];
         NSString *iOSUrl = [NSString changgeNonulWithString:@"versionFunctionIntro"];
         if(iOSUrl.length){
-                    NSArray * strarr = [iOSUrl componentsSeparatedByString:@"."];
-                    NSString *urlStr= strarr.firstObject;
-                    BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
-                    NSString *filePath = [[NSBundle mainBundle] pathForResource:urlStr ofType:@"html" inDirectory:@"aDevices"];
-                    nomWebView.isUseOnline = NO;
-                    nomWebView.localUrlString = filePath;
-                    nomWebView.showWebType = showWebTypeDevice;
-    //                nomWebView.titleName = DefLocalizedString(@"versionIntroduce");
-                    [self.navigationController pushViewController:nomWebView animated:YES];
+                NSArray * strarr = [iOSUrl componentsSeparatedByString:@"."];
+                NSString *urlStr= strarr.firstObject;
+                BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:urlStr ofType:@"html" inDirectory:@"aDevices"];
+                nomWebView.isUseOnline = NO;
+                nomWebView.localUrlString = filePath;
+                nomWebView.showWebType = showWebTypeDevice;
+//                nomWebView.titleName = DefLocalizedString(@"versionIntroduce");
+                [self.navigationController pushViewController:nomWebView animated:YES];
         }else if(url.length){
                 //其他均用url加载 通用方法
         //        fFunctionfield

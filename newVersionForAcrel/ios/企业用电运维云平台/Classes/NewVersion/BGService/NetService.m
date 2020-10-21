@@ -281,6 +281,7 @@ static NetService *_instance;
 //        [mutParams setNotNullObject:tenantId ForKey:ktenantId];
 //    }
     //测试联调接口
+//    NSString *urlString = [[DominAddress stringByAppendingString:BaseFileURLString] stringByAppendingString:path];
     NSString *urlString = [[DominAddress stringByAppendingString:BaseFileURLString] stringByAppendingString:path];
     [NetService bg_httpGetWithPath:urlString params:mutParams success:^(id responseObject) {
             if (Success) {
@@ -296,7 +297,7 @@ static NetService *_instance;
 //            [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
         }
         if (Fail) {
-            Fail(nil,nil,nil);
+            Fail(respObjc,errorCode,nil);
         }
     }];
 }

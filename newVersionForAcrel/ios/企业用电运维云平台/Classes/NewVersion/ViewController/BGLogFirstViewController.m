@@ -245,6 +245,12 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //监测域名地址是否可以访问
 //    [self urliSAvailable:uniqueProjectip];
+    [NetService bg_getWithTestPath:@"sys/testIPValid" params:@{@"ipAddress":uniqueProjectip} success:^(id respObjc) {
+        DefLog(@"%@",respObjc);
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        DefLog(@"%@",respObjc);
+    }];
+    
     [NetService bg_getIPAddressWithPath:@"main/getAppIndexSets" params:@{@"ip":uniqueProjectip} success:^(id respObjc) {
          [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         DefLog(@"respObj");
@@ -258,7 +264,7 @@
            }
            if (imageUrl) {
                [DefNSUD setObject:imageUrl forKey:@"APPLoginImageUrl"];
-               DefNSUDSynchronize
+                DefNSUDSynchronize
            }
         }
        
@@ -296,7 +302,7 @@
 -(void)showPopupPbtn:(UIButton *)showMoreBtn{
   
     // 使用方法 2，以 UIWindow 的形式显示到界面上，这种无需默认隐藏，也无需 add 到某个 UIView 上
-    __weak __typeof(self)weakSelf = self;
+       __weak __typeof(self)weakSelf = self;
        self.popupByWindow = [[QMUIPopupMenuView alloc] init];
        self.popupByWindow.automaticallyHidesWhenUserTap = YES;// 点击空白地方消失浮层
        self.popupByWindow.maskViewBackgroundColor = UIColorMaskWhite;// 使用方法 2 并且打开了 automaticallyHidesWhenUserTap 的情况下，可以修改背景遮罩的颜色
@@ -306,7 +312,6 @@
            // 利用 itemConfigurationHandler 批量设置所有 item 的样式
 //           aItem.button.highlightedBackgroundColor = [UIColor.qd_tintColor colorWithAlphaComponent:.2];
        };
-    
 //    NSMutableArray *orderMutArr = [NSMutableArray new];
    
     QMUIPopupMenuButtonItem *item = [QMUIPopupMenuButtonItem itemWithImage:nil title:@"域名示例：www.xxxxx.cn" handler:^(QMUIPopupMenuButtonItem *aItem) {

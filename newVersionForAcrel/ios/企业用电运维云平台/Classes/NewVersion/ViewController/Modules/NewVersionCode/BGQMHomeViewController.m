@@ -962,7 +962,7 @@
         }
     }else if (codeId == 348){
         //348 巡视记录
-        NSString *fAction;
+       NSString *fAction;
        NSString *fFunctionurl;
        for (NSDictionary *nodeDic in homeList) {
            if ([nodeDic[@"fCode"] isEqualToString:@"348"]) {
@@ -970,6 +970,7 @@
                fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
            }
        }
+        
        if (fFunctionurl.length>0) {
           BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
           NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allPatrolRecord" ofType:@"html" inDirectory:@"aDevices"];
@@ -988,7 +989,7 @@
                urlWebView.onlineUrlString = urlStr;
                urlWebView.showWebType = showWebTypeDevice;
               [self.navigationController pushViewController:urlWebView animated:YES];
-            }
+           }
        }
     }else if (codeId == 349){
         //349 缺陷管理
@@ -1020,7 +1021,6 @@
                  [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
-       
     }else if (codeId == 350){
         //350 文档管理
           NSString *fAction;

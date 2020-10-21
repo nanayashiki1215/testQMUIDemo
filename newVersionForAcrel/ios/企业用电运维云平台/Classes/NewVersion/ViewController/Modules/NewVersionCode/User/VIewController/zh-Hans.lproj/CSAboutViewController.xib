@@ -68,14 +68,16 @@
                                 </mask>
                             </variation>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-Ev-30b">
-                            <rect key="frame" x="40" y="537" width="295" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-Ev-30b">
+                            <rect key="frame" x="37.5" y="487" width="300" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="5HK-OS-tfI"/>
                                 <constraint firstAttribute="height" constant="45" id="N31-i8-woV"/>
                             </constraints>
-                            <state key="normal" title="检查新版本">
-                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="titleEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="检查新版本" image="dibudaohanglan">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
@@ -97,14 +99,16 @@
                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xh-xY-tex">
-                            <rect key="frame" x="40" y="472" width="295" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xh-xY-tex">
+                            <rect key="frame" x="37.5" y="422" width="300" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="jDx-uG-ciB"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="rss-x4-nhH"/>
                             </constraints>
-                            <state key="normal" title="升级记录">
-                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="titleEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="升级记录" image="dibudaohanglan">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
@@ -114,14 +118,17 @@
                                 <action selector="updateRecord:" destination="-1" eventType="touchUpInside" id="Ykx-VU-4dl"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPF-HN-NsW">
-                            <rect key="frame" x="40" y="407" width="295" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPF-HN-NsW">
+                            <rect key="frame" x="37.5" y="357" width="300" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="FCk-MI-Oqf"/>
                                 <constraint firstAttribute="height" constant="45" id="en6-gd-4lc"/>
+                                <constraint firstAttribute="width" constant="300" id="s3l-Hu-2ip"/>
                             </constraints>
-                            <state key="normal" title="功能介绍短视频">
-                                <color key="titleColor" red="0.31372549020000001" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="titleEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="功能介绍短视频" image="dibudaohanglan">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
@@ -149,9 +156,7 @@
                         <constraint firstItem="pXQ-Ev-30b" firstAttribute="centerX" secondItem="GMq-Vk-daJ" secondAttribute="centerX" id="eG4-Cm-8jH"/>
                         <constraint firstItem="pXQ-Ev-30b" firstAttribute="top" secondItem="1Xh-xY-tex" secondAttribute="bottom" constant="20" id="erB-cG-bdM"/>
                         <constraint firstItem="1Xh-xY-tex" firstAttribute="top" secondItem="wPF-HN-NsW" secondAttribute="bottom" constant="20" id="kUu-0z-t8X"/>
-                        <constraint firstItem="wPF-HN-NsW" firstAttribute="top" secondItem="VLb-FV-gPl" secondAttribute="bottom" constant="80" id="lN0-GE-GTL"/>
-                        <constraint firstItem="pXQ-Ev-30b" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" constant="40" id="orX-VF-LTj"/>
-                        <constraint firstAttribute="trailing" secondItem="pXQ-Ev-30b" secondAttribute="trailing" constant="40" id="sd2-XR-AfI"/>
+                        <constraint firstItem="wPF-HN-NsW" firstAttribute="top" secondItem="VLb-FV-gPl" secondAttribute="bottom" constant="30" id="lN0-GE-GTL"/>
                         <constraint firstItem="tfZ-Me-inf" firstAttribute="top" secondItem="GMq-Vk-daJ" secondAttribute="top" constant="180" id="wSM-Up-0Cy"/>
                         <constraint firstItem="ajO-vv-KyG" firstAttribute="leading" secondItem="GMq-Vk-daJ" secondAttribute="leading" id="xGh-Iz-hCi"/>
                         <constraint firstItem="tfZ-Me-inf" firstAttribute="centerX" secondItem="GMq-Vk-daJ" secondAttribute="centerX" id="z9o-OD-xvS"/>
@@ -198,5 +203,6 @@
     </objects>
     <resources>
         <image name="app-vision" width="341.66665649414062" height="341.66665649414062"/>
+        <image name="dibudaohanglan" width="16" height="16"/>
     </resources>
 </document>
