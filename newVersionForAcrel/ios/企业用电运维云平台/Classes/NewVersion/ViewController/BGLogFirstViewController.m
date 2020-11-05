@@ -280,7 +280,9 @@
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
+       
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
+        
         if (weakSelf.isPush) {
              [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {

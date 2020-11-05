@@ -103,7 +103,7 @@ static UserManager* manager;
     [DefNSUD setObject:_homefMenuid forKey:@"homefMenuid"];
     DefNSUDSynchronize
 }
-
+//isShowNewVersion
 -(NSString *)bgnickName{
     _bgnickName = [DefNSUD stringForKey:@"bgnickName"];
     return _bgnickName;

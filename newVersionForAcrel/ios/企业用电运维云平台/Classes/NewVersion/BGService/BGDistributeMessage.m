@@ -337,22 +337,22 @@
                     sum += count;
                 }
                  if (sum>0) {
-                                      UserManager *user = [UserManager manager];
-                                      NSArray *uiArray = user.rootMenuData[@"rootMenu"];
-                                      if (uiArray.count>0) {
-                                          for (int index = 0; index<uiArray.count; index++) {
-                                              NSDictionary *dic = uiArray[index];
-                                              NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
-                                              if ([fCode isEqualToString:@"alarmPage"]){
-                                                  [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:index withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
-                                              }
-                                          }
-                                      }else{
-                                         [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
-                                      }
-                                  }else{
-                                      [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
-                                  }
+                      UserManager *user = [UserManager manager];
+                      NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+                      if (uiArray.count>0) {
+                          for (int index = 0; index<uiArray.count; index++) {
+                              NSDictionary *dic = uiArray[index];
+                              NSString *fCode = [NSString changgeNonulWithString:dic[@"fCode"]];
+                              if ([fCode isEqualToString:@"alarmPage"]){
+                                  [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:index withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                              }
+                          }
+                      }else{
+                         [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:[NSString stringWithFormat:@"%ld",(long)sum]];
+                      }
+                  }else{
+                      [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:1 withShowText:@""];
+                  }
             }
         } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
             

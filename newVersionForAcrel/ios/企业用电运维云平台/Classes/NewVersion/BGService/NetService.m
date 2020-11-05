@@ -456,7 +456,7 @@ static NetService *_instance;
                 if (respMsg) {
                     UserManager *user = [UserManager manager];
                     user.appIndexSet = @"";
-                   [MBProgressHUD showError:respMsg];
+//                   [MBProgressHUD showError:respMsg];
                 }
                 Fail(responseObject,respCode,respMsg);
             }
@@ -478,7 +478,7 @@ static NetService *_instance;
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-        if (errorMsg) {
+        if (errorMsg){
             [MBProgressHUD showError:errorMsg];
         }else{
             [MBProgressHUD showError:@"请求失败,请检查网络链接或域名地址"];
@@ -773,7 +773,7 @@ static NetService *_instance;
                      continue;
                  }else if ([key isEqualToString:@"isOpenBoxInApp"] || [key isEqualToString:@"isAlwaysUploadPosition"]){
                      continue;
-                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
+                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString] || [key isEqualToString:@"isShowNewVersion"]){
                      continue;
                  }
                  else{
@@ -822,7 +822,7 @@ static NetService *_instance;
                      continue;
                  }else if ([key isEqualToString:@"isOpenBoxInApp"] || [key isEqualToString:@"isAlwaysUploadPosition"]){
                      continue;
-                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString]){
+                 }else if ([key isEqualToString:@"APPLoginImageUrl"] || [key isEqualToString:@"appIndexSet"] || [key isEqualToString:kBaseUrlString] || [key isEqualToString:@"isShowNewVersion"]){
                      continue;
                  }else{
                      [defatluts removeObjectForKey:key];
@@ -1259,4 +1259,52 @@ static NetService *_instance;
 - (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
     DefLog(@"定位失败");
 }
+
+
+//下载文件,监测下载进度
+//+(void)downloadFile:(NSString *)urlStr andSaveTo:(NSString *)fileName progress:(ProgressBlock)progress success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
+//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//    AFHTTPSessionManager *manager = [NetService createHTTPSessionManager];
+//    NSURLSessionDownloadTask *downTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+//         progress(nil,nil,1.0 * downloadProgress.completedUnitCount/downloadProgress.totalUnitCount,1.0 * downloadProgress.totalUnitCount,1.0 * downloadProgress.completedUnitCount);
+////        progress(session,downloadTask,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
+////        下载了：<NSProgress: 0x600000137ac0> : Parent: 0x0 / Fraction completed: 0.7764 / Completed: 29665 of 38209
+//// 0x7fcb01da8c30 0.776388/completed=29665/total=38209
+//// 下载了：<NSProgress: 0x600000137ac0> : Parent: 0x0 / Fraction completed: 0.8143 / Completed: 31113 of 38209
+////        2017-04-11 19:04:34.722 BusinessGo[11302:220904] 0x7fcb01da8c30 0.814285/completed=31113/total=38209
+////        DefLog(@"下载了：%@",downloadProgress);
+//    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+//        return [NSURL fileURLWithPath:fileName];
+//    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+//        if (nil == error && Success) {
+//            Success(filePath);
+//        }else if (Fail){
+//            Fail([NSString stringWithFormat:@"%ld",error.code],error.domain);
+//        }
+//    }];
+//    [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionDownloadTask * _Nonnull downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+//        DefLog(@"%p %f/completed=%lld/total=%lld",downloadTask,(double)totalBytesWritten/(double)totalBytesExpectedToWrite, totalBytesWritten , totalBytesExpectedToWrite);
+//        progress(session,downloadTask,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
+//
+//    }];
+//    [downTask resume];
+//}
+//
+////下载文件,不监测下载进度
+//+ (void)downloadFile:(NSString *)urlStr andSaveTo:(NSString *)fileName success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail{
+//
+//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//    AFHTTPSessionManager *manager = [NetService createHTTPSessionManager];
+//    NSURLSessionDownloadTask *downTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+//        return [NSURL fileURLWithPath:fileName];
+//    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+//        if (nil == error && Success) {
+//            Success(filePath);
+//        }else if (Fail){
+//            Fail([NSString stringWithFormat:@"%ld",error.code],error.domain);
+//        }
+//    }];
+//    [downTask resume];
+//}
+
 @end

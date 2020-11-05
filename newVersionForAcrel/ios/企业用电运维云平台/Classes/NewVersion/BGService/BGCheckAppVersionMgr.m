@@ -131,7 +131,6 @@
     [alertController showWithAnimated:YES];
 }
 
-
 - (NSDictionary *)jsonStringToDictionary:(NSString *)jsonStr
 {
     if (jsonStr == nil)
@@ -179,7 +178,9 @@
     }
     return topViewController;
 }
+
 #pragma mark UIAlertViewDelegate
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex==0)

@@ -28,6 +28,8 @@
 #import "JZLocationConverter.h"
 #import "LocationTool.h"
 #import "BGQMSelectSubstationTVC.h"
+#import "CSFileManage.h"
+#import "MyMD5.h"
 
 @import MapKit;//ios7 使用苹果自带的框架使用@import导入则不用在Build Phases 导入框架了
 @import CoreLocation;
@@ -444,7 +446,9 @@
         config.allowsPictureInPictureMediaPlayback = YES;
         //设置请求的User-Agent信息中应用程序名称 iOS9后可用
         config.applicationNameForUserAgent = @"ChinaDailyForiPad";
-        
+//        if (@available(iOS 11, *)) {
+//        config.mediaTypesRequiringUserActionForPlayback = NO;
+//        }
         //自定义的WKScriptMessageHandler 是为了解决内存不释放的问题
         WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
         //这个类主要用来做native与JavaScript的交互管理
@@ -464,6 +468,8 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"takePhoto"];
         //判断网链接
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"judgeNetWork"];
+//        downloadVideo
+         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"downloadVideo"];
         config.userContentController = wkUController;
         //添加跳转鹰眼轨迹 pushYYGJView
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"pushYYGJView"];
@@ -847,6 +853,51 @@
     else if([message.name isEqualToString:@"judgeNetWork"]){
 //        NSString *dataStatus = message.body;
 //        [self networkReachability];
+    }else if([message.name isEqualToString:@"downloadVideo"]){
+        //下载视频到本地
+        if (!message.body || message.body == NULL || [message.body isEqual:[NSNull null]]) {
+            return;
+        }
+        NSDictionary *msgDic = message.body;
+        NSString *videoUrl = [NSString changgeNonulWithString:msgDic[@"videoUrl"]];
+        
+        //创建本地路径
+        NSString *fileName = [MyMD5 md5:videoUrl];
+        //cachesPath
+//        NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        
+        //暂用临时文件夹可以播放
+       NSString *cachesPath = NSTemporaryDirectory();
+       cachesPath = [cachesPath stringByAppendingFormat:@"/mediaFiles/%@",fileName];
+       
+       DefLog(@"%@",cachesPath);
+       NSFileManager *manager = [NSFileManager defaultManager];
+       [manager createDirectoryAtPath:cachesPath withIntermediateDirectories:YES attributes:nil error:nil];
+       NSString *fileTypeName = [[videoUrl componentsSeparatedByString:@"."] lastObject];
+       cachesPath = [cachesPath stringByAppendingFormat:@"/%@.%@",fileName,fileTypeName];
+       BOOL exist = [manager fileExistsAtPath:cachesPath];
+       if (exist) {
+            DefLog(@"找到本地缓存的文件");
+            NSString *jsString;
+            UserManager *user = [UserManager manager];
+            if ([user.versionNo isEqualToString:ISVersionNo]) {
+                jsString = [NSString stringWithFormat:@"changePlayStr('%@');",cachesPath];
+            }
+            
+            [self.webView evaluateJavaScript:jsString completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+                   
+            }];
+        }else{
+            [NetService bg_downloadFileFromUrlPath:videoUrl andSaveTo:cachesPath progress:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+                                
+                    } success:^(id respObjc) {
+                          DefLog(@"网上下载文件成功");
+                                  
+                       
+                    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+                          DefLog(@"网上下载文件失败");
+           }];
+        }
     }else if ([message.name isEqualToString:@"pushYYGJView"]){
         YYHistoryTrackViewController *historyVC = [[YYHistoryTrackViewController alloc] init];
         if (!message.body || message.body == NULL || [message.body isEqual:[NSNull null]]) {
@@ -855,7 +906,6 @@
         NSString *userid = [NSString changgeNonulWithString:message.body[@"entityName"]];
         NSString *startTime = [NSString changgeNonulWithString:message.body[@"startTime"]];
         NSString *endTime = [NSString changgeNonulWithString:message.body[@"endTime"]];
-        
         NSString *baseUrl = GetBaseURL;
 //        NSString *baseUrl = @"https://116.236.149.165:8090";
         NSString *strUrl2 = @"";
@@ -1111,6 +1161,23 @@
                 }];
             }
         }
+}
+
+- (void)writeHeaderToPath:(UIImage *)image{
+    // 本地沙盒目录
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imageFilePath = [path stringByAppendingPathComponent:@"MyVideoUrl"];
+    BOOL success = [UIImageJPEGRepresentation(image, 1) writeToFile:imageFilePath  atomically:YES];
+    if (success){
+        NSLog(@"写入本地成功");
+    }
+}
+
+//打开tmp目录
+-(void)dirTmp{
+    //[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
+    NSString *tmpDirectory = NSTemporaryDirectory();
+    NSLog(@"app_home_tmp: %@",tmpDirectory);
 }
 
 #pragma mark - 轨迹记录功能
@@ -1912,6 +1979,7 @@
 //    takePhoto
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"takePhoto"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"judgeNetWork"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"downloadVideo"];
     //
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"pushYYGJView"];
     
@@ -2163,6 +2231,7 @@
 //    }];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 //左滑页面
 //- (void)willMoveToParentViewController:(UIViewController*)parent

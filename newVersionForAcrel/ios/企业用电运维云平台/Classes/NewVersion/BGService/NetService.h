@@ -68,6 +68,7 @@
  */
 
 +(void)bg_downloadFileFromUrlPath:(NSString *)fileUrlPath andSaveTo:(NSString *)localFullFilePath progress:(BGNetServiceProgressBlock)progress success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
+
 -(AFHTTPSessionManager *)bg_sessionManagerWithUrlPath:(NSString *)fileUrl;
 
 #pragma mark - 纯净版上传文件接口，不允许出现提示框，剪切图片，拼接文件地址等业务逻辑！！！
@@ -103,5 +104,28 @@
 
 /** 停止所有的下载任务*/
 - (void)stopAllDownLoadTasks;
+
+
+///**
+// *  下载文件并保存到指定的目录，不监测下载进度
+// *
+// *  @param fileUrl  文件网址
+// *  @param filePath 文件保存路径
+// *  @param Success 成功回调
+// *  @param Fail    失败回调
+// */
+//+ (void)downloadFile:(NSString *)urlStr andSaveTo:(NSString *)fileName success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
+//
+///**
+// *  下载文件并保存到指定的目录，监测下载进度
+// *
+// *  @param fileUrl  文件网址
+// *  @param filePath 文件保存路径
+// *  @param progress  监听下载进度的回调。
+// *  @param Success 成功回调
+// *  @param Fail    失败回调
+// */
+//+ (void)downloadFile:(NSString *)urlStr andSaveTo:(NSString *)fileName progress:(BGNetServiceProgressBlock)progress success:(BGNetServiceSuccessBlock)Success failure:(BGNetServiceFailBlock)Fail;
+
 @end
 
