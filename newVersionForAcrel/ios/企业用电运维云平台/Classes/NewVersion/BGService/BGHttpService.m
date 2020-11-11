@@ -588,6 +588,7 @@ static id _instance;
             Fail(nil,nil,nil);
         }
     }] resume];
+    
     //HTTPS SSL的验证，在此处调用上面的代码，给这个证书验证；
 //    [manager setSecurityPolicy:[BGHttpService customSecurityPolicy]];
 //    [manager POST:realURL parameters:jsonStr progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
