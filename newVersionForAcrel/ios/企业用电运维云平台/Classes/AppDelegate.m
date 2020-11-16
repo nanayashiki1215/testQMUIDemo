@@ -199,6 +199,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
                             uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
                         }
                     }
+                    //注册阿里云移动推送
                     NSString *aliasId = [NSString stringWithFormat:@"%@-%@",uniqueProjectip,user.bguserId];
                     [weakSelf initCloudPush];
                     [weakSelf addAlias:aliasId];

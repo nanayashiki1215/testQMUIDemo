@@ -196,6 +196,7 @@
 		B672372624AD6D8B00EFE5C9 /* EZMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B672372824AD6D8B00EFE5C9 /* EZMain.storyboard */; };
 		B672373424AD835A00EFE5C9 /* BGLogFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B672373324AD835A00EFE5C9 /* BGLogFirstViewController.m */; };
 		B672373724AD83E000EFE5C9 /* BGLogSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */; };
+		B6724B35255D1B8C00E8B220 /* subalarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = B6724B32255D1B8C00E8B220 /* subalarm.caf */; };
 		B6733F3F22B8D77A005B1DDE /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F3E22B8D77A005B1DDE /* ExampleApp.html */; };
 		B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */ = {isa = PBXBuildFile; fileRef = B6733F4222B8E20E005B1DDE /* eventTest.html */; };
 		B674388324C91A5C00701BB2 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60578F924C6AF7C0052EB50 /* LCOpenSDKDynamic.framework */; };
@@ -1084,6 +1085,7 @@
 		B672373324AD835A00EFE5C9 /* BGLogFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGLogFirstViewController.m; sourceTree = "<group>"; };
 		B672373524AD83E000EFE5C9 /* BGLogSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGLogSecondViewController.h; sourceTree = "<group>"; };
 		B672373624AD83E000EFE5C9 /* BGLogSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGLogSecondViewController.m; sourceTree = "<group>"; };
+		B6724B32255D1B8C00E8B220 /* subalarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = subalarm.caf; sourceTree = "<group>"; };
 		B6733F3E22B8D77A005B1DDE /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
 		B6733F4222B8E20E005B1DDE /* eventTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eventTest.html; sourceTree = "<group>"; };
 		B674388624C91ECA00701BB2 /* LCMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LCMain.storyboard; sourceTree = "<group>"; };
@@ -2146,6 +2148,7 @@
 				B6B0085423795244002A4465 /* 企业用电运维云平台.entitlements */,
 				B616043C237E3F6B007A8C44 /* silent.caf */,
 				B61953FC23792B8700036E97 /* AliyunEmasServices-Info.plist */,
+				B6724B32255D1B8C00E8B220 /* subalarm.caf */,
 				B614C3D4233B00240072459F /* QMUIResources.bundle */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -4660,6 +4663,7 @@
 				B68D2D2522A656F1001C00EC /* pageControlCurrentDot@3x.png in Resources */,
 				B6A92DFE22B9D03300D16AE9 /* assets in Resources */,
 				B6733F4322B8E20E005B1DDE /* eventTest.html in Resources */,
+				B6724B35255D1B8C00E8B220 /* subalarm.caf in Resources */,
 				B68D2D3722A65E2A001C00EC /* app_item_bg.png in Resources */,
 				B672372624AD6D8B00EFE5C9 /* EZMain.storyboard in Resources */,
 				B68D2D2622A656F1001C00EC /* placeholder.png in Resources */,

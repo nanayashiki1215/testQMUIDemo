@@ -199,7 +199,8 @@
     }
     [_lock unlock];
     if (list != nil) {
-        [list listView].frame = cell.contentView.bounds;
+        CGRect cellBound = cell.contentView.bounds;
+        [list listView].frame = cellBound;
         [cell.contentView addSubview:[list listView]];
     }
     return cell;
