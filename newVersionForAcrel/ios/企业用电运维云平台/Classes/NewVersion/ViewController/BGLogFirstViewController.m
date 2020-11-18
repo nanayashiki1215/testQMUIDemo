@@ -319,7 +319,7 @@
     QMUIPopupMenuButtonItem *item = [QMUIPopupMenuButtonItem itemWithImage:nil title:@"域名示例：www.xxxxx.cn" handler:^(QMUIPopupMenuButtonItem *aItem) {
         [aItem.menuView hideWithAnimated:YES];
     }];
-    QMUIPopupMenuButtonItem *item2 = [QMUIPopupMenuButtonItem itemWithImage:nil title:@"IP示例：116.216.149.164:8090" handler:^(QMUIPopupMenuButtonItem *aItem) {
+    QMUIPopupMenuButtonItem *item2 = [QMUIPopupMenuButtonItem itemWithImage:nil title:@"IP示例：116.216.149.164:8080" handler:^(QMUIPopupMenuButtonItem *aItem) {
         [aItem.menuView hideWithAnimated:YES];
     }];
     self.popupByWindow.items = @[item,item2];
