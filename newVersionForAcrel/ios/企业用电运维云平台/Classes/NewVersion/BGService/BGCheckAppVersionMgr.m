@@ -37,7 +37,7 @@
     
     NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     BGWeakSelf;
-    [NetService bg_getWithUpdatePath:@"sys/getAndroidVersion" params:@{@"fId":@"iose70eeb320a58230925c02e7",@"version":currentVersion} success:^(id respObjc) {
+    [NetService bg_getWithUpdatePath:@"sys/getAndroidVersion" params:@{@"fId":BGVersionNo,@"version":currentVersion} success:^(id respObjc) {
         weakSelf.isConstraints = [NSString changgeNonulWithString:respObjc[@"fConstraints"]];
         weakSelf.fVersion = [NSString changgeNonulWithString:respObjc[@"fVersion"]];
         NSString *updateNo = [NSString changgeNonulWithString:respObjc[@"update"]];
