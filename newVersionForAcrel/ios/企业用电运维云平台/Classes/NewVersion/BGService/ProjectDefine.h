@@ -136,6 +136,8 @@
 //企业账号鹰眼
 #define BGBaiduMapApi @"e2KWbh9ncEQuTpzHFINFWdLFN0wYp1kU"
 #define BGSERVICEID 219626
+//APP版本管理 唯一标识
+#define BGVersionNo @"iose70eeb320a58230925c02e7"
 
 //
 #define ENTITY_NAME @"entity_name"
