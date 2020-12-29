@@ -30,6 +30,9 @@
 #import "BGQMSelectSubstationTVC.h"
 #import "CSFileManage.h"
 #import "MyMD5.h"
+//#import "EZAddByQRCodeViewController.h"
+#import "QRCodeReaderViewController.h"
+#import "QRCodeReader.h"
 
 @import MapKit;//ios7 使用苹果自带的框架使用@import导入则不用在Build Phases 导入框架了
 @import CoreLocation;
@@ -493,7 +496,8 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"alwaysUploadPosition"];
         //返回变电所页面
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goBackSubPage"];
-        
+        //二维码scanQRcode
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"scanQRcode"];
         //以下代码适配文本大小
 //        NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         //用于进行JavaScript注入
@@ -842,7 +846,15 @@
             return;
         }
         [self openCamera:imageDic];
-    }else if ([message.name isEqualToString:@"pushAlarmDetail"]){
+    }else if ([message.name isEqualToString:@"scanQRcode"]){
+        //点击了二维码按钮
+        NSDictionary *imageDic = message.body;
+//        if (!imageDic || imageDic == NULL || [imageDic isEqual:[NSNull null]]) {
+//            return;
+//        }
+        [self openscanQRcode:imageDic];
+    }
+    else if ([message.name isEqualToString:@"pushAlarmDetail"]){
         NSDictionary *msgDic = message.body;
         if (!msgDic || msgDic == NULL || [msgDic isEqual:[NSNull null]]) {
             return;
@@ -1049,9 +1061,7 @@
             }
         }else{
              DefQuickAlert(@"未配置电话", nil);
-            
         }
-      
     }else if([message.name isEqualToString:@"showBoxInApp"]){
         //是否展示内弹框
        NSDictionary *msgDic = message.body;
@@ -1095,7 +1105,6 @@
 //                       dispatch_sync(dispatch_get_main_queue(), ^{
                            
 //                       });
-                        
                        DefLog(@"item%@",item);
                    }];
                }else{
@@ -1104,8 +1113,6 @@
                   NSString *isOpenBoxInApp = [NSString stringWithFormat:@"localStorage.setItem(\"alwaysUploadPosition\",'false');"];
 //                  __weak __typeof(self)weakSelf = self;
                   [self.webView evaluateJavaScript:isOpenBoxInApp completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-                      
-                    
                        DefLog(@"item%@",item);
                   }];
                }
@@ -1250,6 +1257,60 @@
     }];
 }
 
+#pragma mark - 二维码功能
+-(void)openscanQRcode:(NSDictionary *)imageDic{
+    if ([QRCodeReader supportsMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]]) {
+      static QRCodeReaderViewController *vc = nil;
+      static dispatch_once_t onceToken;
+      dispatch_once(&onceToken, ^{
+        QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+        vc = [QRCodeReaderViewController readerWithCancelButtonTitle:@"Cancel" codeReader:reader startScanningAtLoad:YES showSwitchCameraButton:YES showTorchButton:YES];
+        vc.modalPresentationStyle = UIModalPresentationFormSheet;
+      });
+      vc.delegate = self;
+
+      [vc setCompletionWithBlock:^(NSString *resultAsString) {
+          NSLog(@"Completion with result: %@", resultAsString);
+          //完成回调
+          NSString *jsString = [NSString stringWithFormat:@"getQRresultAndPush('%@')", resultAsString];
+          [_webView evaluateJavaScript:jsString completionHandler:^(id _Nullable data, NSError * _Nullable error) {
+              DefLog(@"成功跳转");
+          }];
+      }];
+
+      [self presentViewController:vc animated:YES completion:NULL];
+    }
+    else {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Reader not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+
+      [alert show];
+    }
+}
+
+//二维码返回事件
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
+{
+  [reader stopScanning];
+    
+    //页面返回block
+  [self dismissViewControllerAnimated:YES completion:^{
+      //数据回调方法
+//      NSString *jsString = [NSString stringWithFormat:@"getQRresultAndPush('%@')", result];
+//      [_webView evaluateJavaScript:jsString completionHandler:^(id _Nullable data, NSError * _Nullable error) {
+//          DefLog(@"成功跳转");
+//      }];
+      
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"二维码返回" message:result delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alert show];
+  }];
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader
+{
+  [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
 #pragma mark - 拍照功能
 
 /**
@@ -1266,7 +1327,7 @@
     {
         //摄像头
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                //出现这个问题，基本就是UI操作放在了非主线程中操作导致。我的问题是webview的回调，有时候会进入子线程处理。所以统一加上dispatch_async(dispatch_get_main_queue...
+        //出现这个问题，基本就是UI操作放在了非主线程中操作导致。我的问题是webview的回调，有时候会进入子线程处理。所以统一加上dispatch_async(dispatch_get_main_queue...
         dispatch_async(dispatch_get_main_queue(), ^{ //不加这句有时候点击会闪退
             [self presentViewController:picker animated:YES completion:nil];
         });
@@ -1995,6 +2056,8 @@
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"getLocForRob"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"alwaysUploadPosition"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"goBackSubPage"];
+    //扫二维码
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"scanQRcode"];
     //移除观察者
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
@@ -2051,7 +2114,6 @@
         }else{
 //           网关 content":"300T 发生了 网关离线","pushType":"communication","fAlarmeventlogid":"2020092814422065543487160","SpecificType":"1","subId":
         }
-        
         
         //刷新配电图
         NSString *refreshStrJS = [NSString stringWithFormat:@"refreshDiagramData()"];

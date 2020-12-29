@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JXCategoryListCollectionContainerView.h"
-
+#import "QRCodeReaderDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
 
 //定义枚举类型
@@ -26,7 +26,7 @@ typedef enum {
     showWebTypeWithPushNoYY,//推送跳转 不含轨迹球
 } showWebType;
 
-@interface BGUIWebViewController : UIViewController<JXCategoryListCollectionContentViewDelegate,UIScrollViewDelegate,BTKTraceDelegate>
+@interface BGUIWebViewController : UIViewController<JXCategoryListCollectionContentViewDelegate,UIScrollViewDelegate,BTKTraceDelegate,QRCodeReaderDelegate>
 
 @property (nonatomic,strong) NSString *localUrlString;
 @property (nonatomic,strong) NSString *onlineUrlString;

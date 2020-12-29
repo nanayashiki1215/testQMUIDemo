@@ -497,7 +497,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
                            urlWebView.showWebType = showWebTypeWithPush;
                            urlWebView.pathParamStr = taskid;
                           [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
-                        }
+                       }
                    }
                 }else{
                     NSString *fAction;
@@ -594,7 +594,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
                       componentViewController.menuId = @"342";
                       componentViewController.onlineUrlString = urlStr;
 //                           componentViewController.isFromAlarm = @"1";
-                        componentViewController.pathParamStr = jumpid;
+                      componentViewController.pathParamStr = jumpid;
 //                          componentViewController .hidesBottomBarWhenPushed = NO;
                       [[self findCurrentViewController].navigationController pushViewController:componentViewController animated:YES];
                    }

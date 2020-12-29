@@ -26,7 +26,7 @@
 #import <BMKLocationKit/BMKLocationComponent.h>
 #import "SKControllerTools.h"
 #import "LocationTool.h"
-
+#import "BGQMCategoryListConViewController.h"
 /*
  监控系统 345
  设备管理 346
@@ -1243,7 +1243,7 @@
           }
        
     }else if (codeId == 358){
-        //抢单记录
+        //地图定位
           NSString *fAction;
           NSString *fFunctionurl;
           for (NSDictionary *nodeDic in homeList) {
@@ -1272,6 +1272,25 @@
                  [self.navigationController pushViewController:urlWebView animated:YES];
                }
           }
+    }else if (codeId == 359){
+        //平台报表
+        BGQMCategoryListConViewController *eventVC = [[BGQMCategoryListConViewController alloc] init];
+        if (user.platformList && user.platformList.count>0) {
+            NSMutableArray *listArr = [NSMutableArray new];
+            for (NSDictionary *cellData in user.platformList) {
+                NSString *name = [NSString changgeNonulWithString:cellData[@"fMenuname"]];
+                if (name.length) {
+                     [listArr addObject:name];
+                }
+            }
+            eventVC.titleArr = [listArr copy];
+            eventVC.allDataArr = user.platformList;
+        
+            eventVC.clickIndex = 0;
+//            eventVC.clickIndexOfSelectedCell = numOfSelectedCell;
+            [self.navigationController pushViewController:eventVC animated:YES];
+        }
+        
     }
     else {
         DefLog(@"点击了%@格子",title);
@@ -1404,6 +1423,7 @@
             NSString *showStrTitle = [NSString changgeNonulWithString:showDic[@"fMenuname"]];
             NSString *showStrIcon = [NSString changgeNonulWithString:showDic[@"fIconurl"]];
             NSString *showfCode = [NSString changgeNonulWithString:showDic[@"fCode"]];
+            NSString *showfMenuid = [NSString changgeNonulWithString:showDic[@"fMenuid"]];
             if (!showStrIcon.length) {
                 if ([showfCode isEqualToString:@"345"]) {
                     showStrIcon = @"dsbgl1";
@@ -1433,6 +1453,10 @@
                     showStrIcon = @"dsbgl13";
                 }else if([showfCode isEqualToString:@"358"]){
                     showStrIcon = @"dsbgl14";
+                }else if([showfCode isEqualToString:@"359"]){
+                    //平台报表
+                    showStrIcon = @"dsbgl14";
+                    [self getPlatformData:showfMenuid];
                 }
             }
             [showMutaiArray addObject:showStrTitle];
@@ -1481,6 +1505,19 @@
 //    [NSMutableArray arrayWithObjects:
 //     @"1000",@"1001", nil];
     
+}
+
+-(void)getPlatformData:(NSString *)fMenuid{
+    //获取平台数据
+    [NetService bg_getWithTokenWithPath:@"/getSelectMenuChildren" params:@{@"fMenuid":fMenuid} success:^(id respObjc) {
+        UserManager *user = [UserManager manager];
+        NSArray *arr = [respObjc[@"data"] bg_safeArrayForKeyNotNull:@"menus"];
+        if (arr.count>0) {
+            user.platformList = [arr copy];
+        }
+    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+        
+    }];
 }
 
 -(void)clickLeftBtn{

@@ -109,13 +109,13 @@
     //        }
 //    if (self.clickIndexOfSelectedCell == 5){
         //环境
-        NSString *videoStr = [NSString changgeNonulWithString:self.allDataArr[index][@"fCode"]];
-        if (videoStr.length>0 && [videoStr isEqualToString:@"videoPlay"]) {
-            //视频单独拉出来
-            BGQMVideoListTableVC *videoListVC = [[BGQMVideoListTableVC alloc] init];
-            videoListVC.ownNaviController = self.navigationController;
-            return videoListVC;
-        }
+    NSString *videoStr = [NSString changgeNonulWithString:self.allDataArr[index][@"fCode"]];
+    if (videoStr.length>0 && [videoStr isEqualToString:@"videoPlay"]) {
+        //视频单独拉出来
+        BGQMVideoListTableVC *videoListVC = [[BGQMVideoListTableVC alloc] init];
+        videoListVC.ownNaviController = self.navigationController;
+        return videoListVC;
+    }
     if (videoStr.length>0 && [videoStr isEqualToString:@"lcVideo"]) {
         //乐橙云视频单独拉出来
         BGImouVideoListVC *videoListVC = [[BGImouVideoListVC alloc] init];

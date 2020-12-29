@@ -52,6 +52,7 @@
     BOOL _isAlwaysUploadPosition;
     BOOL _isShowNewVersion;
     NSString *_appIndexSet;
+    NSArray *_platformList;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -124,6 +125,8 @@
 @property(nonatomic,assign)BOOL isShowNewVersion;
 //首页展示管理
 @property(nonatomic,strong) NSString *appIndexSet;
+//平台报表 12/29
+@property (nonatomic,strong) NSArray *platformList;
 
 //获取单例
 +(instancetype)manager;

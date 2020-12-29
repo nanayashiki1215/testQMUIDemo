@@ -252,11 +252,11 @@
     }];
     
     [NetService bg_getIPAddressWithPath:@"main/getAppIndexSets" params:@{@"ip":uniqueProjectip} success:^(id respObjc) {
-         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         DefLog(@"respObj");
         NSDictionary *dataDic = respObjc[@"data"];
         if (dataDic) {
-            NSString *appIndexsset = [NSString changgeNonulWithString:dataDic[@"appIndexSets"]];
+           NSString *appIndexsset = [NSString changgeNonulWithString:dataDic[@"appIndexSets"]];
            NSString *imageUrl = [NSString changgeNonulWithString:dataDic[@"imgURL"]];
            if(appIndexsset){
                UserManager *user = [UserManager manager];
@@ -267,7 +267,6 @@
                 DefNSUDSynchronize
            }
         }
-       
         if (weakSelf.isPush) {
              [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
@@ -282,7 +281,6 @@
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
        
         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
-        
         if (weakSelf.isPush) {
              [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {

@@ -621,6 +621,11 @@
 		B6FB484122FAC098006F94CF /* BGCrearTrendsBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6FB484322FAC098006F94CF /* BGCrearTrendsBaseTableViewCell.xib */; };
 		B6FBB085230E353C00166E36 /* BGQMChangeLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FBB084230E353C00166E36 /* BGQMChangeLanguageViewController.m */; };
 		B6FBB08A230E3C2B00166E36 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FBB089230E3C2B00166E36 /* NSBundle+Language.m */; };
+		B6FD51A02582073800EC6E50 /* QRToggleTorchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD51942582073800EC6E50 /* QRToggleTorchButton.m */; };
+		B6FD51A12582073800EC6E50 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD51962582073800EC6E50 /* QRCameraSwitchButton.m */; };
+		B6FD51A22582073800EC6E50 /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD51982582073800EC6E50 /* QRCodeReaderViewController.m */; };
+		B6FD51A32582073800EC6E50 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD51992582073800EC6E50 /* QRCodeReaderView.m */; };
+		B6FD51A42582073800EC6E50 /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD519D2582073800EC6E50 /* QRCodeReader.m */; };
 		B96B5C86285D46748C1C9991 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78620912BA1544F58112C0FB /* mapapi.bundle */; };
 		BE257C798B5344F5ACB68D16 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1CDA8235DF473C9BC8CC77 /* MessageUI.framework */; };
 		D190522BC7E1471B8CF43BF2 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C53EFD2C2481EAFB35B23 /* UIImage+Rotate.m */; };
@@ -2032,6 +2037,17 @@
 		B6FBB084230E353C00166E36 /* BGQMChangeLanguageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMChangeLanguageViewController.m; sourceTree = "<group>"; };
 		B6FBB088230E3C2A00166E36 /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
 		B6FBB089230E3C2B00166E36 /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
+		B6FD51932582073800EC6E50 /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderView.h; sourceTree = "<group>"; };
+		B6FD51942582073800EC6E50 /* QRToggleTorchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRToggleTorchButton.m; sourceTree = "<group>"; };
+		B6FD51952582073800EC6E50 /* QRCodeReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderDelegate.h; sourceTree = "<group>"; };
+		B6FD51962582073800EC6E50 /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
+		B6FD51972582073800EC6E50 /* QRCodeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReader.h; sourceTree = "<group>"; };
+		B6FD51982582073800EC6E50 /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
+		B6FD51992582073800EC6E50 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
+		B6FD519A2582073800EC6E50 /* QRToggleTorchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRToggleTorchButton.h; sourceTree = "<group>"; };
+		B6FD519B2582073800EC6E50 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
+		B6FD519C2582073800EC6E50 /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
+		B6FD519D2582073800EC6E50 /* QRCodeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReader.m; sourceTree = "<group>"; };
 		B8A65815DAF7426F845B136A /* QuartzCore.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B9FEFA5752A8491293D2BF27 /* UIKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C9E964ADADF144AE8C84462B /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -4033,6 +4049,7 @@
 		B6E15604228CF0E600CB4A5F /* BGLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				B6FD51922582073800EC6E50 /* QRCodeReaderViewController */,
 				B6D3214A2420C61300A50F77 /* EZOpenSDK */,
 				B6B8807E23B98A8B00197FF6 /* ZYSuspensionView */,
 				B6D3B18F23862A8C005CAF90 /* RealmSDK */,
@@ -4563,6 +4580,24 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		B6FD51922582073800EC6E50 /* QRCodeReaderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B6FD51932582073800EC6E50 /* QRCodeReaderView.h */,
+				B6FD51992582073800EC6E50 /* QRCodeReaderView.m */,
+				B6FD51952582073800EC6E50 /* QRCodeReaderDelegate.h */,
+				B6FD519B2582073800EC6E50 /* QRCameraSwitchButton.h */,
+				B6FD51962582073800EC6E50 /* QRCameraSwitchButton.m */,
+				B6FD51972582073800EC6E50 /* QRCodeReader.h */,
+				B6FD519D2582073800EC6E50 /* QRCodeReader.m */,
+				B6FD519C2582073800EC6E50 /* QRCodeReaderViewController.h */,
+				B6FD51982582073800EC6E50 /* QRCodeReaderViewController.m */,
+				B6FD519A2582073800EC6E50 /* QRToggleTorchButton.h */,
+				B6FD51942582073800EC6E50 /* QRToggleTorchButton.m */,
+			);
+			path = QRCodeReaderViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5058,6 +5093,8 @@
 				B68D2D0422A646C1001C00EC /* JXCategoryBaseCellModel.m in Sources */,
 				B6E1568A228D419800CB4A5F /* NSBundle+MJRefresh.m in Sources */,
 				B6D320C52420BDA200A50F77 /* HIKLoadViewItem.m in Sources */,
+				B6FD51A22582073800EC6E50 /* QRCodeReaderViewController.m in Sources */,
+				B6FD51A12582073800EC6E50 /* QRCameraSwitchButton.m in Sources */,
 				B60C80B122A8AE4E0016D936 /* WSDatePickerView.m in Sources */,
 				B683EE1924C6CDCA00DF42D1 /* RecordViewController.m in Sources */,
 				B6693D9523A9B4DA006DFEF0 /* WelcomeView.m in Sources */,
@@ -5159,6 +5196,7 @@
 				B683EE0A24C6CDA000DF42D1 /* StartViewController.m in Sources */,
 				B68D2CE722A646C1001C00EC /* JXCategoryIndicatorDotLineView.m in Sources */,
 				B6E15690228D419800CB4A5F /* MJRefreshAutoGifFooter.m in Sources */,
+				B6FD51A32582073800EC6E50 /* QRCodeReaderView.m in Sources */,
 				B6ED2041229B7D4B0044EFC9 /* BGCheckAppVersionMgr.m in Sources */,
 				B6E155C0228CEDF900CB4A5F /* BGUUIDTool.m in Sources */,
 				B6E1560A228CF0F400CB4A5F /* MBProgressHUD.m in Sources */,
@@ -5186,6 +5224,7 @@
 				B6C768E422A0B8DC00DA675D /* QDMultipleDelegatesViewController.m in Sources */,
 				B683EDF924C6C73B00DF42D1 /* PHAsset+Lechange.m in Sources */,
 				B622510D2420B0720041E709 /* EZWifiConfigViewController.m in Sources */,
+				B6FD51A02582073800EC6E50 /* QRToggleTorchButton.m in Sources */,
 				B6E155B8228CEDF900CB4A5F /* CompputeTools.m in Sources */,
 				B622511C2420B0720041E709 /* EZWifiTipsViewController.m in Sources */,
 				B672373724AD83E000EFE5C9 /* BGLogSecondViewController.m in Sources */,
@@ -5253,6 +5292,7 @@
 				B68E61F824CA82E500FAC9A2 /* BGImouVideoListVC.m in Sources */,
 				B62251202420B0720041E709 /* EZWifiInfoViewController.m in Sources */,
 				B6D320C22420BDA200A50F77 /* NSDate-Utilities.m in Sources */,
+				B6FD51A42582073800EC6E50 /* QRCodeReader.m in Sources */,
 				B657DDD022927C760009BCB0 /* SDAnimatedImageRep.m in Sources */,
 				B6C768E622A0B8DC00DA675D /* QDCollectionViewDemoCell.m in Sources */,
 				B6C768BA22A0B8DC00DA675D /* QDTableViewCellInsetsViewController.m in Sources */,

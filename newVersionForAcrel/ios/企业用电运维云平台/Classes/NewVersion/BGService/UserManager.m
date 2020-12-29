@@ -541,4 +541,16 @@ static UserManager* manager;
                 forKey:@"appIndexSet"];
     DefNSUDSynchronize
 }
+
+-(NSArray *)platformList{
+    _platformList = [DefNSUD arrayForKey:@"platformList"];
+    return _platformList;
+}
+
+-(void)setPlatformList:(NSArray *)platformList{
+    _platformList = platformList;
+    [DefNSUD setObject:_platformList forKey:@"platformList"];
+    DefNSUDSynchronize
+}
+
 @end

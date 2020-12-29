@@ -93,7 +93,6 @@
                 [alertView show];
             }
         }
-
 //    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
 //        checkSuccess(@"网络监测失败，请检查网络链接是否正常。");
 //    }];
