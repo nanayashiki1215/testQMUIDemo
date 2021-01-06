@@ -14,5 +14,6 @@
 @property (nonatomic,strong) NSArray *allDataArr;
 @property (nonatomic,assign) NSInteger clickIndex;//点击了Cell中的第几个
 @property (nonatomic,assign) NSInteger clickIndexOfSelectedCell;//点击了tableview中的第几个
+@property (nonatomic,strong) NSString *pushTitle;
 
 @end

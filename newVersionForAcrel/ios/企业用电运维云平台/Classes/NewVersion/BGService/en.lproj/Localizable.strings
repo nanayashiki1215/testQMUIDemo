@@ -262,7 +262,7 @@
 //新增
 "device_mine"="Me";
 "device_shared"="Share";
-
+"Platformreport"="Platform report";
 //4.8.3新增
 "no_mic_permission" = "No microphone permissions";
 "not_support_talk" = "Equipment does not support intercom";

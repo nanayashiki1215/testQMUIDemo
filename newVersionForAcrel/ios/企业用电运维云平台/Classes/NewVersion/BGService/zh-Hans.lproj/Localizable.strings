@@ -30,7 +30,7 @@
 "Password cannot be empty"="密码不能为空";
 "Domain name filling out is not standard"="域名填写不规范";
 "savePassword"="保存密码";
-
+"Platformreport"="平台报表";
 
 //home
 "Videodata" = "视频直播";

@@ -93,8 +93,14 @@
 
 - (void)setupNavigationItems {
     [super setupNavigationItems];
-    UserManager *user = [UserManager manager];
-    self.title = user.fsubName;
+    if([self.pushTitle isEqualToString:@"1"]){
+        UserManager *user = [UserManager manager];
+        self.title = DefLocalizedString(@"Platformreport");
+    }else{
+        UserManager *user = [UserManager manager];
+        self.title = user.fsubName;
+    }
+
 }
 
 #pragma mark - JXCategoryListCollectionContainerViewDataSource
@@ -171,8 +177,6 @@
             return urlWebView;
         }
     }
-   
-
    
 }
 
