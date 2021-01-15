@@ -133,13 +133,13 @@
 -(void)onQueryServerFence:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"Server Fence List查询格式转换出错");
+        DefLog(@"Server Fence List查询格式转换出错");
         return;
     }
     // 如果查询成功，则将这些服务端围栏显示在地图上
     // 如果查询失败，则弹窗告知用户
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"服务端地理围栏查询返回错误");
+        DefLog(@"服务端地理围栏查询返回错误");
         NSString *message = dict[@"message"];
         if (2 == [dict[@"status"] intValue]) {
             message = @"请到轨迹追踪设置页面，设置当前设备的终端名称，DEMO中的围栏均以该名称作为监控对象";
@@ -225,11 +225,11 @@
 -(void)onDeleteServerFence:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"Server Fence Delete格式转换出错");
+        DefLog(@"Server Fence Delete格式转换出错");
         return;
     }
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"服务端地理围栏删除返回错误");
+        DefLog(@"服务端地理围栏删除返回错误");
         dispatch_async(MAIN_QUEUE, ^{
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"围栏删除失败" message:dict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -244,11 +244,11 @@
 -(void)onQueryServerFenceStatus:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"Query Server Fence Status格式转换出错");
+        DefLog(@"Query Server Fence Status格式转换出错");
         return;
     }
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"Query Server Fence Status 返回错误");
+        DefLog(@"Query Server Fence Status 返回错误");
         dispatch_async(MAIN_QUEUE, ^{
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"状态查询失败" message:dict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -280,11 +280,11 @@
 -(void)onQueryServerFenceHistoryAlarm:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"Query Server Fence History Alarm格式转换出错");
+        DefLog(@"Query Server Fence History Alarm格式转换出错");
         return;
     }
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"Query Server Fence History Alarm 返回错误");
+        DefLog(@"Query Server Fence History Alarm 返回错误");
         dispatch_async(MAIN_QUEUE, ^{
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"历史报警查询失败" message:dict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];

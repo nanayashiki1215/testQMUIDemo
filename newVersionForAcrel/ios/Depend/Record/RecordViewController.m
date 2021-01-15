@@ -175,7 +175,7 @@
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex]; //比较处理
     //不符合格式的返回nil
     if (![pred evaluateWithObject:time]) {
-        NSLog(@"Time format error:%@", time);
+        DefLog(@"Time format error:%@", time);
         return nil;
     }
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
@@ -188,13 +188,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    //    NSLog(@"section is 1====\n");
+    //    DefLog(@"section is 1====\n");
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //    NSLog(@"device or cloud record [%lu],section[%ld]\n", (unsigned long)m_recInfo.count, (long)section);
+    //    DefLog(@"device or cloud record [%lu],section[%ld]\n", (unsigned long)m_recInfo.count, (long)section);
     self.m_ImgRecordNull.hidden = (0 == m_recInfo.count && m_isStarting) ? NO : YES;
 
     NSInteger iCount = 0;
@@ -220,7 +220,7 @@
     UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     [m_recInfoLock lock];
     if ([indexPath row] >= m_recInfo.count) {
-        NSLog(@"RecordViewController cellForRowAtIndexPath not valid,row[%ld],count[%lu]", (long)[indexPath row], (unsigned long)m_recInfo.count);
+        DefLog(@"RecordViewController cellForRowAtIndexPath not valid,row[%ld],count[%lu]", (long)[indexPath row], (unsigned long)m_recInfo.count);
         [m_recInfoLock unlock];
         return cell;
     }
@@ -233,14 +233,14 @@
     if (nil != m_downloadPicture[[indexPath row]].picData) {
         
         imgPic = [UIImage imageWithData:m_downloadPicture[[indexPath row]].picData];
-        NSLog(@"cell[%ld] decrypt imgPic %@", (long)[indexPath row], (imgPic ? @"successfully" : @"failed"));
+        DefLog(@"cell[%ld] decrypt imgPic %@", (long)[indexPath row], (imgPic ? @"successfully" : @"failed"));
         if (!imgPic) {
             imgPic = [UIImage leChangeImageNamed:DefaultCover_Png];
         }
     }
     else {
         imgPic = [UIImage leChangeImageNamed:DefaultCover_Png];
-        NSLog(@"cell[%ld] default imgPic", (long)[indexPath row]);
+        DefLog(@"cell[%ld] default imgPic", (long)[indexPath row]);
     }
     UIImageView* imgPicView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, (m_cellHeight)*16.0 / 9, m_cellHeight)];
     [imgPicView setImage:imgPic];
@@ -290,7 +290,7 @@
 {
     [m_recInfoLock lock];
     if ([indexPath row] >= m_recInfo.count) {
-        NSLog(@"tableView indexPath[%ld],m_recInfo[%lu]", (long)[indexPath row], (unsigned long)m_recInfo.count);
+        DefLog(@"tableView indexPath[%ld],m_recInfo[%lu]", (long)[indexPath row], (unsigned long)m_recInfo.count);
         [m_recInfoLock unlock];
         return;
     }
@@ -390,7 +390,7 @@
 
 - (void)onDownload:(UIButton*)sender
 {
-    NSLog(@"RecordPlayViewController onDownload");
+    DefLog(@"RecordPlayViewController onDownload");
     /**
      *  管理标志符， 
      *  m_index == -1, 下载任务未开始
@@ -402,7 +402,7 @@
     }
     m_index = sender.tag;
     if (m_index < 0) {
-        NSLog(@"RecordPlayViewController onDownload[%ld] Wrong!", (long)m_index);
+        DefLog(@"RecordPlayViewController onDownload[%ld] Wrong!", (long)m_index);
         m_index = -1;
         return;
     }
@@ -465,7 +465,7 @@
     if (NO == [fileManage fileExistsAtPath:downloadDirectory isDirectory:&isDir]) {
         [fileManage createDirectoryAtPath:downloadDirectory withIntermediateDirectories:YES attributes:nil error:&pErr];
     }
-    NSLog(@"RecordPlayViewController[m_downloadPath] = %@", m_downloadPath);
+    DefLog(@"RecordPlayViewController[m_downloadPath] = %@", m_downloadPath);
     [m_listViewLock lock];
     [self reloadCell:m_listView Section:0 Row:m_index];
     [m_listViewLock unlock];
@@ -480,20 +480,20 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (index < 0 || index >= RECORD_NUM_MAX) {
-            NSLog(@"RecordViewController, index Wrong!");
+            DefLog(@"RecordViewController, index Wrong!");
             return;
         }
-        //        NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
+        //        DefLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
         m_receiveDataSize[index] = m_receiveDataSize[index] + datalen;
     });
 }
 
 - (void)onDownloadState:(NSInteger)index code:(NSString*)code type:(NSInteger)type
 {
-    NSLog(@"RecordPlayViewController onDownloadState[index, code, type] = [%ld, %@, %ld]", (long)index, code, (long)type);
+    DefLog(@"RecordPlayViewController onDownloadState[index, code, type] = [%ld, %@, %ld]", (long)index, code, (long)type);
     if (99 == type) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"openapi 网络交互超时");
+            DefLog(@"openapi 网络交互超时");
             m_isCloudDownload[index] = NO;
             [m_listViewLock lock];
             [self reloadCell:m_listView Section:0 Row:index];
@@ -506,7 +506,7 @@
     else if (1 == type) {
         if ([HLS_Result_String(HLS_DOWNLOAD_FAILD) isEqualToString:code]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"HLS_DOWNLOAD_FAILD");
+                DefLog(@"HLS_DOWNLOAD_FAILD");
                 m_isCloudDownload[index] = NO;
                 m_receiveDataSize[index] = 0;
                 [m_listViewLock lock];
@@ -519,7 +519,7 @@
         }
         else if ([HLS_Result_String(HLS_DOWNLOAD_BEGIN) isEqualToString:code]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"HLS_DOWNLOAD_BEGIN");
+                DefLog(@"HLS_DOWNLOAD_BEGIN");
             });
         }
         else if ([HLS_Result_String(HLS_DOWNLOAD_END) isEqualToString:code]) {
@@ -537,16 +537,16 @@
                 NSURL *dowmloadRUL = [NSURL fileURLWithPath:m_downloadPath];
                 [PHAsset deleteFormCameraRoll:dowmloadRUL success:^{
                 } failure:^(NSError *error) {
-                    NSLog(@"删除失败:%@", error.description);
+                    DefLog(@"删除失败:%@", error.description);
                 }];
                 [PHAsset saveVideoAtURL:dowmloadRUL success:^(void) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        NSLog(@"保存成功");
+                        DefLog(@"保存成功");
                         [self showDownloadToast:DOWNLOAD_SUCCESS];
                     });
                 } failure:^(NSError *error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        NSLog(@"保存失败:%@", error.description);
+                        DefLog(@"保存失败:%@", error.description);
                         [self showDownloadToast:DOWNLOAD_FAILED];
                     });
                 }];
@@ -554,17 +554,17 @@
         }
         else if ([HLS_Result_String(HLS_SEEK_SUCCESS) isEqualToString:code]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"HLS_SEEK_SUCCESS");
+                DefLog(@"HLS_SEEK_SUCCESS");
             });
         }
         else if ([HLS_Result_String(HLS_SEEK_FAILD) isEqualToString:code]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"HLS_SEEK_FAILD");
+                DefLog(@"HLS_SEEK_FAILD");
             });
         }
         else if ([HLS_Result_String(HLS_ABORT_DONE) isEqualToString:code]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"HLS_ABORT_DONE");
+                DefLog(@"HLS_ABORT_DONE");
                 m_isCloudDownload[index] = NO;
                 m_receiveDataSize[index] = 0;
                 [m_listViewLock lock];
@@ -577,7 +577,7 @@
         }
         else if ([HLS_Result_String(HLS_DOWNLOAD_TIMEOUT) isEqualToString:code]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"HLS_DOWNLOAS_TIMEOUT");
+                DefLog(@"HLS_DOWNLOAS_TIMEOUT");
                 m_isCloudDownload[index] = NO;
                 m_receiveDataSize[index] = 0;
                 [m_listViewLock lock];
@@ -590,7 +590,7 @@
         }
         else if([HLS_Result_String(HLS_KEY_ERROR) isEqualToString:code]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"HLS_KEY_ERROR");
+                DefLog(@"HLS_KEY_ERROR");
                 m_isCloudDownload[index] = NO;
                 m_receiveDataSize[index] = 0;
                 [m_listViewLock lock];
@@ -606,7 +606,7 @@
     {
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"RTSP_DOWNLOAD_FAILD");
+                DefLog(@"RTSP_DOWNLOAD_FAILD");
                 [m_download stopDownload:m_index];
                 m_isCloudDownload[index] = NO;
                 m_receiveDataSize[index] = 0;
@@ -620,7 +620,7 @@
         }
         else if ([code isEqualToString:@"4"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"RTSP_DOWNLOAD_BEGIN");
+                DefLog(@"RTSP_DOWNLOAD_BEGIN");
             });
         }
         else if ([code isEqualToString:@"5"]) {
@@ -640,16 +640,16 @@
                NSURL *dowmloadRUL = [NSURL fileURLWithPath:m_downloadPath];
                [PHAsset deleteFormCameraRoll:dowmloadRUL success:^{
                } failure:^(NSError *error) {
-                   NSLog(@"删除失败:%@", error.description);
+                   DefLog(@"删除失败:%@", error.description);
                }];
                [PHAsset saveVideoAtURL:dowmloadRUL success:^(void) {
                    dispatch_async(dispatch_get_main_queue(), ^{
-                       NSLog(@"保存成功");
+                       DefLog(@"保存成功");
                        [self showDownloadToast:DOWNLOAD_SUCCESS];
                    });
                } failure:^(NSError *error) {
                    dispatch_async(dispatch_get_main_queue(), ^{
-                       NSLog(@"保存失败:%@", error.description);
+                       DefLog(@"保存失败:%@", error.description);
                        [self showDownloadToast:DOWNLOAD_FAILED];
                    });
                }];
@@ -657,7 +657,7 @@
         }
         else if ([code isEqualToString:@"7"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"RTSP_KEY_ERROR");
+                DefLog(@"RTSP_KEY_ERROR");
                 [m_download stopDownload:m_index];
                 m_isCloudDownload[index] = NO;
                 m_receiveDataSize[index] = 0;
@@ -980,20 +980,20 @@
         NSHTTPURLResponse* response = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
         if (m_downloadingPos < 0) {
-            NSLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
+            DefLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
             return;
         }
         if (response == nil) {
-            NSLog(@"download failed");
+            DefLog(@"download failed");
             m_downloadPicture[m_downloadingPos].downStatus = DOWNLOAD_FAILED;
         }
         else {
-            NSLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
+            DefLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
             m_downloadPicture[m_downloadingPos].picData = data;
             NSData* dataOut = [[NSData alloc] init];
             NSInteger iret = [m_util decryptPic:m_downloadPicture[m_downloadingPos].picData deviceID:m_strDevSelected key:m_encryptKey token:m_accessToken bufOut:&dataOut];
 
-            NSLog(@"decrypt iret[%ld]", (long)iret);
+            DefLog(@"decrypt iret[%ld]", (long)iret);
             if (0 == iret) {
                 [m_downloadPicture[m_downloadingPos] setData:[NSData dataWithBytes:[dataOut bytes] length:[dataOut length]] status:DOWNLOAD_FINISHED];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -1063,6 +1063,6 @@
 
 - (void)dealloc
 {
-    NSLog(@"RecordViewController, dealloc");
+    DefLog(@"RecordViewController, dealloc");
 }
 @end

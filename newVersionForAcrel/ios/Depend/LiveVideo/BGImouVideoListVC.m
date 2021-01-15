@@ -131,7 +131,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
                
                if (0 == m_devList.count) {
                    
-                   NSLog(@"DeviceViewController getDevList NULL");
+                   DefLog(@"DeviceViewController getDevList NULL");
 //                   m_toastLab.hidden = YES;
 //                   self.m_imgDeviceNULL.hidden = NO;
                }
@@ -700,7 +700,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
        // TODO
     NSInteger m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
     NSString * m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
-       NSLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
+       DefLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
 
     UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
       RecordViewController* liveVideoView = [currentBoard instantiateViewControllerWithIdentifier:@"Record"];
@@ -749,7 +749,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
           // TODO
        NSInteger m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
        NSString * m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
-          NSLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
+          DefLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
        NSString *m_devAbilitySelected = [NSString stringWithFormat:@"%@,%@", ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ability, ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelAbility[chnKeyIndex]];
     
        UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];
@@ -772,7 +772,7 @@ static NSString *videoCellIdentifier = @"ImouVideoCell";
           // TODO
        NSInteger m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
        NSString * m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
-          NSLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
+          DefLog(@"onLive device[%@],channel[%ld]", m_strDevSelected, (long)m_devChnSelected);
        NSString *m_devAbilitySelected = [NSString stringWithFormat:@"%@,%@", ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ability, ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelAbility[chnKeyIndex]];
     
        UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"LCMain" bundle:nil];

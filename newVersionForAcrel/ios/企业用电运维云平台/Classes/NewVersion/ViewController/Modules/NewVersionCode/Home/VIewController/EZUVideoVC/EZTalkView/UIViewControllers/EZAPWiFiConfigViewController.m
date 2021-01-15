@@ -147,7 +147,7 @@
                                       else
                                       {
                                           [self configFailed];
-                                          NSLog(@"config failed");
+                                          DefLog(@"config failed");
                                       }
                                   }];
 }

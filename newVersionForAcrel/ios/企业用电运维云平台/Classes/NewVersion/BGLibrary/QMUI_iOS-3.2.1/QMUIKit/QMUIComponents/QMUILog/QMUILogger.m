@@ -50,12 +50,12 @@
     if ([self.delegate respondsToSelector:@selector(printQMUILogWithFile:line:func:logItem:defaultString:)]) {
         [self.delegate printQMUILogWithFile:fileString line:line func:funcString logItem:logItem defaultString:defaultString];
     } else {
-//        // iOS 11 之前用替换方法的方式替换了 NSLog，所以这里就不能继续使用 NSLog 了
+//        // iOS 11 之前用替换方法的方式替换了 DefLog，所以这里就不能继续使用 DefLog 了
 //        if (IS_DEBUG && IOS_VERSION_NUMBER < 110000) {
 //            NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
 //            puts([defaultString cStringUsingEncoding:enc]);
 //        } else {
-            NSLog(@"%@", defaultString);
+//            DefLog(@"%@", defaultString);
 //        }
     }
 }

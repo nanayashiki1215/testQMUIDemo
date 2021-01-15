@@ -48,7 +48,7 @@
 //
 //    CGPoint point = [sender locationInView:self.view];
 //
-//    NSLog(@"handleSingleTap!pointx:%f,y:%f",point.x,point.y);
+//    DefLog(@"handleSingleTap!pointx:%f,y:%f",point.x,point.y);
 //    [self popViewControllerAnimation:YES];
 //
 //}

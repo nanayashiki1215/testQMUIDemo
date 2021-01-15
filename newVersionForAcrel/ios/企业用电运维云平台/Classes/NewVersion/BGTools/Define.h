@@ -22,16 +22,16 @@
 #define stringWithLiteral(literal) @#literal
 
 
-// NSLog
+// DefLog
 #ifdef DEBUG
-# define NSLog(fmt, ...) NSLog((fmt), ##__VA_ARGS__);
+# define DefLog(fmt, ...) DefLog((fmt), ##__VA_ARGS__);
 #else
-# define NSLog(...)
+# define DefLog(...)
 #endif
 
 // log  EELog
 #ifdef DEBUG
-# define EELog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+# define EELog(fmt, ...) DefLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 # define EELog(...)
 #endif

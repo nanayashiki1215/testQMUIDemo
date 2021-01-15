@@ -25,7 +25,7 @@
     logItem.name = name;
     
     QMUILogNameManager *logNameManager = [QMUILogger sharedInstance].logNameManager;
-    if ([logNameManager containsLogName:name]) {
+    if ([logNameManager contaiDefLogName:name]) {
         logItem.enabled = [logNameManager enabledForLogName:name];
     } else {
         [logNameManager setEnabled:YES forLogName:name];

@@ -84,10 +84,10 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
     if (error == BTK_START_SERVICE_SUCCESS ||
         error == BTK_START_SERVICE_SUCCESS_BUT_OFFLINE ||
         error == BTK_START_SERVICE_SUCCESS_BUT_NO_AUTH_TO_KEEP_ALIVE) {
-        NSLog(@"轨迹服务开启成功");
+        DefLog(@"轨迹服务开启成功");
         self.isServiceStarted = TRUE;
     } else {
-        NSLog(@"轨迹服务开启失败");
+        DefLog(@"轨迹服务开启失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -145,10 +145,10 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
 -(void)onStopService:(BTKServiceErrorCode)error {
     // 维护状态标志
     if (error == BTK_STOP_SERVICE_NO_ERROR) {
-        NSLog(@"轨迹服务停止成功");
+        DefLog(@"轨迹服务停止成功");
         self.isServiceStarted = FALSE;
     } else {
-        NSLog(@"轨迹服务停止失败");
+        DefLog(@"轨迹服务停止失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -182,10 +182,10 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
 -(void)onStartGather:(BTKGatherErrorCode)error {
     // 维护状态标志
     if (error == BTK_START_GATHER_SUCCESS) {
-        NSLog(@"开始采集成功");
+        DefLog(@"开始采集成功");
         self.isGatherStarted = TRUE;
     } else {
-        NSLog(@"开始采集失败");
+        DefLog(@"开始采集失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -231,10 +231,10 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
 -(void)onStopGather:(BTKGatherErrorCode)error {
     // 维护状态标志
     if (error == BTK_STOP_GATHER_NO_ERROR) {
-        NSLog(@"停止采集成功");
+        DefLog(@"停止采集成功");
         self.isGatherStarted = FALSE;
     } else {
-        NSLog(@"停止采集失败");
+        DefLog(@"停止采集失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -289,7 +289,7 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
     NSString *alarmDateStr = [dateFormatter stringFromDate:alarmDate];
     
     NSString *pushMessage = [NSString stringWithFormat:@"终端 %@ 在 %@ %@ %@%@", monitoredObject, alarmDateStr, action, fenceType, fenceName];
-    NSLog(@"推送消息: %@", pushMessage);
+    DefLog(@"推送消息: %@", pushMessage);
     // 简单起见，DEMO只处理iOS10以上的情况
     if (CURRENT_IOS_VERSION >= 10.0) {
         // 发送本地通知
@@ -302,9 +302,9 @@ static NSString * const YYPushMessageNotificationIdentifier = @"YYPushMessageNot
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:idd content:notificationContent trigger:notificationTrigger];
         [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
             if (error != nil) {
-                NSLog(@"地理围栏报警通知发送失败: %@", error);
+                DefLog(@"地理围栏报警通知发送失败: %@", error);
             } else {
-                NSLog(@"通知发送成功");
+                DefLog(@"通知发送成功");
                 [UIApplication sharedApplication].applicationIconBadgeNumber += 1;
             }
         }];

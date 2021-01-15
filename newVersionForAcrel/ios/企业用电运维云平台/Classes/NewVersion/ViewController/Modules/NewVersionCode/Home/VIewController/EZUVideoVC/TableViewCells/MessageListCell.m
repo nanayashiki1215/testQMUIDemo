@@ -110,7 +110,7 @@ static __unused dispatch_queue_t device_verify_code_check_queue()
                                                 }
                                             }
                                             failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-                                                NSLog(@"error = %@",error);
+                                                DefLog(@"error = %@",error);
                                             }];
     
     self.descriptionLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"message_from", @"来自"), info.alarmName];

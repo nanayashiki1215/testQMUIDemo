@@ -688,8 +688,8 @@ static char kAssociatedObjectKey_KeyboardViewFrameObserver;
         keyboardMoveUserInfo.endFrame = endFrame;
         
         if (self.debug) {
-            NSLog(@"keyboardDidMoveNotification - %@", self);
-            NSLog(@"\n");
+//            DefLog(@"keyboardDidMoveNotification - %@", self);
+//            DefLog(@"\n");
         }
         
         [self.delegate keyboardWillChangeFrameWithUserInfo:keyboardMoveUserInfo];

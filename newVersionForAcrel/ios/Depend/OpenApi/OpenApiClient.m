@@ -71,7 +71,7 @@ static NSInteger g_id = 0;
 - (void)sign:(NSDictionary*)req
 {
     if (!_appId || !_appSecret) {
-        NSLog(@"appId or appSecret is nil");
+        DefLog(@"appId or appSecret is nil");
         return;
     }
     NSString * signOrg;

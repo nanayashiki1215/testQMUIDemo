@@ -102,7 +102,7 @@
 
 - (void)player:(EZPlayer *)player didPlayFailed:(NSError *)error
 {
-    NSLog(@"local player error :%@",error);
+    DefLog(@"local player error :%@",error);
 }
 
 - (void)player:(EZPlayer *)player didReceivedMessage:(NSInteger)messageCode

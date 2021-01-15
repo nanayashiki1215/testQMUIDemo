@@ -21,7 +21,7 @@
 @optional
 
 /**
- *  当每一个 enabled 的 QMUILog 被使用时都会走到这里，可以由业务自行决定要如何处理这些 log，如果没实现这个方法，默认用 NSLog() 打印内容
+ *  当每一个 enabled 的 QMUILog 被使用时都会走到这里，可以由业务自行决定要如何处理这些 log，如果没实现这个方法，默认用 DefLog() 打印内容
  *  @param file 当前的文件的本地完整路径，可通过 file.lastPathComponent 获取文件名
  *  @param line 当前 log 命令在该文件里的代码行数
  *  @param func 当前 log 命令所在的方法名

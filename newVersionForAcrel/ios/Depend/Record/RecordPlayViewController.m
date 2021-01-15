@@ -202,7 +202,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
 - (void)playDeviceRecord
 {
     if (!m_play) {
-        NSLog(@"play failed\n");
+        DefLog(@"play failed\n");
         return;
     }
     if (m_playState == Stop) {
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
 - (void)playCloudRecord
 {
     if (!m_play) {
-        NSLog(@"play failed\n");
+        DefLog(@"play failed\n");
         return;
     }
     if (m_playState == Stop) {
@@ -304,7 +304,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
 
 - (void)onControlClick:(CGFloat)dx dy:(CGFloat)dy Index:(NSInteger)index
 {
-    NSLog(@"11111111111");
+    DefLog(@"11111111111");
 }
 
 #pragma mark - 双击屏幕
@@ -333,7 +333,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     if (99 == type) {
         displayLab = [code isEqualToString:@"-1000"] ? NSLocalizedString(NETWORK_TIMEOUT_TXT, nil) : [NSLocalizedString(REST_LINK_FAILED_TXT, nil) stringByAppendingFormat:@",[%@]", code];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"RecordPlayViewController, OpenApi connect error!");
+            DefLog(@"RecordPlayViewController, OpenApi connect error!");
             [m_tipLab setText:displayLab];
             [self hideLoading];
             m_playState = Stop;
@@ -416,11 +416,11 @@ typedef NS_ENUM(NSInteger, PlayState) {
 - (void)onPlayCloudRecordResult:(NSString*)code Type:(NSInteger)type
 {
 
-    NSLog(@"code[%@] type[%ld]", code, (long)type);
+    DefLog(@"code[%@] type[%ld]", code, (long)type);
     if (99 == type) {
         NSString* hint = [code isEqualToString:@"-1000"] ? NSLocalizedString(NETWORK_TIMEOUT_TXT, nil) : [NSLocalizedString(REST_LINK_FAILED_TXT, nil) stringByAppendingFormat:@",[%@]", code];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"RecordPlayViewController, OpenApi connect error!");
+            DefLog(@"RecordPlayViewController, OpenApi connect error!");
             m_tipLab.text = hint;
             [self hideLoading];
             m_playState = Stop;
@@ -432,7 +432,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     }
     if ([HLS_Result_String(HLS_DOWNLOAD_FAILD) isEqualToString:code]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"HLS DOWNLOAD FAILED!");
+            DefLog(@"HLS DOWNLOAD FAILED!");
             m_tipLab.text = @"HLS download failed";
             [self hideLoading];
             m_playState = Stop;
@@ -448,19 +448,19 @@ typedef NS_ENUM(NSInteger, PlayState) {
     }
     if ([HLS_Result_String(HLS_DOWNLOAD_BEGIN) isEqualToString:code]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"HLS DOWNLOAD BEGIN!");
+            DefLog(@"HLS DOWNLOAD BEGIN!");
         });
         return;
     }
     if ([HLS_Result_String(HLS_DOWNLOAD_END) isEqualToString:code]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"HLS DOWNLOAD END!");
+            DefLog(@"HLS DOWNLOAD END!");
         });
         return;
     }
     if ([HLS_Result_String(HLS_SEEK_SUCCESS) isEqualToString:code]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"HLS SEEK SUCCESS!");
+            DefLog(@"HLS SEEK SUCCESS!");
             m_isSeeking = NO;
             [self hideLoading];
         });
@@ -468,7 +468,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     }
     if ([HLS_Result_String(HLS_SEEK_FAILD) isEqualToString:code]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"HLS SEEK FAILD!");
+            DefLog(@"HLS SEEK FAILD!");
             [m_play stopCloud];
             m_playState = Stop;
             [self hideLoading];
@@ -481,7 +481,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     }
     if ([HLS_Result_String(HLS_ABORT_DONE) isEqualToString:code]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"HLS ABORT DONE!");
+            DefLog(@"HLS ABORT DONE!");
             m_startTimeLab.text = [self transformToShortTime:m_beginTimeSelected];
             [m_playSlider setValue:0];
         });
@@ -490,7 +490,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     if ([HLS_Result_String(HLS_RESUME_DONE) isEqualToString:code]) {
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"HLS RESUME DONE!");
+            DefLog(@"HLS RESUME DONE!");
         });
         return;
     }
@@ -556,7 +556,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString* currentTime = [self transformTimeFromLong:time];
         [m_startTimeLab setText:[self transformToShortTime:currentTime]];
-        NSLog(@"_m_startTimeLab.text = %@", m_startTimeLab.text);
+        DefLog(@"_m_startTimeLab.text = %@", m_startTimeLab.text);
         Float64 rate = [self transformToDeltaTime:m_beginTimeSelected EndTime:currentTime] / m_deltaTime;
         Float64 slider_value = rate * (m_playSlider.maximumValue - m_playSlider.minimumValue);
         [m_playSlider setValue:slider_value animated:YES];
@@ -636,7 +636,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
 
     //不符合格式的返回0
     if (![pred evaluateWithObject:strTime]) {
-        NSLog(@"Time format error:%@", strTime);
+        DefLog(@"Time format error:%@", strTime);
         return 0;
     }
 
@@ -668,12 +668,12 @@ typedef NS_ENUM(NSInteger, PlayState) {
     NSString* regex = @"[1-9]\\d{3}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}"; //正常字符范围
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex]; //比较处理
     if (![pred evaluateWithObject:time]) {
-        NSLog(@"Time format error:%@", time);
+        DefLog(@"Time format error:%@", time);
         return 0;
     }
     NSString* shortTime;
     NSArray* array = [time componentsSeparatedByString:@" "]; //从字符' '中分隔成2个元素的数组
-    NSLog(@"array:%@", array); //结果是"yyyy-mm-dd"和"HH:MM:SS"
+    DefLog(@"array:%@", array); //结果是"yyyy-mm-dd"和"HH:MM:SS"
     shortTime = array[1];
 
     return shortTime;
@@ -686,7 +686,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
 
     NSString* strTime = [formatter stringFromDate:resDate];
-    NSLog(@"时间戳转日期%@", strTime);
+    DefLog(@"时间戳转日期%@", strTime);
     return strTime;
 }
 
@@ -697,7 +697,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
 
 - (void)viewWillLayoutSubviews
 {
-    NSLog(@"do nothing, but rewrite method! ");
+    DefLog(@"do nothing, but rewrite method! ");
 }
 
 - (void)layoutViews:(UIInterfaceOrientation)InterfaceOrientation force:(BOOL)beForce

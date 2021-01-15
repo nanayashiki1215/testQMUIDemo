@@ -23,7 +23,7 @@ extern NSString * _Nonnull const QMUILoggerAllNamesKeyInUserDefaults;
 
 /// 获取当前所有 logName，key 为 logName 名，value 为 name 的 enabled 状态，可通过 value.boolValue 读取它的值
 @property(nullable, nonatomic, copy, readonly) NSDictionary<NSString *, NSNumber *> *allNames;
-- (BOOL)containsLogName:(nullable NSString *)logName;
+- (BOOL)contaiDefLogName:(nullable NSString *)logName;
 - (void)setEnabled:(BOOL)enabled forLogName:(nullable NSString *)logName;
 - (BOOL)enabledForLogName:(nullable NSString *)logName;
 - (void)removeLogName:(nullable NSString *)logName;

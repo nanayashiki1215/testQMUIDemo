@@ -337,9 +337,9 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"不可用");
+            DefLog(@"不可用");
         }else{
-            NSLog(@"可用");
+            DefLog(@"可用");
         }
     }];
     [task resume];

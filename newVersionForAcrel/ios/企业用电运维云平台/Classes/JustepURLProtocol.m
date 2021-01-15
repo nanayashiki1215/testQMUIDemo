@@ -17,7 +17,7 @@
 
 +(BOOL)canInitWithRequest:(NSURLRequest *)request{
     NSString *localURI = [JustepURLProtocol getLocalURIByURL:request];
-    NSLog(@"localURI:%@",localURI);
+    DefLog(@"localURI:%@",localURI);
     if(!localURI.length){
         return NO;
     }
@@ -74,7 +74,7 @@
     NSString* libPathNoSync = [libPath stringByAppendingPathComponent:@"NoCloud"];
     NSString* localURI = [[libPathNoSync stringByAppendingPathComponent:@"www"] stringByAppendingPathComponent:resourcepath];
     if([fileManager fileExistsAtPath:localURI]){
-        NSLog(@"本地存在文件:%@",localURI);
+        DefLog(@"本地存在文件:%@",localURI);
         return localURI;
     }
    
@@ -92,11 +92,11 @@
     }
     localURI = [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
     if([fileManager fileExistsAtPath:localURI]){
-        NSLog(@"本地存在文件:%@",localURI);
+        DefLog(@"本地存在文件:%@",localURI);
         return localURI;
     }
     
-    NSLog(@"本地不存在文件:%@",localURI);
+    DefLog(@"本地不存在文件:%@",localURI);
     return NULL;
 }
 
@@ -122,14 +122,14 @@
     if ([[extension lowercaseString] isEqualToString:@"w"]){
         mimeType = @"text/html";
     }
-    NSLog(@"extension:%@",extension);
+    DefLog(@"extension:%@",extension);
     return mimeType;
 }
 
 Boolean needDecrypted = false;
 
 -(void)startLoading{
-    NSLog(@"%@", [[self.request URL] absoluteString]);
+    DefLog(@"%@", [[self.request URL] absoluteString]);
     NSString *localURI = [JustepURLProtocol getLocalURIByURL:[self request]];
     localURI = [JustepURLProtocol pathForResource:localURI];
     NSString* mimeType = [self getMimeType:localURI];
@@ -170,7 +170,7 @@ Boolean needDecrypted = false;
 
 
 - (void)stopLoading{
-    NSLog(@"stoploading!");
+    DefLog(@"stoploading!");
 }
 
 @end

@@ -69,14 +69,14 @@
     NSFileManager* fileManage = [NSFileManager defaultManager];
     BOOL isDir;
     if (YES == [fileManage fileExistsAtPath:infoPath isDirectory:&isDir]) {
-        NSLog(@"%@ exists,isdir[%d]", infoPath, isDir);
+        DefLog(@"%@ exists,isdir[%d]", infoPath, isDir);
         NSString* content = [NSString stringWithContentsOfFile:infoPath encoding:NSUTF8StringEncoding error:nil];
         char textPhone[255] = { 0 };
-        NSLog(@"content %s", [content UTF8String]);
+        DefLog(@"content %s", [content UTF8String]);
         sscanf([content UTF8String], "[%[^]]]%*s", textPhone);
 
         self.m_textPhone.text = [NSString stringWithUTF8String:textPhone];
-        NSLog(@"textPhone[%@]", self.m_textPhone.text);
+        DefLog(@"textPhone[%@]", self.m_textPhone.text);
     }
 }
 
@@ -194,7 +194,7 @@
             }
             else {
                 m_strUserTok = [acessTok mutableCopy];
-                NSLog(@"userToken=%@", m_strUserTok);
+                DefLog(@"userToken=%@", m_strUserTok);
                 [self hideHint:YES];
             }
             UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

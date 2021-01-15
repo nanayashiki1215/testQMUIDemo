@@ -151,7 +151,7 @@
     [EZOPENSDK probeDeviceInfo:[GlobalKit shareKit].deviceSerialNo
                     deviceType:[GlobalKit shareKit].deviceModel
                     completion:^(EZProbeDeviceInfo *deviceInfo, NSError *error) {
-                        NSLog(@"deviceInfo = %@, error = %@", deviceInfo, error);
+                        DefLog(@"deviceInfo = %@, error = %@", deviceInfo, error);
                         self.resultBackgroudImageView.hidden = NO;
                         self.resultImageView.image = [UIImage imageNamed:@"device_default"];
                         self.resultLabel.text = [GlobalKit shareKit].deviceSerialNo;

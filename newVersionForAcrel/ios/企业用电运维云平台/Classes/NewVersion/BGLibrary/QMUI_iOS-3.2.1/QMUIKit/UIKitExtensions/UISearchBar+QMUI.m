@@ -348,7 +348,7 @@ static char kAssociatedObjectKey_cancelButtonFont;
     UIImage *searchIconImage = SearchBarSearchIconImage;
     if (searchIconImage) {
         if (!CGSizeEqualToSize(searchIconImage.size, CGSizeMake(14, 14))) {
-            NSLog(@"搜索框放大镜图片（SearchBarSearchIconImage）的大小最好为 (14, 14)，否则会失真，目前的大小为 %@", NSStringFromCGSize(searchIconImage.size));
+//            DefLog(@"搜索框放大镜图片（SearchBarSearchIconImage）的大小最好为 (14, 14)，否则会失真，目前的大小为 %@", NSStringFromCGSize(searchIconImage.size));
         }
         [self setImage:searchIconImage forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     }

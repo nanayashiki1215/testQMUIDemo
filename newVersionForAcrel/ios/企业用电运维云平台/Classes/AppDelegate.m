@@ -280,14 +280,14 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         [_notificationCenter requestAuthorizationWithOptions:UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted) {
                 // granted
-                NSLog(@"User authored notification.");
+                DefLog(@"User authored notification.");
                 // 向APNs注册，获取deviceToken
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [application registerForRemoteNotifications];
                 });
             } else {
                 // not granted
-                NSLog(@"User denied notification.");
+                DefLog(@"User denied notification.");
             }
         }];
     } else if (systemVersionNum >= 8.0) {
@@ -355,7 +355,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // 通知打开回执上报
     [CloudPushSDK sendNotificationAck:userInfo];
     
-    NSLog(@"Notification, date: %@, title: %@, subtitle: %@, body: %@, badge: %d, extras: %@.", noticeDate, title, subtitle, body, badge, extras);
+    DefLog(@"Notification, date: %@, title: %@, subtitle: %@, body: %@, badge: %d, extras: %@.", noticeDate, title, subtitle, body, badge, extras);
 }
 
 -(void)pushViewControllerWithType:(NSDictionary *)userInfo{
@@ -608,7 +608,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
  *  App处于前台时收到通知(iOS 10+)
  */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-    NSLog(@"Receive a notification in foregound.");
+    DefLog(@"Receive a notification in foregound.");
     // 处理iOS 10通知，并上报通知打开回执
 //    [self handleiOS10Notification:notification];
     // 通知不弹出
@@ -625,24 +625,24 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     NSString *userAction = response.actionIdentifier;
     // 点击通知打开
     if ([userAction isEqualToString:UNNotificationDefaultActionIdentifier]) {
-        NSLog(@"User opened the notification.");
+        DefLog(@"User opened the notification.");
         // 处理iOS 10通知，并上报通知打开回执
         [self handleiOS10Notification:response.notification];
     }
     // 通知dismiss，category创建时传入UNNotificationCategoryOptionCustomDismissAction才可以触发
     if ([userAction isEqualToString:UNNotificationDismissActionIdentifier]) {
-        NSLog(@"User dismissed the notification.");
+        DefLog(@"User dismissed the notification.");
     }
     NSString *customAction1 = @"action1";
     NSString *customAction2 = @"action2";
     // 点击用户自定义Action1
     if ([userAction isEqualToString:customAction1]) {
-        NSLog(@"User custom action1.");
+        DefLog(@"User custom action1.");
     }
     
     // 点击用户自定义Action2
     if ([userAction isEqualToString:customAction2]) {
-        NSLog(@"User custom action2.");
+        DefLog(@"User custom action2.");
     }
     completionHandler();
 }
@@ -657,9 +657,9 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     if (user.emasAppKey.length && user.emasAppSecret.length) {
         [CloudPushSDK asyncInit:user.emasAppKey appSecret:user.emasAppSecret callback:^(CloudPushCallbackResult *res) {
             if (res.success) {
-                NSLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
+                DefLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
             } else {
-                NSLog(@"Push SDK init failed, error: %@", res.error);
+                DefLog(@"Push SDK init failed, error: %@", res.error);
             }
         }];
     }
@@ -669,9 +669,9 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     // 请从控制台下载AliyunEmasServices-Info.plist配置文件，并正确拖入工程
 //    [CloudPushSDK autoInit:^(CloudPushCallbackResult *res) {
 //        if (res.success) {
-//            NSLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
+//            DefLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
 //        } else {
-//            NSLog(@"Push SDK init failed, error: %@", res.error);
+//            DefLog(@"Push SDK init failed, error: %@", res.error);
 //        }
 //    }];
 }
@@ -682,9 +682,9 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 - (void)getNotificationSettingStatus {
     [_notificationCenter getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
         if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
-            NSLog(@"User authed.");
+            DefLog(@"User authed.");
         } else {
-            NSLog(@"User denied.");
+            DefLog(@"User denied.");
         }
     }];
 }
@@ -693,12 +693,12 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
  *  APNs注册成功回调，将返回的deviceToken上传到CloudPush服务器
  */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"Upload deviceToken to CloudPush server.");
+    DefLog(@"Upload deviceToken to CloudPush server.");
     [CloudPushSDK registerDevice:deviceToken withCallback:^(CloudPushCallbackResult *res) {
         if (res.success) {
-            NSLog(@"Register deviceToken success, deviceToken: %@", [CloudPushSDK getApnsDeviceToken]);
+            DefLog(@"Register deviceToken success, deviceToken: %@", [CloudPushSDK getApnsDeviceToken]);
         } else {
-            NSLog(@"Register deviceToken failed, error: %@", res.error);
+            DefLog(@"Register deviceToken failed, error: %@", res.error);
         }
     }];
 }
@@ -706,7 +706,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
  *  APNs注册失败回调
  */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@", error);
+    DefLog(@"didFailToRegisterForRemoteNotificationsWithError %@", error);
 }
 
 #pragma mark Receive Message 消息
@@ -727,7 +727,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
  */
 - (void)onChannelOpened:(NSNotification *)notification {
 //    [MsgToolBox showAlert:@"温馨提示" content:@"消息通道建立成功"];
-    NSLog(@"消息通道建立成功");
+    DefLog(@"消息通道建立成功");
 }
 
 /**
@@ -746,12 +746,12 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
  *    @param     notification
  */
 - (void)onMessageReceived:(NSNotification *)notification {
-    NSLog(@"Receive one message!");
+    DefLog(@"Receive one message!");
     
     CCPSysMessage *message = [notification object];
     NSString *title = [[NSString alloc] initWithData:message.title encoding:NSUTF8StringEncoding];
     NSString *body = [[NSString alloc] initWithData:message.body encoding:NSUTF8StringEncoding];
-    NSLog(@"Receive message title: %@, content: %@.", title, body);
+    DefLog(@"Receive message title: %@, content: %@.", title, body);
     
     LZLPushMessage *tempVO = [[LZLPushMessage alloc] init];
     tempVO.messageContent = body;
@@ -787,9 +787,9 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 - (void)syncBadgeNum:(NSUInteger)badgeNum {
     [CloudPushSDK syncBadgeNum:badgeNum withCallback:^(CloudPushCallbackResult *res) {
         if (res.success) {
-            NSLog(@"Sync badge num: [%lu] success.", (unsigned long)badgeNum);
+            DefLog(@"Sync badge num: [%lu] success.", (unsigned long)badgeNum);
         } else {
-            NSLog(@"Sync badge num: [%lu] failed, error: %@", (unsigned long)badgeNum, res.error);
+            DefLog(@"Sync badge num: [%lu] failed, error: %@", (unsigned long)badgeNum, res.error);
         }
     }];
 }
@@ -799,7 +799,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
  *  App处于启动状态时，通知打开回调
  */
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
-    NSLog(@"Receive one notification.");
+    DefLog(@"Receive one notification.");
     // 取得APNS通知内容
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
     // 内容
@@ -810,7 +810,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
     NSString *sound = [aps valueForKey:@"sound"];
     // 取得通知自定义字段内容，例：获取key为"Extras"的内容
     NSString *Extras = [userInfo valueForKey:@"Extras"]; //服务端中Extras字段，key是自己定义的
-    NSLog(@"content = [%@], badge = [%ld], sound = [%@], Extras = [%@]", content, (long)badge, sound, Extras);
+    DefLog(@"content = [%@], badge = [%ld], sound = [%@], Extras = [%@]", content, (long)badge, sound, Extras);
     // iOS badge 清0
     application.applicationIconBadgeNumber = 0;
     // 同步通知角标数到服务端
@@ -839,7 +839,7 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 //    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BGBaiduMapApi authDelegate:self];
 //    BOOL ret = [_mapManager start:BGBaiduMapApi generalDelegate:self];
 //    if (!ret) {
-//        NSLog(@"manager start failed!");
+//        DefLog(@"manager start failed!");
 //    }
 }
 

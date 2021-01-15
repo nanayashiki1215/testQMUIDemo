@@ -314,6 +314,18 @@ static UserManager* manager;
     return _privateUnreadNumStr;
 }
 
+-(void)setWorkOrderUnreadNumStr:(NSString *)workOrderUnreadNumStr{
+    _workOrderUnreadNumStr = workOrderUnreadNumStr;
+    [DefNSUD setObject:_workOrderUnreadNumStr
+                forKey:@"workOrderUnreadNumStr"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)workOrderUnreadNumStr{
+    _workOrderUnreadNumStr = [DefNSUD objectForKey:@"workOrderUnreadNumStr"];
+    return _workOrderUnreadNumStr;
+}
+
 //存储appkey
 -(void)setEmasAppKey:(NSString *)emasAppKey{
     _emasAppKey = emasAppKey;

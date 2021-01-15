@@ -614,9 +614,9 @@
     if (user.emasAppKey.length && user.emasAppSecret.length) {
         [CloudPushSDK asyncInit:user.emasAppKey appSecret:user.emasAppSecret callback:^(CloudPushCallbackResult *res) {
             if (res.success) {
-                NSLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
+                DefLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
             } else {
-                NSLog(@"Push SDK init failed, error: %@", res.error);
+                DefLog(@"Push SDK init failed, error: %@", res.error);
             }
         }];
     }
@@ -626,9 +626,9 @@
     // 请从控制台下载AliyunEmasServices-Info.plist配置文件，并正确拖入工程
 //    [CloudPushSDK autoInit:^(CloudPushCallbackResult *res) {
 //        if (res.success) {
-//            NSLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
+//            DefLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
 //        } else {
-//            NSLog(@"Push SDK init failed, error: %@", res.error);
+//            DefLog(@"Push SDK init failed, error: %@", res.error);
 //        }
 //    }];
 }

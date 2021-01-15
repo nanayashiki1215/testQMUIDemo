@@ -32,6 +32,7 @@
     NSArray *_versionArr;
     NSString *_orderListUrl;
     NSString *_privateUnreadNumStr;
+    NSString *_workOrderUnreadNumStr;
     NSDictionary *_homeALLFullData;
     NSString *_emasAppKey;
     NSString *_emasAppSecret;
@@ -96,6 +97,7 @@
 
 //20191118
 @property(nonatomic,copy)NSString *privateUnreadNumStr;/**< 任务 工作推送未读数 */
+@property(nonatomic,copy)NSString *workOrderUnreadNumStr;/**< 通知工单 推送未读数 */
 @property(nonatomic,copy)NSString *alarmUnreadNumStr;/**< 报警推送未读数 */
 @property(nonatomic,copy)NSString *emasAppKey;/**< 推送AppKey */
 @property(nonatomic,copy)NSString *emasAppSecret;/**< 推送AppSecret */

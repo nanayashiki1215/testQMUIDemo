@@ -95,7 +95,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"%@ dealloc", self.class);
+    DefLog(@"%@ dealloc", self.class);
     [EZOPENSDK releasePlayer:_player];
 }
 
@@ -370,14 +370,14 @@
 //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        NSString  *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, @"jaibaili.mp4"];
-        NSLog(@"path: %@ ", path);
+        DefLog(@"path: %@ ", path);
         [self startDeviceRecordDownload:path deviceFile:deviceFile];
     }
     else {
         
         EZCloudRecordFile *cloudFile = (EZCloudRecordFile *)recordFile;
         NSString *path = [NSString stringWithFormat:@"%@/ezopensdk/CloudRecord/%@.mov",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject], [dateformatter stringFromDate:cloudFile.startTime]];
-        NSLog(@"path: %@ ", path);
+        DefLog(@"path: %@ ", path);
         [self startCloudRecordDownload:path cloudFile:cloudFile];
     }
 }
@@ -402,7 +402,7 @@
         [task setDownloadCallBackWithFinshed:^(EZRecordDownloaderStatus statusCode) {
             
             __strong typeof(weakTask) strongTask = weakTask;
-            NSLog(@"statuCode:%ld", (long)statusCode);
+            DefLog(@"statuCode:%ld", (long)statusCode);
             
             switch (statusCode) {
                 case EZRecordDownloaderStatusFinish:
@@ -413,7 +413,7 @@
                     break;
                 case EZRecordDownloaderStatusMoreToken:
                     
-                    NSLog(@"EZRecordDownloaderStatusMoreToken.");
+                    DefLog(@"EZRecordDownloaderStatusMoreToken.");
                     
                     break;
                 default:
@@ -424,7 +424,7 @@
             
         } failed:^(NSError * _Nonnull error) {
             
-            NSLog(@"EZDeviceRecordDownloader error:%@", error);
+            DefLog(@"EZDeviceRecordDownloader error:%@", error);
             __strong typeof(weakTask) strongTask = weakTask;
             
             if (error.code == 395416 || error.code == 380045) {
@@ -450,7 +450,7 @@
         UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self,
     @selector(video:didFinishSavingWithError:contextInfo:), nil);
 //    } else {
-//        NSLog(@"该视频无法保存至相册");
+//        DefLog(@"该视频无法保存至相册");
 //    }
 //    if (videoPath) {
 //        NSURL *url = [NSURL URLWithString:videoPath];
@@ -465,20 +465,20 @@
 
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     if (error) {
-        NSLog(@"保存视频失败：%@", error);
+        DefLog(@"保存视频失败：%@", error);
     } else {
-        NSLog(@"保存视频成功");
+        DefLog(@"保存视频成功");
     }
 }
 
 //保存视频完成之后的回调
 -(void)savedPhotoImage:(UIImage*)image didFinishSavingWithError: (NSError *)error contextInfo: (void *)contextInfo {
     if (error) {
-        NSLog(@"保存视频失败%@", error.localizedDescription);
+        DefLog(@"保存视频失败%@", error.localizedDescription);
         [MBProgressHUD showError:@"视频保存失败"];
     }
     else {
-        NSLog(@"保存视频成功");
+        DefLog(@"保存视频成功");
         [MBProgressHUD showSuccess:@"视频保存成功"];
     }
 }
@@ -489,7 +489,7 @@
 //    PHFetchResult <PHAssetCollection*>*result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
 //    for (PHAssetCollection *collect in result) {
 //        desCollection = collect;
-//        NSLog(@"%@",collect.localizedTitle);
+//        DefLog(@"%@",collect.localizedTitle);
 //        if ([collect.localizedTitle containsString:@"aaa"]) {
 //           collectionRuquest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collect];
 //        }
@@ -501,9 +501,9 @@
 //        colID = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:@"aaa"].placeholderForCreatedAssetCollection.localIdentifier;
 //    } error:&error];
 //    if (error) {
-//        NSLog(@"创建相册: %@ 失败",colID);
+//        DefLog(@"创建相册: %@ 失败",colID);
 //    }
-//    NSLog(@"相册: %@ ",colID);
+//    DefLog(@"相册: %@ ",colID);
 //    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
 //           //请求创建一个Asset
 //           PHAssetChangeRequest *assetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]];
@@ -516,9 +516,9 @@
 //
 //       } completionHandler:^(BOOL success, NSError *error) {
 //           if (success) {
-//               NSLog(@"已将视频保存至相册");
+//               DefLog(@"已将视频保存至相册");
 //           } else {
-//               NSLog(@"未能保存视频到相册");
+//               DefLog(@"未能保存视频到相册");
 //           }
 //       }];
     
@@ -532,9 +532,9 @@
 //        placeholderAsset = changeRequest.placeholderForCreatedAsset;
 //    } completionHandler:^(BOOL success, NSError * _Nullable error) {
 //        if (success) {
-//            NSLog(@"已将视频保存至相册");
+//            DefLog(@"已将视频保存至相册");
 //        } else {
-//            NSLog(@"未能保存视频到相册");
+//            DefLog(@"未能保存视频到相册");
 //        }
 //        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
 //
@@ -543,7 +543,7 @@
 //            [[PHAssetCollectionChangeRequest changeRequestForAssetCollection:desCollection] addAssets:@[asset]];
 //        } completionHandler:^(BOOL success, NSError * _Nullable error) {
 //            if (success) {
-//                NSLog(@"存入相册成功");
+//                DefLog(@"存入相册成功");
 //            }
 //        }];
 //    }];
@@ -560,7 +560,7 @@
     assetId = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]].placeholderForCreatedAsset.localIdentifier;
     } error:&error];
 
-    NSLog(@"error1: %@", error);
+    DefLog(@"error1: %@", error);
 
    
    
@@ -578,7 +578,7 @@
     [task setDownloadCallBackWithFinshed:^(EZRecordDownloaderStatus statusCode) {
         
         __strong typeof(weakTask) strongTask = weakTask;
-        NSLog(@"statuCode:%ld", (long)statusCode);
+        DefLog(@"statuCode:%ld", (long)statusCode);
         
         switch (statusCode) {
             case EZRecordDownloaderStatusFinish:
@@ -588,7 +588,7 @@
                 break;
             case EZRecordDownloaderStatusMoreToken:
                 
-                NSLog(@"EZRecordDownloaderStatusMoreToken.");
+                DefLog(@"EZRecordDownloaderStatusMoreToken.");
                 
                 break;
             default:
@@ -599,7 +599,7 @@
         
     } failed:^(NSError * _Nonnull error) {
         
-        NSLog(@"EZDeviceRecordDownloader error:%@", error);
+        DefLog(@"EZDeviceRecordDownloader error:%@", error);
         __strong typeof(weakTask) strongTask = weakTask;
         
         [self.navigationController.view makeToast:[NSString stringWithFormat:@"CD Task:%@-下载失败", strongTask.taskID]];
@@ -618,7 +618,7 @@
     [self invalidateTimer];
     [player stopPlayback];
     
-    NSLog(@"player: %@ didPlayFailed: %@", player, error);
+    DefLog(@"player: %@ didPlayFailed: %@", player, error);
     //如果是需要验证码或者是验证码错误
     if (error.code == EZ_SDK_NEED_VALIDATECODE) {
         [self showSetPassword];
@@ -645,7 +645,7 @@
 
 - (void)player:(EZPlayer *)player didReceivedMessage:(NSInteger)messageCode
 {
-    NSLog(@"player: %@ didReceivedMessage: %d", player, (int)messageCode);
+    DefLog(@"player: %@ didReceivedMessage: %d", player, (int)messageCode);
     if(messageCode == PLAYER_PLAYBACK_START)
     {
         _isPlaying = YES;
@@ -669,7 +669,7 @@
         
         [self performSelector:@selector(hiddenPlayerToolbox:) withObject:nil afterDelay:5.0f];
         
-        NSLog(@"GetStreamFetchType:%d", [self.player getStreamFetchType]);
+        DefLog(@"GetStreamFetchType:%d", [self.player getStreamFetchType]);
     }
     else if (messageCode == PLAYER_PLAYBACK_STOP)
     {
@@ -736,7 +736,7 @@
                                                              beginTime:weakSelf.beginTime
                                                                endTime:weakSelf.endTime
                                                             completion:^(NSArray *deviceRecords, NSError *error) {
-                                                                NSLog(@"deviceRecords is %@, error is %@", deviceRecords, error);
+                                                                DefLog(@"deviceRecords is %@, error is %@", deviceRecords, error);
                                                                 if (!error)
                                                                 {
                                                                     [weakSelf.records removeAllObjects];
@@ -778,7 +778,7 @@
                                                                endTime:weakSelf.endTime
                                                             completion:^(NSArray *cloudRecords, NSError *error) {
                                                                 
-                                                                NSLog(@"cloudRecords is %@, error is %@", cloudRecords, error);
+                                                                DefLog(@"cloudRecords is %@, error is %@", cloudRecords, error);
                                                                 if (error)
                                                                 {
                                                                     if (error.code > 0) {

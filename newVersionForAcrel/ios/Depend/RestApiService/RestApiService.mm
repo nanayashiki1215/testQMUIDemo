@@ -146,11 +146,11 @@ static RestApiService* _instance = nil;
                         }
                     }
                     [[LCOpenSDK_LoginManager shareMyInstance] addDevices:[NSString stringWithUTF8String:m_accessToken] devicesJsonStr:[NSString stringWithFormat:@"%s%@%s%d%s%s", "[{\"Sn\":\"", deviceInfo->ID, "\", \"Type\":1,\"Port\":", p2pPort, ",", "\"User\":\"\", \"Pwd\":\"\"}]"] failure:^(NSString *err) {
-                     NSLog(@"p2p addDevices failed[%@]", err);
+                     DefLog(@"p2p addDevices failed[%@]", err);
                    }];
                     /*554 8086*/
                     /*[[LCOpenSDK_LoginManager shareMyInstance] addDevices:[NSString stringWithUTF8String:m_accessToken] devicesJsonStr:[NSString stringWithFormat:@"%s%@%s", "[{\"Sn\":\"", deviceInfo->ID, "\", \"Type\":1,\"Port\":554,\"User\":\"\", \"Pwd\":\"\"}]"] failure:^(NSString *err) {
-                        NSLog(@"p2p addDevices failed[%@]", err);
+                        DefLog(@"p2p addDevices failed[%@]", err);
                     }];*/
 
                 }
@@ -218,7 +218,7 @@ static RestApiService* _instance = nil;
     req.data.token = m_accessToken;
     req.data.queryRange = [sRange UTF8String];
     NSInteger ret = [m_hc request:&req resp:&resp timeout:10];
-    NSLog(@"getDevList ret[%ld]", (long)ret);
+    DefLog(@"getDevList ret[%ld]", (long)ret);
     if (0 == ret) {
         if (HTTP_OK == resp.code) {
             NSString* ret_code = [self stringWithStdString:resp.ret_code];
@@ -266,7 +266,7 @@ static RestApiService* _instance = nil;
         if (HTTP_OK == resp.code) {
             NSString* ret_code = [self stringWithStdString:resp.ret_code];
             if ([ret_code isEqualToString:@"0"]) {
-                NSLog(@"checkDeviceOnline success");
+                DefLog(@"checkDeviceOnline success");
                 if (resp.data.onLine.c_str()) {
                     NSString *deviceOnle = [self stringWithStdString:resp.data.onLine];
                     *errMsg_Out = [@"1" isEqualToString:deviceOnle]
@@ -296,7 +296,7 @@ static RestApiService* _instance = nil;
         if (HTTP_OK == resp.code) {
             NSString* ret_code = [self stringWithStdString:resp.ret_code];
             if ([ret_code isEqualToString:@"0"]) {
-                NSLog(@"checkDeviceBindOrNot bMine[%d],bIsBind[%d]",
+                DefLog(@"checkDeviceBindOrNot bMine[%d],bIsBind[%d]",
                       resp.data.isMine, resp.data.isBind);
                 *errMsg_Out = resp.data.isBind ? [MSG_DEVICE_IS_BIND mutableCopy] : [MSG_DEVICE_NOT_BIND mutableCopy];
             } else {
@@ -324,7 +324,7 @@ static RestApiService* _instance = nil;
             if ([ret_code isEqualToString:@"0"]) {
                 *errMsg_Out = [MSG_SUCCESS mutableCopy];
                 *ability = [self stringWithStdString:resp.data.ability];
-                NSLog(@"unBindDeviceInfo ability[%@]", *ability);
+                DefLog(@"unBindDeviceInfo ability[%@]", *ability);
             } else {
                 *errMsg_Out = [self stringWithStdString:resp.ret_msg];
             }
@@ -352,7 +352,7 @@ static RestApiService* _instance = nil;
         if (HTTP_OK == resp.code) {
             NSString* ret_code = [self stringWithStdString:resp.ret_code];
             if ([ret_code isEqualToString:@"0"]) {
-                NSLog(@"bindDevice success");
+                DefLog(@"bindDevice success");
                 *errMsg_Out = [MSG_SUCCESS mutableCopy];
             } else {
                 *errMsg_Out = [self stringWithStdString:resp.ret_msg];
@@ -379,7 +379,7 @@ static RestApiService* _instance = nil;
         if (HTTP_OK == resp.code) {
             NSString* ret_code = [self stringWithStdString:resp.ret_code];
             if ([ret_code isEqualToString:@"0"]) {
-                NSLog(@"unBindDevice success");
+                DefLog(@"unBindDevice success");
                 *errMsg_Out = [MSG_SUCCESS mutableCopy];
             } else {
                 *errMsg_Out = [self stringWithStdString:resp.ret_msg];
@@ -542,7 +542,7 @@ static RestApiService* _instance = nil;
         if (HTTP_OK == resp.code) {
             NSString* ret_code = [self stringWithStdString:resp.ret_code];
             if ([ret_code isEqualToString:@"0"]) {
-                NSLog(@"deleteAlarmMsg [%lld] success", alarmId);
+                DefLog(@"deleteAlarmMsg [%lld] success", alarmId);
                 *errMsg_Out = [MSG_SUCCESS mutableCopy];
             } else {
                 *errMsg_Out = [self stringWithStdString:resp.ret_msg];
@@ -575,7 +575,7 @@ static RestApiService* _instance = nil;
         if (HTTP_OK == resp.code) {
             NSString* ret_code = [self stringWithStdString:resp.ret_code];//0
             if ([ret_code isEqualToString:@"0"]) {
-                NSLog(@"getRecordNum num[%d]", resp.data.recordNum);
+                DefLog(@"getRecordNum num[%d]", resp.data.recordNum);
                 *errMsg_Out = [MSG_SUCCESS mutableCopy];
                 *num_Out = resp.data.recordNum;
             } else {

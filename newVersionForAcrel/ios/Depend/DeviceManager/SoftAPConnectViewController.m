@@ -170,7 +170,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
 - (void)initDevice:(int)timeout
 {
     NSString *deviceID = _m_deviceId;
-    NSLog(@"LCOpen_SoftAP deviceID[%s]\n", [deviceID UTF8String]);
+    DefLog(@"LCOpen_SoftAP deviceID[%s]\n", [deviceID UTF8String]);
     if (!deviceID || 0 == deviceID.length || [deviceID isEqualToString:NSLocalizedString(DEVICE_ID_TIP_TXT, nil)]) {
         self.m_lblHint.text = NSLocalizedString(DEVICE_ID_TIP_TXT, nil);
         return;
@@ -270,7 +270,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
     }
     [m_deviceInit searchDeviceInitInfo:_m_deviceId timeOut:10*1000 success:^(LCOPENSDK_DEVICE_INIT_INFO info) {
         _m_initDevStatus = info.status;
-         NSLog(@"sqtest _m_initDevStatus[%ld]\n", _m_initDevStatus);
+         DefLog(@"sqtest _m_initDevStatus[%ld]\n", _m_initDevStatus);
     }];
     
     if(!m_softAP){
@@ -291,7 +291,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
             _m_deviceKey = alert.textFields[0].text;
             //_m_deviceKey = @"qwerty1234";
             if (!_m_deviceKey || 0 == _m_deviceKey.length) {
-                NSLog(@"sqtest m_deviceKey has not been input");
+                DefLog(@"sqtest m_deviceKey has not been input");
                 return;
             }
             softAPResult = [m_softAP startSoftAPConfig:_m_wifiName wifiPwd:_m_wifiPwd deviceId:_m_deviceId devicePwd:_m_deviceKey];
@@ -308,7 +308,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
 
 -(IBAction)onBack:(UIStoryboardSegue *)sender
 {
-    NSLog(@"sqtest onBack");
+    DefLog(@"sqtest onBack");
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:NO];
     return;

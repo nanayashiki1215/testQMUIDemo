@@ -11,7 +11,7 @@
 @implementation OpenApiNetworking
 + (NSString *)requestByPost:(NSString*)url params:(NSString*)params
 {
-    NSLog(@"%@", params);
+    DefLog(@"%@", params);
     NSURL *nsURL =[NSURL URLWithString:url];
     //2 创建请求对象
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:nsURL];
@@ -31,7 +31,7 @@
     NSError *error;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString *resp = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@", resp);
+    DefLog(@"%@", resp);
 
     return resp;
 }

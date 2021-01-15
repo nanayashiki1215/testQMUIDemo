@@ -26,7 +26,7 @@
         NSError* err = nil;
         
         if (![[NSFileManager defaultManager] copyItemAtPath: preloadURL toPath:database_path error:&err]) {
-            NSLog(@"数据文件拷贝失败");
+            DefLog(@"数据文件拷贝失败");
         }
     }
 }
@@ -36,19 +36,19 @@
     
     [self init_datebase];
     
-    NSLog(@"@数据库路径：%@", self.db_path);
+    DefLog(@"@数据库路径：%@", self.db_path);
     
     // 发起连接
     if (sqlite3_open([self.db_path UTF8String], &db) != SQLITE_OK) {
         sqlite3_close(db);
-        NSLog(@"数据库打开失败");
+        DefLog(@"数据库打开失败");
     } else {    //连接成功，执行sql
         char *err;
         if (sqlite3_exec(db, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
             sqlite3_close(db);
-            NSLog(@"SQL执行失败，原因'%s'", err);
+            DefLog(@"SQL执行失败，原因'%s'", err);
         } else {
-            NSLog(@"SQL执行成功~");
+            DefLog(@"SQL执行成功~");
         }
         sqlite3_close(db);
     }
@@ -57,7 +57,7 @@
 -(void) insert:(LZLPushMessage *)model {
     [self init_datebase];
     
-    NSLog(@"@数据库路径：%@", self.db_path);
+    DefLog(@"@数据库路径：%@", self.db_path);
     
     if (sqlite3_open([self.db_path UTF8String], &db) != SQLITE_OK) {
         sqlite3_close(db);
@@ -97,12 +97,12 @@
     
     [self init_datebase];
     
-    NSLog(@"@数据库路径：%@", self.db_path);
+    DefLog(@"@数据库路径：%@", self.db_path);
     
     NSMutableArray* returnMsg = [[NSMutableArray alloc] init];
     if (sqlite3_open([self.db_path UTF8String], &db) != SQLITE_OK) {
         sqlite3_close(db);
-        NSLog(@"数据库打开失败");
+        DefLog(@"数据库打开失败");
     } else {
         NSString *sqlQuery = @"SELECT * FROM PUSHMESSAGE ORDER BY ID DESC";
         sqlite3_stmt * statement;
@@ -115,7 +115,7 @@
                 tempEntity.messageContent = [[NSString alloc]initWithUTF8String:(char*)sqlite3_column_text(statement, 1)];
                 tempEntity.isRead = sqlite3_column_int(statement, 2)==1?YES:NO;
                 [returnMsg addObject:tempEntity];
-                NSLog(@"id:%i  message:%@ isRead:%hhd",tempEntity.id, tempEntity.messageContent, tempEntity.isRead);
+                DefLog(@"id:%i  message:%@ isRead:%hhd",tempEntity.id, tempEntity.messageContent, tempEntity.isRead);
             }
         }
         sqlite3_close(db);

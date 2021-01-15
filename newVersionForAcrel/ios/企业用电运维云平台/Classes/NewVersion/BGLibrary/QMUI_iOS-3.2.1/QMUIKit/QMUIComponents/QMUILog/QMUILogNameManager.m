@@ -48,7 +48,7 @@ NSString *const QMUILoggerAllNamesKeyInUserDefaults = @"QMUILoggerAllNamesKeyInU
     return nil;
 }
 
-- (BOOL)containsLogName:(NSString *)logName {
+- (BOOL)contaiDefLogName:(NSString *)logName {
     if (logName.length > 0) {
         return !!self.mutableAllNames[logName];
     }
@@ -71,7 +71,7 @@ NSString *const QMUILoggerAllNamesKeyInUserDefaults = @"QMUILoggerAllNamesKeyInU
 
 - (BOOL)enabledForLogName:(NSString *)logName {
     if (logName.length > 0) {
-        if ([self containsLogName:logName]) {
+        if ([self contaiDefLogName:logName]) {
             return [self.mutableAllNames[logName] boolValue];
         }
     }

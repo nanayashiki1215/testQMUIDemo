@@ -78,19 +78,19 @@
         [fileManage createDirectoryAtPath:davDirectory withIntermediateDirectories:YES attributes:nil error:&pErr];
     }
     if (YES == [fileManage fileExistsAtPath:realPath isDirectory:&isDir]) {
-        NSLog(@"%@ exists,isdir[%d]", realPath, isDir);
+        DefLog(@"%@ exists,isdir[%d]", realPath, isDir);
         NSString* content = [NSString stringWithContentsOfFile:realPath encoding:NSUTF8StringEncoding error:nil];
         char appId[500] = { 0 };
         char appSecret[500] = { 0 };
         char svrInfo[500] = { 0 };
         char appAccount[500] = { 0 };
-        NSLog(@"content %s", [content UTF8String]);
+        DefLog(@"content %s", [content UTF8String]);
         sscanf([content UTF8String], "[%[^]]][%[^]]][%[^]]]%*s", appId, appSecret, svrInfo);
         self.m_textAppId.text = [NSString stringWithUTF8String:appId];
         self.m_textAppSecret.text = [NSString stringWithUTF8String:appSecret];
         self.m_textServerInfo.text = [NSString stringWithUTF8String:svrInfo];
 
-        NSLog(@"appid[%@],appsecret[%@],account[%s],svrInfo[%s]", self.m_textAppId.text, self.m_textAppSecret.text, appAccount, svrInfo);
+        DefLog(@"appid[%@],appsecret[%@],account[%s],svrInfo[%s]", self.m_textAppId.text, self.m_textAppSecret.text, appAccount, svrInfo);
     }
     //end
     
@@ -270,13 +270,13 @@
 - (NSString*)parseServerIp:(NSString*)svrInfo
 {
     NSArray* arr = [svrInfo componentsSeparatedByString:@":"];
-    NSLog(@"parseServerIP[%@],ip[%@]", arr, [arr objectAtIndex:0]);
+    DefLog(@"parseServerIP[%@],ip[%@]", arr, [arr objectAtIndex:0]);
     return [arr objectAtIndex:0];
 }
 - (NSInteger)parseServerPort:(NSString*)svrInfo
 {
     NSArray* arr = [svrInfo componentsSeparatedByString:@":"];
-    NSLog(@"parseServerport[%@]", arr);
+    DefLog(@"parseServerport[%@]", arr);
     if (arr.count <= 1) {
         if ([[arr objectAtIndex:0] rangeOfString:@"https"].location != NSNotFound) {
             return 443;

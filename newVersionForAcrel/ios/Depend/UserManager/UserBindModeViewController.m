@@ -99,7 +99,7 @@ typedef enum {
 - (void)onSmsTimer:(id)sender
 {
     m_interval--;
-    NSLog(@"onSmsTimer-----[%ld]", (long)m_interval);
+    DefLog(@"onSmsTimer-----[%ld]", (long)m_interval);
     [self.m_btnSms setTitle:[NSString stringWithFormat:@"重新获取(%ld)", (long)m_interval] forState:UIControlStateNormal];
     [self.m_btnSms setTitleColor:self.m_btnChangeColor forState:UIControlStateNormal];
 

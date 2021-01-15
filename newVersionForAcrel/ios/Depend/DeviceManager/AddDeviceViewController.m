@@ -125,7 +125,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
     [_m_textSerial resignFirstResponder];
     [_m_textDeviceKey resignFirstResponder];
     [_m_textPasswd resignFirstResponder];
-    NSLog(@"[%@][%@][%@]", m_deviceId, info[@"SSID"], m_wifiPassword);
+    DefLog(@"[%@][%@][%@]", m_deviceId, info[@"SSID"], m_wifiPassword);
     if (nil == m_deviceId || 0 == m_deviceId || [m_deviceId isEqualToString:NSLocalizedString(DEVICE_ID_TIP_TXT, nil)]) {
         self.m_lblHint.text = NSLocalizedString(DEVICE_ID_TIP_TXT, nil);
         return;
@@ -157,7 +157,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
                                                     secure:@""
                                                  voiceFreq:11000];
             if (iRet < 0) {
-                NSLog(@"smartconfig failed\n");
+                DefLog(@"smartconfig failed\n");
                 return;
             }
             
@@ -329,7 +329,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
 - (void)initDevice:(int)timeout
 {
 
-    NSLog(@"LCOpen_SoftAP deviceID[%s]\n", [m_deviceId UTF8String]);
+    DefLog(@"LCOpen_SoftAP deviceID[%s]\n", [m_deviceId UTF8String]);
     if (!m_deviceId || 0 == m_deviceId.length || [m_deviceId isEqualToString:NSLocalizedString(DEVICE_ID_TIP_TXT, nil)]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.m_lblHint.text = NSLocalizedString(DEVICE_ID_TIP_TXT, nil);
@@ -360,7 +360,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
     
     /* 以下为支持SC码设备优化 */
     NSString* scCode = m_deviceKey;
-    NSLog(@"LCOpen_SoftAP scCode[%s]\n", [scCode UTF8String]);
+    DefLog(@"LCOpen_SoftAP scCode[%s]\n", [scCode UTF8String]);
     if(scCode.length == 8)
     {
         [self restApiBind:m_deviceId deviceKey:scCode];
@@ -458,7 +458,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
     [_m_textDeviceKey resignFirstResponder];
     [_m_textPasswd resignFirstResponder];
     /* 配网前检查设备是否被绑定过，以免配好网后才知道设备被绑定过 */
-    NSLog(@"LCOpen_SoftAP deviceID[%s]\n", [m_deviceId UTF8String]);
+    DefLog(@"LCOpen_SoftAP deviceID[%s]\n", [m_deviceId UTF8String]);
     if (!m_deviceId || 0 == m_deviceId.length || [m_deviceId isEqualToString:NSLocalizedString(DEVICE_ID_TIP_TXT, nil)]) {
         self.m_lblHint.text = NSLocalizedString(DEVICE_ID_TIP_TXT, nil);
         return;
@@ -487,7 +487,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
     for(NSString* ifnam in ifs)
     {
         /* 找到当前网络信息 */
-        NSLog(@"sqtest1 ifnam %s", [ifnam UTF8String]);
+        DefLog(@"sqtest1 ifnam %s", [ifnam UTF8String]);
         info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
         /* 通过SSID来获取当前网络名 */
         NSString* str = info[@"SSID"];
@@ -504,7 +504,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
     [_m_textSerial resignFirstResponder];
     [_m_textDeviceKey resignFirstResponder];
     [_m_textPasswd resignFirstResponder];
-    NSLog(@"sqtest1 [%@][%@][%@]", m_deviceId, info[@"SSID"], m_wifiPassword);
+    DefLog(@"sqtest1 [%@][%@][%@]", m_deviceId, info[@"SSID"], m_wifiPassword);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
     if(!m_softAPView){
@@ -514,7 +514,7 @@ typedef NS_ENUM(NSInteger, DeviceListState) {
         m_softAPView = [currentBoard instantiateViewControllerWithIdentifier:@"SoftAPConnectView"];
     }
     
-    NSLog(@"sqtest2 [%@][%@][%@]", m_deviceId, info[@"SSID"], m_wifiPassword);
+    DefLog(@"sqtest2 [%@][%@][%@]", m_deviceId, info[@"SSID"], m_wifiPassword);
     m_softAPView.m_wifiName = info[@"SSID"];
     m_softAPView.m_wifiPwd = m_wifiPassword;
     m_softAPView.m_deviceId = m_deviceId;

@@ -89,7 +89,7 @@
         [restApiService initComponent:self.m_hc Token:self.m_accessToken];
     }
     else {
-        NSLog(@"DeviceViewController, m_hc or m_accessToken is nil");
+        DefLog(@"DeviceViewController, m_hc or m_accessToken is nil");
     }
 
     for (int i = 0; i < DEV_CHANNEL_MAX * DEV_NUM_MAX; i++) {
@@ -165,7 +165,7 @@
             [self hideLoading];
             
             if (0 == m_devList.count) {
-                NSLog(@"DeviceViewController getDevList NULL");
+                DefLog(@"DeviceViewController getDevList NULL");
                 m_toastLab.hidden = YES;
                 self.m_imgDeviceNULL.hidden = NO;
             }
@@ -218,7 +218,7 @@
     NSInteger devKeyIndex = [self locateDevKeyIndex:[indexPath row]];
     NSInteger chnKeyIndex = [self locateDevChannelKeyIndex:[indexPath row]];
     if (devKeyIndex < 0 || chnKeyIndex < 0) {
-        NSLog(@"cellForRowAtIndexPath devKeyIndex[%ld],chnKeyIndex[%ld]", (long)devKeyIndex, (long)chnKeyIndex);
+        DefLog(@"cellForRowAtIndexPath devKeyIndex[%ld],chnKeyIndex[%ld]", (long)devKeyIndex, (long)chnKeyIndex);
         [m_devLock unlock];
         return cell;
     }
@@ -228,7 +228,7 @@
         imgPic = [UIImage imageWithData:m_downloadPicture[[indexPath row]].picData];
     }
     else {
-        NSLog(@"test cell image default");
+        DefLog(@"test cell image default");
         imgPic = [UIImage leChangeImageNamed:DefaultCover_Png];
     }
 
@@ -462,7 +462,7 @@
     self.m_imgPicSelected = [UIImage imageWithData:m_downloadPicture[btnLive.tag].picData];
     self.m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
     
-    NSLog(@"onLive device[%@],channel[%ld]", self.m_strDevSelected, (long)self.m_devChnSelected);
+    DefLog(@"onLive device[%@],channel[%ld]", self.m_strDevSelected, (long)self.m_devChnSelected);
 
     UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LiveVideoViewController* liveVideoView = [currentBoard instantiateViewControllerWithIdentifier:@"LiveVideo"];
@@ -480,7 +480,7 @@
     // TODO
     self.m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
     self.m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
-    NSLog(@"onLive device[%@],channel[%ld]", self.m_strDevSelected, (long)self.m_devChnSelected);
+    DefLog(@"onLive device[%@],channel[%ld]", self.m_strDevSelected, (long)self.m_devChnSelected);
 
     UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RecordViewController* recordView = [currentBoard instantiateViewControllerWithIdentifier:@"Record"];
@@ -497,7 +497,7 @@
     self.m_strDevSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->ID;
     self.m_devChnSelected = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->channelId[chnKeyIndex];
     self.m_encryptKey = ((DeviceInfo*)[m_devList objectAtIndex:devKeyIndex])->encryptKey[chnKeyIndex];
-    NSLog(@"onCloud device[%@],channel[%ld]", self.m_strDevSelected, (long)self.m_devChnSelected);
+    DefLog(@"onCloud device[%@],channel[%ld]", self.m_strDevSelected, (long)self.m_devChnSelected);
 
     UIStoryboard* currentBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RecordViewController* recordView = [currentBoard instantiateViewControllerWithIdentifier:@"Record"];
@@ -567,7 +567,7 @@
 {
     if (alertView == alertDelView) {
         if (0 == buttonIndex) {
-            NSLog(@"cancel delete[%@]", self.m_strDevSelected);
+            DefLog(@"cancel delete[%@]", self.m_strDevSelected);
             return;
         }
         else if (1 == buttonIndex) {
@@ -672,7 +672,7 @@
             [m_devLock lock];
             if (0 == m_devList.count) {
                 [m_devLock unlock];
-                NSLog(@"refreshDevList hasn't got any device\n");
+                DefLog(@"refreshDevList hasn't got any device\n");
                 m_toastLab.hidden = YES;
                 self.m_imgDeviceNULL.hidden = NO;
                 return;
@@ -699,7 +699,7 @@
     m_downloadingPos = -1;
     int j;
     while (m_looping) {
-        //        NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
+        //        DefLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
         usleep(20 * 1000);
         BOOL bNeedDown = YES;
         NSString* picUrl;
@@ -758,11 +758,11 @@
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
 
         if (m_downloadingPos < 0) {
-            NSLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
+            DefLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
             return;
         }
         if (response == nil) {
-            NSLog(@"download failed");
+            DefLog(@"download failed");
             m_downloadPicture[m_downloadingPos].downStatus = DOWNLOAD_FAILED;
         }
         else {
@@ -785,7 +785,7 @@
 
         //end
     }
-    //    NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
+    //    DefLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
 }
 #pragma mark - 结束图片下载线程
 - (void)destroyThread
@@ -808,8 +808,8 @@
 
 - (void)dealloc
 {
-    //    NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
-    //    NSLog(@"DeviceViewController dealloc");
+    //    DefLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
+    //    DefLog(@"DeviceViewController dealloc");
 }
 
 @end

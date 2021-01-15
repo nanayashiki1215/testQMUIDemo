@@ -75,17 +75,17 @@ static id _instance;
             case AFNetworkReachabilityStatusReachableViaWWAN:
             case AFNetworkReachabilityStatusReachableViaWiFi:
                 DefLog(@"isreach:yes");
-                NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                DefLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
                 break;
             case AFNetworkReachabilityStatusNotReachable:
                 DefLog(@"isreach:no");
                 [MBProgressHUD showError:@"当前无网络链接，请检查网络设置"];
 //                DefQuickAlert(@"当前无网络链接，请检查网络设置", nil);
-//                    NSLog(@"AFNetworkReachabilityStatusNotReachable");
+//                    DefLog(@"AFNetworkReachabilityStatusNotReachable");
                 break;
             default:
                 //AFNetworkReachabilityStatusUnknown
-                NSLog(@"AFNetworkReachabilityStatusUnknown");
+                DefLog(@"AFNetworkReachabilityStatusUnknown");
                 break;
         }
 //            DefLog(@"%d,%d,%d",weak.isReachable,weak.isReachableViaWiFi,weak.isReachableViaWWAN);

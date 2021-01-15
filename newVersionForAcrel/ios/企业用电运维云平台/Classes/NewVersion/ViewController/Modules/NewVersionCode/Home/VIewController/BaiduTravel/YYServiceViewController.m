@@ -163,11 +163,11 @@
 
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"Entity List查询格式转换出错");
+        DefLog(@"Entity List查询格式转换出错");
         return;
     }
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"实时位置查询返回错误");
+        DefLog(@"实时位置查询返回错误");
         return;
     }
     

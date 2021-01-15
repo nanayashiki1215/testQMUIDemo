@@ -111,7 +111,7 @@
 {
     NSString *numberRegex = @"^[A-Za-z]*$";
     NSPredicate *numberTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",numberRegex];
-    //    NSLog(@"phoneTest is %@",phoneTest);
+    //    DefLog(@"phoneTest is %@",phoneTest);
     return [numberTest evaluateWithObject:self];
 }
 

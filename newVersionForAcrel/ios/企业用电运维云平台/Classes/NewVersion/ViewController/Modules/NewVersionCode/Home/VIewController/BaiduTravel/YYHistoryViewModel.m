@@ -59,7 +59,7 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onQueryHistoryTrack:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-//        NSLog(@"HISTORY TRACK查询格式转换出错");
+//        DefLog(@"HISTORY TRACK查询格式转换出错");
         DefQuickAlert(@"HISTORY TRACK查询格式转换出错",nil);
         return;
     }

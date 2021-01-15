@@ -15,7 +15,7 @@
 
 - (void)setDeviceInfo:(EZDeviceInfo *)deviceInfo
 {
-    NSLog(@"deviceInfo is %@", deviceInfo);
+    DefLog(@"deviceInfo is %@", deviceInfo);
     _deviceInfo = deviceInfo;
     
     if (_deviceInfo.status == 1)
@@ -65,7 +65,7 @@
 }
 
 //- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"touches = %@, event = %@", touches, event);
+//    DefLog(@"touches = %@, event = %@", touches, event);
 //}
 
 @end

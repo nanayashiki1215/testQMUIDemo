@@ -283,7 +283,7 @@
 -(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
    
    UILabel *label=(UILabel*)recognizer.view;
-   NSLog(@"%@被点击了",label.text);
+   DefLog(@"%@被点击了",label.text);
 //if (1) {
                BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
                        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"policy" ofType:@"html" inDirectory:@"aDevices"];

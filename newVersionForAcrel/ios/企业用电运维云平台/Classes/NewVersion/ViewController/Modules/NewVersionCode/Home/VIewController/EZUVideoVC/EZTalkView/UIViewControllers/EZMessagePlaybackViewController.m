@@ -235,7 +235,7 @@
 
 - (void)player:(EZPlayer *)player didPlayFailed:(NSError *)error
 {
-    NSLog(@"player: %@ didPlayFailed: %@", player, error);
+    DefLog(@"player: %@ didPlayFailed: %@", player, error);
     //如果是需要验证码或者是验证码错误
     if (error.code == EZ_SDK_NEED_VALIDATECODE) {
         [self showSetPassword];
@@ -249,7 +249,7 @@
 
 - (void)player:(EZPlayer *)player didReceivedMessage:(NSInteger)messageCode
 {
-    NSLog(@"player: %@, didReceivedMessage: %d", player, (int)messageCode);
+    DefLog(@"player: %@, didReceivedMessage: %d", player, (int)messageCode);
     if (messageCode == PLAYER_PLAYBACK_START)
     {
         _isPlaying = YES;
@@ -474,7 +474,7 @@
     {
         [_player stopLocalRecordExt:^(BOOL ret) {
             
-            NSLog(@"%d", ret);
+            DefLog(@"%d", ret);
             
             [_recordTimer invalidate];
             _recordTimer = nil;

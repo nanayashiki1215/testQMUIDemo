@@ -48,7 +48,7 @@
 //                                       self.imageView.image = image;
 //                                   }
 //                                   failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-//                                       NSLog(@"error = %@",error);
+//                                       DefLog(@"error = %@",error);
 //                                   }];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

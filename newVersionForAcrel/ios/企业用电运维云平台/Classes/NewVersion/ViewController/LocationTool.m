@@ -93,15 +93,15 @@
 
 - (void)startLocation
 {
-    NSLog(@"startLocationTracking");
+    DefLog(@"startLocationTracking");
     
     if ([CLLocationManager locationServicesEnabled] == NO) {
-        NSLog(@"locationServicesEnabled false");
+        DefLog(@"locationServicesEnabled false");
     } else {
         CLAuthorizationStatus authorizationStatus= [CLLocationManager authorizationStatus];
         
         if(authorizationStatus == kCLAuthorizationStatusDenied || authorizationStatus == kCLAuthorizationStatusRestricted) {
-            NSLog(@"authorizationStatus failed");
+            DefLog(@"authorizationStatus failed");
             QMUIAlertAction *action = [QMUIAlertAction actionWithTitle:DefLocalizedString(@"Sure") style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController * _Nonnull aAlertController, QMUIAlertAction * _Nonnull action) {
               NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
               if ([[UIApplication sharedApplication] canOpenURL:url]) {
@@ -123,7 +123,7 @@
             alertController.alertButtonBackgroundColor = nil;
             [alertController showWithAnimated:YES];
         } else {
-            NSLog(@"authorizationStatus authorized");
+            DefLog(@"authorizationStatus authorized");
             self.locManager.delegate = self;
             
 //            [self.locManager requestAlwaysAuthorization];
@@ -146,7 +146,7 @@
 //
 //    CLLocation *loc = locations.firstObject;
 //
-//    NSLog(@"----- i = %d, 维度: %f, 经度: %f", i++, loc.coordinate.latitude, loc.coordinate.longitude);
+//    DefLog(@"----- i = %d, 维度: %f, 经度: %f", i++, loc.coordinate.latitude, loc.coordinate.longitude);
 //
 //    [self sendNotifycation:loc.coordinate];
 //
@@ -155,7 +155,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"定位失败: %@", error);
+    DefLog(@"定位失败: %@", error);
 }
 
 #pragma mark - privite
@@ -174,9 +174,9 @@
 //    //上传定位
 //    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 //        if (!error) {
-//            NSLog(@"请求百度成功 %d", i);
+//            DefLog(@"请求百度成功 %d", i);
 //        } else {
-//            NSLog(@"请求百度失败 %d", i);
+//            DefLog(@"请求百度失败 %d", i);
 //        }
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadSuc" object:nil userInfo:@{@"message": !error?[NSString stringWithFormat:@"请求百度成功 %d", i]:[NSString stringWithFormat:@"请求百度失败 %d", i]}];
 //    }];
@@ -194,7 +194,7 @@
 //
 //    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"Test" content:content trigger:trigger];
 //    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-//        NSLog(@"iOS 10 发送推送， error：%@", error);
+//        DefLog(@"iOS 10 发送推送， error：%@", error);
 //    }];
 //
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"locationSuc" object:nil userInfo:@{@"message": [content.body stringByAppendingString:content.title]}];
@@ -205,7 +205,7 @@
 {
     if (error)
     {
-        NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+        DefLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
     } if (location) {//得到定位信息，添加annotation
         if (![self canUpload]) return;
         //
@@ -213,10 +213,10 @@
 //               dispatch_once(&onceToken, ^{
         
            if (location.location) {
-               NSLog(@"LOC = %@",location.location);
+               DefLog(@"LOC = %@",location.location);
            }
            if (location.rgcData) {
-               NSLog(@"rgc = %@",[location.rgcData description]);
+               DefLog(@"rgc = %@",[location.rgcData description]);
            }
            [self uploadCurrentTime:location];
         
@@ -249,7 +249,7 @@
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         
     }];
-//    NSLog(@"当前的时间是---%@---",[self getCurrentTime]);
+//    DefLog(@"当前的时间是---%@---",[self getCurrentTime]);
 }
 
 

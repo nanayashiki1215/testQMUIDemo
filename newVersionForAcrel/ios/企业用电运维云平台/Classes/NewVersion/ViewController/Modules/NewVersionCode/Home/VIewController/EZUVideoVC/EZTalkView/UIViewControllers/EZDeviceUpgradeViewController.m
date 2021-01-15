@@ -72,7 +72,7 @@
 {
     [EZOPENSDK getDeviceUpgradeStatus:self.deviceSerial
                            completion:^(EZDeviceUpgradeStatus *status, NSError *error) {
-                               NSLog(@"status = %@",status);
+                               DefLog(@"status = %@",status);
                                if(status.upgradeStatus == 2)
                                {
                                    self.upgradeLabel.text = NSLocalizedString(@"device_upgrade_success", @"升级成功");

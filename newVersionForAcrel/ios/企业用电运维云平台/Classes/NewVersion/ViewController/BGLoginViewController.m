@@ -522,9 +522,9 @@
     if (user.emasAppKey.length && user.emasAppSecret.length) {
         [CloudPushSDK asyncInit:user.emasAppKey appSecret:user.emasAppSecret callback:^(CloudPushCallbackResult *res) {
             if (res.success) {
-                NSLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
+                DefLog(@"Push SDK init success, deviceId: %@. ", [CloudPushSDK getDeviceId]);
             } else {
-                NSLog(@"Push SDK init failed, error: %@", res.error);
+                DefLog(@"Push SDK init failed, error: %@", res.error);
             }
         }];
     }
@@ -534,9 +534,9 @@
     // 请从控制台下载AliyunEmasServices-Info.plist配置文件，并正确拖入工程
 //    [CloudPushSDK autoInit:^(CloudPushCallbackResult *res) {
 //        if (res.success) {
-//            NSLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
+//            DefLog(@"Push SDK init success, deviceId: %@.", [CloudPushSDK getDeviceId]);
 //        } else {
-//            NSLog(@"Push SDK init failed, error: %@", res.error);
+//            DefLog(@"Push SDK init failed, error: %@", res.error);
 //        }
 //    }];
 }
@@ -638,7 +638,7 @@
 //    @[ /*IOS_VPN @"/" IP_ADDR_IPv6, IOS_VPN @"/" IP_ADDR_IPv4,*/ IOS_CELLULAR @"/" IP_ADDR_IPv6, IOS_WIFI2 @"/" IP_ADDR_IPv6, IOS_WIFI1 @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv6] ;
 //
 //    NSDictionary *addresses = [self getIPAddresses];
-//    NSLog(@"addresses: %@", addresses);
+//    DefLog(@"addresses: %@", addresses);
 //
 //    __block NSString *address;
 //    [searchArray enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop)

@@ -99,17 +99,17 @@
                          }
                      }];
 //    [[EzvizDeviceManager sharedManager] startP2PHolePunching:_cameraInfo.cameraId completion:^(BOOL result, NSError *error) {
-//        NSLog(@"result = %d, error = %@", result, error);
+//        DefLog(@"result = %d, error = %@", result, error);
 //    }];
     
 //    [EZOPENSDK getStorageStatus:self.cameraInfo.deviceSerial
 //                     completion:^(NSArray *storageStatus, NSError *error) {
-//                         NSLog(@"storageStatus = %@, error = %@", storageStatus, error);
+//                         DefLog(@"storageStatus = %@, error = %@", storageStatus, error);
 //                         EZStorageInfo *info = storageStatus[0];
 //                         [EZOPENSDK formatStorage:self.cameraInfo.deviceSerial
 //                                     storageIndex:info.index
 //                                       completion:^(NSError *error) {
-//                                           NSLog(@"format command error = %@", error);
+//                                           DefLog(@"format command error = %@", error);
 //                                           if (!error || error.code == 120016)
 //                                           {
 //                                               [self checkStorageStatus:nil];
@@ -122,7 +122,7 @@
 {
 //    [EZOPENSDK getStorageStatus:self.cameraInfo.deviceSerial
 //                     completion:^(NSArray *storageStatus, NSError *error) {
-//                         NSLog(@"started format, storageStatus = %@, error = %@", storageStatus, error);
+//                         DefLog(@"started format, storageStatus = %@, error = %@", storageStatus, error);
 //                         if (!error)
 //                         {
 //                             //5s获取一次升级状态

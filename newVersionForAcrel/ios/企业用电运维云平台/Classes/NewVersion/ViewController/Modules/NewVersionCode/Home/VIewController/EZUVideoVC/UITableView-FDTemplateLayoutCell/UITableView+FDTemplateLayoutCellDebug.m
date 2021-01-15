@@ -35,7 +35,7 @@
 
 - (void)fd_debugLog:(NSString *)message {
     if (self.fd_debugLogEnabled) {
-        NSLog(@"** FDTemplateLayoutCell ** %@", message);
+        DefLog(@"** FDTemplateLayoutCell ** %@", message);
     }
 }
 

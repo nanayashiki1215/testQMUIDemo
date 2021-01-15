@@ -86,11 +86,11 @@
 -(void)onCreateServerFence:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"Server Fence Create 格式转换出错");
+        DefLog(@"Server Fence Create 格式转换出错");
         return;
     }
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"Server Fence Create 返回错误");
+        DefLog(@"Server Fence Create 返回错误");
         dispatch_async(MAIN_QUEUE, ^{
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"创建服务端围栏失败" message:dict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -108,11 +108,11 @@
 -(void)onUpdateServerFence:(NSData *)response {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:nil];
     if (nil == dict) {
-        NSLog(@"Server Fence Update 格式转换出错");
+        DefLog(@"Server Fence Update 格式转换出错");
         return;
     }
     if (0 != [dict[@"status"] intValue]) {
-        NSLog(@"Server Fence Update 返回错误");
+        DefLog(@"Server Fence Update 返回错误");
         dispatch_async(MAIN_QUEUE, ^{
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更新服务端围栏失败" message:dict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -208,7 +208,7 @@
         NSString *fenceName = self.nameTextField.text;
         double radius = [self.radiusTextField.text doubleValue];
         if (fenceName == nil || fenceName.length == 0) {
-            NSLog(@"没有设置服务端围栏的名称");
+            DefLog(@"没有设置服务端围栏的名称");
             dispatch_async(MAIN_QUEUE, ^{
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"name必须设置" message:@"请设置围栏的名称" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -218,12 +218,12 @@
             return;
         }
         if (fabs(radius) < DBL_EPSILON) {
-            NSLog(@"没有设置服务端圆形围栏的半径，我们默认50米");
+            DefLog(@"没有设置服务端圆形围栏的半径，我们默认50米");
             radius = 50.0;
             self.radiusTextField.text = @"50";
         }
         if (fabs(self.circleCenter.latitude) < DBL_EPSILON || fabs(self.circleCenter.longitude) < DBL_EPSILON) {
-            NSLog(@"没有设置服务端圆形围栏的圆心");
+            DefLog(@"没有设置服务端圆形围栏的圆心");
             dispatch_async(MAIN_QUEUE, ^{
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"圆心必须设置" message:@"请点击地图空白处以设置圆形围栏的圆心" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -237,7 +237,7 @@
         NSUInteger denoise = self.denoiseTextField.text == nil ? 0 : [self.denoiseTextField.text integerValue];
         NSString *monitoredObject = [USER_DEFAULTS objectForKey:ENTITY_NAME];
         if (monitoredObject == nil) {
-            NSLog(@"没有设置登录的Entity终端名称");
+            DefLog(@"没有设置登录的Entity终端名称");
             dispatch_async(MAIN_QUEUE, ^{
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"缺少监控对象" message:@"请进入轨迹追踪设置页面，设置当前登陆的Entity终端名称，DEMO创建的围栏，以该名称作为监控对象" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];

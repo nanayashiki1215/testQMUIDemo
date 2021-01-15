@@ -88,7 +88,7 @@
     [EZOPENSDK setDeviceName:self.deviceNameTextField.text
                 deviceSerial:self.deviceInfo.deviceSerial
                   completion:^(NSError *error) {
-                      NSLog(@"error = %@",error);
+                      DefLog(@"error = %@",error);
                       if(!error)
                       {
 //                          self.cameraInfo.deviceName = self.deviceNameTextField.text;

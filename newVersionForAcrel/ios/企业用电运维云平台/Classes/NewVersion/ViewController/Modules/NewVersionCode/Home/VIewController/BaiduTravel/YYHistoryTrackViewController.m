@@ -157,7 +157,7 @@ static NSString * const kArrowTitle = @"箭头";
     WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
         
         NSString *dateString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
-        NSLog(@"选择的日期：%@",dateString);
+        DefLog(@"选择的日期：%@",dateString);
         self.param.startTime = [selectDate timeIntervalSince1970];
         [sender setTitle:dateString forState:UIControlStateNormal];
     }];
@@ -175,7 +175,7 @@ static NSString * const kArrowTitle = @"箭头";
         
         NSString *dateString = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
         self.param.endTime = [selectDate timeIntervalSince1970];
-        NSLog(@"选择的日期：%@",dateString);
+        DefLog(@"选择的日期：%@",dateString);
         [sender setTitle:dateString forState:UIControlStateNormal];
     }];
     datepicker.doneButtonTitle = DefLocalizedString(@"Sure");

@@ -138,7 +138,7 @@
 {
     if (alertView == m_alertDelView) {
         if (0 == buttonIndex) {
-            NSLog(@"cancel delete the %ld alarmMessage!", (long)m_btnDetelte.tag);
+            DefLog(@"cancel delete the %ld alarmMessage!", (long)m_btnDetelte.tag);
             return;
         }
         else if (1 == buttonIndex) {
@@ -151,7 +151,7 @@
                 if (![errMsg isEqualToString:[MSG_SUCCESS mutableCopy]]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self hideLoading];
-                        NSLog(@"delete msg failed");
+                        DefLog(@"delete msg failed");
                         m_alertDelFailView = [[UIAlertView alloc] initWithTitle:@"alarm" message:@"delete failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                         [m_alertDelFailView show];
                     });
@@ -250,7 +250,7 @@
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     self.m_MessageNull.hidden = m_msgCellNumber == 0 ? NO : YES;
-    NSLog(@"message num[%ld]", (long)m_msgCellNumber);
+    DefLog(@"message num[%ld]", (long)m_msgCellNumber);
     return m_msgCellNumber <= MESSAGE_NUM_MAX ? m_msgCellNumber : MESSAGE_NUM_MAX;
 }
 
@@ -262,26 +262,26 @@
 
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 
-    NSLog(@"the row is %ld\n", (long)[indexPath row]);
+    DefLog(@"the row is %ld\n", (long)[indexPath row]);
 
     UIImage* imgPic = nil;
 
     if (nil != m_downloadPicture[[indexPath row]].picData) {
-        NSLog(@"test cell image thumbnail");
+        DefLog(@"test cell image thumbnail");
         imgPic = [UIImage imageWithData:m_downloadPicture[[indexPath row]].picData];
-        NSLog(@"cell[%ld] decrypt imgPic %@", (long)[indexPath row], (imgPic ? @"successfully" : @"failed"));
+        DefLog(@"cell[%ld] decrypt imgPic %@", (long)[indexPath row], (imgPic ? @"successfully" : @"failed"));
         if (!imgPic) {
             imgPic = [UIImage leChangeImageNamed:DefaultCover_Png];
         }
     }
     else {
-        NSLog(@"test cell image default");
+        DefLog(@"test cell image default");
         imgPic = [UIImage leChangeImageNamed:DefaultCover_Png];
     }
 
     [m_messageListLock lock];
     if ([indexPath row] >= [m_msgInfoArray count]) {
-        NSLog(@"cellForRowAtIndexPath index error ,count[%lu],index[%ld]", (unsigned long)[m_msgInfoArray count], (long)[indexPath row]);
+        DefLog(@"cellForRowAtIndexPath index error ,count[%lu],index[%ld]", (unsigned long)[m_msgInfoArray count], (long)[indexPath row]);
         [m_messageListLock unlock];
         dispatch_async(dispatch_get_main_queue(), ^{
             [m_messageList reloadData];
@@ -342,7 +342,7 @@
         dispatch_async(whole_pic_download, ^{
             NSString* picUrl = [((AlarmMessageInfo*)[m_msgInfoArray objectAtIndex:[indexPath row]])->picArray[0] mutableCopy];
             if (!picUrl) {
-                NSLog(@"MessageViewController picUrl is nil");
+                DefLog(@"MessageViewController picUrl is nil");
                 return;
             }
             NSURL* httpUrl = [NSURL URLWithString:picUrl];
@@ -353,14 +353,14 @@
                 NSData* picData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
 
                 if (response == nil) {
-                    NSLog(@"download failed");
+                    DefLog(@"download failed");
                 }
                 else {
                     m_downloadPicture[m_downloadingPos].picData = picData;
                     NSData* dataOut = [[NSData alloc] init];
                     
                     NSInteger iret = [m_util decryptPic:picData deviceID:m_strDevSelected key:m_encryptKey token:m_accessToken bufOut:&dataOut];
-                    NSLog(@"decrypt iret[%ld]", (long)iret);
+                    DefLog(@"decrypt iret[%ld]", (long)iret);
                     if (0 == iret) {
                         UIImage* img = [UIImage imageWithData:[NSData dataWithBytes:[dataOut bytes] length:[dataOut length]]];
                         [m_wholePic setImage:img];
@@ -441,20 +441,20 @@
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
 
         if (m_downloadingPos < 0) {
-            NSLog(@"m_downloadingPos[%ld]", (long)m_downloadingPos);
+            DefLog(@"m_downloadingPos[%ld]", (long)m_downloadingPos);
             return;
         }
 
         if (response == nil) {
-            NSLog(@"download failed");
+            DefLog(@"download failed");
             m_downloadPicture[m_downloadingPos].downStatus = DOWNLOAD_FAILED;
         }
         else {
-            NSLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
+            DefLog(@"connectionDidFinishLoading m_downloadingPos[%ld]", (long)m_downloadingPos);
             m_downloadPicture[m_downloadingPos].picData = data;
             NSData* dataOut = [[NSData alloc] init];
             NSInteger iret = [m_util decryptPic:m_downloadPicture[m_downloadingPos].picData deviceID:m_strDevSelected key:m_encryptKey token:m_accessToken bufOut:&dataOut];
-            NSLog(@"decrypt iret[%ld]", (long)iret);
+            DefLog(@"decrypt iret[%ld]", (long)iret);
             if (0 == iret) {
                 [m_downloadPicture[m_downloadingPos] setData:[NSData dataWithBytes:[dataOut bytes] length:[dataOut length]] status:DOWNLOAD_FINISHED];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -489,7 +489,7 @@
 
 - (void)dealloc
 {
-    //    NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
-    //    NSLog(@"MessageViewController dealloc");
+    //    DefLog(@"retain count = %ld\n", CFGetRetainCount((__bridge CFTypeRef)(self)));
+    //    DefLog(@"MessageViewController dealloc");
 }
 @end

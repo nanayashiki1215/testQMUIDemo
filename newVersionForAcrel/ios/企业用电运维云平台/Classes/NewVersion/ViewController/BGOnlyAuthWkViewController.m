@@ -605,7 +605,7 @@
     }
     else
     {
-        NSLog(@"没有摄像头");
+        DefLog(@"没有摄像头");
     }
 }
 
@@ -618,7 +618,7 @@
     {
         return;
         //        NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
-        //        NSLog(@"found a video");
+        //        DefLog(@"found a video");
         //        //获取视频的thumbnail
         //        MPMoviePlayerController *player = [[MPMoviePlayerController alloc]initWithContentURL:videoURL];
         //        image = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
@@ -626,7 +626,7 @@
     }else{
 
 //          self.picDataInfo = info[UIImagePickerControllerMediaMetadata][@"{TIFF}"][@"DateTime"];
-//          NSLog(@"%@**********", self.picDataInfo);
+//          DefLog(@"%@**********", self.picDataInfo);
 //          self.editeOrNot = YES;
 ////                           UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"]; //先把图片转成NSData
 //          UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -637,7 +637,7 @@
 //        NSData *base64Data = [data base64EncodedDataWithOptions:0];
 //        NSString *baseString = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
 //        NSString *dataStr = [data base64Encoding];
-//                  NSLog(@"baseString:%@",baseString);
+//                  DefLog(@"baseString:%@",baseString);
 //                  UIImageView *viewImage = [[UIImageView alloc] initWithImage:waterPoint];
 //                  viewImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 //                  [self.view addSubview:viewImage];
@@ -679,7 +679,7 @@
 //            [changeCollectionRequest addAssets:@[assetPlaceholder]];
 //
 //        } completionHandler:^(BOOL success,NSError * _Nullable error) {
-//            NSLog(@"finished adding");
+//            DefLog(@"finished adding");
 //        }];
         
 //        image = info[UIImagePickerControllerOriginalImage];
@@ -691,7 +691,7 @@
 //    {
 //        ALAssetRepresentation *representation = [myasset defaultRepresentation];
 //        self.imageFileName = [representation filename];
-//        NSLog(@"imageFileName : %@",self.imageFileName);
+//        DefLog(@"imageFileName : %@",self.imageFileName);
 //    };
 //    [self dismissViewControllerAnimated:YES completion:nil];
 //    [self uploadPickImage:[imageURL absoluteString]];
@@ -718,10 +718,10 @@
 //
 //        NSDictionary *gpsData = [imageData objectForKey:(NSString *)kCGImagePropertyGPSDictionary];
 //        //打印纬度
-//        NSLog(@"打印纬度:%@",[gpsData objectForKey:@"Altitude"]);
+//        DefLog(@"打印纬度:%@",[gpsData objectForKey:@"Altitude"]);
 //
 //    }failureBlock:^(NSError *error){
-//        NSLog(@"error:%@",error);
+//        DefLog(@"error:%@",error);
 //    }];
 }
 
@@ -829,7 +829,7 @@
 //        NSData* data = [[NSData alloc] init];
 //        data = [fm contentsAtPath:documentPathLocal];
 //        NSData *data = [NSData dataWithContentsOfURL:documentPathLocal];
-//        NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//        DefLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 
         self.fileURL = [NSURL fileURLWithPath:documentPathLocal];
         self.previewController.qlpTitle = downloadModel.nickName;
@@ -841,7 +841,7 @@
     //网络请求下载文件
     __weak __typeof(self)weakSelf = self;
     [NetService bg_downloadFileFromUrlPath:urlString andSaveTo:documentPath progress:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-         NSLog(@"%p %f/completed=%lld/total=%lld",downloadTask,(double)totalBytesWritten/(double)totalBytesExpectedToWrite, totalBytesWritten , totalBytesExpectedToWrite);
+         DefLog(@"%p %f/completed=%lld/total=%lld",downloadTask,(double)totalBytesWritten/(double)totalBytesExpectedToWrite, totalBytesWritten , totalBytesExpectedToWrite);
         //        dispatch_async(dispatch_get_main_queue(), ^{
         //            downloadCell.fileDownBtn.hidden = YES;
         //            downloadCell.downLoadingLabel.hidden = NO;
@@ -849,7 +849,7 @@
         //            [downloadCell.downLoadingLabel setNeedsDisplay];
         //        });
     } success:^(id respObjc) {
-         NSLog(@"succeed:%@",respObjc);
+         DefLog(@"succeed:%@",respObjc);
         if (respObjc) {
             NSString *localString = [(NSURL *)respObjc absoluteString];
             [realm beginWriteTransaction];
@@ -885,7 +885,7 @@
 //            });
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-         NSLog(@"error");
+         DefLog(@"error");
     }];
     }
 }
@@ -946,7 +946,7 @@
             }
            
            [weakSelf.webView evaluateJavaScript:locationStrJS completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-               NSLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
+               DefLog(@"item:%@ andlocationStrJs:%@",item,locationStrJS);
                
                weakSelf.pageStillLoading = NO;
            }];
@@ -1052,10 +1052,10 @@
         switch (status) {
             case AFNetworkReachabilityStatusReachableViaWWAN:
             case AFNetworkReachabilityStatusReachableViaWiFi:
-                NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                DefLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
                 break;
             case AFNetworkReachabilityStatusNotReachable:
-                NSLog(@"AFNetworkReachabilityStatusNotReachable");
+                DefLog(@"AFNetworkReachabilityStatusNotReachable");
                 locStrJs = @"当前无网络链接，请检查网络设置";
                [weakSelf.webView evaluateJavaScript:[NSString stringWithFormat:@"showToast('%@')", locStrJs] completionHandler:^(id _Nullable item, NSError * _Nullable error) {
 
@@ -1063,7 +1063,7 @@
                break;
             default:
                 //AFNetworkReachabilityStatusUnknown
-                NSLog(@"AFNetworkReachabilityStatusUnknown");
+                DefLog(@"AFNetworkReachabilityStatusUnknown");
                 break;
         }
     DefLog(@"%d,%d,%d",weak.isReachable,weak.isReachableViaWiFi,weak.isReachableViaWWAN);
@@ -1321,7 +1321,7 @@
 #pragma mark - ZYSuspensionViewDelegate 悬浮球代理 轨迹
 - (void)suspensionViewClick:(ZYSuspensionView *)suspensionView
 {
-    NSLog(@"click %@",suspensionView.titleLabel.text);
+    DefLog(@"click %@",suspensionView.titleLabel.text);
     UIViewController *subVC = [[YYServiceViewController alloc] init];
     subVC.title = DefLocalizedString(@"pathtracking");
     [self.susView removeFromScreen];
@@ -1448,7 +1448,7 @@
 //{
 //    [super willMoveToParentViewController:parent];
 //
-//    NSLog(@"%s,%@",__FUNCTION__,parent);
+//    DefLog(@"%s,%@",__FUNCTION__,parent);
 //
 //}
 //
@@ -1456,12 +1456,12 @@
 //{
 //    [super didMoveToParentViewController:parent];
 //
-//    NSLog(@"%s,%@",__FUNCTION__,parent);
+//    DefLog(@"%s,%@",__FUNCTION__,parent);
 //    if(self.isFromAlarm){
 //           [self hideTabbar:NO];
 //       }
 //    if(!parent){
-//        NSLog(@"离开页面");
+//        DefLog(@"离开页面");
 //
 //    }
 //}

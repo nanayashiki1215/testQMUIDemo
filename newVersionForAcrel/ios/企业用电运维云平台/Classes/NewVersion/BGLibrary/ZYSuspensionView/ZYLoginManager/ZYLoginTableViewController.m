@@ -31,7 +31,7 @@ const static NSString *kPasswordKey = @"kPasswordKey";
 
 - (void)dealloc
 {
-//    NSLog(@"%@ %s", self.description, __func__);
+//    DefLog(@"%@ %s", self.description, __func__);
 }
 
 - (void)viewDidLoad {

@@ -10,7 +10,7 @@
 
 //打印log
 #if 0
-#define DefLog(format,...) NSLog(format,##__VA_ARGS__)
+#define DefLog(format,...) DefLog(format,##__VA_ARGS__)
 #else
 #define DefLog(format,...)
 #endif

@@ -85,7 +85,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"%@ dealloc", self.class);
+    DefLog(@"%@ dealloc", self.class);
     [EZOPENSDK releasePlayer:_player];
     [EZOPENSDK releasePlayer:_talkPlayer];
 }
@@ -143,7 +143,7 @@
     {
         //抓图接口演示代码
         [EZOPENSDK captureCamera:_cameraInfo.deviceSerial cameraNo:_cameraInfo.cameraNo completion:^(NSString *url, NSError *error) {
-            NSLog(@"[%@] capture cameraNo is [%d] url is %@, error is %@", _cameraInfo.deviceSerial, (int)_cameraInfo.cameraNo, url, error);
+            DefLog(@"[%@] capture cameraNo is [%d] url is %@, error is %@", _cameraInfo.deviceSerial, (int)_cameraInfo.cameraNo, url, error);
         }];
     }
 #endif
@@ -202,7 +202,7 @@
     if(self.localRecordButton.selected)
     {
         [_player stopLocalRecordExt:^(BOOL ret) {
-            NSLog(@"%d", ret);
+            DefLog(@"%d", ret);
             [_recordTimer invalidate];
             _recordTimer = nil;
             self.localRecordLabel.hidden = YES;
@@ -211,13 +211,13 @@
         }];
     }
     
-    NSLog(@"viewWillDisappear");
+    DefLog(@"viewWillDisappear");
     [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"viewDidDisappear");
+    DefLog(@"viewDidDisappear");
     [super viewDidDisappear:animated];
     [_player stopRealPlay];
     if (_talkPlayer)
@@ -338,7 +338,7 @@
 
 - (void)player:(EZPlayer *)player didPlayFailed:(NSError *)error
 {
-    NSLog(@"player: %@, didPlayFailed: %@", player, error);
+    DefLog(@"player: %@, didPlayFailed: %@", player, error);
     //如果是需要验证码或者是验证码错误
     if (error.code == EZ_SDK_NEED_VALIDATECODE) {
         [self showSetPassword];
@@ -395,7 +395,7 @@
 
 - (void)player:(EZPlayer *)player didReceivedMessage:(NSInteger)messageCode
 {
-    NSLog(@"player: %@, didReceivedMessage: %d", player, (int)messageCode);
+    DefLog(@"player: %@, didReceivedMessage: %d", player, (int)messageCode);
     if (messageCode == PLAYER_REALPLAY_START)
     {
         self.captureButton.enabled = YES;
@@ -426,8 +426,8 @@
                 break;
         }
         
-        NSLog(@"GetInnerPlayerPort:%d", [self.player getInnerPlayerPort]);
-        NSLog(@"GetStreamFetchType:%d", [self.player getStreamFetchType]);
+        DefLog(@"GetInnerPlayerPort:%d", [self.player getInnerPlayerPort]);
+        DefLog(@"GetStreamFetchType:%d", [self.player getStreamFetchType]);
     }
     else if(messageCode == PLAYER_VOICE_TALK_START)
     {
@@ -695,7 +695,7 @@
                    action:EZPTZActionStart
                     speed:2
                    result:^(NSError *error) {
-                       NSLog(@"error is %@", error);
+                       DefLog(@"error is %@", error);
                    }];
 }
 
@@ -730,7 +730,7 @@
                    action:EZPTZActionStop
                     speed:2.0
                    result:^(NSError *error) {
-                        NSLog(@"error is %@", error);
+                        DefLog(@"error is %@", error);
                    }];
 }
 
@@ -790,7 +790,7 @@
     {
         [_player stopLocalRecordExt:^(BOOL ret) {
             
-            NSLog(@"%d", ret);
+            DefLog(@"%d", ret);
             
             [_recordTimer invalidate];
             _recordTimer = nil;
@@ -945,9 +945,9 @@
 //            [PHAssetChangeRequest creationRequestForAssetFromImage:savedImage];
 //        } completionHandler:^(BOOL success, NSError * _Nullable error) {
 //            if (error) {
-//                NSLog(@"%@",@"保存失败");
+//                DefLog(@"%@",@"保存失败");
 //            } else {
-//                NSLog(@"%@",@"保存成功");
+//                DefLog(@"%@",@"保存成功");
 //            }
 //        }];
     }

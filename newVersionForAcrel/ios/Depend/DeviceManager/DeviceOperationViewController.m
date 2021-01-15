@@ -219,8 +219,8 @@ typedef NS_ENUM(NSInteger, Upgrade_Status)
         NSString* oldPassword = alert.textFields[0].text;
         NSString* newPassword = alert.textFields[1].text;
         RestApiService* apiService = [RestApiService shareMyInstance];
-        NSLog(@"old password: %@", oldPassword);
-        NSLog(@"new password: %@", newPassword);
+        DefLog(@"old password: %@", oldPassword);
+        DefLog(@"new password: %@", newPassword);
         if (!oldPassword || 0 == oldPassword.length || !newPassword || 0 == newPassword.length) {
             m_toastLab.text = @"check password valid";
             m_toastLab.hidden = NO;
@@ -364,6 +364,6 @@ typedef NS_ENUM(NSInteger, Upgrade_Status)
 
 - (void)dealloc
 {
-    NSLog(@"DeviceOperationViewController dealloc");
+    DefLog(@"DeviceOperationViewController dealloc");
 }
 @end

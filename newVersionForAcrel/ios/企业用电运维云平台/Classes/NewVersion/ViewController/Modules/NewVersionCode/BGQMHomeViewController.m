@@ -497,6 +497,7 @@
     [_homeScrollView addSubview:_gridListView];
 
     [self.gridListArray removeAllObjects];
+    NSInteger sum = 0;
     for (NSInteger index = 0; index < [_showGridArray count]; index++)
     {
         NSString *gridTitle = _showGridArray[index];
@@ -509,8 +510,15 @@
         NSString *number;
         if (gridID == 347) {
             number = [UserManager manager].privateUnreadNumStr;
-            if (number && [number integerValue]>0) {
-               [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:0 withShowText:number];
+            sum += [number integerValue];
+            if (sum && sum>0) {
+               [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:0 withShowText:[NSString stringWithFormat:@"%ld",sum]];
+            }
+        }else if (gridID == 360){
+            number = [UserManager manager].workOrderUnreadNumStr;
+            sum += [number integerValue];
+            if (sum && sum>0) {
+               [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:0 withShowText:[NSString stringWithFormat:@"%ld",sum]];
             }
         }else{
             number = @"0";
@@ -560,6 +568,20 @@
     isSkip = YES;
     if (gridItem.gridId == 347) {
         [UserManager manager].privateUnreadNumStr = @"0";
+        NSString *workOrderNum = [UserManager manager].workOrderUnreadNumStr;
+        if([workOrderNum integerValue] && [workOrderNum integerValue]>0){
+            [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:workOrderNum];
+        }else{
+            [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:@""];
+        }
+    }else if (gridItem.gridId == 360){
+        [UserManager manager].workOrderUnreadNumStr = @"0";
+        NSString *workNum = [UserManager manager].privateUnreadNumStr;
+        if([workNum integerValue] && [workNum integerValue]>0){
+            [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:workNum];
+        }else{
+            [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:@""];
+        }
         [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:@""];
     }
     //查看是否有选中的格子，并且比较点击的格子是否就是选中的格子
@@ -1513,11 +1535,11 @@
                     showStrIcon = @"dsbgl14";
                 }else if([showfCode isEqualToString:@"359"]){
                     //平台报表
-                    showStrIcon = @"dsbgl14";
+                    showStrIcon = @"dsbgl15";
                     [self getPlatformData:showfMenuid];
                 }else if([showfCode isEqualToString:@"360"]){
                     //通知工单
-                    showStrIcon = @"dsbgl14";
+                    showStrIcon = @"dsbgl16";
                 }
             }
             [showMutaiArray addObject:showStrTitle];

@@ -156,7 +156,7 @@
     [self.view bringSubviewToFront:livePlayBarView];
     [self.view bringSubviewToFront:m_videoProgressInd];
     [m_play setWindowListener:(id<LCOpenSDK_EventListener>)self];
-    NSLog(@"self = %p", self);
+    DefLog(@"self = %p", self);
 }
 
 #pragma mark - 工具条布局
@@ -278,7 +278,7 @@
 - (void)onPlayerResult:(NSString*)code Type:(NSInteger)type Index:(NSInteger)index
 {
     // play 基于503错误码的连接最大数错误，错误状态  code-1000;  // HTTP交互出错或超时
-    NSLog(@"code = %@, type = %ld", code, (long)type);
+    DefLog(@"code = %@, type = %ld", code, (long)type);
     NSString* displayLab;
     if (99 == type) {
         displayLab = [code isEqualToString:@"-1000"] ? @"Play Network Timeout" : [NSString stringWithFormat:@"Play Failed，[%@]", code];
@@ -341,7 +341,7 @@
 #pragma mark - 开始播放回调
 - (void)onPlayBegan:(NSInteger)index
 {
-    NSLog(@"LiveVideoController onPlayBegan");
+    DefLog(@"LiveVideoController onPlayBegan");
     dispatch_async(dispatch_get_main_queue(), ^{
         [m_tipLab setText:@"Start to Play"];
         m_screenImg.hidden = YES;
@@ -361,7 +361,7 @@
 #pragma mark - 播放数据回调
 - (void)onReceiveData:(NSInteger)len Index:(NSInteger)index
 {
-        NSLog(@"retain count = %ld\n", CFGetRetainCount((__bridge
+        DefLog(@"retain count = %ld\n", CFGetRetainCount((__bridge
         CFTypeRef)(self)));
 }
 
@@ -464,7 +464,7 @@
 #pragma mark - 设备PTZ控制
 - (void)onPTZControl
 {
-    NSLog(@"LiveVideoController [%@]", m_devAbilitySelected);
+    DefLog(@"LiveVideoController [%@]", m_devAbilitySelected);
 
     if (([m_devAbilitySelected rangeOfString:@"PTZ"].location == NSNotFound) && ([m_devAbilitySelected rangeOfString:@"PT"].location == NSNotFound)) {
         [m_tipLab setText:@"Device don't have PTZ and PT"];
@@ -527,7 +527,7 @@
     NSString* strDate = [dataFormat stringFromDate:[NSDate date]];
     NSString* datePath = [picDirectory stringByAppendingPathComponent:strDate];
     NSString* picPath = [datePath stringByAppendingString:@".jpg"];
-    NSLog(@"test jpg name[%@]\n", picPath);
+    DefLog(@"test jpg name[%@]\n", picPath);
 
     NSFileManager* fileManage = [NSFileManager defaultManager];
     NSError* pErr;
@@ -558,7 +558,7 @@
     [PHAsset deleteFormCameraRoll:imgURL success:^{
     } failure:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Error:%@", error.description);
+            DefLog(@"Error:%@", error.description);
             [NSThread detachNewThreadSelector:@selector(updateText:)
                                      toTarget:self
                                    withObject:@"Delete Failed"];
@@ -573,7 +573,7 @@
         });
     } failure:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Error:%@", error.description);
+            DefLog(@"Error:%@", error.description);
             [NSThread detachNewThreadSelector:@selector(updateText:)
                                      toTarget:self
                                    withObject:@"Save Failed"];
@@ -594,7 +594,7 @@
         [m_talker setListener:(id<LCOpenSDK_TalkerListener>)self];
         NSInteger iretValue = [m_talker playTalk:m_accessToken devID:m_strDevSelected psk:m_encryptKey optimize:YES];
         if (iretValue < 0) {
-            NSLog(@"talk failed");
+            DefLog(@"talk failed");
             [self hideLoading:TALK_PROGRESS_IND];
             [m_talker setListener:nil];
             return;
@@ -602,7 +602,7 @@
         [m_talkBtn setBackgroundImage:[UIImage leChangeImageNamed:LiveVideo_Speak_Click_Png] forState:UIControlStateNormal];
         m_talkBtn.tag = 1;
     } else {
-        NSLog(@"onTalk ending====\n");
+        DefLog(@"onTalk ending====\n");
         [m_tipLab setText:@""];
         if (m_talker) {
             if (YES == m_isTalking) {
@@ -629,7 +629,7 @@
 #pragma mark - 对讲回调
 - (void)onTalkResult:(NSString*)error TYPE:(NSInteger)type
 {
-    NSLog(@"error = %@, type = %ld", error, (long)type);
+    DefLog(@"error = %@, type = %ld", error, (long)type);
     NSString* displayLab;
     if (99 == type) {
         displayLab = [error isEqualToString:@"-1000"] ? @"Talk Network Timeout" : [NSString stringWithFormat:@"Talk Failed，[%@]", error];
@@ -690,13 +690,13 @@
         NSString* myDirectory = [libraryDirectory stringByAppendingPathComponent:@"lechange"];
         NSString* davDirectory = [myDirectory stringByAppendingPathComponent:@"video"];
 
-        NSLog(@"test name[%@]\n", davDirectory);
+        DefLog(@"test name[%@]\n", davDirectory);
         NSDateFormatter* dataFormat = [[NSDateFormatter alloc] init];
         [dataFormat setDateFormat:@"yyyyMMddHHmmss"];
         NSString* strDate = [dataFormat stringFromDate:[NSDate date]];
         NSString* datePath = [davDirectory stringByAppendingPathComponent:strDate];
         m_davPath = [datePath stringByAppendingFormat:@"_video_%@.mp4", m_strDevSelected];
-        NSLog(@"test record name[%@]\n", m_davPath);
+        DefLog(@"test record name[%@]\n", m_davPath);
 
         NSFileManager* fileManage = [NSFileManager defaultManager];
         NSError* pErr;
@@ -728,13 +728,13 @@
             return;
         }
         [m_play stopRecord];
-        NSLog(@"m_davPath = %@", m_davPath);
+        DefLog(@"m_davPath = %@", m_davPath);
         NSURL *davURL = [NSURL fileURLWithPath:m_davPath];
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(m_davPath)) {
             [PHAsset deleteFormCameraRoll:davURL success:^{
             } failure:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"Error:%@", error.description);
+                    DefLog(@"Error:%@", error.description);
                     [NSThread detachNewThreadSelector:@selector(updateText:)
                                              toTarget:self
                                            withObject:@"Delete Failed"];
@@ -774,7 +774,7 @@
 #pragma mark - 单击播放屏幕
 - (void)onControlClick:(CGFloat)dx dy:(CGFloat)dy Index:(NSInteger)index
 {
-    NSLog(@"11111111111");
+    DefLog(@"11111111111");
 }
 #pragma mark - 双击播放屏幕
 - (void)onWindowDBClick:(CGFloat)dx dy:(CGFloat)dy Index:(NSInteger)index
@@ -945,7 +945,7 @@
                dy:(CGFloat)dy
             Index:(NSInteger)index
 {
-    NSLog(@"LiveVideoViewController onSlipEnd");
+    DefLog(@"LiveVideoViewController onSlipEnd");
 }
 #pragma mark - 缩放播放屏幕
 - (void)onZooming:(CGFloat)scale Index:(NSInteger)index
@@ -997,7 +997,7 @@
 
 - (void)viewWillLayoutSubviews
 {
-    NSLog(@"do nothing, but rewrite method! ");
+    DefLog(@"do nothing, but rewrite method! ");
 }
 
 - (void)layoutViews:(UIInterfaceOrientation)InterfaceOrientation
@@ -1076,7 +1076,7 @@
 #pragma mark - 从后台返回
 - (void)onActive:(id)sender
 {
-    NSLog(@"onActive motivated");
+    DefLog(@"onActive motivated");
     
 }
 #pragma mark - 退出到后台
@@ -1095,7 +1095,7 @@
     [self enableAllBtn:NO];
     m_replayBtn.hidden = NO;
 
-    NSLog(@"onResignActive motivated");
+    DefLog(@"onResignActive motivated");
 }
 
 //页面将要消失时释放
@@ -1117,6 +1117,6 @@
 
 - (void)dealloc
 {
-    NSLog(@"dealloc LiveVideoController");
+    DefLog(@"dealloc LiveVideoController");
 }
 @end

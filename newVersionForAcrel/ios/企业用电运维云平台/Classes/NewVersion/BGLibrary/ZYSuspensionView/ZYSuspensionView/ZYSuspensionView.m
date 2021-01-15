@@ -195,7 +195,7 @@ static ZYSuspensionView *_instance;
             self.containerWindow.center = newCenter;
         }];
     }else{
-        NSLog(@"pan state : %zd", p.state);
+        DefLog(@"pan state : %zd", p.state);
     }
 }
 
