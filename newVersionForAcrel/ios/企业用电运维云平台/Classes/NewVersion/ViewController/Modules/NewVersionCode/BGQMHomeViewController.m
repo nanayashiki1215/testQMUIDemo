@@ -336,7 +336,6 @@
                 language = [NSNumber numberWithBool:YES];
             }
     }
-        
     [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];

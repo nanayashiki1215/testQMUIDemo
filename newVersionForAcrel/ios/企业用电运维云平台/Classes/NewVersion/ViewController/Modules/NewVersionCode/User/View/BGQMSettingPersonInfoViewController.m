@@ -77,7 +77,6 @@
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [MBProgressHUD showError:@"请求失败"];
-        
     }];
 }
 

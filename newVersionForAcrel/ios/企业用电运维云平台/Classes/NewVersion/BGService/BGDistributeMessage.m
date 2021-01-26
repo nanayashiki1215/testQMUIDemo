@@ -69,7 +69,7 @@
                   [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:0 withShowText:workNum];
                   [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; //清除角标
  //                BGWeakSelf;
-                 NSString *taskID = [dict bg_StringForKeyNotNull:@"fTaskid"];
+                 NSString *taskID = [dict bg_StringForKeyNotNull:@"fWorkOrderId"];
                  if (taskID && [UserManager manager].isOpenBoxInApp) {
                       [self showTopNoticeView:dict];
                  }
@@ -129,8 +129,8 @@
                                     //360 通知工单
                                     NSString *taskid = [data bg_StringForKeyNotNull:@"fWorkOrderId"];
                                     //是否可抢
-                                    NSString *grabbed = [data bg_StringForKeyNotNull:@"grabbed"];
-                                    if(taskid && grabbed){
+//                                    NSString *grabbed = [data bg_StringForKeyNotNull:@"grabbed"];
+                                    if(taskid){
                                        NSString *fAction;
                                        NSString *fFunctionurl;
                                        for (NSDictionary *nodeDic in homeList) {

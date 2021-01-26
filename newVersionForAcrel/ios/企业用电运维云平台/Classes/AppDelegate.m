@@ -387,6 +387,85 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
         if (fAlarmeventlogid) {
             [self pushNoYYWebview:@"2" andHtmlName:@"alarmsDetailNew"];
         }
+    }else if ([pushType isEqualToString:@"workorder"]){
+        //通知工单
+        NSArray *homeList;
+        UserManager *user = [UserManager manager];
+        NSString *versionURL = [user.rootMenuData objectForKeyNotNull:@"H5_2"];
+        NSArray *uiArray = user.rootMenuData[@"rootMenu"];
+        for (NSDictionary *homeDic in uiArray) {
+            NSString *fCode = [NSString changgeNonulWithString:homeDic[@"fCode"]];
+            if ([fCode isEqualToString:@"homePage"]) {
+                homeList = homeDic[@"nodes"];
+            }
+        }
+        if (homeList.count>0) {
+                //360 通知工单
+                NSString *taskid = [userInfo bg_StringForKeyNotNull:@"fWorkOrderId"];
+                //是否可抢
+//              NSString *grabbed = [data bg_StringForKeyNotNull:@"grabbed"];
+                if(taskid){
+                   NSString *fAction;
+                   NSString *fFunctionurl;
+                   for (NSDictionary *nodeDic in homeList) {
+                       if ([nodeDic[@"fCode"] isEqualToString:@"360"]) {
+                           fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                           fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                       }
+                   }
+                   if (fFunctionurl.length>0) {
+                      BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                              NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RobNotificDetail" ofType:@"html" inDirectory:@"aDevices"];
+                      nomWebView.isUseOnline = NO;
+                      nomWebView.localUrlString = filePath;
+                      nomWebView.showWebType = showWebTypeWithPush;
+                      nomWebView.pathParamStr = taskid;
+                      [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                   }else{
+                       BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                       urlWebView.isUseOnline = YES;
+                       if (versionURL.length>0) {
+                           NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                           NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                           NSString *urlStr = [str stringByAppendingString:@"RobNotificDetail.html"];
+                           urlWebView.onlineUrlString = urlStr;
+                           urlWebView.showWebType = showWebTypeWithPush;
+                           urlWebView.pathParamStr = taskid;
+                          [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                        }
+                   }
+                }else{
+                    NSString *fAction;
+                    NSString *fFunctionurl;
+                    for (NSDictionary *nodeDic in homeList) {
+                        if ([nodeDic[@"fCode"] isEqualToString:@"360"]) {
+                            fAction = [NSString changgeNonulWithString:nodeDic[@"fActionurl"]];
+                            fFunctionurl = [NSString changgeNonulWithString:nodeDic[@"fFunctionfield"]];
+                        }
+                    }
+                    if (fFunctionurl.length>0) {
+                       BGUIWebViewController *nomWebView = [[BGUIWebViewController alloc] init];
+                               NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RobNotificList" ofType:@"html" inDirectory:@"aDevices"];
+                       nomWebView.isUseOnline = NO;
+                       nomWebView.localUrlString = filePath;
+                       nomWebView.showWebType = showWebTypeDevice;
+                       //        self.tabBarController.hidesBottomBarWhenPushed = YES;
+        //               [self.navigationController pushViewController:nomWebView animated:YES];
+                         [[self findCurrentViewController].navigationController pushViewController:nomWebView animated:YES];
+                    }else{
+                        BGUIWebViewController *urlWebView = [[BGUIWebViewController alloc] init];
+                        urlWebView.isUseOnline = YES;
+                        if (versionURL.length>0) {
+                            NSString *urlstring = [NSString stringWithFormat:@"/%@/",versionURL];
+                            NSString *str = [GetBaseURL stringByAppendingString:urlstring];
+                            NSString *urlStr = [str stringByAppendingString:fAction];
+                            urlWebView.onlineUrlString = urlStr;
+                            urlWebView.showWebType = showWebTypeDevice;
+                           [[self findCurrentViewController].navigationController pushViewController:urlWebView animated:YES];
+                         }
+                    }
+                }
+            }
     }else if ([pushType isEqualToString:@"work"]){
         NSArray *homeList;
         UserManager *user = [UserManager manager];
@@ -532,7 +611,6 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
                 }
             }
         }
-        
     }
 }
 
