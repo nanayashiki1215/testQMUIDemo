@@ -151,13 +151,17 @@
 #define EZUIKitUrlStr           @"EZUIKitUrlStr"
 #define EZUIKitUrlStrOhter      @"EZUIKitUrlStrOhter"
 #define EZUIKitApiUrl           @"EZUIKitApiUrl"
-#define EZUIKitMode           @"EZUIKitMode"
+#define EZUIKitMode             @"EZUIKitMode"
 
-#define EZAPPKEY @"cec0dca73dfc4782bc84375a57cd8170"
+#define EZAPPKEY  @"cec0dca73dfc4782bc84375a57cd8170"
 #define EZAPPTestAccessToken @"at.4rg8drrp61vxbdnjcwy7qv9pa4ta9t26-41vxl12n5l-0gbiy8d-3iqf5ouvx"
 #define EZBASEURL @"ezopen://open.ys7.com/"
 
 #define EZOPENSDK [EZOpenSDK class]
+//偏移量
+#define BGSECRECTOFFSET @"0123456789ABCDEF"
+//key值
+#define BGSECRECTKEY    @"1234567890ABCDEF"
 
 //1.hd.live 高清
 //1.live 流畅

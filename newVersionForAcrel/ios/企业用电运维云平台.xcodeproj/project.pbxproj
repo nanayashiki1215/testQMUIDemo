@@ -232,6 +232,7 @@
 		B683EE2724C6CE3E00DF42D1 /* NSString+LCOpenSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE2124C6CE3D00DF42D1 /* NSString+LCOpenSDK.m */; };
 		B683EE2824C6CE3E00DF42D1 /* OpenApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE2224C6CE3D00DF42D1 /* OpenApiService.m */; };
 		B683EE2924C6CE3E00DF42D1 /* OpenApiNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B683EE2424C6CE3D00DF42D1 /* OpenApiNetworking.m */; };
+		B685C79025C3E3BC006F0851 /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B685C78F25C3E3BC006F0851 /* SecurityUtil.m */; };
 		B68AF11D237BD75800F51D0E /* BGQMMsgNotifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */; };
 		B68D2C6F22A63D87001C00EC /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4D22A63D86001C00EC /* UILabel+GHome.m */; };
 		B68D2C7022A63D87001C00EC /* NSString+Arc4random.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D2C4E22A63D86001C00EC /* NSString+Arc4random.m */; };
@@ -1243,6 +1244,8 @@
 		B683EE2224C6CE3D00DF42D1 /* OpenApiService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenApiService.m; sourceTree = "<group>"; };
 		B683EE2324C6CE3D00DF42D1 /* OpenApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenApiClient.h; sourceTree = "<group>"; };
 		B683EE2424C6CE3D00DF42D1 /* OpenApiNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenApiNetworking.m; sourceTree = "<group>"; };
+		B685C78E25C3E3BC006F0851 /* SecurityUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
+		B685C78F25C3E3BC006F0851 /* SecurityUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 		B68AF11B237BD75800F51D0E /* BGQMMsgNotifViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGQMMsgNotifViewController.h; sourceTree = "<group>"; };
 		B68AF11C237BD75800F51D0E /* BGQMMsgNotifViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGQMMsgNotifViewController.m; sourceTree = "<group>"; };
 		B68D2C4B22A63D86001C00EC /* NSArray+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Bounds.h"; sourceTree = "<group>"; };
@@ -3912,6 +3915,8 @@
 			isa = PBXGroup;
 			children = (
 				B6693D9323A9B4DA006DFEF0 /* WelcomeView.h */,
+				B685C78E25C3E3BC006F0851 /* SecurityUtil.h */,
+				B685C78F25C3E3BC006F0851 /* SecurityUtil.m */,
 				B61E2138248E1DB30008C9CA /* WPVView */,
 				B6693D9423A9B4DA006DFEF0 /* WelcomeView.m */,
 				B68D2C4922A63D86001C00EC /* GHDropMenu */,
@@ -5177,6 +5182,7 @@
 				B607C2FF237A3BB20097CF98 /* PushMessageDAO.m in Sources */,
 				B6B0085323794F60002A4465 /* LZLPushMessage.m in Sources */,
 				B6D320FF2420C34C00A50F77 /* MWGridViewController.m in Sources */,
+				B685C79025C3E3BC006F0851 /* SecurityUtil.m in Sources */,
 				B6C7690722A0B8DC00DA675D /* QDNavigationBarScrollingSnapAnimatorViewController.m in Sources */,
 				B657DDDD22927C760009BCB0 /* UIButton+WebCache.m in Sources */,
 				B6C768FF22A0B8DC00DA675D /* QDNavigationTitleViewController.m in Sources */,

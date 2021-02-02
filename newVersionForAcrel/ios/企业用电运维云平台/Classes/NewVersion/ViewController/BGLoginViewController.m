@@ -24,6 +24,7 @@
 #import <CloudPushSDK/CloudPushSDK.h>
 
 #import "BGLogFirstViewController.h"
+#import "SecurityUtil.h"
 
 //首先导入头文件信息
 //#include <ifaddrs.h>
@@ -322,6 +323,8 @@
             uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
         }
     }
+    
+    
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"fLoginname":self.usenameTextField.text,

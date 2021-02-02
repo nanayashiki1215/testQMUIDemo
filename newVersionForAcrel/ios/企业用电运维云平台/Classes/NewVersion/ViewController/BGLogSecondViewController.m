@@ -14,6 +14,7 @@
 #import "BGCheckAppVersionMgr.h"
 #import "QDTabBarViewController.h"
 #import "NSString+BGExtension.h"
+#import "SecurityUtil.h"
 
 @interface BGLogSecondViewController ()<QMUITextFieldDelegate>
 @property (nonatomic, strong) QMUITextField * usenameTextField;//账户
@@ -302,7 +303,6 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-      
 }
 
 #pragma mark - MainEvent
@@ -410,6 +410,11 @@
             uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
         }
     }
+    
+    
+   
+    NSString * encryptCBC = [SecurityUtil  encryptAESData:self.pwdTextField.text Withkey:BGSECRECTKEY ivkey: BGSECRECTOFFSET];
+//    NSString * decryptCBC = [SecurityUtil  decryptAESData:encryptCBC Withkey:BGSECRECTKEY ivkey: BGSECRECTOFFSET];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"fLoginname":self.usenameTextField.text,
