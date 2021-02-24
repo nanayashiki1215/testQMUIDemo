@@ -146,29 +146,57 @@
 -(BOOL)isValidPasswordString:(NSString *)passWordString
 {
     //开闭此功能
-    BOOL result = YES;
-//    if ([passWordString length] >= 8 && [passWordString length] <= 16){
-//        //数字条件
-//        NSRegularExpression *tNumRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
-//
-//        //符合数字条件的有几个
-//        NSUInteger tNumMatchCount = [tNumRegularExpression numberOfMatchesInString:passWordString
-//                                                                           options:NSMatchingReportProgress
-//                                                                             range:NSMakeRange(0, passWordString.length)];
-//
-//        //英文字条件
-//        NSRegularExpression *tLetterRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
-//
-//        //符合英文字条件的有几个
-//        NSUInteger tLetterMatchCount = [tLetterRegularExpression numberOfMatchesInString:passWordString
-//                                                                                 options:NSMatchingReportProgress
-//                                                                                   range:NSMakeRange(0, passWordString.length)];
-//
-//        if(tNumMatchCount >= 1 && tLetterMatchCount >= 1){
-//            result = YES;
-//        }
-//
-//    }
+    BOOL result = NO;
+    if ([passWordString length] >= 8 && [passWordString length] <= 16){
+
+//        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+//        [regex enumerateMatchesInString:self options:NSMatchingReportCompletion range:NSMakeRange(0, self.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+//            if (result.range.length > 0) {
+//                if (block) {
+//                    block([self substringWithRange:result.range], result.range);
+//                }
+//            }
+//        }];
+//        NSString *quan = @"^(?![A-Za-z0-9]+$)(?![a-z0-9\\W]+$)(?![A-Za-z\\W]+$)(?![A-Z0-9\\W]+$)[a-zA-Z0-9\\W]{8,}$";
+//        NSString * regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$";
+        
+//        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+//        result = [pred evaluateWithObject:passWordString];
+        
+        
+//        NSError *error = nil;
+//        //数字英文符号组合条件
+//        NSRegularExpression *allExpression = [NSRegularExpression regularExpressionWithPattern:quan options:NSRegularExpressionCaseInsensitive error:&error];
+//        [allExpression enumerateMatchesInString:passWordString options:NSMatchingReportCompletion range:NSMakeRange(0, passWordString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+//            if (result.range.length > 0) {
+//                DefLog(@"%@",result);
+//            }
+//        }];
+        //字符条件
+        NSRegularExpression *tFURegularEx = [NSRegularExpression regularExpressionWithPattern:@"[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？ ]" options:NSRegularExpressionCaseInsensitive error:nil];
+        NSUInteger tFUhaoMatchCount = [tFURegularEx numberOfMatchesInString:passWordString options:NSMatchingReportProgress range:NSMakeRange(0, passWordString.length)];
+        
+        //数字条件
+        NSRegularExpression *tNumRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
+
+        //符合数字条件的有几个
+        NSUInteger tNumMatchCount = [tNumRegularExpression numberOfMatchesInString:passWordString
+                                                                           options:NSMatchingReportProgress
+                                                                             range:NSMakeRange(0, passWordString.length)];
+        
+        //英文字条件
+        NSRegularExpression *tLetterRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+
+        //符合英文字条件的有几个
+        NSUInteger tLetterMatchCount = [tLetterRegularExpression numberOfMatchesInString:passWordString
+                                                                                 options:NSMatchingReportProgress
+                                                                                   range:NSMakeRange(0, passWordString.length)];
+
+        if(tNumMatchCount >= 1 && tLetterMatchCount >= 1 && tFUhaoMatchCount>=1){
+            result = YES;
+        }
+
+    }
     return result;
 }
 
@@ -181,7 +209,7 @@
           NSString *nowPassWord = self.nowPassWord.text;
           NSString *oldNewPwd = [oldPassword qmui_md5];
           NSString *nowNewPwd = [nowPassWord qmui_md5];
-          DefLog(@"nowNewPwd");
+//          DefLog(@"nowNewPwd");
           NSDictionary *params = @{@"oldPwd":oldNewPwd,@"newPwd":nowNewPwd};
         
         if(self.changePwdType == showChangeSecPwdType){
@@ -193,9 +221,8 @@
                      
                  }];
            }else{
-         [NetService bg_postWithTokenWithPath:@"/modifyUserPwd" params:params success:^(id respObjc) {
+               [NetService bg_postWithTokenWithPath:@"/modifyUserPwd" params:params success:^(id respObjc) {
                      DefLog(@"respObjc:%@",%@);
-                   
                                __weak __typeof(self)weakSelf = self;
                             [weakSelf getLocationWithLoginVersionNo:[UserManager manager].versionNo andToken:[UserManager manager].token];
                                [weakSelf removeAlias:nil];

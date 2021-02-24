@@ -5410,7 +5410,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
@@ -5448,7 +5448,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.4.9;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = OperationMaintenance;
@@ -5471,7 +5471,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = JLG36R4UAW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5506,7 +5506,7 @@
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZOpenSDK",
 					"$(PROJECT_DIR)/企业用电运维云平台/Classes/NewVersion/BGLibrary/EZUIKit",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.4.9;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acrel.substationplatform.operation;
 				PRODUCT_NAME = OperationMaintenance;
