@@ -1135,7 +1135,8 @@ static NSString *const EMASAppSecret = @"6a5c22ea980d2687ec851f7cc109d3d2";
 
 -(void)getAppBasicConfig{
     __weak __typeof(self)weakSelf = self;
-    [NetService bg_getWithTokenWithPathAndNoTips:@"/getAppBasicConfig" params:@{} success:^(id respObjc) {
+    //0 运维 1 3000web 2数据中心
+    [NetService bg_getWithTokenWithPathAndNoTips:@"/getAppBasicConfig" params:@{@"projectType":BGProjectType} success:^(id respObjc) {
         if(!respObjc){
             return ;
         }

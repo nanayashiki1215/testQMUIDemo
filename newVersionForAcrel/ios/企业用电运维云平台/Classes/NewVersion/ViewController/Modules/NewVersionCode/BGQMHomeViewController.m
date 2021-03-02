@@ -38,7 +38,7 @@
  设备控制 352
  */
 
-@interface BGQMHomeViewController ()<MSCycleScrollViewDelegate,CustomGridDelegate,UIScrollViewDelegate,BMKLocationManagerDelegate,BGQMSelectSubstationTVCDelegate>
+@interface BGQMHomeViewController ()<MSCycleScrollViewDelegate,CustomGridDelegate,UIScrollViewDelegate,BMKLocationManagerDelegate,BGQMSelectSubstationTVCDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate,NSURLSessionDelegate,NSURLSessionTaskDelegate>
 {
     BOOL isSelected;
     BOOL contain;
@@ -114,6 +114,25 @@
         [[LocationTool shareInstance] stopLocation];
     }
     
+    //嗅探地址
+    NSString *appUrl = [UserManager manager].orderListUrl;
+    if([appUrl containsString:@"https:"]){
+        //如果是https域名，访问不通降级http
+        [self testUrlHttp:appUrl];
+       
+    }else if ([appUrl containsString:@"http:"]){
+        //如果是http域名，访问不通升级https
+        [self testUrlHttps:appUrl];
+    }
+    
+    NSString *aliUrl = DominAddress;
+    if ([aliUrl containsString:@"https:"]) {
+        //监测并配置阿里云地址
+        [self testAliUrlHttp:aliUrl];
+    }else if ([aliUrl containsString:@"http:"]){
+        //监测并配置阿里云地址
+        [self testAliUrlHttps:aliUrl];
+    }
     //配置小红点
 //    [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:YES withItemsNumber:1 withShowText:@"13"];
 }
@@ -247,7 +266,8 @@
                 language = [NSNumber numberWithBool:YES];
             }
     }
-    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language,
+                                                               @"projectType":BGProjectType} success:^(id respObjc) {
 //        [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
@@ -336,7 +356,8 @@
                 language = [NSNumber numberWithBool:YES];
             }
     }
-    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language,
+                                                               @"projectType":BGProjectType} success:^(id respObjc) {
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
        if (rootData) {
@@ -475,6 +496,213 @@
 
 }
 
+#pragma mark - 重定向
+//监测并转https
+-(void)testUrlHttps:(NSString *)url{
+    NSString *uniqueProjectip = url;
+    if (uniqueProjectip) {
+        if([uniqueProjectip containsString:@"https:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+        }else if ([uniqueProjectip containsString:@"http:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        }
+//        if ([uniqueProjectip containsString:@":"]) {
+//            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+//            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+//        }
+    }
+    
+    NSMutableURLRequest *quest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    quest.HTTPMethod = @"GET";
+    NSURLConnection *connect = [NSURLConnection connectionWithRequest:quest delegate:self];
+    [connect start];
+
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+    
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:quest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        //200
+        NSLog(@"%ld",urlResponse.statusCode);
+        if(urlResponse.statusCode == 200){
+                //保存地址
+            UserManager *user = [UserManager manager];
+            user.orderListUrl = urlResponse.URL.absoluteString;
+                //保存域名
+            [DefNSUD setObject:urlResponse.URL.absoluteString forKey:kBaseUrlString];
+            DefNSUDSynchronize
+            [self createHomeData];
+        }else if(urlResponse.statusCode == 404){
+            if ([url containsString:@"http://"]) {
+                NSString *httpsUrl = url;
+                httpsUrl = [httpsUrl stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
+                [self testUrlHttps:httpsUrl];
+            }
+        }else{
+           
+        }
+        NSLog(@"%@",urlResponse.allHeaderFields);
+        NSDictionary *dic = urlResponse.allHeaderFields;
+        NSLog(@"%@",dic[@"Location"]);
+    }];
+    [task resume];
+}
+
+//监测并转http
+-(void)testUrlHttp:(NSString *)url{
+    NSString *uniqueProjectip = url;
+    if (uniqueProjectip) {
+        if([uniqueProjectip containsString:@"https:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+        }else if ([uniqueProjectip containsString:@"http:"]){
+            //二次调用会用到
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        }
+//        if ([uniqueProjectip containsString:@":"]) {
+//            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+//            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+//        }
+    }
+    
+    NSMutableURLRequest *quest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    quest.HTTPMethod = @"GET";
+    NSURLConnection *connect = [NSURLConnection connectionWithRequest:quest delegate:self];
+    [connect start];
+
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+    
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:quest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        //200
+        NSLog(@"%ld",urlResponse.statusCode);
+        if(urlResponse.statusCode == 200){
+                //保存地址
+            UserManager *user = [UserManager manager];
+            user.orderListUrl = urlResponse.URL.absoluteString;
+                //保存域名
+            [DefNSUD setObject:urlResponse.URL.absoluteString forKey:kBaseUrlString];
+            DefNSUDSynchronize
+            [self createHomeData];
+        }else if(urlResponse.statusCode == 404){
+            if ([url containsString:@"https://"]) {
+                NSString *httpsUrl = url;
+                httpsUrl = [httpsUrl stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
+                [self testUrlHttp:httpsUrl];
+            }
+        }else{
+           
+        }
+        NSLog(@"%@",urlResponse.allHeaderFields);
+        NSDictionary *dic = urlResponse.allHeaderFields;
+        NSLog(@"%@",dic[@"Location"]);
+    }];
+    [task resume];
+}
+
+//转阿里云http
+-(void)testAliUrlHttp:(NSString *)url{
+   
+    NSMutableURLRequest *quest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    quest.HTTPMethod = @"GET";
+    NSURLConnection *connect = [NSURLConnection connectionWithRequest:quest delegate:self];
+    [connect start];
+
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+    
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:quest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        //200
+        NSLog(@"%ld",urlResponse.statusCode);
+        if(urlResponse.statusCode == 200){
+                //保存域名
+            [DefNSUD setObject:urlResponse.URL.absoluteString forKey:@"DominAddressStr"];
+            DefNSUDSynchronize
+        }else if(urlResponse.statusCode == 404){
+            if ([url containsString:@"https://"]) {
+                NSString *httpsUrl = url;
+                httpsUrl = [httpsUrl stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
+                [self testAliUrlHttp:httpsUrl];
+            }
+        }else{
+           
+        }
+        NSLog(@"%@",urlResponse.allHeaderFields);
+        NSDictionary *dic = urlResponse.allHeaderFields;
+        NSLog(@"%@",dic[@"Location"]);
+    }];
+    [task resume];
+}
+//转阿里https
+-(void)testAliUrlHttps:(NSString *)url{
+    
+    NSMutableURLRequest *quest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    quest.HTTPMethod = @"GET";
+    NSURLConnection *connect = [NSURLConnection connectionWithRequest:quest delegate:self];
+    [connect start];
+
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+    
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:quest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        //200
+        NSLog(@"%ld",urlResponse.statusCode);
+        if(urlResponse.statusCode == 200){
+            //保存域名
+            [DefNSUD setObject:urlResponse.URL.absoluteString forKey:@"DominAddressStr"];
+            DefNSUDSynchronize
+        }else if(urlResponse.statusCode == 404){
+            if ([url containsString:@"http://"]) {
+                NSString *httpsUrl = url;
+                httpsUrl = [httpsUrl stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
+                [self testAliUrlHttps:httpsUrl];
+            }
+        }else{
+           
+        }
+        NSLog(@"%@",urlResponse.allHeaderFields);
+        NSDictionary *dic = urlResponse.allHeaderFields;
+        NSLog(@"%@",dic[@"Location"]);
+    }];
+    [task resume];
+}
+//重定向的代理方法
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+willPerformHTTPRedirection:(NSHTTPURLResponse *)response
+        newRequest:(NSURLRequest *)request
+ completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler{
+    //    NSURL *downloadURL = [NSURL URLWithString:model.url];
+    //    NSURLRequest *request = [NSURLRequest requestWithURL:downloadURL];
+    //cancel last download task
+    NSLog(@"location code: %ld",response.statusCode);
+    NSLog(@"location: %@",response.allHeaderFields);
+
+    completionHandler(request);//这个如果为nil则表示拦截跳转。
+}
+
+-(nullable NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(nullable NSURLResponse *)response{
+
+    NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+    
+    NSLog(@"%ld",urlResponse.statusCode);
+    NSLog(@"%@",urlResponse.allHeaderFields);
+    
+    NSDictionary *dic = urlResponse.allHeaderFields;
+    NSLog(@"%@",dic[@"Location"]);
+    
+    return request;
+}
+
 - (void)creatMyScrollView
 {
 #pragma mark - 可拖动的按钮
@@ -581,7 +809,7 @@
         }else{
             [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:@""];
         }
-        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:@""];
+//        [[BGQMToolHelper bg_sharedInstance] bg_setTabbarBadge:NO withItemsNumber:0 withShowText:@""];
     }
     //查看是否有选中的格子，并且比较点击的格子是否就是选中的格子
     for (NSInteger i = 0; i < [_gridListArray count]; i++) {

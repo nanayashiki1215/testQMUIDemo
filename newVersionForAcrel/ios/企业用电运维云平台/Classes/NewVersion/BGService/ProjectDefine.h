@@ -162,6 +162,8 @@
 #define BGSECRECTOFFSET @"0123456789ABCDEF"
 //key值
 #define BGSECRECTKEY    @"1234567890ABCDEF"
+//0 运维 1 3000web 2数据中心
+#define BGProjectType @"0"
 
 //1.hd.live 高清
 //1.live 流畅

@@ -399,6 +399,7 @@
     NSString *orderListUrl = user.orderListUrl;
     //注：不带http需要传后台地址
     NSString *uniqueProjectip = user.orderListUrl;
+    
     if (uniqueProjectip) {
         if([uniqueProjectip containsString:@"https:"]){
             uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
@@ -410,15 +411,20 @@
             uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
         }
     }
-    
-    
+    //
    
-    NSString * encryptCBC = [SecurityUtil  encryptAESData:self.pwdTextField.text Withkey:BGSECRECTKEY ivkey: BGSECRECTOFFSET];
+    
+    NSString * encryptCBC;
+    if([user.indexencryptAll isEqualToString:@"true"]){
+        encryptCBC = [SecurityUtil encryptAESData:self.pwdTextField.text Withkey:BGSECRECTKEY ivkey: BGSECRECTOFFSET];
+    }else{
+        encryptCBC = self.pwdTextField.text;
+    }
 //    NSString * decryptCBC = [SecurityUtil  decryptAESData:encryptCBC Withkey:BGSECRECTKEY ivkey: BGSECRECTOFFSET];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"fLoginname":self.usenameTextField.text,
-                            @"fPassword":self.pwdTextField.text,
+                            @"fPassword":encryptCBC,
                             @"deviceType":@"IOS",
                             @"uniqueProjectip":uniqueProjectip
                           };
@@ -522,6 +528,7 @@
     }];
 }
 
+
 //savePwd
 -(void)checkBtnEvent:(UIButton *)btn12{
     UserManager *user = [UserManager manager];
@@ -583,7 +590,8 @@
                 language = [NSNumber numberWithBool:YES];
             }
     }
-    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language,
+                                                               @"projectType":BGProjectType} success:^(id respObjc) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];

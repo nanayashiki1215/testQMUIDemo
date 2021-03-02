@@ -54,6 +54,7 @@
     BOOL _isShowNewVersion;
     NSString *_appIndexSet;
     NSArray *_platformList;
+    NSString *_indexencryptAll;
 }
 
 @property(nonatomic,copy)NSString *account;/**< 用户名 */
@@ -129,6 +130,8 @@
 @property(nonatomic,strong) NSString *appIndexSet;
 //平台报表 12/29
 @property (nonatomic,strong) NSArray *platformList;
+//AES128对称加密
+@property (nonatomic,strong)NSString *indexencryptAll;
 
 //获取单例
 +(instancetype)manager;

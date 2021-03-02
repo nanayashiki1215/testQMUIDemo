@@ -11,7 +11,7 @@
 #import "UIColor+BGExtension.h"
 #import "UIColor+BGExtension.h"
 
-@interface BGLogFirstViewController ()<QMUITextFieldDelegate>
+@interface BGLogFirstViewController ()<QMUITextFieldDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate,NSURLSessionDelegate,NSURLSessionTaskDelegate>
 @property(nonatomic,strong)QMUITextField * IPTextField;
 @property(nonatomic,strong)QMUILabel *IPLabel;//ipAdress
 @property(nonatomic,strong)UIView *bgView;
@@ -228,30 +228,36 @@
         return;
     }
     
-    NSString *uniqueProjectip = orderListUrl;
-    if (uniqueProjectip) {
-        if([uniqueProjectip containsString:@"https:"]){
-            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
-        }else if ([uniqueProjectip containsString:@"http:"]){
-            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-        }
-//        if ([uniqueProjectip containsString:@":"]) {
-//            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
-//            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
-//        }
-    }
+    
     //获取登录页配置
-    BGWeakSelf;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if([orderListUrl containsString:@"https:"]){
+        //如果是https域名，访问不通降级http
+        [self testUrlHttp:orderListUrl];
+    }else if ([orderListUrl containsString:@"http:"]){
+        //如果是http域名，访问不通升级https
+        [self testUrlHttps:orderListUrl];
+    }else{
+        [self checkUrlWithhttpORhttps:orderListUrl];
+    }
+    
+    
     //监测域名地址是否可以访问
 //    [self urliSAvailable:uniqueProjectip];
-    [NetService bg_getWithTestPath:@"sys/testIPValid" params:@{@"ipAddress":uniqueProjectip} success:^(id respObjc) {
-        DefLog(@"%@",respObjc);
-    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-        DefLog(@"%@",respObjc);
-    }];
+//    [NetService bg_getWithTestPath:@"sys/testIPValid" params:@{@"ipAddress":uniqueProjectip} success:^(id respObjc) {
+//        DefLog(@"%@",respObjc);
+//    } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
+//        DefLog(@"%@",respObjc);
+//    }];
     
-    [NetService bg_getIPAddressWithPath:@"main/getAppIndexSets" params:@{@"ip":uniqueProjectip} success:^(id respObjc) {
+}
+
+
+-(void)checkUrlWithhttpORhttps:(NSString *)unqiue{
+    BGWeakSelf;
+    UserManager *user = [UserManager manager];
+    [NetService bg_getIPAddressWithPath:@"main/getAppIndexSets" params:@{@"ip":unqiue} success:^(id respObjc) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         DefLog(@"respObj");
         NSDictionary *dataDic = respObjc[@"data"];
@@ -259,13 +265,16 @@
            NSString *appIndexsset = [NSString changgeNonulWithString:dataDic[@"appIndexSets"]];
            NSString *imageUrl = [NSString changgeNonulWithString:dataDic[@"imgURL"]];
            if(appIndexsset){
-               UserManager *user = [UserManager manager];
                user.appIndexSet = appIndexsset;
            }
            if (imageUrl) {
                [DefNSUD setObject:imageUrl forKey:@"APPLoginImageUrl"];
                 DefNSUDSynchronize
            }
+           NSString *indexEncryot = [NSString changgeNonulWithString:dataDic[@"indexencryptAll"]];
+            if (indexEncryot) {
+                user.indexencryptAll = indexEncryot;
+            }
         }
         if (weakSelf.isPush) {
              [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -279,7 +288,12 @@
             }
         }
     } failure:^(id respObjc, NSString *errorCode, NSString *errorMsg) {
-       
+        if(respObjc){
+            NSDictionary *dic = respObjc[@"data"];
+            if (dic) {
+                user.indexencryptAll = [NSString changgeNonulWithString:dic[@"indexencryptAll"]];
+            }
+        }
         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         if (weakSelf.isPush) {
              [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -400,6 +414,147 @@
     
     [self.popupByWindow showWithAnimated:YES];
 }
+
+#pragma mark - 重定向
+//监测并转https
+-(void)testUrlHttps:(NSString *)url{
+    NSString *uniqueProjectip = url;
+    if (uniqueProjectip) {
+        if([uniqueProjectip containsString:@"https:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+        }else if ([uniqueProjectip containsString:@"http:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        }
+//        if ([uniqueProjectip containsString:@":"]) {
+//            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+//            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+//        }
+    }
+    
+    NSMutableURLRequest *quest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    quest.HTTPMethod = @"GET";
+    NSURLConnection *connect = [NSURLConnection connectionWithRequest:quest delegate:self];
+    [connect start];
+
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+    
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:quest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        //200
+        NSLog(@"%ld",urlResponse.statusCode);
+        if(urlResponse.statusCode == 200){
+                //保存地址
+            UserManager *user = [UserManager manager];
+            user.orderListUrl = urlResponse.URL.absoluteString;
+                //保存域名
+            [DefNSUD setObject:urlResponse.URL.absoluteString forKey:kBaseUrlString];
+            DefNSUDSynchronize
+            
+            [self checkUrlWithhttpORhttps:uniqueProjectip];
+        }else if(urlResponse.statusCode == 404){
+            if ([url containsString:@"http://"]) {
+                NSString *httpsUrl = url;
+                httpsUrl = [httpsUrl stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
+                [self testUrlHttps:httpsUrl];
+            }else{
+               [self checkUrlWithhttpORhttps:uniqueProjectip];
+            }
+        }else{
+            [self checkUrlWithhttpORhttps:uniqueProjectip];
+        }
+        NSLog(@"%@",urlResponse.allHeaderFields);
+        NSDictionary *dic = urlResponse.allHeaderFields;
+        NSLog(@"%@",dic[@"Location"]);
+    }];
+    [task resume];
+}
+
+//监测并转http
+-(void)testUrlHttp:(NSString *)url{
+    NSString *uniqueProjectip = url;
+    if (uniqueProjectip) {
+        if([uniqueProjectip containsString:@"https:"]){
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+        }else if ([uniqueProjectip containsString:@"http:"]){
+            //二次调用会用到
+            uniqueProjectip = [uniqueProjectip stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        }
+//        if ([uniqueProjectip containsString:@":"]) {
+//            NSRange range = [uniqueProjectip rangeOfString:@":" options:NSBackwardsSearch];
+//            uniqueProjectip = [uniqueProjectip substringToIndex:range.location];
+//        }
+    }
+    
+    NSMutableURLRequest *quest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    quest.HTTPMethod = @"GET";
+    NSURLConnection *connect = [NSURLConnection connectionWithRequest:quest delegate:self];
+    [connect start];
+
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+    
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:quest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        //200
+        NSLog(@"%ld",urlResponse.statusCode);
+        if(urlResponse.statusCode == 200){
+                //保存地址
+            UserManager *user = [UserManager manager];
+            user.orderListUrl = urlResponse.URL.absoluteString;
+                //保存域名
+            [DefNSUD setObject:urlResponse.URL.absoluteString forKey:kBaseUrlString];
+            DefNSUDSynchronize
+            [self checkUrlWithhttpORhttps:uniqueProjectip];
+        }else if(urlResponse.statusCode == 404){
+            if ([url containsString:@"https://"]) {
+                NSString *httpsUrl = url;
+                httpsUrl = [httpsUrl stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
+                [self testUrlHttp:httpsUrl];
+            }else{
+               [self checkUrlWithhttpORhttps:uniqueProjectip];
+            }
+        }else{
+            [self checkUrlWithhttpORhttps:uniqueProjectip];
+        }
+        NSLog(@"%@",urlResponse.allHeaderFields);
+        NSDictionary *dic = urlResponse.allHeaderFields;
+        NSLog(@"%@",dic[@"Location"]);
+    }];
+    [task resume];
+}
+
+//重定向的代理方法
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+willPerformHTTPRedirection:(NSHTTPURLResponse *)response
+        newRequest:(NSURLRequest *)request
+ completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler{
+    //    NSURL *downloadURL = [NSURL URLWithString:model.url];
+    //    NSURLRequest *request = [NSURLRequest requestWithURL:downloadURL];
+    //cancel last download task
+    NSLog(@"location code: %ld",response.statusCode);
+    NSLog(@"location: %@",response.allHeaderFields);
+
+    completionHandler(request);//这个如果为nil则表示拦截跳转。
+}
+
+-(nullable NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(nullable NSURLResponse *)response{
+
+    NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+    
+    NSLog(@"%ld",urlResponse.statusCode);
+    NSLog(@"%@",urlResponse.allHeaderFields);
+    
+    NSDictionary *dic = urlResponse.allHeaderFields;
+    NSLog(@"%@",dic[@"Location"]);
+    
+    return request;
+}
+
 
 #pragma mark - 键盘处理
 - (void)keyboardWillShow:(NSNotification *)aNotification{

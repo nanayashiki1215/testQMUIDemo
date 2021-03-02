@@ -104,7 +104,8 @@
             }
     }
     __weak __typeof(self)weakSelf = self;
-    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
+    [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language,
+                                                               @"projectType":BGProjectType} success:^(id respObjc) {
         UserManager *user = [UserManager manager];
         NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];
         if (rootData) {

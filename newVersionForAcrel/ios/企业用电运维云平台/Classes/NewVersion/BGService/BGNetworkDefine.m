@@ -30,5 +30,10 @@
     return urlString?urlString:appLoginImageIconADS;
 }
 
++(NSString *)getDominAddressStr{
+    NSString *urlString = [[NSUserDefaults standardUserDefaults] objectForKey:@"DominAddressStr"];
+    return urlString?urlString:DominDefAdd;
+}
+
 
 @end

@@ -565,4 +565,16 @@ static UserManager* manager;
     DefNSUDSynchronize
 }
 
+-(void)setIndexencryptAll:(NSString *)indexencryptAll{
+    _indexencryptAll = indexencryptAll;
+    [DefNSUD setObject:_indexencryptAll
+                forKey:@"indexencryptAll"];
+    DefNSUDSynchronize
+}
+
+-(NSString *)indexencryptAll{
+    _indexencryptAll = [DefNSUD objectForKey:@"indexencryptAll"];
+    return _indexencryptAll;
+}
+
 @end

@@ -102,7 +102,8 @@
                     language = [NSNumber numberWithBool:YES];
                 }
         }
-        [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language} success:^(id respObjc) {
+        [NetService bg_getWithTokenWithPath:BGGetRootMenu params:@{@"english":language,
+                                                                   @"projectType":BGProjectType} success:^(id respObjc) {
 //            [MBProgressHUD hideHUDForView:self.view animated:YES];
             UserManager *user = [UserManager manager];
             NSDictionary *rootData = [respObjc objectForKeyNotNull:kdata];

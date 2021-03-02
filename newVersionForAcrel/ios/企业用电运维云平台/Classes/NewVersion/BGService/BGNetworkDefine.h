@@ -32,7 +32,11 @@
 
 //轨迹记录测试地址
 //#define DominAddress @"http://116.236.149.165:8090"
-#define DominAddress @"http://www.acrelcloud.cn"
+
+#define DominAddress [BGNetworkDefine getDominAddressStr]
+//#define DominAddress @"https://www.acrelcloud.cn"
+//默认地址
+#define DominDefAdd @"http://www.acrelcloud.cn"
 
 #endif
 
@@ -87,5 +91,6 @@
 +(NSString *)getAppImageUrlstr;
 +(NSString *)getSystemImageUrlstr;
 +(NSString *)getAPPLoginImageUrlstr;
++(NSString *)getDominAddressStr;
 
 @end
